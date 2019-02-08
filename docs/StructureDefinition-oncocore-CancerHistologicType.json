@@ -3,7 +3,7 @@
   "id": "oncocore-CancerHistologicType",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>CancerHistologicType Profile</b></p>\n  <p>Classification of the cancer by the type of tissue in which the cancer originates. (Source: NCI)</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>oncocore.CancerHistologicType maps to Observation:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Patient maps to subject\n  Asserter maps to performer\n  Code maps to code\n  Method maps to method\n  CommentOrDescription maps to comments\n  Category maps to category\n  BodySite.BodySiteCode maps to bodySite\n  BodySite.Laterality maps to bodySite.extension\n  BodySite.AnatomicalDirection maps to bodySite.extension\n  BodySite.CommentOrDescription maps to bodySite.extension\n  BodySite.Media maps to bodySite.extension\n  BodySite.DistanceFromLandmark maps to bodySite.extension\n  Device maps to device\n  CreationDate maps to issued\n  ReferenceRange maps to referenceRange\n  ReferenceRange.Range.LowerBound maps to referenceRange.low\n  ReferenceRange.Range.UpperBound maps to referenceRange.high\n  ReferenceRange.Type maps to referenceRange.meaning\n  Components maps to component\n  Components.ObservationComponent.Code maps to component.code (slice on = code.coding.code; slice strategy = includes)\n  Components.ObservationComponent.DataValue maps to component.value[x]\n  Components.ObservationComponent.DataAbsentReason maps to component.dataAbsentReason\n  Components.ObservationComponent.ReferenceRange maps to component.referenceRange\n  fix related.type to #has-member\n  PanelMembers maps to related\n  PanelMembers.Observation maps to related.target (slice at = related; slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)\n  DataValue maps to value[x]\n  DataAbsentReason maps to dataAbsentReason\n  Interpretation maps to interpretation\n  Status maps to status\n  RelevantTime maps to effective[x]\n  Encounter maps to encounter\n  constrain specimen to 0..0\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>CancerHistologicType Profile</b></p>\n  <p>Classification of the cancer by the type of tissue in which the cancer originates. (Source: NCI)</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>oncocore.CancerHistologicType maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-observationresults:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Patient maps to subject\n  Asserter maps to performer\n  Code maps to code\n  Method maps to method\n  CommentOrDescription maps to comments\n  Category maps to category\n  BodySite.BodySiteCode maps to bodySite\n  BodySite.Laterality maps to bodySite.extension\n  BodySite.AnatomicalDirection maps to bodySite.extension\n  BodySite.CommentOrDescription maps to bodySite.extension\n  BodySite.Media maps to bodySite.extension\n  BodySite.DistanceFromLandmark maps to bodySite.extension\n  Device maps to device\n  CreationDate maps to issued\n  ReferenceRange maps to referenceRange\n  ReferenceRange.Range.LowerBound maps to referenceRange.low\n  ReferenceRange.Range.UpperBound maps to referenceRange.high\n  ReferenceRange.Type maps to referenceRange.meaning\n  Components maps to component\n  Components.ObservationComponent.Code maps to component.code (slice on = code.coding.code; slice strategy = includes)\n  Components.ObservationComponent.DataValue maps to component.value[x]\n  Components.ObservationComponent.DataAbsentReason maps to component.dataAbsentReason\n  Components.ObservationComponent.ReferenceRange maps to component.referenceRange\n  fix related.type to #has-member\n  PanelMembers maps to related\n  PanelMembers.Observation maps to related.target (slice at = related; slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)\n  DataValue maps to value[x]\n  DataAbsentReason maps to dataAbsentReason\n  Interpretation maps to interpretation\n  Status maps to status\n  RelevantTime maps to effective[x]\n  Encounter maps to encounter\n  Specimen maps to specimen\n</pre></p>\n</div>"
   },
   "url": "http://hl7.org/fhir/us/fhirURL/StructureDefinition/oncocore-CancerHistologicType",
   "identifier": [
@@ -28,9 +28,8 @@
       ]
     }
   ],
-  "date": "2019-02-07T00:00:00-05:00",
+  "date": "2019-02-08T00:00:00-05:00",
   "description": "Classification of the cancer by the type of tissue in which the cancer originates. (Source: NCI)",
-  "requirements": "Observations are a key aspect of healthcare.  This resource is used to capture those that do not require more sophisticated mechanisms.",
   "code": [
     {
       "system": "http://snomed.info/sct",
@@ -60,13 +59,13 @@
   "kind": "resource",
   "constrainedType": "Observation",
   "abstract": false,
-  "base": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "base": "http://fhir.org/guides/argonaut/StructureDefinition/argo-observationresults",
   "snapshot": {
     "element": [
       {
-        "id": "Observation",
+        "id": "argoprofile",
         "path": "Observation",
-        "name": "Observation",
+        "name": "argoprofile",
         "short": "oncocore-CancerHistologicType",
         "definition": "Classification of the cancer by the type of tissue in which the cancer originates. (Source: NCI)",
         "comments": "Used for simple observations such as device measurements, laboratory atomic results, vital signs, height, weight, smoking status, comments, etc.  Other resources are used to provide context for observations such as lab reports, etc.",
@@ -78,9 +77,14 @@
         ],
         "min": 0,
         "max": "*",
+        "base": {
+          "path": "Observation",
+          "min": 0,
+          "max": "*"
+        },
         "type": [
           {
-            "code": "Observation"
+            "code": "argo-observationresults"
           }
         ],
         "maxLength": 0,
@@ -96,6 +100,18 @@
             "severity": "error",
             "human": "Component code SHALL not be same as observation code",
             "xpath": "not(exists(f:component/f:code)) or count(for $coding in f:code/f:coding return parent::*/f:component/f:code/f:coding[f:code/@value=$coding/f:code/@value and f:system/@value=$coding/f:system/@value])=0"
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-expression",
+                "valueString": "(component.empty() and related.empty()) implies (dataAbsentReason or value)"
+              }
+            ],
+            "key": "arg-2",
+            "severity": "error",
+            "human": "If there is no component or related element then either a value[x] or a data absent reason must be present",
+            "xpath": "exists(f:component) or exists(f:related) or exists(f:*[starts-with(local-name(.), 'value')]) or exists(f:dataAbsentReason)"
           }
         ],
         "mustSupport": false,
@@ -117,14 +133,19 @@
         ]
       },
       {
-        "id": "Observation.id",
+        "id": "Observation:argoprofile.id",
         "path": "Observation.id",
-        "name": "Observation.id",
+        "name": "Observation:argoprofile.id",
         "short": "Logical id of this artifact",
         "definition": "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
         "comments": "The only time that a resource does not have an id is when it is being submitted to the server using a create operation. Bundles always have an id, though it is usually a generated UUID.",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.id",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "id"
@@ -142,13 +163,18 @@
         ]
       },
       {
-        "id": "Observation.meta",
+        "id": "Observation:argoprofile.meta",
         "path": "Observation.meta",
-        "name": "Observation.meta",
+        "name": "Observation:argoprofile.meta",
         "short": "Metadata about the resource",
         "definition": "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content may not always be associated with version changes to the resource.",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.meta",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "Meta"
@@ -346,14 +372,19 @@
         ]
       },
       {
-        "id": "Observation.implicitRules",
+        "id": "Observation:argoprofile.implicitRules",
         "path": "Observation.implicitRules",
-        "name": "Observation.implicitRules",
+        "name": "Observation:argoprofile.implicitRules",
         "short": "A set of rules under which this content was created",
         "definition": "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content.",
         "comments": "Asserting this rule set restricts the content to be only understood by a limited set of trading partners. This inherently limits the usefulness of the data in the long term. However, the existing health eco-system is highly fractured, and not yet ready to define, collect, and exchange data in a generally computable sense. Wherever possible, implementers and/or specification writers should avoid using this element as much as possible.",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.implicitRules",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "uri"
@@ -371,14 +402,19 @@
         ]
       },
       {
-        "id": "Observation.language",
+        "id": "Observation:argoprofile.language",
         "path": "Observation.language",
-        "name": "Observation.language",
+        "name": "Observation:argoprofile.language",
         "short": "Language of the resource content",
         "definition": "The base language in which the resource is written.",
         "comments": "Language is provided to support indexing and accessibility (typically, services such as text to speech use the language tag). The html language tag in the narrative applies  to the narrative. The language tag on the resource may be used to specify the language of other presentations generated from the data in the resource  Not all the content has to be in the base language. The Resource.language should not be assumed to apply to the narrative automatically. If a language is specified, it should it also be specified on the div element in the html (see rules in HTML5 for information about the relationship between xml:lang and the html lang attribute).",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.language",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "code"
@@ -403,9 +439,9 @@
         ]
       },
       {
-        "id": "Observation.text",
+        "id": "Observation:argoprofile.text",
         "path": "Observation.text",
-        "name": "Observation.text",
+        "name": "Observation:argoprofile.text",
         "short": "Text summary of the resource, for human interpretation",
         "definition": "A human-readable narrative that contains a summary of the resource, and may be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
         "comments": "Contained resources do not have narrative. Resources that are not contained SHOULD have a narrative.",
@@ -417,6 +453,11 @@
         ],
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.text",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "Narrative"
@@ -441,9 +482,9 @@
         ]
       },
       {
-        "id": "Observation.contained",
+        "id": "Observation:argoprofile.contained",
         "path": "Observation.contained",
-        "name": "Observation.contained",
+        "name": "Observation:argoprofile.contained",
         "short": "Contained, inline Resources",
         "definition": "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.",
         "comments": "This should never be done when the content can be identified properly, as once identification is lost, it is extremely difficult (and context dependent) to restore it again.",
@@ -454,6 +495,11 @@
         ],
         "min": 0,
         "max": "*",
+        "base": {
+          "path": "Observation.contained",
+          "min": 0,
+          "max": "*"
+        },
         "type": [
           {
             "code": "Resource"
@@ -471,9 +517,9 @@
         ]
       },
       {
-        "id": "Observation.extension",
+        "id": "Observation:argoprofile.extension",
         "path": "Observation.extension",
-        "name": "Observation.extension",
+        "name": "Observation:argoprofile.extension",
         "slicing": {
           "id": "3",
           "discriminator": [
@@ -491,6 +537,11 @@
         ],
         "min": 0,
         "max": "*",
+        "base": {
+          "path": "Observation.extension",
+          "min": 0,
+          "max": "*"
+        },
         "type": [
           {
             "code": "Extension"
@@ -693,9 +744,9 @@
         ]
       },
       {
-        "id": "Observation.modifierExtension",
+        "id": "Observation:argoprofile.modifierExtension",
         "path": "Observation.modifierExtension",
-        "name": "Observation.modifierExtension",
+        "name": "Observation:argoprofile.modifierExtension",
         "short": "Extensions that cannot be ignored",
         "definition": "May be used to represent additional information that is not part of the basic definition of the resource, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -705,6 +756,11 @@
         ],
         "min": 0,
         "max": "*",
+        "base": {
+          "path": "Observation.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
         "type": [
           {
             "code": "Extension"
@@ -722,14 +778,19 @@
         ]
       },
       {
-        "id": "Observation.identifier",
+        "id": "Observation:argoprofile.identifier",
         "path": "Observation.identifier",
-        "name": "Observation.identifier",
+        "name": "Observation:argoprofile.identifier",
         "short": "Unique Id for this particular observation",
         "definition": "A unique identifier for the simple observation instance.",
         "requirements": "Allows observations to be distinguished and referenced.",
         "min": 0,
         "max": "*",
+        "base": {
+          "path": "Observation.identifier",
+          "min": 0,
+          "max": "*"
+        },
         "type": [
           {
             "code": "Identifier"
@@ -759,7 +820,7 @@
         ]
       },
       {
-        "id": "Observation.status",
+        "id": "Observation:argoprofile.status",
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-display-hint",
@@ -767,24 +828,28 @@
           }
         ],
         "path": "Observation.status",
-        "name": "Observation.status",
+        "name": "Observation:argoprofile.status",
         "short": "registered | preliminary | final | amended +",
         "definition": "The status of the result value.",
         "requirements": "Need to track the status of individual results. Some results are finalized before the whole report is finalized.",
         "min": 1,
         "max": "1",
+        "base": {
+          "path": "Observation.status",
+          "min": 1,
+          "max": "1"
+        },
         "type": [
           {
             "code": "code"
           }
         ],
         "maxLength": 0,
-        "mustSupport": false,
+        "mustSupport": true,
         "isModifier": true,
-        "isSummary": true,
+        "isSummary": false,
         "binding": {
           "strength": "required",
-          "description": "Codes providing the status of an observation.",
           "valueSetReference": {
             "reference": "http://hl7.org/fhir/ValueSet/observation-status"
           }
@@ -809,25 +874,39 @@
         ]
       },
       {
-        "id": "Observation.category",
+        "id": "Observation:argoprofile.category",
         "path": "Observation.category",
-        "name": "Observation.category",
+        "name": "Observation:argoprofile.category",
         "short": "Classification of  type of observation",
         "definition": "A code that classifies the general type of observation being made.  This is used  for searching, sorting and display purposes.",
         "comments": "The level of granularity is defined by the category concepts in the value set.   More fine-grained filtering can be performed using the metadata and/or terminology hierarchy in Observation.code.",
-        "min": 0,
+        "min": 1,
         "max": "1",
+        "base": {
+          "path": "Observation.category",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "CodeableConcept"
           }
         ],
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "userSelected": false
+            }
+          ]
+        },
         "maxLength": 0,
-        "mustSupport": false,
+        "mustSupport": true,
         "isModifier": false,
         "isSummary": false,
         "binding": {
-          "strength": "extensible",
+          "strength": "example",
           "description": "Codes for high level observation categories .",
           "valueSetReference": {
             "reference": "http://hl7.org/fhir/ValueSet/observation-category"
@@ -849,26 +928,36 @@
         ]
       },
       {
-        "id": "Observation.code",
+        "id": "Observation:argoprofile.code",
         "path": "Observation.code",
-        "name": "Observation.code",
-        "short": "Type of observation (code / type)",
-        "definition": "Describes what was observed. Sometimes this is called the observation \"name\".",
+        "name": "Observation:argoprofile.code",
+        "short": "Lab Test Name",
+        "definition": "The test that was performed.  This is element is bound to LOINC.",
+        "comments": "The typical patterns for codes are:  1)  a LOINC code either as a  translation from a \"local\" code or as a primary code, or 2)  a local code only if no suitable LOINC exists,  or 3)  both the local and the LOINC translation.   Systems SHALL be capable of sending the local code if one exists.  When using LOINC, use either the SHORTNAME or LONG_COMMON_NAME field for the display.",
         "requirements": "Knowing what kind of observation is being made is essential to understanding the observation.",
+        "alias": [
+          "Test Name",
+          "Observation Identifer"
+        ],
         "min": 1,
         "max": "1",
+        "base": {
+          "path": "Observation.code",
+          "min": 1,
+          "max": "1"
+        },
         "type": [
           {
             "code": "CodeableConcept"
           }
         ],
         "maxLength": 0,
-        "mustSupport": false,
+        "mustSupport": true,
         "isModifier": false,
-        "isSummary": true,
+        "isSummary": false,
         "binding": {
-          "strength": "example",
-          "description": "Codes identifying names of simple observations.",
+          "strength": "extensible",
+          "description": "LOINC codes",
           "valueSetReference": {
             "reference": "http://hl7.org/fhir/ValueSet/observation-codes"
           }
@@ -1268,15 +1357,20 @@
         ]
       },
       {
-        "id": "Observation.subject",
+        "id": "Observation:argoprofile.subject",
         "path": "Observation.subject",
-        "name": "Observation.subject",
+        "name": "Observation:argoprofile.subject",
         "short": "Who and/or what this is about",
         "definition": "The patient, or group of patients, location, or device whose characteristics (direct or indirect) are described by the observation and into whose record the observation is placed.  Comments: Indirect characteristics may be those of a specimen, fetus, donor,  other observer (for example a relative or EMT), or any observation made about the subject.",
-        "comments": "One would expect this element to be a cardinality  of 1..1.  The only circumstance in which the subject can be missing is when the observation is made by a device that does not know the patient. In this case, the observation SHALL be matched to a patient through some context/channel matching technique, and at this point, the observation should be updated.\r\rIf the target of the observation is different than the subject, the general extension [observation-focal-subject](extension-observation-focal-subject.html).  may be used.  However, the distinction between the patient's own value for an observation versus that of the fetus, or the donor or blood product unit, etc., are often specified in the observation code.",
+        "comments": "One would expect this element to be a cardinality  of 1..1.  The only circumstance in which the subject can be missing is when the observation is made by a device that does not know the patient. In this case, the observation SHALL be matched to a patient through some context/channel matching technique, and at this point, the observation should be updated.  If the target of the observation is different than the subject, the general extension [observation-focal-subject](extension-observation-focal-subject.html).  may be used.  However, the distinction between the patient's own value for an observation versus that of the fetus, or the donor or blood product unit, etc., are often specified in the observation code.",
         "requirements": "Observations have no value if you don't know who or what they're about.",
-        "min": 0,
+        "min": 1,
         "max": "1",
+        "base": {
+          "path": "Observation.subject",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "Reference",
@@ -1286,9 +1380,9 @@
           }
         ],
         "maxLength": 0,
-        "mustSupport": false,
+        "mustSupport": true,
         "isModifier": false,
-        "isSummary": true,
+        "isSummary": false,
         "mapping": [
           {
             "identity": "v2",
@@ -1309,14 +1403,19 @@
         ]
       },
       {
-        "id": "Observation.encounter",
+        "id": "Observation:argoprofile.encounter",
         "path": "Observation.encounter",
-        "name": "Observation.encounter",
+        "name": "Observation:argoprofile.encounter",
         "short": "Healthcare event during which this observation is made",
         "definition": "The healthcare event  (e.g. a patient and healthcare provider interaction) during which this observation is made.",
         "requirements": "For some observations it may be important to know the link between an observation and a particular encounter.",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.encounter",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "Reference",
@@ -1349,15 +1448,20 @@
         ]
       },
       {
-        "id": "Observation.effective[x]",
+        "id": "Observation:argoprofile.effective[x]",
         "path": "Observation.effective[x]",
-        "name": "Observation.effective[x]",
+        "name": "Observation:argoprofile.effective[x]",
         "short": "Clinically relevant time/time-period for observation",
-        "definition": "The time or time-period the observed value is asserted as being true. For biological subjects - e.g. human patients - this is usually called the \"physiologically relevant time\". This is usually either the time of the procedure or of specimen collection, but very often the source of the date/time is not known, only the date/time itself.",
+        "definition": "For lab tests this is the specimen collection date.  For Ask at Order Entry Questions (AOE)'s this is the date the question was asked.",
         "comments": "At least a date should be present unless this observation is a historical report.",
         "requirements": "Knowing when an observation was deemed true is important to its relevance as well as determining trends.",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.effective[x]",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "dateTime"
@@ -1367,9 +1471,23 @@
           }
         ],
         "maxLength": 0,
-        "mustSupport": false,
+        "constraint": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-expression",
+                "valueString": "length() >= 8"
+              }
+            ],
+            "key": "arg-1",
+            "severity": "error",
+            "human": "Datetime must be at least to day.",
+            "xpath": "f:matches(./\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d([+-][0-2]\\d:[0-5]\\d|Z)/)"
+          }
+        ],
+        "mustSupport": true,
         "isModifier": false,
-        "isSummary": true,
+        "isSummary": false,
         "mapping": [
           {
             "identity": "v2",
@@ -1390,14 +1508,19 @@
         ]
       },
       {
-        "id": "Observation.issued",
+        "id": "Observation:argoprofile.issued",
         "path": "Observation.issued",
-        "name": "Observation.issued",
+        "name": "Observation:argoprofile.issued",
         "short": "Date/Time this was made available",
         "definition": "The date and time this observation was made available to providers, typically after the results have been reviewed and verified.",
         "comments": "Updated when the result is updated.",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.issued",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "instant"
@@ -1427,9 +1550,9 @@
         ]
       },
       {
-        "id": "Observation.performer",
+        "id": "Observation:argoprofile.performer",
         "path": "Observation.performer",
-        "name": "Observation.performer",
+        "name": "Observation:argoprofile.performer",
         "short": "Who is responsible for the observation",
         "definition": "Who was responsible for asserting the observed value as \"true\".",
         "requirements": "May give a degree of confidence in the observation and also indicates where follow-up questions should be directed.",
@@ -1479,7 +1602,7 @@
         "path": "Observation.valueCodeableConcept",
         "name": "CodeableConcept",
         "short": "Actual result",
-        "definition": "The information determined as a result of making the observation, if the information has a simple value.",
+        "definition": "If codeableConcept, valueCodeableConcept *SHOULD*  be selected from [SNOMED CT](http://hl7.org/fhir/ValueSet/uslab-obs-codedresults).  If Quantity, valueQuantity units *SHALL* be selected from [UCUM](http://unitsofmeasure.org).",
         "min": 0,
         "max": "1",
         "base": {
@@ -1495,24 +1618,35 @@
         "maxLength": 0,
         "mustSupport": false,
         "isModifier": false,
-        "isSummary": true,
+        "isSummary": false,
         "binding": {
           "strength": "required",
           "valueSetReference": {
             "reference": "http://hl7.org/fhir/us/projectURL/oncocore/vs/CancerHistologicTypeVS"
           }
-        }
+        },
+        "mapping": [
+          {
+            "identity": "shr",
+            "map": "<shr.base.DataValue>"
+          }
+        ]
       },
       {
-        "id": "Observation.dataAbsentReason",
+        "id": "Observation:argoprofile.dataAbsentReason",
         "path": "Observation.dataAbsentReason",
-        "name": "Observation.dataAbsentReason",
+        "name": "Observation:argoprofile.dataAbsentReason",
         "short": "Why the result is missing",
         "definition": "Provides a reason why the expected value in the element Observation.value[x] is missing.",
         "comments": "Null or exceptional values can be represented two ways in FHIR Observations.  One way is to simply include them in the value set and represent the exceptions in the value.  For example, measurement values for a serology test could be  \"detected\", \"not detected\", \"inconclusive\", or  \"specimen unsatisfactory\".   The alternate way is to use the value element for actual observations and use the explicit dataAbsentReason element to record exceptional values.  For example, the dataAbsentReason code \"error\" could be used when the measurement was not completed.  Because of these options, use-case agreements are required to interpret general observations for exceptional values.",
         "requirements": "For many results it is necessary to handle exceptional values in measurements.",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.dataAbsentReason",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "CodeableConcept"
@@ -1522,7 +1656,7 @@
         "condition": [
           "obs-6"
         ],
-        "mustSupport": false,
+        "mustSupport": true,
         "isModifier": false,
         "isSummary": false,
         "binding": {
@@ -1547,9 +1681,9 @@
         ]
       },
       {
-        "id": "Observation.interpretation",
+        "id": "Observation:argoprofile.interpretation",
         "path": "Observation.interpretation",
-        "name": "Observation.interpretation",
+        "name": "Observation:argoprofile.interpretation",
         "short": "High, low, normal, etc.",
         "definition": "The assessment made based on the result of the observation.  Intended as a simple compact code often placed adjacent to the result value in reports and flow sheets to signal the meaning/normalcy status of the result. Otherwise known as abnormal flag.",
         "requirements": "For some results, particularly numeric results, an interpretation is necessary to fully understand the significance of a result.",
@@ -1558,6 +1692,11 @@
         ],
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.interpretation",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "CodeableConcept"
@@ -1590,14 +1729,19 @@
         ]
       },
       {
-        "id": "Observation.comments",
+        "id": "Observation:argoprofile.comments",
         "path": "Observation.comments",
-        "name": "Observation.comments",
+        "name": "Observation:argoprofile.comments",
         "short": "Comments about result",
         "definition": "May include statements about significant, unexpected or unreliable values, or information about the source of the value where this may be relevant to the interpretation of the result.",
         "requirements": "Need to be able to provide free text additional information.",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.comments",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "string"
@@ -1623,9 +1767,9 @@
         ]
       },
       {
-        "id": "Observation.bodySite",
+        "id": "Observation:argoprofile.bodySite",
         "path": "Observation.bodySite",
-        "name": "Observation.bodySite",
+        "name": "Observation:argoprofile.bodySite",
         "short": "Observed body part",
         "definition": "Indicates the site on the subject's body where the observation was made (i.e. the target site).",
         "comments": "Only used if not implicit in code found in Observation.code.  If the use case requires BodySite to be handled as a separate resource instead of an inline coded element (e.g. to identify and track separately) then use the standard extension[ body-site-instance](extension-body-site-instance.html).",
@@ -1792,15 +1936,20 @@
         ]
       },
       {
-        "id": "Observation.method",
+        "id": "Observation:argoprofile.method",
         "path": "Observation.method",
-        "name": "Observation.method",
+        "name": "Observation:argoprofile.method",
         "short": "How it was done",
         "definition": "Indicates the mechanism used to perform the observation.",
         "comments": "Only used if not implicit in code for Observation.code.",
         "requirements": "In some cases, method can impact results and is thus used for determining whether results can be compared or determining significance of results.",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.method",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "CodeableConcept"
@@ -1833,14 +1982,14 @@
         ]
       },
       {
-        "id": "Observation.specimen",
+        "id": "Observation:argoprofile.specimen",
         "path": "Observation.specimen",
-        "name": "Observation.specimen",
+        "name": "Observation:argoprofile.specimen",
         "short": "Specimen used for this observation",
         "definition": "The specimen that was used when this observation was made.",
         "comments": "Observations are not made on specimens themselves; they are made on a subject, but usually by the means of a specimen. Note that although specimens are often involved, they are not always tracked and reported explicitly. Also note that observation resources may be used in contexts that track the specimen explicitly (e.g. Diagnostic Report).",
         "min": 0,
-        "max": "0",
+        "max": "1",
         "base": {
           "path": "Observation.specimen",
           "min": 0,
@@ -1850,7 +1999,7 @@
           {
             "code": "Reference",
             "profile": [
-              "http://hl7.org/fhir/StructureDefinition/Specimen"
+              "http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-entity-Specimen"
             ]
           }
         ],
@@ -1866,13 +2015,17 @@
           {
             "identity": "rim",
             "map": "participation[typeCode=SPC].specimen"
+          },
+          {
+            "identity": "shr",
+            "map": "<shr.entity.Specimen>"
           }
         ]
       },
       {
-        "id": "Observation.device",
+        "id": "Observation:argoprofile.device",
         "path": "Observation.device",
-        "name": "Observation.device",
+        "name": "Observation:argoprofile.device",
         "short": "(Measurement) Device",
         "definition": "The device used to generate the observation data.",
         "comments": "An extension should be used if further typing of the device is needed.  Devices used to support obtaining an observation can be represented using either extension or through the Observation.related element.",
@@ -1911,9 +2064,9 @@
         ]
       },
       {
-        "id": "referenceRange",
+        "id": "Observation:argoprofile.referenceRange",
         "path": "Observation.referenceRange",
-        "name": "referenceRange",
+        "name": "Observation:argoprofile.referenceRange",
         "short": "Provides guide for interpretation",
         "definition": "Guidance on how to interpret the value by comparison to a normal or recommended range.",
         "comments": "Most observations only have one generic reference range. Systems MAY choose to restrict to only supplying the relevant reference range based on knowledge about the patient (e.g. specific to the patient's age, gender, weight and other factors), but this may not be possible or appropriate. Whenever more than one reference range is supplied, the differences between them SHOULD be provided in the reference range and/or age properties.",
@@ -1958,16 +2111,21 @@
         ]
       },
       {
-        "id": "Observation.referenceRange.id",
+        "id": "Observation:argoprofile.referenceRange.id",
         "path": "Observation.referenceRange.id",
         "representation": [
           "xmlAttr"
         ],
-        "name": "Observation.referenceRange.id",
+        "name": "Observation:argoprofile.referenceRange.id",
         "short": "xml:id (or equivalent in JSON)",
         "definition": "unique id for the element within a resource (for internal references).",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.referenceRange.id",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "id"
@@ -1985,9 +2143,9 @@
         ]
       },
       {
-        "id": "Observation.referenceRange.extension",
+        "id": "Observation:argoprofile.referenceRange.extension",
         "path": "Observation.referenceRange.extension",
-        "name": "Observation.referenceRange.extension",
+        "name": "Observation:argoprofile.referenceRange.extension",
         "short": "Additional Content defined by implementations",
         "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -1997,6 +2155,11 @@
         ],
         "min": 0,
         "max": "*",
+        "base": {
+          "path": "Observation.referenceRange.extension",
+          "min": 0,
+          "max": "*"
+        },
         "type": [
           {
             "code": "Extension"
@@ -2014,9 +2177,9 @@
         ]
       },
       {
-        "id": "Observation.referenceRange.modifierExtension",
+        "id": "Observation:argoprofile.referenceRange.modifierExtension",
         "path": "Observation.referenceRange.modifierExtension",
-        "name": "Observation.referenceRange.modifierExtension",
+        "name": "Observation:argoprofile.referenceRange.modifierExtension",
         "short": "Extensions that cannot be ignored",
         "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -2027,6 +2190,11 @@
         ],
         "min": 0,
         "max": "*",
+        "base": {
+          "path": "Observation.referenceRange.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
         "type": [
           {
             "code": "Extension"
@@ -2044,13 +2212,18 @@
         ]
       },
       {
-        "id": "Observation.referenceRange.low",
+        "id": "Observation:argoprofile.referenceRange.low",
         "path": "Observation.referenceRange.low",
-        "name": "Observation.referenceRange.low",
+        "name": "Observation:argoprofile.referenceRange.low",
         "short": "Low Range, if relevant",
         "definition": "The value of the low bound of the reference range.  The low bound of the reference range endpoint is inclusive of the value (e.g.  reference range is >=5 - <=9).   If the low bound is omitted,  it is assumed to be meaningless (e.g. reference range is <=2.3).",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.referenceRange.low",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "Quantity",
@@ -2082,13 +2255,18 @@
         ]
       },
       {
-        "id": "Observation.referenceRange.high",
+        "id": "Observation:argoprofile.referenceRange.high",
         "path": "Observation.referenceRange.high",
-        "name": "Observation.referenceRange.high",
+        "name": "Observation:argoprofile.referenceRange.high",
         "short": "High Range, if relevant",
         "definition": "The value of the high bound of the reference range.  The high bound of the reference range endpoint is inclusive of the value (e.g.  reference range is >=5 - <=9).   If the high bound is omitted,  it is assumed to be meaningless (e.g. reference range is >= 2.3).",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.referenceRange.high",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "Quantity",
@@ -2120,15 +2298,20 @@
         ]
       },
       {
-        "id": "Observation.referenceRange.meaning",
+        "id": "Observation:argoprofile.referenceRange.meaning",
         "path": "Observation.referenceRange.meaning",
-        "name": "Observation.referenceRange.meaning",
+        "name": "Observation:argoprofile.referenceRange.meaning",
         "short": "Indicates the meaning/use of this range of this range",
         "definition": "Code for the meaning of the reference range.",
         "comments": "This SHOULD be populated if there is more than one range.",
         "requirements": "Need to be able to say what kind of reference range this is - normal, recommended, therapeutic, or perhaps what state this reference range applies to (i.e. age, hormonal cycles, etc.).",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.referenceRange.meaning",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "CodeableConcept"
@@ -2161,14 +2344,19 @@
         ]
       },
       {
-        "id": "Observation.referenceRange.age",
+        "id": "Observation:argoprofile.referenceRange.age",
         "path": "Observation.referenceRange.age",
-        "name": "Observation.referenceRange.age",
+        "name": "Observation:argoprofile.referenceRange.age",
         "short": "Applicable age range, if relevant",
         "definition": "The age at which this reference range is applicable. This is a neonatal age (e.g. number of weeks at term) if the meaning says so.",
         "requirements": "Some analytes vary greatly over age.",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.referenceRange.age",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "Range"
@@ -2186,13 +2374,18 @@
         ]
       },
       {
-        "id": "Observation.referenceRange.text",
+        "id": "Observation:argoprofile.referenceRange.text",
         "path": "Observation.referenceRange.text",
-        "name": "Observation.referenceRange.text",
+        "name": "Observation:argoprofile.referenceRange.text",
         "short": "Text based reference range in an observation",
         "definition": "Text based reference range in an observation which may be used when a quantitative range is not appropriate for an observation.  An example would be a reference value of \"Negative\" or a list or table of 'normals'.",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.referenceRange.text",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "string"
@@ -2214,9 +2407,9 @@
         ]
       },
       {
-        "id": "Observation.related",
+        "id": "Observation:argoprofile.related",
         "path": "Observation.related",
-        "name": "Observation.related",
+        "name": "Observation:argoprofile.related",
         "short": "Resource related to this observation",
         "definition": "A  reference to another resource (usually another Observation but could  also be a QuestionnaireAnswer) whose relationship is defined by the relationship type code.",
         "comments": "For a discussion on the ways Observations can assembled in groups together see [Notes below](observation.html#4.20.4).",
@@ -2253,16 +2446,21 @@
         ]
       },
       {
-        "id": "Observation.related.id",
+        "id": "Observation:argoprofile.related.id",
         "path": "Observation.related.id",
         "representation": [
           "xmlAttr"
         ],
-        "name": "Observation.related.id",
+        "name": "Observation:argoprofile.related.id",
         "short": "xml:id (or equivalent in JSON)",
         "definition": "unique id for the element within a resource (for internal references).",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.related.id",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "id"
@@ -2280,9 +2478,9 @@
         ]
       },
       {
-        "id": "Observation.related.extension",
+        "id": "Observation:argoprofile.related.extension",
         "path": "Observation.related.extension",
-        "name": "Observation.related.extension",
+        "name": "Observation:argoprofile.related.extension",
         "short": "Additional Content defined by implementations",
         "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -2292,6 +2490,11 @@
         ],
         "min": 0,
         "max": "*",
+        "base": {
+          "path": "Observation.related.extension",
+          "min": 0,
+          "max": "*"
+        },
         "type": [
           {
             "code": "Extension"
@@ -2309,9 +2512,9 @@
         ]
       },
       {
-        "id": "Observation.related.modifierExtension",
+        "id": "Observation:argoprofile.related.modifierExtension",
         "path": "Observation.related.modifierExtension",
-        "name": "Observation.related.modifierExtension",
+        "name": "Observation:argoprofile.related.modifierExtension",
         "short": "Extensions that cannot be ignored",
         "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -2322,6 +2525,11 @@
         ],
         "min": 0,
         "max": "*",
+        "base": {
+          "path": "Observation.related.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
         "type": [
           {
             "code": "Extension"
@@ -2339,15 +2547,20 @@
         ]
       },
       {
-        "id": "Observation.related.type",
+        "id": "Observation:argoprofile.related.type",
         "path": "Observation.related.type",
-        "name": "Observation.related.type",
+        "name": "Observation:argoprofile.related.type",
         "short": "has-member | derived-from | sequel-to | replaces | qualified-by | interfered-by",
         "definition": "A code specifying the kind of relationship that exists with the target resource.",
         "comments": "\"derived-from\" is only logical choice when referencing QuestionnaireAnswer resource.",
         "requirements": "A relationship type SHOULD be provided.",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.related.type",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "code"
@@ -2377,13 +2590,18 @@
         ]
       },
       {
-        "id": "Observation.related.target",
+        "id": "Observation:argoprofile.related.target",
         "path": "Observation.related.target",
-        "name": "Observation.related.target",
+        "name": "Observation:argoprofile.related.target",
         "short": "Resource that is related to this one",
         "definition": "A reference to the observation or [[[QuestionnaireResponse]]] resource that is related to this observation.",
         "min": 1,
         "max": "1",
+        "base": {
+          "path": "Observation.related.target",
+          "min": 1,
+          "max": "1"
+        },
         "type": [
           {
             "code": "Reference",
@@ -2408,9 +2626,9 @@
         ]
       },
       {
-        "id": "Observation.component",
+        "id": "Observation:argoprofile.component",
         "path": "Observation.component",
-        "name": "Observation.component",
+        "name": "Observation:argoprofile.component",
         "short": "Component results",
         "definition": "Some observations have multiple component observations.  These component observations are expressed as separate code value pairs that share the same attributes.  Examples include systolic and diastolic component observations for blood pressure measurement and multiple component observations for genetics observations.",
         "comments": "For a discussion on the ways Observations can assembled in groups together see [Notes below](observation.html#4.20.4).",
@@ -2447,16 +2665,21 @@
         ]
       },
       {
-        "id": "Observation.component.id",
+        "id": "Observation:argoprofile.component.id",
         "path": "Observation.component.id",
         "representation": [
           "xmlAttr"
         ],
-        "name": "Observation.component.id",
+        "name": "Observation:argoprofile.component.id",
         "short": "xml:id (or equivalent in JSON)",
         "definition": "unique id for the element within a resource (for internal references).",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.component.id",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "id"
@@ -2474,9 +2697,9 @@
         ]
       },
       {
-        "id": "Observation.component.extension",
+        "id": "Observation:argoprofile.component.extension",
         "path": "Observation.component.extension",
-        "name": "Observation.component.extension",
+        "name": "Observation:argoprofile.component.extension",
         "short": "Additional Content defined by implementations",
         "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -2486,6 +2709,11 @@
         ],
         "min": 0,
         "max": "*",
+        "base": {
+          "path": "Observation.component.extension",
+          "min": 0,
+          "max": "*"
+        },
         "type": [
           {
             "code": "Extension"
@@ -2503,9 +2731,9 @@
         ]
       },
       {
-        "id": "Observation.component.modifierExtension",
+        "id": "Observation:argoprofile.component.modifierExtension",
         "path": "Observation.component.modifierExtension",
-        "name": "Observation.component.modifierExtension",
+        "name": "Observation:argoprofile.component.modifierExtension",
         "short": "Extensions that cannot be ignored",
         "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -2516,6 +2744,11 @@
         ],
         "min": 0,
         "max": "*",
+        "base": {
+          "path": "Observation.component.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
         "type": [
           {
             "code": "Extension"
@@ -2533,14 +2766,19 @@
         ]
       },
       {
-        "id": "Observation.component.code",
+        "id": "Observation:argoprofile.component.code",
         "path": "Observation.component.code",
-        "name": "Observation.component.code",
+        "name": "Observation:argoprofile.component.code",
         "short": "Type of component observation (code / type)",
         "definition": "Describes what was observed. Sometimes this is called the observation \"code\".",
         "requirements": "Knowing what kind of observation is being made is essential to understanding the observation.",
         "min": 1,
         "max": "1",
+        "base": {
+          "path": "Observation.component.code",
+          "min": 1,
+          "max": "1"
+        },
         "type": [
           {
             "code": "CodeableConcept"
@@ -2580,15 +2818,20 @@
         ]
       },
       {
-        "id": "Observation.component.value[x]",
+        "id": "Observation:argoprofile.component.value[x]",
         "path": "Observation.component.value[x]",
-        "name": "Observation.component.value[x]",
+        "name": "Observation:argoprofile.component.value[x]",
         "short": "Actual component result",
         "definition": "The information determined as a result of making the observation, if the information has a simple value.",
         "comments": "Normally, an observation will have either a value or a set of related observations. A few observations (e.g. Apgar score) may have both a value and related observations (for an Apgar score, the observations from which the measure is derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.   For boolean values use valueCodeableConcept and select codes from <http://hl7.org/fhir/ValueSet/v2-0136> (These \"yes/no\" concepts can be mapped to the display name \"true/false\" or other mutually exclusive terms that may be needed\").  The element, Observation.value[x], has a variable name depending on the type as follows: valueQuantity, valueCodeableConcept, valueRatio, valueChoice, valuePeriod, valueSampleData, or valueString (The name format is \"'value' + the type name\" with a capital on the first letter of the type).",
         "requirements": "An observation exists to have a value, though it may not if it is in error, or it represents a group of observations.",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.component.value[x]",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "Quantity"
@@ -2635,15 +2878,20 @@
         ]
       },
       {
-        "id": "Observation.component.dataAbsentReason",
+        "id": "Observation:argoprofile.component.dataAbsentReason",
         "path": "Observation.component.dataAbsentReason",
-        "name": "Observation.component.dataAbsentReason",
+        "name": "Observation:argoprofile.component.dataAbsentReason",
         "short": "Why the component result is missing",
         "definition": "Provides a reason why the expected value in the element Observation.value[x] is missing.",
         "comments": "\"Null\" or exceptional values can be represented two ways in FHIR Observations.  One way is to simply include them in the value set and represent the exceptions in the value.  For example, measurement values for a serology test could be  \"detected\", \"not detected\", \"inconclusive\", or  \"test not done\".   The alternate way is to use the value element for actual observations and use the explicit dataAbsentReason element to record exceptional values.  For example, the dataAbsentReason code \"error\" could be used when the measurement was not completed.  Because of these options, use-case agreements are required to interpret general observations for exceptional values.",
         "requirements": "For many results it is necessary to handle exceptional values in measurements.",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Observation.component.dataAbsentReason",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "CodeableConcept"
@@ -2678,15 +2926,20 @@
         ]
       },
       {
-        "id": "Observation.component.referenceRange",
+        "id": "Observation:argoprofile.component.referenceRange",
         "path": "Observation.component.referenceRange",
-        "name": "Observation.component.referenceRange",
+        "name": "Observation:argoprofile.component.referenceRange",
         "short": "Provides guide for interpretation of component result",
         "definition": "Guidance on how to interpret the value by comparison to a normal or recommended range.",
         "comments": "Most observations only have one generic reference range. Systems MAY choose to restrict to only supplying the relevant reference range based on knowledge about the patient (e.g. specific to the patient's age, gender, weight and other factors), but this may not be possible or appropriate. Whenever more than one reference range is supplied, the differences between them SHOULD be provided in the reference range and/or age properties.",
         "requirements": "Knowing what values are considered \"normal\" can help evaluate the significance of a particular result. Need to be able to provide multiple reference ranges for different contexts.",
         "min": 0,
         "max": "*",
+        "base": {
+          "path": "Observation.component.referenceRange",
+          "min": 0,
+          "max": "*"
+        },
         "type": [
           {
             "code": "BackboneElement"
@@ -2968,7 +3221,7 @@
         "min": 0,
         "type": [
           {
-            "code": "Observation"
+            "code": "argo-observationresults"
           }
         ],
         "maxLength": 0,
@@ -3235,13 +3488,6 @@
         "mustSupport": false,
         "isModifier": false,
         "isSummary": false,
-        "binding": {
-          "strength": "extensible",
-          "description": "Codes for high level observation categories .",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/observation-category"
-          }
-        },
         "mapping": [
           {
             "identity": "shr",
@@ -3410,11 +3656,6 @@
         "name": "Observation.performer",
         "min": 0,
         "max": "1",
-        "base": {
-          "path": "Observation.performer",
-          "min": 0,
-          "max": "*"
-        },
         "type": [
           {
             "code": "Reference",
@@ -3456,7 +3697,13 @@
           "valueSetReference": {
             "reference": "http://hl7.org/fhir/us/projectURL/oncocore/vs/CancerHistologicTypeVS"
           }
-        }
+        },
+        "mapping": [
+          {
+            "identity": "shr",
+            "map": "<shr.base.DataValue>"
+          }
+        ]
       },
       {
         "id": "Observation.dataAbsentReason",
@@ -3518,11 +3765,6 @@
         "name": "Observation.bodySite",
         "min": 0,
         "max": "0",
-        "base": {
-          "path": "Observation.bodySite",
-          "min": 0,
-          "max": "1"
-        },
         "maxLength": 0,
         "mustSupport": false,
         "isModifier": false,
@@ -3561,16 +3803,24 @@
         "path": "Observation.specimen",
         "name": "Observation.specimen",
         "min": 0,
-        "max": "0",
-        "base": {
-          "path": "Observation.specimen",
-          "min": 0,
-          "max": "1"
-        },
+        "type": [
+          {
+            "code": "Reference",
+            "profile": [
+              "http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-entity-Specimen"
+            ]
+          }
+        ],
         "maxLength": 0,
         "mustSupport": false,
         "isModifier": false,
-        "isSummary": false
+        "isSummary": false,
+        "mapping": [
+          {
+            "identity": "shr",
+            "map": "<shr.entity.Specimen>"
+          }
+        ]
       },
       {
         "id": "Observation.device",
@@ -3578,11 +3828,6 @@
         "name": "Observation.device",
         "min": 0,
         "max": "0",
-        "base": {
-          "path": "Observation.device",
-          "min": 0,
-          "max": "1"
-        },
         "type": [
           {
             "code": "Reference",
@@ -3608,11 +3853,6 @@
         "name": "Observation.referenceRange",
         "min": 0,
         "max": "0",
-        "base": {
-          "path": "Observation.referenceRange",
-          "min": 0,
-          "max": "*"
-        },
         "maxLength": 0,
         "mustSupport": false,
         "isModifier": false,
@@ -3685,11 +3925,6 @@
         "name": "Observation.related",
         "min": 0,
         "max": "0",
-        "base": {
-          "path": "Observation.related",
-          "min": 0,
-          "max": "*"
-        },
         "maxLength": 0,
         "mustSupport": false,
         "isModifier": false,
@@ -3742,11 +3977,6 @@
         "name": "Observation.component",
         "min": 0,
         "max": "0",
-        "base": {
-          "path": "Observation.component",
-          "min": 0,
-          "max": "*"
-        },
         "maxLength": 0,
         "mustSupport": false,
         "isModifier": false,

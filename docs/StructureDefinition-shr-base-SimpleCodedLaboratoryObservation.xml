@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="shr-base-SimpleCodedNonLaboratoryObservation"/>
+  <id value="shr-base-SimpleCodedLaboratoryObservation"/>
   <text>
     <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">
-  <p><b>SimpleCodedNonLaboratoryObservation Profile</b></p>
-  <p>An observation whose result is a code, and also having no components or panel members</p>
+  <p><b>SimpleCodedLaboratoryObservation Profile</b></p>
+  <p>A coded result from a laboratory test without further panel members or components.</p>
   <p><b>Mapping Summary</b></p>
-  <p><pre>shr.base.SimpleCodedNonLaboratoryObservation maps to Observation:
+  <p><pre>shr.base.SimpleCodedLaboratoryObservation maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-observationresults:
   _Entry.EntryId maps to id
   Language maps to language
   Narrative maps to text
@@ -49,18 +49,18 @@
   Status maps to status
   RelevantTime maps to effective[x]
   Encounter maps to encounter
-  constrain specimen to 0..0
+  Specimen maps to specimen
 </pre></p>
 </div>
   </text>
-  <url value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-base-SimpleCodedNonLaboratoryObservation"/>
+  <url value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-base-SimpleCodedLaboratoryObservation"/>
   <identifier>
     <system value="http://hl7.org/fhir/us/projectURL"/>
-    <value value="shr.base.SimpleCodedNonLaboratoryObservation"/>
+    <value value="shr.base.SimpleCodedLaboratoryObservation"/>
   </identifier>
   <version value="0.6.0"/>
-  <name value="SimpleCodedNonLaboratoryObservation"/>
-  <display value="shr-base-SimpleCodedNonLaboratoryObservation"/>
+  <name value="SimpleCodedLaboratoryObservation"/>
+  <display value="shr-base-SimpleCodedLaboratoryObservation"/>
   <status value="draft"/>
   <publisher value="The MITRE Corporation"/>
   <contact>
@@ -70,9 +70,8 @@
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-02-07T00:00:00-05:00"/>
-  <description value="An observation whose result is a code, and also having no components or panel members"/>
-  <requirements value="Observations are a key aspect of healthcare.  This resource is used to capture those that do not require more sophisticated mechanisms."/>
+  <date value="2019-02-08T00:00:00-05:00"/>
+  <description value="A coded result from a laboratory test without further panel members or components."/>
   <fhirVersion value="1.0.2"/>
   <mapping>
     <identity value="v2"/>
@@ -92,13 +91,13 @@
   <kind value="resource"/>
   <constrainedType value="Observation"/>
   <abstract value="false"/>
-  <base value="http://hl7.org/fhir/StructureDefinition/Observation"/>
+  <base value="http://fhir.org/guides/argonaut/StructureDefinition/argo-observationresults"/>
   <snapshot>
-    <element id="Observation">
+    <element id="argoprofile">
       <path value="Observation"/>
-      <name value="Observation"/>
-      <short value="shr-base-SimpleCodedNonLaboratoryObservation"/>
-      <definition value="An observation whose result is a code, and also having no components or panel members"/>
+      <name value="argoprofile"/>
+      <short value="shr-base-SimpleCodedLaboratoryObservation"/>
+      <definition value="A coded result from a laboratory test without further panel members or components."/>
       <comments value="Used for simple observations such as device measurements, laboratory atomic results, vital signs, height, weight, smoking status, comments, etc.  Other resources are used to provide context for observations such as lab reports, etc."/>
       <alias value="Vital Signs"/>
       <alias value="Measurement"/>
@@ -106,8 +105,13 @@
       <alias value="Tests"/>
       <min value="0"/>
       <max value="*"/>
+      <base>
+        <path value="Observation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
       <type>
-        <code value="Observation"/>
+        <code value="argo-observationresults"/>
       </type>
       <maxLength value="0"/>
       <constraint>
@@ -121,6 +125,15 @@
         <severity value="error"/>
         <human value="Component code SHALL not be same as observation code"/>
         <xpath value="not(exists(f:component/f:code)) or count(for $coding in f:code/f:coding return parent::*/f:component/f:code/f:coding[f:code/@value=$coding/f:code/@value and f:system/@value=$coding/f:system/@value])=0"/>
+      </constraint>
+      <constraint>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-expression">
+          <valueString value="(component.empty() and related.empty()) implies (dataAbsentReason or value)"/>
+        </extension>
+        <key value="arg-2"/>
+        <severity value="error"/>
+        <human value="If there is no component or related element then either a value[x] or a data absent reason must be present"/>
+        <xpath value="exists(f:component) or exists(f:related) or exists(f:*[starts-with(local-name(.), &#39;value&#39;)]) or exists(f:dataAbsentReason)"/>
       </constraint>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -138,14 +151,19 @@
         <map value="clinical.diagnostics"/>
       </mapping>
     </element>
-    <element id="Observation.id">
+    <element id="Observation:argoprofile.id">
       <path value="Observation.id"/>
-      <name value="Observation.id"/>
+      <name value="Observation:argoprofile.id"/>
       <short value="Logical id of this artifact"/>
       <definition value="The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes."/>
       <comments value="The only time that a resource does not have an id is when it is being submitted to the server using a create operation. Bundles always have an id, though it is usually a generated UUID."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.id"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="id"/>
       </type>
@@ -158,13 +176,18 @@
         <map value="&lt;_Entry&gt;.&lt;shr.base.EntryId&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.meta">
+    <element id="Observation:argoprofile.meta">
       <path value="Observation.meta"/>
-      <name value="Observation.meta"/>
+      <name value="Observation:argoprofile.meta"/>
       <short value="Metadata about the resource"/>
       <definition value="The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content may not always be associated with version changes to the resource."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.meta"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="Meta"/>
       </type>
@@ -322,14 +345,19 @@
         <map value="&lt;shr.base.Metadata&gt;.&lt;shr.base.Tag&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.implicitRules">
+    <element id="Observation:argoprofile.implicitRules">
       <path value="Observation.implicitRules"/>
-      <name value="Observation.implicitRules"/>
+      <name value="Observation:argoprofile.implicitRules"/>
       <short value="A set of rules under which this content was created"/>
       <definition value="A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content."/>
       <comments value="Asserting this rule set restricts the content to be only understood by a limited set of trading partners. This inherently limits the usefulness of the data in the long term. However, the existing health eco-system is highly fractured, and not yet ready to define, collect, and exchange data in a generally computable sense. Wherever possible, implementers and/or specification writers should avoid using this element as much as possible."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.implicitRules"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="uri"/>
       </type>
@@ -342,14 +370,19 @@
         <map value="&lt;shr.base.ImplicitRules&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.language">
+    <element id="Observation:argoprofile.language">
       <path value="Observation.language"/>
-      <name value="Observation.language"/>
+      <name value="Observation:argoprofile.language"/>
       <short value="Language of the resource content"/>
       <definition value="The base language in which the resource is written."/>
       <comments value="Language is provided to support indexing and accessibility (typically, services such as text to speech use the language tag). The html language tag in the narrative applies  to the narrative. The language tag on the resource may be used to specify the language of other presentations generated from the data in the resource  Not all the content has to be in the base language. The Resource.language should not be assumed to apply to the narrative automatically. If a language is specified, it should it also be specified on the div element in the html (see rules in HTML5 for information about the relationship between xml:lang and the html lang attribute)."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.language"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="code"/>
       </type>
@@ -369,9 +402,9 @@
         <map value="&lt;shr.base.Language&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.text">
+    <element id="Observation:argoprofile.text">
       <path value="Observation.text"/>
-      <name value="Observation.text"/>
+      <name value="Observation:argoprofile.text"/>
       <short value="Text summary of the resource, for human interpretation"/>
       <definition value="A human-readable narrative that contains a summary of the resource, and may be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it &quot;clinically safe&quot; for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety."/>
       <comments value="Contained resources do not have narrative. Resources that are not contained SHOULD have a narrative."/>
@@ -381,6 +414,11 @@
       <alias value="display"/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.text"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="Narrative"/>
       </type>
@@ -398,9 +436,9 @@
         <map value="&lt;shr.base.Narrative&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.contained">
+    <element id="Observation:argoprofile.contained">
       <path value="Observation.contained"/>
-      <name value="Observation.contained"/>
+      <name value="Observation:argoprofile.contained"/>
       <short value="Contained, inline Resources"/>
       <definition value="These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."/>
       <comments value="This should never be done when the content can be identified properly, as once identification is lost, it is extremely difficult (and context dependent) to restore it again."/>
@@ -409,6 +447,11 @@
       <alias value="contained resources"/>
       <min value="0"/>
       <max value="*"/>
+      <base>
+        <path value="Observation.contained"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
       <type>
         <code value="Resource"/>
       </type>
@@ -421,10 +464,10 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation.extension">
+    <element id="Observation:argoprofile.extension">
       <path value="Observation.extension"/>
-      <name value="Observation.extension"/>
-      <slicing id="2">
+      <name value="Observation:argoprofile.extension"/>
+      <slicing id="1">
         <discriminator value="url"/>
         <ordered value="false"/>
         <rules value="open"/>
@@ -436,6 +479,11 @@
       <alias value="user content"/>
       <min value="0"/>
       <max value="*"/>
+      <base>
+        <path value="Observation.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
       <type>
         <code value="Extension"/>
       </type>
@@ -496,9 +544,9 @@
         <map value="&lt;shr.base.Focus&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.modifierExtension">
+    <element id="Observation:argoprofile.modifierExtension">
       <path value="Observation.modifierExtension"/>
-      <name value="Observation.modifierExtension"/>
+      <name value="Observation:argoprofile.modifierExtension"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the resource, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -506,6 +554,11 @@
       <alias value="user content"/>
       <min value="0"/>
       <max value="*"/>
+      <base>
+        <path value="Observation.modifierExtension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
       <type>
         <code value="Extension"/>
       </type>
@@ -518,14 +571,19 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation.identifier">
+    <element id="Observation:argoprofile.identifier">
       <path value="Observation.identifier"/>
-      <name value="Observation.identifier"/>
+      <name value="Observation:argoprofile.identifier"/>
       <short value="Unique Id for this particular observation"/>
       <definition value="A unique identifier for the simple observation instance."/>
       <requirements value="Allows observations to be distinguished and referenced."/>
       <min value="0"/>
       <max value="*"/>
+      <base>
+        <path value="Observation.identifier"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
       <type>
         <code value="Identifier"/>
       </type>
@@ -550,27 +608,31 @@
         <map value="&lt;shr.core.Identifier&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.status">
+    <element id="Observation:argoprofile.status">
       <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-display-hint">
         <valueString value="default: final"/>
       </extension>
       <path value="Observation.status"/>
-      <name value="Observation.status"/>
+      <name value="Observation:argoprofile.status"/>
       <short value="registered | preliminary | final | amended +"/>
       <definition value="The status of the result value."/>
       <requirements value="Need to track the status of individual results. Some results are finalized before the whole report is finalized."/>
       <min value="1"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.status"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="code"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="true"/>
-      <isSummary value="true"/>
+      <isSummary value="false"/>
       <binding>
         <strength value="required"/>
-        <description value="Codes providing the status of an observation."/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/observation-status"/>
         </valueSetReference>
@@ -592,23 +654,35 @@
         <map value="&lt;shr.base.Status&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.category">
+    <element id="Observation:argoprofile.category">
       <path value="Observation.category"/>
-      <name value="Observation.category"/>
+      <name value="Observation:argoprofile.category"/>
       <short value="Classification of  type of observation"/>
       <definition value="A code that classifies the general type of observation being made.  This is used  for searching, sorting and display purposes."/>
       <comments value="The level of granularity is defined by the category concepts in the value set.   More fine-grained filtering can be performed using the metadata and/or terminology hierarchy in Observation.code."/>
-      <min value="0"/>
+      <min value="1"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.category"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="CodeableConcept"/>
       </type>
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://hl7.org/fhir/observation-category"/>
+          <code value="laboratory"/>
+          <userSelected value="false"/>
+        </coding>
+      </patternCodeableConcept>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
       <binding>
-        <strength value="extensible"/>
+        <strength value="example"/>
         <description value="Codes for high level observation categories ."/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/observation-category"/>
@@ -627,26 +701,33 @@
         <map value="&lt;shr.core.Category&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.code">
+    <element id="Observation:argoprofile.code">
       <path value="Observation.code"/>
-      <name value="Observation.code"/>
-      <short value="Type of observation (code / type)"/>
-      <definition value="Describes what was observed. Sometimes this is called the observation &quot;name&quot;."/>
+      <name value="Observation:argoprofile.code"/>
+      <short value="Lab Test Name"/>
+      <definition value="The test that was performed.  This is element is bound to LOINC."/>
+      <comments value="The typical patterns for codes are:  1)  a LOINC code either as a  translation from a &quot;local&quot; code or as a primary code, or 2)  a local code only if no suitable LOINC exists,  or 3)  both the local and the LOINC translation.   Systems SHALL be capable of sending the local code if one exists.  When using LOINC, use either the SHORTNAME or LONG_COMMON_NAME field for the display."/>
       <requirements value="Knowing what kind of observation is being made is essential to understanding the observation."/>
+      <alias value="Test Name"/>
+      <alias value="Observation Identifer"/>
       <min value="1"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.code"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="CodeableConcept"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
-      <isSummary value="true"/>
+      <isSummary value="false"/>
       <binding>
-        <strength value="example"/>
-        <description value="Codes identifying names of simple observations."/>
+        <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/observation-codes"/>
+          <reference value="http://loinc.org/vs"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -666,23 +747,28 @@
         <map value="&lt;shr.core.Code&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.subject">
+    <element id="Observation:argoprofile.subject">
       <path value="Observation.subject"/>
-      <name value="Observation.subject"/>
+      <name value="Observation:argoprofile.subject"/>
       <short value="Who and/or what this is about"/>
       <definition value="The patient, or group of patients, location, or device whose characteristics (direct or indirect) are described by the observation and into whose record the observation is placed.  Comments: Indirect characteristics may be those of a specimen, fetus, donor,  other observer (for example a relative or EMT), or any observation made about the subject."/>
-      <comments value="One would expect this element to be a cardinality  of 1..1.  The only circumstance in which the subject can be missing is when the observation is made by a device that does not know the patient. In this case, the observation SHALL be matched to a patient through some context/channel matching technique, and at this point, the observation should be updated.&#xD;&#xD;If the target of the observation is different than the subject, the general extension [observation-focal-subject](extension-observation-focal-subject.html).  may be used.  However, the distinction between the patient&#39;s own value for an observation versus that of the fetus, or the donor or blood product unit, etc., are often specified in the observation code."/>
+      <comments value="One would expect this element to be a cardinality  of 1..1.  The only circumstance in which the subject can be missing is when the observation is made by a device that does not know the patient. In this case, the observation SHALL be matched to a patient through some context/channel matching technique, and at this point, the observation should be updated.  If the target of the observation is different than the subject, the general extension [observation-focal-subject](extension-observation-focal-subject.html).  may be used.  However, the distinction between the patient&#39;s own value for an observation versus that of the fetus, or the donor or blood product unit, etc., are often specified in the observation code."/>
       <requirements value="Observations have no value if you don&#39;t know who or what they&#39;re about."/>
-      <min value="0"/>
+      <min value="1"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.subject"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="Reference"/>
         <profile value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-entity-Patient"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
-      <isSummary value="true"/>
+      <isSummary value="false"/>
       <mapping>
         <identity value="v2"/>
         <map value="PID-3"/>
@@ -700,14 +786,19 @@
         <map value="&lt;shr.entity.Patient&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.encounter">
+    <element id="Observation:argoprofile.encounter">
       <path value="Observation.encounter"/>
-      <name value="Observation.encounter"/>
+      <name value="Observation:argoprofile.encounter"/>
       <short value="Healthcare event during which this observation is made"/>
       <definition value="The healthcare event  (e.g. a patient and healthcare provider interaction) during which this observation is made."/>
       <requirements value="For some observations it may be important to know the link between an observation and a particular encounter."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.encounter"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="Reference"/>
         <profile value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-encounter-Encounter"/>
@@ -733,15 +824,20 @@
         <map value="&lt;shr.encounter.Encounter&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.effective[x]">
+    <element id="Observation:argoprofile.effective[x]">
       <path value="Observation.effective[x]"/>
-      <name value="Observation.effective[x]"/>
+      <name value="Observation:argoprofile.effective[x]"/>
       <short value="Clinically relevant time/time-period for observation"/>
-      <definition value="The time or time-period the observed value is asserted as being true. For biological subjects - e.g. human patients - this is usually called the &quot;physiologically relevant time&quot;. This is usually either the time of the procedure or of specimen collection, but very often the source of the date/time is not known, only the date/time itself."/>
+      <definition value="For lab tests this is the specimen collection date.  For Ask at Order Entry Questions (AOE)&#39;s this is the date the question was asked."/>
       <comments value="At least a date should be present unless this observation is a historical report."/>
       <requirements value="Knowing when an observation was deemed true is important to its relevance as well as determining trends."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.effective[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="dateTime"/>
       </type>
@@ -749,9 +845,18 @@
         <code value="Period"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <constraint>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-expression">
+          <valueString value="length() &gt;= 8"/>
+        </extension>
+        <key value="arg-1"/>
+        <severity value="error"/>
+        <human value="Datetime must be at least to day."/>
+        <xpath value="f:matches(./\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z)/)"/>
+      </constraint>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
-      <isSummary value="true"/>
+      <isSummary value="false"/>
       <mapping>
         <identity value="v2"/>
         <map value="OBX-14, and/or OBX-19 after v2.4  (depends on who observation made)"/>
@@ -769,14 +874,19 @@
         <map value="&lt;shr.base.RelevantTime&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.issued">
+    <element id="Observation:argoprofile.issued">
       <path value="Observation.issued"/>
-      <name value="Observation.issued"/>
+      <name value="Observation:argoprofile.issued"/>
       <short value="Date/Time this was made available"/>
       <definition value="The date and time this observation was made available to providers, typically after the results have been reviewed and verified."/>
       <comments value="Updated when the result is updated."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.issued"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="instant"/>
       </type>
@@ -801,9 +911,9 @@
         <map value="&lt;shr.base.CreationDate&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.performer">
+    <element id="Observation:argoprofile.performer">
       <path value="Observation.performer"/>
-      <name value="Observation.performer"/>
+      <name value="Observation:argoprofile.performer"/>
       <short value="Who is responsible for the observation"/>
       <definition value="Who was responsible for asserting the observed value as &quot;true&quot;."/>
       <requirements value="May give a degree of confidence in the observation and also indicates where follow-up questions should be directed."/>
@@ -842,22 +952,48 @@
         <map value="&lt;shr.base.Asserter&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.valueCodeableConcept">
+    <element id="Observation:argoprofile.value[x]">
       <path value="Observation.valueCodeableConcept"/>
-      <name value="Observation.valueCodeableConcept"/>
+      <name value="Observation:argoprofile.value[x]"/>
       <short value="Actual result"/>
-      <definition value="The information determined as a result of making the observation, if the information has a simple value."/>
-      <comments value="Normally, an observation will have either a value or a set of related observations. A few observations (e.g. Apgar score) may have both a value and related observations (for an Apgar score, the observations from which the measure is derived). If a value is present, the datatype for this element should be determined by Observation.code. This element has a variable name depending on the type as follows: valueQuantity, valueCodeableConcept, valueString, valueRange, valueRatio, valueSampledData, valueAttachment, valueTime, valueDateTime, or valuePeriod. (The name format is &quot;&#39;value&#39; + the type name&quot; with a capital on the first letter of the type).&#xD;&#xD;&#xD;If the data element is usually coded or if the type associated with the Observation.value defines a coded value, use CodeableConcept instead of string datatype even if the value is uncoded text.  A value set is bound to the ValueCodeableConcept element.  For boolean values use valueCodeableConcept and select codes from [HL7 Version 2 Table 0136](v2/0136/index.html). These &quot;yes/no&quot; concepts can be mapped to the display name &quot;true/false&quot; or other mutually exclusive terms that may be needed.   For further discussion and examples see the  [notes section](observation.html#4.20.4) below."/>
+      <definition value="If codeableConcept, valueCodeableConcept *SHOULD*  be selected from [SNOMED CT](http://hl7.org/fhir/ValueSet/uslab-obs-codedresults).  If Quantity, valueQuantity units *SHALL* be selected from [UCUM](http://unitsofmeasure.org)."/>
+      <comments value="Normally, an observation will have either a value or a set of related observations. A few observations (e.g. Apgar score) may have both a value and related observations (for an Apgar score, the observations from which the measure is derived). If a value is present, the datatype for this element should be determined by Observation.code. This element has a variable name depending on the type as follows: valueQuantity, valueCodeableConcept, valueString, valueRange, valueRatio, valueSampledData, valueAttachment, valueTime, valueDateTime, or valuePeriod. (The name format is &quot;&#39;value&#39; + the type name&quot; with a capital on the first letter of the type).   If the data element is usually coded or if the type associated with the Observation.value defines a coded value, use CodeableConcept instead of string datatype even if the value is uncoded text.  A value set is bound to the ValueCodeableConcept element.  For boolean values use valueCodeableConcept and select codes from [HL7 Version 2 Table 0136](v2/0136/index.html). These &quot;yes/no&quot; concepts can be mapped to the display name &quot;true/false&quot; or other mutually exclusive terms that may be needed.   For further discussion and examples see the  [notes section](observation.html#4.20.4) below."/>
       <requirements value="An observation exists to have a value, though it may not if it is in error, or it represents a group of observations."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.value[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="CodeableConcept"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <constraint>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-expression">
+          <valueString value="valueQuantity.system.empty() or valueQuantity.system = &#39;http://unitsofmeasure.org&#39;"/>
+        </extension>
+        <key value="arg-3"/>
+        <severity value="error"/>
+        <human value="SHALL use UCUM for coded quantity units."/>
+        <xpath value="not(exists(f:valueQuantity/f:system) ) or  f:valueQuantity/f:system[@value=&#39;http://unitsofmeasure.org&#39;]"/>
+      </constraint>
+      <constraint>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bestpractice">
+          <valueBoolean value="true"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-expression">
+          <valueString value="valueCodeableConcept.coding.system.empty() or valueCodeableConcept.coding.system = &#39;http://snomed.info/sct&#39;"/>
+        </extension>
+        <key value="arg-4"/>
+        <severity value="warning"/>
+        <human value="SHOULD use Snomed CT for coded Results"/>
+        <xpath value="not(exists(f:valueCodeableConcept/f:coding/f:system) ) or  f:valueCodeableConcept/f:coding/f:system[@value=&#39;http://snomed.info/sct&#39;]"/>
+      </constraint>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
-      <isSummary value="true"/>
+      <isSummary value="false"/>
       <mapping>
         <identity value="v2"/>
         <map value="OBX.2, OBX.5, OBX.6"/>
@@ -871,21 +1007,26 @@
         <map value="&lt;shr.base.DataValue&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.dataAbsentReason">
+    <element id="Observation:argoprofile.dataAbsentReason">
       <path value="Observation.dataAbsentReason"/>
-      <name value="Observation.dataAbsentReason"/>
+      <name value="Observation:argoprofile.dataAbsentReason"/>
       <short value="Why the result is missing"/>
       <definition value="Provides a reason why the expected value in the element Observation.value[x] is missing."/>
       <comments value="Null or exceptional values can be represented two ways in FHIR Observations.  One way is to simply include them in the value set and represent the exceptions in the value.  For example, measurement values for a serology test could be  &quot;detected&quot;, &quot;not detected&quot;, &quot;inconclusive&quot;, or  &quot;specimen unsatisfactory&quot;.   The alternate way is to use the value element for actual observations and use the explicit dataAbsentReason element to record exceptional values.  For example, the dataAbsentReason code &quot;error&quot; could be used when the measurement was not completed.  Because of these options, use-case agreements are required to interpret general observations for exceptional values."/>
       <requirements value="For many results it is necessary to handle exceptional values in measurements."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.dataAbsentReason"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="CodeableConcept"/>
       </type>
       <maxLength value="0"/>
       <condition value="obs-6"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
       <binding>
@@ -907,15 +1048,20 @@
         <map value="&lt;shr.base.DataAbsentReason&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.interpretation">
+    <element id="Observation:argoprofile.interpretation">
       <path value="Observation.interpretation"/>
-      <name value="Observation.interpretation"/>
+      <name value="Observation:argoprofile.interpretation"/>
       <short value="High, low, normal, etc."/>
       <definition value="The assessment made based on the result of the observation.  Intended as a simple compact code often placed adjacent to the result value in reports and flow sheets to signal the meaning/normalcy status of the result. Otherwise known as abnormal flag."/>
       <requirements value="For some results, particularly numeric results, an interpretation is necessary to fully understand the significance of a result."/>
       <alias value="Abnormal Flag"/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.interpretation"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="CodeableConcept"/>
       </type>
@@ -943,14 +1089,19 @@
         <map value="&lt;shr.base.Interpretation&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.comments">
+    <element id="Observation:argoprofile.comments">
       <path value="Observation.comments"/>
-      <name value="Observation.comments"/>
+      <name value="Observation:argoprofile.comments"/>
       <short value="Comments about result"/>
       <definition value="May include statements about significant, unexpected or unreliable values, or information about the source of the value where this may be relevant to the interpretation of the result."/>
       <requirements value="Need to be able to provide free text additional information."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.comments"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="string"/>
       </type>
@@ -971,15 +1122,20 @@
         <map value="&lt;shr.core.CommentOrDescription&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.bodySite">
+    <element id="Observation:argoprofile.bodySite">
       <path value="Observation.bodySite"/>
-      <name value="Observation.bodySite"/>
+      <name value="Observation:argoprofile.bodySite"/>
       <short value="Observed body part"/>
       <definition value="Indicates the site on the subject&#39;s body where the observation was made (i.e. the target site)."/>
       <comments value="Only used if not implicit in code found in Observation.code.  If the use case requires BodySite to be handled as a separate resource instead of an inline coded element (e.g. to identify and track separately) then use the standard extension[ body-site-instance](extension-body-site-instance.html)."/>
       <requirements value="Knowing where the observation is made is important for tracking if multiple sites are possible."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="0"/>
+      <base>
+        <path value="Observation.bodySite"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="CodeableConcept"/>
       </type>
@@ -1029,11 +1185,6 @@
     <element id="Observation.bodySite.extension">
       <path value="Observation.bodySite.extension"/>
       <name value="Observation.bodySite.extension"/>
-      <slicing id="1">
-        <discriminator value="url"/>
-        <ordered value="false"/>
-        <rules value="open"/>
-      </slicing>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1051,126 +1202,6 @@
       <mapping>
         <identity value="rim"/>
         <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="laterality">
-      <path value="Observation.bodySite.extension"/>
-      <name value="laterality"/>
-      <definition value="Anatomical location or specimen further detailing the side(s) of interest."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-core-Laterality-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="shr"/>
-        <map value="&lt;shr.core.BodySite&gt;.&lt;shr.core.Laterality&gt;"/>
-      </mapping>
-    </element>
-    <element id="anatomicaldirection">
-      <path value="Observation.bodySite.extension"/>
-      <name value="anatomicaldirection"/>
-      <definition value="Anatomical location or specimen further detailing directionality."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-core-AnatomicalDirection-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="shr"/>
-        <map value="&lt;shr.core.BodySite&gt;.&lt;shr.core.AnatomicalDirection&gt;"/>
-      </mapping>
-    </element>
-    <element id="commentordescription">
-      <path value="Observation.bodySite.extension"/>
-      <name value="commentordescription"/>
-      <definition value="A text note containing additional details, explanation, description, comment, or summarization."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-core-CommentOrDescription-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="shr"/>
-        <map value="&lt;shr.core.BodySite&gt;.&lt;shr.core.CommentOrDescription&gt;"/>
-      </mapping>
-    </element>
-    <element id="media">
-      <path value="Observation.bodySite.extension"/>
-      <name value="media"/>
-      <definition value="A file that contains audio, video, image, or similar content."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Observation.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-core-Media-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="shr"/>
-        <map value="&lt;shr.core.BodySite&gt;.&lt;shr.core.Media&gt;"/>
-      </mapping>
-    </element>
-    <element id="distancefromlandmark">
-      <path value="Observation.bodySite.extension"/>
-      <name value="distancefromlandmark"/>
-      <definition value="How far the anatomical location of interest is from the given landmark"/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-core-DistanceFromLandmark-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="shr"/>
-        <map value="&lt;shr.core.BodySite&gt;.&lt;shr.core.DistanceFromLandmark&gt;"/>
       </mapping>
     </element>
     <element id="Observation.bodySite.coding">
@@ -1231,15 +1262,20 @@
         <map value="./originalText[mediaType/code=&quot;text/plain&quot;]/data"/>
       </mapping>
     </element>
-    <element id="Observation.method">
+    <element id="Observation:argoprofile.method">
       <path value="Observation.method"/>
-      <name value="Observation.method"/>
+      <name value="Observation:argoprofile.method"/>
       <short value="How it was done"/>
       <definition value="Indicates the mechanism used to perform the observation."/>
       <comments value="Only used if not implicit in code for Observation.code."/>
       <requirements value="In some cases, method can impact results and is thus used for determining whether results can be compared or determining significance of results."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.method"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="CodeableConcept"/>
       </type>
@@ -1267,14 +1303,14 @@
         <map value="&lt;shr.base.Method&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.specimen">
+    <element id="Observation:argoprofile.specimen">
       <path value="Observation.specimen"/>
-      <name value="Observation.specimen"/>
+      <name value="Observation:argoprofile.specimen"/>
       <short value="Specimen used for this observation"/>
       <definition value="The specimen that was used when this observation was made."/>
       <comments value="Observations are not made on specimens themselves; they are made on a subject, but usually by the means of a specimen. Note that although specimens are often involved, they are not always tracked and reported explicitly. Also note that observation resources may be used in contexts that track the specimen explicitly (e.g. Diagnostic Report)."/>
       <min value="0"/>
-      <max value="0"/>
+      <max value="1"/>
       <base>
         <path value="Observation.specimen"/>
         <min value="0"/>
@@ -1282,7 +1318,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <profile value="http://hl7.org/fhir/StructureDefinition/Specimen"/>
+        <profile value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-entity-Specimen"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1296,15 +1332,24 @@
         <identity value="rim"/>
         <map value="participation[typeCode=SPC].specimen"/>
       </mapping>
+      <mapping>
+        <identity value="shr"/>
+        <map value="&lt;shr.entity.Specimen&gt;"/>
+      </mapping>
     </element>
-    <element id="Observation.device">
+    <element id="Observation:argoprofile.device">
       <path value="Observation.device"/>
-      <name value="Observation.device"/>
+      <name value="Observation:argoprofile.device"/>
       <short value="(Measurement) Device"/>
       <definition value="The device used to generate the observation data."/>
       <comments value="An extension should be used if further typing of the device is needed.  Devices used to support obtaining an observation can be represented using either extension or through the Observation.related element."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.device"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="Reference"/>
         <profile value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-entity-Device"/>
@@ -1326,9 +1371,9 @@
         <map value="&lt;shr.entity.Device&gt;"/>
       </mapping>
     </element>
-    <element id="referenceRange">
+    <element id="Observation:argoprofile.referenceRange">
       <path value="Observation.referenceRange"/>
-      <name value="referenceRange"/>
+      <name value="Observation:argoprofile.referenceRange"/>
       <short value="Provides guide for interpretation"/>
       <definition value="Guidance on how to interpret the value by comparison to a normal or recommended range."/>
       <comments value="Most observations only have one generic reference range. Systems MAY choose to restrict to only supplying the relevant reference range based on knowledge about the patient (e.g. specific to the patient&#39;s age, gender, weight and other factors), but this may not be possible or appropriate. Whenever more than one reference range is supplied, the differences between them SHOULD be provided in the reference range and/or age properties."/>
@@ -1366,14 +1411,19 @@
         <map value="&lt;shr.base.ReferenceRange&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.referenceRange.id">
+    <element id="Observation:argoprofile.referenceRange.id">
       <path value="Observation.referenceRange.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.referenceRange.id"/>
+      <name value="Observation:argoprofile.referenceRange.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.referenceRange.id"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="id"/>
       </type>
@@ -1386,9 +1436,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.referenceRange.extension">
+    <element id="Observation:argoprofile.referenceRange.extension">
       <path value="Observation.referenceRange.extension"/>
-      <name value="Observation.referenceRange.extension"/>
+      <name value="Observation:argoprofile.referenceRange.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1396,6 +1446,11 @@
       <alias value="user content"/>
       <min value="0"/>
       <max value="*"/>
+      <base>
+        <path value="Observation.referenceRange.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
       <type>
         <code value="Extension"/>
       </type>
@@ -1408,9 +1463,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.referenceRange.modifierExtension">
+    <element id="Observation:argoprofile.referenceRange.modifierExtension">
       <path value="Observation.referenceRange.modifierExtension"/>
-      <name value="Observation.referenceRange.modifierExtension"/>
+      <name value="Observation:argoprofile.referenceRange.modifierExtension"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1419,6 +1474,11 @@
       <alias value="modifiers"/>
       <min value="0"/>
       <max value="*"/>
+      <base>
+        <path value="Observation.referenceRange.modifierExtension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
       <type>
         <code value="Extension"/>
       </type>
@@ -1431,13 +1491,18 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation.referenceRange.low">
+    <element id="Observation:argoprofile.referenceRange.low">
       <path value="Observation.referenceRange.low"/>
-      <name value="Observation.referenceRange.low"/>
+      <name value="Observation:argoprofile.referenceRange.low"/>
       <short value="Low Range, if relevant"/>
       <definition value="The value of the low bound of the reference range.  The low bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9).   If the low bound is omitted,  it is assumed to be meaningless (e.g. reference range is &lt;=2.3)."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.referenceRange.low"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="Quantity"/>
         <profile value="http://hl7.org/fhir/StructureDefinition/SimpleQuantity"/>
@@ -1460,13 +1525,18 @@
         <map value="&lt;shr.base.ReferenceRange&gt;.&lt;shr.core.Range&gt;.&lt;shr.core.LowerBound&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.referenceRange.high">
+    <element id="Observation:argoprofile.referenceRange.high">
       <path value="Observation.referenceRange.high"/>
-      <name value="Observation.referenceRange.high"/>
+      <name value="Observation:argoprofile.referenceRange.high"/>
       <short value="High Range, if relevant"/>
       <definition value="The value of the high bound of the reference range.  The high bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9).   If the high bound is omitted,  it is assumed to be meaningless (e.g. reference range is &gt;= 2.3)."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.referenceRange.high"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="Quantity"/>
         <profile value="http://hl7.org/fhir/StructureDefinition/SimpleQuantity"/>
@@ -1489,15 +1559,20 @@
         <map value="&lt;shr.base.ReferenceRange&gt;.&lt;shr.core.Range&gt;.&lt;shr.core.UpperBound&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.referenceRange.meaning">
+    <element id="Observation:argoprofile.referenceRange.meaning">
       <path value="Observation.referenceRange.meaning"/>
-      <name value="Observation.referenceRange.meaning"/>
+      <name value="Observation:argoprofile.referenceRange.meaning"/>
       <short value="Indicates the meaning/use of this range of this range"/>
       <definition value="Code for the meaning of the reference range."/>
       <comments value="This SHOULD be populated if there is more than one range."/>
       <requirements value="Need to be able to say what kind of reference range this is - normal, recommended, therapeutic, or perhaps what state this reference range applies to (i.e. age, hormonal cycles, etc.)."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.referenceRange.meaning"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="CodeableConcept"/>
       </type>
@@ -1525,14 +1600,19 @@
         <map value="&lt;shr.base.ReferenceRange&gt;.&lt;shr.core.Type&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.referenceRange.age">
+    <element id="Observation:argoprofile.referenceRange.age">
       <path value="Observation.referenceRange.age"/>
-      <name value="Observation.referenceRange.age"/>
+      <name value="Observation:argoprofile.referenceRange.age"/>
       <short value="Applicable age range, if relevant"/>
       <definition value="The age at which this reference range is applicable. This is a neonatal age (e.g. number of weeks at term) if the meaning says so."/>
       <requirements value="Some analytes vary greatly over age."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.referenceRange.age"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="Range"/>
       </type>
@@ -1545,13 +1625,18 @@
         <map value="outboundRelationship[typeCode=PRCN].targetObservationCriterion[code=&quot;age&quot;].value"/>
       </mapping>
     </element>
-    <element id="Observation.referenceRange.text">
+    <element id="Observation:argoprofile.referenceRange.text">
       <path value="Observation.referenceRange.text"/>
-      <name value="Observation.referenceRange.text"/>
+      <name value="Observation:argoprofile.referenceRange.text"/>
       <short value="Text based reference range in an observation"/>
       <definition value="Text based reference range in an observation which may be used when a quantitative range is not appropriate for an observation.  An example would be a reference value of &quot;Negative&quot; or a list or table of &#39;normals&#39;."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.referenceRange.text"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="string"/>
       </type>
@@ -1568,9 +1653,9 @@
         <map value="value:ST"/>
       </mapping>
     </element>
-    <element id="Observation.related">
+    <element id="Observation:argoprofile.related">
       <path value="Observation.related"/>
-      <name value="Observation.related"/>
+      <name value="Observation:argoprofile.related"/>
       <short value="Resource related to this observation"/>
       <definition value="A  reference to another resource (usually another Observation but could  also be a QuestionnaireAnswer) whose relationship is defined by the relationship type code."/>
       <comments value="For a discussion on the ways Observations can assembled in groups together see [Notes below](observation.html#4.20.4)."/>
@@ -1602,14 +1687,19 @@
         <map value="&lt;shr.base.PanelMembers&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.related.id">
+    <element id="Observation:argoprofile.related.id">
       <path value="Observation.related.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.related.id"/>
+      <name value="Observation:argoprofile.related.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.related.id"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="id"/>
       </type>
@@ -1622,9 +1712,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.related.extension">
+    <element id="Observation:argoprofile.related.extension">
       <path value="Observation.related.extension"/>
-      <name value="Observation.related.extension"/>
+      <name value="Observation:argoprofile.related.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1632,6 +1722,11 @@
       <alias value="user content"/>
       <min value="0"/>
       <max value="*"/>
+      <base>
+        <path value="Observation.related.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
       <type>
         <code value="Extension"/>
       </type>
@@ -1644,9 +1739,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.related.modifierExtension">
+    <element id="Observation:argoprofile.related.modifierExtension">
       <path value="Observation.related.modifierExtension"/>
-      <name value="Observation.related.modifierExtension"/>
+      <name value="Observation:argoprofile.related.modifierExtension"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1655,6 +1750,11 @@
       <alias value="modifiers"/>
       <min value="0"/>
       <max value="*"/>
+      <base>
+        <path value="Observation.related.modifierExtension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
       <type>
         <code value="Extension"/>
       </type>
@@ -1667,15 +1767,20 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation.related.type">
+    <element id="Observation:argoprofile.related.type">
       <path value="Observation.related.type"/>
-      <name value="Observation.related.type"/>
+      <name value="Observation:argoprofile.related.type"/>
       <short value="has-member | derived-from | sequel-to | replaces | qualified-by | interfered-by"/>
       <definition value="A code specifying the kind of relationship that exists with the target resource."/>
       <comments value="&quot;derived-from&quot; is only logical choice when referencing QuestionnaireAnswer resource."/>
       <requirements value="A relationship type SHOULD be provided."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.related.type"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="code"/>
       </type>
@@ -1700,13 +1805,18 @@
         <map value=".typeCode"/>
       </mapping>
     </element>
-    <element id="Observation.related.target">
+    <element id="Observation:argoprofile.related.target">
       <path value="Observation.related.target"/>
-      <name value="Observation.related.target"/>
+      <name value="Observation:argoprofile.related.target"/>
       <short value="Resource that is related to this one"/>
       <definition value="A reference to the observation or [[[QuestionnaireResponse]]] resource that is related to this observation."/>
       <min value="1"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.related.target"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="Reference"/>
         <profile value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-base-Observation"/>
@@ -1724,9 +1834,9 @@
         <map value="&lt;shr.base.PanelMembers&gt;.&lt;shr.base.Observation&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.component">
+    <element id="Observation:argoprofile.component">
       <path value="Observation.component"/>
-      <name value="Observation.component"/>
+      <name value="Observation:argoprofile.component"/>
       <short value="Component results"/>
       <definition value="Some observations have multiple component observations.  These component observations are expressed as separate code value pairs that share the same attributes.  Examples include systolic and diastolic component observations for blood pressure measurement and multiple component observations for genetics observations."/>
       <comments value="For a discussion on the ways Observations can assembled in groups together see [Notes below](observation.html#4.20.4)."/>
@@ -1758,14 +1868,19 @@
         <map value="&lt;shr.base.Components&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.component.id">
+    <element id="Observation:argoprofile.component.id">
       <path value="Observation.component.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.component.id"/>
+      <name value="Observation:argoprofile.component.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.component.id"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="id"/>
       </type>
@@ -1778,9 +1893,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.extension">
+    <element id="Observation:argoprofile.component.extension">
       <path value="Observation.component.extension"/>
-      <name value="Observation.component.extension"/>
+      <name value="Observation:argoprofile.component.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1788,6 +1903,11 @@
       <alias value="user content"/>
       <min value="0"/>
       <max value="*"/>
+      <base>
+        <path value="Observation.component.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
       <type>
         <code value="Extension"/>
       </type>
@@ -1800,9 +1920,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.modifierExtension">
+    <element id="Observation:argoprofile.component.modifierExtension">
       <path value="Observation.component.modifierExtension"/>
-      <name value="Observation.component.modifierExtension"/>
+      <name value="Observation:argoprofile.component.modifierExtension"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1811,6 +1931,11 @@
       <alias value="modifiers"/>
       <min value="0"/>
       <max value="*"/>
+      <base>
+        <path value="Observation.component.modifierExtension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
       <type>
         <code value="Extension"/>
       </type>
@@ -1823,14 +1948,19 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation.component.code">
+    <element id="Observation:argoprofile.component.code">
       <path value="Observation.component.code"/>
-      <name value="Observation.component.code"/>
+      <name value="Observation:argoprofile.component.code"/>
       <short value="Type of component observation (code / type)"/>
       <definition value="Describes what was observed. Sometimes this is called the observation &quot;code&quot;."/>
       <requirements value="Knowing what kind of observation is being made is essential to understanding the observation."/>
       <min value="1"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.component.code"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="CodeableConcept"/>
       </type>
@@ -1863,15 +1993,20 @@
         <map value="&lt;shr.base.Components&gt;.&lt;shr.base.ObservationComponent&gt;.&lt;shr.core.Code&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.component.value[x]">
+    <element id="Observation:argoprofile.component.value[x]">
       <path value="Observation.component.value[x]"/>
-      <name value="Observation.component.value[x]"/>
+      <name value="Observation:argoprofile.component.value[x]"/>
       <short value="Actual component result"/>
       <definition value="The information determined as a result of making the observation, if the information has a simple value."/>
       <comments value="Normally, an observation will have either a value or a set of related observations. A few observations (e.g. Apgar score) may have both a value and related observations (for an Apgar score, the observations from which the measure is derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.   For boolean values use valueCodeableConcept and select codes from &lt;http://hl7.org/fhir/ValueSet/v2-0136&gt; (These &quot;yes/no&quot; concepts can be mapped to the display name &quot;true/false&quot; or other mutually exclusive terms that may be needed&quot;).  The element, Observation.value[x], has a variable name depending on the type as follows: valueQuantity, valueCodeableConcept, valueRatio, valueChoice, valuePeriod, valueSampleData, or valueString (The name format is &quot;&#39;value&#39; + the type name&quot; with a capital on the first letter of the type)."/>
       <requirements value="An observation exists to have a value, though it may not if it is in error, or it represents a group of observations."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.component.value[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="Quantity"/>
       </type>
@@ -1913,15 +2048,20 @@
         <map value="&lt;shr.base.Components&gt;.&lt;shr.base.ObservationComponent&gt;.&lt;shr.base.DataValue&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.component.dataAbsentReason">
+    <element id="Observation:argoprofile.component.dataAbsentReason">
       <path value="Observation.component.dataAbsentReason"/>
-      <name value="Observation.component.dataAbsentReason"/>
+      <name value="Observation:argoprofile.component.dataAbsentReason"/>
       <short value="Why the component result is missing"/>
       <definition value="Provides a reason why the expected value in the element Observation.value[x] is missing."/>
       <comments value="&quot;Null&quot; or exceptional values can be represented two ways in FHIR Observations.  One way is to simply include them in the value set and represent the exceptions in the value.  For example, measurement values for a serology test could be  &quot;detected&quot;, &quot;not detected&quot;, &quot;inconclusive&quot;, or  &quot;test not done&quot;.   The alternate way is to use the value element for actual observations and use the explicit dataAbsentReason element to record exceptional values.  For example, the dataAbsentReason code &quot;error&quot; could be used when the measurement was not completed.  Because of these options, use-case agreements are required to interpret general observations for exceptional values."/>
       <requirements value="For many results it is necessary to handle exceptional values in measurements."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.component.dataAbsentReason"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="CodeableConcept"/>
       </type>
@@ -1949,15 +2089,20 @@
         <map value="&lt;shr.base.Components&gt;.&lt;shr.base.ObservationComponent&gt;.&lt;shr.base.DataAbsentReason&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.component.referenceRange">
+    <element id="Observation:argoprofile.component.referenceRange">
       <path value="Observation.component.referenceRange"/>
-      <name value="Observation.component.referenceRange"/>
+      <name value="Observation:argoprofile.component.referenceRange"/>
       <short value="Provides guide for interpretation of component result"/>
       <definition value="Guidance on how to interpret the value by comparison to a normal or recommended range."/>
       <comments value="Most observations only have one generic reference range. Systems MAY choose to restrict to only supplying the relevant reference range based on knowledge about the patient (e.g. specific to the patient&#39;s age, gender, weight and other factors), but this may not be possible or appropriate. Whenever more than one reference range is supplied, the differences between them SHOULD be provided in the reference range and/or age properties."/>
       <requirements value="Knowing what values are considered &quot;normal&quot; can help evaluate the significance of a particular result. Need to be able to provide multiple reference ranges for different contexts."/>
       <min value="0"/>
       <max value="*"/>
+      <base>
+        <path value="Observation.component.referenceRange"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
       <type>
         <code value="BackboneElement"/>
       </type>
@@ -2173,11 +2318,11 @@
     <element id="Observation">
       <path value="Observation"/>
       <name value="Observation"/>
-      <short value="shr-base-SimpleCodedNonLaboratoryObservation"/>
-      <definition value="An observation whose result is a code, and also having no components or panel members"/>
+      <short value="shr-base-SimpleCodedLaboratoryObservation"/>
+      <definition value="A coded result from a laboratory test without further panel members or components."/>
       <min value="0"/>
       <type>
-        <code value="Observation"/>
+        <code value="argo-observationresults"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -2300,7 +2445,7 @@
     <element id="Observation.extension">
       <path value="Observation.extension"/>
       <name value="Observation.extension"/>
-      <slicing id="2">
+      <slicing id="1">
         <discriminator value="url"/>
         <ordered value="false"/>
         <rules value="open"/>
@@ -2393,13 +2538,6 @@
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
-      <binding>
-        <strength value="extensible"/>
-        <description value="Codes for high level observation categories ."/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/observation-category"/>
-        </valueSetReference>
-      </binding>
       <mapping>
         <identity value="shr"/>
         <map value="&lt;shr.core.Category&gt;"/>
@@ -2413,6 +2551,12 @@
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
+      <binding>
+        <strength value="extensible"/>
+        <valueSetReference>
+          <reference value="http://loinc.org/vs"/>
+        </valueSetReference>
+      </binding>
       <mapping>
         <identity value="shr"/>
         <map value="&lt;shr.core.Code&gt;"/>
@@ -2483,11 +2627,6 @@
       <name value="Observation.performer"/>
       <min value="0"/>
       <max value="1"/>
-      <base>
-        <path value="Observation.performer"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
       <type>
         <code value="Reference"/>
         <profile value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-entity-Practitioner"/>
@@ -2569,6 +2708,7 @@
       <path value="Observation.bodySite"/>
       <name value="Observation.bodySite"/>
       <min value="0"/>
+      <max value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -2582,140 +2722,6 @@
       <mapping>
         <identity value="shr"/>
         <map value="&lt;shr.core.BodySite&gt;.&lt;shr.core.BodySiteCode&gt;"/>
-      </mapping>
-    </element>
-    <element id="Observation.bodySite.extension">
-      <path value="Observation.bodySite.extension"/>
-      <name value="Observation.bodySite.extension"/>
-      <slicing id="1">
-        <discriminator value="url"/>
-        <ordered value="false"/>
-        <rules value="open"/>
-      </slicing>
-      <min value="0"/>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="laterality">
-      <path value="Observation.bodySite.extension"/>
-      <name value="laterality"/>
-      <definition value="Anatomical location or specimen further detailing the side(s) of interest."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-core-Laterality-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="shr"/>
-        <map value="&lt;shr.core.BodySite&gt;.&lt;shr.core.Laterality&gt;"/>
-      </mapping>
-    </element>
-    <element id="anatomicaldirection">
-      <path value="Observation.bodySite.extension"/>
-      <name value="anatomicaldirection"/>
-      <definition value="Anatomical location or specimen further detailing directionality."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-core-AnatomicalDirection-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="shr"/>
-        <map value="&lt;shr.core.BodySite&gt;.&lt;shr.core.AnatomicalDirection&gt;"/>
-      </mapping>
-    </element>
-    <element id="commentordescription">
-      <path value="Observation.bodySite.extension"/>
-      <name value="commentordescription"/>
-      <definition value="A text note containing additional details, explanation, description, comment, or summarization."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-core-CommentOrDescription-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="shr"/>
-        <map value="&lt;shr.core.BodySite&gt;.&lt;shr.core.CommentOrDescription&gt;"/>
-      </mapping>
-    </element>
-    <element id="media">
-      <path value="Observation.bodySite.extension"/>
-      <name value="media"/>
-      <definition value="A file that contains audio, video, image, or similar content."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Observation.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-core-Media-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="shr"/>
-        <map value="&lt;shr.core.BodySite&gt;.&lt;shr.core.Media&gt;"/>
-      </mapping>
-    </element>
-    <element id="distancefromlandmark">
-      <path value="Observation.bodySite.extension"/>
-      <name value="distancefromlandmark"/>
-      <definition value="How far the anatomical location of interest is from the given landmark"/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-core-DistanceFromLandmark-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="shr"/>
-        <map value="&lt;shr.core.BodySite&gt;.&lt;shr.core.DistanceFromLandmark&gt;"/>
       </mapping>
     </element>
     <element id="Observation.method">
@@ -2735,16 +2741,18 @@
       <path value="Observation.specimen"/>
       <name value="Observation.specimen"/>
       <min value="0"/>
-      <max value="0"/>
-      <base>
-        <path value="Observation.specimen"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
+      <type>
+        <code value="Reference"/>
+        <profile value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/shr-entity-Specimen"/>
+      </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
+      <mapping>
+        <identity value="shr"/>
+        <map value="&lt;shr.entity.Specimen&gt;"/>
+      </mapping>
     </element>
     <element id="Observation.device">
       <path value="Observation.device"/>
@@ -2768,11 +2776,6 @@
       <name value="Observation.referenceRange"/>
       <min value="0"/>
       <max value="0"/>
-      <base>
-        <path value="Observation.referenceRange"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -2833,11 +2836,6 @@
       <name value="Observation.related"/>
       <min value="0"/>
       <max value="0"/>
-      <base>
-        <path value="Observation.related"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -2879,11 +2877,6 @@
       <name value="Observation.component"/>
       <min value="0"/>
       <max value="0"/>
-      <base>
-        <path value="Observation.component"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>

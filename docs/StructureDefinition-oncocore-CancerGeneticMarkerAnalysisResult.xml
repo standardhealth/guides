@@ -76,7 +76,7 @@
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-02-07T00:00:00-05:00"/>
+  <date value="2019-02-08T00:00:00-05:00"/>
   <description value="A panel that analyses different components of a genetic test specific to cancer-related genetic markers."/>
   <code>
     <system value="urn:tbd"/>
@@ -609,16 +609,16 @@
       <representation value="xmlAttr"/>
       <name value="Observation.extension.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
-      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
+      <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="Element.id"/>
+        <path value="Extension.id"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
-        <code value="string"/>
+        <code value="id"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -626,7 +626,7 @@
       <isSummary value="false"/>
       <mapping>
         <identity value="rim"/>
-        <map value="N/A"/>
+        <map value="n/a"/>
       </mapping>
     </element>
     <element id="extension">
@@ -637,7 +637,7 @@
       <min value="0"/>
       <max value="0"/>
       <base>
-        <path value="Element.extension"/>
+        <path value="Extension.extension"/>
         <min value="0"/>
         <max value="*"/>
       </base>
@@ -655,6 +655,7 @@
       <name value="Observation.extension.url"/>
       <short value="identifies the meaning of the extension"/>
       <definition value="Source of the definition for the extension code - a logical name or a URL."/>
+      <comments value="The definition may point directly to a computable or human-readable definition of the extensibility codes, or it may be a logical URI as declared in some other specification. The definition should be version specific.  This will ideally be the URI for the Resource Profile defining the extension, with the code for the extension after a #."/>
       <min value="1"/>
       <max value="1"/>
       <base>
@@ -665,7 +666,7 @@
       <type>
         <code value="uri"/>
       </type>
-      <fixedUri value="http://hl7.org/fhir/us/fhirURL/StructureDefinition/oncocore-GeneName-extension"/>
+      <fixedUri value="http://hl7.org/fhir/StructureDefinition/geneticsGene"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -703,6 +704,10 @@
       <mapping>
         <identity value="rim"/>
         <map value="N/A"/>
+      </mapping>
+      <mapping>
+        <identity value="shr"/>
+        <map value="&lt;oncocore.GeneName&gt;.&lt;shr.core.CodeableConcept&gt;"/>
       </mapping>
     </element>
     <element id="genomicsourceclass">
@@ -2819,6 +2824,10 @@
           <reference value="http://hl7.org/fhir/us/projectURL/oncocore/vs/CancerGeneVS"/>
         </valueSetReference>
       </binding>
+      <mapping>
+        <identity value="shr"/>
+        <map value="&lt;oncocore.GeneName&gt;.&lt;shr.core.CodeableConcept&gt;"/>
+      </mapping>
     </element>
     <element id="genomicsourceclass">
       <path value="Observation.extension"/>

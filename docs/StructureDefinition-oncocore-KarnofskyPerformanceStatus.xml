@@ -70,7 +70,7 @@
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-02-07T00:00:00-05:00"/>
+  <date value="2019-02-08T00:00:00-05:00"/>
   <description value="The Karnofsky Performance Status (KPS) is a tool used to measure a patient&#39;s functional status. It can be used to compare the effectiveness of different therapies and to help assess the prognosis of certain patients, such as those with certain cancers. The KPS score ranges from 0 to 100. Higher scores are associated with better functional status, with 100 representing no symptoms or evidence of disease, and 0 representing death [PMID: 23870327] . This panel contains LOINC terms to report the KPS score [LOINC: 89243-0] and its interpretation [LOINC: 89245-5]."/>
   <requirements value="Observations are a key aspect of healthcare.  This resource is used to capture those that do not require more sophisticated mechanisms."/>
   <code>
@@ -430,7 +430,7 @@
     <element id="Observation.extension">
       <path value="Observation.extension"/>
       <name value="Observation.extension"/>
-      <slicing id="1">
+      <slicing id="2">
         <discriminator value="url"/>
         <ordered value="false"/>
         <rules value="open"/>
@@ -824,51 +824,26 @@
         <map value="&lt;shr.base.Asserter&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.value[x]">
-      <path value="Observation.value[x]"/>
-      <name value="Observation.value[x]"/>
+    <element id="Count">
+      <path value="Observation.valueQuantity"/>
+      <name value="Count"/>
       <short value="Actual result"/>
       <definition value="The information determined as a result of making the observation, if the information has a simple value."/>
-      <comments value="Normally, an observation will have either a value or a set of related observations. A few observations (e.g. Apgar score) may have both a value and related observations (for an Apgar score, the observations from which the measure is derived). If a value is present, the datatype for this element should be determined by Observation.code. This element has a variable name depending on the type as follows: valueQuantity, valueCodeableConcept, valueString, valueRange, valueRatio, valueSampledData, valueAttachment, valueTime, valueDateTime, or valuePeriod. (The name format is &quot;&#39;value&#39; + the type name&quot; with a capital on the first letter of the type).&#xD;&#xD;&#xD;If the data element is usually coded or if the type associated with the Observation.value defines a coded value, use CodeableConcept instead of string datatype even if the value is uncoded text.  A value set is bound to the ValueCodeableConcept element.  For boolean values use valueCodeableConcept and select codes from [HL7 Version 2 Table 0136](v2/0136/index.html). These &quot;yes/no&quot; concepts can be mapped to the display name &quot;true/false&quot; or other mutually exclusive terms that may be needed.   For further discussion and examples see the  [notes section](observation.html#4.20.4) below."/>
-      <requirements value="An observation exists to have a value, though it may not if it is in error, or it represents a group of observations."/>
       <min value="0"/>
       <max value="1"/>
+      <base>
+        <path value="Observation.value[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
       <type>
         <code value="Quantity"/>
-      </type>
-      <type>
-        <code value="CodeableConcept"/>
-      </type>
-      <type>
-        <code value="string"/>
-      </type>
-      <type>
-        <code value="Range"/>
-      </type>
-      <type>
-        <code value="Ratio"/>
-      </type>
-      <type>
-        <code value="time"/>
-      </type>
-      <type>
-        <code value="dateTime"/>
-      </type>
-      <type>
-        <code value="Period"/>
+        <profile value="http://hl7.org/fhir/StructureDefinition/Count"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
-      <mapping>
-        <identity value="v2"/>
-        <map value="OBX.2, OBX.5, OBX.6"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="value"/>
-      </mapping>
       <mapping>
         <identity value="shr"/>
         <map value="&lt;shr.base.DataValue&gt;"/>
@@ -2187,7 +2162,7 @@
     <element id="Observation.extension">
       <path value="Observation.extension"/>
       <name value="Observation.extension"/>
-      <slicing id="1">
+      <slicing id="2">
         <discriminator value="url"/>
         <ordered value="false"/>
         <rules value="open"/>
@@ -2367,33 +2342,13 @@
         <map value="&lt;shr.base.Asserter&gt;"/>
       </mapping>
     </element>
-    <element id="Observation.value[x]">
-      <path value="Observation.value[x]"/>
-      <name value="Observation.value[x]"/>
+    <element id="Observation.valueQuantity">
+      <path value="Observation.valueQuantity"/>
+      <name value="Observation.valueQuantity"/>
       <min value="0"/>
       <type>
         <code value="Quantity"/>
-      </type>
-      <type>
-        <code value="CodeableConcept"/>
-      </type>
-      <type>
-        <code value="string"/>
-      </type>
-      <type>
-        <code value="Range"/>
-      </type>
-      <type>
-        <code value="Ratio"/>
-      </type>
-      <type>
-        <code value="time"/>
-      </type>
-      <type>
-        <code value="dateTime"/>
-      </type>
-      <type>
-        <code value="Period"/>
+        <profile value="http://hl7.org/fhir/StructureDefinition/Count"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
