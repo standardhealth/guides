@@ -13,7 +13,6 @@
     <sch:title>f:Annotation</sch:title>
     <sch:rule context="f:Annotation">
       <sch:assert test="count(f:author[x]) &gt;= 1">author[x]: minimum cardinality of 'author[x]' is 1</sch:assert>
-      <sch:assert test="count(f:time) &gt;= 1">time: minimum cardinality of 'time' is 1</sch:assert>
     </sch:rule>
   </sch:pattern>
 </sch:schema>
