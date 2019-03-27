@@ -3,7 +3,7 @@
   "id": "shr-core-Encounter",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Encounter Profile</b></p>\n  <p>A description of an interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or assessing the health status of a patient.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Encounter maps to Encounter:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Status maps to status\n  StatusHistory maps to statusHistory\n  StatusHistory.Status maps to statusHistory.status\n  StatusHistory.TimePeriod maps to statusHistory.period\n  EncounterClass maps to class\n  ClassHistory.EncounterClass maps to extension\n  ClassHistory.TimePeriod maps to extension\n  Type maps to type\n  PriorityCode maps to priority\n  PatientSubjectOfRecord maps to patient\n  EpisodeOfCare maps to episodeOfCare\n  ReferralRequest maps to incomingReferral\n  Participation maps to participant\n  Participation.ParticipationType maps to participant.type\n  Participation.ParticipationPeriod maps to participant.period\n  Participation.Participant maps to participant.individual\n  Appointment maps to appointment\n  TimePeriod maps to period\n  Duration maps to length\n  ReasonCode maps to reason\n  EncounterDiagnosis.DiagnosisCode maps to extension\n  EncounterDiagnosis.Condition maps to extension\n  EncounterDiagnosis.Type maps to extension\n  EncounterDiagnosis.PriorityRank maps to extension\n  EncounterLocation maps to location\n  EncounterLocation.Location maps to location.location\n  EncounterLocation.Status maps to location.status\n  EncounterLocation.TimePeriod maps to location.period\n  Organization maps to serviceProvider\n  PartOf maps to partOf\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Encounter Profile</b></p>\n  <p>A description of an interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or assessing the health status of a patient.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Encounter maps to Encounter:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Status maps to status\n  StatusHistory maps to statusHistory\n  StatusHistory.Status maps to statusHistory.status\n  StatusHistory.TimePeriod maps to statusHistory.period\n  EncounterClass maps to class\n  ClassHistory.EncounterClass maps to extension\n  ClassHistory.TimePeriod maps to extension\n  Type maps to type\n  PriorityCode maps to priority\n  PatientSubjectOfRecord maps to patient\n  EpisodeOfCare maps to episodeOfCare\n  ReferralRequest maps to incomingReferral\n  Participation maps to participant\n  Participation.ParticipationType maps to participant.type\n  Participation.ParticipationPeriod maps to participant.period\n  Participation.Participant maps to participant.individual\n  Appointment maps to appointment\n  TimePeriod maps to period\n  Duration maps to length\n  ReasonCode maps to reason\n  EncounterDiagnosis.DiagnosisCode maps to extension\n  EncounterDiagnosis.Condition maps to extension\n  EncounterDiagnosis.Type maps to extension\n  EncounterDiagnosis.PriorityRank maps to extension\n  EncounterLocation maps to location\n  EncounterLocation.Location maps to location.location\n  EncounterLocation.Status maps to location.status\n  EncounterLocation.TimePeriod maps to location.period\n  Organization maps to serviceProvider\n  PartOf maps to partOf\n</pre></p>\n</div>"
   },
   "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter",
   "identifier": [
@@ -28,7 +28,7 @@
       ]
     }
   ],
-  "date": "2019-03-13T00:00:00-04:00",
+  "date": "2019-03-27T00:00:00-04:00",
   "description": "A description of an interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or assessing the health status of a patient.",
   "fhirVersion": "1.0.2",
   "mapping": [
@@ -509,7 +509,7 @@
         "id": "condition",
         "path": "Encounter.extension",
         "name": "condition",
-        "definition": "A condition that is or may be present in a subject. 'Condition' is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.\nSHR Condition uses the SHR BodySite structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction.",
+        "definition": "A condition that is or may be present in a subject. 'Condition' is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.\nThe Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.\nSHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction.",
         "min": 0,
         "max": "*",
         "base": {
@@ -588,9 +588,9 @@
         ]
       },
       {
-        "id": "extension",
+        "id": "Encounter.extension.extension",
         "path": "Encounter.extension.extension",
-        "name": "extension",
+        "name": "Encounter.extension.extension",
         "short": "Extension",
         "definition": "An Extension",
         "min": 0,
@@ -2379,7 +2379,7 @@
         "id": "condition",
         "path": "Encounter.extension",
         "name": "condition",
-        "definition": "A condition that is or may be present in a subject. 'Condition' is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.\nSHR Condition uses the SHR BodySite structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction.",
+        "definition": "A condition that is or may be present in a subject. 'Condition' is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.\nThe Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.\nSHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction.",
         "min": 0,
         "max": "*",
         "base": {

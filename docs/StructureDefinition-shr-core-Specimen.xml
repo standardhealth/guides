@@ -13,6 +13,7 @@
   Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
@@ -24,13 +25,9 @@
   PartOf maps to parent
   ReceivedTime maps to receivedTime
   AmountOrSize maps to collection.quantity
-  CollectionSite.BodySite.BodySiteCode maps to collection.bodySite
-  CollectionSite.BodySite.Laterality maps to collection.bodySite.extension
-  CollectionSite.BodySite.AnatomicalDirection maps to collection.bodySite.extension
-  CollectionSite.BodySite.ClockDirection maps to collection.bodySite.extension
-  CollectionSite.BodySite.CommentOrDescription maps to collection.bodySite.extension
-  CollectionSite.BodySite.Attachment maps to collection.bodySite.extension
-  CollectionSite.BodySite.DistanceFromLandmark maps to collection.bodySite.extension
+  CollectionSite.BodyLocation.LocationCode maps to collection.bodySite
+  CollectionSite.BodyLocation.LocationQualifier maps to collection.bodySite.extension
+  CollectionSite.BodyLocation.Landmark maps to collection.bodySite.extension
   CollectionTime maps to collection.collected[x]
   CollectionMethod maps to collection.method
   SpecimenContainer.Identifier maps to container.identifier
@@ -59,7 +56,7 @@
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-03-13T00:00:00-04:00"/>
+  <date value="2019-03-27T00:00:00-04:00"/>
   <description value="A specimen is a substance, physical object, or collection of objects, that the laboratory considers a single discrete, uniquely identified unit that is the subject of one or more steps in the laboratory workflow. A specimen may include multiple physical pieces as long as they are considered a single unit within the laboratory workflow. A specimen results from one to many specimen collection procedures, and may be contained in multiple specimen containers. Specimen may have one or more processing activities."/>
   <fhirVersion value="1.0.2"/>
   <mapping>
@@ -629,6 +626,7 @@
       <max value="1"/>
       <type>
         <code value="Identifier"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AccessionIdentifier"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -911,7 +909,7 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -970,90 +968,10 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="laterality">
+    <element id="locationqualifier">
       <path value="Specimen.collection.bodySite.extension"/>
-      <name value="laterality"/>
-      <definition value="Anatomical location or specimen further detailing the side(s) of interest."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Specimen.collection.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="anatomicaldirection">
-      <path value="Specimen.collection.bodySite.extension"/>
-      <name value="anatomicaldirection"/>
-      <definition value="Anatomical location or specimen further detailing directionality."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Specimen.collection.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="clockdirection">
-      <path value="Specimen.collection.bodySite.extension"/>
-      <name value="clockdirection"/>
-      <definition value="A direction indicated by an angle relative to 12 o&#39;clock."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Specimen.collection.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="commentordescription">
-      <path value="Specimen.collection.bodySite.extension"/>
-      <name value="commentordescription"/>
-      <definition value="A text note containing additional details, explanation, description, comment, or summarization."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Specimen.collection.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="attachment">
-      <path value="Specimen.collection.bodySite.extension"/>
-      <name value="attachment"/>
-      <definition value="A file that contains audio, video, image, or similar content."/>
+      <name value="locationqualifier"/>
+      <definition value="Additional information, such as laterality or direction, that helps define the body location."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1063,19 +981,19 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="distancefromlandmark">
+    <element id="landmark">
       <path value="Specimen.collection.bodySite.extension"/>
-      <name value="distancefromlandmark"/>
-      <definition value="How far the anatomical location of interest is from the given landmark"/>
+      <name value="landmark"/>
+      <definition value="An anatomical landmark that helps determine a body location."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="*"/>
       <base>
         <path value="Specimen.collection.bodySite.extension"/>
         <min value="0"/>
@@ -1083,7 +1001,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1686,6 +1604,19 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
+    <element id="Specimen.accessionIdentifier">
+      <path value="Specimen.accessionIdentifier"/>
+      <name value="Specimen.accessionIdentifier"/>
+      <min value="0"/>
+      <type>
+        <code value="Identifier"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AccessionIdentifier"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
     <element id="Specimen.collection">
       <path value="Specimen.collection"/>
       <name value="Specimen.collection"/>
@@ -1706,7 +1637,7 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -1724,90 +1655,10 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="laterality">
+    <element id="locationqualifier">
       <path value="Specimen.collection.bodySite.extension"/>
-      <name value="laterality"/>
-      <definition value="Anatomical location or specimen further detailing the side(s) of interest."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Specimen.collection.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="anatomicaldirection">
-      <path value="Specimen.collection.bodySite.extension"/>
-      <name value="anatomicaldirection"/>
-      <definition value="Anatomical location or specimen further detailing directionality."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Specimen.collection.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="clockdirection">
-      <path value="Specimen.collection.bodySite.extension"/>
-      <name value="clockdirection"/>
-      <definition value="A direction indicated by an angle relative to 12 o&#39;clock."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Specimen.collection.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="commentordescription">
-      <path value="Specimen.collection.bodySite.extension"/>
-      <name value="commentordescription"/>
-      <definition value="A text note containing additional details, explanation, description, comment, or summarization."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Specimen.collection.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="attachment">
-      <path value="Specimen.collection.bodySite.extension"/>
-      <name value="attachment"/>
-      <definition value="A file that contains audio, video, image, or similar content."/>
+      <name value="locationqualifier"/>
+      <definition value="Additional information, such as laterality or direction, that helps define the body location."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1817,19 +1668,19 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="distancefromlandmark">
+    <element id="landmark">
       <path value="Specimen.collection.bodySite.extension"/>
-      <name value="distancefromlandmark"/>
-      <definition value="How far the anatomical location of interest is from the given landmark"/>
+      <name value="landmark"/>
+      <definition value="An anatomical landmark that helps determine a body location."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="*"/>
       <base>
         <path value="Specimen.collection.bodySite.extension"/>
         <min value="0"/>
@@ -1837,7 +1688,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>

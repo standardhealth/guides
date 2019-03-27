@@ -3,7 +3,7 @@
   "id": "oncocore-CancerCondition",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>CancerCondition Profile</b></p>\n  <p>The presence of malignant neoplastic disease, in which abnormal cells divide without control and can invade nearby tissues.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>oncocore.CancerCondition maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-condition:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  StatementDateTime maps to dateRecorded\n  PersonInformationSource maps to asserter\n  PatientSubjectOfRecord maps to patient\n  Category maps to category\n  Code maps to code\n  BodySite.BodySiteCode maps to bodySite\n  BodySite.Laterality maps to bodySite.extension\n  BodySite.AnatomicalDirection maps to bodySite.extension\n  BodySite.ClockDirection maps to bodySite.extension\n  BodySite.CommentOrDescription maps to bodySite.extension\n  BodySite.Attachment maps to bodySite.extension\n  BodySite.DistanceFromLandmark maps to bodySite.extension\n  CareContext maps to encounter\n  ClinicalStatus maps to clinicalStatus\n  Status maps to verificationStatus\n  Onset maps to onset[x]\n  Abatement maps to abatement[x]\n  Severity maps to severity\n  StageInformation maps to stage\n  StageInformation.StageSummary maps to stage.summary\n  StageInformation.StageDetail maps to stage.assessment\n  Evidence.Manifestation maps to evidence.code\n  Evidence.DomainResource maps to evidence.detail\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>CancerCondition Profile</b></p>\n  <p>The presence of malignant neoplastic disease, in which abnormal cells divide without control and can invade nearby tissues.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>oncocore.CancerCondition maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-condition:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  StatementDateTime maps to dateRecorded\n  PersonInformationSource maps to asserter\n  PatientSubjectOfRecord maps to patient\n  Category maps to category\n  Code maps to code\n  BodyLocation.LocationCode maps to bodySite\n  BodyLocation.LocationQualifier maps to bodySite.extension\n  BodyLocation.Landmark maps to bodySite.extension\n  CareContext maps to encounter\n  ClinicalStatus maps to clinicalStatus\n  Status maps to verificationStatus\n  Onset maps to onset[x]\n  Abatement maps to abatement[x]\n  Severity maps to severity\n  StageInformation maps to stage\n  StageInformation.StageSummary maps to stage.summary\n  StageInformation.StageDetail maps to stage.assessment\n  Evidence.Manifestation maps to evidence.code\n  Evidence.DomainResource maps to evidence.detail\n</pre></p>\n</div>"
   },
   "url": "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-CancerCondition",
   "identifier": [
@@ -28,7 +28,7 @@
       ]
     }
   ],
-  "date": "2019-03-13T00:00:00-04:00",
+  "date": "2019-03-27T00:00:00-04:00",
   "description": "The presence of malignant neoplastic disease, in which abnormal cells divide without control and can invade nearby tissues.",
   "fhirVersion": "1.0.2",
   "mapping": [
@@ -495,6 +495,31 @@
         ]
       },
       {
+        "id": "dateofdiagnosis",
+        "path": "Condition.extension",
+        "name": "dateofdiagnosis",
+        "definition": "The date the disease was first clinically recognized with sufficient certainty, regardless of whether it was fully characterized at that time.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Condition.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DateOfDiagnosis-extension"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
         "id": "morphologybehavior",
         "path": "Condition.extension",
         "name": "morphologybehavior",
@@ -511,31 +536,6 @@
             "code": "Extension",
             "profile": [
               "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-MorphologyBehavior-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "dateofdiagnosis",
-        "path": "Condition.extension",
-        "name": "dateofdiagnosis",
-        "definition": "The date the disease was first clinically recognized with sufficient certainty, regardless of whether it was fully characterized at that time.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Condition.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-DateOfDiagnosis-extension"
             ]
           }
         ],
@@ -799,7 +799,7 @@
         "isModifier": false,
         "isSummary": false,
         "binding": {
-          "strength": "required",
+          "strength": "extensible",
           "valueSetReference": {
             "reference": "http://hl7.org/fhir/us/projectURL/oncocore/vs/CancerDisorderVS"
           }
@@ -1309,7 +1309,7 @@
           {
             "code": "Reference",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-CancerStagePanel"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-CancerStageGroup"
             ]
           }
         ],
@@ -1565,7 +1565,7 @@
         "binding": {
           "strength": "preferred",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         },
         "mapping": [
@@ -1640,10 +1640,10 @@
         ]
       },
       {
-        "id": "laterality",
+        "id": "locationqualifier",
         "path": "Condition.bodySite.extension",
-        "name": "laterality",
-        "definition": "Anatomical location or specimen further detailing the side(s) of interest.",
+        "name": "locationqualifier",
+        "definition": "Additional information, such as laterality or direction, that helps define the body location.",
         "min": 0,
         "max": "*",
         "base": {
@@ -1655,7 +1655,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"
             ]
           }
         ],
@@ -1665,10 +1665,10 @@
         "isSummary": false
       },
       {
-        "id": "anatomicaldirection",
+        "id": "landmark",
         "path": "Condition.bodySite.extension",
-        "name": "anatomicaldirection",
-        "definition": "Anatomical location or specimen further detailing directionality.",
+        "name": "landmark",
+        "definition": "An anatomical landmark that helps determine a body location.",
         "min": 0,
         "max": "*",
         "base": {
@@ -1680,107 +1680,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "clockdirection",
-        "path": "Condition.bodySite.extension",
-        "name": "clockdirection",
-        "definition": "A direction indicated by an angle relative to 12 o'clock.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "Condition.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "commentordescription",
-        "path": "Condition.bodySite.extension",
-        "name": "commentordescription",
-        "definition": "A text note containing additional details, explanation, description, comment, or summarization.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "Condition.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "attachment",
-        "path": "Condition.bodySite.extension",
-        "name": "attachment",
-        "definition": "A file that contains audio, video, image, or similar content.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "Condition.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "distancefromlandmark",
-        "path": "Condition.bodySite.extension",
-        "name": "distancefromlandmark",
-        "definition": "How far the anatomical location of interest is from the given landmark",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "Condition.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"
             ]
           }
         ],
@@ -1930,6 +1830,31 @@
         "isSummary": false
       },
       {
+        "id": "dateofdiagnosis",
+        "path": "Condition.extension",
+        "name": "dateofdiagnosis",
+        "definition": "The date the disease was first clinically recognized with sufficient certainty, regardless of whether it was fully characterized at that time.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Condition.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DateOfDiagnosis-extension"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
         "id": "morphologybehavior",
         "path": "Condition.extension",
         "name": "morphologybehavior",
@@ -1946,31 +1871,6 @@
             "code": "Extension",
             "profile": [
               "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-MorphologyBehavior-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "dateofdiagnosis",
-        "path": "Condition.extension",
-        "name": "dateofdiagnosis",
-        "definition": "The date the disease was first clinically recognized with sufficient certainty, regardless of whether it was fully characterized at that time.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Condition.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-DateOfDiagnosis-extension"
             ]
           }
         ],
@@ -2044,7 +1944,7 @@
         "isModifier": false,
         "isSummary": false,
         "binding": {
-          "strength": "required",
+          "strength": "extensible",
           "valueSetReference": {
             "reference": "http://hl7.org/fhir/us/projectURL/oncocore/vs/CancerDisorderVS"
           }
@@ -2115,7 +2015,7 @@
           {
             "code": "Reference",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-CancerStagePanel"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-CancerStageGroup"
             ]
           }
         ],
@@ -2180,7 +2080,7 @@
         "binding": {
           "strength": "preferred",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         }
       },
@@ -2203,10 +2103,10 @@
         "isSummary": false
       },
       {
-        "id": "laterality",
+        "id": "locationqualifier",
         "path": "Condition.bodySite.extension",
-        "name": "laterality",
-        "definition": "Anatomical location or specimen further detailing the side(s) of interest.",
+        "name": "locationqualifier",
+        "definition": "Additional information, such as laterality or direction, that helps define the body location.",
         "min": 0,
         "max": "*",
         "base": {
@@ -2218,7 +2118,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"
             ]
           }
         ],
@@ -2228,10 +2128,10 @@
         "isSummary": false
       },
       {
-        "id": "anatomicaldirection",
+        "id": "landmark",
         "path": "Condition.bodySite.extension",
-        "name": "anatomicaldirection",
-        "definition": "Anatomical location or specimen further detailing directionality.",
+        "name": "landmark",
+        "definition": "An anatomical landmark that helps determine a body location.",
         "min": 0,
         "max": "*",
         "base": {
@@ -2243,107 +2143,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "clockdirection",
-        "path": "Condition.bodySite.extension",
-        "name": "clockdirection",
-        "definition": "A direction indicated by an angle relative to 12 o'clock.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "Condition.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "commentordescription",
-        "path": "Condition.bodySite.extension",
-        "name": "commentordescription",
-        "definition": "A text note containing additional details, explanation, description, comment, or summarization.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "Condition.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "attachment",
-        "path": "Condition.bodySite.extension",
-        "name": "attachment",
-        "definition": "A file that contains audio, video, image, or similar content.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "Condition.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "distancefromlandmark",
-        "path": "Condition.bodySite.extension",
-        "name": "distancefromlandmark",
-        "definition": "How far the anatomical location of interest is from the given landmark",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "Condition.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"
             ]
           }
         ],

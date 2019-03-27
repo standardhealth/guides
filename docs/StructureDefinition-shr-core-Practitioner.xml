@@ -6,7 +6,7 @@
     <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">
   <p><b>Practitioner Profile</b></p>
   <p>A person who practices a healing art.
-HumanName is limited to one required value by US-Core. Gender is required by US-Core.</p>
+HumanName is limited to one required value by US-Core. Gender is required by US-Core. US-Core required an identifier, either a NPI (preferred) or tax id.</p>
   <p><b>Mapping Summary</b></p>
   <p><pre>shr.core.Practitioner maps to Practitioner:
   _Entry.EntryId maps to id
@@ -14,10 +14,11 @@ HumanName is limited to one required value by US-Core. Gender is required by US-
   Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
-  Identifier maps to identifier
+  Identifier maps to identifier (slice on = Type.coding.code; slice strategy = includes)
   constrain active to 0..0
   Status maps to extension
   Person.HumanName maps to name
@@ -51,8 +52,8 @@ HumanName is limited to one required value by US-Core. Gender is required by US-
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-03-13T00:00:00-04:00"/>
-  <description value="A person who practices a healing art.&#xA;HumanName is limited to one required value by US-Core. Gender is required by US-Core."/>
+  <date value="2019-03-27T00:00:00-04:00"/>
+  <description value="A person who practices a healing art.&#xA;HumanName is limited to one required value by US-Core. Gender is required by US-Core. US-Core required an identifier, either a NPI (preferred) or tax id."/>
   <requirements value="Need to track doctors, staff, locums etc. for both healthcare practitioners, funders, etc."/>
   <code>
     <system value="http://ncimeta.nci.nih.gov"/>
@@ -89,7 +90,7 @@ HumanName is limited to one required value by US-Core. Gender is required by US-
       <path value="Practitioner"/>
       <name value="Practitioner"/>
       <short value="shr-core-Practitioner"/>
-      <definition value="A person who practices a healing art.&#xA;HumanName is limited to one required value by US-Core. Gender is required by US-Core."/>
+      <definition value="A person who practices a healing art.&#xA;HumanName is limited to one required value by US-Core. Gender is required by US-Core. US-Core required an identifier, either a NPI (preferred) or tax id."/>
       <comments value="Note that a cab driver no longer fits the bill. You probably would be interested in the organization rather than the individual?"/>
       <min value="0"/>
       <max value="*"/>
@@ -440,9 +441,9 @@ HumanName is limited to one required value by US-Core. Gender is required by US-
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="extension">
+    <element id="Practitioner.extension.extension">
       <path value="Practitioner.extension.extension"/>
-      <name value="extension"/>
+      <name value="Practitioner.extension.extension"/>
       <short value="Extension"/>
       <definition value="An Extension"/>
       <min value="0"/>
@@ -541,6 +542,11 @@ HumanName is limited to one required value by US-Core. Gender is required by US-
     <element id="Practitioner.identifier">
       <path value="Practitioner.identifier"/>
       <name value="Practitioner.identifier"/>
+      <slicing id="2">
+        <discriminator value="Type.coding.code"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <short value="A identifier for the person as this agent"/>
       <definition value="An identifier that applies to this person in this role."/>
       <requirements value="Often, specific identities are assigned for the agent."/>
@@ -553,6 +559,80 @@ HumanName is limited to one required value by US-Core. Gender is required by US-
       </base>
       <type>
         <code value="Identifier"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="PRD-7 (or XCN.1)"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="./id"/>
+      </mapping>
+      <mapping>
+        <identity value="servd"/>
+        <map value="./Identifiers"/>
+      </mapping>
+      <mapping>
+        <identity value="w5"/>
+        <map value="id"/>
+      </mapping>
+    </element>
+    <element id="shr-core-NationalProviderIdentifier">
+      <path value="Practitioner.identifier"/>
+      <name value="shr-core-NationalProviderIdentifier"/>
+      <short value="NationalProviderIdentifier"/>
+      <definition value="NPI: a unique 10 digit number to allow US healthcare providers to identify themselves in a standard way throughout the healthcare industry."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Practitioner.identifier"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Identifier"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-NationalProviderIdentifier"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="PRD-7 (or XCN.1)"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="./id"/>
+      </mapping>
+      <mapping>
+        <identity value="servd"/>
+        <map value="./Identifiers"/>
+      </mapping>
+      <mapping>
+        <identity value="w5"/>
+        <map value="id"/>
+      </mapping>
+    </element>
+    <element id="shr-core-TaxIdentificationNumber">
+      <path value="Practitioner.identifier"/>
+      <name value="shr-core-TaxIdentificationNumber"/>
+      <short value="TaxIdentificationNumber"/>
+      <definition value="Tax identification number for the practitioner."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Practitioner.identifier"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Identifier"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TaxIdentificationNumber"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1270,7 +1350,7 @@ HumanName is limited to one required value by US-Core. Gender is required by US-
       <path value="Practitioner"/>
       <name value="Practitioner"/>
       <short value="shr-core-Practitioner"/>
-      <definition value="A person who practices a healing art.&#xA;HumanName is limited to one required value by US-Core. Gender is required by US-Core."/>
+      <definition value="A person who practices a healing art.&#xA;HumanName is limited to one required value by US-Core. Gender is required by US-Core. US-Core required an identifier, either a NPI (preferred) or tax id."/>
       <min value="0"/>
       <type>
         <code value="Practitioner"/>
@@ -1332,6 +1412,11 @@ HumanName is limited to one required value by US-Core. Gender is required by US-
     <element id="Practitioner.identifier">
       <path value="Practitioner.identifier"/>
       <name value="Practitioner.identifier"/>
+      <slicing id="2">
+        <discriminator value="Type.coding.code"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <min value="1"/>
       <max value="*"/>
       <base>
@@ -1339,6 +1424,48 @@ HumanName is limited to one required value by US-Core. Gender is required by US-
         <min value="0"/>
         <max value="*"/>
       </base>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-NationalProviderIdentifier">
+      <path value="Practitioner.identifier"/>
+      <name value="shr-core-NationalProviderIdentifier"/>
+      <short value="NationalProviderIdentifier"/>
+      <definition value="NPI: a unique 10 digit number to allow US healthcare providers to identify themselves in a standard way throughout the healthcare industry."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Practitioner.identifier"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Identifier"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-NationalProviderIdentifier"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-TaxIdentificationNumber">
+      <path value="Practitioner.identifier"/>
+      <name value="shr-core-TaxIdentificationNumber"/>
+      <short value="TaxIdentificationNumber"/>
+      <definition value="Tax identification number for the practitioner."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Practitioner.identifier"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Identifier"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TaxIdentificationNumber"/>
+      </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>

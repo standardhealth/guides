@@ -10,7 +10,7 @@
   fhir:StructureDefinition.id [ fhir:value "shr-core-Appointment"];
   fhir:StructureDefinition.text [
      fhir:Narrative.status [ fhir:value "generated" ];
-     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Appointment Profile</b></p>\n  <p>A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Appointment maps to Appointment:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Status maps to status\n  Specialty maps to extension\n  ReasonCode maps to reason\n  PriorityRankUnsignedInt maps to priority\n  CommentOrDescription maps to description\n  TimePeriod.BeginDateTime maps to start\n  TimePeriod.EndDateTime maps to end\n  AppointmentParticipation maps to participant\n  AppointmentParticipation.ParticipationType maps to participant.type\n  AppointmentParticipation.AppointmentParticipant maps to participant.actor\n  AppointmentParticipation.Need maps to participant.required\n  AppointmentParticipation.Status maps to participant.status\n  Type maps to extension\n  ServiceType maps to extension\n  ServiceCategory maps to extension\n  ReasonReference maps to extension\n  Indication maps to extension\n  RelatedInformation maps to extension\n  StatementDateTime maps to extension\n  ReferralRequest maps to extension\n  ExpectedPerformanceTime maps to extension\n</pre></p>\n</div>"
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Appointment Profile</b></p>\n  <p>A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Appointment maps to Appointment:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Status maps to status\n  Specialty maps to extension\n  ReasonCode maps to reason\n  ReasonReference maps to extension\n  PriorityRankUnsignedInt maps to priority\n  CommentOrDescription maps to description\n  TimePeriod.BeginDateTime maps to start\n  TimePeriod.EndDateTime maps to end\n  AppointmentParticipation maps to participant\n  AppointmentParticipation.ParticipationType maps to participant.type\n  AppointmentParticipation.AppointmentParticipant maps to participant.actor\n  AppointmentParticipation.Need maps to participant.required\n  AppointmentParticipation.Status maps to participant.status\n  Type maps to extension\n  ServiceType maps to extension\n  ServiceCategory maps to extension\n  Indication maps to extension\n  RelatedInformation maps to extension\n  StatementDateTime maps to extension\n  ReferralRequest maps to extension\n  ExpectedPerformanceTime maps to extension\n</pre></p>\n</div>"
   ];
   fhir:StructureDefinition.url [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Appointment"];
   fhir:StructureDefinition.identifier [
@@ -32,7 +32,7 @@
        fhir:ContactPoint.rank [ fhir:value "0"^^xsd:positiveInteger ]
      ]
   ];
-  fhir:StructureDefinition.date [ fhir:value "2019-03-13T00:00:00-04:00"^^xsd:dateTime];
+  fhir:StructureDefinition.date [ fhir:value "2019-03-27T00:00:00-04:00"^^xsd:dateTime];
   fhir:StructureDefinition.description [ fhir:value "A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time."];
   fhir:StructureDefinition.fhirVersion [ fhir:value "1.0.2"];
   fhir:StructureDefinition.mapping [
@@ -480,6 +480,31 @@
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 16;
+       fhir:ElementDefinition.id [ fhir:value "reasonreference" ];
+       fhir:ElementDefinition.path [ fhir:value "Appointment.extension" ];
+       fhir:ElementDefinition.name [ fhir:value "reasonreference" ];
+       fhir:ElementDefinition.definition [ fhir:value "The justification, as reference to a condition or observation." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Appointment.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [
+           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension";
+           fhir:index 0
+         ]
+       ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 17;
        fhir:ElementDefinition.id [ fhir:value "type" ];
        fhir:ElementDefinition.path [ fhir:value "Appointment.extension" ];
        fhir:ElementDefinition.name [ fhir:value "type" ];
@@ -504,7 +529,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 17;
+       fhir:index 18;
        fhir:ElementDefinition.id [ fhir:value "Appointment.extension.id" ];
        fhir:ElementDefinition.path [ fhir:value "Appointment.extension.id" ];
        fhir:ElementDefinition.representation [
@@ -535,10 +560,10 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 18;
-       fhir:ElementDefinition.id [ fhir:value "extension" ];
+       fhir:index 19;
+       fhir:ElementDefinition.id [ fhir:value "Appointment.extension.extension" ];
        fhir:ElementDefinition.path [ fhir:value "Appointment.extension.extension" ];
-       fhir:ElementDefinition.name [ fhir:value "extension" ];
+       fhir:ElementDefinition.name [ fhir:value "Appointment.extension.extension" ];
        fhir:ElementDefinition.short [ fhir:value "Extension" ];
        fhir:ElementDefinition.definition [ fhir:value "An Extension" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
@@ -557,7 +582,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 19;
+       fhir:index 20;
        fhir:ElementDefinition.id [ fhir:value "Appointment.extension.url" ];
        fhir:ElementDefinition.path [ fhir:value "Appointment.extension.url" ];
        fhir:ElementDefinition.representation [
@@ -589,7 +614,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 20;
+       fhir:index 21;
        fhir:ElementDefinition.id [ fhir:value "Appointment.extension.valueCodeableConcept" ];
        fhir:ElementDefinition.path [ fhir:value "Appointment.extension.valueCodeableConcept" ];
        fhir:ElementDefinition.name [ fhir:value "Appointment.extension.valueCodeableConcept" ];
@@ -623,7 +648,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 21;
+       fhir:index 22;
        fhir:ElementDefinition.id [ fhir:value "servicetype" ];
        fhir:ElementDefinition.path [ fhir:value "Appointment.extension" ];
        fhir:ElementDefinition.name [ fhir:value "servicetype" ];
@@ -648,7 +673,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 22;
+       fhir:index 23;
        fhir:ElementDefinition.id [ fhir:value "servicecategory" ];
        fhir:ElementDefinition.path [ fhir:value "Appointment.extension" ];
        fhir:ElementDefinition.name [ fhir:value "servicecategory" ];
@@ -665,31 +690,6 @@
          fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
          fhir:ElementDefinition.type.profile [
            fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ServiceCategory-extension";
-           fhir:index 0
-         ]
-       ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
-     ], [
-       fhir:index 23;
-       fhir:ElementDefinition.id [ fhir:value "reasonreference" ];
-       fhir:ElementDefinition.path [ fhir:value "Appointment.extension" ];
-       fhir:ElementDefinition.name [ fhir:value "reasonreference" ];
-       fhir:ElementDefinition.definition [ fhir:value "The justification, as reference to a condition or observation." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "*" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "Appointment.extension" ];
-         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
-         fhir:ElementDefinition.base.max [ fhir:value "*" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
-         fhir:ElementDefinition.type.profile [
-           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension";
            fhir:index 0
          ]
        ];
@@ -1533,6 +1533,31 @@
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 3;
+       fhir:ElementDefinition.id [ fhir:value "reasonreference" ];
+       fhir:ElementDefinition.path [ fhir:value "Appointment.extension" ];
+       fhir:ElementDefinition.name [ fhir:value "reasonreference" ];
+       fhir:ElementDefinition.definition [ fhir:value "The justification, as reference to a condition or observation." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Appointment.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [
+           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension";
+           fhir:index 0
+         ]
+       ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 4;
        fhir:ElementDefinition.id [ fhir:value "type" ];
        fhir:ElementDefinition.path [ fhir:value "Appointment.extension" ];
        fhir:ElementDefinition.name [ fhir:value "type" ];
@@ -1557,7 +1582,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 4;
+       fhir:index 5;
        fhir:ElementDefinition.id [ fhir:value "Appointment.extension.valueCodeableConcept" ];
        fhir:ElementDefinition.path [ fhir:value "Appointment.extension.valueCodeableConcept" ];
        fhir:ElementDefinition.name [ fhir:value "Appointment.extension.valueCodeableConcept" ];
@@ -1574,7 +1599,7 @@
          ]
        ]
      ], [
-       fhir:index 5;
+       fhir:index 6;
        fhir:ElementDefinition.id [ fhir:value "servicetype" ];
        fhir:ElementDefinition.path [ fhir:value "Appointment.extension" ];
        fhir:ElementDefinition.name [ fhir:value "servicetype" ];
@@ -1599,7 +1624,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 6;
+       fhir:index 7;
        fhir:ElementDefinition.id [ fhir:value "servicecategory" ];
        fhir:ElementDefinition.path [ fhir:value "Appointment.extension" ];
        fhir:ElementDefinition.name [ fhir:value "servicecategory" ];
@@ -1616,31 +1641,6 @@
          fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
          fhir:ElementDefinition.type.profile [
            fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ServiceCategory-extension";
-           fhir:index 0
-         ]
-       ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
-     ], [
-       fhir:index 7;
-       fhir:ElementDefinition.id [ fhir:value "reasonreference" ];
-       fhir:ElementDefinition.path [ fhir:value "Appointment.extension" ];
-       fhir:ElementDefinition.name [ fhir:value "reasonreference" ];
-       fhir:ElementDefinition.definition [ fhir:value "The justification, as reference to a condition or observation." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "*" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "Appointment.extension" ];
-         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
-         fhir:ElementDefinition.base.max [ fhir:value "*" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
-         fhir:ElementDefinition.type.profile [
-           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension";
            fhir:index 0
          ]
        ];

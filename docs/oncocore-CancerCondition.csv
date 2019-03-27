@@ -35,10 +35,10 @@ anonymous resourcescontained resources","",0,*,"","","","Resource {[]} {[]}
 user content","",0,*,"","","","Extension {[]} {[]}
 ","Additional Content defined by implementations","May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.","There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.","","","","","","","","",0,,,,"","value:url}
 ","",,"open","Condition.extension",0,*,"","","N/A"
+"Condition.extension","dateofdiagnosis","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DateOfDiagnosis-extension]]} {[]}
+","","The date the disease was first clinically recognized with sufficient certainty, regardless of whether it was fully characterized at that time.","","","","","","","","","",0,,,,"",,,,"Condition.extension",0,*,"",""
 "Condition.extension","morphologybehavior","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-MorphologyBehavior-extension]]} {[]}
 ","","A description of the morphology and behavioral characteristics of the cancer.","","","","","","","","","",0,,,,"",,,,"Condition.extension",0,*,"",""
-"Condition.extension","dateofdiagnosis","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-DateOfDiagnosis-extension]]} {[]}
-","","The date the disease was first clinically recognized with sufficient certainty, regardless of whether it was fully characterized at that time.","","","","","","","","","",0,,,,"",,,,"Condition.extension",0,*,"",""
 "Condition.modifierExtension","","extensions
 user content","",0,*,"","Y","","Extension {[]} {[]}
 ","Extensions that cannot be ignored","May be used to represent additional information that is not part of the basic definition of the resource, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.","There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.","","","","","","","","",0,,,,"",,,,"Condition.modifierExtension",0,*,"","","N/A"
@@ -53,7 +53,7 @@ user content","",0,*,"","Y","","Extension {[]} {[]}
 "Condition.dateRecorded","","","",0,1,"","","Y","date {[]} {[]}
 ","When first entered","A date, when  the Condition statement was documented.","The Date Recorded represents the date when this particular Condition record was created in the EHR, not the date of the most recent update in terms of when severity, abatement, etc. were specified.  The date of the last record modification can be retrieved from the resource metadata.","","","","","","","","",0,,,,"",,,,"Condition.dateRecorded",0,1,"","","REL-11",".participation[typeCode=AUT].time","when.recorded"
 "Condition.code","","","",1,1,"Y","","","CodeableConcept {[]} {[]}
-","Identification of the condition, problem or diagnosis","Identification of the condition, problem or diagnosis.","","","","","","","","","",0,"required","","http://hl7.org/fhir/us/projectURL/oncocore/vs/CancerDisorderVS","",,,,"Condition.code",1,1,"","","Condition.code","PRB-3",".value","what"
+","Identification of the condition, problem or diagnosis","Identification of the condition, problem or diagnosis.","","","","","","","","","",0,"extensible","","http://hl7.org/fhir/us/projectURL/oncocore/vs/CancerDisorderVS","",,,,"Condition.code",1,1,"","","Condition.code","PRB-3",".value","what"
 "Condition.category","","","",1,1,"","","","CodeableConcept {[]} {[]}
 ","complaint | symptom | finding | diagnosis","A category assigned to the condition.","The categorization is often highly contextual and may appear poorly differentiated or not very useful in other contexts.","","","","","","","","",0,"required","","http://hl7.org/fhir/us/projectURL/shr/core/vs/ConditionCategoryVS","",,,,"Condition.category",0,1,"","","Condition.category","'problem' if from PRB-3. 'diagnosis' if from DG1 segment in PV1 message",".code","class"
 "Condition.clinicalStatus","","","",1,1,"Y","Y","","code {[]} {[]}
@@ -80,7 +80,7 @@ user contentmodifiers","",0,*,"","Y","","Extension {[]} {[]}
 "Condition.stage.summary","","","",0,1,"","","Y","CodeableConcept {[]} {[]}
 ","Simple summary (disease specific)","A simple summary of the stage such as ""Stage 3"". The determination of the stage is disease-specific.","","","","","","","","","",0,"example","Codes describing condition stages (e.g. Cancer stages).","http://hl7.org/fhir/ValueSet/condition-stage","",,,,"Condition.stage.summary",0,1,"con-1
 ","","PRB-14",".value"
-"Condition.stage.assessment","","","",0,1,"","","Y","Reference {[]} {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-CancerStagePanel]]}
+"Condition.stage.assessment","","","",0,1,"","","Y","Reference {[]} {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-CancerStageGroup]]}
 ","Formal record of assessment","Reference to a formal record of the evidence on which the staging assessment is based.","","","","","","","","","",0,,,,"",,,,"Condition.stage.assessment",0,*,"con-1
 ","",".self"
 "Condition.evidence","","","",0,*,"","","Y","BackboneElement {[]} {[]}
@@ -101,25 +101,17 @@ user contentmodifiers","",0,*,"","Y","","Extension {[]} {[]}
 ","Supporting information found elsewhere","Links to other relevant information, including pathology reports.","","","","","","","","","",0,,,,"",,,,"Condition.evidence.detail",0,*,"con-2
 ","",".self"
 "Condition.bodySite","","","",0,*,"","","Y","CodeableConcept {[]} {[]}
-","Anatomical location, if relevant","The anatomical location where this condition manifests itself.","May be a summary code, or a reference to a very precise definition of the location, or both.","","","","","","","","",0,"preferred","","http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS","",,,,"Condition.bodySite",0,*,"","",".targetBodySiteCode"
+","Anatomical location, if relevant","The anatomical location where this condition manifests itself.","May be a summary code, or a reference to a very precise definition of the location, or both.","","","","","","","","",0,"preferred","","http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS","",,,,"Condition.bodySite",0,*,"","",".targetBodySiteCode"
 "Condition.bodySite.id","","","",0,1,"","","","id {[]} {[]}
 ","xml:id (or equivalent in JSON)","unique id for the element within a resource (for internal references).","","","","","","","","","",,,,,"",,,,"",0,null,"","","n/a"
 "Condition.bodySite.extension","","extensions
 user content","",0,*,"","","","Extension {[]} {[]}
 ","Additional Content defined by implementations","May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.","There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.","","","","","","","","",,,,,"","value:url}
 ","",,"open","",0,null,"","","n/a"
-"Condition.bodySite.extension","laterality","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension]]} {[]}
-","","Anatomical location or specimen further detailing the side(s) of interest.","","","","","","","","","",,,,,"",,,,"Condition.bodySite.extension",0,*,"",""
-"Condition.bodySite.extension","anatomicaldirection","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension]]} {[]}
-","","Anatomical location or specimen further detailing directionality.","","","","","","","","","",,,,,"",,,,"Condition.bodySite.extension",0,*,"",""
-"Condition.bodySite.extension","clockdirection","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension]]} {[]}
-","","A direction indicated by an angle relative to 12 o'clock.","","","","","","","","","",,,,,"",,,,"Condition.bodySite.extension",0,*,"",""
-"Condition.bodySite.extension","commentordescription","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension]]} {[]}
-","","A text note containing additional details, explanation, description, comment, or summarization.","","","","","","","","","",,,,,"",,,,"Condition.bodySite.extension",0,*,"",""
-"Condition.bodySite.extension","attachment","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension]]} {[]}
-","","A file that contains audio, video, image, or similar content.","","","","","","","","","",,,,,"",,,,"Condition.bodySite.extension",0,*,"",""
-"Condition.bodySite.extension","distancefromlandmark","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension]]} {[]}
-","","How far the anatomical location of interest is from the given landmark","","","","","","","","","",,,,,"",,,,"Condition.bodySite.extension",0,*,"",""
+"Condition.bodySite.extension","locationqualifier","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension]]} {[]}
+","","Additional information, such as laterality or direction, that helps define the body location.","","","","","","","","","",,,,,"",,,,"Condition.bodySite.extension",0,*,"",""
+"Condition.bodySite.extension","landmark","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension]]} {[]}
+","","An anatomical landmark that helps determine a body location.","","","","","","","","","",,,,,"",,,,"Condition.bodySite.extension",0,*,"",""
 "Condition.bodySite.coding","","","",0,*,"","","Y","Coding {[]} {[]}
 ","Code defined by a terminology system","A reference to a code defined by a terminology system.","Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labelled as UserSelected = true.","Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings.","","","","","","","",,,,,"",,,,"",0,null,"","","C*E.1-8, C*E.10-22","union(., ./translation)"
 "Condition.bodySite.text","","","",0,1,"","","Y","string {[]} {[]}

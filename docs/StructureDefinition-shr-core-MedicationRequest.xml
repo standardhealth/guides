@@ -16,6 +16,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
   Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
@@ -25,12 +26,13 @@ Intent was added in STU3 and is provided as an extension with required binding.<
   Identifier maps to identifier
   MedicationRequester maps to prescriber
   RequestIntent maps to extension
-  Medication maps to medication[x]
+  MedicationCodeOrReference maps to medication[x]
   NumberOfRefillsAllowed maps to dispenseRequest.numberOfRepeatsAllowed
   QuantityPerDispense maps to dispenseRequest.quantity
   SupplyDuration maps to dispenseRequest.expectedSupplyDuration
   constrain dosageInstruction to 0..1
   ReasonCode maps to reason[x]
+  ReasonReference maps to reason[x]
   Status maps to status
   ExpectedPerformanceTime maps to dispenseRequest.validityPeriod
   Annotation.Text maps to note
@@ -41,7 +43,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
   Dosage.DosageInstructionsText maps to dosageInstruction.text
   Dosage.RouteIntoBody maps to dosageInstruction.route
   Dosage.DosageMethod maps to dosageInstruction.method
-  Dosage.DosageBodySite.BodySiteCode maps to dosageInstruction.site[x]
+  Dosage.DosageBodyLocation maps to dosageInstruction.site[x]
   Dosage.MaximumDosePerTimePeriod maps to dosageInstruction.maxDosePerPeriod
   SubstitutionAllowed maps to substitution.extension
   SubstitutionReason maps to substitution.reason
@@ -65,7 +67,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-03-13T00:00:00-04:00"/>
+  <date value="2019-03-27T00:00:00-04:00"/>
   <description value="An order for a medication to be dispensed and instructions for use.&#xA;Value sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.&#xA;Category does not exist in DSTU2 and is provided as an extension.&#xA;Intent was added in STU3 and is provided as an extension with required binding."/>
   <fhirVersion value="1.0.2"/>
   <mapping>
@@ -475,9 +477,9 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="extension">
+    <element id="MedicationOrder.extension.extension">
       <path value="MedicationOrder.extension.extension"/>
-      <name value="extension"/>
+      <name value="MedicationOrder.extension.extension"/>
       <short value="Extension"/>
       <definition value="An Extension"/>
       <min value="0"/>
@@ -551,123 +553,6 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="reasonreference">
-      <path value="MedicationOrder.extension"/>
-      <name value="reasonreference"/>
-      <definition value="The justification, as reference to a condition or observation."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="MedicationOrder.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="MedicationOrder.extension.id">
-      <path value="MedicationOrder.extension.id"/>
-      <representation value="xmlAttr"/>
-      <name value="MedicationOrder.extension.id"/>
-      <short value="xml:id (or equivalent in JSON)"/>
-      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Element.id"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="string"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="N/A"/>
-      </mapping>
-    </element>
-    <element id="extension">
-      <path value="MedicationOrder.extension.extension"/>
-      <name value="extension"/>
-      <short value="Extension"/>
-      <definition value="An Extension"/>
-      <min value="0"/>
-      <max value="0"/>
-      <base>
-        <path value="Element.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="MedicationOrder.extension.url">
-      <path value="MedicationOrder.extension.url"/>
-      <representation value="xmlAttr"/>
-      <name value="MedicationOrder.extension.url"/>
-      <short value="identifies the meaning of the extension"/>
-      <definition value="Source of the definition for the extension code - a logical name or a URL."/>
-      <min value="1"/>
-      <max value="1"/>
-      <base>
-        <path value="Extension.url"/>
-        <min value="1"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="uri"/>
-      </type>
-      <fixedUri value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"/>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="N/A"/>
-      </mapping>
-    </element>
-    <element id="MedicationOrder.extension.value[x]">
-      <path value="MedicationOrder.extension.value[x]"/>
-      <name value="MedicationOrder.extension.value[x]"/>
-      <short value="Value of extension"/>
-      <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
-      <min value="1"/>
-      <max value="1"/>
-      <base>
-        <path value="Extension.value[x]"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Reference"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="N/A"/>
-      </mapping>
-    </element>
     <element id="type">
       <path value="MedicationOrder.extension"/>
       <name value="type"/>
@@ -713,9 +598,9 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="extension">
+    <element id="MedicationOrder.extension.extension">
       <path value="MedicationOrder.extension.extension"/>
-      <name value="extension"/>
+      <name value="MedicationOrder.extension.extension"/>
       <short value="Extension"/>
       <definition value="An Extension"/>
       <min value="0"/>
@@ -834,9 +719,9 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="extension">
+    <element id="MedicationOrder.extension.extension">
       <path value="MedicationOrder.extension.extension"/>
-      <name value="extension"/>
+      <name value="MedicationOrder.extension.extension"/>
       <short value="Extension"/>
       <definition value="An Extension"/>
       <min value="0"/>
@@ -954,9 +839,9 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="extension">
+    <element id="MedicationOrder.extension.extension">
       <path value="MedicationOrder.extension.extension"/>
-      <name value="extension"/>
+      <name value="MedicationOrder.extension.extension"/>
       <short value="Extension"/>
       <definition value="An Extension"/>
       <min value="0"/>
@@ -1304,6 +1189,54 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <map value="context"/>
       </mapping>
     </element>
+    <element id="MedicationOrder:argoprofile.reason[x]">
+      <path value="MedicationOrder.reason[x]"/>
+      <name value="MedicationOrder:argoprofile.reason[x]"/>
+      <slicing id="4">
+        <discriminator value="$this/@type"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="Reason or indication for writing the prescription"/>
+      <definition value="Can be the reason or the indication for writing the prescription."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="MedicationOrder.reason[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <binding>
+        <strength value="example"/>
+        <description value="Codes indicating why the medication was ordered."/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/condition-code"/>
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="v2"/>
+        <map value="ORC-16-Order Control Code Reason /RXE-27-Give Indication/RXO-20-Indication / RXD-21-Indication / RXG-22-Indication / RXA-19-Indication"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="reason.observation or reason.observation[code=ASSERTION].value"/>
+      </mapping>
+      <mapping>
+        <identity value="w5"/>
+        <map value="why"/>
+      </mapping>
+    </element>
     <element id="CodeableConcept">
       <path value="MedicationOrder.reasonCodeableConcept"/>
       <name value="CodeableConcept"/>
@@ -1351,7 +1284,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       <isSummary value="true"/>
     </element>
     <element id="MedicationOrder:argoprofile.medication[x]">
-      <path value="MedicationOrder.medicationReference"/>
+      <path value="MedicationOrder.medication[x]"/>
       <name value="MedicationOrder:argoprofile.medication[x]"/>
       <short value="Medication to be taken"/>
       <definition value="Identifies the medication being administered. This is a link to a resource that represents the medication which may be the details of the medication or simply an attribute carrying a code that identifies the medication from a known list of medications."/>
@@ -1363,6 +1296,9 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <min value="1"/>
         <max value="1"/>
       </base>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
       <type>
         <code value="Reference"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Medication"/>
@@ -1671,7 +1607,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -2372,26 +2308,6 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         </valueSetReference>
       </binding>
     </element>
-    <element id="reasonreference">
-      <path value="MedicationOrder.extension"/>
-      <name value="reasonreference"/>
-      <definition value="The justification, as reference to a condition or observation."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="MedicationOrder.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
     <element id="type">
       <path value="MedicationOrder.extension"/>
       <name value="type"/>
@@ -2521,6 +2437,27 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
+    <element id="MedicationOrder.reason[x]">
+      <path value="MedicationOrder.reason[x]"/>
+      <name value="MedicationOrder.reason[x]"/>
+      <slicing id="4">
+        <discriminator value="$this/@type"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <min value="0"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
     <element id="MedicationOrder.reasonCodeableConcept">
       <path value="MedicationOrder.reasonCodeableConcept"/>
       <name value="MedicationOrder.reasonCodeableConcept"/>
@@ -2539,10 +2476,13 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         </valueSetReference>
       </binding>
     </element>
-    <element id="MedicationOrder.medicationReference">
-      <path value="MedicationOrder.medicationReference"/>
-      <name value="MedicationOrder.medicationReference"/>
+    <element id="MedicationOrder.medication[x]">
+      <path value="MedicationOrder.medication[x]"/>
+      <name value="MedicationOrder.medication[x]"/>
       <min value="0"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
       <type>
         <code value="Reference"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Medication"/>
@@ -2621,7 +2561,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
     </element>

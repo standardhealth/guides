@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8"/>
   
-  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1)</title>
+  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1)</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1) FHIR Profiles"/>
+  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1) FHIR Profiles"/>
 
   <link rel="stylesheet" href="fhir.css"/>
 
@@ -40,7 +40,7 @@
     </a>
     <div id="hl7-status" class="hl7-status">
       
-      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1)</b>
+      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1)</b>
     </div>
 
     <div id="hl7-nav">
@@ -158,6 +158,7 @@
   Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
@@ -166,15 +167,12 @@
   ProcedureRequester maps to orderer
   Type maps to code
   ProcedureSubjectOfRecord maps to subject
-  BodySite.BodySiteCode maps to bodySite
-  BodySite.Laterality maps to bodySite.extension
-  BodySite.AnatomicalDirection maps to bodySite.extension
-  BodySite.ClockDirection maps to bodySite.extension
-  BodySite.CommentOrDescription maps to bodySite.extension
-  BodySite.Attachment maps to bodySite.extension
-  BodySite.DistanceFromLandmark maps to bodySite.extension
+  BodyLocation.LocationCode maps to bodySite
+  BodyLocation.LocationQualifier maps to bodySite.extension
+  BodyLocation.Landmark maps to bodySite.extension
   CareContext maps to encounter
   ReasonCode maps to reason[x]
+  ReasonReference maps to reason[x]
   Status maps to status
   RequestIntent maps to extension
   ExpectedPerformanceTime maps to scheduled[x]
@@ -203,7 +201,7 @@
       &lt;<a href="http://hl7.org/fhir/DSTU2/datatypes.html#ContactPoint#ContactPoint.rank">rank</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#positiveInt">value</a>="0"/&gt;
     &lt;/telecom&gt;
   &lt;/contact&gt;
-  &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.date">date</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#dateTime">value</a>="2019-03-13T00:00:00-04:00"/&gt;
+  &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.date">date</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#dateTime">value</a>="2019-03-27T00:00:00-04:00"/&gt;
   &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.description">description</a>
                <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="A request for a procedure to be performed. May be a proposal or an order."/&gt;
   &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.fhirVersion">fhirVersion</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">value</a>="1.0.2"/&gt;
@@ -600,9 +598,9 @@
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="N/A"/&gt;
       &lt;/mapping&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="extension"&gt;
+    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="ProcedureRequest.extension.extension"&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.extension.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="extension"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.extension.extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="An Extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
@@ -700,28 +698,6 @@
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="reasonreference"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="reasonreference"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="The justification, as reference to a condition or observation."/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-    &lt;/element&gt;
     &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="communicationmethod"&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="communicationmethod"/&gt;
@@ -792,9 +768,9 @@
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="N/A"/&gt;
       &lt;/mapping&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="extension"&gt;
+    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="ProcedureRequest.extension.extension"&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.extension.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="extension"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.extension.extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="An Extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
@@ -1088,7 +1064,7 @@
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="preferred"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>&gt;
           &lt;<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>
-                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/&gt;
+                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/&gt;
         &lt;/valueSetReference&gt;
       &lt;/binding&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping">mapping</a>&gt;
@@ -1150,11 +1126,11 @@
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="n/a"/&gt;
       &lt;/mapping&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="laterality"&gt;
+    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="locationqualifier"&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="laterality"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="locationqualifier"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="Anatomical location or specimen further detailing the side(s) of interest."/&gt;
+                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="Additional information, such as laterality or direction, that helps define the body location."/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
@@ -1165,18 +1141,18 @@
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"/&gt;
+                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"/&gt;
       &lt;/type&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="anatomicaldirection"&gt;
+    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="landmark"&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="anatomicaldirection"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="landmark"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="Anatomical location or specimen further detailing directionality."/&gt;
+                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="An anatomical landmark that helps determine a body location."/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
@@ -1187,95 +1163,7 @@
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-    &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="clockdirection"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="clockdirection"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="A direction indicated by an angle relative to 12 o&amp;#39;clock."/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-    &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="commentordescription"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="commentordescription"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="A text note containing additional details, explanation, description, comment, or summarization."/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-    &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="attachment"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="attachment"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="A file that contains audio, video, image, or similar content."/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-    &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="distancefromlandmark"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="distancefromlandmark"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="How far the anatomical location of interest is from the given landmark"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension"/&gt;
+                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"/&gt;
       &lt;/type&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
@@ -1346,9 +1234,9 @@
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="./originalText[mediaType/code=&amp;quot;text/plain&amp;quot;]/data"/&gt;
       &lt;/mapping&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="ProcedureRequest.reasonCodeableConcept"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.reasonCodeableConcept"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.reasonCodeableConcept"/&gt;
+    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="ProcedureRequest.reason[x]"&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.reason[x]"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.reason[x]"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Why procedure should occur"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
                   <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="The reason why the procedure is being proposed or ordered. This procedure request may be motivated by a Condition for instance."/&gt;
@@ -1356,6 +1244,11 @@
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="CodeableConcept"/&gt;
+      &lt;/type&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Reference"/&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
+                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"/&gt;
       &lt;/type&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
@@ -1719,28 +1612,6 @@
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="reasonreference"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="reasonreference"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="The justification, as reference to a condition or observation."/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-    &lt;/element&gt;
     &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="communicationmethod"&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="communicationmethod"/&gt;
@@ -1937,7 +1808,7 @@
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="preferred"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>&gt;
           &lt;<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>
-                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/&gt;
+                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/&gt;
         &lt;/valueSetReference&gt;
       &lt;/binding&gt;
     &lt;/element&gt;
@@ -1955,11 +1826,11 @@
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="laterality"&gt;
+    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="locationqualifier"&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="laterality"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="locationqualifier"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="Anatomical location or specimen further detailing the side(s) of interest."/&gt;
+                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="Additional information, such as laterality or direction, that helps define the body location."/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
@@ -1970,18 +1841,18 @@
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"/&gt;
+                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"/&gt;
       &lt;/type&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="anatomicaldirection"&gt;
+    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="landmark"&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="anatomicaldirection"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="landmark"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="Anatomical location or specimen further detailing directionality."/&gt;
+                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="An anatomical landmark that helps determine a body location."/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
@@ -1992,107 +1863,24 @@
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension"/&gt;
+                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"/&gt;
       &lt;/type&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="clockdirection"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="clockdirection"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="A direction indicated by an angle relative to 12 o&amp;#39;clock."/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-    &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="commentordescription"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="commentordescription"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="A text note containing additional details, explanation, description, comment, or summarization."/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-    &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="attachment"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="attachment"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="A file that contains audio, video, image, or similar content."/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-    &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="distancefromlandmark"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="distancefromlandmark"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="How far the anatomical location of interest is from the given landmark"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.bodySite.extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-    &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="ProcedureRequest.reasonCodeableConcept"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.reasonCodeableConcept"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.reasonCodeableConcept"/&gt;
+    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="ProcedureRequest.reason[x]"&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.reason[x]"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ProcedureRequest.reason[x]"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="CodeableConcept"/&gt;
+      &lt;/type&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Reference"/&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
+                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"/&gt;
       &lt;/type&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
@@ -2219,11 +2007,11 @@
 <div igtool="footer" id="segment-footer" class="segment">    <!-- segment-footer -->
   <div class="container">    <!-- container -->
    <div class="inner-wrapper">
-    <p><a name="e71558f7-7a2d-4f7b-b5bc-6aaee5063a12">​</a>
+    <p><a name="219409ca-ff15-45b9-8ed0-38342c69ea7e">​</a>
       
-      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1), Version: 0.7.0
+      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1), Version: 0.7.0
       ; <a style="color: #81BEF7" href="http://hl7.org/fhir/DSTU2/">FHIR &copy; Version: 1.0.2</a>
-      ; Generated on Wed, Mar 13, 2019 15:34-0400.
+      ; Generated on Wed, Mar 27, 2019 14:58-0400.
     </p>
    </div>    <!-- /inner-wrapper -->
   </div>    <!-- /container -->

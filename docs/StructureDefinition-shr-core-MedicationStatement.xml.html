@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8"/>
   
-  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1)</title>
+  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1)</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1) FHIR Profiles"/>
+  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1) FHIR Profiles"/>
 
   <link rel="stylesheet" href="fhir.css"/>
 
@@ -40,7 +40,7 @@
     </a>
     <div id="hl7-status" class="hl7-status">
       
-      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1)</b>
+      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1)</b>
     </div>
 
     <div id="hl7-nav">
@@ -153,7 +153,7 @@
   &lt;p&gt;A record of the use of a medication.
 Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).
 The treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.
-ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason. In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.&lt;/p&gt;
+ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.&lt;/p&gt;
   &lt;p&gt;&lt;b&gt;Mapping Summary&lt;/b&gt;&lt;/p&gt;
   &lt;p&gt;&lt;pre&gt;shr.core.MedicationStatement maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-medicationstatement:
   _Entry.EntryId maps to id
@@ -161,6 +161,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
   Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
@@ -171,8 +172,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
   constrain wasNotTaken to 0..0
   constrain reasonNotTaken to 0..0
   constrain dosage to 0..1
-  Medication maps to medication[x]
+  MedicationCodeOrReference maps to medication[x]
   ReasonCode maps to reasonForUse[x]
+  ReasonReference maps to reasonForUse[x]
   OccurrenceTimeOrPeriod maps to effective[x]
   Status maps to status
   Dosage.DoseAmount maps to dosage.quantity[x]
@@ -181,7 +183,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
   Dosage.DosageInstructionsText maps to dosage.text
   Dosage.RouteIntoBody maps to dosage.route
   Dosage.DosageMethod maps to dosage.method
-  Dosage.DosageBodySite.BodySiteCode maps to dosage.site[x]
+  Dosage.DosageBodyLocation maps to dosage.site[x]
   Dosage.MaximumDosePerTimePeriod maps to dosage.maxDosePerPeriod
 &lt;/pre&gt;&lt;/p&gt;
 &lt;/div&gt;
@@ -204,12 +206,12 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       &lt;<a href="http://hl7.org/fhir/DSTU2/datatypes.html#ContactPoint#ContactPoint.rank">rank</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#positiveInt">value</a>="0"/&gt;
     &lt;/telecom&gt;
   &lt;/contact&gt;
-  &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.date">date</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#dateTime">value</a>="2019-03-13T00:00:00-04:00"/&gt;
+  &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.date">date</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#dateTime">value</a>="2019-03-27T00:00:00-04:00"/&gt;
   &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.description">description</a>
                <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="A record of the use of a medication.
 Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).
 The treatment of &amp;#39;not taken&amp;#39; has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the &amp;#39;not taken&amp;#39; attributes are profiled out.
-ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason. In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously."/&gt;
+ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously."/&gt;
   &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.code">code</a>&gt;
     &lt;<a href="http://hl7.org/fhir/DSTU2/datatypes.html#Coding#Coding.system">system</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://snomed.info/sct"/&gt;
     &lt;<a href="http://hl7.org/fhir/DSTU2/datatypes.html#Coding#Coding.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="416608005"/&gt;
@@ -246,7 +248,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
                   <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="A record of the use of a medication.
 Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).
 The treatment of &amp;#39;not taken&amp;#39; has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the &amp;#39;not taken&amp;#39; attributes are profiled out.
-ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason. In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously."/&gt;
+ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously."/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
@@ -645,131 +647,6 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="reasonreference"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="reasonreference"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="The justification, as reference to a condition or observation."/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-    &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationStatement.extension.id"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.extension.id"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.representation">representation</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="xmlAttr"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.extension.id"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="xml:id (or equivalent in JSON)"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Element.id"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="string"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping">mapping</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.identity">identity</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">value</a>="rim"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="N/A"/&gt;
-      &lt;/mapping&gt;
-    &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="extension"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.extension.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="An Extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Element.extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-    &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationStatement.extension.url"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.extension.url"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.representation">representation</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="xmlAttr"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.extension.url"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="identifies the meaning of the extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="Source of the definition for the extension code - a logical name or a URL."/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="1"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Extension.url"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="1"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="uri"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.fixed[x]">fixedUri</a>
-                <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping">mapping</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.identity">identity</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">value</a>="rim"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="N/A"/&gt;
-      &lt;/mapping&gt;
-    &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationStatement.extension.value[x]"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.extension.value[x]"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.extension.value[x]"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Value of extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="1"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Extension.value[x]"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Reference"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping">mapping</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.identity">identity</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">value</a>="rim"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="N/A"/&gt;
-      &lt;/mapping&gt;
-    &lt;/element&gt;
     &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="medicationstatementrelatedrequest"&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="medicationstatementrelatedrequest"/&gt;
@@ -838,9 +715,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="N/A"/&gt;
       &lt;/mapping&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="extension"&gt;
+    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationStatement.extension.extension"&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.extension.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="extension"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.extension.extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="An Extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
@@ -944,7 +821,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="terminationreason"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="A description and/or code explaining the premature termination of the study."/&gt;
+                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="A code explaining unplanned or premature termination of a plan of treatment, course of medication, or research study."/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
@@ -988,9 +865,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="N/A"/&gt;
       &lt;/mapping&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="extension"&gt;
+    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationStatement.extension.extension"&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.extension.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="extension"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.extension.extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="An Extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
@@ -1060,7 +937,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="required"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>&gt;
           &lt;<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>
-                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/MedicationTerminationReasonVS"/&gt;
+                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/TreatmentTerminationReasonVS"/&gt;
         &lt;/valueSetReference&gt;
       &lt;/binding&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping">mapping</a>&gt;
@@ -1308,7 +1185,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       &lt;/mapping&gt;
     &lt;/element&gt;
     &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationStatement:argoprofile.reasonForUse[x]"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.reasonForUseCodeableConcept"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.reasonForUse[x]"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement:argoprofile.reasonForUse[x]"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="A reason for why the medication is being/was taken."/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
@@ -1320,6 +1197,11 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       &lt;/base&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="CodeableConcept"/&gt;
+      &lt;/type&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Reference"/&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
+                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"/&gt;
       &lt;/type&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
@@ -1414,7 +1296,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="true"/&gt;
     &lt;/element&gt;
     &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationStatement:argoprofile.medication[x]"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.medicationReference"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.medication[x]"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement:argoprofile.medication[x]"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="What medication was taken"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
@@ -1428,6 +1310,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="1"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
       &lt;/base&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="CodeableConcept"/&gt;
+      &lt;/type&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Reference"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
@@ -1705,7 +1590,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="preferred"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>&gt;
           &lt;<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>
-                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/&gt;
+                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/&gt;
         &lt;/valueSetReference&gt;
       &lt;/binding&gt;
     &lt;/element&gt;
@@ -1868,7 +1753,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
                   <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="A record of the use of a medication.
 Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).
 The treatment of &amp;#39;not taken&amp;#39; has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the &amp;#39;not taken&amp;#39; attributes are profiled out.
-ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason. In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously."/&gt;
+ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously."/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="argo-medicationstatement"/&gt;
@@ -1907,28 +1792,6 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CareContext-extension"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-    &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="reasonreference"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="reasonreference"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="The justification, as reference to a condition or observation."/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"/&gt;
       &lt;/type&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
@@ -2019,7 +1882,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="terminationreason"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="A description and/or code explaining the premature termination of the study."/&gt;
+                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="A code explaining unplanned or premature termination of a plan of treatment, course of medication, or research study."/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
@@ -2049,7 +1912,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="required"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>&gt;
           &lt;<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>
-                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/MedicationTerminationReasonVS"/&gt;
+                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/TreatmentTerminationReasonVS"/&gt;
         &lt;/valueSetReference&gt;
       &lt;/binding&gt;
     &lt;/element&gt;
@@ -2105,12 +1968,17 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationStatement.reasonForUseCodeableConcept"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.reasonForUseCodeableConcept"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.reasonForUseCodeableConcept"/&gt;
+    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationStatement.reasonForUse[x]"&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.reasonForUse[x]"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.reasonForUse[x]"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="CodeableConcept"/&gt;
+      &lt;/type&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Reference"/&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
+                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"/&gt;
       &lt;/type&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
@@ -2127,10 +1995,13 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationStatement.medicationReference"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.medicationReference"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.medicationReference"/&gt;
+    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationStatement.medication[x]"&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.medication[x]"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationStatement.medication[x]"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="CodeableConcept"/&gt;
+      &lt;/type&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Reference"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
@@ -2213,7 +2084,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="preferred"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>&gt;
           &lt;<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>
-                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/&gt;
+                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/&gt;
         &lt;/valueSetReference&gt;
       &lt;/binding&gt;
     &lt;/element&gt;
@@ -2271,11 +2142,11 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
 <div igtool="footer" id="segment-footer" class="segment">    <!-- segment-footer -->
   <div class="container">    <!-- container -->
    <div class="inner-wrapper">
-    <p><a name="a3ca43e2-bab9-499b-b79b-4c69d445bd02">​</a>
+    <p><a name="764b5151-88f3-4c67-9594-d441b1b8c7bd">​</a>
       
-      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1), Version: 0.7.0
+      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1), Version: 0.7.0
       ; <a style="color: #81BEF7" href="http://hl7.org/fhir/DSTU2/">FHIR &copy; Version: 1.0.2</a>
-      ; Generated on Wed, Mar 13, 2019 15:34-0400.
+      ; Generated on Wed, Mar 27, 2019 14:58-0400.
     </p>
    </div>    <!-- /inner-wrapper -->
   </div>    <!-- /container -->

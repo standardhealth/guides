@@ -3,7 +3,7 @@
   "id": "shr-core-Specimen",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Specimen Profile</b></p>\n  <p>A specimen is a substance, physical object, or collection of objects, that the laboratory considers a single discrete, uniquely identified unit that is the subject of one or more steps in the laboratory workflow. A specimen may include multiple physical pieces as long as they are considered a single unit within the laboratory workflow. A specimen results from one to many specimen collection procedures, and may be contained in multiple specimen containers. Specimen may have one or more processing activities.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Specimen maps to Specimen:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Status maps to status\n  Type maps to type\n  AccessionIdentifier maps to accessionIdentifier\n  CollectionSource maps to subject\n  PartOf maps to parent\n  ReceivedTime maps to receivedTime\n  AmountOrSize maps to collection.quantity\n  CollectionSite.BodySite.BodySiteCode maps to collection.bodySite\n  CollectionSite.BodySite.Laterality maps to collection.bodySite.extension\n  CollectionSite.BodySite.AnatomicalDirection maps to collection.bodySite.extension\n  CollectionSite.BodySite.ClockDirection maps to collection.bodySite.extension\n  CollectionSite.BodySite.CommentOrDescription maps to collection.bodySite.extension\n  CollectionSite.BodySite.Attachment maps to collection.bodySite.extension\n  CollectionSite.BodySite.DistanceFromLandmark maps to collection.bodySite.extension\n  CollectionTime maps to collection.collected[x]\n  CollectionMethod maps to collection.method\n  SpecimenContainer.Identifier maps to container.identifier\n  SpecimenContainer.CommentOrDescription maps to container.description\n  SpecimenContainer.Type maps to container.type\n  SpecimenContainer.Capacity maps to container.capacity\n  SpecimenContainer.SpecimenQuantity maps to container.specimenQuantity\n  SpecimenContainer.Additive maps to container.additive[x]\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Specimen Profile</b></p>\n  <p>A specimen is a substance, physical object, or collection of objects, that the laboratory considers a single discrete, uniquely identified unit that is the subject of one or more steps in the laboratory workflow. A specimen may include multiple physical pieces as long as they are considered a single unit within the laboratory workflow. A specimen results from one to many specimen collection procedures, and may be contained in multiple specimen containers. Specimen may have one or more processing activities.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Specimen maps to Specimen:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Status maps to status\n  Type maps to type\n  AccessionIdentifier maps to accessionIdentifier\n  CollectionSource maps to subject\n  PartOf maps to parent\n  ReceivedTime maps to receivedTime\n  AmountOrSize maps to collection.quantity\n  CollectionSite.BodyLocation.LocationCode maps to collection.bodySite\n  CollectionSite.BodyLocation.LocationQualifier maps to collection.bodySite.extension\n  CollectionSite.BodyLocation.Landmark maps to collection.bodySite.extension\n  CollectionTime maps to collection.collected[x]\n  CollectionMethod maps to collection.method\n  SpecimenContainer.Identifier maps to container.identifier\n  SpecimenContainer.CommentOrDescription maps to container.description\n  SpecimenContainer.Type maps to container.type\n  SpecimenContainer.Capacity maps to container.capacity\n  SpecimenContainer.SpecimenQuantity maps to container.specimenQuantity\n  SpecimenContainer.Additive maps to container.additive[x]\n</pre></p>\n</div>"
   },
   "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Specimen",
   "identifier": [
@@ -28,7 +28,7 @@
       ]
     }
   ],
-  "date": "2019-03-13T00:00:00-04:00",
+  "date": "2019-03-27T00:00:00-04:00",
   "description": "A specimen is a substance, physical object, or collection of objects, that the laboratory considers a single discrete, uniquely identified unit that is the subject of one or more steps in the laboratory workflow. A specimen may include multiple physical pieces as long as they are considered a single unit within the laboratory workflow. A specimen results from one to many specimen collection procedures, and may be contained in multiple specimen containers. Specimen may have one or more processing activities.",
   "fhirVersion": "1.0.2",
   "mapping": [
@@ -725,7 +725,10 @@
         "max": "1",
         "type": [
           {
-            "code": "Identifier"
+            "code": "Identifier",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AccessionIdentifier"
+            ]
           }
         ],
         "maxLength": 0,
@@ -1074,7 +1077,7 @@
         "binding": {
           "strength": "preferred",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         },
         "mapping": [
@@ -1153,110 +1156,10 @@
         ]
       },
       {
-        "id": "laterality",
+        "id": "locationqualifier",
         "path": "Specimen.collection.bodySite.extension",
-        "name": "laterality",
-        "definition": "Anatomical location or specimen further detailing the side(s) of interest.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Specimen.collection.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "anatomicaldirection",
-        "path": "Specimen.collection.bodySite.extension",
-        "name": "anatomicaldirection",
-        "definition": "Anatomical location or specimen further detailing directionality.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Specimen.collection.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "clockdirection",
-        "path": "Specimen.collection.bodySite.extension",
-        "name": "clockdirection",
-        "definition": "A direction indicated by an angle relative to 12 o'clock.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Specimen.collection.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "commentordescription",
-        "path": "Specimen.collection.bodySite.extension",
-        "name": "commentordescription",
-        "definition": "A text note containing additional details, explanation, description, comment, or summarization.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Specimen.collection.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "attachment",
-        "path": "Specimen.collection.bodySite.extension",
-        "name": "attachment",
-        "definition": "A file that contains audio, video, image, or similar content.",
+        "name": "locationqualifier",
+        "definition": "Additional information, such as laterality or direction, that helps define the body location.",
         "min": 0,
         "max": "*",
         "base": {
@@ -1268,7 +1171,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"
             ]
           }
         ],
@@ -1278,12 +1181,12 @@
         "isSummary": false
       },
       {
-        "id": "distancefromlandmark",
+        "id": "landmark",
         "path": "Specimen.collection.bodySite.extension",
-        "name": "distancefromlandmark",
-        "definition": "How far the anatomical location of interest is from the given landmark",
+        "name": "landmark",
+        "definition": "An anatomical landmark that helps determine a body location.",
         "min": 0,
-        "max": "1",
+        "max": "*",
         "base": {
           "path": "Specimen.collection.bodySite.extension",
           "min": 0,
@@ -1293,7 +1196,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"
             ]
           }
         ],
@@ -2049,6 +1952,24 @@
         "isSummary": false
       },
       {
+        "id": "Specimen.accessionIdentifier",
+        "path": "Specimen.accessionIdentifier",
+        "name": "Specimen.accessionIdentifier",
+        "min": 0,
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AccessionIdentifier"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
         "id": "Specimen.collection",
         "path": "Specimen.collection",
         "name": "Specimen.collection",
@@ -2070,7 +1991,7 @@
         "binding": {
           "strength": "preferred",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         }
       },
@@ -2093,110 +2014,10 @@
         "isSummary": false
       },
       {
-        "id": "laterality",
+        "id": "locationqualifier",
         "path": "Specimen.collection.bodySite.extension",
-        "name": "laterality",
-        "definition": "Anatomical location or specimen further detailing the side(s) of interest.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Specimen.collection.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "anatomicaldirection",
-        "path": "Specimen.collection.bodySite.extension",
-        "name": "anatomicaldirection",
-        "definition": "Anatomical location or specimen further detailing directionality.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Specimen.collection.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "clockdirection",
-        "path": "Specimen.collection.bodySite.extension",
-        "name": "clockdirection",
-        "definition": "A direction indicated by an angle relative to 12 o'clock.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Specimen.collection.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "commentordescription",
-        "path": "Specimen.collection.bodySite.extension",
-        "name": "commentordescription",
-        "definition": "A text note containing additional details, explanation, description, comment, or summarization.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Specimen.collection.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "attachment",
-        "path": "Specimen.collection.bodySite.extension",
-        "name": "attachment",
-        "definition": "A file that contains audio, video, image, or similar content.",
+        "name": "locationqualifier",
+        "definition": "Additional information, such as laterality or direction, that helps define the body location.",
         "min": 0,
         "max": "*",
         "base": {
@@ -2208,7 +2029,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"
             ]
           }
         ],
@@ -2218,12 +2039,12 @@
         "isSummary": false
       },
       {
-        "id": "distancefromlandmark",
+        "id": "landmark",
         "path": "Specimen.collection.bodySite.extension",
-        "name": "distancefromlandmark",
-        "definition": "How far the anatomical location of interest is from the given landmark",
+        "name": "landmark",
+        "definition": "An anatomical landmark that helps determine a body location.",
         "min": 0,
-        "max": "1",
+        "max": "*",
         "base": {
           "path": "Specimen.collection.bodySite.extension",
           "min": 0,
@@ -2233,7 +2054,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"
             ]
           }
         ],

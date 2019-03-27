@@ -3,7 +3,7 @@
   "id": "shr-core-MedicationRequest",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>MedicationRequest Profile</b></p>\n  <p>An order for a medication to be dispensed and instructions for use.\nValue sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.\nCategory does not exist in DSTU2 and is provided as an extension.\nIntent was added in STU3 and is provided as an extension with required binding.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.MedicationRequest maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-medicationorder:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  PatientSubjectOfRecord maps to patient\n  CareContext maps to encounter\n  StatementDateTime maps to dateWritten\n  Identifier maps to identifier\n  MedicationRequester maps to prescriber\n  RequestIntent maps to extension\n  Medication maps to medication[x]\n  NumberOfRefillsAllowed maps to dispenseRequest.numberOfRepeatsAllowed\n  QuantityPerDispense maps to dispenseRequest.quantity\n  SupplyDuration maps to dispenseRequest.expectedSupplyDuration\n  constrain dosageInstruction to 0..1\n  ReasonCode maps to reason[x]\n  Status maps to status\n  ExpectedPerformanceTime maps to dispenseRequest.validityPeriod\n  Annotation.Text maps to note\n  constrain note to 0..1\n  Dosage.DoseAmount maps to dosageInstruction.dose[x]\n  Dosage.TimingOfDoses maps to dosageInstruction.timing\n  Dosage.AsNeededIndicator maps to dosageInstruction.asNeeded[x]\n  Dosage.DosageInstructionsText maps to dosageInstruction.text\n  Dosage.RouteIntoBody maps to dosageInstruction.route\n  Dosage.DosageMethod maps to dosageInstruction.method\n  Dosage.DosageBodySite.BodySiteCode maps to dosageInstruction.site[x]\n  Dosage.MaximumDosePerTimePeriod maps to dosageInstruction.maxDosePerPeriod\n  SubstitutionAllowed maps to substitution.extension\n  SubstitutionReason maps to substitution.reason\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>MedicationRequest Profile</b></p>\n  <p>An order for a medication to be dispensed and instructions for use.\nValue sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.\nCategory does not exist in DSTU2 and is provided as an extension.\nIntent was added in STU3 and is provided as an extension with required binding.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.MedicationRequest maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-medicationorder:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  PatientSubjectOfRecord maps to patient\n  CareContext maps to encounter\n  StatementDateTime maps to dateWritten\n  Identifier maps to identifier\n  MedicationRequester maps to prescriber\n  RequestIntent maps to extension\n  MedicationCodeOrReference maps to medication[x]\n  NumberOfRefillsAllowed maps to dispenseRequest.numberOfRepeatsAllowed\n  QuantityPerDispense maps to dispenseRequest.quantity\n  SupplyDuration maps to dispenseRequest.expectedSupplyDuration\n  constrain dosageInstruction to 0..1\n  ReasonCode maps to reason[x]\n  ReasonReference maps to reason[x]\n  Status maps to status\n  ExpectedPerformanceTime maps to dispenseRequest.validityPeriod\n  Annotation.Text maps to note\n  constrain note to 0..1\n  Dosage.DoseAmount maps to dosageInstruction.dose[x]\n  Dosage.TimingOfDoses maps to dosageInstruction.timing\n  Dosage.AsNeededIndicator maps to dosageInstruction.asNeeded[x]\n  Dosage.DosageInstructionsText maps to dosageInstruction.text\n  Dosage.RouteIntoBody maps to dosageInstruction.route\n  Dosage.DosageMethod maps to dosageInstruction.method\n  Dosage.DosageBodyLocation maps to dosageInstruction.site[x]\n  Dosage.MaximumDosePerTimePeriod maps to dosageInstruction.maxDosePerPeriod\n  SubstitutionAllowed maps to substitution.extension\n  SubstitutionReason maps to substitution.reason\n</pre></p>\n</div>"
   },
   "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationRequest",
   "identifier": [
@@ -28,7 +28,7 @@
       ]
     }
   ],
-  "date": "2019-03-13T00:00:00-04:00",
+  "date": "2019-03-27T00:00:00-04:00",
   "description": "An order for a medication to be dispensed and instructions for use.\nValue sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.\nCategory does not exist in DSTU2 and is provided as an extension.\nIntent was added in STU3 and is provided as an extension with required binding.",
   "fhirVersion": "1.0.2",
   "mapping": [
@@ -528,9 +528,9 @@
         ]
       },
       {
-        "id": "extension",
+        "id": "MedicationOrder.extension.extension",
         "path": "MedicationOrder.extension.extension",
-        "name": "extension",
+        "name": "MedicationOrder.extension.extension",
         "short": "Extension",
         "definition": "An Extension",
         "min": 0,
@@ -619,152 +619,6 @@
         ]
       },
       {
-        "id": "reasonreference",
-        "path": "MedicationOrder.extension",
-        "name": "reasonreference",
-        "definition": "The justification, as reference to a condition or observation.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "MedicationOrder.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "MedicationOrder.extension.id",
-        "path": "MedicationOrder.extension.id",
-        "representation": [
-          "xmlAttr"
-        ],
-        "name": "MedicationOrder.extension.id",
-        "short": "xml:id (or equivalent in JSON)",
-        "definition": "unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Element.id",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "string"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "N/A"
-          }
-        ]
-      },
-      {
-        "id": "extension",
-        "path": "MedicationOrder.extension.extension",
-        "name": "extension",
-        "short": "Extension",
-        "definition": "An Extension",
-        "min": 0,
-        "max": "0",
-        "base": {
-          "path": "Element.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "MedicationOrder.extension.url",
-        "path": "MedicationOrder.extension.url",
-        "representation": [
-          "xmlAttr"
-        ],
-        "name": "MedicationOrder.extension.url",
-        "short": "identifies the meaning of the extension",
-        "definition": "Source of the definition for the extension code - a logical name or a URL.",
-        "min": 1,
-        "max": "1",
-        "base": {
-          "path": "Extension.url",
-          "min": 1,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "uri"
-          }
-        ],
-        "fixedUri": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension",
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "N/A"
-          }
-        ]
-      },
-      {
-        "id": "MedicationOrder.extension.value[x]",
-        "path": "MedicationOrder.extension.value[x]",
-        "name": "MedicationOrder.extension.value[x]",
-        "short": "Value of extension",
-        "definition": "Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).",
-        "min": 1,
-        "max": "1",
-        "base": {
-          "path": "Extension.value[x]",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "Reference",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition",
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "N/A"
-          }
-        ]
-      },
-      {
         "id": "type",
         "path": "MedicationOrder.extension",
         "name": "type",
@@ -822,9 +676,9 @@
         ]
       },
       {
-        "id": "extension",
+        "id": "MedicationOrder.extension.extension",
         "path": "MedicationOrder.extension.extension",
-        "name": "extension",
+        "name": "MedicationOrder.extension.extension",
         "short": "Extension",
         "definition": "An Extension",
         "min": 0,
@@ -970,9 +824,9 @@
         ]
       },
       {
-        "id": "extension",
+        "id": "MedicationOrder.extension.extension",
         "path": "MedicationOrder.extension.extension",
-        "name": "extension",
+        "name": "MedicationOrder.extension.extension",
         "short": "Extension",
         "definition": "An Extension",
         "min": 0,
@@ -1119,9 +973,9 @@
         ]
       },
       {
-        "id": "extension",
+        "id": "MedicationOrder.extension.extension",
         "path": "MedicationOrder.extension.extension",
-        "name": "extension",
+        "name": "MedicationOrder.extension.extension",
         "short": "Extension",
         "definition": "An Extension",
         "min": 0,
@@ -1533,6 +1387,64 @@
         ]
       },
       {
+        "id": "MedicationOrder:argoprofile.reason[x]",
+        "path": "MedicationOrder.reason[x]",
+        "name": "MedicationOrder:argoprofile.reason[x]",
+        "slicing": {
+          "id": "4",
+          "discriminator": [
+            "$this/@type"
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Reason or indication for writing the prescription",
+        "definition": "Can be the reason or the indication for writing the prescription.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "MedicationOrder.reason[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "CodeableConcept"
+          },
+          {
+            "code": "Reference",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": true,
+        "binding": {
+          "strength": "example",
+          "description": "Codes indicating why the medication was ordered.",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/condition-code"
+          }
+        },
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "ORC-16-Order Control Code Reason /RXE-27-Give Indication/RXO-20-Indication / RXD-21-Indication / RXG-22-Indication / RXA-19-Indication"
+          },
+          {
+            "identity": "rim",
+            "map": "reason.observation or reason.observation[code=ASSERTION].value"
+          },
+          {
+            "identity": "w5",
+            "map": "why"
+          }
+        ]
+      },
+      {
         "id": "CodeableConcept",
         "path": "MedicationOrder.reasonCodeableConcept",
         "name": "CodeableConcept",
@@ -1586,7 +1498,7 @@
       },
       {
         "id": "MedicationOrder:argoprofile.medication[x]",
-        "path": "MedicationOrder.medicationReference",
+        "path": "MedicationOrder.medication[x]",
         "name": "MedicationOrder:argoprofile.medication[x]",
         "short": "Medication to be taken",
         "definition": "Identifies the medication being administered. This is a link to a resource that represents the medication which may be the details of the medication or simply an attribute carrying a code that identifies the medication from a known list of medications.",
@@ -1599,6 +1511,9 @@
           "max": "1"
         },
         "type": [
+          {
+            "code": "CodeableConcept"
+          },
           {
             "code": "Reference",
             "profile": [
@@ -1969,7 +1884,7 @@
         "binding": {
           "strength": "preferred",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         }
       },
@@ -2819,31 +2734,6 @@
         }
       },
       {
-        "id": "reasonreference",
-        "path": "MedicationOrder.extension",
-        "name": "reasonreference",
-        "definition": "The justification, as reference to a condition or observation.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "MedicationOrder.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
         "id": "type",
         "path": "MedicationOrder.extension",
         "name": "type",
@@ -3005,6 +2895,35 @@
         "isSummary": false
       },
       {
+        "id": "MedicationOrder.reason[x]",
+        "path": "MedicationOrder.reason[x]",
+        "name": "MedicationOrder.reason[x]",
+        "slicing": {
+          "id": "4",
+          "discriminator": [
+            "$this/@type"
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "min": 0,
+        "type": [
+          {
+            "code": "CodeableConcept"
+          },
+          {
+            "code": "Reference",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
         "id": "MedicationOrder.reasonCodeableConcept",
         "path": "MedicationOrder.reasonCodeableConcept",
         "name": "MedicationOrder.reasonCodeableConcept",
@@ -3026,11 +2945,14 @@
         }
       },
       {
-        "id": "MedicationOrder.medicationReference",
-        "path": "MedicationOrder.medicationReference",
-        "name": "MedicationOrder.medicationReference",
+        "id": "MedicationOrder.medication[x]",
+        "path": "MedicationOrder.medication[x]",
+        "name": "MedicationOrder.medication[x]",
         "min": 0,
         "type": [
+          {
+            "code": "CodeableConcept"
+          },
           {
             "code": "Reference",
             "profile": [
@@ -3128,7 +3050,7 @@
         "binding": {
           "strength": "preferred",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         }
       },

@@ -13,31 +13,28 @@
   Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
-  Identifier maps to identifier
-  ObservationSubjectOfRecord maps to subject
-  Performer maps to performer
+  Identifier maps to identifier (slice on = Type.coding.code; slice strategy = includes)
+  PatientSubjectOfRecord maps to subject
+  Performer maps to performer (slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)
   Code maps to code
   Method maps to method
   CommentOrDescription maps to comments
   Category maps to category
-  BodySite.BodySiteCode maps to bodySite
-  BodySite.Laterality maps to bodySite.extension
-  BodySite.AnatomicalDirection maps to bodySite.extension
-  BodySite.ClockDirection maps to bodySite.extension
-  BodySite.CommentOrDescription maps to bodySite.extension
-  BodySite.Attachment maps to bodySite.extension
-  BodySite.DistanceFromLandmark maps to bodySite.extension
+  BodyLocation.LocationCode maps to bodySite
+  BodyLocation.LocationQualifier maps to bodySite.extension
+  BodyLocation.Landmark maps to bodySite.extension
   Device maps to device
   StatementDateTime maps to issued
   ReferenceRange maps to referenceRange
   ReferenceRange.Range.LowerBound maps to referenceRange.low
   ReferenceRange.Range.UpperBound maps to referenceRange.high
   ReferenceRange.Type maps to referenceRange.meaning
-  Components maps to component
-  Components.ObservationComponent.Code maps to component.code (slice on = code.coding.code; slice strategy = includes)
+  Components.ObservationComponent maps to component (slice on = code.coding.code; slice strategy = includes)
+  Components.ObservationComponent.Code maps to component.code
   Components.ObservationComponent.DataValue maps to component.value[x]
   Components.ObservationComponent.DataAbsentReason maps to component.dataAbsentReason
   Components.ObservationComponent.ReferenceRange maps to component.referenceRange
@@ -71,7 +68,7 @@
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-03-13T00:00:00-04:00"/>
+  <date value="2019-03-27T00:00:00-04:00"/>
   <description value="A substance found in tissue or blood or other body fluids that may be a sign of cancer or certain benign (noncancer) conditions. Most tumor markers are made by both normal cells and cancer cells, but they are made in larger amounts by cancer cells. A tumor marker may help to diagnose cancer, plan treatment, or find out how well treatment is working or if cancer has come back. Examples of tumor markers include CA-125 (in ovarian cancer), CA 15-3 (in breast cancer), CEA (in colon cancer), and PSA (in prostate cancer). (Source: NCI Dictionary of Cancer Terms).  Tumor markers differ from genetic markers in that they are measured at the levels of the protein and substance post-RNA protein synthesis."/>
   <code>
     <system value="http://loinc.org"/>
@@ -496,6 +493,11 @@
     <element id="Observation:argoprofile.identifier">
       <path value="Observation.identifier"/>
       <name value="Observation:argoprofile.identifier"/>
+      <slicing id="1">
+        <discriminator value="Type.coding.code"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <short value="Unique Id for this particular observation"/>
       <definition value="A unique identifier for the simple observation instance."/>
       <requirements value="Allows observations to be distinguished and referenced."/>
@@ -508,6 +510,105 @@
       </base>
       <type>
         <code value="Identifier"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX.21"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="id"/>
+      </mapping>
+      <mapping>
+        <identity value="w5"/>
+        <map value="id"/>
+      </mapping>
+    </element>
+    <element id="shr-core-AccessionIdentifier">
+      <path value="Observation.identifier"/>
+      <name value="shr-core-AccessionIdentifier"/>
+      <short value="AccessionIdentifier"/>
+      <definition value="Identifier assigned by the lab"/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.identifier"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Identifier"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AccessionIdentifier"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX.21"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="id"/>
+      </mapping>
+      <mapping>
+        <identity value="w5"/>
+        <map value="id"/>
+      </mapping>
+    </element>
+    <element id="shr-core-FillerOrderNumber">
+      <path value="Observation.identifier"/>
+      <name value="shr-core-FillerOrderNumber"/>
+      <short value="FillerOrderNumber"/>
+      <definition value="Identifier assigned by the lab carrying out the test."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.identifier"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Identifier"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-FillerOrderNumber"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX.21"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="id"/>
+      </mapping>
+      <mapping>
+        <identity value="w5"/>
+        <map value="id"/>
+      </mapping>
+    </element>
+    <element id="shr-core-PlacerOrderNumber">
+      <path value="Observation.identifier"/>
+      <name value="shr-core-PlacerOrderNumber"/>
+      <short value="PlacerOrderNumber"/>
+      <definition value="Identifier assigned by the requester of the lab."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.identifier"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Identifier"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PlacerOrderNumber"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -804,6 +905,13 @@
     <element id="Observation:argoprofile.performer">
       <path value="Observation.performer"/>
       <name value="Observation:argoprofile.performer"/>
+      <slicing id="2">
+        <discriminator value="target.reference/@profile"/>
+        <discriminator value="target.reference/@profile"/>
+        <discriminator value="target.reference/@profile"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <short value="Who is responsible for the observation"/>
       <definition value="Who was responsible for asserting the observed value as &quot;true&quot;."/>
       <requirements value="May give a degree of confidence in the observation and also indicates where follow-up questions should be directed."/>
@@ -816,6 +924,119 @@
       </base>
       <type>
         <code value="Reference"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX.15 / (Practitioner)  OBX-16,  PRT-5:PRT-4=&#39;RO&#39; /  (Device)  OBX-18 , PRT-10:PRT-4=&#39;EQUIP&#39; / (Organization)  OBX-23,  PRT-8:PRT-4=&#39;PO&#39;"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="participation[typeCode=PRF]"/>
+      </mapping>
+      <mapping>
+        <identity value="w5"/>
+        <map value="who.actor"/>
+      </mapping>
+    </element>
+    <element id="shr-core-ResponsibleObserver">
+      <path value="Observation.performer"/>
+      <name value="shr-core-ResponsibleObserver"/>
+      <short value="ResponsibleObserver"/>
+      <definition value="Person directly responsible for carrying out the test."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.performer"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX.15 / (Practitioner)  OBX-16,  PRT-5:PRT-4=&#39;RO&#39; /  (Device)  OBX-18 , PRT-10:PRT-4=&#39;EQUIP&#39; / (Organization)  OBX-23,  PRT-8:PRT-4=&#39;PO&#39;"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="participation[typeCode=PRF]"/>
+      </mapping>
+      <mapping>
+        <identity value="w5"/>
+        <map value="who.actor"/>
+      </mapping>
+    </element>
+    <element id="shr-core-PerformingLaboratory">
+      <path value="Observation.performer"/>
+      <name value="shr-core-PerformingLaboratory"/>
+      <short value="PerformingLaboratory"/>
+      <definition value="Organization responsible for carrying out the test."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.performer"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX.15 / (Practitioner)  OBX-16,  PRT-5:PRT-4=&#39;RO&#39; /  (Device)  OBX-18 , PRT-10:PRT-4=&#39;EQUIP&#39; / (Organization)  OBX-23,  PRT-8:PRT-4=&#39;PO&#39;"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="participation[typeCode=PRF]"/>
+      </mapping>
+      <mapping>
+        <identity value="w5"/>
+        <map value="who.actor"/>
+      </mapping>
+    </element>
+    <element id="shr-core-PerformingOrganizationMedicalDirector">
+      <path value="Observation.performer"/>
+      <name value="shr-core-PerformingOrganizationMedicalDirector"/>
+      <short value="PerformingOrganizationMedicalDirector"/>
+      <definition value="Director of the laboratory performing the test."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.performer"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
@@ -1037,7 +1258,7 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -1693,7 +1914,7 @@
       <comments value="For a discussion on the ways Observations can assembled in groups together see [Notes below](observation.html#4.20.4)."/>
       <requirements value="Component observations share the same attributes in the Observation resource as the primary observation and are always treated a part of a single observation (they are not separable).   However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="*"/>
       <base>
         <path value="Observation.component"/>
         <min value="0"/>
@@ -2160,6 +2381,68 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
+    <element id="Observation.identifier">
+      <path value="Observation.identifier"/>
+      <name value="Observation.identifier"/>
+      <slicing id="1">
+        <discriminator value="Type.coding.code"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <min value="0"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-AccessionIdentifier">
+      <path value="Observation.identifier"/>
+      <name value="shr-core-AccessionIdentifier"/>
+      <short value="AccessionIdentifier"/>
+      <definition value="Identifier assigned by the lab"/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="Identifier"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AccessionIdentifier"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-FillerOrderNumber">
+      <path value="Observation.identifier"/>
+      <name value="shr-core-FillerOrderNumber"/>
+      <short value="FillerOrderNumber"/>
+      <definition value="Identifier assigned by the lab carrying out the test."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="Identifier"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-FillerOrderNumber"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-PlacerOrderNumber">
+      <path value="Observation.identifier"/>
+      <name value="shr-core-PlacerOrderNumber"/>
+      <short value="PlacerOrderNumber"/>
+      <definition value="Identifier assigned by the requester of the lab."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="Identifier"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PlacerOrderNumber"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
     <element id="Observation.code">
       <path value="Observation.code"/>
       <name value="Observation.code"/>
@@ -2204,9 +2487,78 @@
     <element id="Observation.performer">
       <path value="Observation.performer"/>
       <name value="Observation.performer"/>
+      <slicing id="2">
+        <discriminator value="target.reference/@profile"/>
+        <discriminator value="target.reference/@profile"/>
+        <discriminator value="target.reference/@profile"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <min value="0"/>
       <type>
         <code value="Reference"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ResponsibleObserver">
+      <path value="Observation.performer"/>
+      <name value="shr-core-ResponsibleObserver"/>
+      <short value="ResponsibleObserver"/>
+      <definition value="Person directly responsible for carrying out the test."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="Reference"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-PerformingLaboratory">
+      <path value="Observation.performer"/>
+      <name value="shr-core-PerformingLaboratory"/>
+      <short value="PerformingLaboratory"/>
+      <definition value="Organization responsible for carrying out the test."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="Reference"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-PerformingOrganizationMedicalDirector">
+      <path value="Observation.performer"/>
+      <name value="shr-core-PerformingOrganizationMedicalDirector"/>
+      <short value="PerformingOrganizationMedicalDirector"/>
+      <definition value="Director of the laboratory performing the test."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="Reference"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
@@ -2277,7 +2629,7 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -2371,7 +2723,6 @@
       <path value="Observation.component"/>
       <name value="Observation.component"/>
       <min value="0"/>
-      <max value="1"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>

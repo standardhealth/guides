@@ -6,7 +6,8 @@
     <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">
   <p><b>Condition Profile</b></p>
   <p>A condition that is or may be present in a subject. 'Condition' is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.
-SHR Condition uses the SHR BodySite structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction.</p>
+The Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.
+SHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction.</p>
   <p><b>Mapping Summary</b></p>
   <p><pre>shr.core.Condition maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-condition:
   _Entry.EntryId maps to id
@@ -14,6 +15,7 @@ SHR Condition uses the SHR BodySite structure that includes not only a code, but
   Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
@@ -23,13 +25,9 @@ SHR Condition uses the SHR BodySite structure that includes not only a code, but
   PatientSubjectOfRecord maps to patient
   Category maps to category
   Code maps to code
-  BodySite.BodySiteCode maps to bodySite
-  BodySite.Laterality maps to bodySite.extension
-  BodySite.AnatomicalDirection maps to bodySite.extension
-  BodySite.ClockDirection maps to bodySite.extension
-  BodySite.CommentOrDescription maps to bodySite.extension
-  BodySite.Attachment maps to bodySite.extension
-  BodySite.DistanceFromLandmark maps to bodySite.extension
+  BodyLocation.LocationCode maps to bodySite
+  BodyLocation.LocationQualifier maps to bodySite.extension
+  BodyLocation.Landmark maps to bodySite.extension
   CareContext maps to encounter
   ClinicalStatus maps to clinicalStatus
   Status maps to verificationStatus
@@ -61,8 +59,8 @@ SHR Condition uses the SHR BodySite structure that includes not only a code, but
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-03-13T00:00:00-04:00"/>
-  <description value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.&#xA;SHR Condition uses the SHR BodySite structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction."/>
+  <date value="2019-03-27T00:00:00-04:00"/>
+  <description value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.&#xA;The Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.&#xA;SHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction."/>
   <fhirVersion value="1.0.2"/>
   <mapping>
     <identity value="us-core-stu3"/>
@@ -93,7 +91,7 @@ SHR Condition uses the SHR BodySite structure that includes not only a code, but
       <path value="Condition"/>
       <name value="argoprofile"/>
       <short value="shr-core-Condition"/>
-      <definition value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.&#xA;SHR Condition uses the SHR BodySite structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction."/>
+      <definition value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.&#xA;The Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.&#xA;SHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -418,6 +416,11 @@ SHR Condition uses the SHR BodySite structure that includes not only a code, but
     <element id="Condition:argoprofile.extension">
       <path value="Condition.extension"/>
       <name value="Condition:argoprofile.extension"/>
+      <slicing id="2">
+        <discriminator value="url"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -441,6 +444,26 @@ SHR Condition uses the SHR BodySite structure that includes not only a code, but
         <identity value="rim"/>
         <map value="N/A"/>
       </mapping>
+    </element>
+    <element id="dateofdiagnosis">
+      <path value="Condition.extension"/>
+      <name value="dateofdiagnosis"/>
+      <definition value="The date the disease was first clinically recognized with sufficient certainty, regardless of whether it was fully characterized at that time."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Condition.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DateOfDiagnosis-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
     </element>
     <element id="Condition:argoprofile.modifierExtension">
       <path value="Condition.modifierExtension"/>
@@ -1295,7 +1318,7 @@ SHR Condition uses the SHR BodySite structure that includes not only a code, but
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -1350,10 +1373,10 @@ SHR Condition uses the SHR BodySite structure that includes not only a code, but
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="laterality">
+    <element id="locationqualifier">
       <path value="Condition.bodySite.extension"/>
-      <name value="laterality"/>
-      <definition value="Anatomical location or specimen further detailing the side(s) of interest."/>
+      <name value="locationqualifier"/>
+      <definition value="Additional information, such as laterality or direction, that helps define the body location."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1363,17 +1386,17 @@ SHR Condition uses the SHR BodySite structure that includes not only a code, but
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="anatomicaldirection">
+    <element id="landmark">
       <path value="Condition.bodySite.extension"/>
-      <name value="anatomicaldirection"/>
-      <definition value="Anatomical location or specimen further detailing directionality."/>
+      <name value="landmark"/>
+      <definition value="An anatomical landmark that helps determine a body location."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1383,87 +1406,7 @@ SHR Condition uses the SHR BodySite structure that includes not only a code, but
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="clockdirection">
-      <path value="Condition.bodySite.extension"/>
-      <name value="clockdirection"/>
-      <definition value="A direction indicated by an angle relative to 12 o&#39;clock."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Condition.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="commentordescription">
-      <path value="Condition.bodySite.extension"/>
-      <name value="commentordescription"/>
-      <definition value="A text note containing additional details, explanation, description, comment, or summarization."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Condition.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="attachment">
-      <path value="Condition.bodySite.extension"/>
-      <name value="attachment"/>
-      <definition value="A file that contains audio, video, image, or similar content."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Condition.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="distancefromlandmark">
-      <path value="Condition.bodySite.extension"/>
-      <name value="distancefromlandmark"/>
-      <definition value="How far the anatomical location of interest is from the given landmark"/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Condition.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1562,10 +1505,44 @@ SHR Condition uses the SHR BodySite structure that includes not only a code, but
       <path value="Condition"/>
       <name value="Condition"/>
       <short value="shr-core-Condition"/>
-      <definition value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.&#xA;SHR Condition uses the SHR BodySite structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction."/>
+      <definition value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.&#xA;The Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.&#xA;SHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction."/>
       <min value="0"/>
       <type>
         <code value="argo-condition"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Condition.extension">
+      <path value="Condition.extension"/>
+      <name value="Condition.extension"/>
+      <slicing id="2">
+        <discriminator value="url"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <min value="0"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="dateofdiagnosis">
+      <path value="Condition.extension"/>
+      <name value="dateofdiagnosis"/>
+      <definition value="The date the disease was first clinically recognized with sufficient certainty, regardless of whether it was fully characterized at that time."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Condition.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DateOfDiagnosis-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1739,7 +1716,7 @@ SHR Condition uses the SHR BodySite structure that includes not only a code, but
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -1757,10 +1734,10 @@ SHR Condition uses the SHR BodySite structure that includes not only a code, but
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="laterality">
+    <element id="locationqualifier">
       <path value="Condition.bodySite.extension"/>
-      <name value="laterality"/>
-      <definition value="Anatomical location or specimen further detailing the side(s) of interest."/>
+      <name value="locationqualifier"/>
+      <definition value="Additional information, such as laterality or direction, that helps define the body location."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1770,17 +1747,17 @@ SHR Condition uses the SHR BodySite structure that includes not only a code, but
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="anatomicaldirection">
+    <element id="landmark">
       <path value="Condition.bodySite.extension"/>
-      <name value="anatomicaldirection"/>
-      <definition value="Anatomical location or specimen further detailing directionality."/>
+      <name value="landmark"/>
+      <definition value="An anatomical landmark that helps determine a body location."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1790,87 +1767,7 @@ SHR Condition uses the SHR BodySite structure that includes not only a code, but
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="clockdirection">
-      <path value="Condition.bodySite.extension"/>
-      <name value="clockdirection"/>
-      <definition value="A direction indicated by an angle relative to 12 o&#39;clock."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Condition.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="commentordescription">
-      <path value="Condition.bodySite.extension"/>
-      <name value="commentordescription"/>
-      <definition value="A text note containing additional details, explanation, description, comment, or summarization."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Condition.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="attachment">
-      <path value="Condition.bodySite.extension"/>
-      <name value="attachment"/>
-      <definition value="A file that contains audio, video, image, or similar content."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Condition.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="distancefromlandmark">
-      <path value="Condition.bodySite.extension"/>
-      <name value="distancefromlandmark"/>
-      <definition value="How far the anatomical location of interest is from the given landmark"/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Condition.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>

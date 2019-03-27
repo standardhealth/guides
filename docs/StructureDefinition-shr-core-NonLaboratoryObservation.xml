@@ -13,6 +13,7 @@
   Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
@@ -23,21 +24,17 @@
   Method maps to method
   CommentOrDescription maps to comments
   Category maps to category
-  BodySite.BodySiteCode maps to bodySite
-  BodySite.Laterality maps to bodySite.extension
-  BodySite.AnatomicalDirection maps to bodySite.extension
-  BodySite.ClockDirection maps to bodySite.extension
-  BodySite.CommentOrDescription maps to bodySite.extension
-  BodySite.Attachment maps to bodySite.extension
-  BodySite.DistanceFromLandmark maps to bodySite.extension
+  BodyLocation.LocationCode maps to bodySite
+  BodyLocation.LocationQualifier maps to bodySite.extension
+  BodyLocation.Landmark maps to bodySite.extension
   Device maps to device
   StatementDateTime maps to issued
   ReferenceRange maps to referenceRange
   ReferenceRange.Range.LowerBound maps to referenceRange.low
   ReferenceRange.Range.UpperBound maps to referenceRange.high
   ReferenceRange.Type maps to referenceRange.meaning
-  Components maps to component
-  Components.ObservationComponent.Code maps to component.code (slice on = code.coding.code; slice strategy = includes)
+  Components.ObservationComponent maps to component (slice on = code.coding.code; slice strategy = includes)
+  Components.ObservationComponent.Code maps to component.code
   Components.ObservationComponent.DataValue maps to component.value[x]
   Components.ObservationComponent.DataAbsentReason maps to component.dataAbsentReason
   Components.ObservationComponent.ReferenceRange maps to component.referenceRange
@@ -71,7 +68,7 @@
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-03-13T00:00:00-04:00"/>
+  <date value="2019-03-27T00:00:00-04:00"/>
   <description value="An observation not based on a specimen."/>
   <requirements value="Observations are a key aspect of healthcare.  This resource is used to capture those that do not require more sophisticated mechanisms."/>
   <fhirVersion value="1.0.2"/>
@@ -878,7 +875,7 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -937,90 +934,10 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="laterality">
+    <element id="locationqualifier">
       <path value="Observation.bodySite.extension"/>
-      <name value="laterality"/>
-      <definition value="Anatomical location or specimen further detailing the side(s) of interest."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="anatomicaldirection">
-      <path value="Observation.bodySite.extension"/>
-      <name value="anatomicaldirection"/>
-      <definition value="Anatomical location or specimen further detailing directionality."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="clockdirection">
-      <path value="Observation.bodySite.extension"/>
-      <name value="clockdirection"/>
-      <definition value="A direction indicated by an angle relative to 12 o&#39;clock."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="commentordescription">
-      <path value="Observation.bodySite.extension"/>
-      <name value="commentordescription"/>
-      <definition value="A text note containing additional details, explanation, description, comment, or summarization."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="attachment">
-      <path value="Observation.bodySite.extension"/>
-      <name value="attachment"/>
-      <definition value="A file that contains audio, video, image, or similar content."/>
+      <name value="locationqualifier"/>
+      <definition value="Additional information, such as laterality or direction, that helps define the body location."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1030,19 +947,19 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="distancefromlandmark">
+    <element id="landmark">
       <path value="Observation.bodySite.extension"/>
-      <name value="distancefromlandmark"/>
-      <definition value="How far the anatomical location of interest is from the given landmark"/>
+      <name value="landmark"/>
+      <definition value="An anatomical landmark that helps determine a body location."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="*"/>
       <base>
         <path value="Observation.bodySite.extension"/>
         <min value="0"/>
@@ -1050,7 +967,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1584,12 +1501,7 @@
       <comments value="For a discussion on the ways Observations can assembled in groups together see [Notes below](observation.html#4.20.4)."/>
       <requirements value="Component observations share the same attributes in the Observation resource as the primary observation and are always treated a part of a single observation (they are not separable).   However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation."/>
       <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.component"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
+      <max value="*"/>
       <type>
         <code value="BackboneElement"/>
       </type>
@@ -2142,7 +2054,7 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -2160,90 +2072,10 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="laterality">
+    <element id="locationqualifier">
       <path value="Observation.bodySite.extension"/>
-      <name value="laterality"/>
-      <definition value="Anatomical location or specimen further detailing the side(s) of interest."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="anatomicaldirection">
-      <path value="Observation.bodySite.extension"/>
-      <name value="anatomicaldirection"/>
-      <definition value="Anatomical location or specimen further detailing directionality."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="clockdirection">
-      <path value="Observation.bodySite.extension"/>
-      <name value="clockdirection"/>
-      <definition value="A direction indicated by an angle relative to 12 o&#39;clock."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="commentordescription">
-      <path value="Observation.bodySite.extension"/>
-      <name value="commentordescription"/>
-      <definition value="A text note containing additional details, explanation, description, comment, or summarization."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="attachment">
-      <path value="Observation.bodySite.extension"/>
-      <name value="attachment"/>
-      <definition value="A file that contains audio, video, image, or similar content."/>
+      <name value="locationqualifier"/>
+      <definition value="Additional information, such as laterality or direction, that helps define the body location."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -2253,19 +2085,19 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="distancefromlandmark">
+    <element id="landmark">
       <path value="Observation.bodySite.extension"/>
-      <name value="distancefromlandmark"/>
-      <definition value="How far the anatomical location of interest is from the given landmark"/>
+      <name value="landmark"/>
+      <definition value="An anatomical landmark that helps determine a body location."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="*"/>
       <base>
         <path value="Observation.bodySite.extension"/>
         <min value="0"/>
@@ -2273,7 +2105,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -2381,12 +2213,6 @@
       <path value="Observation.component"/>
       <name value="Observation.component"/>
       <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.component"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>

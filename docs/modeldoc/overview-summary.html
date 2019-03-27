@@ -5,7 +5,7 @@
   <title>Overview (oncocore Reference Model )</title>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <meta name="date" content="2016-01-11"/>
-  <meta name="keywords" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1) (oncocore)"/>
+  <meta name="keywords" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1) (oncocore)"/>
   <link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style"/>
 </head>
 <body>
@@ -41,7 +41,7 @@
 </div>
 <!-- ========= END OF TOP NAVBAR ========= -->
 <div class="header">
-  <h1 class="title">HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1) (oncocore) Reference Model Specification</h1>
+  <h1 class="title">HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1) (oncocore) Reference Model Specification</h1>
 </div>
 <div class="header">
   <div class="subTitle">
@@ -214,7 +214,7 @@
           <a href="shr-core/AnatomicalDirection.html">AnatomicalDirection</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>Anatomical location or specimen further detailing directionality.</p></div>
+          <div class="block"><p>A direction based on planes, surfaces, and orientations of the body.</p></div>
         </td>
       </tr>
       
@@ -341,21 +341,73 @@
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="shr-core/BodySite.html">BodySite</a>
+          <a href="shr-core/BloodPressure.html">BloodPressure</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart.
-SHR creates a BodySite structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction.</p></div>
+          <div class="block"><p>The force of circulating blood on the walls of the arteries.</p></div>
         </td>
       </tr>
       
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="shr-core/BodySiteCode.html">BodySiteCode</a>
+          <a href="shr-core/BloodPressureCuffSize.html">BloodPressureCuffSize</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>Code for the anatomical location or landmark, without laterality, direction, or other modifiers needed to completely specify the body site.</p></div>
+          <div class="block"><p>The size of cuff used, if applicable.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/BodyHeight.html">BodyHeight</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>The distance from the sole to the crown of the head.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/BodyLocation.html">BodyLocation</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart.
+The BodyLocation includes code and optional qualifiers of anatomical side or direction. The body location can also be determined from one or more body landmarks.
+If the code for the body location includes laterality and/or direction, the LocationQualifier might be unnecessary.
+Note that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how the same address structure can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodyLocation (BodyStructure in r4) which 'is not … intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/BodyPosition.html">BodyPosition</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>The position or physical attitude of the body.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/BodyStructure.html">BodyStructure</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>A body structure such as wound or tumor, observed to be present in a patient. The body structure is a condition that persists over time. The Code represents the body structure itself (the morphology), while the BodyLocation is the location of that structure. This corresponds to FHIR R4, where the BodyStructure resource has morphology (corresponding to Code) and a location. For example, the Code could be blunt force injury (SCT 3821009) and location left knee.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/BodyWeight.html">BodyWeight</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>The mass or quantity of heaviness of an individual. This LOINC code should not be used for fetal body weight estimates.</p></div>
         </td>
       </tr>
       
@@ -402,10 +454,40 @@ SHR creates a BodySite structure that includes not only a code, but optional lat
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="oncocore/CancerGeneticMarkerAnalysisResult.html">CancerGeneticMarkerAnalysisResult</a>
+          <a href="oncocore/CancerGeneName.html">CancerGeneName</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>A panel that analyses different components of a genetic test specific to cancer-related genetic markers.</p></div>
+          <div class="block"><p>The gene name, using HUGO Gene Nomenclature Committee (HGNC) identifier. (source: LOINC)</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="oncocore/CancerGeneticRegionAnalysis.html">CancerGeneticRegionAnalysis</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Results of analyzing a specified genetic region for cancer-related genetic variants.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="oncocore/CancerGenomicsReport.html">CancerGenomicsReport</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Cancer genetic analysis summary report</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="oncocore/CancerHistologicGrade.html">CancerHistologicGrade</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>A description of a tumor based on how abnormal the cancer cells and tissue look under a microscope and how quickly the cancer cells are likely to grow and spread. Low-grade cancer cells look more like normal cells and tend to grow and spread more slowly than high-grade cancer cells. (Source: NCI Dictionary of Cancer Terms)</p></div>
         </td>
       </tr>
       
@@ -422,17 +504,27 @@ SHR creates a BodySite structure that includes not only a code, but optional lat
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="oncocore/CancerStagePanel.html">CancerStagePanel</a>
+          <a href="oncocore/CancerRelatedRadiationProcedure.html">CancerRelatedRadiationProcedure</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>A panel that contains cancer staging information. This abstract class is the parent of panels containing information related to clinical and pathologic staging.</p></div>
+          <div class="block"></div>
         </td>
       </tr>
       
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="oncocore/CancerStagePanelMember.html">CancerStagePanelMember</a>
+          <a href="oncocore/CancerRelatedSurgicalProcedure.html">CancerRelatedSurgicalProcedure</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>A surgical action addressing a cancer condition, independent of action context.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="oncocore/CancerStageClassification.html">CancerStageClassification</a>
         </td>
         <td class="colLast">
           <div class="block"><p>Abstract parent class for members of cancer staging panels. Cancer panel members must include a timing element and staging system, and focus on a cancer disorder. Specific realizations will have value sets specific to certain staging systems.</p></div>
@@ -442,10 +534,10 @@ SHR creates a BodySite structure that includes not only a code, but optional lat
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="oncocore/CancerStageSuffix.html">CancerStageSuffix</a>
+          <a href="oncocore/CancerStageGroup.html">CancerStageGroup</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>A suffix used in conjuction with certain cancer stage categories, usually qualifying how the category value was determined.</p></div>
+          <div class="block"><p>A panel that contains cancer staging information. This class is the parent of panels containing information related to clinical and pathologic staging, including TNMClinicalStageGroup and TNMPathologicStageGroup.</p></div>
         </td>
       </tr>
       
@@ -465,7 +557,7 @@ SHR creates a BodySite structure that includes not only a code, but optional lat
           <a href="oncocore/CancerStagingSystem.html">CancerStagingSystem</a>
         </td>
         <td class="colLast">
-          <div class="block"></div>
+          <div class="block"><p>Method of Staging (attribute) -  SCT#260713006</p></div>
         </td>
       </tr>
       
@@ -506,6 +598,37 @@ SHR creates a BodySite structure that includes not only a code, but optional lat
         </td>
         <td class="colLast">
           <div class="block"><p>The type, kind, or class of this item.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-lab/CBCWAutoDifferentialPanel.html">CBCWAutoDifferentialPanel</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>57021-8 CBC W Auto Differential panel - Blood.
+This profile is used to validate the panel, including the codes of the panel members, but not the panel members themselves. The panel members are stand-alone observations that must validate against the appropriate laboratory profile.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-lab/CBCWAutoDifferentialPanelCoreElement.html">CBCWAutoDifferentialPanelCoreElement</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Must-support members of the CompleteBloodCountPanelByAutomatedCountPanel</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-lab/CBCWAutoDifferentialPanelNonCoreElement.html">CBCWAutoDifferentialPanelNonCoreElement</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Optional members of the CompleteBloodCountPanelByAutomatedCountPanel</p></div>
         </td>
       </tr>
       
@@ -556,6 +679,26 @@ SHR creates a BodySite structure that includes not only a code, but optional lat
         </td>
         <td class="colLast">
           <div class="block"><p>A direction indicated by an angle relative to 12 o'clock.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-lab/CMP2000SerumOrPlasmaCoreElement.html">CMP2000SerumOrPlasmaCoreElement</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Must-support members of the CompleteBloodCountPanelByAutomatedCountPanel</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-lab/CMP2000SerumOrPlasmaNonCoreElement.html">CMP2000SerumOrPlasmaNonCoreElement</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Optional members of the CompleteBloodCountPanelByAutomatedCountPanel</p></div>
         </td>
       </tr>
       
@@ -722,10 +865,40 @@ SHR creates a BodySite structure that includes not only a code, but optional lat
         <tr class="altColor">
       
         <td class="colFirst">
+          <a href="shr-core/ComorbidCondition.html">ComorbidCondition</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>A comorbidity refers to one or more diseases or conditions that occur along with another condition in the same person at the same time. Conditions considered comorbidities are often long-term or chronic conditions. Comorbidities are defined relative to an index disease and may be categorical, rather than described in full detail. The comorbid condition class provides comorbidity codes corresponding to the Adult Cormorbidity Evaluation-27. If the grade (1-3) is reported, it shall be reported in the stage summary field.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
           <a href="shr-core/Comparator.html">Comparator</a>
         </td>
         <td class="colLast">
           <div class="block"><p>A code indicated if the value represents an upper or lower bound</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="oncocore/ComplexVariantCode.html">ComplexVariantCode</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>This term is used to report the unique identifier of the complex variant found in this study. The identifier may come from various sources, including NCBI's ClinVar and Ensembl. (source: LOINC)</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="oncocore/ComplexVariantHGVSName.html">ComplexVariantHGVSName</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>This term is used to report the name of the complex variant found in this study in HGVS format. For example, c.[886C&gt;T;457G&gt;C], which represents two separate base substitutions in one gene on one chromosome, or c.[886C&gt;T];[457G&gt;C], which represents two separate base substitutions in one gene on two different chromosomes. (source: LOINC)</p></div>
         </td>
       </tr>
       
@@ -742,21 +915,32 @@ SHR creates a BodySite structure that includes not only a code, but optional lat
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="shr-core/Condition.html">Condition</a>
+          <a href="shr-lab/ComprehensiveMetabolic2000SerumOrPlasmaPanel.html">ComprehensiveMetabolic2000SerumOrPlasmaPanel</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>A condition that is or may be present in a subject. 'Condition' is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.
-SHR Condition uses the SHR BodySite structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction.</p></div>
+          <div class="block"><p>24323-8 Comprehensive metabolic 2000 panel - Serum or Plasma.  This profile is used to validate the panel, including the codes of the panel members, but not the panel members themselves. The panel members are stand-alone observations that must validate against the appropriate laboratory profile.</p></div>
         </td>
       </tr>
       
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="shr-core/ConditionOrObservation.html">ConditionOrObservation</a>
+          <a href="shr-core/Conclusion.html">Conclusion</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>An assertion, determination, opinion, evaluation, result, observation, or measurement made by a person or device.</p></div>
+          <div class="block"><p>Concise and clinically contextualized impression / summary of the diagnostic report.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/Condition.html">Condition</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>A condition that is or may be present in a subject. 'Condition' is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.
+The Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.
+SHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction.</p></div>
         </td>
       </tr>
       
@@ -873,7 +1057,7 @@ SHR Condition uses the SHR BodySite structure that includes not only a code, but
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="oncocore/DateOfDiagnosis.html">DateOfDiagnosis</a>
+          <a href="shr-core/DateOfDiagnosis.html">DateOfDiagnosis</a>
         </td>
         <td class="colLast">
           <div class="block"><p>The date the disease was first clinically recognized with sufficient certainty, regardless of whether it was fully characterized at that time.</p></div>
@@ -945,10 +1129,40 @@ Device type has extensible mappings to different value sets in Argonaut and US-C
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="shr-core/DirectSite.html">DirectSite</a>
+          <a href="shr-core/DiagnosticReport.html">DiagnosticReport</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>The site where the procedure is performed.</p></div>
+          <div class="block"></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/DiagnosticReportParticipant.html">DiagnosticReportParticipant</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>A choice of Practitioner or Organization as participant.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/DiastolicPressure.html">DiastolicPressure</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>The blood pressure after the contraction of the heart while the chambers of the heart refill with blood, when the pressure is lowest.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/DirectionToBodyLocation.html">DirectionToBodyLocation</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>The direction from the landmark to the body location of interest.</p></div>
         </td>
       </tr>
       
@@ -965,20 +1179,10 @@ Device type has extensible mappings to different value sets in Argonaut and US-C
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="shr-core/DistanceFromLandmark.html">DistanceFromLandmark</a>
+          <a href="shr-core/DistanceToBodyLocation.html">DistanceToBodyLocation</a>
         </td>
         <td class="colLast">
           <div class="block"><p>How far the anatomical location of interest is from the given landmark</p></div>
-        </td>
-      </tr>
-      
-        <tr class="altColor">
-      
-        <td class="colFirst">
-          <a href="oncocore/DistantMetastases.html">DistantMetastases</a>
-        </td>
-        <td class="colLast">
-          <div class="block"><p>Records the history of secondard neoplasms, including location(s) and the date of onset of metastases. The locations are those in LOINC LL#LL61-3.</p></div>
         </td>
       </tr>
       
@@ -995,27 +1199,7 @@ Device type has extensible mappings to different value sets in Argonaut and US-C
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="oncocore/DNARegionName.html">DNARegionName</a>
-        </td>
-        <td class="colLast">
-          <div class="block"><p>A human readable name for the region of interest. Typically Exon #, Intron # or other. NOTE: This is not standardized and is mainly for convenience and display purposes.</p></div>
-        </td>
-      </tr>
-      
-        <tr class="altColor">
-      
-        <td class="colFirst">
-          <a href="oncocore/DNASequenceVariantId.html">DNASequenceVariantId</a>
-        </td>
-        <td class="colLast">
-          <div class="block"><p>A DNA Marker identifier conveys a universal or standard repository identifier for definitive characterstics of a DNA Marker. (recommend using NCBI dbSNP ids - rs#) (source: LOINC)</p></div>
-        </td>
-      </tr>
-      
-        <tr class="altColor">
-      
-        <td class="colFirst">
-          <a href="oncocore/DNASequenceVariantName.html">DNASequenceVariantName</a>
+          <a href="oncocore/DNAChangeTranscriptcHGVS.html">DNAChangeTranscriptcHGVS</a>
         </td>
         <td class="colLast">
           <div class="block"><p>Human Genome Variation Society (HGVS) nomenclature for a single DNA marker. The use of the nomenclature must be extended to describe non-variations (aka. wild types) see samples for wild type examples. (source: LOINC)</p></div>
@@ -1025,10 +1209,20 @@ Device type has extensible mappings to different value sets in Argonaut and US-C
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="oncocore/DNASequenceVariantType.html">DNASequenceVariantType</a>
+          <a href="oncocore/DNAChangeType.html">DNAChangeType</a>
         </td>
         <td class="colLast">
           <div class="block"><p>Codified type for associated DNA Marker. DNA Marker's use the HGVS notation which implies the DNA Marker Type, but the concurrent use of this code will allow a standard and explicit type for technical and display convenience.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="oncocore/DNARegionDescription.html">DNARegionDescription</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>a narrative description of the range(s) of DNA sequences examined in this sequencing study.</p></div>
         </td>
       </tr>
       
@@ -1055,7 +1249,7 @@ Device type has extensible mappings to different value sets in Argonaut and US-C
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="shr-core/DosageBodySite.html">DosageBodySite</a>
+          <a href="shr-core/DosageBodyLocation.html">DosageBodyLocation</a>
         </td>
         <td class="colLast">
           <div class="block"><p>The anatomic site at which medical intervention is applied.</p></div>
@@ -1415,6 +1609,26 @@ Device type has extensible mappings to different value sets in Argonaut and US-C
         <tr class="altColor">
       
         <td class="colFirst">
+          <a href="shr-core/FillerOrderNumber.html">FillerOrderNumber</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Identifier assigned by the lab carrying out the test.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/Frames.html">Frames</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Number of frames if &gt; 1 (photo)</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
           <a href="oncocore/GeneName.html">GeneName</a>
         </td>
         <td class="colLast">
@@ -1425,10 +1639,20 @@ Device type has extensible mappings to different value sets in Argonaut and US-C
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="oncocore/GeneticMarkerAnalysisResult.html">GeneticMarkerAnalysisResult</a>
+          <a href="oncocore/GeneticRegionAnalysis.html">GeneticRegionAnalysis</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>The process of isolating and testing the DNA of an embryo or a person to detect the presence of genetic alterations or defects that may predispose to the future development of a disease or disorder. (source: NCI Thesaurus)</p></div>
+          <div class="block"><p>Results of analyzing a specified genetic region to detect the presence of genetic alterations or defects that may predispose to the future development of a disease or disorder.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="oncocore/GeneticVariantFound.html">GeneticVariantFound</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>An alteration in the most common DNA nucleotide sequence. The term variant can be used to describe an alteration that may be benign, pathogenic, or of unknown significance. The term variant is increasingly being used in place of the term mutation. (source: NCI)</p></div>
         </td>
       </tr>
       
@@ -1439,6 +1663,16 @@ Device type has extensible mappings to different value sets in Argonaut and US-C
         </td>
         <td class="colLast">
           <div class="block"><p>The genomic class of the specimen being analyzed: Germline for inherited genome, somatic for cancer genome, and prenatal for fetal genome. (source: LOINC)</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="oncocore/GenomicsReport.html">GenomicsReport</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Genetic analysis summary report</p></div>
         </td>
       </tr>
       
@@ -1515,7 +1749,7 @@ Device type has extensible mappings to different value sets in Argonaut and US-C
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="shr-core/HeadlessPanel.html">HeadlessPanel</a>
+          <a href="shr-core/HeadlessLaboratoryPanel.html">HeadlessLaboratoryPanel</a>
         </td>
         <td class="colLast">
           <div class="block"><p>A panel that does not have an overall value that summarizes the entire panel.</p></div>
@@ -1528,7 +1762,7 @@ Device type has extensible mappings to different value sets in Argonaut and US-C
           <a href="shr-core/HumanName.html">HumanName</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>The person name, constrained to map correctly to FHIR.</p></div>
+          <div class="block"><p>A name used by a human being, written as it would be typically expressed. May include a breakdown of the various elements of the name (family name, given name, etc.).</p></div>
         </td>
       </tr>
       
@@ -1579,16 +1813,6 @@ Device type has extensible mappings to different value sets in Argonaut and US-C
         </td>
         <td class="colLast">
           <div class="block"><p>Conditions or situations where the procedure is recommended. In the Performed context, the actual indication should be reported.</p></div>
-        </td>
-      </tr>
-      
-        <tr class="altColor">
-      
-        <td class="colFirst">
-          <a href="shr-core/IndirectSite.html">IndirectSite</a>
-        </td>
-        <td class="colLast">
-          <div class="block"><p>The indirect site for this procedure.</p></div>
         </td>
       </tr>
       
@@ -1655,6 +1879,16 @@ Device type has extensible mappings to different value sets in Argonaut and US-C
         <tr class="altColor">
       
         <td class="colFirst">
+          <a href="oncocore/IsPrimaryTumor.html">IsPrimaryTumor</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Whether the tumor is the original or first tumor in the body, for a particular cancer.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
           <a href="shr-core/Issuer.html">Issuer</a>
         </td>
         <td class="colLast">
@@ -1688,7 +1922,27 @@ Device type has extensible mappings to different value sets in Argonaut and US-C
           <a href="shr-core/LaboratoryObservation.html">LaboratoryObservation</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>A coded finding based on a specimen collected from a patient.</p></div>
+          <div class="block"><p>A coded finding based on a specimen, usually collected from a patient (but possibly from a location).</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/LaboratoryPanel.html">LaboratoryPanel</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>A set of independent but related observations that are often presented together to facilitate interpretation, such as a lipid panel.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/Landmark.html">Landmark</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>An anatomical landmark that helps determine a body location.</p></div>
         </td>
       </tr>
       
@@ -1725,16 +1979,6 @@ Device type has extensible mappings to different value sets in Argonaut and US-C
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="shr-core/Laterality.html">Laterality</a>
-        </td>
-        <td class="colLast">
-          <div class="block"><p>Anatomical location or specimen further detailing the side(s) of interest.</p></div>
-        </td>
-      </tr>
-      
-        <tr class="altColor">
-      
-        <td class="colFirst">
           <a href="shr-core/Latitude.html">Latitude</a>
         </td>
         <td class="colLast">
@@ -1765,10 +2009,30 @@ Device type has extensible mappings to different value sets in Argonaut and US-C
         <tr class="altColor">
       
         <td class="colFirst">
+          <a href="shr-core/LocationCode.html">LocationCode</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Code for the body location, optionally defining laterality or direction.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
           <a href="shr-core/LocationName.html">LocationName</a>
         </td>
         <td class="colLast">
           <div class="block"><p>The DBA (doing business as) or most commonly-used name for a facility.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/LocationQualifier.html">LocationQualifier</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Additional information, such as laterality or direction, that helps define the body location.</p></div>
         </td>
       </tr>
       
@@ -1895,13 +2159,43 @@ Device type has extensible mappings to different value sets in Argonaut and US-C
         <tr class="altColor">
       
         <td class="colFirst">
+          <a href="shr-core/Media.html">Media</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>A photo, video, or audio recording acquired or used in healthcare. The actual content may be inline or provided by direct reference.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/MediaSubjectOfRecord.html">MediaSubjectOfRecord</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>A choice of Patient, Practitioner, Group, Device or Specimen. These are choices for subject of Media resource.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
           <a href="shr-core/Medication.html">Medication</a>
         </td>
         <td class="colLast">
           <div class="block"><p>A type of prescription drug or over-the-counter drug that is used to prevent, treat, or relieve symptoms of a disease or abnormal condition, but excluding vaccines.
-In FHIR DSTU2 and STU3, Medication lacks the identifer attribute, which is included in SHR as an extension.
+In FHIR DSTU2 and STU3, Medication lacks the identifier attribute, which is included in SHR as an extension.
 DSTU2 lacks the status attribute, which is required by US-Core.
 Batch is 0..1 in FHIR R4, and accordingly is restricted here.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/MedicationCodeOrReference.html">MedicationCodeOrReference</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>A choice of a medication code or reference.</p></div>
         </td>
       </tr>
       
@@ -1947,7 +2241,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
           <div class="block"><p>A record of the use of a medication.
 Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).
 The treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.
-ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason. In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.</p></div>
+ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.</p></div>
         </td>
       </tr>
       
@@ -2004,20 +2298,20 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="shr-core/Method.html">Method</a>
+          <a href="oncocore/Metastases.html">Metastases</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle.</p></div>
+          <div class="block"><p>Records the history of secondary neoplasms, including location(s) and the date of onset of metastases. The locations are those in LOINC LL#LL61-3.</p></div>
         </td>
       </tr>
       
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="shr-core/MiddleName.html">MiddleName</a>
+          <a href="shr-core/Method.html">Method</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>The person's middle name.</p></div>
+          <div class="block"><p>The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle.</p></div>
         </td>
       </tr>
       
@@ -2068,6 +2362,16 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         </td>
         <td class="colLast">
           <div class="block"><p>If the person was part of a multiple birth event, and if so in which order.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="oncocore/MutationTestedFor.html">MutationTestedFor</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>For targeted mutation analysis, the mutations that the study is designed to detect. The mutation tested for is reported as using the HGVS sequence variant nomenclature.</p></div>
         </td>
       </tr>
       
@@ -2178,6 +2482,16 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         </td>
         <td class="colLast">
           <div class="block"><p>How many times the action should be repeated.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/NumberOfSecondsDuration.html">NumberOfSecondsDuration</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Length in seconds (rounded to nearest whole second)</p></div>
         </td>
       </tr>
       
@@ -2297,6 +2611,16 @@ For an Observation, the Code describes the aspect or property of the subject bei
         <tr class="altColor">
       
         <td class="colFirst">
+          <a href="shr-core/OriginalReport.html">OriginalReport</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Fully formatted representation of the entire result as issued by the diagnostic service. Multiple formats are allowed but they SHALL be semantically equivalent.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
           <a href="shr-core/Outcome.html">Outcome</a>
         </td>
         <td class="colLast">
@@ -2321,16 +2645,6 @@ For an Observation, the Code describes the aspect or property of the subject bei
         </td>
         <td class="colLast">
           <div class="block"><p>The kind of container the medication comes in.</p></div>
-        </td>
-      </tr>
-      
-        <tr class="altColor">
-      
-        <td class="colFirst">
-          <a href="shr-core/Panel.html">Panel</a>
-        </td>
-        <td class="colLast">
-          <div class="block"><p>A set of independent but related observations that are often presented together to facilitate interpretation, such as a lipid panel.</p></div>
         </td>
       </tr>
       
@@ -2430,6 +2744,26 @@ MaritalStatus has a required binding in Argonaut, but an extensible binding in U
         <tr class="altColor">
       
         <td class="colFirst">
+          <a href="shr-core/PerformingLaboratory.html">PerformingLaboratory</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Organization responsible for carrying out the test.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/PerformingOrganizationMedicalDirector.html">PerformingOrganizationMedicalDirector</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Director of the laboratory performing the test.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
           <a href="shr-core/Person.html">Person</a>
         </td>
         <td class="colLast">
@@ -2444,16 +2778,6 @@ MaritalStatus has a required binding in Argonaut, but an extensible binding in U
         </td>
         <td class="colLast">
           <div class="block"><p>The person who provided the information, not necessarily the patient.</p></div>
-        </td>
-      </tr>
-      
-        <tr class="altColor">
-      
-        <td class="colFirst">
-          <a href="shr-core/PersonName.html">PersonName</a>
-        </td>
-        <td class="colLast">
-          <div class="block"><p>A name used by a human being, written as it would be typically expressed. May include a breakdown of the various elements of the name (family name, given name, etc.).</p></div>
         </td>
       </tr>
       
@@ -2480,6 +2804,36 @@ MaritalStatus has a required binding in Argonaut, but an extensible binding in U
         <tr class="altColor">
       
         <td class="colFirst">
+          <a href="shr-core/PixelHeight.html">PixelHeight</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Height of the image in pixels (photo/video)</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/PixelWidth.html">PixelWidth</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Width of the image in pixels (photo/video)</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/PlacerOrderNumber.html">PlacerOrderNumber</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Identifier assigned by the requester of the lab.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
           <a href="shr-core/PostalCode.html">PostalCode</a>
         </td>
         <td class="colLast">
@@ -2494,7 +2848,7 @@ MaritalStatus has a required binding in Argonaut, but an extensible binding in U
         </td>
         <td class="colLast">
           <div class="block"><p>A person who practices a healing art.
-HumanName is limited to one required value by US-Core. Gender is required by US-Core.</p></div>
+HumanName is limited to one required value by US-Core. Gender is required by US-Core. US-Core required an identifier, either a NPI (preferred) or tax id.</p></div>
         </td>
       </tr>
       
@@ -2511,10 +2865,20 @@ HumanName is limited to one required value by US-Core. Gender is required by US-
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="oncocore/PractitionerPerformer.html">PractitionerPerformer</a>
+          <a href="shr-core/PractitionerPerformer.html">PractitionerPerformer</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>The actor that carried out the observation or action.</p></div>
+          <div class="block"><p>The practitioner that carried out the observation or action.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/Precondition.html">Precondition</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>A description of the conditions or context of an observation, for example, under sedation, fasting or post-exercise. A qualifier cannot modify the measurement type; for example, a fasting blood sugar is still a blood sugar.</p></div>
         </td>
       </tr>
       
@@ -2631,6 +2995,16 @@ HumanName is limited to one required value by US-Core. Gender is required by US-
         <tr class="altColor">
       
         <td class="colFirst">
+          <a href="shr-core/Profile.html">Profile</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>The name of the FHIR profile this resource claims to conform to.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
           <a href="shr-core/Purpose.html">Purpose</a>
         </td>
         <td class="colLast">
@@ -2645,6 +3019,156 @@ HumanName is limited to one required value by US-Core. Gender is required by US-
         </td>
         <td class="colLast">
           <div class="block"><p>A right to practice medicine obtained by training and certification.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-lab/QuantitativeLabObs-fL.html">QuantitativeLabObs-fL</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Profile to validate labs that report results with units fL</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-lab/QuantitativeLabObs-g-per-dL.html">QuantitativeLabObs-g-per-dL</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Profile to validate labs that report results with units g-per-dL</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-lab/QuantitativeLabObs-g-per-L.html">QuantitativeLabObs-g-per-L</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Profile to validate labs that report results with units g-per-L</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-lab/QuantitativeLabObs-mg-per-dL.html">QuantitativeLabObs-mg-per-dL</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Profile to validate labs that report results with units mg-per-dL</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-lab/QuantitativeLabObs-million-per-uL.html">QuantitativeLabObs-million-per-uL</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Profile to validate labs that report results with units million-per-uL</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-lab/QuantitativeLabObs-mL-per-min.html">QuantitativeLabObs-mL-per-min</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Profile to validate labs that report results with units mL-per-min</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-lab/QuantitativeLabObs-mmol-per-L.html">QuantitativeLabObs-mmol-per-L</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Profile to validate labs that report results with units mmol-per-L</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-lab/QuantitativeLabObs-percent.html">QuantitativeLabObs-percent</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Profile to validate labs that report results with units percent</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-lab/QuantitativeLabObs-pg.html">QuantitativeLabObs-pg</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Profile to validate labs that report results with units pg</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-lab/QuantitativeLabObs-ratio.html">QuantitativeLabObs-ratio</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Profile to validate labs that report results with units ratio</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-lab/QuantitativeLabObs-thousand-per-uL.html">QuantitativeLabObs-thousand-per-uL</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Profile to validate labs that report results with units thousand-per-uL</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-lab/QuantitativeLabObs-U-per-L.html">QuantitativeLabObs-U-per-L</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Profile to validate labs that report results with units U-per-L</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/QuantitativeLaboratoryObservation.html">QuantitativeLaboratoryObservation</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>A quantiative result from a laboratory test.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/QuantitativeNonLaboratoryObservation.html">QuantitativeNonLaboratoryObservation</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>The result of evaluations (measurements, tests, or questions) whose answer is expressed as a code.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/QuantitativeObservationComponent.html">QuantitativeObservationComponent</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>A non-independent finding whose result is a quantity.</p></div>
         </td>
       </tr>
       
@@ -2994,6 +3518,16 @@ The clinically relevant time is not necessarily when the information is gathered
         <tr class="altColor">
       
         <td class="colFirst">
+          <a href="shr-core/ResponsibleObserver.html">ResponsibleObserver</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Person directly responsible for carrying out the test.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
           <a href="shr-core/Role.html">Role</a>
         </td>
         <td class="colLast">
@@ -3084,6 +3618,16 @@ The clinically relevant time is not necessarily when the information is gathered
         <tr class="altColor">
       
         <td class="colFirst">
+          <a href="shr-core/SimpleCodedNonLaboratoryObservation.html">SimpleCodedNonLaboratoryObservation</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>An observation whose result is a code, and also having no components or panel members</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
           <a href="shr-core/SimpleNonLaboratoryObservation.html">SimpleNonLaboratoryObservation</a>
         </td>
         <td class="colLast">
@@ -3094,10 +3638,30 @@ The clinically relevant time is not necessarily when the information is gathered
         <tr class="altColor">
       
         <td class="colFirst">
+          <a href="shr-core/SimpleQuantitativeLaboratoryObservation.html">SimpleQuantitativeLaboratoryObservation</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>An observation whose result is a quantity, with no components or panel members</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
           <a href="shr-core/SimpleQuantity.html">SimpleQuantity</a>
         </td>
         <td class="colLast">
           <div class="block"><p>A quantity where the comparator is not used, as defined in FHIR</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/SituationStatement.html">SituationStatement</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>An assertion, determination, opinion, evaluation, result, observation, or measurement made by a person or device.</p></div>
         </td>
       </tr>
       
@@ -3315,6 +3879,16 @@ The clinically relevant time is not necessarily when the information is gathered
         <tr class="altColor">
       
         <td class="colFirst">
+          <a href="shr-core/Subtype.html">Subtype</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>A further refinement of type.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
           <a href="shr-core/Suffix.html">Suffix</a>
         </td>
         <td class="colLast">
@@ -3335,10 +3909,20 @@ The clinically relevant time is not necessarily when the information is gathered
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="shr-core/SurgicalApproach.html">SurgicalApproach</a>
+          <a href="shr-core/SurgicalBodyLocation.html">SurgicalBodyLocation</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>The technique used to reach the site of the procedure. Approaches may be through the skin or mucous membrane, through an orifice or external.</p></div>
+          <div class="block"><p>The site where the procedure is performed.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/SurgicalBodyLocationRole.html">SurgicalBodyLocationRole</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Describes the role played by the body site in the surgery.</p></div>
         </td>
       </tr>
       
@@ -3348,7 +3932,17 @@ The clinically relevant time is not necessarily when the information is gathered
           <a href="shr-core/SurgicalProcedure.html">SurgicalProcedure</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>A surgical action, independent of action context.</p></div>
+          <div class="block"><p>A surgical action.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/SystolicPressure.html">SystolicPressure</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>The blood pressure during the contraction of the left ventricle of the heart, when blood pressure is at its highest.</p></div>
         </td>
       </tr>
       
@@ -3359,6 +3953,16 @@ The clinically relevant time is not necessarily when the information is gathered
         </td>
         <td class="colLast">
           <div class="block"><p>A code used to relate entries to categories or workflows. Applications are not required to consider the tags when interpreting the meaning of an entry.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/TaxIdentificationNumber.html">TaxIdentificationNumber</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Tax identification number for the practitioner.</p></div>
         </td>
       </tr>
       
@@ -3378,7 +3982,7 @@ The clinically relevant time is not necessarily when the information is gathered
           <a href="shr-core/TerminationReason.html">TerminationReason</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>A description and/or code explaining the premature termination of the study.</p></div>
+          <div class="block"><p>A code explaining unplanned or premature termination of a plan of treatment, course of medication, or research study.</p></div>
         </td>
       </tr>
       
@@ -3479,16 +4083,6 @@ Some codes such as BID are ubiquitous, but many institutions define their own ad
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="oncocore/TNMClinicalPrognosticStagePanel.html">TNMClinicalPrognosticStagePanel</a>
-        </td>
-        <td class="colLast">
-          <div class="block"><p>A panel of TNM staging classifications, based on information obtained prior to neoadjuvant treatment and surgery, e.g. based on evidence such as physical examination, imaging, and/or biopsy.</p></div>
-        </td>
-      </tr>
-      
-        <tr class="altColor">
-      
-        <td class="colFirst">
           <a href="oncocore/TNMClinicalRegionalNodesClassification.html">TNMClinicalRegionalNodesClassification</a>
         </td>
         <td class="colLast">
@@ -3502,7 +4096,8 @@ Some codes such as BID are ubiquitous, but many institutions define their own ad
           <a href="oncocore/TNMClinicalStageGroup.html">TNMClinicalStageGroup</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>The overall stage of the cancer, assessed using tests that are done before surgery. These include physical exams, imaging tests, laboratory tests (such as blood tests), and biopsies. (adapted from NCI Dictionary of Cancer Terms).</p></div>
+          <div class="block"><p>A panel of TNM staging classifications, based on information obtained prior to neoadjuvant treatment and surgery, e.g. based on evidence such as physical examination, imaging, and/or biopsy.
+This class is/conforms to CancerStageGroup and can be used where a reference to CancerStageGroup appears.</p></div>
         </td>
       </tr>
       
@@ -3529,16 +4124,6 @@ Some codes such as BID are ubiquitous, but many institutions define their own ad
         <tr class="altColor">
       
         <td class="colFirst">
-          <a href="oncocore/TNMPathologicPrognosticStagePanel.html">TNMPathologicPrognosticStagePanel</a>
-        </td>
-        <td class="colLast">
-          <div class="block"><p>A panel of staging information that is based on examination of tissue samples removed during surgery, in addition to physical examination and imaging and potentially, other prognostic factors.</p></div>
-        </td>
-      </tr>
-      
-        <tr class="altColor">
-      
-        <td class="colFirst">
           <a href="oncocore/TNMPathologicRegionalNodesClassification.html">TNMPathologicRegionalNodesClassification</a>
         </td>
         <td class="colLast">
@@ -3552,17 +4137,8 @@ Some codes such as BID are ubiquitous, but many institutions define their own ad
           <a href="oncocore/TNMPathologicStageGroup.html">TNMPathologicStageGroup</a>
         </td>
         <td class="colLast">
-          <div class="block"><p>The overall stage of the cancer, determined through pathologic analysis of a tumor specimen.</p></div>
-        </td>
-      </tr>
-      
-        <tr class="altColor">
-      
-        <td class="colFirst">
-          <a href="oncocore/TNMStagePanelMember.html">TNMStagePanelMember</a>
-        </td>
-        <td class="colLast">
-          <div class="block"><p>Abstract partent class for TNM staging panel members. Includes a stage suffix and TNM staging system.</p></div>
+          <div class="block"><p>A panel of staging information that is based on examination of tissue samples removed during surgery, in addition to physical examination and imaging and potentially, other prognostic factors.
+This class is/conforms to CancerStageGroup and can be used where a reference to CancerStageGroup appears.</p></div>
         </td>
       </tr>
       
@@ -3583,6 +4159,16 @@ Some codes such as BID are ubiquitous, but many institutions define their own ad
         </td>
         <td class="colLast">
           <div class="block"><p>The intended result from a given treatment.  Examples include curative, palliative, and supportive.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="oncocore/Tumor.html">Tumor</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>The presence of an abnormal mass of tissue (neoplasm) that results when cells divide more than they should or do not die when they should. Tumors may be benign (not cancer), or malignant (cancer). (source: NCI Dictionary).</p></div>
         </td>
       </tr>
       
@@ -3663,6 +4249,26 @@ Some codes such as BID are ubiquitous, but many institutions define their own ad
         </td>
         <td class="colLast">
           <div class="block"><p>A string associated with the product that identifies a particular release iteration.</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/View.html">View</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>The name of the imaging view e.g. Lateral or Antero-posterior (AP).</p></div>
+        </td>
+      </tr>
+      
+        <tr class="altColor">
+      
+        <td class="colFirst">
+          <a href="shr-core/VitalSign.html">VitalSign</a>
+        </td>
+        <td class="colLast">
+          <div class="block"><p>Abstract class parent for all vital sign profiles.</p></div>
         </td>
       </tr>
       

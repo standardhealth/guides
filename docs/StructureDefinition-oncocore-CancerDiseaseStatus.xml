@@ -13,6 +13,7 @@
   Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
@@ -23,21 +24,17 @@
   Method maps to method
   CommentOrDescription maps to comments
   Category maps to category
-  BodySite.BodySiteCode maps to bodySite
-  BodySite.Laterality maps to bodySite.extension
-  BodySite.AnatomicalDirection maps to bodySite.extension
-  BodySite.ClockDirection maps to bodySite.extension
-  BodySite.CommentOrDescription maps to bodySite.extension
-  BodySite.Attachment maps to bodySite.extension
-  BodySite.DistanceFromLandmark maps to bodySite.extension
+  BodyLocation.LocationCode maps to bodySite
+  BodyLocation.LocationQualifier maps to bodySite.extension
+  BodyLocation.Landmark maps to bodySite.extension
   Device maps to device
   StatementDateTime maps to issued
   ReferenceRange maps to referenceRange
   ReferenceRange.Range.LowerBound maps to referenceRange.low
   ReferenceRange.Range.UpperBound maps to referenceRange.high
   ReferenceRange.Type maps to referenceRange.meaning
-  Components maps to component
-  Components.ObservationComponent.Code maps to component.code (slice on = code.coding.code; slice strategy = includes)
+  Components.ObservationComponent maps to component (slice on = code.coding.code; slice strategy = includes)
+  Components.ObservationComponent.Code maps to component.code
   Components.ObservationComponent.DataValue maps to component.value[x]
   Components.ObservationComponent.DataAbsentReason maps to component.dataAbsentReason
   Components.ObservationComponent.ReferenceRange maps to component.referenceRange
@@ -71,7 +68,7 @@
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-03-13T00:00:00-04:00"/>
+  <date value="2019-03-27T00:00:00-04:00"/>
   <description value="The status of the cancer, in terms of whether it is stable, worsening (progressing), improving (responding), or in remission."/>
   <requirements value="Observations are a key aspect of healthcare.  This resource is used to capture those that do not require more sophisticated mechanisms."/>
   <fhirVersion value="1.0.2"/>
@@ -482,9 +479,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="extension">
+    <element id="Observation.extension.extension">
       <path value="Observation.extension.extension"/>
-      <name value="extension"/>
+      <name value="Observation.extension.extension"/>
       <short value="Extension"/>
       <definition value="An Extension"/>
       <min value="0"/>
@@ -1205,12 +1202,7 @@
       <comments value="Null or exceptional values can be represented two ways in FHIR Observations.  One way is to simply include them in the value set and represent the exceptions in the value.  For example, measurement values for a serology test could be  &quot;detected&quot;, &quot;not detected&quot;, &quot;inconclusive&quot;, or  &quot;specimen unsatisfactory&quot;.   The alternate way is to use the value element for actual observations and use the explicit dataAbsentReason element to record exceptional values.  For example, the dataAbsentReason code &quot;error&quot; could be used when the measurement was not completed.  Because of these options, use-case agreements are required to interpret general observations for exceptional values."/>
       <requirements value="For many results it is necessary to handle exceptional values in measurements."/>
       <min value="0"/>
-      <max value="0"/>
-      <base>
-        <path value="Observation.dataAbsentReason"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
+      <max value="1"/>
       <type>
         <code value="CodeableConcept"/>
       </type>
@@ -1314,7 +1306,7 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -2543,12 +2535,6 @@
       <path value="Observation.dataAbsentReason"/>
       <name value="Observation.dataAbsentReason"/>
       <min value="0"/>
-      <max value="0"/>
-      <base>
-        <path value="Observation.dataAbsentReason"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -2577,7 +2563,7 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
     </element>

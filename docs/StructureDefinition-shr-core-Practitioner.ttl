@@ -10,7 +10,7 @@
   fhir:StructureDefinition.id [ fhir:value "shr-core-Practitioner"];
   fhir:StructureDefinition.text [
      fhir:Narrative.status [ fhir:value "generated" ];
-     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Practitioner Profile</b></p>\n  <p>A person who practices a healing art.\nHumanName is limited to one required value by US-Core. Gender is required by US-Core.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Practitioner maps to Practitioner:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  constrain active to 0..0\n  Status maps to extension\n  Person.HumanName maps to name\n  Person.AdministrativeGender maps to gender\n  Person.PhotographicImage maps to photo\n  Person.Address maps to address\n  Person.ContactPoint maps to telecom\n  Person.Communication.Language maps to communication\n  Qualification maps to qualification\n  Qualification.Identifier maps to qualification.identifier\n  Qualification.Type maps to qualification.code\n  Qualification.EffectiveTimePeriod maps to qualification.period\n  Qualification.Issuer maps to qualification.issuer\n</pre></p>\n</div>"
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Practitioner Profile</b></p>\n  <p>A person who practices a healing art.\nHumanName is limited to one required value by US-Core. Gender is required by US-Core. US-Core required an identifier, either a NPI (preferred) or tax id.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Practitioner maps to Practitioner:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier (slice on = Type.coding.code; slice strategy = includes)\n  constrain active to 0..0\n  Status maps to extension\n  Person.HumanName maps to name\n  Person.AdministrativeGender maps to gender\n  Person.PhotographicImage maps to photo\n  Person.Address maps to address\n  Person.ContactPoint maps to telecom\n  Person.Communication.Language maps to communication\n  Qualification maps to qualification\n  Qualification.Identifier maps to qualification.identifier\n  Qualification.Type maps to qualification.code\n  Qualification.EffectiveTimePeriod maps to qualification.period\n  Qualification.Issuer maps to qualification.issuer\n</pre></p>\n</div>"
   ];
   fhir:StructureDefinition.url [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"];
   fhir:StructureDefinition.identifier [
@@ -32,8 +32,8 @@
        fhir:ContactPoint.rank [ fhir:value "0"^^xsd:positiveInteger ]
      ]
   ];
-  fhir:StructureDefinition.date [ fhir:value "2019-03-13T00:00:00-04:00"^^xsd:dateTime];
-  fhir:StructureDefinition.description [ fhir:value "A person who practices a healing art.\nHumanName is limited to one required value by US-Core. Gender is required by US-Core."];
+  fhir:StructureDefinition.date [ fhir:value "2019-03-27T00:00:00-04:00"^^xsd:dateTime];
+  fhir:StructureDefinition.description [ fhir:value "A person who practices a healing art.\nHumanName is limited to one required value by US-Core. Gender is required by US-Core. US-Core required an identifier, either a NPI (preferred) or tax id."];
   fhir:StructureDefinition.requirements [ fhir:value "Need to track doctors, staff, locums etc. for both healthcare practitioners, funders, etc."];
   fhir:StructureDefinition.code [
      fhir:index 0;
@@ -74,7 +74,7 @@
        fhir:ElementDefinition.path [ fhir:value "Practitioner" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner" ];
        fhir:ElementDefinition.short [ fhir:value "shr-core-Practitioner" ];
-       fhir:ElementDefinition.definition [ fhir:value "A person who practices a healing art.\nHumanName is limited to one required value by US-Core. Gender is required by US-Core." ];
+       fhir:ElementDefinition.definition [ fhir:value "A person who practices a healing art.\nHumanName is limited to one required value by US-Core. Gender is required by US-Core. US-Core required an identifier, either a NPI (preferred) or tax id." ];
        fhir:ElementDefinition.comments [ fhir:value "Note that a cab driver no longer fits the bill. You probably would be interested in the organization rather than the individual?" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.max [ fhir:value "*" ];
@@ -510,9 +510,9 @@
        ]
      ], [
        fhir:index 17;
-       fhir:ElementDefinition.id [ fhir:value "extension" ];
+       fhir:ElementDefinition.id [ fhir:value "Practitioner.extension.extension" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.extension.extension" ];
-       fhir:ElementDefinition.name [ fhir:value "extension" ];
+       fhir:ElementDefinition.name [ fhir:value "Practitioner.extension.extension" ];
        fhir:ElementDefinition.short [ fhir:value "Extension" ];
        fhir:ElementDefinition.definition [ fhir:value "An Extension" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
@@ -631,6 +631,15 @@
        fhir:ElementDefinition.id [ fhir:value "Practitioner.identifier" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.identifier" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.identifier" ];
+       fhir:ElementDefinition.slicing [
+         fhir:ElementDefinition.slicing.id [ fhir:value "2" ];
+         fhir:ElementDefinition.slicing.discriminator [
+           fhir:value "Type.coding.code";
+           fhir:index 0
+         ];
+         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
+         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
+       ];
        fhir:ElementDefinition.short [ fhir:value "A identifier for the person as this agent" ];
        fhir:ElementDefinition.definition [ fhir:value "An identifier that applies to this person in this role." ];
        fhir:ElementDefinition.requirements [ fhir:value "Often, specific identities are assigned for the agent." ];
@@ -668,6 +677,92 @@
        ]
      ], [
        fhir:index 22;
+       fhir:ElementDefinition.id [ fhir:value "shr-core-NationalProviderIdentifier" ];
+       fhir:ElementDefinition.path [ fhir:value "Practitioner.identifier" ];
+       fhir:ElementDefinition.name [ fhir:value "shr-core-NationalProviderIdentifier" ];
+       fhir:ElementDefinition.short [ fhir:value "NationalProviderIdentifier" ];
+       fhir:ElementDefinition.definition [ fhir:value "NPI: a unique 10 digit number to allow US healthcare providers to identify themselves in a standard way throughout the healthcare industry." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Practitioner.identifier" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Identifier" ];
+         fhir:ElementDefinition.type.profile [
+           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-NationalProviderIdentifier";
+           fhir:index 0
+         ]
+       ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ];
+       fhir:ElementDefinition.mapping [
+         fhir:index 0;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "v2" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "PRD-7 (or XCN.1)" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "./id" ]
+       ], [
+         fhir:index 2;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "servd" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "./Identifiers" ]
+       ], [
+         fhir:index 3;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "w5" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "id" ]
+       ]
+     ], [
+       fhir:index 23;
+       fhir:ElementDefinition.id [ fhir:value "shr-core-TaxIdentificationNumber" ];
+       fhir:ElementDefinition.path [ fhir:value "Practitioner.identifier" ];
+       fhir:ElementDefinition.name [ fhir:value "shr-core-TaxIdentificationNumber" ];
+       fhir:ElementDefinition.short [ fhir:value "TaxIdentificationNumber" ];
+       fhir:ElementDefinition.definition [ fhir:value "Tax identification number for the practitioner." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Practitioner.identifier" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Identifier" ];
+         fhir:ElementDefinition.type.profile [
+           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TaxIdentificationNumber";
+           fhir:index 0
+         ]
+       ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ];
+       fhir:ElementDefinition.mapping [
+         fhir:index 0;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "v2" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "PRD-7 (or XCN.1)" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "./id" ]
+       ], [
+         fhir:index 2;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "servd" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "./Identifiers" ]
+       ], [
+         fhir:index 3;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "w5" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "id" ]
+       ]
+     ], [
+       fhir:index 24;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.active" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.active" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.active" ];
@@ -701,7 +796,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "status" ]
        ]
      ], [
-       fhir:index 23;
+       fhir:index 25;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.name" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.name" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.name" ];
@@ -741,7 +836,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "./PreferredName (GivenNames, FamilyName, TitleCode)" ]
        ]
      ], [
-       fhir:index 24;
+       fhir:index 26;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.telecom" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.telecom" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.telecom" ];
@@ -773,7 +868,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "./ContactPoints" ]
        ]
      ], [
-       fhir:index 25;
+       fhir:index 27;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.address" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.address" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.address" ];
@@ -804,7 +899,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "./Addresses" ]
        ]
      ], [
-       fhir:index 26;
+       fhir:index 28;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.gender" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.gender" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.gender" ];
@@ -848,7 +943,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "./GenderCode" ]
        ]
      ], [
-       fhir:index 27;
+       fhir:index 29;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.birthDate" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.birthDate" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.birthDate" ];
@@ -879,7 +974,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "(not represented in ServD)" ]
        ]
      ], [
-       fhir:index 28;
+       fhir:index 30;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.photo" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.photo" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.photo" ];
@@ -906,7 +1001,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "./ImageURI (only supports the URI reference)" ]
        ]
      ], [
-       fhir:index 29;
+       fhir:index 31;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.practitionerRole" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.practitionerRole" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.practitionerRole" ];
@@ -928,7 +1023,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".(Role)" ]
        ]
      ], [
-       fhir:index 30;
+       fhir:index 32;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.practitionerRole.id" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.practitionerRole.id" ];
        fhir:ElementDefinition.representation [
@@ -954,7 +1049,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 31;
+       fhir:index 33;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.practitionerRole.extension" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.practitionerRole.extension" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.practitionerRole.extension" ];
@@ -984,7 +1079,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 32;
+       fhir:index 34;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.practitionerRole.modifierExtension" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.practitionerRole.modifierExtension" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.practitionerRole.modifierExtension" ];
@@ -1017,7 +1112,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 33;
+       fhir:index 35;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.practitionerRole.managingOrganization" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.practitionerRole.managingOrganization" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.practitionerRole.managingOrganization" ];
@@ -1043,7 +1138,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "scopingOrganization" ]
        ]
      ], [
-       fhir:index 34;
+       fhir:index 36;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.practitionerRole.role" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.practitionerRole.role" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.practitionerRole.role" ];
@@ -1083,7 +1178,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "(ServD maps Practitioners and Organizations via another entity, so this concept is not available)" ]
        ]
      ], [
-       fhir:index 35;
+       fhir:index 37;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.practitionerRole.specialty" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.practitionerRole.specialty" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.practitionerRole.specialty" ];
@@ -1121,7 +1216,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "./Specialty" ]
        ]
      ], [
-       fhir:index 36;
+       fhir:index 38;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.practitionerRole.period" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.practitionerRole.period" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.practitionerRole.period" ];
@@ -1156,7 +1251,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "when.done" ]
        ]
      ], [
-       fhir:index 37;
+       fhir:index 39;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.practitionerRole.location" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.practitionerRole.location" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.practitionerRole.location" ];
@@ -1190,7 +1285,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "where" ]
        ]
      ], [
-       fhir:index 38;
+       fhir:index 40;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.practitionerRole.healthcareService" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.practitionerRole.healthcareService" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.practitionerRole.healthcareService" ];
@@ -1216,7 +1311,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "./target[classCode=\"indirectAuthority].id?" ]
        ]
      ], [
-       fhir:index 39;
+       fhir:index 41;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.qualification" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.qualification" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.qualification" ];
@@ -1246,7 +1341,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "./Qualifications" ]
        ]
      ], [
-       fhir:index 40;
+       fhir:index 42;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.qualification.id" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.qualification.id" ];
        fhir:ElementDefinition.representation [
@@ -1272,7 +1367,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 41;
+       fhir:index 43;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.qualification.extension" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.qualification.extension" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.qualification.extension" ];
@@ -1302,7 +1397,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 42;
+       fhir:index 44;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.qualification.modifierExtension" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.qualification.modifierExtension" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.qualification.modifierExtension" ];
@@ -1335,7 +1430,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 43;
+       fhir:index 45;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.qualification.identifier" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.qualification.identifier" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.qualification.identifier" ];
@@ -1358,7 +1453,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "./id" ]
        ]
      ], [
-       fhir:index 44;
+       fhir:index 46;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.qualification.code" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.qualification.code" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.qualification.code" ];
@@ -1391,7 +1486,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "./Qualifications.Value" ]
        ]
      ], [
-       fhir:index 45;
+       fhir:index 47;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.qualification.period" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.qualification.period" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.qualification.period" ];
@@ -1418,7 +1513,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "./Qualifications.StartDate and ./Qualifications.EndDate" ]
        ]
      ], [
-       fhir:index 46;
+       fhir:index 48;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.qualification.issuer" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.qualification.issuer" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.qualification.issuer" ];
@@ -1444,7 +1539,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "./scoper" ]
        ]
      ], [
-       fhir:index 47;
+       fhir:index 49;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.communication" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.communication" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.communication" ];
@@ -1492,7 +1587,7 @@
        fhir:ElementDefinition.path [ fhir:value "Practitioner" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner" ];
        fhir:ElementDefinition.short [ fhir:value "shr-core-Practitioner" ];
-       fhir:ElementDefinition.definition [ fhir:value "A person who practices a healing art.\nHumanName is limited to one required value by US-Core. Gender is required by US-Core." ];
+       fhir:ElementDefinition.definition [ fhir:value "A person who practices a healing art.\nHumanName is limited to one required value by US-Core. Gender is required by US-Core. US-Core required an identifier, either a NPI (preferred) or tax id." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.type [
          fhir:index 0;
@@ -1568,6 +1663,15 @@
        fhir:ElementDefinition.id [ fhir:value "Practitioner.identifier" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.identifier" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.identifier" ];
+       fhir:ElementDefinition.slicing [
+         fhir:ElementDefinition.slicing.id [ fhir:value "2" ];
+         fhir:ElementDefinition.slicing.discriminator [
+           fhir:value "Type.coding.code";
+           fhir:index 0
+         ];
+         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
+         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
+       ];
        fhir:ElementDefinition.min [ fhir:value "1"^^xsd:integer ];
        fhir:ElementDefinition.max [ fhir:value "*" ];
        fhir:ElementDefinition.base [
@@ -1581,6 +1685,58 @@
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 5;
+       fhir:ElementDefinition.id [ fhir:value "shr-core-NationalProviderIdentifier" ];
+       fhir:ElementDefinition.path [ fhir:value "Practitioner.identifier" ];
+       fhir:ElementDefinition.name [ fhir:value "shr-core-NationalProviderIdentifier" ];
+       fhir:ElementDefinition.short [ fhir:value "NationalProviderIdentifier" ];
+       fhir:ElementDefinition.definition [ fhir:value "NPI: a unique 10 digit number to allow US healthcare providers to identify themselves in a standard way throughout the healthcare industry." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Practitioner.identifier" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Identifier" ];
+         fhir:ElementDefinition.type.profile [
+           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-NationalProviderIdentifier";
+           fhir:index 0
+         ]
+       ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 6;
+       fhir:ElementDefinition.id [ fhir:value "shr-core-TaxIdentificationNumber" ];
+       fhir:ElementDefinition.path [ fhir:value "Practitioner.identifier" ];
+       fhir:ElementDefinition.name [ fhir:value "shr-core-TaxIdentificationNumber" ];
+       fhir:ElementDefinition.short [ fhir:value "TaxIdentificationNumber" ];
+       fhir:ElementDefinition.definition [ fhir:value "Tax identification number for the practitioner." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Practitioner.identifier" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Identifier" ];
+         fhir:ElementDefinition.type.profile [
+           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TaxIdentificationNumber";
+           fhir:index 0
+         ]
+       ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 7;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.active" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.active" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.active" ];
@@ -1596,7 +1752,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 6;
+       fhir:index 8;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.name" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.name" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.name" ];
@@ -1620,7 +1776,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 7;
+       fhir:index 9;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.gender" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.gender" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.gender" ];
@@ -1636,7 +1792,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 8;
+       fhir:index 10;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.qualification" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.qualification" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.qualification" ];
@@ -1646,7 +1802,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 9;
+       fhir:index 11;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.qualification.code" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.qualification.code" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.qualification.code" ];
@@ -1663,7 +1819,7 @@
          ]
        ]
      ], [
-       fhir:index 10;
+       fhir:index 12;
        fhir:ElementDefinition.id [ fhir:value "Practitioner.qualification.issuer" ];
        fhir:ElementDefinition.path [ fhir:value "Practitioner.qualification.issuer" ];
        fhir:ElementDefinition.name [ fhir:value "Practitioner.qualification.issuer" ];

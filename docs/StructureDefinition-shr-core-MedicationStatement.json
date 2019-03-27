@@ -3,7 +3,7 @@
   "id": "shr-core-MedicationStatement",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>MedicationStatement Profile</b></p>\n  <p>A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason. In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.MedicationStatement maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-medicationstatement:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  MedicationStatementInformationSource maps to informationSource\n  StatementDateTime maps to dateAsserted  // slight semantic difference?\n  PatientSubjectOfRecord maps to patient\n  constrain wasNotTaken to 0..0\n  constrain reasonNotTaken to 0..0\n  constrain dosage to 0..1\n  Medication maps to medication[x]\n  ReasonCode maps to reasonForUse[x]\n  OccurrenceTimeOrPeriod maps to effective[x]\n  Status maps to status\n  Dosage.DoseAmount maps to dosage.quantity[x]\n  Dosage.TimingOfDoses maps to dosage.timing\n  Dosage.AsNeededIndicator maps to dosage.asNeeded[x]\n  Dosage.DosageInstructionsText maps to dosage.text\n  Dosage.RouteIntoBody maps to dosage.route\n  Dosage.DosageMethod maps to dosage.method\n  Dosage.DosageBodySite.BodySiteCode maps to dosage.site[x]\n  Dosage.MaximumDosePerTimePeriod maps to dosage.maxDosePerPeriod\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>MedicationStatement Profile</b></p>\n  <p>A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.MedicationStatement maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-medicationstatement:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  MedicationStatementInformationSource maps to informationSource\n  StatementDateTime maps to dateAsserted  // slight semantic difference?\n  PatientSubjectOfRecord maps to patient\n  constrain wasNotTaken to 0..0\n  constrain reasonNotTaken to 0..0\n  constrain dosage to 0..1\n  MedicationCodeOrReference maps to medication[x]\n  ReasonCode maps to reasonForUse[x]\n  ReasonReference maps to reasonForUse[x]\n  OccurrenceTimeOrPeriod maps to effective[x]\n  Status maps to status\n  Dosage.DoseAmount maps to dosage.quantity[x]\n  Dosage.TimingOfDoses maps to dosage.timing\n  Dosage.AsNeededIndicator maps to dosage.asNeeded[x]\n  Dosage.DosageInstructionsText maps to dosage.text\n  Dosage.RouteIntoBody maps to dosage.route\n  Dosage.DosageMethod maps to dosage.method\n  Dosage.DosageBodyLocation maps to dosage.site[x]\n  Dosage.MaximumDosePerTimePeriod maps to dosage.maxDosePerPeriod\n</pre></p>\n</div>"
   },
   "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationStatement",
   "identifier": [
@@ -28,8 +28,8 @@
       ]
     }
   ],
-  "date": "2019-03-13T00:00:00-04:00",
-  "description": "A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason. In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.",
+  "date": "2019-03-27T00:00:00-04:00",
+  "description": "A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.",
   "code": [
     {
       "system": "http://snomed.info/sct",
@@ -67,7 +67,7 @@
         "path": "MedicationStatement",
         "name": "argoprofile",
         "short": "shr-core-MedicationStatement",
-        "definition": "A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason. In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.",
+        "definition": "A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.",
         "min": 0,
         "max": "*",
         "base": {
@@ -515,152 +515,6 @@
         "isSummary": false
       },
       {
-        "id": "reasonreference",
-        "path": "MedicationStatement.extension",
-        "name": "reasonreference",
-        "definition": "The justification, as reference to a condition or observation.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "MedicationStatement.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "MedicationStatement.extension.id",
-        "path": "MedicationStatement.extension.id",
-        "representation": [
-          "xmlAttr"
-        ],
-        "name": "MedicationStatement.extension.id",
-        "short": "xml:id (or equivalent in JSON)",
-        "definition": "unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Element.id",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "string"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "N/A"
-          }
-        ]
-      },
-      {
-        "id": "extension",
-        "path": "MedicationStatement.extension.extension",
-        "name": "extension",
-        "short": "Extension",
-        "definition": "An Extension",
-        "min": 0,
-        "max": "0",
-        "base": {
-          "path": "Element.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "MedicationStatement.extension.url",
-        "path": "MedicationStatement.extension.url",
-        "representation": [
-          "xmlAttr"
-        ],
-        "name": "MedicationStatement.extension.url",
-        "short": "identifies the meaning of the extension",
-        "definition": "Source of the definition for the extension code - a logical name or a URL.",
-        "min": 1,
-        "max": "1",
-        "base": {
-          "path": "Extension.url",
-          "min": 1,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "uri"
-          }
-        ],
-        "fixedUri": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension",
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "N/A"
-          }
-        ]
-      },
-      {
-        "id": "MedicationStatement.extension.value[x]",
-        "path": "MedicationStatement.extension.value[x]",
-        "name": "MedicationStatement.extension.value[x]",
-        "short": "Value of extension",
-        "definition": "Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).",
-        "min": 1,
-        "max": "1",
-        "base": {
-          "path": "Extension.value[x]",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "Reference",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition",
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "N/A"
-          }
-        ]
-      },
-      {
         "id": "medicationstatementrelatedrequest",
         "path": "MedicationStatement.extension",
         "name": "medicationstatementrelatedrequest",
@@ -743,9 +597,9 @@
         ]
       },
       {
-        "id": "extension",
+        "id": "MedicationStatement.extension.extension",
         "path": "MedicationStatement.extension.extension",
-        "name": "extension",
+        "name": "MedicationStatement.extension.extension",
         "short": "Extension",
         "definition": "An Extension",
         "min": 0,
@@ -862,7 +716,7 @@
         "id": "terminationreason",
         "path": "MedicationStatement.extension",
         "name": "terminationreason",
-        "definition": "A description and/or code explaining the premature termination of the study.",
+        "definition": "A code explaining unplanned or premature termination of a plan of treatment, course of medication, or research study.",
         "min": 0,
         "max": "*",
         "base": {
@@ -916,9 +770,9 @@
         ]
       },
       {
-        "id": "extension",
+        "id": "MedicationStatement.extension.extension",
         "path": "MedicationStatement.extension.extension",
-        "name": "extension",
+        "name": "MedicationStatement.extension.extension",
         "short": "Extension",
         "definition": "An Extension",
         "min": 0,
@@ -996,7 +850,7 @@
         "binding": {
           "strength": "required",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/MedicationTerminationReasonVS"
+            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/TreatmentTerminationReasonVS"
           }
         },
         "mapping": [
@@ -1274,7 +1128,7 @@
       },
       {
         "id": "MedicationStatement:argoprofile.reasonForUse[x]",
-        "path": "MedicationStatement.reasonForUseCodeableConcept",
+        "path": "MedicationStatement.reasonForUse[x]",
         "name": "MedicationStatement:argoprofile.reasonForUse[x]",
         "definition": "A reason for why the medication is being/was taken.",
         "min": 0,
@@ -1287,6 +1141,12 @@
         "type": [
           {
             "code": "CodeableConcept"
+          },
+          {
+            "code": "Reference",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"
+            ]
           }
         ],
         "maxLength": 0,
@@ -1390,7 +1250,7 @@
       },
       {
         "id": "MedicationStatement:argoprofile.medication[x]",
-        "path": "MedicationStatement.medicationReference",
+        "path": "MedicationStatement.medication[x]",
         "name": "MedicationStatement:argoprofile.medication[x]",
         "short": "What medication was taken",
         "definition": "Identifies the medication being administered. This is either a link to a resource representing the details of the medication or a simple attribute carrying a code that identifies the medication from a known list of medications.",
@@ -1403,6 +1263,9 @@
           "max": "1"
         },
         "type": [
+          {
+            "code": "CodeableConcept"
+          },
           {
             "code": "Reference",
             "profile": [
@@ -1715,7 +1578,7 @@
         "binding": {
           "strength": "preferred",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         }
       },
@@ -1896,7 +1759,7 @@
         "path": "MedicationStatement",
         "name": "MedicationStatement",
         "short": "shr-core-MedicationStatement",
-        "definition": "A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason. In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.",
+        "definition": "A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.",
         "min": 0,
         "type": [
           {
@@ -1943,31 +1806,6 @@
             "code": "Extension",
             "profile": [
               "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CareContext-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "reasonreference",
-        "path": "MedicationStatement.extension",
-        "name": "reasonreference",
-        "definition": "The justification, as reference to a condition or observation.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "MedicationStatement.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"
             ]
           }
         ],
@@ -2071,7 +1909,7 @@
         "id": "terminationreason",
         "path": "MedicationStatement.extension",
         "name": "terminationreason",
-        "definition": "A description and/or code explaining the premature termination of the study.",
+        "definition": "A code explaining unplanned or premature termination of a plan of treatment, course of medication, or research study.",
         "min": 0,
         "max": "*",
         "base": {
@@ -2104,7 +1942,7 @@
         "binding": {
           "strength": "required",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/MedicationTerminationReasonVS"
+            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/TreatmentTerminationReasonVS"
           }
         }
       },
@@ -2169,13 +2007,19 @@
         "isSummary": false
       },
       {
-        "id": "MedicationStatement.reasonForUseCodeableConcept",
-        "path": "MedicationStatement.reasonForUseCodeableConcept",
-        "name": "MedicationStatement.reasonForUseCodeableConcept",
+        "id": "MedicationStatement.reasonForUse[x]",
+        "path": "MedicationStatement.reasonForUse[x]",
+        "name": "MedicationStatement.reasonForUse[x]",
         "min": 0,
         "type": [
           {
             "code": "CodeableConcept"
+          },
+          {
+            "code": "Reference",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"
+            ]
           }
         ],
         "maxLength": 0,
@@ -2195,11 +2039,14 @@
         "isSummary": false
       },
       {
-        "id": "MedicationStatement.medicationReference",
-        "path": "MedicationStatement.medicationReference",
-        "name": "MedicationStatement.medicationReference",
+        "id": "MedicationStatement.medication[x]",
+        "path": "MedicationStatement.medication[x]",
+        "name": "MedicationStatement.medication[x]",
         "min": 0,
         "type": [
+          {
+            "code": "CodeableConcept"
+          },
           {
             "code": "Reference",
             "profile": [
@@ -2297,7 +2144,7 @@
         "binding": {
           "strength": "preferred",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         }
       },

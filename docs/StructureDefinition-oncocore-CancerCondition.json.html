@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8"/>
   
-  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1)</title>
+  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1)</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1) FHIR Profiles"/>
+  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1) FHIR Profiles"/>
 
   <link rel="stylesheet" href="fhir.css"/>
 
@@ -40,7 +40,7 @@
     </a>
     <div id="hl7-status" class="hl7-status">
       
-      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1)</b>
+      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1)</b>
     </div>
 
     <div id="hl7-nav">
@@ -158,6 +158,7 @@
   Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
@@ -167,13 +168,9 @@
   PatientSubjectOfRecord maps to patient
   Category maps to category
   Code maps to code
-  BodySite.BodySiteCode maps to bodySite
-  BodySite.Laterality maps to bodySite.extension
-  BodySite.AnatomicalDirection maps to bodySite.extension
-  BodySite.ClockDirection maps to bodySite.extension
-  BodySite.CommentOrDescription maps to bodySite.extension
-  BodySite.Attachment maps to bodySite.extension
-  BodySite.DistanceFromLandmark maps to bodySite.extension
+  BodyLocation.LocationCode maps to bodySite
+  BodyLocation.LocationQualifier maps to bodySite.extension
+  BodyLocation.Landmark maps to bodySite.extension
   CareContext maps to encounter
   ClinicalStatus maps to clinicalStatus
   Status maps to verificationStatus
@@ -211,7 +208,7 @@
       ]
     }
   ],
-  "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.date">date</a>" : "2019-03-13T00:00:00-04:00",
+  "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.date">date</a>" : "2019-03-27T00:00:00-04:00",
   "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.description">description</a>" : "The presence of malignant neoplastic disease, in which abnormal cells divide without control and can invade nearby tissues.",
   "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.fhirVersion">fhirVersion</a>" : "1.0.2",
   "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.mapping">mapping</a>" : [
@@ -678,6 +675,31 @@
         ]
       },
       {
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "dateofdiagnosis",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Condition.extension",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "dateofdiagnosis",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "The date the disease was first clinically recognized with sufficient certainty, regardless of whether it was fully characterized at that time.",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "1",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
+          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a>" : "Condition.extension",
+          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a>" : 0,
+          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a>" : "*"
+        },
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>" : [
+          {
+            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
+            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DateOfDiagnosis-extension"
+            ]
+          }
+        ],
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a>" : 0,
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a>" : false,
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a>" : false,
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false
+      },
+      {
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "morphologybehavior",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Condition.extension",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "morphologybehavior",
@@ -694,31 +716,6 @@
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
               "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-MorphologyBehavior-extension"
-            ]
-          }
-        ],
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false
-      },
-      {
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "dateofdiagnosis",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Condition.extension",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "dateofdiagnosis",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "The date the disease was first clinically recognized with sufficient certainty, regardless of whether it was fully characterized at that time.",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "1",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a>" : "Condition.extension",
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a>" : 0,
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a>" : "*"
-        },
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>" : [
-          {
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-DateOfDiagnosis-extension"
             ]
           }
         ],
@@ -982,7 +979,7 @@
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a>" : false,
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false,
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding">binding</a>" : {
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a>" : "required",
+          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a>" : "extensible",
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>" : {
             "<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>" : "http://hl7.org/fhir/us/projectURL/oncocore/vs/CancerDisorderVS"
           }
@@ -1492,7 +1489,7 @@
           {
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Reference",
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-CancerStagePanel"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-CancerStageGroup"
             ]
           }
         ],
@@ -1748,7 +1745,7 @@
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding">binding</a>" : {
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a>" : "preferred",
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>" : {
-            "<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>" : "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>" : "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         },
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping">mapping</a>" : [
@@ -1823,10 +1820,10 @@
         ]
       },
       {
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "laterality",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "locationqualifier",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Condition.bodySite.extension",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "laterality",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "Anatomical location or specimen further detailing the side(s) of interest.",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "locationqualifier",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "Additional information, such as laterality or direction, that helps define the body location.",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "*",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
@@ -1838,7 +1835,7 @@
           {
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"
             ]
           }
         ],
@@ -1848,10 +1845,10 @@
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false
       },
       {
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "anatomicaldirection",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "landmark",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Condition.bodySite.extension",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "anatomicaldirection",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "Anatomical location or specimen further detailing directionality.",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "landmark",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "An anatomical landmark that helps determine a body location.",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "*",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
@@ -1863,107 +1860,7 @@
           {
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension"
-            ]
-          }
-        ],
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false
-      },
-      {
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "clockdirection",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Condition.bodySite.extension",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "clockdirection",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "A direction indicated by an angle relative to 12 o'clock.",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "*",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a>" : "Condition.bodySite.extension",
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a>" : 0,
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a>" : "*"
-        },
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>" : [
-          {
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension"
-            ]
-          }
-        ],
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false
-      },
-      {
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "commentordescription",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Condition.bodySite.extension",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "commentordescription",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "A text note containing additional details, explanation, description, comment, or summarization.",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "*",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a>" : "Condition.bodySite.extension",
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a>" : 0,
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a>" : "*"
-        },
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>" : [
-          {
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension"
-            ]
-          }
-        ],
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false
-      },
-      {
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "attachment",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Condition.bodySite.extension",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "attachment",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "A file that contains audio, video, image, or similar content.",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "*",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a>" : "Condition.bodySite.extension",
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a>" : 0,
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a>" : "*"
-        },
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>" : [
-          {
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension"
-            ]
-          }
-        ],
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false
-      },
-      {
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "distancefromlandmark",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Condition.bodySite.extension",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "distancefromlandmark",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "How far the anatomical location of interest is from the given landmark",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "*",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a>" : "Condition.bodySite.extension",
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a>" : 0,
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a>" : "*"
-        },
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>" : [
-          {
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"
             ]
           }
         ],
@@ -2113,6 +2010,31 @@
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false
       },
       {
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "dateofdiagnosis",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Condition.extension",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "dateofdiagnosis",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "The date the disease was first clinically recognized with sufficient certainty, regardless of whether it was fully characterized at that time.",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "1",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
+          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a>" : "Condition.extension",
+          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a>" : 0,
+          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a>" : "*"
+        },
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>" : [
+          {
+            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
+            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DateOfDiagnosis-extension"
+            ]
+          }
+        ],
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a>" : 0,
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a>" : false,
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a>" : false,
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false
+      },
+      {
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "morphologybehavior",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Condition.extension",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "morphologybehavior",
@@ -2129,31 +2051,6 @@
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
               "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-MorphologyBehavior-extension"
-            ]
-          }
-        ],
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false
-      },
-      {
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "dateofdiagnosis",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Condition.extension",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "dateofdiagnosis",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "The date the disease was first clinically recognized with sufficient certainty, regardless of whether it was fully characterized at that time.",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "1",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a>" : "Condition.extension",
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a>" : 0,
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a>" : "*"
-        },
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>" : [
-          {
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-DateOfDiagnosis-extension"
             ]
           }
         ],
@@ -2227,7 +2124,7 @@
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a>" : false,
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false,
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding">binding</a>" : {
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a>" : "required",
+          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a>" : "extensible",
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>" : {
             "<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>" : "http://hl7.org/fhir/us/projectURL/oncocore/vs/CancerDisorderVS"
           }
@@ -2298,7 +2195,7 @@
           {
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Reference",
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-CancerStagePanel"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-CancerStageGroup"
             ]
           }
         ],
@@ -2363,7 +2260,7 @@
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding">binding</a>" : {
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a>" : "preferred",
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>" : {
-            "<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>" : "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>" : "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         }
       },
@@ -2386,10 +2283,10 @@
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false
       },
       {
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "laterality",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "locationqualifier",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Condition.bodySite.extension",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "laterality",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "Anatomical location or specimen further detailing the side(s) of interest.",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "locationqualifier",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "Additional information, such as laterality or direction, that helps define the body location.",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "*",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
@@ -2401,7 +2298,7 @@
           {
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"
             ]
           }
         ],
@@ -2411,10 +2308,10 @@
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false
       },
       {
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "anatomicaldirection",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "landmark",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Condition.bodySite.extension",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "anatomicaldirection",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "Anatomical location or specimen further detailing directionality.",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "landmark",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "An anatomical landmark that helps determine a body location.",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "*",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
@@ -2426,107 +2323,7 @@
           {
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension"
-            ]
-          }
-        ],
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false
-      },
-      {
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "clockdirection",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Condition.bodySite.extension",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "clockdirection",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "A direction indicated by an angle relative to 12 o'clock.",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "*",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a>" : "Condition.bodySite.extension",
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a>" : 0,
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a>" : "*"
-        },
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>" : [
-          {
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension"
-            ]
-          }
-        ],
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false
-      },
-      {
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "commentordescription",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Condition.bodySite.extension",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "commentordescription",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "A text note containing additional details, explanation, description, comment, or summarization.",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "*",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a>" : "Condition.bodySite.extension",
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a>" : 0,
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a>" : "*"
-        },
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>" : [
-          {
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension"
-            ]
-          }
-        ],
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false
-      },
-      {
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "attachment",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Condition.bodySite.extension",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "attachment",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "A file that contains audio, video, image, or similar content.",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "*",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a>" : "Condition.bodySite.extension",
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a>" : 0,
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a>" : "*"
-        },
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>" : [
-          {
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension"
-            ]
-          }
-        ],
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false
-      },
-      {
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "distancefromlandmark",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Condition.bodySite.extension",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "distancefromlandmark",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "How far the anatomical location of interest is from the given landmark",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "*",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a>" : "Condition.bodySite.extension",
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a>" : 0,
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a>" : "*"
-        },
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>" : [
-          {
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"
             ]
           }
         ],
@@ -2557,11 +2354,11 @@
 <div igtool="footer" id="segment-footer" class="segment">    <!-- segment-footer -->
   <div class="container">    <!-- container -->
    <div class="inner-wrapper">
-    <p><a name="32345c1d-035e-4c1a-a042-140915691869">​</a>
+    <p><a name="023cd8d6-6ae5-4754-b90c-087f79d1b5d2">​</a>
       
-      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1), Version: 0.7.0
+      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1), Version: 0.7.0
       ; <a style="color: #81BEF7" href="http://hl7.org/fhir/DSTU2/">FHIR &copy; Version: 1.0.2</a>
-      ; Generated on Wed, Mar 13, 2019 15:34-0400.
+      ; Generated on Wed, Mar 27, 2019 14:58-0400.
     </p>
    </div>    <!-- /inner-wrapper -->
   </div>    <!-- /container -->

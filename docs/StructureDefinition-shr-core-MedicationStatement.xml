@@ -8,7 +8,7 @@
   <p>A record of the use of a medication.
 Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).
 The treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.
-ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason. In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.</p>
+ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.</p>
   <p><b>Mapping Summary</b></p>
   <p><pre>shr.core.MedicationStatement maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-medicationstatement:
   _Entry.EntryId maps to id
@@ -16,6 +16,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
   Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
@@ -26,8 +27,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
   constrain wasNotTaken to 0..0
   constrain reasonNotTaken to 0..0
   constrain dosage to 0..1
-  Medication maps to medication[x]
+  MedicationCodeOrReference maps to medication[x]
   ReasonCode maps to reasonForUse[x]
+  ReasonReference maps to reasonForUse[x]
   OccurrenceTimeOrPeriod maps to effective[x]
   Status maps to status
   Dosage.DoseAmount maps to dosage.quantity[x]
@@ -36,7 +38,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
   Dosage.DosageInstructionsText maps to dosage.text
   Dosage.RouteIntoBody maps to dosage.route
   Dosage.DosageMethod maps to dosage.method
-  Dosage.DosageBodySite.BodySiteCode maps to dosage.site[x]
+  Dosage.DosageBodyLocation maps to dosage.site[x]
   Dosage.MaximumDosePerTimePeriod maps to dosage.maxDosePerPeriod
 </pre></p>
 </div>
@@ -58,8 +60,8 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-03-13T00:00:00-04:00"/>
-  <description value="A record of the use of a medication.&#xA;Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).&#xA;The treatment of &#39;not taken&#39; has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the &#39;not taken&#39; attributes are profiled out.&#xA;ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason. In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously."/>
+  <date value="2019-03-27T00:00:00-04:00"/>
+  <description value="A record of the use of a medication.&#xA;Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).&#xA;The treatment of &#39;not taken&#39; has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the &#39;not taken&#39; attributes are profiled out.&#xA;ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously."/>
   <code>
     <system value="http://snomed.info/sct"/>
     <code value="416608005"/>
@@ -91,7 +93,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <path value="MedicationStatement"/>
       <name value="argoprofile"/>
       <short value="shr-core-MedicationStatement"/>
-      <definition value="A record of the use of a medication.&#xA;Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).&#xA;The treatment of &#39;not taken&#39; has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the &#39;not taken&#39; attributes are profiled out.&#xA;ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason. In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously."/>
+      <definition value="A record of the use of a medication.&#xA;Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).&#xA;The treatment of &#39;not taken&#39; has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the &#39;not taken&#39; attributes are profiled out.&#xA;ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -460,123 +462,6 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="reasonreference">
-      <path value="MedicationStatement.extension"/>
-      <name value="reasonreference"/>
-      <definition value="The justification, as reference to a condition or observation."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="MedicationStatement.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="MedicationStatement.extension.id">
-      <path value="MedicationStatement.extension.id"/>
-      <representation value="xmlAttr"/>
-      <name value="MedicationStatement.extension.id"/>
-      <short value="xml:id (or equivalent in JSON)"/>
-      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Element.id"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="string"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="N/A"/>
-      </mapping>
-    </element>
-    <element id="extension">
-      <path value="MedicationStatement.extension.extension"/>
-      <name value="extension"/>
-      <short value="Extension"/>
-      <definition value="An Extension"/>
-      <min value="0"/>
-      <max value="0"/>
-      <base>
-        <path value="Element.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="MedicationStatement.extension.url">
-      <path value="MedicationStatement.extension.url"/>
-      <representation value="xmlAttr"/>
-      <name value="MedicationStatement.extension.url"/>
-      <short value="identifies the meaning of the extension"/>
-      <definition value="Source of the definition for the extension code - a logical name or a URL."/>
-      <min value="1"/>
-      <max value="1"/>
-      <base>
-        <path value="Extension.url"/>
-        <min value="1"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="uri"/>
-      </type>
-      <fixedUri value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"/>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="N/A"/>
-      </mapping>
-    </element>
-    <element id="MedicationStatement.extension.value[x]">
-      <path value="MedicationStatement.extension.value[x]"/>
-      <name value="MedicationStatement.extension.value[x]"/>
-      <short value="Value of extension"/>
-      <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
-      <min value="1"/>
-      <max value="1"/>
-      <base>
-        <path value="Extension.value[x]"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Reference"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="N/A"/>
-      </mapping>
-    </element>
     <element id="medicationstatementrelatedrequest">
       <path value="MedicationStatement.extension"/>
       <name value="medicationstatementrelatedrequest"/>
@@ -642,9 +527,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="extension">
+    <element id="MedicationStatement.extension.extension">
       <path value="MedicationStatement.extension.extension"/>
-      <name value="extension"/>
+      <name value="MedicationStatement.extension.extension"/>
       <short value="Extension"/>
       <definition value="An Extension"/>
       <min value="0"/>
@@ -741,7 +626,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
     <element id="terminationreason">
       <path value="MedicationStatement.extension"/>
       <name value="terminationreason"/>
-      <definition value="A description and/or code explaining the premature termination of the study."/>
+      <definition value="A code explaining unplanned or premature termination of a plan of treatment, course of medication, or research study."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -783,9 +668,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="extension">
+    <element id="MedicationStatement.extension.extension">
       <path value="MedicationStatement.extension.extension"/>
-      <name value="extension"/>
+      <name value="MedicationStatement.extension.extension"/>
       <short value="Extension"/>
       <definition value="An Extension"/>
       <min value="0"/>
@@ -851,7 +736,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <binding>
         <strength value="required"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/MedicationTerminationReasonVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/TreatmentTerminationReasonVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -1082,7 +967,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       </mapping>
     </element>
     <element id="MedicationStatement:argoprofile.reasonForUse[x]">
-      <path value="MedicationStatement.reasonForUseCodeableConcept"/>
+      <path value="MedicationStatement.reasonForUse[x]"/>
       <name value="MedicationStatement:argoprofile.reasonForUse[x]"/>
       <definition value="A reason for why the medication is being/was taken."/>
       <min value="0"/>
@@ -1094,6 +979,10 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       </base>
       <type>
         <code value="CodeableConcept"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1182,7 +1071,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <isSummary value="true"/>
     </element>
     <element id="MedicationStatement:argoprofile.medication[x]">
-      <path value="MedicationStatement.medicationReference"/>
+      <path value="MedicationStatement.medication[x]"/>
       <name value="MedicationStatement:argoprofile.medication[x]"/>
       <short value="What medication was taken"/>
       <definition value="Identifies the medication being administered. This is either a link to a resource representing the details of the medication or a simple attribute carrying a code that identifies the medication from a known list of medications."/>
@@ -1194,6 +1083,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         <min value="1"/>
         <max value="1"/>
       </base>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
       <type>
         <code value="Reference"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Medication"/>
@@ -1451,7 +1343,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -1602,7 +1494,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <path value="MedicationStatement"/>
       <name value="MedicationStatement"/>
       <short value="shr-core-MedicationStatement"/>
-      <definition value="A record of the use of a medication.&#xA;Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).&#xA;The treatment of &#39;not taken&#39; has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the &#39;not taken&#39; attributes are profiled out.&#xA;ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason. In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously."/>
+      <definition value="A record of the use of a medication.&#xA;Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).&#xA;The treatment of &#39;not taken&#39; has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the &#39;not taken&#39; attributes are profiled out.&#xA;ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously."/>
       <min value="0"/>
       <type>
         <code value="argo-medicationstatement"/>
@@ -1640,26 +1532,6 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <type>
         <code value="Extension"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CareContext-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="reasonreference">
-      <path value="MedicationStatement.extension"/>
-      <name value="reasonreference"/>
-      <definition value="The justification, as reference to a condition or observation."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="MedicationStatement.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1744,7 +1616,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
     <element id="terminationreason">
       <path value="MedicationStatement.extension"/>
       <name value="terminationreason"/>
-      <definition value="A description and/or code explaining the premature termination of the study."/>
+      <definition value="A code explaining unplanned or premature termination of a plan of treatment, course of medication, or research study."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1772,7 +1644,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <binding>
         <strength value="required"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/MedicationTerminationReasonVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/TreatmentTerminationReasonVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -1824,12 +1696,16 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="MedicationStatement.reasonForUseCodeableConcept">
-      <path value="MedicationStatement.reasonForUseCodeableConcept"/>
-      <name value="MedicationStatement.reasonForUseCodeableConcept"/>
+    <element id="MedicationStatement.reasonForUse[x]">
+      <path value="MedicationStatement.reasonForUse[x]"/>
+      <name value="MedicationStatement.reasonForUse[x]"/>
       <min value="0"/>
       <type>
         <code value="CodeableConcept"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1846,10 +1722,13 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="MedicationStatement.medicationReference">
-      <path value="MedicationStatement.medicationReference"/>
-      <name value="MedicationStatement.medicationReference"/>
+    <element id="MedicationStatement.medication[x]">
+      <path value="MedicationStatement.medication[x]"/>
+      <name value="MedicationStatement.medication[x]"/>
       <min value="0"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
       <type>
         <code value="Reference"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Medication"/>
@@ -1928,7 +1807,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
     </element>

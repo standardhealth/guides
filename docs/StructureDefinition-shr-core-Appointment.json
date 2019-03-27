@@ -3,7 +3,7 @@
   "id": "shr-core-Appointment",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Appointment Profile</b></p>\n  <p>A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Appointment maps to Appointment:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Status maps to status\n  Specialty maps to extension\n  ReasonCode maps to reason\n  PriorityRankUnsignedInt maps to priority\n  CommentOrDescription maps to description\n  TimePeriod.BeginDateTime maps to start\n  TimePeriod.EndDateTime maps to end\n  AppointmentParticipation maps to participant\n  AppointmentParticipation.ParticipationType maps to participant.type\n  AppointmentParticipation.AppointmentParticipant maps to participant.actor\n  AppointmentParticipation.Need maps to participant.required\n  AppointmentParticipation.Status maps to participant.status\n  Type maps to extension\n  ServiceType maps to extension\n  ServiceCategory maps to extension\n  ReasonReference maps to extension\n  Indication maps to extension\n  RelatedInformation maps to extension\n  StatementDateTime maps to extension\n  ReferralRequest maps to extension\n  ExpectedPerformanceTime maps to extension\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Appointment Profile</b></p>\n  <p>A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Appointment maps to Appointment:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Status maps to status\n  Specialty maps to extension\n  ReasonCode maps to reason\n  ReasonReference maps to extension\n  PriorityRankUnsignedInt maps to priority\n  CommentOrDescription maps to description\n  TimePeriod.BeginDateTime maps to start\n  TimePeriod.EndDateTime maps to end\n  AppointmentParticipation maps to participant\n  AppointmentParticipation.ParticipationType maps to participant.type\n  AppointmentParticipation.AppointmentParticipant maps to participant.actor\n  AppointmentParticipation.Need maps to participant.required\n  AppointmentParticipation.Status maps to participant.status\n  Type maps to extension\n  ServiceType maps to extension\n  ServiceCategory maps to extension\n  Indication maps to extension\n  RelatedInformation maps to extension\n  StatementDateTime maps to extension\n  ReferralRequest maps to extension\n  ExpectedPerformanceTime maps to extension\n</pre></p>\n</div>"
   },
   "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Appointment",
   "identifier": [
@@ -28,7 +28,7 @@
       ]
     }
   ],
-  "date": "2019-03-13T00:00:00-04:00",
+  "date": "2019-03-27T00:00:00-04:00",
   "description": "A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time.",
   "fhirVersion": "1.0.2",
   "mapping": [
@@ -476,6 +476,31 @@
         "isSummary": false
       },
       {
+        "id": "reasonreference",
+        "path": "Appointment.extension",
+        "name": "reasonreference",
+        "definition": "The justification, as reference to a condition or observation.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "Appointment.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
         "id": "type",
         "path": "Appointment.extension",
         "name": "type",
@@ -533,9 +558,9 @@
         ]
       },
       {
-        "id": "extension",
+        "id": "Appointment.extension.extension",
         "path": "Appointment.extension.extension",
-        "name": "extension",
+        "name": "Appointment.extension.extension",
         "short": "Extension",
         "definition": "An Extension",
         "min": 0,
@@ -665,31 +690,6 @@
             "code": "Extension",
             "profile": [
               "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ServiceCategory-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "reasonreference",
-        "path": "Appointment.extension",
-        "name": "reasonreference",
-        "definition": "The justification, as reference to a condition or observation.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "Appointment.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"
             ]
           }
         ],
@@ -1546,6 +1546,31 @@
         "isSummary": false
       },
       {
+        "id": "reasonreference",
+        "path": "Appointment.extension",
+        "name": "reasonreference",
+        "definition": "The justification, as reference to a condition or observation.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "Appointment.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
         "id": "type",
         "path": "Appointment.extension",
         "name": "type",
@@ -1628,31 +1653,6 @@
             "code": "Extension",
             "profile": [
               "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ServiceCategory-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "reasonreference",
-        "path": "Appointment.extension",
-        "name": "reasonreference",
-        "definition": "The justification, as reference to a condition or observation.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "Appointment.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"
             ]
           }
         ],

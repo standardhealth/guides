@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8"/>
   
-  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1)</title>
+  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1)</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1) FHIR Profiles"/>
+  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1) FHIR Profiles"/>
 
   <link rel="stylesheet" href="fhir.css"/>
 
@@ -40,7 +40,7 @@
     </a>
     <div id="hl7-status" class="hl7-status">
       
-      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1)</b>
+      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1)</b>
     </div>
 
     <div id="hl7-nav">
@@ -158,31 +158,28 @@
   Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
   Identifier maps to identifier
-  ObservationSubjectOfRecord maps to subject
-  Performer maps to performer
+  PatientSubjectOfRecord maps to subject
+  PractitionerPerformer maps to performer
   Code maps to code
   Method maps to method
   CommentOrDescription maps to comments
   Category maps to category
-  BodySite.BodySiteCode maps to bodySite
-  BodySite.Laterality maps to bodySite.extension
-  BodySite.AnatomicalDirection maps to bodySite.extension
-  BodySite.ClockDirection maps to bodySite.extension
-  BodySite.CommentOrDescription maps to bodySite.extension
-  BodySite.Attachment maps to bodySite.extension
-  BodySite.DistanceFromLandmark maps to bodySite.extension
+  BodyLocation.LocationCode maps to bodySite
+  BodyLocation.LocationQualifier maps to bodySite.extension
+  BodyLocation.Landmark maps to bodySite.extension
   Device maps to device
   StatementDateTime maps to issued
   ReferenceRange maps to referenceRange
   ReferenceRange.Range.LowerBound maps to referenceRange.low
   ReferenceRange.Range.UpperBound maps to referenceRange.high
   ReferenceRange.Type maps to referenceRange.meaning
-  Components maps to component
-  Components.ObservationComponent.Code maps to component.code (slice on = code.coding.code; slice strategy = includes)
+  Components.ObservationComponent maps to component (slice on = code.coding.code; slice strategy = includes)
+  Components.ObservationComponent.Code maps to component.code
   Components.ObservationComponent.DataValue maps to component.value[x]
   Components.ObservationComponent.DataAbsentReason maps to component.dataAbsentReason
   Components.ObservationComponent.ReferenceRange maps to component.referenceRange
@@ -217,7 +214,7 @@
       &lt;<a href="http://hl7.org/fhir/DSTU2/datatypes.html#ContactPoint#ContactPoint.rank">rank</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#positiveInt">value</a>="0"/&gt;
     &lt;/telecom&gt;
   &lt;/contact&gt;
-  &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.date">date</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#dateTime">value</a>="2019-03-13T00:00:00-04:00"/&gt;
+  &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.date">date</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#dateTime">value</a>="2019-03-27T00:00:00-04:00"/&gt;
   &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.description">description</a>
                <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="The Karnofsky Performance Status (KPS) is a tool used to measure a patient&amp;#39;s functional status. It can be used to compare the effectiveness of different therapies and to help assess the prognosis of certain patients, such as those with certain cancers. The KPS score ranges from 0 to 100. Higher scores are associated with better functional status, with 100 representing no symptoms or evidence of disease, and 0 representing death [PMID: 23870327] . This panel contains LOINC terms to report the KPS score [LOINC: 89243-0] and its interpretation [LOINC: 89245-5]."/&gt;
   &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.requirements">requirements</a>
@@ -1114,12 +1111,6 @@ If the target of the observation is different than the subject, the general exte
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Reference"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Group"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Location"/&gt;
       &lt;/type&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
@@ -1251,12 +1242,6 @@ If the target of the observation is different than the subject, the general exte
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Reference"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"/&gt;
       &lt;/type&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
@@ -1422,7 +1407,7 @@ If the target of the observation is different than the subject, the general exte
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="preferred"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>&gt;
           &lt;<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>
-                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/&gt;
+                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/&gt;
         &lt;/valueSetReference&gt;
       &lt;/binding&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping">mapping</a>&gt;
@@ -1652,7 +1637,7 @@ If the target of the observation is different than the subject, the general exte
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.requirements">requirements</a>
                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="Knowing what values are considered &amp;quot;normal&amp;quot; can help evaluate the significance of a particular result. Need to be able to provide multiple reference ranges for different contexts."/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Observation.referenceRange"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
@@ -2607,12 +2592,6 @@ If the target of the observation is different than the subject, the general exte
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Reference"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Group"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Location"/&gt;
       &lt;/type&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
@@ -2641,12 +2620,6 @@ If the target of the observation is different than the subject, the general exte
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Reference"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"/&gt;
       &lt;/type&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
@@ -2714,7 +2687,7 @@ If the target of the observation is different than the subject, the general exte
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="preferred"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>&gt;
           &lt;<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>
-                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/&gt;
+                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/&gt;
         &lt;/valueSetReference&gt;
       &lt;/binding&gt;
     &lt;/element&gt;
@@ -2757,7 +2730,7 @@ If the target of the observation is different than the subject, the general exte
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Observation.referenceRange"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Observation.referenceRange"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="0"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Observation.referenceRange"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
@@ -2907,11 +2880,11 @@ If the target of the observation is different than the subject, the general exte
 <div igtool="footer" id="segment-footer" class="segment">    <!-- segment-footer -->
   <div class="container">    <!-- container -->
    <div class="inner-wrapper">
-    <p><a name="64bb0836-b5a5-44ac-aee7-89c84ad83e70">​</a>
+    <p><a name="182f0056-5dd4-41b5-b8dc-fafa54140d73">​</a>
       
-      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1), Version: 0.7.0
+      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1), Version: 0.7.0
       ; <a style="color: #81BEF7" href="http://hl7.org/fhir/DSTU2/">FHIR &copy; Version: 1.0.2</a>
-      ; Generated on Wed, Mar 13, 2019 15:34-0400.
+      ; Generated on Wed, Mar 27, 2019 14:58-0400.
     </p>
    </div>    <!-- /inner-wrapper -->
   </div>    <!-- /container -->

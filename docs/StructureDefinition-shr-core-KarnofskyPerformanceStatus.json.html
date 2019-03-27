@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8"/>
   
-  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1)</title>
+  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1)</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1) FHIR Profiles"/>
+  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1) FHIR Profiles"/>
 
   <link rel="stylesheet" href="fhir.css"/>
 
@@ -40,7 +40,7 @@
     </a>
     <div id="hl7-status" class="hl7-status">
       
-      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1)</b>
+      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1)</b>
     </div>
 
     <div id="hl7-nav">
@@ -158,31 +158,28 @@
   Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
   Identifier maps to identifier
-  ObservationSubjectOfRecord maps to subject
-  Performer maps to performer
+  PatientSubjectOfRecord maps to subject
+  PractitionerPerformer maps to performer
   Code maps to code
   Method maps to method
   CommentOrDescription maps to comments
   Category maps to category
-  BodySite.BodySiteCode maps to bodySite
-  BodySite.Laterality maps to bodySite.extension
-  BodySite.AnatomicalDirection maps to bodySite.extension
-  BodySite.ClockDirection maps to bodySite.extension
-  BodySite.CommentOrDescription maps to bodySite.extension
-  BodySite.Attachment maps to bodySite.extension
-  BodySite.DistanceFromLandmark maps to bodySite.extension
+  BodyLocation.LocationCode maps to bodySite
+  BodyLocation.LocationQualifier maps to bodySite.extension
+  BodyLocation.Landmark maps to bodySite.extension
   Device maps to device
   StatementDateTime maps to issued
   ReferenceRange maps to referenceRange
   ReferenceRange.Range.LowerBound maps to referenceRange.low
   ReferenceRange.Range.UpperBound maps to referenceRange.high
   ReferenceRange.Type maps to referenceRange.meaning
-  Components maps to component
-  Components.ObservationComponent.Code maps to component.code (slice on = code.coding.code; slice strategy = includes)
+  Components.ObservationComponent maps to component (slice on = code.coding.code; slice strategy = includes)
+  Components.ObservationComponent.Code maps to component.code
   Components.ObservationComponent.DataValue maps to component.value[x]
   Components.ObservationComponent.DataAbsentReason maps to component.dataAbsentReason
   Components.ObservationComponent.ReferenceRange maps to component.referenceRange
@@ -222,7 +219,7 @@
       ]
     }
   ],
-  "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.date">date</a>" : "2019-03-13T00:00:00-04:00",
+  "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.date">date</a>" : "2019-03-27T00:00:00-04:00",
   "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.description">description</a>" : "The Karnofsky Performance Status (KPS) is a tool used to measure a patient's functional status. It can be used to compare the effectiveness of different therapies and to help assess the prognosis of certain patients, such as those with certain cancers. The KPS score ranges from 0 to 100. Higher scores are associated with better functional status, with 100 representing no symptoms or evidence of disease, and 0 representing death [PMID: 23870327] . This panel contains LOINC terms to report the KPS score [LOINC: 89243-0] and its interpretation [LOINC: 89245-5].",
   "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.requirements">requirements</a>" : "Observations are a key aspect of healthcare.  This resource is used to capture those that do not require more sophisticated mechanisms.",
   "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.fhirVersion">fhirVersion</a>" : "1.0.2",
@@ -1219,10 +1216,7 @@ If the target of the observation is different than the subject, the general exte
           {
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Reference",
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient",
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Group",
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device",
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Location"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"
             ]
           }
         ],
@@ -1364,10 +1358,7 @@ If the target of the observation is different than the subject, the general exte
           {
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Reference",
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner",
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization",
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient",
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"
             ]
           }
         ],
@@ -1549,7 +1540,7 @@ If the target of the observation is different than the subject, the general exte
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding">binding</a>" : {
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a>" : "preferred",
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>" : {
-            "<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>" : "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>" : "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         },
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping">mapping</a>" : [
@@ -1807,7 +1798,7 @@ If the target of the observation is different than the subject, the general exte
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.comments">comments</a>" : "Most observations only have one generic reference range. Systems MAY choose to restrict to only supplying the relevant reference range based on knowledge about the patient (e.g. specific to the patient's age, gender, weight and other factors), but this may not be possible or appropriate. Whenever more than one reference range is supplied, the differences between them SHOULD be provided in the reference range and/or age properties.",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.requirements">requirements</a>" : "Knowing what values are considered "normal" can help evaluate the significance of a particular result. Need to be able to provide multiple reference ranges for different contexts.",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "1",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "0",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a>" : "Observation.referenceRange",
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a>" : 0,
@@ -2921,10 +2912,7 @@ If the target of the observation is different than the subject, the general exte
           {
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Reference",
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient",
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Group",
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device",
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Location"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"
             ]
           }
         ],
@@ -2960,10 +2948,7 @@ If the target of the observation is different than the subject, the general exte
           {
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Reference",
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner",
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization",
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient",
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"
             ]
           }
         ],
@@ -3040,7 +3025,7 @@ If the target of the observation is different than the subject, the general exte
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding">binding</a>" : {
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a>" : "preferred",
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>" : {
-            "<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>" : "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>" : "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         }
       },
@@ -3089,7 +3074,7 @@ If the target of the observation is different than the subject, the general exte
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Observation.referenceRange",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "Observation.referenceRange",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "1",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "0",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a>" : "Observation.referenceRange",
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a>" : 0,
@@ -3252,11 +3237,11 @@ If the target of the observation is different than the subject, the general exte
 <div igtool="footer" id="segment-footer" class="segment">    <!-- segment-footer -->
   <div class="container">    <!-- container -->
    <div class="inner-wrapper">
-    <p><a name="3ab7c278-f17c-4ff6-ae7c-cbc42ab3f8dc">​</a>
+    <p><a name="54ae7ff0-5a76-4aa8-9b05-fe5efd635bc1">​</a>
       
-      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1), Version: 0.7.0
+      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1), Version: 0.7.0
       ; <a style="color: #81BEF7" href="http://hl7.org/fhir/DSTU2/">FHIR &copy; Version: 1.0.2</a>
-      ; Generated on Wed, Mar 13, 2019 15:34-0400.
+      ; Generated on Wed, Mar 27, 2019 14:58-0400.
     </p>
    </div>    <!-- /inner-wrapper -->
   </div>    <!-- /container -->

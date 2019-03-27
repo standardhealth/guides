@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8"/>
   
-  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1)</title>
+  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1)</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1) FHIR Profiles"/>
+  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1) FHIR Profiles"/>
 
   <link rel="stylesheet" href="fhir.css"/>
 
@@ -40,7 +40,7 @@
     </a>
     <div id="hl7-status" class="hl7-status">
       
-      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1)</b>
+      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1)</b>
     </div>
 
     <div id="hl7-nav">
@@ -161,6 +161,7 @@ Intent was added in STU3 and is provided as an extension with required binding.&
   Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
@@ -170,12 +171,13 @@ Intent was added in STU3 and is provided as an extension with required binding.&
   Identifier maps to identifier
   MedicationRequester maps to prescriber
   RequestIntent maps to extension
-  Medication maps to medication[x]
+  MedicationCodeOrReference maps to medication[x]
   NumberOfRefillsAllowed maps to dispenseRequest.numberOfRepeatsAllowed
   QuantityPerDispense maps to dispenseRequest.quantity
   SupplyDuration maps to dispenseRequest.expectedSupplyDuration
   constrain dosageInstruction to 0..1
   ReasonCode maps to reason[x]
+  ReasonReference maps to reason[x]
   Status maps to status
   ExpectedPerformanceTime maps to dispenseRequest.validityPeriod
   Annotation.Text maps to note
@@ -186,7 +188,7 @@ Intent was added in STU3 and is provided as an extension with required binding.&
   Dosage.DosageInstructionsText maps to dosageInstruction.text
   Dosage.RouteIntoBody maps to dosageInstruction.route
   Dosage.DosageMethod maps to dosageInstruction.method
-  Dosage.DosageBodySite.BodySiteCode maps to dosageInstruction.site[x]
+  Dosage.DosageBodyLocation maps to dosageInstruction.site[x]
   Dosage.MaximumDosePerTimePeriod maps to dosageInstruction.maxDosePerPeriod
   SubstitutionAllowed maps to substitution.extension
   SubstitutionReason maps to substitution.reason
@@ -211,7 +213,7 @@ Intent was added in STU3 and is provided as an extension with required binding.&
       &lt;<a href="http://hl7.org/fhir/DSTU2/datatypes.html#ContactPoint#ContactPoint.rank">rank</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#positiveInt">value</a>="0"/&gt;
     &lt;/telecom&gt;
   &lt;/contact&gt;
-  &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.date">date</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#dateTime">value</a>="2019-03-13T00:00:00-04:00"/&gt;
+  &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.date">date</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#dateTime">value</a>="2019-03-27T00:00:00-04:00"/&gt;
   &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.description">description</a>
                <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="An order for a medication to be dispensed and instructions for use.
 Value sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.
@@ -660,9 +662,9 @@ Intent was added in STU3 and is provided as an extension with required binding."
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="N/A"/&gt;
       &lt;/mapping&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="extension"&gt;
+    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationOrder.extension.extension"&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="extension"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension.extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="An Extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
@@ -740,131 +742,6 @@ Intent was added in STU3 and is provided as an extension with required binding."
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="N/A"/&gt;
       &lt;/mapping&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="reasonreference"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="reasonreference"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="The justification, as reference to a condition or observation."/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-    &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationOrder.extension.id"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension.id"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.representation">representation</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="xmlAttr"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension.id"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="xml:id (or equivalent in JSON)"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Element.id"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="string"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping">mapping</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.identity">identity</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">value</a>="rim"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="N/A"/&gt;
-      &lt;/mapping&gt;
-    &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="extension"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="An Extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Element.extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-    &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationOrder.extension.url"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension.url"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.representation">representation</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="xmlAttr"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension.url"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="identifies the meaning of the extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="Source of the definition for the extension code - a logical name or a URL."/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="1"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Extension.url"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="1"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="uri"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.fixed[x]">fixedUri</a>
-                <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping">mapping</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.identity">identity</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">value</a>="rim"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="N/A"/&gt;
-      &lt;/mapping&gt;
-    &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationOrder.extension.value[x]"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension.value[x]"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension.value[x]"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Value of extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="1"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Extension.value[x]"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Reference"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping">mapping</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.identity">identity</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">value</a>="rim"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="N/A"/&gt;
-      &lt;/mapping&gt;
-    &lt;/element&gt;
     &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="type"&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="type"/&gt;
@@ -913,9 +790,9 @@ Intent was added in STU3 and is provided as an extension with required binding."
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="N/A"/&gt;
       &lt;/mapping&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="extension"&gt;
+    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationOrder.extension.extension"&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="extension"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension.extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="An Extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
@@ -1040,9 +917,9 @@ Intent was added in STU3 and is provided as an extension with required binding."
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="N/A"/&gt;
       &lt;/mapping&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="extension"&gt;
+    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationOrder.extension.extension"&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="extension"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension.extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="An Extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
@@ -1171,9 +1048,9 @@ Intent was added in STU3 and is provided as an extension with required binding."
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="N/A"/&gt;
       &lt;/mapping&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="extension"&gt;
+    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationOrder.extension.extension"&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="extension"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension.extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="An Extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
@@ -1545,6 +1422,58 @@ Intent was added in STU3 and is provided as an extension with required binding."
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="context"/&gt;
       &lt;/mapping&gt;
     &lt;/element&gt;
+    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationOrder:argoprofile.reason[x]"&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.reason[x]"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder:argoprofile.reason[x]"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.slicing">slicing</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="4"&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.slicing.discriminator">discriminator</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="$this/@type"/&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.slicing.ordered">ordered</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.slicing.rules">rules</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="open"/&gt;
+      &lt;/slicing&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Reason or indication for writing the prescription"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
+                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="Can be the reason or the indication for writing the prescription."/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.reason[x]"/&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
+      &lt;/base&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="CodeableConcept"/&gt;
+      &lt;/type&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Reference"/&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
+                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"/&gt;
+      &lt;/type&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="true"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding">binding</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="example"/&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.description">description</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Codes indicating why the medication was ordered."/&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>&gt;
+          &lt;<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/ValueSet/condition-code"/&gt;
+        &lt;/valueSetReference&gt;
+      &lt;/binding&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping">mapping</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.identity">identity</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">value</a>="v2"/&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a>
+             <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="ORC-16-Order Control Code Reason /RXE-27-Give Indication/RXO-20-Indication / RXD-21-Indication / RXG-22-Indication / RXA-19-Indication"/&gt;
+      &lt;/mapping&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping">mapping</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.identity">identity</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">value</a>="rim"/&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a>
+             <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="reason.observation or reason.observation[code=ASSERTION].value"/&gt;
+      &lt;/mapping&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping">mapping</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.identity">identity</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">value</a>="w5"/&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="why"/&gt;
+      &lt;/mapping&gt;
+    &lt;/element&gt;
     &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="CodeableConcept"&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.reasonCodeableConcept"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="CodeableConcept"/&gt;
@@ -1594,7 +1523,7 @@ Intent was added in STU3 and is provided as an extension with required binding."
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="true"/&gt;
     &lt;/element&gt;
     &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.snapshot.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationOrder:argoprofile.medication[x]"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.medicationReference"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.medication[x]"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder:argoprofile.medication[x]"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="Medication to be taken"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
@@ -1608,6 +1537,9 @@ Intent was added in STU3 and is provided as an extension with required binding."
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="1"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
       &lt;/base&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="CodeableConcept"/&gt;
+      &lt;/type&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Reference"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
@@ -1946,7 +1878,7 @@ Intent was added in STU3 and is provided as an extension with required binding."
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="preferred"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>&gt;
           &lt;<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>
-                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/&gt;
+                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/&gt;
         &lt;/valueSetReference&gt;
       &lt;/binding&gt;
     &lt;/element&gt;
@@ -2704,28 +2636,6 @@ Intent was added in STU3 and is provided as an extension with required binding."
         &lt;/valueSetReference&gt;
       &lt;/binding&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="reasonreference"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="reasonreference"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>
-                  <a href="http://hl7.org/fhir/DSTU2/datatypes.html#markdown">value</a>="The justification, as reference to a condition or observation."/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="1"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="*"/&gt;
-      &lt;/base&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Extension"/&gt;
-        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
-                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"/&gt;
-      &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
-    &lt;/element&gt;
     &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="type"&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.extension"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="type"/&gt;
@@ -2865,6 +2775,28 @@ Intent was added in STU3 and is provided as an extension with required binding."
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
     &lt;/element&gt;
+    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationOrder.reason[x]"&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.reason[x]"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.reason[x]"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.slicing">slicing</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="4"&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.slicing.discriminator">discriminator</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="$this/@type"/&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.slicing.ordered">ordered</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.slicing.rules">rules</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="open"/&gt;
+      &lt;/slicing&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="CodeableConcept"/&gt;
+      &lt;/type&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Reference"/&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
+                 <a href="http://hl7.org/fhir/DSTU2/datatypes.html#uri">value</a>="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"/&gt;
+      &lt;/type&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#boolean">value</a>="false"/&gt;
+    &lt;/element&gt;
     &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationOrder.reasonCodeableConcept"&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.reasonCodeableConcept"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.reasonCodeableConcept"/&gt;
@@ -2883,10 +2815,13 @@ Intent was added in STU3 and is provided as an extension with required binding."
         &lt;/valueSetReference&gt;
       &lt;/binding&gt;
     &lt;/element&gt;
-    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationOrder.medicationReference"&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.medicationReference"/&gt;
-      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.medicationReference"/&gt;
+    &lt;<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#id">id</a>="MedicationOrder.medication[x]"&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.medication[x]"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="MedicationOrder.medication[x]"/&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#integer">value</a>="0"/&gt;
+      &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
+        &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="CodeableConcept"/&gt;
+      &lt;/type&gt;
       &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="Reference"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>
@@ -2969,7 +2904,7 @@ Intent was added in STU3 and is provided as an extension with required binding."
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a> <a href="http://hl7.org/fhir/DSTU2/datatypes.html#code">value</a>="preferred"/&gt;
         &lt;<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>&gt;
           &lt;<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>
-                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/&gt;
+                     <a href="http://hl7.org/fhir/DSTU2/datatypes.html#string">value</a>="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/&gt;
         &lt;/valueSetReference&gt;
       &lt;/binding&gt;
     &lt;/element&gt;
@@ -3112,11 +3047,11 @@ Intent was added in STU3 and is provided as an extension with required binding."
 <div igtool="footer" id="segment-footer" class="segment">    <!-- segment-footer -->
   <div class="container">    <!-- container -->
    <div class="inner-wrapper">
-    <p><a name="af828339-ae2f-47c2-9ab0-b46c1bcce473">​</a>
+    <p><a name="1f326179-b68c-4ccb-b0d8-3ddea81d8b82">​</a>
       
-      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1), Version: 0.7.0
+      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1), Version: 0.7.0
       ; <a style="color: #81BEF7" href="http://hl7.org/fhir/DSTU2/">FHIR &copy; Version: 1.0.2</a>
-      ; Generated on Wed, Mar 13, 2019 15:34-0400.
+      ; Generated on Wed, Mar 27, 2019 14:58-0400.
     </p>
    </div>    <!-- /inner-wrapper -->
   </div>    <!-- /container -->

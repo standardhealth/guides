@@ -37,7 +37,10 @@ user content","",0,*,"","","","Extension {[]} {[]}
 ","",,"open","Procedure.extension",0,*,"","","N/A"
 "Procedure.extension","statementdatetime","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatementDateTime-extension]]} {[]}
 ","","The point in time when the statement was created.","","","","","","","","","",0,,,,"",,,,"Procedure.extension",0,*,"",""
-"Procedure.extension","reasonreference","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension]]} {[]}
+"Procedure.extension","reasoncode","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonCode-extension]]} {[]}
+","","The justification, as a code.
+Reason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept, so we are not going to support a string.","","","","","","","","","",0,,,,"",,,,"Procedure.extension",0,*,"",""
+"Procedure.extension","reasonreference","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension]]} {[]}
 ","","The justification, as reference to a condition or observation.","","","","","","","","","",0,,,,"",,,,"Procedure.extension",0,*,"",""
 "Procedure.extension","partof","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PartOf-extension]]} {[]}
 ","","The larger entity that the asserted item is a portion of. For example, an organization part of a larger organization, or an encounter with a hospitalist might be part of a larger hospitalization encounter.","","","","","","","","","",0,,,,"",,,,"Procedure.extension",0,*,"",""
@@ -70,31 +73,23 @@ user content","",0,*,"","Y","","Extension {[]} {[]}
 ","Reason procedure was not performed","A code indicating why the procedure was not performed.","","","","","","","","","",0,"example","A code that identifies the reason a procedure was not performed.","http://hl7.org/fhir/ValueSet/procedure-not-performed-reason","",,,,"Procedure.reasonNotPerformed",0,*,"pro-1
 ","",".reason.Observation.value"
 "Procedure.bodySite","","","",0,*,"","","Y","CodeableConcept {[]} {[]}
-","Target body sites","Detailed and structured anatomical location information. Multiple locations are allowed - e.g. multiple punch biopsies of a lesion.","","","","","","","","","",0,"preferred","","http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS","",,,,"Procedure.bodySite",0,*,"","",".targetSiteCode","OBX-20"
+","Target body sites","Detailed and structured anatomical location information. Multiple locations are allowed - e.g. multiple punch biopsies of a lesion.","","","","","","","","","",0,"preferred","","http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS","",,,,"Procedure.bodySite",0,*,"","",".targetSiteCode","OBX-20"
 "Procedure.bodySite.id","","","",0,1,"","","","id {[]} {[]}
 ","xml:id (or equivalent in JSON)","unique id for the element within a resource (for internal references).","","","","","","","","","",,,,,"",,,,"",0,null,"","","n/a"
 "Procedure.bodySite.extension","","extensions
 user content","",0,*,"","","","Extension {[]} {[]}
 ","Additional Content defined by implementations","May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.","There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.","","","","","","","","",,,,,"","value:url}
 ","",,"open","",0,null,"","","n/a"
-"Procedure.bodySite.extension","laterality","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension]]} {[]}
-","","Anatomical location or specimen further detailing the side(s) of interest.","","","","","","","","","",,,,,"",,,,"Procedure.bodySite.extension",0,*,"",""
-"Procedure.bodySite.extension","anatomicaldirection","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension]]} {[]}
-","","Anatomical location or specimen further detailing directionality.","","","","","","","","","",,,,,"",,,,"Procedure.bodySite.extension",0,*,"",""
-"Procedure.bodySite.extension","clockdirection","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension]]} {[]}
-","","A direction indicated by an angle relative to 12 o'clock.","","","","","","","","","",,,,,"",,,,"Procedure.bodySite.extension",0,*,"",""
-"Procedure.bodySite.extension","commentordescription","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension]]} {[]}
-","","A text note containing additional details, explanation, description, comment, or summarization.","","","","","","","","","",,,,,"",,,,"Procedure.bodySite.extension",0,*,"",""
-"Procedure.bodySite.extension","attachment","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension]]} {[]}
-","","A file that contains audio, video, image, or similar content.","","","","","","","","","",,,,,"",,,,"Procedure.bodySite.extension",0,*,"",""
-"Procedure.bodySite.extension","distancefromlandmark","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension]]} {[]}
-","","How far the anatomical location of interest is from the given landmark","","","","","","","","","",,,,,"",,,,"Procedure.bodySite.extension",0,*,"",""
+"Procedure.bodySite.extension","locationqualifier","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension]]} {[]}
+","","Additional information, such as laterality or direction, that helps define the body location.","","","","","","","","","",,,,,"",,,,"Procedure.bodySite.extension",0,*,"",""
+"Procedure.bodySite.extension","landmark","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension]]} {[]}
+","","An anatomical landmark that helps determine a body location.","","","","","","","","","",,,,,"",,,,"Procedure.bodySite.extension",0,*,"",""
 "Procedure.bodySite.coding","","","",0,*,"","","Y","Coding {[]} {[]}
 ","Code defined by a terminology system","A reference to a code defined by a terminology system.","Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labelled as UserSelected = true.","Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings.","","","","","","","",,,,,"",,,,"",0,null,"","","union(., ./translation)","C*E.1-8, C*E.10-22"
 "Procedure.bodySite.text","","","",0,1,"","","Y","string {[]} {[]}
 ","Plain text representation of the concept","A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user.","Very often the text is the same as a displayName of one of the codings.","The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source.","","","","","","","",,,,,"",,,,"",0,null,"","","./originalText[mediaType/code=""text/plain""]/data","C*E.9. But note many systems use C*E.2 for this"
-"Procedure.reasonCodeableConcept","","","",0,1,"","","Y","CodeableConcept {[]} {[]}
-","Reason procedure performed","The reason why the procedure was performed. This may be due to a Condition, may be coded entity of some type, or may simply be present as text.","e.g. endoscopy for dilatation and biopsy, combination diagnosis and therapeutic.","","","","","","","","",0,"example","A code that identifies the reason a procedure is  required.","http://hl7.org/fhir/ValueSet/procedure-reason","",,,,"Procedure.reason[x]",0,1,"","",".reasonCode"
+"Procedure.reason[x]","","","",0,1,"","","Y","CodeableConcept {[]} {[]}
+Reference {[]} {[CanonicalType[http://hl7.org/fhir/StructureDefinition/Condition]]}","Reason procedure performed","The reason why the procedure was performed. This may be due to a Condition, may be coded entity of some type, or may simply be present as text.","e.g. endoscopy for dilatation and biopsy, combination diagnosis and therapeutic.","","","","","","","","",0,"example","A code that identifies the reason a procedure is  required.","http://hl7.org/fhir/ValueSet/procedure-reason","",,,,"Procedure.reason[x]",0,1,"","",".reasonCode"
 "Procedure.performer","","","",0,*,"","","Y","BackboneElement {[]} {[]}
 ","The people who performed the procedure","Limited to 'real' people rather than equipment.","","","","","","","","","",0,,,,"",,,,"Procedure.performer",0,*,"","",".participation[typeCode=PFM]"
 "Procedure.performer.id","","","",0,1,"","","","id {[]} {[]}

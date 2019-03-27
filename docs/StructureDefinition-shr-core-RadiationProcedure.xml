@@ -13,6 +13,7 @@
   Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
@@ -22,16 +23,11 @@
   Category maps to category
   constrain notPerformed to 0..0
   constrain reasonNotPerformed to 0..0
-  BodySite.BodySiteCode maps to bodySite
-  BodySite.Laterality maps to bodySite.extension
-  BodySite.AnatomicalDirection maps to bodySite.extension
-  BodySite.ClockDirection maps to bodySite.extension
-  BodySite.CommentOrDescription maps to bodySite.extension
-  BodySite.Attachment maps to bodySite.extension
-  BodySite.DistanceFromLandmark maps to bodySite.extension
+  BodyLocation.LocationCode maps to bodySite
+  BodyLocation.LocationQualifier maps to bodySite.extension
+  BodyLocation.Landmark maps to bodySite.extension
   Annotation maps to notes
   CareContext maps to encounter
-  ReasonCode maps to reason[x]
   OccurrenceTimeOrPeriod maps to performed[x]
   Participation maps to performer
   Participation.Participant maps to performer.actor
@@ -63,7 +59,7 @@
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-03-13T00:00:00-04:00"/>
+  <date value="2019-03-27T00:00:00-04:00"/>
   <description value="A radiation oncology procedure. If the treatment is part of a larger course of treatment, the PartOf attribute should indicate that."/>
   <fhirVersion value="1.0.2"/>
   <mapping>
@@ -453,12 +449,32 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
+    <element id="reasoncode">
+      <path value="Procedure.extension"/>
+      <name value="reasoncode"/>
+      <definition value="The justification, as a code.&#xA;Reason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept, so we are not going to support a string."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Procedure.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonCode-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
     <element id="reasonreference">
       <path value="Procedure.extension"/>
       <name value="reasonreference"/>
       <definition value="The justification, as reference to a condition or observation."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="*"/>
       <base>
         <path value="Procedure.extension"/>
         <min value="0"/>
@@ -518,9 +534,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="extension">
+    <element id="Procedure.extension.extension">
       <path value="Procedure.extension.extension"/>
-      <name value="extension"/>
+      <name value="Procedure.extension.extension"/>
       <short value="Extension"/>
       <definition value="An Extension"/>
       <min value="0"/>
@@ -668,6 +684,127 @@
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
+    </element>
+    <element id="terminationreason">
+      <path value="Procedure.extension"/>
+      <name value="terminationreason"/>
+      <definition value="A code explaining unplanned or premature termination of a plan of treatment, course of medication, or research study."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Procedure.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TerminationReason-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Procedure.extension.id">
+      <path value="Procedure.extension.id"/>
+      <representation value="xmlAttr"/>
+      <name value="Procedure.extension.id"/>
+      <short value="xml:id (or equivalent in JSON)"/>
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.id"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="string"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="Procedure.extension.extension">
+      <path value="Procedure.extension.extension"/>
+      <name value="Procedure.extension.extension"/>
+      <short value="Extension"/>
+      <definition value="An Extension"/>
+      <min value="0"/>
+      <max value="0"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Procedure.extension.url">
+      <path value="Procedure.extension.url"/>
+      <representation value="xmlAttr"/>
+      <name value="Procedure.extension.url"/>
+      <short value="identifies the meaning of the extension"/>
+      <definition value="Source of the definition for the extension code - a logical name or a URL."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Extension.url"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="uri"/>
+      </type>
+      <fixedUri value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TerminationReason-extension"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="Procedure.extension.valueCodeableConcept">
+      <path value="Procedure.extension.valueCodeableConcept"/>
+      <name value="Procedure.extension.valueCodeableConcept"/>
+      <short value="Value of extension"/>
+      <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Extension.value[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="required"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/TreatmentTerminationReasonVS"/>
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
     </element>
     <element id="Procedure:argoprofile.modifierExtension">
       <path value="Procedure.modifierExtension"/>
@@ -936,7 +1073,7 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -995,10 +1132,10 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="laterality">
+    <element id="locationqualifier">
       <path value="Procedure.bodySite.extension"/>
-      <name value="laterality"/>
-      <definition value="Anatomical location or specimen further detailing the side(s) of interest."/>
+      <name value="locationqualifier"/>
+      <definition value="Additional information, such as laterality or direction, that helps define the body location."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1008,17 +1145,17 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="anatomicaldirection">
+    <element id="landmark">
       <path value="Procedure.bodySite.extension"/>
-      <name value="anatomicaldirection"/>
-      <definition value="Anatomical location or specimen further detailing directionality."/>
+      <name value="landmark"/>
+      <definition value="An anatomical landmark that helps determine a body location."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1028,87 +1165,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="clockdirection">
-      <path value="Procedure.bodySite.extension"/>
-      <name value="clockdirection"/>
-      <definition value="A direction indicated by an angle relative to 12 o&#39;clock."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Procedure.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="commentordescription">
-      <path value="Procedure.bodySite.extension"/>
-      <name value="commentordescription"/>
-      <definition value="A text note containing additional details, explanation, description, comment, or summarization."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Procedure.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="attachment">
-      <path value="Procedure.bodySite.extension"/>
-      <name value="attachment"/>
-      <definition value="A file that contains audio, video, image, or similar content."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Procedure.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="distancefromlandmark">
-      <path value="Procedure.bodySite.extension"/>
-      <name value="distancefromlandmark"/>
-      <definition value="How far the anatomical location of interest is from the given landmark"/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Procedure.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1174,7 +1231,7 @@
       </mapping>
     </element>
     <element id="Procedure:argoprofile.reason[x]">
-      <path value="Procedure.reasonCodeableConcept"/>
+      <path value="Procedure.reason[x]"/>
       <name value="Procedure:argoprofile.reason[x]"/>
       <short value="Reason procedure performed"/>
       <definition value="The reason why the procedure was performed. This may be due to a Condition, may be coded entity of some type, or may simply be present as text."/>
@@ -1188,6 +1245,10 @@
       </base>
       <type>
         <code value="CodeableConcept"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <profile value="http://hl7.org/fhir/StructureDefinition/Condition"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1870,12 +1931,32 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
+    <element id="reasoncode">
+      <path value="Procedure.extension"/>
+      <name value="reasoncode"/>
+      <definition value="The justification, as a code.&#xA;Reason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept, so we are not going to support a string."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Procedure.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonCode-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
     <element id="reasonreference">
       <path value="Procedure.extension"/>
       <name value="reasonreference"/>
       <definition value="The justification, as reference to a condition or observation."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="*"/>
       <base>
         <path value="Procedure.extension"/>
         <min value="0"/>
@@ -2005,6 +2086,41 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
+    <element id="terminationreason">
+      <path value="Procedure.extension"/>
+      <name value="terminationreason"/>
+      <definition value="A code explaining unplanned or premature termination of a plan of treatment, course of medication, or research study."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Procedure.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TerminationReason-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Procedure.extension.valueCodeableConcept">
+      <path value="Procedure.extension.valueCodeableConcept"/>
+      <name value="Procedure.extension.valueCodeableConcept"/>
+      <min value="0"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="required"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/TreatmentTerminationReasonVS"/>
+        </valueSetReference>
+      </binding>
+    </element>
     <element id="Procedure.subject">
       <path value="Procedure.subject"/>
       <name value="Procedure.subject"/>
@@ -2064,7 +2180,7 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -2082,10 +2198,10 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="laterality">
+    <element id="locationqualifier">
       <path value="Procedure.bodySite.extension"/>
-      <name value="laterality"/>
-      <definition value="Anatomical location or specimen further detailing the side(s) of interest."/>
+      <name value="locationqualifier"/>
+      <definition value="Additional information, such as laterality or direction, that helps define the body location."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -2095,17 +2211,17 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="anatomicaldirection">
+    <element id="landmark">
       <path value="Procedure.bodySite.extension"/>
-      <name value="anatomicaldirection"/>
-      <definition value="Anatomical location or specimen further detailing directionality."/>
+      <name value="landmark"/>
+      <definition value="An anatomical landmark that helps determine a body location."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -2115,99 +2231,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="clockdirection">
-      <path value="Procedure.bodySite.extension"/>
-      <name value="clockdirection"/>
-      <definition value="A direction indicated by an angle relative to 12 o&#39;clock."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Procedure.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="commentordescription">
-      <path value="Procedure.bodySite.extension"/>
-      <name value="commentordescription"/>
-      <definition value="A text note containing additional details, explanation, description, comment, or summarization."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Procedure.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="attachment">
-      <path value="Procedure.bodySite.extension"/>
-      <name value="attachment"/>
-      <definition value="A file that contains audio, video, image, or similar content."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Procedure.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="distancefromlandmark">
-      <path value="Procedure.bodySite.extension"/>
-      <name value="distancefromlandmark"/>
-      <definition value="How far the anatomical location of interest is from the given landmark"/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Procedure.bodySite.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="Procedure.reasonCodeableConcept">
-      <path value="Procedure.reasonCodeableConcept"/>
-      <name value="Procedure.reasonCodeableConcept"/>
-      <min value="0"/>
-      <type>
-        <code value="CodeableConcept"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>

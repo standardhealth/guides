@@ -3,7 +3,7 @@
   "id": "oncocore-CancerHistologicType",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>CancerHistologicType Profile</b></p>\n  <p>Classification of the cancer by the type of tissue in which the cancer originates. (Source: NCI)</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>oncocore.CancerHistologicType maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-observationresults:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  ObservationSubjectOfRecord maps to subject\n  PractitionerPerformer maps to performer\n  Code maps to code\n  Method maps to method\n  CommentOrDescription maps to comments\n  Category maps to category\n  BodySite.BodySiteCode maps to bodySite\n  BodySite.Laterality maps to bodySite.extension\n  BodySite.AnatomicalDirection maps to bodySite.extension\n  BodySite.ClockDirection maps to bodySite.extension\n  BodySite.CommentOrDescription maps to bodySite.extension\n  BodySite.Attachment maps to bodySite.extension\n  BodySite.DistanceFromLandmark maps to bodySite.extension\n  Device maps to device\n  StatementDateTime maps to issued\n  ReferenceRange maps to referenceRange\n  ReferenceRange.Range.LowerBound maps to referenceRange.low\n  ReferenceRange.Range.UpperBound maps to referenceRange.high\n  ReferenceRange.Type maps to referenceRange.meaning\n  Components maps to component\n  Components.ObservationComponent.Code maps to component.code (slice on = code.coding.code; slice strategy = includes)\n  Components.ObservationComponent.DataValue maps to component.value[x]\n  Components.ObservationComponent.DataAbsentReason maps to component.dataAbsentReason\n  Components.ObservationComponent.ReferenceRange maps to component.referenceRange\n  fix related.type to #has-member\r\n  PanelMembers maps to related\n  PanelMembers.Observation maps to related.target (slice at = related; slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)\n  DataValue maps to value[x]\n  DataAbsentReason maps to dataAbsentReason\n  Interpretation maps to interpretation\n  Status maps to status\n  RelevantTime maps to effective[x]\n  CareContext maps to encounter\n  Specimen maps to specimen\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>CancerHistologicType Profile</b></p>\n  <p>Classification of the cancer by the type of tissue in which the cancer originates. (Source: NCI)</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>oncocore.CancerHistologicType maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-observationresults:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier (slice on = Type.coding.code; slice strategy = includes)\n  ObservationSubjectOfRecord maps to subject\n  PractitionerPerformer maps to performer (slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)\n  Code maps to code\n  Method maps to method\n  CommentOrDescription maps to comments\n  Category maps to category\n  BodyLocation.LocationCode maps to bodySite\n  BodyLocation.LocationQualifier maps to bodySite.extension\n  BodyLocation.Landmark maps to bodySite.extension\n  Device maps to device\n  StatementDateTime maps to issued\n  ReferenceRange maps to referenceRange\n  ReferenceRange.Range.LowerBound maps to referenceRange.low\n  ReferenceRange.Range.UpperBound maps to referenceRange.high\n  ReferenceRange.Type maps to referenceRange.meaning\n  Components.ObservationComponent maps to component (slice on = code.coding.code; slice strategy = includes)\n  Components.ObservationComponent.Code maps to component.code\n  Components.ObservationComponent.DataValue maps to component.value[x]\n  Components.ObservationComponent.DataAbsentReason maps to component.dataAbsentReason\n  Components.ObservationComponent.ReferenceRange maps to component.referenceRange\n  fix related.type to #has-member\r\n  PanelMembers maps to related\n  PanelMembers.Observation maps to related.target (slice at = related; slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)\n  DataValue maps to value[x]\n  DataAbsentReason maps to dataAbsentReason\n  Interpretation maps to interpretation\n  Status maps to status\n  RelevantTime maps to effective[x]\n  CareContext maps to encounter\n  Specimen maps to specimen\n</pre></p>\n</div>"
   },
   "url": "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-CancerHistologicType",
   "identifier": [
@@ -28,7 +28,7 @@
       ]
     }
   ],
-  "date": "2019-03-13T00:00:00-04:00",
+  "date": "2019-03-27T00:00:00-04:00",
   "description": "Classification of the cancer by the type of tissue in which the cancer originates. (Source: NCI)",
   "fhirVersion": "1.0.2",
   "mapping": [
@@ -467,7 +467,7 @@
         "path": "Observation.extension",
         "name": "Observation:argoprofile.extension",
         "slicing": {
-          "id": "3",
+          "id": "5",
           "discriminator": [
             "url"
           ],
@@ -567,6 +567,14 @@
         "id": "Observation:argoprofile.identifier",
         "path": "Observation.identifier",
         "name": "Observation:argoprofile.identifier",
+        "slicing": {
+          "id": "2",
+          "discriminator": [
+            "Type.coding.code"
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
         "short": "Unique Id for this particular observation",
         "definition": "A unique identifier for the simple observation instance.",
         "requirements": "Allows observations to be distinguished and referenced.",
@@ -580,6 +588,126 @@
         "type": [
           {
             "code": "Identifier"
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "OBX.21"
+          },
+          {
+            "identity": "rim",
+            "map": "id"
+          },
+          {
+            "identity": "w5",
+            "map": "id"
+          }
+        ]
+      },
+      {
+        "id": "shr-core-AccessionIdentifier",
+        "path": "Observation.identifier",
+        "name": "shr-core-AccessionIdentifier",
+        "short": "AccessionIdentifier",
+        "definition": "Identifier assigned by the lab",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Observation.identifier",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AccessionIdentifier"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "OBX.21"
+          },
+          {
+            "identity": "rim",
+            "map": "id"
+          },
+          {
+            "identity": "w5",
+            "map": "id"
+          }
+        ]
+      },
+      {
+        "id": "shr-core-FillerOrderNumber",
+        "path": "Observation.identifier",
+        "name": "shr-core-FillerOrderNumber",
+        "short": "FillerOrderNumber",
+        "definition": "Identifier assigned by the lab carrying out the test.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Observation.identifier",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-FillerOrderNumber"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "OBX.21"
+          },
+          {
+            "identity": "rim",
+            "map": "id"
+          },
+          {
+            "identity": "w5",
+            "map": "id"
+          }
+        ]
+      },
+      {
+        "id": "shr-core-PlacerOrderNumber",
+        "path": "Observation.identifier",
+        "name": "shr-core-PlacerOrderNumber",
+        "short": "PlacerOrderNumber",
+        "definition": "Identifier assigned by the requester of the lab.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Observation.identifier",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PlacerOrderNumber"
+            ]
           }
         ],
         "maxLength": 0,
@@ -1307,6 +1435,16 @@
         "id": "Observation:argoprofile.performer",
         "path": "Observation.performer",
         "name": "Observation:argoprofile.performer",
+        "slicing": {
+          "id": "3",
+          "discriminator": [
+            "target.reference/@profile",
+            "target.reference/@profile",
+            "target.reference/@profile"
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
         "short": "Who is responsible for the observation",
         "definition": "Who was responsible for asserting the observed value as \"true\".",
         "requirements": "May give a degree of confidence in the observation and also indicates where follow-up questions should be directed.",
@@ -1321,6 +1459,131 @@
           {
             "code": "Reference",
             "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "OBX.15 / (Practitioner)  OBX-16,  PRT-5:PRT-4='RO' /  (Device)  OBX-18 , PRT-10:PRT-4='EQUIP' / (Organization)  OBX-23,  PRT-8:PRT-4='PO'"
+          },
+          {
+            "identity": "rim",
+            "map": "participation[typeCode=PRF]"
+          },
+          {
+            "identity": "w5",
+            "map": "who.actor"
+          }
+        ]
+      },
+      {
+        "id": "shr-core-ResponsibleObserver",
+        "path": "Observation.performer",
+        "name": "shr-core-ResponsibleObserver",
+        "short": "ResponsibleObserver",
+        "definition": "Person directly responsible for carrying out the test.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Observation.performer",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner",
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner",
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient",
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "OBX.15 / (Practitioner)  OBX-16,  PRT-5:PRT-4='RO' /  (Device)  OBX-18 , PRT-10:PRT-4='EQUIP' / (Organization)  OBX-23,  PRT-8:PRT-4='PO'"
+          },
+          {
+            "identity": "rim",
+            "map": "participation[typeCode=PRF]"
+          },
+          {
+            "identity": "w5",
+            "map": "who.actor"
+          }
+        ]
+      },
+      {
+        "id": "shr-core-PerformingLaboratory",
+        "path": "Observation.performer",
+        "name": "shr-core-PerformingLaboratory",
+        "short": "PerformingLaboratory",
+        "definition": "Organization responsible for carrying out the test.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Observation.performer",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner",
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "OBX.15 / (Practitioner)  OBX-16,  PRT-5:PRT-4='RO' /  (Device)  OBX-18 , PRT-10:PRT-4='EQUIP' / (Organization)  OBX-23,  PRT-8:PRT-4='PO'"
+          },
+          {
+            "identity": "rim",
+            "map": "participation[typeCode=PRF]"
+          },
+          {
+            "identity": "w5",
+            "map": "who.actor"
+          }
+        ]
+      },
+      {
+        "id": "shr-core-PerformingOrganizationMedicalDirector",
+        "path": "Observation.performer",
+        "name": "shr-core-PerformingOrganizationMedicalDirector",
+        "short": "PerformingOrganizationMedicalDirector",
+        "definition": "Director of the laboratory performing the test.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Observation.performer",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner",
               "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"
             ]
           }
@@ -1522,7 +1785,7 @@
         "binding": {
           "strength": "preferred",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         },
         "mapping": [
@@ -2903,7 +3166,7 @@
         "path": "Observation.extension",
         "name": "Observation.extension",
         "slicing": {
-          "id": "3",
+          "id": "5",
           "discriminator": [
             "url"
           ],
@@ -2933,6 +3196,87 @@
             "code": "Extension",
             "profile": [
               "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-RelatedCancerCondition-extension"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "Observation.identifier",
+        "path": "Observation.identifier",
+        "name": "Observation.identifier",
+        "slicing": {
+          "id": "2",
+          "discriminator": [
+            "Type.coding.code"
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "min": 0,
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-AccessionIdentifier",
+        "path": "Observation.identifier",
+        "name": "shr-core-AccessionIdentifier",
+        "short": "AccessionIdentifier",
+        "definition": "Identifier assigned by the lab",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AccessionIdentifier"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-FillerOrderNumber",
+        "path": "Observation.identifier",
+        "name": "shr-core-FillerOrderNumber",
+        "short": "FillerOrderNumber",
+        "definition": "Identifier assigned by the lab carrying out the test.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-FillerOrderNumber"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-PlacerOrderNumber",
+        "path": "Observation.identifier",
+        "name": "shr-core-PlacerOrderNumber",
+        "short": "PlacerOrderNumber",
+        "definition": "Identifier assigned by the requester of the lab.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PlacerOrderNumber"
             ]
           }
         ],
@@ -3050,11 +3394,89 @@
         "id": "Observation.performer",
         "path": "Observation.performer",
         "name": "Observation.performer",
+        "slicing": {
+          "id": "3",
+          "discriminator": [
+            "target.reference/@profile",
+            "target.reference/@profile",
+            "target.reference/@profile"
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
         "min": 0,
         "type": [
           {
             "code": "Reference",
             "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-ResponsibleObserver",
+        "path": "Observation.performer",
+        "name": "shr-core-ResponsibleObserver",
+        "short": "ResponsibleObserver",
+        "definition": "Person directly responsible for carrying out the test.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner",
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner",
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient",
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-PerformingLaboratory",
+        "path": "Observation.performer",
+        "name": "shr-core-PerformingLaboratory",
+        "short": "PerformingLaboratory",
+        "definition": "Organization responsible for carrying out the test.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner",
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-PerformingOrganizationMedicalDirector",
+        "path": "Observation.performer",
+        "name": "shr-core-PerformingOrganizationMedicalDirector",
+        "short": "PerformingOrganizationMedicalDirector",
+        "definition": "Director of the laboratory performing the test.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner",
               "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"
             ]
           }
@@ -3114,7 +3536,7 @@
         "binding": {
           "strength": "preferred",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         }
       },

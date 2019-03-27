@@ -11,7 +11,7 @@
   fhir:StructureDefinition.id [ fhir:value "shr-core-MedicationStatement"];
   fhir:StructureDefinition.text [
      fhir:Narrative.status [ fhir:value "generated" ];
-     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>MedicationStatement Profile</b></p>\n  <p>A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason. In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.MedicationStatement maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-medicationstatement:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  MedicationStatementInformationSource maps to informationSource\n  StatementDateTime maps to dateAsserted  // slight semantic difference?\n  PatientSubjectOfRecord maps to patient\n  constrain wasNotTaken to 0..0\n  constrain reasonNotTaken to 0..0\n  constrain dosage to 0..1\n  Medication maps to medication[x]\n  ReasonCode maps to reasonForUse[x]\n  OccurrenceTimeOrPeriod maps to effective[x]\n  Status maps to status\n  Dosage.DoseAmount maps to dosage.quantity[x]\n  Dosage.TimingOfDoses maps to dosage.timing\n  Dosage.AsNeededIndicator maps to dosage.asNeeded[x]\n  Dosage.DosageInstructionsText maps to dosage.text\n  Dosage.RouteIntoBody maps to dosage.route\n  Dosage.DosageMethod maps to dosage.method\n  Dosage.DosageBodySite.BodySiteCode maps to dosage.site[x]\n  Dosage.MaximumDosePerTimePeriod maps to dosage.maxDosePerPeriod\n</pre></p>\n</div>"
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>MedicationStatement Profile</b></p>\n  <p>A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.MedicationStatement maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-medicationstatement:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  MedicationStatementInformationSource maps to informationSource\n  StatementDateTime maps to dateAsserted  // slight semantic difference?\n  PatientSubjectOfRecord maps to patient\n  constrain wasNotTaken to 0..0\n  constrain reasonNotTaken to 0..0\n  constrain dosage to 0..1\n  MedicationCodeOrReference maps to medication[x]\n  ReasonCode maps to reasonForUse[x]\n  ReasonReference maps to reasonForUse[x]\n  OccurrenceTimeOrPeriod maps to effective[x]\n  Status maps to status\n  Dosage.DoseAmount maps to dosage.quantity[x]\n  Dosage.TimingOfDoses maps to dosage.timing\n  Dosage.AsNeededIndicator maps to dosage.asNeeded[x]\n  Dosage.DosageInstructionsText maps to dosage.text\n  Dosage.RouteIntoBody maps to dosage.route\n  Dosage.DosageMethod maps to dosage.method\n  Dosage.DosageBodyLocation maps to dosage.site[x]\n  Dosage.MaximumDosePerTimePeriod maps to dosage.maxDosePerPeriod\n</pre></p>\n</div>"
   ];
   fhir:StructureDefinition.url [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationStatement"];
   fhir:StructureDefinition.identifier [
@@ -33,8 +33,8 @@
        fhir:ContactPoint.rank [ fhir:value "0"^^xsd:positiveInteger ]
      ]
   ];
-  fhir:StructureDefinition.date [ fhir:value "2019-03-13T00:00:00-04:00"^^xsd:dateTime];
-  fhir:StructureDefinition.description [ fhir:value "A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason. In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously."];
+  fhir:StructureDefinition.date [ fhir:value "2019-03-27T00:00:00-04:00"^^xsd:dateTime];
+  fhir:StructureDefinition.description [ fhir:value "A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously."];
   fhir:StructureDefinition.code [
      fhir:index 0;
      a sct:416608005;
@@ -71,7 +71,7 @@
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement" ];
        fhir:ElementDefinition.name [ fhir:value "argoprofile" ];
        fhir:ElementDefinition.short [ fhir:value "shr-core-MedicationStatement" ];
-       fhir:ElementDefinition.definition [ fhir:value "A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason. In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously." ];
+       fhir:ElementDefinition.definition [ fhir:value "A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.max [ fhir:value "*" ];
        fhir:ElementDefinition.base [
@@ -520,150 +520,6 @@
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 16;
-       fhir:ElementDefinition.id [ fhir:value "reasonreference" ];
-       fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension" ];
-       fhir:ElementDefinition.name [ fhir:value "reasonreference" ];
-       fhir:ElementDefinition.definition [ fhir:value "The justification, as reference to a condition or observation." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "MedicationStatement.extension" ];
-         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
-         fhir:ElementDefinition.base.max [ fhir:value "*" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
-         fhir:ElementDefinition.type.profile [
-           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension";
-           fhir:index 0
-         ]
-       ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
-     ], [
-       fhir:index 17;
-       fhir:ElementDefinition.id [ fhir:value "MedicationStatement.extension.id" ];
-       fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension.id" ];
-       fhir:ElementDefinition.representation [
-         fhir:value "xmlAttr";
-         fhir:index 0
-       ];
-       fhir:ElementDefinition.name [ fhir:value "MedicationStatement.extension.id" ];
-       fhir:ElementDefinition.short [ fhir:value "xml:id (or equivalent in JSON)" ];
-       fhir:ElementDefinition.definition [ fhir:value "unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "Element.id" ];
-         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
-         fhir:ElementDefinition.base.max [ fhir:value "1" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "string" ]
-       ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.mapping [
-         fhir:index 0;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
-       ]
-     ], [
-       fhir:index 18;
-       fhir:ElementDefinition.id [ fhir:value "extension" ];
-       fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension.extension" ];
-       fhir:ElementDefinition.name [ fhir:value "extension" ];
-       fhir:ElementDefinition.short [ fhir:value "Extension" ];
-       fhir:ElementDefinition.definition [ fhir:value "An Extension" ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "0" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "Element.extension" ];
-         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
-         fhir:ElementDefinition.base.max [ fhir:value "*" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Extension" ]
-       ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
-     ], [
-       fhir:index 19;
-       fhir:ElementDefinition.id [ fhir:value "MedicationStatement.extension.url" ];
-       fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension.url" ];
-       fhir:ElementDefinition.representation [
-         fhir:value "xmlAttr";
-         fhir:index 0
-       ];
-       fhir:ElementDefinition.name [ fhir:value "MedicationStatement.extension.url" ];
-       fhir:ElementDefinition.short [ fhir:value "identifies the meaning of the extension" ];
-       fhir:ElementDefinition.definition [ fhir:value "Source of the definition for the extension code - a logical name or a URL." ];
-       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "Extension.url" ];
-         fhir:ElementDefinition.base.min [ fhir:value "1"^^xsd:integer ];
-         fhir:ElementDefinition.base.max [ fhir:value "1" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "uri" ]
-       ];
-       fhir:ElementDefinition.fixedUri [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension" ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.mapping [
-         fhir:index 0;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
-       ]
-     ], [
-       fhir:index 20;
-       fhir:ElementDefinition.id [ fhir:value "MedicationStatement.extension.value[x]" ];
-       fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension.value[x]" ];
-       fhir:ElementDefinition.name [ fhir:value "MedicationStatement.extension.value[x]" ];
-       fhir:ElementDefinition.short [ fhir:value "Value of extension" ];
-       fhir:ElementDefinition.definition [ fhir:value "Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)." ];
-       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "Extension.value[x]" ];
-         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
-         fhir:ElementDefinition.base.max [ fhir:value "1" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.profile [
-           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition";
-           fhir:index 0
-         ], [
-           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation";
-           fhir:index 1
-         ]
-       ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.mapping [
-         fhir:index 0;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
-       ]
-     ], [
-       fhir:index 21;
        fhir:ElementDefinition.id [ fhir:value "medicationstatementrelatedrequest" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension" ];
        fhir:ElementDefinition.name [ fhir:value "medicationstatementrelatedrequest" ];
@@ -688,7 +544,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 22;
+       fhir:index 17;
        fhir:ElementDefinition.id [ fhir:value "category" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension" ];
        fhir:ElementDefinition.name [ fhir:value "category" ];
@@ -713,7 +569,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 23;
+       fhir:index 18;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.extension.id" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension.id" ];
        fhir:ElementDefinition.representation [
@@ -744,10 +600,10 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 24;
-       fhir:ElementDefinition.id [ fhir:value "extension" ];
+       fhir:index 19;
+       fhir:ElementDefinition.id [ fhir:value "MedicationStatement.extension.extension" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension.extension" ];
-       fhir:ElementDefinition.name [ fhir:value "extension" ];
+       fhir:ElementDefinition.name [ fhir:value "MedicationStatement.extension.extension" ];
        fhir:ElementDefinition.short [ fhir:value "Extension" ];
        fhir:ElementDefinition.definition [ fhir:value "An Extension" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
@@ -766,7 +622,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 25;
+       fhir:index 20;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.extension.url" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension.url" ];
        fhir:ElementDefinition.representation [
@@ -798,7 +654,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 26;
+       fhir:index 21;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.extension.valueCodeableConcept" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension.valueCodeableConcept" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement.extension.valueCodeableConcept" ];
@@ -832,7 +688,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 27;
+       fhir:index 22;
        fhir:ElementDefinition.id [ fhir:value "treatmentintent" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension" ];
        fhir:ElementDefinition.name [ fhir:value "treatmentintent" ];
@@ -857,11 +713,11 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 28;
+       fhir:index 23;
        fhir:ElementDefinition.id [ fhir:value "terminationreason" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension" ];
        fhir:ElementDefinition.name [ fhir:value "terminationreason" ];
-       fhir:ElementDefinition.definition [ fhir:value "A description and/or code explaining the premature termination of the study." ];
+       fhir:ElementDefinition.definition [ fhir:value "A code explaining unplanned or premature termination of a plan of treatment, course of medication, or research study." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.max [ fhir:value "*" ];
        fhir:ElementDefinition.base [
@@ -882,7 +738,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 29;
+       fhir:index 24;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.extension.id" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension.id" ];
        fhir:ElementDefinition.representation [
@@ -913,10 +769,10 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 30;
-       fhir:ElementDefinition.id [ fhir:value "extension" ];
+       fhir:index 25;
+       fhir:ElementDefinition.id [ fhir:value "MedicationStatement.extension.extension" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension.extension" ];
-       fhir:ElementDefinition.name [ fhir:value "extension" ];
+       fhir:ElementDefinition.name [ fhir:value "MedicationStatement.extension.extension" ];
        fhir:ElementDefinition.short [ fhir:value "Extension" ];
        fhir:ElementDefinition.definition [ fhir:value "An Extension" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
@@ -935,7 +791,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 31;
+       fhir:index 26;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.extension.url" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension.url" ];
        fhir:ElementDefinition.representation [
@@ -967,7 +823,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 32;
+       fhir:index 27;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.extension.valueCodeableConcept" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension.valueCodeableConcept" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement.extension.valueCodeableConcept" ];
@@ -991,8 +847,8 @@
        fhir:ElementDefinition.binding [
          fhir:ElementDefinition.binding.strength [ fhir:value "required" ];
          fhir:ElementDefinition.binding.valueSetReference [
-           fhir:link <http://hl7.org/fhir/us/projectURL/shr/core/vs/MedicationTerminationReasonVS>;
-           fhir:Reference.reference [ fhir:value "http://hl7.org/fhir/us/projectURL/shr/core/vs/MedicationTerminationReasonVS" ]
+           fhir:link <http://hl7.org/fhir/us/projectURL/shr/core/vs/TreatmentTerminationReasonVS>;
+           fhir:Reference.reference [ fhir:value "http://hl7.org/fhir/us/projectURL/shr/core/vs/TreatmentTerminationReasonVS" ]
          ]
        ];
        fhir:ElementDefinition.mapping [
@@ -1001,7 +857,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 33;
+       fhir:index 28;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.modifierExtension" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.modifierExtension" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.modifierExtension" ];
@@ -1036,7 +892,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 34;
+       fhir:index 29;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.identifier" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.identifier" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.identifier" ];
@@ -1067,7 +923,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "id" ]
        ]
      ], [
-       fhir:index 35;
+       fhir:index 30;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.patient" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.patient" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.patient" ];
@@ -1106,7 +962,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "who.focus" ]
        ]
      ], [
-       fhir:index 36;
+       fhir:index 31;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.informationSource" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.informationSource" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.informationSource" ];
@@ -1142,7 +998,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "who.source" ]
        ]
      ], [
-       fhir:index 37;
+       fhir:index 32;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.dateAsserted" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dateAsserted" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.dateAsserted" ];
@@ -1164,7 +1020,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 38;
+       fhir:index 33;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.status" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.status" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.status" ];
@@ -1194,7 +1050,7 @@
          ]
        ]
      ], [
-       fhir:index 39;
+       fhir:index 34;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.wasNotTaken" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.wasNotTaken" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.wasNotTaken" ];
@@ -1226,7 +1082,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "status" ]
        ]
      ], [
-       fhir:index 40;
+       fhir:index 35;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.reasonNotTaken" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.reasonNotTaken" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.reasonNotTaken" ];
@@ -1265,9 +1121,9 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "SubstanceAdministration->Reason->Observation->Value" ]
        ]
      ], [
-       fhir:index 41;
+       fhir:index 36;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.reasonForUse[x]" ];
-       fhir:ElementDefinition.path [ fhir:value "MedicationStatement.reasonForUseCodeableConcept" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationStatement.reasonForUse[x]" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.reasonForUse[x]" ];
        fhir:ElementDefinition.definition [ fhir:value "A reason for why the medication is being/was taken." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
@@ -1280,6 +1136,13 @@
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "CodeableConcept" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.profile [
+           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition";
+           fhir:index 0
+         ]
        ];
        fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
@@ -1294,7 +1157,7 @@
          ]
        ]
      ], [
-       fhir:index 42;
+       fhir:index 37;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.effective[x]" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.effective[x]" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.effective[x]" ];
@@ -1329,7 +1192,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "when.done" ]
        ]
      ], [
-       fhir:index 43;
+       fhir:index 38;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.note" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.note" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.note" ];
@@ -1351,7 +1214,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ]
      ], [
-       fhir:index 44;
+       fhir:index 39;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.supportingInformation" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.supportingInformation" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.supportingInformation" ];
@@ -1378,9 +1241,9 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ]
      ], [
-       fhir:index 45;
+       fhir:index 40;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.medication[x]" ];
-       fhir:ElementDefinition.path [ fhir:value "MedicationStatement.medicationReference" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationStatement.medication[x]" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.medication[x]" ];
        fhir:ElementDefinition.short [ fhir:value "What medication was taken" ];
        fhir:ElementDefinition.definition [ fhir:value "Identifies the medication being administered. This is either a link to a resource representing the details of the medication or a simple attribute carrying a code that identifies the medication from a known list of medications." ];
@@ -1394,6 +1257,9 @@
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "CodeableConcept" ]
+       ], [
+         fhir:index 1;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
          fhir:ElementDefinition.type.profile [
            fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Medication";
@@ -1422,7 +1288,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "what" ]
        ]
      ], [
-       fhir:index 46;
+       fhir:index 41;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.dosage" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.dosage" ];
@@ -1449,7 +1315,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "SubstanceAdministration>Component>SubstanceAdministrationRequest" ]
        ]
      ], [
-       fhir:index 47;
+       fhir:index 42;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.dosage.id" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage.id" ];
        fhir:ElementDefinition.representation [
@@ -1480,7 +1346,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 48;
+       fhir:index 43;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.dosage.extension" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage.extension" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.dosage.extension" ];
@@ -1515,7 +1381,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 49;
+       fhir:index 44;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.dosage.modifierExtension" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage.modifierExtension" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.dosage.modifierExtension" ];
@@ -1553,7 +1419,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 50;
+       fhir:index 45;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.dosage.text" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage.text" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.dosage.text" ];
@@ -1575,7 +1441,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ]
      ], [
-       fhir:index 51;
+       fhir:index 46;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.dosage.timing" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage.timing" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.dosage.timing" ];
@@ -1606,7 +1472,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".effectiveTime" ]
        ]
      ], [
-       fhir:index 52;
+       fhir:index 47;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.dosage.asNeeded[x]" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage.asNeeded[x]" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.dosage.asNeeded[x]" ];
@@ -1649,7 +1515,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "boolean: .outboundRelationship[typeCode=PRCN].negationInd (inversed - so negationInd = true means asNeeded=false  CodeableConcept: .outboundRelationship[typCode=PRCN].target[classCode=OBS, moodCode=EVN, isCriterionInd=true, code=\"Assertion\"].value" ]
        ]
      ], [
-       fhir:index 53;
+       fhir:index 48;
        fhir:ElementDefinition.id [ fhir:value "CodeableConcept" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage.asNeededCodeableConcept" ];
        fhir:ElementDefinition.name [ fhir:value "CodeableConcept" ];
@@ -1678,7 +1544,7 @@
          ]
        ]
      ], [
-       fhir:index 54;
+       fhir:index 49;
        fhir:ElementDefinition.id [ fhir:value "CodeableConcept" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage.siteCodeableConcept" ];
        fhir:ElementDefinition.name [ fhir:value "CodeableConcept" ];
@@ -1702,12 +1568,12 @@
        fhir:ElementDefinition.binding [
          fhir:ElementDefinition.binding.strength [ fhir:value "preferred" ];
          fhir:ElementDefinition.binding.valueSetReference [
-           fhir:link <http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS>;
-           fhir:Reference.reference [ fhir:value "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS" ]
+           fhir:link <http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS>;
+           fhir:Reference.reference [ fhir:value "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS" ]
          ]
        ]
      ], [
-       fhir:index 55;
+       fhir:index 50;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.dosage.route" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage.route" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.dosage.route" ];
@@ -1742,7 +1608,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".routeCode" ]
        ]
      ], [
-       fhir:index 56;
+       fhir:index 51;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.dosage.method" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage.method" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.dosage.method" ];
@@ -1777,7 +1643,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".methodCode" ]
        ]
      ], [
-       fhir:index 57;
+       fhir:index 52;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.dosage.quantity[x]" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage.quantity[x]" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.dosage.quantity[x]" ];
@@ -1811,7 +1677,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".doseQuantity" ]
        ]
      ], [
-       fhir:index 58;
+       fhir:index 53;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.dosage.rate[x]" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage.rate[x]" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.dosage.rate[x]" ];
@@ -1841,7 +1707,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".rateQuantity" ]
        ]
      ], [
-       fhir:index 59;
+       fhir:index 54;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement:argoprofile.dosage.maxDosePerPeriod" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage.maxDosePerPeriod" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement:argoprofile.dosage.maxDosePerPeriod" ];
@@ -1876,7 +1742,7 @@
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement" ];
        fhir:ElementDefinition.short [ fhir:value "shr-core-MedicationStatement" ];
-       fhir:ElementDefinition.definition [ fhir:value "A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason. In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously." ];
+       fhir:ElementDefinition.definition [ fhir:value "A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.type [
          fhir:index 0;
@@ -1932,31 +1798,6 @@
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 3;
-       fhir:ElementDefinition.id [ fhir:value "reasonreference" ];
-       fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension" ];
-       fhir:ElementDefinition.name [ fhir:value "reasonreference" ];
-       fhir:ElementDefinition.definition [ fhir:value "The justification, as reference to a condition or observation." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "MedicationStatement.extension" ];
-         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
-         fhir:ElementDefinition.base.max [ fhir:value "*" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
-         fhir:ElementDefinition.type.profile [
-           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension";
-           fhir:index 0
-         ]
-       ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
-     ], [
-       fhir:index 4;
        fhir:ElementDefinition.id [ fhir:value "medicationstatementrelatedrequest" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension" ];
        fhir:ElementDefinition.name [ fhir:value "medicationstatementrelatedrequest" ];
@@ -1981,7 +1822,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 5;
+       fhir:index 4;
        fhir:ElementDefinition.id [ fhir:value "category" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension" ];
        fhir:ElementDefinition.name [ fhir:value "category" ];
@@ -2006,7 +1847,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 6;
+       fhir:index 5;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.extension.valueCodeableConcept" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension.valueCodeableConcept" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement.extension.valueCodeableConcept" ];
@@ -2023,7 +1864,7 @@
          ]
        ]
      ], [
-       fhir:index 7;
+       fhir:index 6;
        fhir:ElementDefinition.id [ fhir:value "treatmentintent" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension" ];
        fhir:ElementDefinition.name [ fhir:value "treatmentintent" ];
@@ -2048,11 +1889,11 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 8;
+       fhir:index 7;
        fhir:ElementDefinition.id [ fhir:value "terminationreason" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension" ];
        fhir:ElementDefinition.name [ fhir:value "terminationreason" ];
-       fhir:ElementDefinition.definition [ fhir:value "A description and/or code explaining the premature termination of the study." ];
+       fhir:ElementDefinition.definition [ fhir:value "A code explaining unplanned or premature termination of a plan of treatment, course of medication, or research study." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.max [ fhir:value "*" ];
        fhir:ElementDefinition.base [
@@ -2073,7 +1914,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 9;
+       fhir:index 8;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.extension.valueCodeableConcept" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.extension.valueCodeableConcept" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement.extension.valueCodeableConcept" ];
@@ -2085,12 +1926,12 @@
        fhir:ElementDefinition.binding [
          fhir:ElementDefinition.binding.strength [ fhir:value "required" ];
          fhir:ElementDefinition.binding.valueSetReference [
-           fhir:link <http://hl7.org/fhir/us/projectURL/shr/core/vs/MedicationTerminationReasonVS>;
-           fhir:Reference.reference [ fhir:value "http://hl7.org/fhir/us/projectURL/shr/core/vs/MedicationTerminationReasonVS" ]
+           fhir:link <http://hl7.org/fhir/us/projectURL/shr/core/vs/TreatmentTerminationReasonVS>;
+           fhir:Reference.reference [ fhir:value "http://hl7.org/fhir/us/projectURL/shr/core/vs/TreatmentTerminationReasonVS" ]
          ]
        ]
      ], [
-       fhir:index 10;
+       fhir:index 9;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.patient" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.patient" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement.patient" ];
@@ -2108,7 +1949,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 11;
+       fhir:index 10;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.informationSource" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.informationSource" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement.informationSource" ];
@@ -2132,7 +1973,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 12;
+       fhir:index 11;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.wasNotTaken" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.wasNotTaken" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement.wasNotTaken" ];
@@ -2143,7 +1984,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 13;
+       fhir:index 12;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.reasonNotTaken" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.reasonNotTaken" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement.reasonNotTaken" ];
@@ -2154,21 +1995,28 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 14;
-       fhir:ElementDefinition.id [ fhir:value "MedicationStatement.reasonForUseCodeableConcept" ];
-       fhir:ElementDefinition.path [ fhir:value "MedicationStatement.reasonForUseCodeableConcept" ];
-       fhir:ElementDefinition.name [ fhir:value "MedicationStatement.reasonForUseCodeableConcept" ];
+       fhir:index 13;
+       fhir:ElementDefinition.id [ fhir:value "MedicationStatement.reasonForUse[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationStatement.reasonForUse[x]" ];
+       fhir:ElementDefinition.name [ fhir:value "MedicationStatement.reasonForUse[x]" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "CodeableConcept" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.profile [
+           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition";
+           fhir:index 0
+         ]
        ];
        fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 15;
+       fhir:index 14;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.effective[x]" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.effective[x]" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement.effective[x]" ];
@@ -2179,13 +2027,16 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 16;
-       fhir:ElementDefinition.id [ fhir:value "MedicationStatement.medicationReference" ];
-       fhir:ElementDefinition.path [ fhir:value "MedicationStatement.medicationReference" ];
-       fhir:ElementDefinition.name [ fhir:value "MedicationStatement.medicationReference" ];
+       fhir:index 15;
+       fhir:ElementDefinition.id [ fhir:value "MedicationStatement.medication[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationStatement.medication[x]" ];
+       fhir:ElementDefinition.name [ fhir:value "MedicationStatement.medication[x]" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.type [
          fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "CodeableConcept" ]
+       ], [
+         fhir:index 1;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
          fhir:ElementDefinition.type.profile [
            fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Medication";
@@ -2197,7 +2048,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 17;
+       fhir:index 16;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.dosage" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement.dosage" ];
@@ -2208,7 +2059,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 18;
+       fhir:index 17;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.dosage.timing" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage.timing" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement.dosage.timing" ];
@@ -2226,7 +2077,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 19;
+       fhir:index 18;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.dosage.asNeeded[x]" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage.asNeeded[x]" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement.dosage.asNeeded[x]" ];
@@ -2245,7 +2096,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 20;
+       fhir:index 19;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.dosage.asNeededCodeableConcept" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage.asNeededCodeableConcept" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement.dosage.asNeededCodeableConcept" ];
@@ -2266,7 +2117,7 @@
          ]
        ]
      ], [
-       fhir:index 21;
+       fhir:index 20;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.dosage.siteCodeableConcept" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage.siteCodeableConcept" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement.dosage.siteCodeableConcept" ];
@@ -2282,12 +2133,12 @@
        fhir:ElementDefinition.binding [
          fhir:ElementDefinition.binding.strength [ fhir:value "preferred" ];
          fhir:ElementDefinition.binding.valueSetReference [
-           fhir:link <http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS>;
-           fhir:Reference.reference [ fhir:value "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS" ]
+           fhir:link <http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS>;
+           fhir:Reference.reference [ fhir:value "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS" ]
          ]
        ]
      ], [
-       fhir:index 22;
+       fhir:index 21;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.dosage.route" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage.route" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement.dosage.route" ];
@@ -2305,7 +2156,7 @@
          ]
        ]
      ], [
-       fhir:index 23;
+       fhir:index 22;
        fhir:ElementDefinition.id [ fhir:value "MedicationStatement.dosage.method" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationStatement.dosage.method" ];
        fhir:ElementDefinition.name [ fhir:value "MedicationStatement.dosage.method" ];
@@ -2328,7 +2179,7 @@
 
 <http://hl7.org/fhir/ValueSet/medication-statement-category> a fhir:ValueSet .
 
-<http://hl7.org/fhir/us/projectURL/shr/core/vs/MedicationTerminationReasonVS> a fhir:us .
+<http://hl7.org/fhir/us/projectURL/shr/core/vs/TreatmentTerminationReasonVS> a fhir:us .
 
 <http://hl7.org/fhir/ValueSet/medication-statement-status> a fhir:ValueSet .
 
@@ -2338,7 +2189,7 @@
 
 <http://hl7.org/fhir/ValueSet/medication-as-needed-reason> a fhir:ValueSet .
 
-<http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS> a fhir:us .
+<http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS> a fhir:us .
 
 <http://hl7.org/fhir/ValueSet/route-codes> a fhir:ValueSet .
 

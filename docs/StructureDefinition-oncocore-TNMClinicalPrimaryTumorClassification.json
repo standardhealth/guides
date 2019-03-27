@@ -3,7 +3,7 @@
   "id": "oncocore-TNMClinicalPrimaryTumorClassification",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>TNMClinicalPrimaryTumorClassification Profile</b></p>\n  <p>Classification of the primary tumor, based on its size and extent, assessed prior to surgery, based on evidence such as physical examination, imaging, and/or biopsy.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>oncocore.TNMClinicalPrimaryTumorClassification maps to Observation:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  PatientSubjectOfRecord maps to subject\n  PractitionerPerformer maps to performer\n  Code maps to code\n  CancerStagingSystem maps to method\n  CommentOrDescription maps to comments\n  Category maps to category\n  BodySite.BodySiteCode maps to bodySite\n  BodySite.Laterality maps to bodySite.extension\n  BodySite.AnatomicalDirection maps to bodySite.extension\n  BodySite.ClockDirection maps to bodySite.extension\n  BodySite.CommentOrDescription maps to bodySite.extension\n  BodySite.Attachment maps to bodySite.extension\n  BodySite.DistanceFromLandmark maps to bodySite.extension\n  Device maps to device\n  StatementDateTime maps to issued\n  ReferenceRange maps to referenceRange\n  ReferenceRange.Range.LowerBound maps to referenceRange.low\n  ReferenceRange.Range.UpperBound maps to referenceRange.high\n  ReferenceRange.Type maps to referenceRange.meaning\n  Components maps to component\n  Components.ObservationComponent.Code maps to component.code (slice on = code.coding.code; slice strategy = includes)\n  Components.ObservationComponent.DataValue maps to component.value[x]\n  Components.ObservationComponent.DataAbsentReason maps to component.dataAbsentReason\n  Components.ObservationComponent.ReferenceRange maps to component.referenceRange\n  fix related.type to #has-member\r\n  PanelMembers maps to related\n  PanelMembers.Observation maps to related.target (slice at = related; slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)\n  DataValue maps to value[x]\n  DataAbsentReason maps to dataAbsentReason\n  Interpretation maps to interpretation\n  Status maps to status\n  RelevantTime maps to effective[x]\n  CareContext maps to encounter\n  constrain specimen to 0..0\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>TNMClinicalPrimaryTumorClassification Profile</b></p>\n  <p>Classification of the primary tumor, based on its size and extent, assessed prior to surgery, based on evidence such as physical examination, imaging, and/or biopsy.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>oncocore.TNMClinicalPrimaryTumorClassification maps to Observation:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  PatientSubjectOfRecord maps to subject\n  PractitionerPerformer maps to performer\n  Code maps to code\n  CancerStagingSystem maps to method\n  CommentOrDescription maps to comments\n  Category maps to category\n  BodyLocation.LocationCode maps to bodySite\n  BodyLocation.LocationQualifier maps to bodySite.extension\n  BodyLocation.Landmark maps to bodySite.extension\n  Device maps to device\n  StatementDateTime maps to issued\n  ReferenceRange maps to referenceRange\n  ReferenceRange.Range.LowerBound maps to referenceRange.low\n  ReferenceRange.Range.UpperBound maps to referenceRange.high\n  ReferenceRange.Type maps to referenceRange.meaning\n  Components.ObservationComponent maps to component (slice on = code.coding.code; slice strategy = includes)\n  Components.ObservationComponent.Code maps to component.code\n  Components.ObservationComponent.DataValue maps to component.value[x]\n  Components.ObservationComponent.DataAbsentReason maps to component.dataAbsentReason\n  Components.ObservationComponent.ReferenceRange maps to component.referenceRange\n  fix related.type to #has-member\r\n  PanelMembers maps to related\n  PanelMembers.Observation maps to related.target (slice at = related; slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)\n  DataValue maps to value[x]\n  DataAbsentReason maps to dataAbsentReason\n  Interpretation maps to interpretation\n  Status maps to status\n  RelevantTime maps to effective[x]\n  CareContext maps to encounter\n  constrain specimen to 0..0\n</pre></p>\n</div>"
   },
   "url": "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-TNMClinicalPrimaryTumorClassification",
   "identifier": [
@@ -28,17 +28,9 @@
       ]
     }
   ],
-  "date": "2019-03-13T00:00:00-04:00",
+  "date": "2019-03-27T00:00:00-04:00",
   "description": "Classification of the primary tumor, based on its size and extent, assessed prior to surgery, based on evidence such as physical examination, imaging, and/or biopsy.",
   "requirements": "Observations are a key aspect of healthcare.  This resource is used to capture those that do not require more sophisticated mechanisms.",
-  "code": [
-    {
-      "system": "http://loinc.org",
-      "code": "21905-5",
-      "display": "Primary tumor.clinical [Class] Cancer",
-      "userSelected": false
-    }
-  ],
   "fhirVersion": "1.0.2",
   "mapping": [
     {
@@ -544,9 +536,9 @@
         ]
       },
       {
-        "id": "extension",
+        "id": "Observation.extension.extension",
         "path": "Observation.extension.extension",
-        "name": "extension",
+        "name": "Observation.extension.extension",
         "short": "Extension",
         "definition": "An Extension",
         "min": 0,
@@ -1008,31 +1000,6 @@
             "map": "./originalText[mediaType/code=\"text/plain\"]/data"
           }
         ]
-      },
-      {
-        "id": "cancerstagesuffix",
-        "path": "Observation.extension",
-        "name": "cancerstagesuffix",
-        "definition": "A suffix used in conjuction with certain cancer stage categories, usually qualifying how the category value was determined.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Observation.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-CancerStageSuffix-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
       },
       {
         "id": "Observation.modifierExtension",
@@ -1802,7 +1769,7 @@
         "binding": {
           "strength": "required",
           "valueSetReference": {
-            "reference": "http://loinc.org/vs/LL237-9"
+            "reference": "http://hl7.org/fhir/us/projectURL/oncocore/vs/TNMPrimaryTumorClassificationVS"
           }
         }
       },
@@ -1940,7 +1907,7 @@
         "binding": {
           "strength": "preferred",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         },
         "mapping": [
@@ -2100,7 +2067,7 @@
         "binding": {
           "strength": "extensible",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/oncocore/vs/TNMTumorStagingSystemVS"
+            "reference": "http://hl7.org/fhir/us/projectURL/oncocore/vs/CancerStagingSystemVS"
           }
         },
         "mapping": [
@@ -3349,31 +3316,6 @@
         "isSummary": false
       },
       {
-        "id": "cancerstagesuffix",
-        "path": "Observation.extension",
-        "name": "cancerstagesuffix",
-        "definition": "A suffix used in conjuction with certain cancer stage categories, usually qualifying how the category value was determined.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Observation.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-CancerStageSuffix-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
         "id": "Observation.category",
         "path": "Observation.category",
         "name": "Observation.category",
@@ -3536,7 +3478,7 @@
         "binding": {
           "strength": "required",
           "valueSetReference": {
-            "reference": "http://loinc.org/vs/LL237-9"
+            "reference": "http://hl7.org/fhir/us/projectURL/oncocore/vs/TNMPrimaryTumorClassificationVS"
           }
         }
       },
@@ -3574,7 +3516,7 @@
         "binding": {
           "strength": "preferred",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         }
       },
@@ -3590,7 +3532,7 @@
         "binding": {
           "strength": "extensible",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/oncocore/vs/TNMTumorStagingSystemVS"
+            "reference": "http://hl7.org/fhir/us/projectURL/oncocore/vs/CancerStagingSystemVS"
           }
         }
       },

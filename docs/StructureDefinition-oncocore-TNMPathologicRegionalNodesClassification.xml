@@ -13,6 +13,7 @@
   Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
@@ -23,21 +24,17 @@
   CancerStagingSystem maps to method
   CommentOrDescription maps to comments
   Category maps to category
-  BodySite.BodySiteCode maps to bodySite
-  BodySite.Laterality maps to bodySite.extension
-  BodySite.AnatomicalDirection maps to bodySite.extension
-  BodySite.ClockDirection maps to bodySite.extension
-  BodySite.CommentOrDescription maps to bodySite.extension
-  BodySite.Attachment maps to bodySite.extension
-  BodySite.DistanceFromLandmark maps to bodySite.extension
+  BodyLocation.LocationCode maps to bodySite
+  BodyLocation.LocationQualifier maps to bodySite.extension
+  BodyLocation.Landmark maps to bodySite.extension
   Device maps to device
   StatementDateTime maps to issued
   ReferenceRange maps to referenceRange
   ReferenceRange.Range.LowerBound maps to referenceRange.low
   ReferenceRange.Range.UpperBound maps to referenceRange.high
   ReferenceRange.Type maps to referenceRange.meaning
-  Components maps to component
-  Components.ObservationComponent.Code maps to component.code (slice on = code.coding.code; slice strategy = includes)
+  Components.ObservationComponent maps to component (slice on = code.coding.code; slice strategy = includes)
+  Components.ObservationComponent.Code maps to component.code
   Components.ObservationComponent.DataValue maps to component.value[x]
   Components.ObservationComponent.DataAbsentReason maps to component.dataAbsentReason
   Components.ObservationComponent.ReferenceRange maps to component.referenceRange
@@ -71,15 +68,9 @@
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-03-13T00:00:00-04:00"/>
+  <date value="2019-03-27T00:00:00-04:00"/>
   <description value="Classification of the presence or absence of metastases in regional lymph nodes, assessed through pathologic analysis of a specimen."/>
   <requirements value="Observations are a key aspect of healthcare.  This resource is used to capture those that do not require more sophisticated mechanisms."/>
-  <code>
-    <system value="http://loinc.org"/>
-    <code value="21900-6"/>
-    <display value="Regional lymph nodes.pathology [Class] Cancer"/>
-    <userSelected value="false"/>
-  </code>
   <fhirVersion value="1.0.2"/>
   <mapping>
     <identity value="v2"/>
@@ -488,9 +479,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="extension">
+    <element id="Observation.extension.extension">
       <path value="Observation.extension.extension"/>
-      <name value="extension"/>
+      <name value="Observation.extension.extension"/>
       <short value="Extension"/>
       <definition value="An Extension"/>
       <min value="0"/>
@@ -869,26 +860,6 @@
         <identity value="rim"/>
         <map value="./originalText[mediaType/code=&quot;text/plain&quot;]/data"/>
       </mapping>
-    </element>
-    <element id="cancerstagesuffix">
-      <path value="Observation.extension"/>
-      <name value="cancerstagesuffix"/>
-      <definition value="A suffix used in conjuction with certain cancer stage categories, usually qualifying how the category value was determined."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-CancerStageSuffix-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
     </element>
     <element id="Observation.modifierExtension">
       <path value="Observation.modifierExtension"/>
@@ -1641,7 +1612,7 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -1772,7 +1743,7 @@
       <binding>
         <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/oncocore/vs/TNMTumorStagingSystemVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/oncocore/vs/CancerStagingSystemVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -2772,26 +2743,6 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="cancerstagesuffix">
-      <path value="Observation.extension"/>
-      <name value="cancerstagesuffix"/>
-      <definition value="A suffix used in conjuction with certain cancer stage categories, usually qualifying how the category value was determined."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-CancerStageSuffix-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
     <element id="Observation.category">
       <path value="Observation.category"/>
       <name value="Observation.category"/>
@@ -2962,7 +2913,7 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -2977,7 +2928,7 @@
       <binding>
         <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/oncocore/vs/TNMTumorStagingSystemVS"/>
+          <reference value="http://hl7.org/fhir/us/projectURL/oncocore/vs/CancerStagingSystemVS"/>
         </valueSetReference>
       </binding>
     </element>

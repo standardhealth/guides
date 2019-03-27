@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8"/>
   
-  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1)</title>
+  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1)</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1) FHIR Profiles"/>
+  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1) FHIR Profiles"/>
 
   <link rel="stylesheet" href="fhir.css"/>
 
@@ -40,7 +40,7 @@
     </a>
     <div id="hl7-status" class="hl7-status">
       
-      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1)</b>
+      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1)</b>
     </div>
 
     <div id="hl7-nav">
@@ -158,6 +158,7 @@
   Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
@@ -168,21 +169,17 @@
   CancerStagingSystem maps to method
   CommentOrDescription maps to comments
   Category maps to category
-  BodySite.BodySiteCode maps to bodySite
-  BodySite.Laterality maps to bodySite.extension
-  BodySite.AnatomicalDirection maps to bodySite.extension
-  BodySite.ClockDirection maps to bodySite.extension
-  BodySite.CommentOrDescription maps to bodySite.extension
-  BodySite.Attachment maps to bodySite.extension
-  BodySite.DistanceFromLandmark maps to bodySite.extension
+  BodyLocation.LocationCode maps to bodySite
+  BodyLocation.LocationQualifier maps to bodySite.extension
+  BodyLocation.Landmark maps to bodySite.extension
   Device maps to device
   StatementDateTime maps to issued
   ReferenceRange maps to referenceRange
   ReferenceRange.Range.LowerBound maps to referenceRange.low
   ReferenceRange.Range.UpperBound maps to referenceRange.high
   ReferenceRange.Type maps to referenceRange.meaning
-  Components maps to component
-  Components.ObservationComponent.Code maps to component.code (slice on = code.coding.code; slice strategy = includes)
+  Components.ObservationComponent maps to component (slice on = code.coding.code; slice strategy = includes)
+  Components.ObservationComponent.Code maps to component.code
   Components.ObservationComponent.DataValue maps to component.value[x]
   Components.ObservationComponent.DataAbsentReason maps to component.dataAbsentReason
   Components.ObservationComponent.ReferenceRange maps to component.referenceRange
@@ -222,17 +219,9 @@
       ]
     }
   ],
-  "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.date">date</a>" : "2019-03-13T00:00:00-04:00",
+  "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.date">date</a>" : "2019-03-27T00:00:00-04:00",
   "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.description">description</a>" : "Classification of the presence or absense of metastases in remote anatomical locations, assessed through pathologic analysis of a specimen.",
   "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.requirements">requirements</a>" : "Observations are a key aspect of healthcare.  This resource is used to capture those that do not require more sophisticated mechanisms.",
-  "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.code">code</a>" : [
-    {
-      "<a href="http://hl7.org/fhir/DSTU2/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
-      "<a href="http://hl7.org/fhir/DSTU2/datatypes.html#Coding#Coding.code">code</a>" : "21901-4",
-      "<a href="http://hl7.org/fhir/DSTU2/datatypes.html#Coding#Coding.display">display</a>" : "Distant metastases.pathology [Class] Cancer",
-      "<a href="http://hl7.org/fhir/DSTU2/datatypes.html#Coding#Coding.userSelected">userSelected</a>" : false
-    }
-  ],
   "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.fhirVersion">fhirVersion</a>" : "1.0.2",
   "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.mapping">mapping</a>" : [
     {
@@ -738,9 +727,9 @@
         ]
       },
       {
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "extension",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "Observation.extension.extension",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Observation.extension.extension",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "extension",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "Observation.extension.extension",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a>" : "Extension",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "An Extension",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
@@ -1202,31 +1191,6 @@
             "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping.map">map</a>" : "./originalText[mediaType/code="text/plain"]/data"
           }
         ]
-      },
-      {
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "cancerstagesuffix",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Observation.extension",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "cancerstagesuffix",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "A suffix used in conjuction with certain cancer stage categories, usually qualifying how the category value was determined.",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "1",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a>" : "Observation.extension",
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a>" : 0,
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a>" : "*"
-        },
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>" : [
-          {
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-CancerStageSuffix-extension"
-            ]
-          }
-        ],
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false
       },
       {
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "Observation.modifierExtension",
@@ -2136,7 +2100,7 @@ If the target of the observation is different than the subject, the general exte
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding">binding</a>" : {
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a>" : "preferred",
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>" : {
-            "<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>" : "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>" : "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         },
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping">mapping</a>" : [
@@ -2296,7 +2260,7 @@ If the target of the observation is different than the subject, the general exte
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding">binding</a>" : {
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a>" : "extensible",
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>" : {
-            "<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>" : "http://hl7.org/fhir/us/projectURL/oncocore/vs/TNMTumorStagingSystemVS"
+            "<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>" : "http://hl7.org/fhir/us/projectURL/oncocore/vs/CancerStagingSystemVS"
           }
         },
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mapping">mapping</a>" : [
@@ -3545,31 +3509,6 @@ If the target of the observation is different than the subject, the general exte
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false
       },
       {
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "cancerstagesuffix",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Observation.extension",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "cancerstagesuffix",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "A suffix used in conjuction with certain cancer stage categories, usually qualifying how the category value was determined.",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "1",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.path">path</a>" : "Observation.extension",
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.min">min</a>" : 0,
-          "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base.max">max</a>" : "*"
-        },
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>" : [
-          {
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.code">code</a>" : "Extension",
-            "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type.profile">profile</a>" : [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-CancerStageSuffix-extension"
-            ]
-          }
-        ],
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.maxLength">maxLength</a>" : 0,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.mustSupport">mustSupport</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isModifier">isModifier</a>" : false,
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.isSummary">isSummary</a>" : false
-      },
-      {
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "Observation.category",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "Observation.category",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "Observation.category",
@@ -3770,7 +3709,7 @@ If the target of the observation is different than the subject, the general exte
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding">binding</a>" : {
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a>" : "preferred",
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>" : {
-            "<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>" : "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>" : "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         }
       },
@@ -3786,7 +3725,7 @@ If the target of the observation is different than the subject, the general exte
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding">binding</a>" : {
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.strength">strength</a>" : "extensible",
           "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.binding.valueSet[x]">valueSetReference</a>" : {
-            "<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>" : "http://hl7.org/fhir/us/projectURL/oncocore/vs/TNMTumorStagingSystemVS"
+            "<a href="http://hl7.org/fhir/DSTU2/references.html#reference#Reference.reference">reference</a>" : "http://hl7.org/fhir/us/projectURL/oncocore/vs/CancerStagingSystemVS"
           }
         }
       },
@@ -3998,11 +3937,11 @@ If the target of the observation is different than the subject, the general exte
 <div igtool="footer" id="segment-footer" class="segment">    <!-- segment-footer -->
   <div class="container">    <!-- container -->
    <div class="inner-wrapper">
-    <p><a name="b44a3016-bd6c-48bc-958e-605683129778">​</a>
+    <p><a name="0384e21f-a6b1-48a6-a0d9-9dcb48c1c075">​</a>
       
-      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.7 - US Realm (Draft for Comment 1), Version: 0.7.0
+      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1), Version: 0.7.0
       ; <a style="color: #81BEF7" href="http://hl7.org/fhir/DSTU2/">FHIR &copy; Version: 1.0.2</a>
-      ; Generated on Wed, Mar 13, 2019 15:34-0400.
+      ; Generated on Wed, Mar 27, 2019 14:58-0400.
     </p>
    </div>    <!-- /inner-wrapper -->
   </div>    <!-- /container -->

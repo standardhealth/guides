@@ -3,7 +3,7 @@
   "id": "shr-core-Procedure",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Procedure Profile</b></p>\n  <p>A procedure that has been performed.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Procedure maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-procedure:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Code maps to code\n  ProcedureSubjectOfRecord maps to subject\n  Category maps to category\n  constrain notPerformed to 0..0\n  constrain reasonNotPerformed to 0..0\n  BodySite.BodySiteCode maps to bodySite\n  BodySite.Laterality maps to bodySite.extension\n  BodySite.AnatomicalDirection maps to bodySite.extension\n  BodySite.ClockDirection maps to bodySite.extension\n  BodySite.CommentOrDescription maps to bodySite.extension\n  BodySite.Attachment maps to bodySite.extension\n  BodySite.DistanceFromLandmark maps to bodySite.extension\n  Annotation maps to notes\n  CareContext maps to encounter\n  ReasonCode maps to reason[x]\n  OccurrenceTimeOrPeriod maps to performed[x]\n  Participation maps to performer\n  Participation.Participant maps to performer.actor\n  Participation.ParticipationType maps to performer.role\n  Status maps to status\n  RelatedRequest.MedicationRequest maps to request\n  RelatedRequest.ProcedureRequest maps to request\n  RelatedRequest.ReferralRequest maps to request\n  Outcome maps to outcome\n  Location maps to location\n  MaterialUsed maps to used\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Procedure Profile</b></p>\n  <p>A procedure that has been performed.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Procedure maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-procedure:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Code maps to code\n  ProcedureSubjectOfRecord maps to subject\n  Category maps to category\n  constrain notPerformed to 0..0\n  constrain reasonNotPerformed to 0..0\n  BodyLocation.LocationCode maps to bodySite\n  BodyLocation.LocationQualifier maps to bodySite.extension\n  BodyLocation.Landmark maps to bodySite.extension\n  Annotation maps to notes\n  CareContext maps to encounter\n  OccurrenceTimeOrPeriod maps to performed[x]\n  Participation maps to performer\n  Participation.Participant maps to performer.actor\n  Participation.ParticipationType maps to performer.role\n  Status maps to status\n  RelatedRequest.MedicationRequest maps to request\n  RelatedRequest.ProcedureRequest maps to request\n  RelatedRequest.ReferralRequest maps to request\n  Outcome maps to outcome\n  Location maps to location\n  MaterialUsed maps to used\n</pre></p>\n</div>"
   },
   "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure",
   "identifier": [
@@ -28,7 +28,7 @@
       ]
     }
   ],
-  "date": "2019-03-13T00:00:00-04:00",
+  "date": "2019-03-27T00:00:00-04:00",
   "description": "A procedure that has been performed.",
   "fhirVersion": "1.0.2",
   "mapping": [
@@ -501,12 +501,37 @@
         "isSummary": false
       },
       {
+        "id": "reasoncode",
+        "path": "Procedure.extension",
+        "name": "reasoncode",
+        "definition": "The justification, as a code.\nReason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept, so we are not going to support a string.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "Procedure.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonCode-extension"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
         "id": "reasonreference",
         "path": "Procedure.extension",
         "name": "reasonreference",
         "definition": "The justification, as reference to a condition or observation.",
         "min": 0,
-        "max": "1",
+        "max": "*",
         "base": {
           "path": "Procedure.extension",
           "min": 0,
@@ -583,9 +608,9 @@
         ]
       },
       {
-        "id": "extension",
+        "id": "Procedure.extension.extension",
         "path": "Procedure.extension.extension",
-        "name": "extension",
+        "name": "Procedure.extension.extension",
         "short": "Extension",
         "definition": "An Extension",
         "min": 0,
@@ -1009,7 +1034,7 @@
         "binding": {
           "strength": "preferred",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         },
         "mapping": [
@@ -1088,10 +1113,10 @@
         ]
       },
       {
-        "id": "laterality",
+        "id": "locationqualifier",
         "path": "Procedure.bodySite.extension",
-        "name": "laterality",
-        "definition": "Anatomical location or specimen further detailing the side(s) of interest.",
+        "name": "locationqualifier",
+        "definition": "Additional information, such as laterality or direction, that helps define the body location.",
         "min": 0,
         "max": "*",
         "base": {
@@ -1103,7 +1128,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"
             ]
           }
         ],
@@ -1113,10 +1138,10 @@
         "isSummary": false
       },
       {
-        "id": "anatomicaldirection",
+        "id": "landmark",
         "path": "Procedure.bodySite.extension",
-        "name": "anatomicaldirection",
-        "definition": "Anatomical location or specimen further detailing directionality.",
+        "name": "landmark",
+        "definition": "An anatomical landmark that helps determine a body location.",
         "min": 0,
         "max": "*",
         "base": {
@@ -1128,107 +1153,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "clockdirection",
-        "path": "Procedure.bodySite.extension",
-        "name": "clockdirection",
-        "definition": "A direction indicated by an angle relative to 12 o'clock.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "Procedure.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "commentordescription",
-        "path": "Procedure.bodySite.extension",
-        "name": "commentordescription",
-        "definition": "A text note containing additional details, explanation, description, comment, or summarization.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "Procedure.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "attachment",
-        "path": "Procedure.bodySite.extension",
-        "name": "attachment",
-        "definition": "A file that contains audio, video, image, or similar content.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "Procedure.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "distancefromlandmark",
-        "path": "Procedure.bodySite.extension",
-        "name": "distancefromlandmark",
-        "definition": "How far the anatomical location of interest is from the given landmark",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "Procedure.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"
             ]
           }
         ],
@@ -1307,7 +1232,7 @@
       },
       {
         "id": "Procedure:argoprofile.reason[x]",
-        "path": "Procedure.reasonCodeableConcept",
+        "path": "Procedure.reason[x]",
         "name": "Procedure:argoprofile.reason[x]",
         "short": "Reason procedure performed",
         "definition": "The reason why the procedure was performed. This may be due to a Condition, may be coded entity of some type, or may simply be present as text.",
@@ -1322,6 +1247,12 @@
         "type": [
           {
             "code": "CodeableConcept"
+          },
+          {
+            "code": "Reference",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/Condition"
+            ]
           }
         ],
         "maxLength": 0,
@@ -2150,12 +2081,37 @@
         "isSummary": false
       },
       {
+        "id": "reasoncode",
+        "path": "Procedure.extension",
+        "name": "reasoncode",
+        "definition": "The justification, as a code.\nReason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept, so we are not going to support a string.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "Procedure.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonCode-extension"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
         "id": "reasonreference",
         "path": "Procedure.extension",
         "name": "reasonreference",
         "definition": "The justification, as reference to a condition or observation.",
         "min": 0,
-        "max": "1",
+        "max": "*",
         "base": {
           "path": "Procedure.extension",
           "min": 0,
@@ -2312,7 +2268,7 @@
         "binding": {
           "strength": "preferred",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodySiteVS"
+            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
           }
         }
       },
@@ -2335,10 +2291,10 @@
         "isSummary": false
       },
       {
-        "id": "laterality",
+        "id": "locationqualifier",
         "path": "Procedure.bodySite.extension",
-        "name": "laterality",
-        "definition": "Anatomical location or specimen further detailing the side(s) of interest.",
+        "name": "locationqualifier",
+        "definition": "Additional information, such as laterality or direction, that helps define the body location.",
         "min": 0,
         "max": "*",
         "base": {
@@ -2350,7 +2306,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"
             ]
           }
         ],
@@ -2360,10 +2316,10 @@
         "isSummary": false
       },
       {
-        "id": "anatomicaldirection",
+        "id": "landmark",
         "path": "Procedure.bodySite.extension",
-        "name": "anatomicaldirection",
-        "definition": "Anatomical location or specimen further detailing directionality.",
+        "name": "landmark",
+        "definition": "An anatomical landmark that helps determine a body location.",
         "min": 0,
         "max": "*",
         "base": {
@@ -2375,123 +2331,8 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AnatomicalDirection-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"
             ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "clockdirection",
-        "path": "Procedure.bodySite.extension",
-        "name": "clockdirection",
-        "definition": "A direction indicated by an angle relative to 12 o'clock.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "Procedure.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClockDirection-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "commentordescription",
-        "path": "Procedure.bodySite.extension",
-        "name": "commentordescription",
-        "definition": "A text note containing additional details, explanation, description, comment, or summarization.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "Procedure.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommentOrDescription-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "attachment",
-        "path": "Procedure.bodySite.extension",
-        "name": "attachment",
-        "definition": "A file that contains audio, video, image, or similar content.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "Procedure.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Attachment-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "distancefromlandmark",
-        "path": "Procedure.bodySite.extension",
-        "name": "distancefromlandmark",
-        "definition": "How far the anatomical location of interest is from the given landmark",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "Procedure.bodySite.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DistanceFromLandmark-extension"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "Procedure.reasonCodeableConcept",
-        "path": "Procedure.reasonCodeableConcept",
-        "name": "Procedure.reasonCodeableConcept",
-        "min": 0,
-        "type": [
-          {
-            "code": "CodeableConcept"
           }
         ],
         "maxLength": 0,
