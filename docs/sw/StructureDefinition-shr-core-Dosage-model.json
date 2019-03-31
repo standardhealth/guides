@@ -1,0 +1,667 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "shr-core-Dosage-model",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Dosage Logical Model</b></p>\n  <p>The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported.</p>\n</div>"
+  },
+  "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Dosage-model",
+  "identifier": [
+    {
+      "system": "http://hl7.org/fhir/us/sw",
+      "value": "shr.core.Dosage"
+    }
+  ],
+  "version": "0.5.0",
+  "name": "Dosage",
+  "title": "shr-core-Dosage",
+  "status": "draft",
+  "date": "2019-03-30T00:00:00-04:00",
+  "publisher": "HL7 Patient Care and Clinical Information Modeling Initiative Work Groups",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "url",
+          "value": "http://standardhealthrecord.org"
+        }
+      ]
+    }
+  ],
+  "description": "The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported.",
+  "keyword": [
+    {
+      "system": "http://ncimeta.nci.nih.gov",
+      "code": "C0178602"
+    }
+  ],
+  "kind": "logical",
+  "abstract": false,
+  "type": "shr-core-Dosage-model",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      {
+        "id": "shr-core-Dosage-model",
+        "path": "shr-core-Dosage-model",
+        "definition": "The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Dosage-model",
+          "min": 0,
+          "max": "*"
+        },
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Dosage-model.doseAmount[x]",
+        "path": "shr-core-Dosage-model.doseAmount[x]",
+        "short": "The amount of medication taken per dose, as a quantity or range. Relative dose (e.g., per kg body weight or surface area) are indicated by specifying appropriate units (e.g., mg/kg or mg/m2 etc).",
+        "definition": "The amount of medication taken per dose, as a quantity or range. Relative dose (e.g., per kg body weight or surface area) are indicated by specifying appropriate units (e.g., mg/kg or mg/m2 etc).",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Dosage-model.doseAmount[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SimpleQuantity-model"
+          },
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Range-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Dosage-model.timingOfDoses",
+        "path": "shr-core-Dosage-model.timingOfDoses",
+        "short": "When doses of medication should be administered.",
+        "definition": "When doses of medication should be administered.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Dosage-model.timingOfDoses",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Timing-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Dosage-model.asNeededIndicator[x]",
+        "path": "shr-core-Dosage-model.asNeededIndicator[x]",
+        "code": [
+          {
+            "system": "http://ncimeta.nci.nih.gov",
+            "code": "C1883728"
+          }
+        ],
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Indicates the pre-condition under which the drug or intervention should be used.",
+        "definition": "Indicates the pre-condition under which the drug or intervention should be used.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Dosage-model.asNeededIndicator[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          },
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Dosage-model.asNeededIndicatorCoding:CodeableConcept",
+        "path": "shr-core-Dosage-model.asNeededIndicatorCoding",
+        "sliceName": "CodeableConcept",
+        "short": "A set of codes drawn from different coding systems, representing the same concept.",
+        "definition": "A set of codes drawn from different coding systems, representing the same concept.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Dosage-model.asNeededIndicator[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "example",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/medication-as-needed-reason"
+          }
+        }
+      },
+      {
+        "id": "shr-core-Dosage-model.dosageInstructionsText",
+        "path": "shr-core-Dosage-model.dosageInstructionsText",
+        "short": "The directions (signetur) on the drug prescription or dispensing record.",
+        "definition": "The directions (signetur) on the drug prescription or dispensing record.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Dosage-model.dosageInstructionsText",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Dosage-model.additionalDosageInstruction",
+        "path": "shr-core-Dosage-model.additionalDosageInstruction",
+        "code": [
+          {
+            "system": "http://ncimeta.nci.nih.gov",
+            "code": "C1644714"
+          }
+        ],
+        "short": "Supplemental instructions - e.g. 'with meals'.",
+        "definition": "Supplemental instructions - e.g. 'with meals'.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Dosage-model.additionalDosageInstruction",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "required",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/additional-instruction-codes"
+          }
+        }
+      },
+      {
+        "id": "shr-core-Dosage-model.routeIntoBody",
+        "path": "shr-core-Dosage-model.routeIntoBody",
+        "code": [
+          {
+            "system": "http://ncimeta.nci.nih.gov",
+            "code": "C0013153"
+          }
+        ],
+        "short": "The way a substance enters an organism after contact, particularly, the route of drug administration.",
+        "definition": "The way a substance enters an organism after contact, particularly, the route of drug administration.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Dosage-model.routeIntoBody",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "required",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/route-codes"
+          }
+        }
+      },
+      {
+        "id": "shr-core-Dosage-model.dosageMethod",
+        "path": "shr-core-Dosage-model.dosageMethod",
+        "code": [
+          {
+            "system": "http://ncimeta.nci.nih.gov",
+            "code": "C1547585"
+          }
+        ],
+        "short": "Technique for administering medication.",
+        "definition": "Technique for administering medication.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Dosage-model.dosageMethod",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "required",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/administration-method-codes"
+          }
+        }
+      },
+      {
+        "id": "shr-core-Dosage-model.dosageBodyLocation",
+        "path": "shr-core-Dosage-model.dosageBodyLocation",
+        "code": [
+          {
+            "system": "http://ncimeta.nci.nih.gov",
+            "code": "C0229986"
+          }
+        ],
+        "short": "The anatomic site at which medical intervention is applied.",
+        "definition": "The anatomic site at which medical intervention is applied.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Dosage-model.dosageBodyLocation",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "preferred",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/us/sw/shr/core/vs/BodyLocationVS"
+          }
+        }
+      },
+      {
+        "id": "shr-core-Dosage-model.maximumDosePerTimePeriod",
+        "path": "shr-core-Dosage-model.maximumDosePerTimePeriod",
+        "code": [
+          {
+            "system": "http://ncimeta.nci.nih.gov",
+            "code": "C0456603"
+          }
+        ],
+        "short": "The maximum amount of a medication to be taken in a given period of time (e.g., no more than x in any 24-hour period)",
+        "definition": "The maximum amount of a medication to be taken in a given period of time (e.g., no more than x in any 24-hour period)",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Dosage-model.maximumDosePerTimePeriod",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Ratio-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      }
+    ]
+  },
+  "differential": {
+    "element": [
+      {
+        "id": "shr-core-Dosage-model",
+        "path": "shr-core-Dosage-model",
+        "definition": "The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Dosage-model",
+          "min": 0,
+          "max": "*"
+        },
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Dosage-model.doseAmount[x]",
+        "path": "shr-core-Dosage-model.doseAmount[x]",
+        "short": "The amount of medication taken per dose, as a quantity or range. Relative dose (e.g., per kg body weight or surface area) are indicated by specifying appropriate units (e.g., mg/kg or mg/m2 etc).",
+        "definition": "The amount of medication taken per dose, as a quantity or range. Relative dose (e.g., per kg body weight or surface area) are indicated by specifying appropriate units (e.g., mg/kg or mg/m2 etc).",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Dosage-model.doseAmount[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SimpleQuantity-model"
+          },
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Range-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Dosage-model.timingOfDoses",
+        "path": "shr-core-Dosage-model.timingOfDoses",
+        "short": "When doses of medication should be administered.",
+        "definition": "When doses of medication should be administered.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Dosage-model.timingOfDoses",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Timing-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Dosage-model.asNeededIndicator[x]",
+        "path": "shr-core-Dosage-model.asNeededIndicator[x]",
+        "code": [
+          {
+            "system": "http://ncimeta.nci.nih.gov",
+            "code": "C1883728"
+          }
+        ],
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Indicates the pre-condition under which the drug or intervention should be used.",
+        "definition": "Indicates the pre-condition under which the drug or intervention should be used.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Dosage-model.asNeededIndicator[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          },
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Dosage-model.asNeededIndicatorCoding:CodeableConcept",
+        "path": "shr-core-Dosage-model.asNeededIndicatorCoding",
+        "sliceName": "CodeableConcept",
+        "short": "A set of codes drawn from different coding systems, representing the same concept.",
+        "definition": "A set of codes drawn from different coding systems, representing the same concept.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Dosage-model.asNeededIndicator[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "example",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/medication-as-needed-reason"
+          }
+        }
+      },
+      {
+        "id": "shr-core-Dosage-model.dosageInstructionsText",
+        "path": "shr-core-Dosage-model.dosageInstructionsText",
+        "short": "The directions (signetur) on the drug prescription or dispensing record.",
+        "definition": "The directions (signetur) on the drug prescription or dispensing record.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Dosage-model.dosageInstructionsText",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Dosage-model.additionalDosageInstruction",
+        "path": "shr-core-Dosage-model.additionalDosageInstruction",
+        "code": [
+          {
+            "system": "http://ncimeta.nci.nih.gov",
+            "code": "C1644714"
+          }
+        ],
+        "short": "Supplemental instructions - e.g. 'with meals'.",
+        "definition": "Supplemental instructions - e.g. 'with meals'.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Dosage-model.additionalDosageInstruction",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "required",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/additional-instruction-codes"
+          }
+        }
+      },
+      {
+        "id": "shr-core-Dosage-model.routeIntoBody",
+        "path": "shr-core-Dosage-model.routeIntoBody",
+        "code": [
+          {
+            "system": "http://ncimeta.nci.nih.gov",
+            "code": "C0013153"
+          }
+        ],
+        "short": "The way a substance enters an organism after contact, particularly, the route of drug administration.",
+        "definition": "The way a substance enters an organism after contact, particularly, the route of drug administration.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Dosage-model.routeIntoBody",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "required",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/route-codes"
+          }
+        }
+      },
+      {
+        "id": "shr-core-Dosage-model.dosageMethod",
+        "path": "shr-core-Dosage-model.dosageMethod",
+        "code": [
+          {
+            "system": "http://ncimeta.nci.nih.gov",
+            "code": "C1547585"
+          }
+        ],
+        "short": "Technique for administering medication.",
+        "definition": "Technique for administering medication.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Dosage-model.dosageMethod",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "required",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/administration-method-codes"
+          }
+        }
+      },
+      {
+        "id": "shr-core-Dosage-model.dosageBodyLocation",
+        "path": "shr-core-Dosage-model.dosageBodyLocation",
+        "code": [
+          {
+            "system": "http://ncimeta.nci.nih.gov",
+            "code": "C0229986"
+          }
+        ],
+        "short": "The anatomic site at which medical intervention is applied.",
+        "definition": "The anatomic site at which medical intervention is applied.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Dosage-model.dosageBodyLocation",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "preferred",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/us/sw/shr/core/vs/BodyLocationVS"
+          }
+        }
+      },
+      {
+        "id": "shr-core-Dosage-model.maximumDosePerTimePeriod",
+        "path": "shr-core-Dosage-model.maximumDosePerTimePeriod",
+        "code": [
+          {
+            "system": "http://ncimeta.nci.nih.gov",
+            "code": "C0456603"
+          }
+        ],
+        "short": "The maximum amount of a medication to be taken in a given period of time (e.g., no more than x in any 24-hour period)",
+        "definition": "The maximum amount of a medication to be taken in a given period of time (e.g., no more than x in any 24-hour period)",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Dosage-model.maximumDosePerTimePeriod",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Ratio-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      }
+    ]
+  }
+}
