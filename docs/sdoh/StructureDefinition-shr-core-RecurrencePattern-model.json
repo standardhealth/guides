@@ -1,0 +1,363 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "shr-core-RecurrencePattern-model",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>RecurrencePattern Logical Model</b></p>\n  <p>A set of rules that describe when a recurring event is scheduled.</p>\n</div>"
+  },
+  "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RecurrencePattern-model",
+  "identifier": [
+    {
+      "system": "http://hl7.org/fhir/us/sdoh",
+      "value": "shr.core.RecurrencePattern"
+    }
+  ],
+  "version": "0.1.0",
+  "name": "RecurrencePattern",
+  "title": "shr-core-RecurrencePattern",
+  "status": "draft",
+  "date": "2019-04-01T00:00:00-04:00",
+  "publisher": "MITRE Corporation",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "url",
+          "value": "http://standardhealthrecord.org"
+        }
+      ]
+    }
+  ],
+  "description": "A set of rules that describe when a recurring event is scheduled.",
+  "kind": "logical",
+  "abstract": false,
+  "type": "shr-core-RecurrencePattern-model",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      {
+        "id": "shr-core-RecurrencePattern-model",
+        "path": "shr-core-RecurrencePattern-model",
+        "definition": "A set of rules that describe when a recurring event is scheduled.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-RecurrencePattern-model",
+          "min": 0,
+          "max": "*"
+        },
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-RecurrencePattern-model.recurrenceInterval",
+        "path": "shr-core-RecurrencePattern-model.recurrenceInterval",
+        "code": [
+          {
+            "system": "http://ncimeta.nci.nih.gov",
+            "code": "C0449238"
+          }
+        ],
+        "short": "The period of time after which the pattern repeats, for example, each day.",
+        "definition": "The period of time after which the pattern repeats, for example, each day.\nTo specify an event should take place every other Monday, the recurrence interval should be two weeks, and DayOfWeek should be Monday.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-RecurrencePattern-model.recurrenceInterval",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Duration-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-RecurrencePattern-model.dayOfWeek",
+        "path": "shr-core-RecurrencePattern-model.dayOfWeek",
+        "short": "A day of the week that the pattern should take place.",
+        "definition": "A day of the week that the pattern should take place.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-RecurrencePattern-model.dayOfWeek",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "required",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/days-of-week"
+          }
+        }
+      },
+      {
+        "id": "shr-core-RecurrencePattern-model.timeOfDay",
+        "path": "shr-core-RecurrencePattern-model.timeOfDay",
+        "short": "Time of day the event should take place on the designated day(s).",
+        "definition": "Time of day the event should take place on the designated day(s).\nTimeOfDay should only be specified if the RecurrenceInterval and/or DayOfWeek establishes the day when the event should take place.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-RecurrencePattern-model.timeOfDay",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "time"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-RecurrencePattern-model.dailyLifeEvent",
+        "path": "shr-core-RecurrencePattern-model.dailyLifeEvent",
+        "short": "A quotidian landmark, such as rising, mealtime, or bedtime, when an event should take place.",
+        "definition": "A quotidian landmark, such as rising, mealtime, or bedtime, when an event should take place.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-RecurrencePattern-model.dailyLifeEvent",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "required",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/event-timing"
+          }
+        }
+      },
+      {
+        "id": "shr-core-RecurrencePattern-model.lifeEventOffset",
+        "path": "shr-core-RecurrencePattern-model.lifeEventOffset",
+        "short": "A time in minutes before or after a given life event, for example, 30 minutes before a meal. Whether this means before or after is carried by the life event code.",
+        "definition": "A time in minutes before or after a given life event, for example, 30 minutes before a meal. Whether this means before or after is carried by the life event code.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-RecurrencePattern-model.lifeEventOffset",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "unsignedInt"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-RecurrencePattern-model.countPerInterval",
+        "path": "shr-core-RecurrencePattern-model.countPerInterval",
+        "short": "How many times the event should take place during one recurrence interval, for example, to specify 3-4 times per day, the CountPerInterval should be 3 to 4.",
+        "definition": "How many times the event should take place during one recurrence interval, for example, to specify 3-4 times per day, the CountPerInterval should be 3 to 4.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-RecurrencePattern-model.countPerInterval",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CountPerInterval-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      }
+    ]
+  },
+  "differential": {
+    "element": [
+      {
+        "id": "shr-core-RecurrencePattern-model",
+        "path": "shr-core-RecurrencePattern-model",
+        "definition": "A set of rules that describe when a recurring event is scheduled.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-RecurrencePattern-model",
+          "min": 0,
+          "max": "*"
+        },
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-RecurrencePattern-model.recurrenceInterval",
+        "path": "shr-core-RecurrencePattern-model.recurrenceInterval",
+        "code": [
+          {
+            "system": "http://ncimeta.nci.nih.gov",
+            "code": "C0449238"
+          }
+        ],
+        "short": "The period of time after which the pattern repeats, for example, each day.",
+        "definition": "The period of time after which the pattern repeats, for example, each day.\nTo specify an event should take place every other Monday, the recurrence interval should be two weeks, and DayOfWeek should be Monday.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-RecurrencePattern-model.recurrenceInterval",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Duration-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-RecurrencePattern-model.dayOfWeek",
+        "path": "shr-core-RecurrencePattern-model.dayOfWeek",
+        "short": "A day of the week that the pattern should take place.",
+        "definition": "A day of the week that the pattern should take place.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-RecurrencePattern-model.dayOfWeek",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "required",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/days-of-week"
+          }
+        }
+      },
+      {
+        "id": "shr-core-RecurrencePattern-model.timeOfDay",
+        "path": "shr-core-RecurrencePattern-model.timeOfDay",
+        "short": "Time of day the event should take place on the designated day(s).",
+        "definition": "Time of day the event should take place on the designated day(s).\nTimeOfDay should only be specified if the RecurrenceInterval and/or DayOfWeek establishes the day when the event should take place.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-RecurrencePattern-model.timeOfDay",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "time"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-RecurrencePattern-model.dailyLifeEvent",
+        "path": "shr-core-RecurrencePattern-model.dailyLifeEvent",
+        "short": "A quotidian landmark, such as rising, mealtime, or bedtime, when an event should take place.",
+        "definition": "A quotidian landmark, such as rising, mealtime, or bedtime, when an event should take place.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-RecurrencePattern-model.dailyLifeEvent",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "required",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/event-timing"
+          }
+        }
+      },
+      {
+        "id": "shr-core-RecurrencePattern-model.lifeEventOffset",
+        "path": "shr-core-RecurrencePattern-model.lifeEventOffset",
+        "short": "A time in minutes before or after a given life event, for example, 30 minutes before a meal. Whether this means before or after is carried by the life event code.",
+        "definition": "A time in minutes before or after a given life event, for example, 30 minutes before a meal. Whether this means before or after is carried by the life event code.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-RecurrencePattern-model.lifeEventOffset",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "unsignedInt"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-RecurrencePattern-model.countPerInterval",
+        "path": "shr-core-RecurrencePattern-model.countPerInterval",
+        "short": "How many times the event should take place during one recurrence interval, for example, to specify 3-4 times per day, the CountPerInterval should be 3 to 4.",
+        "definition": "How many times the event should take place during one recurrence interval, for example, to specify 3-4 times per day, the CountPerInterval should be 3 to 4.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-RecurrencePattern-model.countPerInterval",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CountPerInterval-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      }
+    ]
+  }
+}

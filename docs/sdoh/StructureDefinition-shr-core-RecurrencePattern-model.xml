@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="shr-core-RecurrencePattern-model"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">
+  <p><b>RecurrencePattern Logical Model</b></p>
+  <p>A set of rules that describe when a recurring event is scheduled.</p>
+</div>
+  </text>
+  <url value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RecurrencePattern-model"/>
+  <identifier>
+    <system value="http://hl7.org/fhir/us/sdoh"/>
+    <value value="shr.core.RecurrencePattern"/>
+  </identifier>
+  <version value="0.1.0"/>
+  <name value="RecurrencePattern"/>
+  <title value="shr-core-RecurrencePattern"/>
+  <status value="draft"/>
+  <date value="2019-04-01T00:00:00-04:00"/>
+  <publisher value="MITRE Corporation"/>
+  <contact>
+    <telecom>
+      <system value="url"/>
+      <value value="http://standardhealthrecord.org"/>
+    </telecom>
+  </contact>
+  <description value="A set of rules that describe when a recurring event is scheduled."/>
+  <kind value="logical"/>
+  <abstract value="false"/>
+  <type value="shr-core-RecurrencePattern-model"/>
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Element"/>
+  <derivation value="specialization"/>
+  <snapshot>
+    <element id="shr-core-RecurrencePattern-model">
+      <path value="shr-core-RecurrencePattern-model"/>
+      <definition value="A set of rules that describe when a recurring event is scheduled."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-RecurrencePattern-model"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-RecurrencePattern-model.recurrenceInterval">
+      <path value="shr-core-RecurrencePattern-model.recurrenceInterval"/>
+      <code>
+        <system value="http://ncimeta.nci.nih.gov"/>
+        <code value="C0449238"/>
+      </code>
+      <short value="The period of time after which the pattern repeats, for example, each day."/>
+      <definition value="The period of time after which the pattern repeats, for example, each day.&#xA;To specify an event should take place every other Monday, the recurrence interval should be two weeks, and DayOfWeek should be Monday."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-RecurrencePattern-model.recurrenceInterval"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Duration-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-RecurrencePattern-model.dayOfWeek">
+      <path value="shr-core-RecurrencePattern-model.dayOfWeek"/>
+      <short value="A day of the week that the pattern should take place."/>
+      <definition value="A day of the week that the pattern should take place."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-RecurrencePattern-model.dayOfWeek"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="required"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/days-of-week"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="shr-core-RecurrencePattern-model.timeOfDay">
+      <path value="shr-core-RecurrencePattern-model.timeOfDay"/>
+      <short value="Time of day the event should take place on the designated day(s)."/>
+      <definition value="Time of day the event should take place on the designated day(s).&#xA;TimeOfDay should only be specified if the RecurrenceInterval and/or DayOfWeek establishes the day when the event should take place."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-RecurrencePattern-model.timeOfDay"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="time"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-RecurrencePattern-model.dailyLifeEvent">
+      <path value="shr-core-RecurrencePattern-model.dailyLifeEvent"/>
+      <short value="A quotidian landmark, such as rising, mealtime, or bedtime, when an event should take place."/>
+      <definition value="A quotidian landmark, such as rising, mealtime, or bedtime, when an event should take place."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-RecurrencePattern-model.dailyLifeEvent"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="required"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/event-timing"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="shr-core-RecurrencePattern-model.lifeEventOffset">
+      <path value="shr-core-RecurrencePattern-model.lifeEventOffset"/>
+      <short value="A time in minutes before or after a given life event, for example, 30 minutes before a meal. Whether this means before or after is carried by the life event code."/>
+      <definition value="A time in minutes before or after a given life event, for example, 30 minutes before a meal. Whether this means before or after is carried by the life event code."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-RecurrencePattern-model.lifeEventOffset"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="unsignedInt"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-RecurrencePattern-model.countPerInterval">
+      <path value="shr-core-RecurrencePattern-model.countPerInterval"/>
+      <short value="How many times the event should take place during one recurrence interval, for example, to specify 3-4 times per day, the CountPerInterval should be 3 to 4."/>
+      <definition value="How many times the event should take place during one recurrence interval, for example, to specify 3-4 times per day, the CountPerInterval should be 3 to 4."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-RecurrencePattern-model.countPerInterval"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CountPerInterval-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+  </snapshot>
+  <differential>
+    <element id="shr-core-RecurrencePattern-model">
+      <path value="shr-core-RecurrencePattern-model"/>
+      <definition value="A set of rules that describe when a recurring event is scheduled."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-RecurrencePattern-model"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-RecurrencePattern-model.recurrenceInterval">
+      <path value="shr-core-RecurrencePattern-model.recurrenceInterval"/>
+      <code>
+        <system value="http://ncimeta.nci.nih.gov"/>
+        <code value="C0449238"/>
+      </code>
+      <short value="The period of time after which the pattern repeats, for example, each day."/>
+      <definition value="The period of time after which the pattern repeats, for example, each day.&#xA;To specify an event should take place every other Monday, the recurrence interval should be two weeks, and DayOfWeek should be Monday."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-RecurrencePattern-model.recurrenceInterval"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Duration-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-RecurrencePattern-model.dayOfWeek">
+      <path value="shr-core-RecurrencePattern-model.dayOfWeek"/>
+      <short value="A day of the week that the pattern should take place."/>
+      <definition value="A day of the week that the pattern should take place."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-RecurrencePattern-model.dayOfWeek"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="required"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/days-of-week"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="shr-core-RecurrencePattern-model.timeOfDay">
+      <path value="shr-core-RecurrencePattern-model.timeOfDay"/>
+      <short value="Time of day the event should take place on the designated day(s)."/>
+      <definition value="Time of day the event should take place on the designated day(s).&#xA;TimeOfDay should only be specified if the RecurrenceInterval and/or DayOfWeek establishes the day when the event should take place."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-RecurrencePattern-model.timeOfDay"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="time"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-RecurrencePattern-model.dailyLifeEvent">
+      <path value="shr-core-RecurrencePattern-model.dailyLifeEvent"/>
+      <short value="A quotidian landmark, such as rising, mealtime, or bedtime, when an event should take place."/>
+      <definition value="A quotidian landmark, such as rising, mealtime, or bedtime, when an event should take place."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-RecurrencePattern-model.dailyLifeEvent"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="required"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/event-timing"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="shr-core-RecurrencePattern-model.lifeEventOffset">
+      <path value="shr-core-RecurrencePattern-model.lifeEventOffset"/>
+      <short value="A time in minutes before or after a given life event, for example, 30 minutes before a meal. Whether this means before or after is carried by the life event code."/>
+      <definition value="A time in minutes before or after a given life event, for example, 30 minutes before a meal. Whether this means before or after is carried by the life event code."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-RecurrencePattern-model.lifeEventOffset"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="unsignedInt"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-RecurrencePattern-model.countPerInterval">
+      <path value="shr-core-RecurrencePattern-model.countPerInterval"/>
+      <short value="How many times the event should take place during one recurrence interval, for example, to specify 3-4 times per day, the CountPerInterval should be 3 to 4."/>
+      <definition value="How many times the event should take place during one recurrence interval, for example, to specify 3-4 times per day, the CountPerInterval should be 3 to 4."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-RecurrencePattern-model.countPerInterval"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CountPerInterval-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+  </differential>
+</StructureDefinition>
