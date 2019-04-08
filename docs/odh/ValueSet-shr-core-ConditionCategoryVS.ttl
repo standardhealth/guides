@@ -10,7 +10,7 @@
   fhir:Resource.id [ fhir:value "shr-core-ConditionCategoryVS"];
   fhir:DomainResource.text [
      fhir:Narrative.status [ fhir:value "generated" ];
-     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p><b>ConditionCategoryVS ValueSet</b></p>\n<p>A category assigned to the condition, for example, a disease, concern, symptom, adverse reaction, functional impairment, or structural abnormality.</p>\n</div>"
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p><b>ConditionCategoryVS ValueSet</b></p>\n<p>A category assigned to the condition, for example, a disease, concern, symptom, functional impairment, or structural abnormality. Based on http://fhir.org/guides/argonaut/ValueSet/condition-category but with SNOMED CT codes.</p>\n</div>"
   ];
   fhir:ValueSet.url [ fhir:value "http://hl7.org/fhir/us/odh/shr/core/vs/ConditionCategoryVS"];
   fhir:ValueSet.identifier [
@@ -22,7 +22,7 @@
   fhir:ValueSet.name [ fhir:value "ConditionCategoryVS"];
   fhir:ValueSet.title [ fhir:value "ConditionCategoryVS"];
   fhir:ValueSet.status [ fhir:value "draft"];
-  fhir:ValueSet.date [ fhir:value "2019-03-30T00:00:00-04:00"^^xsd:dateTime];
+  fhir:ValueSet.date [ fhir:value "2019-04-08T00:00:00-04:00"^^xsd:dateTime];
   fhir:ValueSet.publisher [ fhir:value "HL7"];
   fhir:ValueSet.contact [
      fhir:index 0;
@@ -32,35 +32,39 @@
        fhir:ContactPoint.value [ fhir:value "http://standardhealthrecord.org" ]
      ]
   ];
-  fhir:ValueSet.description [ fhir:value "A category assigned to the condition, for example, a disease, concern, symptom, adverse reaction, functional impairment, or structural abnormality."];
+  fhir:ValueSet.description [ fhir:value "A category assigned to the condition, for example, a disease, concern, symptom, functional impairment, or structural abnormality. Based on http://fhir.org/guides/argonaut/ValueSet/condition-category but with SNOMED CT codes."];
   fhir:ValueSet.compose [
      fhir:ValueSet.compose.include [
        fhir:index 0;
-       fhir:ValueSet.compose.include.system [ fhir:value "http://hl7.org/fhir/us/odh/shr/core/cs/ConditionCategoryCS" ];
+       fhir:ValueSet.compose.include.system [ fhir:value "http://snomed.info/sct" ];
        fhir:ValueSet.compose.include.concept [
          fhir:index 0;
-         fhir:ValueSet.compose.include.concept.code [ fhir:value "disease" ];
-         fhir:ValueSet.compose.include.concept.display [ fhir:value "A disorder of structure or function in a human, animal, or plant, especially one that produces specific signs or symptoms or that affects a specific location and is not simply a direct result of physical injury." ]
+         fhir:ValueSet.compose.include.concept.code [ fhir:value "64572001" ];
+         fhir:ValueSet.compose.include.concept.display [ fhir:value "Disease" ]
        ], [
          fhir:index 1;
-         fhir:ValueSet.compose.include.concept.code [ fhir:value "functional_impairment" ];
-         fhir:ValueSet.compose.include.concept.display [ fhir:value "A disability experienced by the subject." ]
+         fhir:ValueSet.compose.include.concept.code [ fhir:value "40226000" ];
+         fhir:ValueSet.compose.include.concept.display [ fhir:value "Impairment" ]
        ], [
          fhir:index 2;
-         fhir:ValueSet.compose.include.concept.code [ fhir:value "structural_abnormality" ];
-         fhir:ValueSet.compose.include.concept.display [ fhir:value "An abnormality of physiologic structure." ]
+         fhir:ValueSet.compose.include.concept.code [ fhir:value "49755003" ];
+         fhir:ValueSet.compose.include.concept.display [ fhir:value "Morphologic abnormality" ]
        ], [
          fhir:index 3;
-         fhir:ValueSet.compose.include.concept.code [ fhir:value "concern" ];
-         fhir:ValueSet.compose.include.concept.display [ fhir:value "Something the subject is worried about, which may or may not have yet been manifested. The object of the concern does not have to be a medical disorder." ]
+         fhir:ValueSet.compose.include.concept.code [ fhir:value "48694002" ];
+         fhir:ValueSet.compose.include.concept.display [ fhir:value "Anxiety (a concern about something that may or may not have yet been manifested)." ]
        ], [
          fhir:index 4;
-         fhir:ValueSet.compose.include.concept.code [ fhir:value "symptom" ];
-         fhir:ValueSet.compose.include.concept.display [ fhir:value "A sign or manifestation of a deeper cause, of known or unknown etiology, e.g. pain or ringing in the ears." ]
+         fhir:ValueSet.compose.include.concept.code [ fhir:value "55607006" ];
+         fhir:ValueSet.compose.include.concept.display [ fhir:value "Problem (a difficulty the patient has or is experiencing)" ]
        ], [
          fhir:index 5;
-         fhir:ValueSet.compose.include.concept.code [ fhir:value "adverse_reaction" ];
-         fhir:ValueSet.compose.include.concept.display [ fhir:value "An adverse reaction to an intervention." ]
+         fhir:ValueSet.compose.include.concept.code [ fhir:value "409586006" ];
+         fhir:ValueSet.compose.include.concept.display [ fhir:value "Complaint (a symptom or condition the patient considers an issue to be addressed)" ]
+       ], [
+         fhir:index 6;
+         fhir:ValueSet.compose.include.concept.code [ fhir:value "439401001" ];
+         fhir:ValueSet.compose.include.concept.display [ fhir:value "Diagnosis" ]
        ]
      ]
   ] .

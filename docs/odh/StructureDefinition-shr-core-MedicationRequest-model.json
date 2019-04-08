@@ -16,7 +16,7 @@
   "name": "MedicationRequest",
   "title": "shr-core-MedicationRequest",
   "status": "draft",
-  "date": "2019-03-30T00:00:00-04:00",
+  "date": "2019-04-08T00:00:00-04:00",
   "publisher": "HL7",
   "contact": [
     {
@@ -568,6 +568,16 @@
       {
         "id": "shr-core-MedicationRequest-model.medicationCodeOrReference[x]",
         "path": "shr-core-MedicationRequest-model.medicationCodeOrReference[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
         "short": "A choice of a medication code or reference.",
         "definition": "A choice of a medication code or reference.",
         "min": 1,
@@ -589,6 +599,34 @@
         "mustSupport": false,
         "isModifier": false,
         "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.medicationCodeOrReferenceCoding:CodeableConcept",
+        "path": "shr-core-MedicationRequest-model.medicationCodeOrReferenceCoding",
+        "sliceName": "CodeableConcept",
+        "short": "A set of codes drawn from different coding systems, representing the same concept.",
+        "definition": "A set of codes drawn from different coding systems, representing the same concept.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.medicationCodeOrReference[x]",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "required",
+          "valueSetReference": {
+            "reference": "http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes"
+          }
+        }
       },
       {
         "id": "shr-core-MedicationRequest-model.dosage",
@@ -1308,6 +1346,16 @@
       {
         "id": "shr-core-MedicationRequest-model.medicationCodeOrReference[x]",
         "path": "shr-core-MedicationRequest-model.medicationCodeOrReference[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
         "short": "A choice of a medication code or reference.",
         "definition": "A choice of a medication code or reference.",
         "min": 1,
@@ -1329,6 +1377,34 @@
         "mustSupport": false,
         "isModifier": false,
         "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.medicationCodeOrReferenceCoding:CodeableConcept",
+        "path": "shr-core-MedicationRequest-model.medicationCodeOrReferenceCoding",
+        "sliceName": "CodeableConcept",
+        "short": "A set of codes drawn from different coding systems, representing the same concept.",
+        "definition": "A set of codes drawn from different coding systems, representing the same concept.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.medicationCodeOrReference[x]",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "required",
+          "valueSetReference": {
+            "reference": "http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes"
+          }
+        }
       },
       {
         "id": "shr-core-MedicationRequest-model.dosage",

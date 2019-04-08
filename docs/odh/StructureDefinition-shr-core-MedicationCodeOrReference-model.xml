@@ -17,7 +17,7 @@
   <name value="MedicationCodeOrReference"/>
   <title value="shr-core-MedicationCodeOrReference"/>
   <status value="draft"/>
-  <date value="2019-03-30T00:00:00-04:00"/>
+  <date value="2019-04-08T00:00:00-04:00"/>
   <publisher value="HL7"/>
   <contact>
     <telecom>
@@ -48,6 +48,14 @@
     </element>
     <element id="shr-core-MedicationCodeOrReference-model.value[x]">
       <path value="shr-core-MedicationCodeOrReference-model.value[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <short value="Code or Medication representing a choice of a medication code or reference."/>
       <definition value="Code or Medication representing a choice of a medication code or reference."/>
       <min value="1"/>
@@ -67,6 +75,31 @@
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationCodeOrReference-model.valueCoding:CodeableConcept">
+      <path value="shr-core-MedicationCodeOrReference-model.valueCoding"/>
+      <sliceName value="CodeableConcept"/>
+      <short value="A set of codes drawn from different coding systems, representing the same concept."/>
+      <definition value="A set of codes drawn from different coding systems, representing the same concept."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationCodeOrReference-model.value[x]"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="required"/>
+        <valueSetReference>
+          <reference value="http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes"/>
+        </valueSetReference>
+      </binding>
     </element>
   </snapshot>
   <differential>
@@ -86,6 +119,14 @@
     </element>
     <element id="shr-core-MedicationCodeOrReference-model.value[x]">
       <path value="shr-core-MedicationCodeOrReference-model.value[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <short value="Code or Medication representing a choice of a medication code or reference."/>
       <definition value="Code or Medication representing a choice of a medication code or reference."/>
       <min value="1"/>
@@ -105,6 +146,31 @@
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationCodeOrReference-model.valueCoding:CodeableConcept">
+      <path value="shr-core-MedicationCodeOrReference-model.valueCoding"/>
+      <sliceName value="CodeableConcept"/>
+      <short value="A set of codes drawn from different coding systems, representing the same concept."/>
+      <definition value="A set of codes drawn from different coding systems, representing the same concept."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationCodeOrReference-model.value[x]"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="required"/>
+        <valueSetReference>
+          <reference value="http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes"/>
+        </valueSetReference>
+      </binding>
     </element>
   </differential>
 </StructureDefinition>

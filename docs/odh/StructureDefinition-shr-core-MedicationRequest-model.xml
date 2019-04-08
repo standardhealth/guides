@@ -20,7 +20,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
   <name value="MedicationRequest"/>
   <title value="shr-core-MedicationRequest"/>
   <status value="draft"/>
-  <date value="2019-03-30T00:00:00-04:00"/>
+  <date value="2019-04-08T00:00:00-04:00"/>
   <publisher value="HL7"/>
   <contact>
     <telecom>
@@ -487,6 +487,14 @@ Intent was added in STU3 and is provided as an extension with required binding.<
     </element>
     <element id="shr-core-MedicationRequest-model.medicationCodeOrReference[x]">
       <path value="shr-core-MedicationRequest-model.medicationCodeOrReference[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <short value="A choice of a medication code or reference."/>
       <definition value="A choice of a medication code or reference."/>
       <min value="1"/>
@@ -506,6 +514,31 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.medicationCodeOrReferenceCoding:CodeableConcept">
+      <path value="shr-core-MedicationRequest-model.medicationCodeOrReferenceCoding"/>
+      <sliceName value="CodeableConcept"/>
+      <short value="A set of codes drawn from different coding systems, representing the same concept."/>
+      <definition value="A set of codes drawn from different coding systems, representing the same concept."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.medicationCodeOrReference[x]"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="required"/>
+        <valueSetReference>
+          <reference value="http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes"/>
+        </valueSetReference>
+      </binding>
     </element>
     <element id="shr-core-MedicationRequest-model.dosage">
       <path value="shr-core-MedicationRequest-model.dosage"/>
@@ -1118,6 +1151,14 @@ Intent was added in STU3 and is provided as an extension with required binding.<
     </element>
     <element id="shr-core-MedicationRequest-model.medicationCodeOrReference[x]">
       <path value="shr-core-MedicationRequest-model.medicationCodeOrReference[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <short value="A choice of a medication code or reference."/>
       <definition value="A choice of a medication code or reference."/>
       <min value="1"/>
@@ -1137,6 +1178,31 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.medicationCodeOrReferenceCoding:CodeableConcept">
+      <path value="shr-core-MedicationRequest-model.medicationCodeOrReferenceCoding"/>
+      <sliceName value="CodeableConcept"/>
+      <short value="A set of codes drawn from different coding systems, representing the same concept."/>
+      <definition value="A set of codes drawn from different coding systems, representing the same concept."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.medicationCodeOrReference[x]"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="required"/>
+        <valueSetReference>
+          <reference value="http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes"/>
+        </valueSetReference>
+      </binding>
     </element>
     <element id="shr-core-MedicationRequest-model.dosage">
       <path value="shr-core-MedicationRequest-model.dosage"/>

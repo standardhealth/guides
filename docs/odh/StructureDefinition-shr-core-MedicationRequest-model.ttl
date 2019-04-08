@@ -22,7 +22,7 @@
   fhir:StructureDefinition.name [ fhir:value "MedicationRequest"];
   fhir:StructureDefinition.title [ fhir:value "shr-core-MedicationRequest"];
   fhir:StructureDefinition.status [ fhir:value "draft"];
-  fhir:StructureDefinition.date [ fhir:value "2019-03-30T00:00:00-04:00"^^xsd:dateTime];
+  fhir:StructureDefinition.date [ fhir:value "2019-04-08T00:00:00-04:00"^^xsd:dateTime];
   fhir:StructureDefinition.publisher [ fhir:value "HL7"];
   fhir:StructureDefinition.contact [
      fhir:index 0;
@@ -547,6 +547,15 @@
        fhir:index 21;
        fhir:Element.id [ fhir:value "shr-core-MedicationRequest-model.medicationCodeOrReference[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-MedicationRequest-model.medicationCodeOrReference[x]" ];
+       fhir:ElementDefinition.slicing [
+         fhir:ElementDefinition.slicing.discriminator [
+           fhir:index 0;
+           fhir:ElementDefinition.slicing.discriminator.type [ fhir:value "type" ];
+           fhir:ElementDefinition.slicing.discriminator.path [ fhir:value "$this" ]
+         ];
+         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
+         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
+       ];
        fhir:ElementDefinition.short [ fhir:value "A choice of a medication code or reference." ];
        fhir:ElementDefinition.definition [ fhir:value "A choice of a medication code or reference." ];
        fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
@@ -569,6 +578,34 @@
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 22;
+       fhir:Element.id [ fhir:value "shr-core-MedicationRequest-model.medicationCodeOrReferenceCoding:CodeableConcept" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-MedicationRequest-model.medicationCodeOrReferenceCoding" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "CodeableConcept" ];
+       fhir:ElementDefinition.short [ fhir:value "A set of codes drawn from different coding systems, representing the same concept." ];
+       fhir:ElementDefinition.definition [ fhir:value "A set of codes drawn from different coding systems, representing the same concept." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-MedicationRequest-model.medicationCodeOrReference[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Coding" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.binding [
+         fhir:ElementDefinition.binding.strength [ fhir:value "required" ];
+         fhir:ElementDefinition.binding.valueSetReference [
+           fhir:link <http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes>;
+           fhir:Reference.reference [ fhir:value "http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes" ]
+         ]
+       ]
+     ], [
+       fhir:index 23;
        fhir:Element.id [ fhir:value "shr-core-MedicationRequest-model.dosage" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-MedicationRequest-model.dosage" ];
        fhir:ElementDefinition.code [
@@ -593,7 +630,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 23;
+       fhir:index 24;
        fhir:Element.id [ fhir:value "shr-core-MedicationRequest-model.medicationRequester[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-MedicationRequest-model.medicationRequester[x]" ];
        fhir:ElementDefinition.short [ fhir:value "The individual, organization or device that initiated the request and has responsibility for its activation." ];
@@ -630,7 +667,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 24;
+       fhir:index 25;
        fhir:Element.id [ fhir:value "shr-core-MedicationRequest-model.numberOfRefillsAllowed" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-MedicationRequest-model.numberOfRefillsAllowed" ];
        fhir:ElementDefinition.short [ fhir:value "The maximum number of times the dispense can be repeated. For medication dispense, this integer does NOT include the original order dispense. This means that if an order indicates dispense 30 tablets plus 3 repeats, then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets." ];
@@ -650,7 +687,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 25;
+       fhir:index 26;
        fhir:Element.id [ fhir:value "shr-core-MedicationRequest-model.quantityPerDispense" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-MedicationRequest-model.quantityPerDispense" ];
        fhir:ElementDefinition.short [ fhir:value "The amount that is to be dispensed for one fill." ];
@@ -670,7 +707,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 26;
+       fhir:index 27;
        fhir:Element.id [ fhir:value "shr-core-MedicationRequest-model.supplyDuration" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-MedicationRequest-model.supplyDuration" ];
        fhir:ElementDefinition.code [
@@ -695,7 +732,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 27;
+       fhir:index 28;
        fhir:Element.id [ fhir:value "shr-core-MedicationRequest-model.substitutionAllowed" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-MedicationRequest-model.substitutionAllowed" ];
        fhir:ElementDefinition.short [ fhir:value "Whether substitution is allowed or not." ];
@@ -715,7 +752,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 28;
+       fhir:index 29;
        fhir:Element.id [ fhir:value "shr-core-MedicationRequest-model.substitutionReason" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-MedicationRequest-model.substitutionReason" ];
        fhir:ElementDefinition.short [ fhir:value "Why should (not) substitution be made." ];
@@ -1252,6 +1289,15 @@
        fhir:index 21;
        fhir:Element.id [ fhir:value "shr-core-MedicationRequest-model.medicationCodeOrReference[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-MedicationRequest-model.medicationCodeOrReference[x]" ];
+       fhir:ElementDefinition.slicing [
+         fhir:ElementDefinition.slicing.discriminator [
+           fhir:index 0;
+           fhir:ElementDefinition.slicing.discriminator.type [ fhir:value "type" ];
+           fhir:ElementDefinition.slicing.discriminator.path [ fhir:value "$this" ]
+         ];
+         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
+         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
+       ];
        fhir:ElementDefinition.short [ fhir:value "A choice of a medication code or reference." ];
        fhir:ElementDefinition.definition [ fhir:value "A choice of a medication code or reference." ];
        fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
@@ -1274,6 +1320,34 @@
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 22;
+       fhir:Element.id [ fhir:value "shr-core-MedicationRequest-model.medicationCodeOrReferenceCoding:CodeableConcept" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-MedicationRequest-model.medicationCodeOrReferenceCoding" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "CodeableConcept" ];
+       fhir:ElementDefinition.short [ fhir:value "A set of codes drawn from different coding systems, representing the same concept." ];
+       fhir:ElementDefinition.definition [ fhir:value "A set of codes drawn from different coding systems, representing the same concept." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-MedicationRequest-model.medicationCodeOrReference[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Coding" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.binding [
+         fhir:ElementDefinition.binding.strength [ fhir:value "required" ];
+         fhir:ElementDefinition.binding.valueSetReference [
+           fhir:link <http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes>;
+           fhir:Reference.reference [ fhir:value "http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes" ]
+         ]
+       ]
+     ], [
+       fhir:index 23;
        fhir:Element.id [ fhir:value "shr-core-MedicationRequest-model.dosage" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-MedicationRequest-model.dosage" ];
        fhir:ElementDefinition.code [
@@ -1298,7 +1372,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 23;
+       fhir:index 24;
        fhir:Element.id [ fhir:value "shr-core-MedicationRequest-model.medicationRequester[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-MedicationRequest-model.medicationRequester[x]" ];
        fhir:ElementDefinition.short [ fhir:value "The individual, organization or device that initiated the request and has responsibility for its activation." ];
@@ -1335,7 +1409,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 24;
+       fhir:index 25;
        fhir:Element.id [ fhir:value "shr-core-MedicationRequest-model.numberOfRefillsAllowed" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-MedicationRequest-model.numberOfRefillsAllowed" ];
        fhir:ElementDefinition.short [ fhir:value "The maximum number of times the dispense can be repeated. For medication dispense, this integer does NOT include the original order dispense. This means that if an order indicates dispense 30 tablets plus 3 repeats, then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets." ];
@@ -1355,7 +1429,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 25;
+       fhir:index 26;
        fhir:Element.id [ fhir:value "shr-core-MedicationRequest-model.quantityPerDispense" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-MedicationRequest-model.quantityPerDispense" ];
        fhir:ElementDefinition.short [ fhir:value "The amount that is to be dispensed for one fill." ];
@@ -1375,7 +1449,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 26;
+       fhir:index 27;
        fhir:Element.id [ fhir:value "shr-core-MedicationRequest-model.supplyDuration" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-MedicationRequest-model.supplyDuration" ];
        fhir:ElementDefinition.code [
@@ -1400,7 +1474,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 27;
+       fhir:index 28;
        fhir:Element.id [ fhir:value "shr-core-MedicationRequest-model.substitutionAllowed" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-MedicationRequest-model.substitutionAllowed" ];
        fhir:ElementDefinition.short [ fhir:value "Whether substitution is allowed or not." ];
@@ -1420,7 +1494,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 28;
+       fhir:index 29;
        fhir:Element.id [ fhir:value "shr-core-MedicationRequest-model.substitutionReason" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-MedicationRequest-model.substitutionReason" ];
        fhir:ElementDefinition.short [ fhir:value "Why should (not) substitution be made." ];
