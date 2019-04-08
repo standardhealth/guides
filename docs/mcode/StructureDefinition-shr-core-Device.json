@@ -8,11 +8,11 @@
   "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device",
   "identifier": [
     {
-      "system": "http://hl7.org/fhir/us/projectURL",
+      "system": "http://hl7.org/fhir/us/mcode",
       "value": "shr.core.Device"
     }
   ],
-  "version": "0.7.0",
+  "version": "0.9.0 draft candidate 1",
   "name": "Device",
   "display": "shr-core-Device",
   "status": "draft",
@@ -22,13 +22,13 @@
       "telecom": [
         {
           "system": "other",
-          "value": "http://www.hl7.org/Special/committees/cic/index.cfm",
+          "value": "http://standardhealthrecord.org",
           "rank": 0
         }
       ]
     }
   ],
-  "date": "2019-03-27T00:00:00-04:00",
+  "date": "2019-04-08T00:00:00-04:00",
   "description": "A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients.\nDevice status cannot be reconciled between Argonaut and US-Core, each having different required value sets.\nDevice type has extensible mappings to different value sets in Argonaut and US-Core, however both value sets have identical SNOMED content (descendants of 49062001 (Device). We adopt the US-Core value set, which is allowable because the binding is extensible.",
   "fhirVersion": "1.0.2",
   "mapping": [
@@ -55,9 +55,9 @@
   "snapshot": {
     "element": [
       {
-        "id": "argoprofile",
+        "id": "Device",
         "path": "Device",
-        "name": "argoprofile",
+        "name": "Device",
         "short": "shr-core-Device",
         "definition": "A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients.\nDevice status cannot be reconciled between Argonaut and US-Core, each having different required value sets.\nDevice type has extensible mappings to different value sets in Argonaut and US-Core, however both value sets have identical SNOMED content (descendants of 49062001 (Device). We adopt the US-Core value set, which is allowable because the binding is extensible.",
         "min": 0,
@@ -92,9 +92,9 @@
         ]
       },
       {
-        "id": "Device:argoprofile.id",
+        "id": "Device.id",
         "path": "Device.id",
-        "name": "Device:argoprofile.id",
+        "name": "Device.id",
         "short": "Logical id of this artifact",
         "definition": "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
         "comments": "The only time that a resource does not have an id is when it is being submitted to the server using a create operation. Bundles always have an id, though it is usually a generated UUID.",
@@ -116,9 +116,9 @@
         "isSummary": true
       },
       {
-        "id": "Device:argoprofile.meta",
+        "id": "Device.meta",
         "path": "Device.meta",
-        "name": "Device:argoprofile.meta",
+        "name": "Device.meta",
         "short": "Metadata about the resource",
         "definition": "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content may not always be associated with version changes to the resource.",
         "min": 0,
@@ -139,171 +139,9 @@
         "isSummary": true
       },
       {
-        "id": "Device.meta.id",
-        "path": "Device.meta.id",
-        "representation": [
-          "xmlAttr"
-        ],
-        "name": "Device.meta.id",
-        "short": "xml:id (or equivalent in JSON)",
-        "definition": "unique id for the element within a resource (for internal references).",
-        "min": 0,
-        "max": "1",
-        "type": [
-          {
-            "code": "id"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "n/a"
-          }
-        ]
-      },
-      {
-        "id": "Device.meta.extension",
-        "path": "Device.meta.extension",
-        "name": "Device.meta.extension",
-        "short": "Additional Content defined by implementations",
-        "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
-        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
-        "alias": [
-          "extensions",
-          "user content"
-        ],
-        "min": 0,
-        "max": "*",
-        "type": [
-          {
-            "code": "Extension"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "n/a"
-          }
-        ]
-      },
-      {
-        "id": "Device.meta.versionId",
-        "path": "Device.meta.versionId",
-        "name": "Device.meta.versionId",
-        "short": "Version specific identifier",
-        "definition": "The version specific identifier, as it appears in the version portion of the URL. This values changes when the resource is created, updated, or deleted.",
-        "comments": "The server assigns this value, and ignores what the client specifies, except in the case that the server is imposing version integrity on updates/deletes.",
-        "min": 0,
-        "max": "1",
-        "type": [
-          {
-            "code": "id"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true
-      },
-      {
-        "id": "Device.meta.lastUpdated",
-        "path": "Device.meta.lastUpdated",
-        "name": "Device.meta.lastUpdated",
-        "short": "When the resource version last changed",
-        "definition": "When the resource last changed - e.g. when the version changed.",
-        "comments": "This value is always populated except when the resource is first being created. The server / resource manager sets this value; what a client provides is irrelevant.",
-        "min": 0,
-        "max": "1",
-        "type": [
-          {
-            "code": "instant"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true
-      },
-      {
-        "id": "Device.meta.profile",
-        "path": "Device.meta.profile",
-        "name": "Device.meta.profile",
-        "short": "Profiles this resource claims to conform to",
-        "definition": "A list of profiles [[[StructureDefinition]]]s that this resource claims to conform to. The URL is a reference to [[[StructureDefinition.url]]].",
-        "comments": "It is up to the server and/or other infrastructure of policy to determine whether/how these claims are verified and/or updated over time.  The list of profile URLs is a set.",
-        "min": 0,
-        "max": "*",
-        "type": [
-          {
-            "code": "uri"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true
-      },
-      {
-        "id": "Device.meta.security",
-        "path": "Device.meta.security",
-        "name": "Device.meta.security",
-        "short": "Security Labels applied to this resource",
-        "definition": "Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure.",
-        "comments": "The security labels can be updated without changing the stated version of the resource  The list of security labels is a set. Uniqueness is based the system/code, and version and display are ignored.",
-        "min": 0,
-        "max": "*",
-        "type": [
-          {
-            "code": "Coding"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true,
-        "binding": {
-          "strength": "extensible",
-          "description": "Security Labels from the Healthcare Privacy and Security Classification System.",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/security-labels"
-          }
-        }
-      },
-      {
-        "id": "Device.meta.tag",
-        "path": "Device.meta.tag",
-        "name": "Device.meta.tag",
-        "short": "Tags applied to this resource",
-        "definition": "Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource.",
-        "comments": "The tags can be updated without changing the stated version of the resource.  The list of tags is a set. Uniqueness is based the system/code, and version and display are ignored.",
-        "min": 0,
-        "max": "*",
-        "type": [
-          {
-            "code": "Coding"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true,
-        "binding": {
-          "strength": "example",
-          "description": "Codes that represent various types of tags, commonly workflow-related; e.g. \"Needs review by Dr. Jones\""
-        }
-      },
-      {
-        "id": "Device:argoprofile.implicitRules",
+        "id": "Device.implicitRules",
         "path": "Device.implicitRules",
-        "name": "Device:argoprofile.implicitRules",
+        "name": "Device.implicitRules",
         "short": "A set of rules under which this content was created",
         "definition": "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content.",
         "comments": "Asserting this rule set restricts the content to be only understood by a limited set of trading partners. This inherently limits the usefulness of the data in the long term. However, the existing health eco-system is highly fractured, and not yet ready to define, collect, and exchange data in a generally computable sense. Wherever possible, implementers and/or specification writers should avoid using this element as much as possible.",
@@ -325,9 +163,9 @@
         "isSummary": true
       },
       {
-        "id": "Device:argoprofile.language",
+        "id": "Device.language",
         "path": "Device.language",
-        "name": "Device:argoprofile.language",
+        "name": "Device.language",
         "short": "Language of the resource content",
         "definition": "The base language in which the resource is written.",
         "comments": "Language is provided to support indexing and accessibility (typically, services such as text to speech use the language tag). The html language tag in the narrative applies  to the narrative. The language tag on the resource may be used to specify the language of other presentations generated from the data in the resource  Not all the content has to be in the base language. The Resource.language should not be assumed to apply to the narrative automatically. If a language is specified, it should it also be specified on the div element in the html (see rules in HTML5 for information about the relationship between xml:lang and the html lang attribute).",
@@ -356,9 +194,9 @@
         }
       },
       {
-        "id": "Device:argoprofile.text",
+        "id": "Device.text",
         "path": "Device.text",
-        "name": "Device:argoprofile.text",
+        "name": "Device.text",
         "short": "Text summary of the resource, for human interpretation",
         "definition": "A human-readable narrative that contains a summary of the resource, and may be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
         "comments": "Contained resources do not have narrative. Resources that are not contained SHOULD have a narrative.",
@@ -395,9 +233,9 @@
         ]
       },
       {
-        "id": "Device:argoprofile.contained",
+        "id": "Device.contained",
         "path": "Device.contained",
-        "name": "Device:argoprofile.contained",
+        "name": "Device.contained",
         "short": "Contained, inline Resources",
         "definition": "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.",
         "comments": "This should never be done when the content can be identified properly, as once identification is lost, it is extremely difficult (and context dependent) to restore it again.",
@@ -430,9 +268,9 @@
         ]
       },
       {
-        "id": "Device:argoprofile.extension",
+        "id": "Device.extension",
         "path": "Device.extension",
-        "name": "Device:argoprofile.extension",
+        "name": "Device.extension",
         "slicing": {
           "id": "1",
           "discriminator": [
@@ -497,9 +335,9 @@
         "isSummary": false
       },
       {
-        "id": "Device:argoprofile.modifierExtension",
+        "id": "Device.modifierExtension",
         "path": "Device.modifierExtension",
-        "name": "Device:argoprofile.modifierExtension",
+        "name": "Device.modifierExtension",
         "short": "Extensions that cannot be ignored",
         "definition": "May be used to represent additional information that is not part of the basic definition of the resource, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -531,9 +369,9 @@
         ]
       },
       {
-        "id": "Device:argoprofile.identifier",
+        "id": "Device.identifier",
         "path": "Device.identifier",
-        "name": "Device:argoprofile.identifier",
+        "name": "Device.identifier",
         "short": "Instance id from manufacturer, owner, and others",
         "definition": "Unique instance identifiers assigned to a device by organizations like manufacturers or owners. If the identifier identifies the type of device, Device.type should be used.",
         "comments": "Often fixed to the device as a barcode and may include names given to the device in local usage.  Note that some of the barcodes affixed to the device identify its type, not its instance.  For the FDA mandated Unique Device Identifier (UDI) use  the Device.udi element.",
@@ -565,9 +403,9 @@
         ]
       },
       {
-        "id": "Device:argoprofile.type",
+        "id": "Device.type",
         "path": "Device.type",
-        "name": "Device:argoprofile.type",
+        "name": "Device.type",
         "short": "What kind of device this is",
         "definition": "Code or identifier to identify a kind of device.",
         "comments": "For the FDA mandated Unique Device Identifier (UDI) use  the Device.udi element.",
@@ -609,9 +447,9 @@
         ]
       },
       {
-        "id": "Device:argoprofile.note",
+        "id": "Device.note",
         "path": "Device.note",
-        "name": "Device:argoprofile.note",
+        "name": "Device.note",
         "short": "Device notes and comments",
         "definition": "Descriptive information, usage information or implantation information that is not captured in an existing element.",
         "min": 0,
@@ -638,9 +476,9 @@
         ]
       },
       {
-        "id": "Device:argoprofile.status",
+        "id": "Device.status",
         "path": "Device.status",
-        "name": "Device:argoprofile.status",
+        "name": "Device.status",
         "short": "available | not-available | entered-in-error",
         "definition": "Status of the Device availability.",
         "min": 0,
@@ -678,9 +516,9 @@
         ]
       },
       {
-        "id": "Device:argoprofile.manufacturer",
+        "id": "Device.manufacturer",
         "path": "Device.manufacturer",
-        "name": "Device:argoprofile.manufacturer",
+        "name": "Device.manufacturer",
         "short": "Name of device manufacturer",
         "definition": "A name of the manufacturer.",
         "min": 0,
@@ -707,9 +545,9 @@
         ]
       },
       {
-        "id": "Device:argoprofile.model",
+        "id": "Device.model",
         "path": "Device.model",
-        "name": "Device:argoprofile.model",
+        "name": "Device.model",
         "short": "Model id assigned by the manufacturer",
         "definition": "The \"model\" is an identifier assigned by the manufacturer to identify the product by its type. This number is shared by the all devices sold as the same type.",
         "min": 0,
@@ -740,9 +578,9 @@
         ]
       },
       {
-        "id": "Device:argoprofile.version",
+        "id": "Device.version",
         "path": "Device.version",
-        "name": "Device:argoprofile.version",
+        "name": "Device.version",
         "short": "Version number (i.e. software)",
         "definition": "The version of the device, if the device has multiple releases under the same model, or if the device is software or carries firmware.",
         "min": 0,
@@ -769,9 +607,9 @@
         ]
       },
       {
-        "id": "Device:argoprofile.manufactureDate",
+        "id": "Device.manufactureDate",
         "path": "Device.manufactureDate",
-        "name": "Device:argoprofile.manufactureDate",
+        "name": "Device.manufactureDate",
         "short": "Manufacture date",
         "definition": "The date and time when the device was manufactured.",
         "min": 0,
@@ -798,9 +636,9 @@
         ]
       },
       {
-        "id": "Device:argoprofile.expiry",
+        "id": "Device.expiry",
         "path": "Device.expiry",
-        "name": "Device:argoprofile.expiry",
+        "name": "Device.expiry",
         "short": "Date and time of expiry of this device (if applicable)",
         "definition": "The date and time beyond which this device is no longer valid or should not be used (if applicable).",
         "min": 0,
@@ -831,9 +669,9 @@
         ]
       },
       {
-        "id": "Device:argoprofile.udi",
+        "id": "Device.udi",
         "path": "Device.udi",
-        "name": "Device:argoprofile.udi",
+        "name": "Device.udi",
         "short": "FDA mandated Unique Device Identifier",
         "definition": "United States Food and Drug Administration mandated Unique Device Identifier (UDI). Use the human readable information (the content that the user sees, which is sometimes different to the exact syntax represented in the barcode)  - see http://www.fda.gov/MedicalDevices/DeviceRegulationandGuidance/UniqueDeviceIdentification/default.htm.",
         "comments": "The unique identifier may identify an instance of a device uniquely, or it may only identify the type of the device. A portion of the UDI - the DI part - can be extracted from the UDI when required, and used to look up information about the device through the GUDID.",
@@ -873,9 +711,9 @@
         ]
       },
       {
-        "id": "Device:argoprofile.lotNumber",
+        "id": "Device.lotNumber",
         "path": "Device.lotNumber",
-        "name": "Device:argoprofile.lotNumber",
+        "name": "Device.lotNumber",
         "short": "Lot number of manufacture",
         "definition": "Lot number assigned by the manufacturer.",
         "comments": "Alphanumeric Maximum 20.",
@@ -903,9 +741,9 @@
         ]
       },
       {
-        "id": "Device:argoprofile.owner",
+        "id": "Device.owner",
         "path": "Device.owner",
-        "name": "Device:argoprofile.owner",
+        "name": "Device.owner",
         "short": "Organization responsible for device",
         "definition": "An organization that is responsible for the provision and ongoing maintenance of the device.",
         "min": 0,
@@ -935,9 +773,9 @@
         ]
       },
       {
-        "id": "Device:argoprofile.location",
+        "id": "Device.location",
         "path": "Device.location",
-        "name": "Device:argoprofile.location",
+        "name": "Device.location",
         "short": "Where the resource is found",
         "definition": "The place where the device can be found.",
         "min": 0,
@@ -971,9 +809,9 @@
         ]
       },
       {
-        "id": "Device:argoprofile.patient",
+        "id": "Device.patient",
         "path": "Device.patient",
-        "name": "Device:argoprofile.patient",
+        "name": "Device.patient",
         "short": "If the resource is affixed to a person",
         "definition": "Patient information, if the resource is affixed to a person.",
         "min": 1,
@@ -1011,9 +849,9 @@
         ]
       },
       {
-        "id": "Device:argoprofile.contact",
+        "id": "Device.contact",
         "path": "Device.contact",
-        "name": "Device:argoprofile.contact",
+        "name": "Device.contact",
         "short": "Details for human/organization for support",
         "definition": "Contact details for an organization or a particular human that is responsible for the device.",
         "comments": "used for troubleshooting etc.",
@@ -1041,9 +879,9 @@
         ]
       },
       {
-        "id": "Device:argoprofile.url",
+        "id": "Device.url",
         "path": "Device.url",
-        "name": "Device:argoprofile.url",
+        "name": "Device.url",
         "short": "Network address to contact device",
         "definition": "A network address on which the device may be contacted directly.",
         "comments": "If the device is running a FHIR server, the network address should  be the root URL from which a conformance statement may be retrieved.",

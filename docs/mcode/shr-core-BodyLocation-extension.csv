@@ -1,18 +1,20 @@
 "Path","Slice Name","Alias(s)","Label","Min","Max","Must Support?","Is Modifier?","Is Summary?","Type(s)","Short","Definition","Comments","Requirements","Default Value","Meaning When Missing","Fixed Value","Pattern","Example","Minimum Value","Maximum Value","Maximum Length","Binding Strength","Binding Description","Binding Value Set","Code","Slicing Discriminator","Slicing Description","Slicing Ordered","Slicing Rules","Base Path","Base Min","Base Max","Condition(s)","Constraint(s)"
 "Extension","","","",0,*,"","","","","BodyLocation","A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart.
 The BodyLocation includes code and optional qualifiers of anatomical side or direction. The body location can also be determined from one or more body landmarks.
-If the code for the body location includes laterality and/or direction, the LocationQualifier might be unnecessary.
-Note that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how the same address structure can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodyLocation (BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).","","","","","","","","","",,,,,"",,,,"Extension",0,1,"",""
+If the code for the body location includes laterality and/or anatomical direction, the corresponding attributes might be unnecessary.
+Note that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how an address structure can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).","","","","","","","","","",,,,,"",,,,"Extension",0,1,"",""
 "Extension.id","","","",0,1,"","","","string {[]} {[]}
 ","xml:id (or equivalent in JSON)","unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.","","","","","","","","","",,,,,"",,,,"Element.id",0,1,"",""
-"Extension.extension","","","",0,*,"","","","Extension {[]} {[]}
+"Extension.extension","","","",1,*,"","","","Extension {[]} {[]}
 ","Extension","An Extension","","","","","","","","","",,,,,"","value:url}
 ","",,"open","Element.extension",0,*,"",""
 "Extension.extension","locationcode","","",1,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationCode-extension]]} {[]}
-","","Code for the body location, optionally defining laterality or direction.","","","","","","","","","",,,,,"",,,,"Extension.extension",0,1,"",""
-"Extension.extension","locationqualifier","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension]]} {[]}
-","","Additional information, such as laterality or direction, that helps define the body location.","","","","","","","","","",,,,,"",,,,"Extension.extension",0,1,"",""
-"Extension.extension","landmark","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension]]} {[]}
+","","Code for the body location, optionally pre-coordinating laterality or direction.","","","","","","","","","",,,,,"",,,,"Extension.extension",0,1,"",""
+"Extension.extension","laterality","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension]]} {[]}
+","","Body side of the body location, if needed to distinguish from a similar location on the other side of the body.","","","","","","","","","",,,,,"",,,,"Extension.extension",0,1,"",""
+"Extension.extension","orientation","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Orientation-extension]]} {[]}
+","","Orientation of the body location, if needed to distinguish from a similar location in another orientation.","","","","","","","","","",,,,,"",,,,"Extension.extension",0,1,"",""
+"Extension.extension","relationtolandmark","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelationToLandmark-extension]]} {[]}
 ","","An anatomical landmark that helps determine a body location.","","","","","","","","","",,,,,"",,,,"Extension.extension",0,1,"",""
 "Extension.url","","","",1,1,"","","","uri {[]} {[]}
 ","identifies the meaning of the extension","Source of the definition for the extension code - a logical name or a URL.","","","","","<valueUri xmlns=""http://hl7.org/fhir"" value=""http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BodyLocation-extension""/>","","","","",,,,,"",,,,"Extension.url",1,1,"",""
