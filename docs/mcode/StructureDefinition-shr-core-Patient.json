@@ -8,11 +8,11 @@
   "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient",
   "identifier": [
     {
-      "system": "http://hl7.org/fhir/us/projectURL",
+      "system": "http://hl7.org/fhir/us/mcode",
       "value": "shr.core.Patient"
     }
   ],
-  "version": "0.7.0",
+  "version": "0.9.0 draft candidate 1",
   "name": "Patient",
   "display": "shr-core-Patient",
   "status": "draft",
@@ -22,13 +22,13 @@
       "telecom": [
         {
           "system": "other",
-          "value": "http://www.hl7.org/Special/committees/cic/index.cfm",
+          "value": "http://standardhealthrecord.org",
           "rank": 0
         }
       ]
     }
   ],
-  "date": "2019-03-27T00:00:00-04:00",
+  "date": "2019-04-08T00:00:00-04:00",
   "description": "A person in the role of a patient. Sometimes, the patient is not the subject of information in a clinical statement where the Patient is the SubjectOfRecord.\n\nSHR follows Argonaut and makes the value set binding on marital status required. SHR also adds optional extensions on communication ability to more fully characterize language skills.\nMaritalStatus has a required binding in Argonaut, but an extensible binding in US-Core. To be feasible under both DSTU2 Argonaut and STU3 US-Core, the required binding strength is adopted.",
   "code": [
     {
@@ -72,9 +72,9 @@
   "snapshot": {
     "element": [
       {
-        "id": "Argoprofile",
+        "id": "Patient",
         "path": "Patient",
-        "name": "Argoprofile",
+        "name": "Patient",
         "short": "shr-core-Patient",
         "definition": "A person in the role of a patient. Sometimes, the patient is not the subject of information in a clinical statement where the Patient is the SubjectOfRecord.\n\nSHR follows Argonaut and makes the value set binding on marital status required. SHR also adds optional extensions on communication ability to more fully characterize language skills.\nMaritalStatus has a required binding in Argonaut, but an extensible binding in US-Core. To be feasible under both DSTU2 Argonaut and STU3 US-Core, the required binding strength is adopted.",
         "alias": [
@@ -112,9 +112,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.id",
+        "id": "Patient.id",
         "path": "Patient.id",
-        "name": "Patient:argoprofile.id",
+        "name": "Patient.id",
         "short": "Logical id of this artifact",
         "definition": "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
         "comments": "The only time that a resource does not have an id is when it is being submitted to the server using a create operation. Bundles always have an id, though it is usually a generated UUID.",
@@ -136,9 +136,9 @@
         "isSummary": true
       },
       {
-        "id": "Patient:argoprofile.meta",
+        "id": "Patient.meta",
         "path": "Patient.meta",
-        "name": "Patient:argoprofile.meta",
+        "name": "Patient.meta",
         "short": "Metadata about the resource",
         "definition": "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content may not always be associated with version changes to the resource.",
         "min": 0,
@@ -159,171 +159,9 @@
         "isSummary": true
       },
       {
-        "id": "Patient.meta.id",
-        "path": "Patient.meta.id",
-        "representation": [
-          "xmlAttr"
-        ],
-        "name": "Patient.meta.id",
-        "short": "xml:id (or equivalent in JSON)",
-        "definition": "unique id for the element within a resource (for internal references).",
-        "min": 0,
-        "max": "1",
-        "type": [
-          {
-            "code": "id"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "n/a"
-          }
-        ]
-      },
-      {
-        "id": "Patient.meta.extension",
-        "path": "Patient.meta.extension",
-        "name": "Patient.meta.extension",
-        "short": "Additional Content defined by implementations",
-        "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
-        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
-        "alias": [
-          "extensions",
-          "user content"
-        ],
-        "min": 0,
-        "max": "*",
-        "type": [
-          {
-            "code": "Extension"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "n/a"
-          }
-        ]
-      },
-      {
-        "id": "Patient.meta.versionId",
-        "path": "Patient.meta.versionId",
-        "name": "Patient.meta.versionId",
-        "short": "Version specific identifier",
-        "definition": "The version specific identifier, as it appears in the version portion of the URL. This values changes when the resource is created, updated, or deleted.",
-        "comments": "The server assigns this value, and ignores what the client specifies, except in the case that the server is imposing version integrity on updates/deletes.",
-        "min": 0,
-        "max": "1",
-        "type": [
-          {
-            "code": "id"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true
-      },
-      {
-        "id": "Patient.meta.lastUpdated",
-        "path": "Patient.meta.lastUpdated",
-        "name": "Patient.meta.lastUpdated",
-        "short": "When the resource version last changed",
-        "definition": "When the resource last changed - e.g. when the version changed.",
-        "comments": "This value is always populated except when the resource is first being created. The server / resource manager sets this value; what a client provides is irrelevant.",
-        "min": 0,
-        "max": "1",
-        "type": [
-          {
-            "code": "instant"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true
-      },
-      {
-        "id": "Patient.meta.profile",
-        "path": "Patient.meta.profile",
-        "name": "Patient.meta.profile",
-        "short": "Profiles this resource claims to conform to",
-        "definition": "A list of profiles [[[StructureDefinition]]]s that this resource claims to conform to. The URL is a reference to [[[StructureDefinition.url]]].",
-        "comments": "It is up to the server and/or other infrastructure of policy to determine whether/how these claims are verified and/or updated over time.  The list of profile URLs is a set.",
-        "min": 0,
-        "max": "*",
-        "type": [
-          {
-            "code": "uri"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true
-      },
-      {
-        "id": "Patient.meta.security",
-        "path": "Patient.meta.security",
-        "name": "Patient.meta.security",
-        "short": "Security Labels applied to this resource",
-        "definition": "Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure.",
-        "comments": "The security labels can be updated without changing the stated version of the resource  The list of security labels is a set. Uniqueness is based the system/code, and version and display are ignored.",
-        "min": 0,
-        "max": "*",
-        "type": [
-          {
-            "code": "Coding"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true,
-        "binding": {
-          "strength": "extensible",
-          "description": "Security Labels from the Healthcare Privacy and Security Classification System.",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/security-labels"
-          }
-        }
-      },
-      {
-        "id": "Patient.meta.tag",
-        "path": "Patient.meta.tag",
-        "name": "Patient.meta.tag",
-        "short": "Tags applied to this resource",
-        "definition": "Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource.",
-        "comments": "The tags can be updated without changing the stated version of the resource.  The list of tags is a set. Uniqueness is based the system/code, and version and display are ignored.",
-        "min": 0,
-        "max": "*",
-        "type": [
-          {
-            "code": "Coding"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true,
-        "binding": {
-          "strength": "example",
-          "description": "Codes that represent various types of tags, commonly workflow-related; e.g. \"Needs review by Dr. Jones\""
-        }
-      },
-      {
-        "id": "Patient:argoprofile.implicitRules",
+        "id": "Patient.implicitRules",
         "path": "Patient.implicitRules",
-        "name": "Patient:argoprofile.implicitRules",
+        "name": "Patient.implicitRules",
         "short": "A set of rules under which this content was created",
         "definition": "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content.",
         "comments": "Asserting this rule set restricts the content to be only understood by a limited set of trading partners. This inherently limits the usefulness of the data in the long term. However, the existing health eco-system is highly fractured, and not yet ready to define, collect, and exchange data in a generally computable sense. Wherever possible, implementers and/or specification writers should avoid using this element as much as possible.",
@@ -345,9 +183,9 @@
         "isSummary": true
       },
       {
-        "id": "Patient:argoprofile.language",
+        "id": "Patient.language",
         "path": "Patient.language",
-        "name": "Patient:argoprofile.language",
+        "name": "Patient.language",
         "short": "Language of the resource content",
         "definition": "The base language in which the resource is written.",
         "comments": "Language is provided to support indexing and accessibility (typically, services such as text to speech use the language tag). The html language tag in the narrative applies  to the narrative. The language tag on the resource may be used to specify the language of other presentations generated from the data in the resource  Not all the content has to be in the base language. The Resource.language should not be assumed to apply to the narrative automatically. If a language is specified, it should it also be specified on the div element in the html (see rules in HTML5 for information about the relationship between xml:lang and the html lang attribute).",
@@ -376,9 +214,9 @@
         }
       },
       {
-        "id": "Patient:argoprofile.text",
+        "id": "Patient.text",
         "path": "Patient.text",
-        "name": "Patient:argoprofile.text",
+        "name": "Patient.text",
         "short": "Text summary of the resource, for human interpretation",
         "definition": "A human-readable narrative that contains a summary of the resource, and may be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
         "comments": "Contained resources do not have narrative. Resources that are not contained SHOULD have a narrative.",
@@ -415,9 +253,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.contained",
+        "id": "Patient.contained",
         "path": "Patient.contained",
-        "name": "Patient:argoprofile.contained",
+        "name": "Patient.contained",
         "short": "Contained, inline Resources",
         "definition": "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.",
         "comments": "This should never be done when the content can be identified properly, as once identification is lost, it is extremely difficult (and context dependent) to restore it again.",
@@ -450,9 +288,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.extension",
+        "id": "Patient.extension",
         "path": "Patient.extension",
-        "name": "Patient:argoprofile.extension",
+        "name": "Patient.extension",
         "slicing": {
           "id": "1",
           "discriminator": [
@@ -581,12 +419,12 @@
         "isSummary": false
       },
       {
-        "id": "Patient.extension.id",
+        "id": "Patient.extension-status.id",
         "path": "Patient.extension.id",
         "representation": [
           "xmlAttr"
         ],
-        "name": "Patient.extension.id",
+        "name": "Patient.extension-status.id",
         "short": "xml:id (or equivalent in JSON)",
         "definition": "unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
         "min": 0,
@@ -613,9 +451,9 @@
         ]
       },
       {
-        "id": "Patient.extension.extension",
+        "id": "Patient.extension-status.extension-extension",
         "path": "Patient.extension.extension",
-        "name": "Patient.extension.extension",
+        "name": "Patient.extension-status.extension-extension",
         "short": "Extension",
         "definition": "An Extension",
         "min": 0,
@@ -636,12 +474,12 @@
         "isSummary": false
       },
       {
-        "id": "Patient.extension.url",
+        "id": "Patient.extension-status.url",
         "path": "Patient.extension.url",
         "representation": [
           "xmlAttr"
         ],
-        "name": "Patient.extension.url",
+        "name": "Patient.extension-status.url",
         "short": "identifies the meaning of the extension",
         "definition": "Source of the definition for the extension code - a logical name or a URL.",
         "min": 1,
@@ -669,9 +507,9 @@
         ]
       },
       {
-        "id": "Patient.extension.valueCodeableConcept",
+        "id": "Patient.extension-status.valueCodeableConcept",
         "path": "Patient.extension.valueCodeableConcept",
-        "name": "Patient.extension.valueCodeableConcept",
+        "name": "Patient.extension-status.valueCodeableConcept",
         "short": "Value of extension",
         "definition": "Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).",
         "min": 1,
@@ -693,7 +531,7 @@
         "binding": {
           "strength": "required",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/ActiveOrInactiveVS"
+            "reference": "http://hl7.org/fhir/us/mcode/shr/core/vs/ActiveOrInactiveVS"
           }
         },
         "mapping": [
@@ -704,9 +542,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.modifierExtension",
+        "id": "Patient.modifierExtension",
         "path": "Patient.modifierExtension",
-        "name": "Patient:argoprofile.modifierExtension",
+        "name": "Patient.modifierExtension",
         "short": "Extensions that cannot be ignored",
         "definition": "May be used to represent additional information that is not part of the basic definition of the resource, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -738,9 +576,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.identifier",
+        "id": "Patient.identifier",
         "path": "Patient.identifier",
-        "name": "Patient:argoprofile.identifier",
+        "name": "Patient.identifier",
         "short": "An identifier for this patient",
         "definition": "An identifier for this patient.",
         "requirements": "Patients are almost always assigned specific numerical identifiers.",
@@ -780,315 +618,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.identifier.id",
-        "path": "Patient.identifier.id",
-        "representation": [
-          "xmlAttr"
-        ],
-        "name": "Patient:argoprofile.identifier.id",
-        "short": "xml:id (or equivalent in JSON)",
-        "definition": "unique id for the element within a resource (for internal references).",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Identifier.id",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "id"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "n/a"
-          }
-        ]
-      },
-      {
-        "id": "Patient:argoprofile.identifier.extension",
-        "path": "Patient.identifier.extension",
-        "name": "Patient:argoprofile.identifier.extension",
-        "short": "Additional Content defined by implementations",
-        "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
-        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
-        "alias": [
-          "extensions",
-          "user content"
-        ],
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "Identifier.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "n/a"
-          }
-        ]
-      },
-      {
-        "id": "Patient:argoprofile.identifier.use",
-        "path": "Patient.identifier.use",
-        "name": "Patient:argoprofile.identifier.use",
-        "short": "usual | official | temp | secondary (If known)",
-        "definition": "The purpose of this identifier.",
-        "comments": "This is labeled as \"Is Modifier\" because applications should not mistake a temporary id for a permanent one. Applications can assume that an identifier is permanent unless it explicitly says that it is temporary.",
-        "requirements": "Allows the appropriate identifier for a particular context of use to be selected from among a set of identifiers.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Identifier.use",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "code"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": true,
-        "isSummary": true,
-        "binding": {
-          "strength": "required",
-          "description": "Identifies the purpose for this identifier, if known .",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/identifier-use"
-          }
-        },
-        "mapping": [
-          {
-            "identity": "v2",
-            "map": "N/A"
-          },
-          {
-            "identity": "rim",
-            "map": "Role.code or implied by context"
-          }
-        ]
-      },
-      {
-        "id": "Patient:argoprofile.identifier.type",
-        "path": "Patient.identifier.type",
-        "name": "Patient:argoprofile.identifier.type",
-        "short": "Description of identifier",
-        "definition": "A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.",
-        "comments": "This element deals only with general categories of identifiers.  It SHOULD not be used for codes that correspond 1..1 with the Identifier.system. Some identifiers may fall into multiple categories due to common usage.   Where the system is known, a type is unnecessary because the type is always part of the system definition. However systems often need to handle identifiers where the system is not known. There is not a 1:1 relationship between type and system, since many different systems have the same type.",
-        "requirements": "Allows users to make use of identifiers when the identifier system is not known.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Identifier.type",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "CodeableConcept"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true,
-        "binding": {
-          "strength": "extensible",
-          "description": "A coded type for an identifier that can be used to determine which identifier to use for a specific purpose.",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/identifier-type"
-          }
-        },
-        "mapping": [
-          {
-            "identity": "v2",
-            "map": "CX.5"
-          },
-          {
-            "identity": "rim",
-            "map": "Role.code or implied by context"
-          }
-        ]
-      },
-      {
-        "id": "Patient:argoprofile.identifier.system",
-        "path": "Patient.identifier.system",
-        "name": "Patient:argoprofile.identifier.system",
-        "short": "The namespace for the identifier",
-        "definition": "Establishes the namespace in which set of possible id values is unique.",
-        "requirements": "There are many sequences of identifiers.  To perform matching, we need to know what sequence we're dealing with. The system identifies a particular sequence or set of unique identifiers.",
-        "min": 1,
-        "max": "1",
-        "base": {
-          "path": "Identifier.system",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "uri"
-          }
-        ],
-        "exampleUri": "http://www.acme.com/identifiers/patient or urn:ietf:rfc:3986 if the Identifier.value itself is a full uri",
-        "maxLength": 0,
-        "mustSupport": true,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "v2",
-            "map": "CX.4 / EI-2-4"
-          },
-          {
-            "identity": "rim",
-            "map": "II.root or Role.id.root"
-          },
-          {
-            "identity": "servd",
-            "map": "./IdentifierType"
-          }
-        ]
-      },
-      {
-        "id": "Patient:argoprofile.identifier.value",
-        "path": "Patient.identifier.value",
-        "name": "Patient:argoprofile.identifier.value",
-        "short": "The value that is unique within the system.",
-        "definition": "The portion of the identifier typically displayed to the user and which is unique within the context of the system.",
-        "comments": "If the value is a full URI, then the system SHALL be urn:ietf:rfc:3986.",
-        "min": 1,
-        "max": "1",
-        "base": {
-          "path": "Identifier.value",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "string"
-          }
-        ],
-        "exampleString": "123456",
-        "maxLength": 0,
-        "mustSupport": true,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "v2",
-            "map": "CX.1 / EI.1"
-          },
-          {
-            "identity": "rim",
-            "map": "II.extension or II.root if system indicates OID or GUID (Or Role.id.extension or root)"
-          },
-          {
-            "identity": "servd",
-            "map": "./Value"
-          }
-        ]
-      },
-      {
-        "id": "Patient:argoprofile.identifier.period",
-        "path": "Patient.identifier.period",
-        "name": "Patient:argoprofile.identifier.period",
-        "short": "Time period when id is/was valid for use",
-        "definition": "Time period during which identifier is/was valid for use.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Identifier.period",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "Period"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true,
-        "mapping": [
-          {
-            "identity": "v2",
-            "map": "CX.7 + CX.8"
-          },
-          {
-            "identity": "rim",
-            "map": "Role.effectiveTime or implied by context"
-          },
-          {
-            "identity": "servd",
-            "map": "./StartDate and ./EndDate"
-          }
-        ]
-      },
-      {
-        "id": "Patient:argoprofile.identifier.assigner",
-        "path": "Patient.identifier.assigner",
-        "name": "Patient:argoprofile.identifier.assigner",
-        "short": "Organization that issued id (may be just text)",
-        "definition": "Organization that issued/manages the identifier.",
-        "comments": "The reference may be just a text description of the assigner.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Identifier.assigner",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "Reference",
-            "profile": [
-              "http://hl7.org/fhir/StructureDefinition/Organization"
-            ]
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true,
-        "mapping": [
-          {
-            "identity": "v2",
-            "map": "CX.4 / (CX.4,CX.9,CX.10)"
-          },
-          {
-            "identity": "rim",
-            "map": "II.assigningAuthorityName but note that this is an improper use by the definition of the field.  Also Role.scoper"
-          },
-          {
-            "identity": "servd",
-            "map": "./IdentifierIssuingAuthority"
-          }
-        ]
-      },
-      {
-        "id": "Patient:argoprofile.active",
+        "id": "Patient.active",
         "path": "Patient.active",
-        "name": "Patient:argoprofile.active",
+        "name": "Patient.active",
         "short": "Whether this patient's record is in active use",
         "definition": "Whether this patient record is in active use.",
         "comments": "Default is true. If a record is inactive, and linked to an active record, then future patient/record updates should occur on the other patient.",
@@ -1126,9 +658,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.name",
+        "id": "Patient.name",
         "path": "Patient.name",
-        "name": "Patient:argoprofile.name",
+        "name": "Patient.name",
         "short": "A name associated with the patient",
         "definition": "A name associated with the individual.",
         "comments": "A patient may have multiple names with different uses or applicable periods. For animals, the name is a \"HumanName\" in the sense that is assigned and used by humans and has the same patterns.",
@@ -1168,347 +700,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.name.id",
-        "path": "Patient.name.id",
-        "representation": [
-          "xmlAttr"
-        ],
-        "name": "Patient:argoprofile.name.id",
-        "short": "xml:id (or equivalent in JSON)",
-        "definition": "unique id for the element within a resource (for internal references).",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "HumanName.id",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "id"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "n/a"
-          }
-        ]
-      },
-      {
-        "id": "Patient:argoprofile.name.extension",
-        "path": "Patient.name.extension",
-        "name": "Patient:argoprofile.name.extension",
-        "short": "Additional Content defined by implementations",
-        "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
-        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
-        "alias": [
-          "extensions",
-          "user content"
-        ],
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "HumanName.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "n/a"
-          }
-        ]
-      },
-      {
-        "id": "Patient:argoprofile.name.use",
-        "path": "Patient.name.use",
-        "name": "Patient:argoprofile.name.use",
-        "short": "usual | official | temp | nickname | anonymous | old | maiden",
-        "definition": "Identifies the purpose for this name.",
-        "comments": "This is labeled as \"Is Modifier\" because applications should not mistake a temporary or old name etc.for a current/permanent one. Applications can assume that a name is current unless it explicitly says that it is temporary or old.",
-        "requirements": "Allows the appropriate name for a particular context of use to be selected from among a set of names.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "HumanName.use",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "code"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": true,
-        "isSummary": true,
-        "binding": {
-          "strength": "required",
-          "description": "The use of a human name",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/name-use"
-          }
-        },
-        "mapping": [
-          {
-            "identity": "v2",
-            "map": "XPN.7, but often indicated by which field contains the name"
-          },
-          {
-            "identity": "rim",
-            "map": "unique(./use)"
-          },
-          {
-            "identity": "servd",
-            "map": "./NamePurpose"
-          }
-        ]
-      },
-      {
-        "id": "Patient:argoprofile.name.text",
-        "path": "Patient.name.text",
-        "name": "Patient:argoprofile.name.text",
-        "short": "Text representation of the full name",
-        "definition": "A full text representation of the name.",
-        "comments": "Can provide both a text representation and structured parts.",
-        "requirements": "A renderable, unencoded form.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "HumanName.text",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "string"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true,
-        "mapping": [
-          {
-            "identity": "v2",
-            "map": "implied by XPN.11"
-          },
-          {
-            "identity": "rim",
-            "map": "./formatted"
-          }
-        ]
-      },
-      {
-        "id": "Patient:argoprofile.name.family",
-        "path": "Patient.name.family",
-        "name": "Patient:argoprofile.name.family",
-        "short": "Family name (often called 'Surname')",
-        "definition": "The part of a name that links to the genealogy. In some cultures (e.g. Eritrea) the family name of a son is the first name of his father.",
-        "comments": "For family name, hyphenated names such as \"Smith-Jones\" are a single name, but names with spaces such as \"Smith Jones\" are broken into multiple parts.",
-        "alias": [
-          "surname"
-        ],
-        "min": 1,
-        "max": "*",
-        "base": {
-          "path": "HumanName.family",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "string"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": true,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "v2",
-            "map": "XPN.1"
-          },
-          {
-            "identity": "rim",
-            "map": "./part[partType = FAM]"
-          },
-          {
-            "identity": "servd",
-            "map": "./FamilyName"
-          }
-        ]
-      },
-      {
-        "id": "Patient:argoprofile.name.given",
-        "path": "Patient.name.given",
-        "name": "Patient:argoprofile.name.given",
-        "short": "Given names (not always 'first'). Includes middle names",
-        "definition": "Given name.",
-        "comments": "If only initials are recorded, they may be used in place of the full name.  Not called \"first name\" since given names do not always come first.",
-        "alias": [
-          "first name",
-          "middle name"
-        ],
-        "min": 1,
-        "max": "*",
-        "base": {
-          "path": "HumanName.given",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "string"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": true,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "v2",
-            "map": "XPN.2 + XPN.3"
-          },
-          {
-            "identity": "rim",
-            "map": "./part[partType = GIV]"
-          },
-          {
-            "identity": "servd",
-            "map": "./GivenNames"
-          }
-        ]
-      },
-      {
-        "id": "Patient:argoprofile.name.prefix",
-        "path": "Patient.name.prefix",
-        "name": "Patient:argoprofile.name.prefix",
-        "short": "Parts that come before the name",
-        "definition": "Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the start of the name.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "HumanName.prefix",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "string"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true,
-        "mapping": [
-          {
-            "identity": "v2",
-            "map": "XPN.5"
-          },
-          {
-            "identity": "rim",
-            "map": "./part[partType = PFX]"
-          },
-          {
-            "identity": "servd",
-            "map": "./TitleCode"
-          }
-        ]
-      },
-      {
-        "id": "Patient:argoprofile.name.suffix",
-        "path": "Patient.name.suffix",
-        "name": "Patient:argoprofile.name.suffix",
-        "short": "Parts that come after the name",
-        "definition": "Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the end of the name.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "HumanName.suffix",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "string"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true,
-        "mapping": [
-          {
-            "identity": "v2",
-            "map": "XPN/4"
-          },
-          {
-            "identity": "rim",
-            "map": "./part[partType = SFX]"
-          }
-        ]
-      },
-      {
-        "id": "Patient:argoprofile.name.period",
-        "path": "Patient.name.period",
-        "name": "Patient:argoprofile.name.period",
-        "short": "Time period when name was/is in use",
-        "definition": "Indicates the period of time when this name was valid for the named person.",
-        "requirements": "Allows names to be placed in historical context.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "HumanName.period",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "Period"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true,
-        "mapping": [
-          {
-            "identity": "v2",
-            "map": "XPN.13 + XPN.14"
-          },
-          {
-            "identity": "rim",
-            "map": "./usablePeriod[type=\"IVL<TS>\"]"
-          },
-          {
-            "identity": "servd",
-            "map": "./StartDate and ./EndDate"
-          }
-        ]
-      },
-      {
-        "id": "Patient:argoprofile.telecom",
+        "id": "Patient.telecom",
         "path": "Patient.telecom",
-        "name": "Patient:argoprofile.telecom",
+        "name": "Patient.telecom",
         "short": "A contact detail for the individual",
         "definition": "A contact detail (e.g. a telephone number or an email address) by which the individual may be contacted.",
         "comments": "A Patient may have multiple ways to be contacted with different uses or applicable periods.  May need to have options for contacting the person urgently and also to help with identification. The address may not go directly to the individual, but may reach another party that is able to proxy for the patient (i.e. home phone, or pet owner's phone).",
@@ -1545,9 +739,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.gender",
+        "id": "Patient.gender",
         "path": "Patient.gender",
-        "name": "Patient:argoprofile.gender",
+        "name": "Patient.gender",
         "short": "male | female | other | unknown",
         "definition": "Administrative Gender - the gender that the patient is considered to have for administration and record keeping purposes.",
         "comments": "The gender may not match the biological sex as determined by genetics, or the individual's preferred identification. Note that for both humans and particularly animals, there are other legitimate possibilities than M and F, though the vast majority of systems and contexts only support M and F.  Systems providing decision support or enforcing business rules should ideally do this on the basis of Observations dealing with the specific gender aspect of interest (anatomical, chromosonal, social, etc.)  However, because these observations are infrequently recorded, defaulting to the administrative gender is common practice.  Where such defaulting occurs, rule enforcement should allow for the variation between administrative and biological, chromosonal and other gender aspects.  For example, an alert about a hysterectomy on a male should be handled as a warning or overrideable error, not a \"hard\" error.",
@@ -1590,9 +784,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.birthDate",
+        "id": "Patient.birthDate",
         "path": "Patient.birthDate",
-        "name": "Patient:argoprofile.birthDate",
+        "name": "Patient.birthDate",
         "short": "The date of birth for the individual",
         "definition": "The date of birth for the individual.",
         "comments": "At least an estimated year should be provided as a guess if the real DOB is unknown  There is a standard extension \"patient-birthTime\" available that should be used where Time is required (such as in maternaty/infant care systems).",
@@ -1633,9 +827,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.deceased[x]",
+        "id": "Patient.deceased-x-",
         "path": "Patient.deceased[x]",
-        "name": "Patient:argoprofile.deceased[x]",
+        "name": "Patient.deceased-x-",
         "short": "Indicates if the individual is deceased or not",
         "definition": "Indicates if the individual is deceased or not.",
         "comments": "If there's no value in the instance it means there is no statement on whether or not the individual is deceased. Most systems will interpret the absence of a value as a sign of the person being alive.",
@@ -1656,7 +850,7 @@
           }
         ],
         "maxLength": 0,
-        "mustSupport": false,
+        "mustSupport": true,
         "isModifier": true,
         "isSummary": true,
         "mapping": [
@@ -1675,9 +869,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.address",
+        "id": "Patient.address",
         "path": "Patient.address",
-        "name": "Patient:argoprofile.address",
+        "name": "Patient.address",
         "short": "Addresses for the individual",
         "definition": "Addresses for the individual.",
         "comments": "Patient may have multiple addresses with different uses or applicable periods.",
@@ -1714,9 +908,447 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.maritalStatus",
+        "id": "Patient.address.id",
+        "path": "Patient.address.id",
+        "representation": [
+          "xmlAttr"
+        ],
+        "name": "Patient.address.id",
+        "short": "xml:id (or equivalent in JSON)",
+        "definition": "unique id for the element within a resource (for internal references).",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "id"
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "n/a"
+          }
+        ]
+      },
+      {
+        "id": "Patient.address.extension",
+        "path": "Patient.address.extension",
+        "name": "Patient.address.extension",
+        "short": "Additional Content defined by implementations",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content"
+        ],
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "n/a"
+          }
+        ]
+      },
+      {
+        "id": "Patient.address.use",
+        "path": "Patient.address.use",
+        "name": "Patient.address.use",
+        "short": "home | work | temp | old - purpose of this address",
+        "definition": "The purpose of this address.",
+        "comments": "This is labeled as \"Is Modifier\" because applications should not mistake a temporary or old address etc.for a current/permanent one. Applications can assume that an address is current unless it explicitly says that it is temporary or old.",
+        "requirements": "Allows an appropriate address to be chosen from a list of many.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "exampleCode": "home",
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": true,
+        "isSummary": true,
+        "binding": {
+          "strength": "required",
+          "description": "The use of an address",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/address-use"
+          }
+        },
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "XAD.7"
+          },
+          {
+            "identity": "rim",
+            "map": "unique(./use)"
+          },
+          {
+            "identity": "servd",
+            "map": "./AddressPurpose"
+          }
+        ]
+      },
+      {
+        "id": "Patient.address.type",
+        "path": "Patient.address.type",
+        "name": "Patient.address.type",
+        "short": "postal | physical | both",
+        "definition": "Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses are both.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "exampleCode": "both",
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": true,
+        "binding": {
+          "strength": "required",
+          "description": "The type of an address (physical / postal)",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/address-type"
+          }
+        },
+        "mapping": [
+          {
+            "identity": "vcard",
+            "map": "address type parameter"
+          },
+          {
+            "identity": "v2",
+            "map": "XAD.18"
+          },
+          {
+            "identity": "rim",
+            "map": "unique(./use)"
+          }
+        ]
+      },
+      {
+        "id": "Patient.address.text",
+        "path": "Patient.address.text",
+        "name": "Patient.address.text",
+        "short": "Text representation of the address",
+        "definition": "A full text representation of the address.",
+        "comments": "Can provide both a text representation and parts.",
+        "requirements": "A renderable, unencoded form.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "exampleString": "137 Nowhere Street, Erewhon 9132",
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "vcard",
+            "map": "address label parameter"
+          },
+          {
+            "identity": "v2",
+            "map": "XAD.1 + XAD.2 + XAD.3 + XAD.4 + XAD.5 + XAD.6"
+          },
+          {
+            "identity": "rim",
+            "map": "./formatted"
+          }
+        ]
+      },
+      {
+        "id": "Patient.address.line",
+        "path": "Patient.address.line",
+        "name": "Patient.address.line",
+        "short": "Street name, number, direction & P.O. Box etc.",
+        "definition": "This component contains the house number, apartment number, street name, street direction,  P.O. Box number, delivery hints, and similar address information.",
+        "requirements": "home | work | temp | old - purpose of this address.",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "exampleString": "137 Nowhere Street",
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "vcard",
+            "map": "street"
+          },
+          {
+            "identity": "v2",
+            "map": "XAD.1 + XAD.2 (note: XAD.1 and XAD.2 have different meanings for a company address than for a person address)"
+          },
+          {
+            "identity": "rim",
+            "map": "AD.part[parttype = AL]"
+          },
+          {
+            "identity": "servd",
+            "map": "./StreetAddress (newline delimitted)"
+          }
+        ]
+      },
+      {
+        "id": "Patient.address.city",
+        "path": "Patient.address.city",
+        "name": "Patient.address.city",
+        "short": "Name of city, town etc.",
+        "definition": "The name of the city, town, village or other community or delivery center.",
+        "alias": [
+          "Municpality"
+        ],
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "exampleString": "Erewhon",
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "vcard",
+            "map": "locality"
+          },
+          {
+            "identity": "v2",
+            "map": "XAD.3"
+          },
+          {
+            "identity": "rim",
+            "map": "AD.part[parttype = CTY]"
+          },
+          {
+            "identity": "servd",
+            "map": "./Jurisdiction"
+          }
+        ]
+      },
+      {
+        "id": "Patient.address.district",
+        "path": "Patient.address.district",
+        "name": "Patient.address.district",
+        "short": "District name (aka county)",
+        "definition": "The name of the administrative area (county).",
+        "comments": "District is sometimes known as county, but in some regions 'county' in used in place of city (municipality), so county name should be conveyed in city instead.",
+        "alias": [
+          "County"
+        ],
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "exampleString": "Madison",
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "XAD.9"
+          },
+          {
+            "identity": "rim",
+            "map": "AD.part[parttype = CNT | CPA]"
+          }
+        ]
+      },
+      {
+        "id": "Patient.address.state",
+        "path": "Patient.address.state",
+        "name": "Patient.address.state",
+        "short": "Sub-unit of country (abbreviations ok)",
+        "definition": "Sub-unit of a country with limited sovereignty in a federally organized country. A code may be used if codes are in common use (i.e. US 2 letter state codes).",
+        "alias": [
+          "Province",
+          "Territory"
+        ],
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "vcard",
+            "map": "region"
+          },
+          {
+            "identity": "v2",
+            "map": "XAD.4"
+          },
+          {
+            "identity": "rim",
+            "map": "AD.part[parttype = STA]"
+          },
+          {
+            "identity": "servd",
+            "map": "./Region"
+          }
+        ]
+      },
+      {
+        "id": "Patient.address.postalCode",
+        "path": "Patient.address.postalCode",
+        "name": "Patient.address.postalCode",
+        "short": "Postal code for area",
+        "definition": "A postal code designating a region defined by the postal service.",
+        "alias": [
+          "Zip"
+        ],
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "exampleString": "9132",
+        "maxLength": 0,
+        "mustSupport": true,
+        "isModifier": false,
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "vcard",
+            "map": "code"
+          },
+          {
+            "identity": "v2",
+            "map": "XAD.5"
+          },
+          {
+            "identity": "rim",
+            "map": "AD.part[parttype = ZIP]"
+          },
+          {
+            "identity": "servd",
+            "map": "./PostalIdentificationCode"
+          }
+        ]
+      },
+      {
+        "id": "Patient.address.country",
+        "path": "Patient.address.country",
+        "name": "Patient.address.country",
+        "short": "Country (can be ISO 3166 3 letter code)",
+        "definition": "Country - a nation as commonly understood or generally accepted.",
+        "comments": "ISO 3166 3 letter codes can be used in place of a full country name.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "vcard",
+            "map": "country"
+          },
+          {
+            "identity": "v2",
+            "map": "XAD.6"
+          },
+          {
+            "identity": "rim",
+            "map": "AD.part[parttype = CNT]"
+          },
+          {
+            "identity": "servd",
+            "map": "./Country"
+          }
+        ]
+      },
+      {
+        "id": "Patient.address.period",
+        "path": "Patient.address.period",
+        "name": "Patient.address.period",
+        "short": "Time period when address was/is in use",
+        "definition": "Time period when address was/is in use.",
+        "requirements": "Allows addresses to be placed in historical context.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Period"
+          }
+        ],
+        "examplePeriod": {
+          "start": "2010-03-23T00:00:00-04:00",
+          "end": "2010-07-01T00:00:00-04:00"
+        },
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "XAD.12 / XAD.13 + XAD.14"
+          },
+          {
+            "identity": "rim",
+            "map": "./usablePeriod[type=\"IVL<TS>\"]"
+          },
+          {
+            "identity": "servd",
+            "map": "./StartDate and ./EndDate"
+          }
+        ]
+      },
+      {
+        "id": "Patient.maritalStatus",
         "path": "Patient.maritalStatus",
-        "name": "Patient:argoprofile.maritalStatus",
+        "name": "Patient.maritalStatus",
         "short": "Marital (civil) status of a patient",
         "definition": "This field contains a patient's most recent marital (civil) status.",
         "requirements": "Most, if not all systems capture it.",
@@ -1759,9 +1391,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.multipleBirth[x]",
+        "id": "Patient.multipleBirth-x-",
         "path": "Patient.multipleBirth[x]",
-        "name": "Patient:argoprofile.multipleBirth[x]",
+        "name": "Patient.multipleBirth-x-",
         "short": "Whether patient is part of a multiple birth",
         "definition": "Indicates whether the patient is part of a multiple or indicates the actual birth order.",
         "requirements": "For disambiguation of multiple-birth children, especially relevant where the care provider doesn't meet the patient, such as labs.",
@@ -1800,9 +1432,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.photo",
+        "id": "Patient.photo",
         "path": "Patient.photo",
-        "name": "Patient:argoprofile.photo",
+        "name": "Patient.photo",
         "short": "Image of the patient",
         "definition": "Image of the patient.",
         "requirements": "Many EHR systems have the capability to capture an image of the patient. Fits with newer social media usage too.",
@@ -1838,7 +1470,7 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.contact",
+        "id": "Patient.contact",
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name",
@@ -1846,7 +1478,7 @@
           }
         ],
         "path": "Patient.contact",
-        "name": "Patient:argoprofile.contact",
+        "name": "Patient.contact",
         "short": "A contact party (e.g. guardian, partner, friend) for the patient",
         "definition": "A contact party (e.g. guardian, partner, friend) for the patient.",
         "comments": "Contact covers all kinds of contact parties: family members, business contacts, guardians, caregivers. Not applicable to register pedigree and family ties beyond use of having contact.",
@@ -1887,12 +1519,12 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.contact.id",
+        "id": "Patient.contact.id",
         "path": "Patient.contact.id",
         "representation": [
           "xmlAttr"
         ],
-        "name": "Patient:argoprofile.contact.id",
+        "name": "Patient.contact.id",
         "short": "xml:id (or equivalent in JSON)",
         "definition": "unique id for the element within a resource (for internal references).",
         "min": 0,
@@ -1919,9 +1551,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.contact.extension",
+        "id": "Patient.contact.extension",
         "path": "Patient.contact.extension",
-        "name": "Patient:argoprofile.contact.extension",
+        "name": "Patient.contact.extension",
         "short": "Additional Content defined by implementations",
         "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -1953,9 +1585,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.contact.modifierExtension",
+        "id": "Patient.contact.modifierExtension",
         "path": "Patient.contact.modifierExtension",
-        "name": "Patient:argoprofile.contact.modifierExtension",
+        "name": "Patient.contact.modifierExtension",
         "short": "Extensions that cannot be ignored",
         "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -1988,9 +1620,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.contact.relationship",
+        "id": "Patient.contact.relationship",
         "path": "Patient.contact.relationship",
-        "name": "Patient:argoprofile.contact.relationship",
+        "name": "Patient.contact.relationship",
         "short": "The kind of relationship",
         "definition": "The nature of the relationship between the patient and the contact person.",
         "requirements": "Used to determine which contact person is the most relevant to approach, depending on circumstances.",
@@ -2033,9 +1665,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.contact.name",
+        "id": "Patient.contact.name",
         "path": "Patient.contact.name",
-        "name": "Patient:argoprofile.contact.name",
+        "name": "Patient.contact.name",
         "short": "A name associated with the contact person",
         "definition": "A name associated with the contact person.",
         "requirements": "Contact persons need to be identified by name, but it is uncommon to need details about multiple other names for that contact person.",
@@ -2071,9 +1703,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.contact.telecom",
+        "id": "Patient.contact.telecom",
         "path": "Patient.contact.telecom",
-        "name": "Patient:argoprofile.contact.telecom",
+        "name": "Patient.contact.telecom",
         "short": "A contact detail for the person",
         "definition": "A contact detail for the person, e.g. a telephone number or an email address.",
         "comments": "Contact may have multiple ways to be contacted with different uses or applicable periods.  May need to have options for contacting the person urgently, and also to help with identification.",
@@ -2110,9 +1742,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.contact.address",
+        "id": "Patient.contact.address",
         "path": "Patient.contact.address",
-        "name": "Patient:argoprofile.contact.address",
+        "name": "Patient.contact.address",
         "short": "Address for the contact person",
         "definition": "Address for the contact person.",
         "requirements": "Need to keep track where the contact person can be contacted per postal mail or visited.",
@@ -2148,9 +1780,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.contact.gender",
+        "id": "Patient.contact.gender",
         "path": "Patient.contact.gender",
-        "name": "Patient:argoprofile.contact.gender",
+        "name": "Patient.contact.gender",
         "short": "male | female | other | unknown",
         "definition": "Administrative Gender - the gender that the contact person is considered to have for administration and record keeping purposes.",
         "requirements": "Needed to address the person correctly.",
@@ -2193,9 +1825,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.contact.organization",
+        "id": "Patient.contact.organization",
         "path": "Patient.contact.organization",
-        "name": "Patient:argoprofile.contact.organization",
+        "name": "Patient.contact.organization",
         "short": "Organization that is associated with the contact",
         "definition": "Organization on behalf of which the contact is acting or for which the contact is working.",
         "requirements": "For guardians or business related contacts, the organization is relevant.",
@@ -2237,9 +1869,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.contact.period",
+        "id": "Patient.contact.period",
         "path": "Patient.contact.period",
-        "name": "Patient:argoprofile.contact.period",
+        "name": "Patient.contact.period",
         "short": "The period during which this contact person or organization is valid to be contacted relating to this patient",
         "definition": "The period during which this contact person or organization is valid to be contacted relating to this patient.",
         "min": 0,
@@ -2270,7 +1902,7 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.animal",
+        "id": "Patient.animal",
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name",
@@ -2278,7 +1910,7 @@
           }
         ],
         "path": "Patient.animal",
-        "name": "Patient:argoprofile.animal",
+        "name": "Patient.animal",
         "short": "This patient is known to be an animal (non-human)",
         "definition": "This patient is known to be an animal.",
         "comments": "The animal element is labeled \"Is Modifier\" since patients may be non-human. Systems SHALL either handle patient details appropriately (e.g. inform users patient is not human) or reject declared animal records.   The absense of the animal element does not imply that the patient is a human. If a system requires such a positive assertion that the patient is human, an extension will be required.  (Do not use a species of homo-sapiens in animal species, as this would incorrectly infer that the patient is an animal).",
@@ -2311,12 +1943,12 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.animal.id",
+        "id": "Patient.animal.id",
         "path": "Patient.animal.id",
         "representation": [
           "xmlAttr"
         ],
-        "name": "Patient:argoprofile.animal.id",
+        "name": "Patient.animal.id",
         "short": "xml:id (or equivalent in JSON)",
         "definition": "unique id for the element within a resource (for internal references).",
         "min": 0,
@@ -2343,9 +1975,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.animal.extension",
+        "id": "Patient.animal.extension",
         "path": "Patient.animal.extension",
-        "name": "Patient:argoprofile.animal.extension",
+        "name": "Patient.animal.extension",
         "short": "Additional Content defined by implementations",
         "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -2377,9 +2009,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.animal.modifierExtension",
+        "id": "Patient.animal.modifierExtension",
         "path": "Patient.animal.modifierExtension",
-        "name": "Patient:argoprofile.animal.modifierExtension",
+        "name": "Patient.animal.modifierExtension",
         "short": "Extensions that cannot be ignored",
         "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -2412,9 +2044,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.animal.species",
+        "id": "Patient.animal.species",
         "path": "Patient.animal.species",
-        "name": "Patient:argoprofile.animal.species",
+        "name": "Patient.animal.species",
         "short": "E.g. Dog, Cow",
         "definition": "Identifies the high level taxonomic categorization of the kind of animal.",
         "comments": "If the patient is non-human, at least a species SHALL be specified. Species SHALL be a widely recognised taxonomic classification.  It may or may not be Linnaean taxonomy and may or may not be at the level of species. If the level is finer than species--such as a breed code--the code system used SHALL allow inference of the species.  (The common example is that the word \"Hereford\" does not allow inference of the species Bos taurus, because there is a Hereford pig breed, but the SNOMED CT code for \"Hereford Cattle Breed\" does.).",
@@ -2458,9 +2090,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.animal.breed",
+        "id": "Patient.animal.breed",
         "path": "Patient.animal.breed",
-        "name": "Patient:argoprofile.animal.breed",
+        "name": "Patient.animal.breed",
         "short": "E.g. Poodle, Angus",
         "definition": "Identifies the detailed categorization of the kind of animal.",
         "comments": "Breed MAY be used to provide further taxonomic or non-taxonomic classification.  It may involve local or proprietary designation--such as commercial strain--and/or additional information such as production type.",
@@ -2504,9 +2136,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.animal.genderStatus",
+        "id": "Patient.animal.genderStatus",
         "path": "Patient.animal.genderStatus",
-        "name": "Patient:argoprofile.animal.genderStatus",
+        "name": "Patient.animal.genderStatus",
         "short": "E.g. Neutered, Intact",
         "definition": "Indicates the current state of the animal's reproductive organs.",
         "requirements": "Gender status can affect housing and animal behavior.",
@@ -2549,9 +2181,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.communication",
+        "id": "Patient.communication",
         "path": "Patient.communication",
-        "name": "Patient:argoprofile.communication",
+        "name": "Patient.communication",
         "short": "A list of Languages which may be used to communicate with the patient about his or her health",
         "definition": "Languages which may be used to communicate with the patient about his or her health.",
         "comments": "If no language is specified, this *implies* that the default local language is spoken.  If you need to convey proficiency for multiple modes then you need multiple Patient.Communication associations.   For animals, language is not a relevant field, and should be absent from the instance. If the Patient does not speak the default local language, then the Interpreter Required Standard can be used to explicitly declare that an interpreter is required.",
@@ -2584,12 +2216,12 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.communication.id",
+        "id": "Patient.communication.id",
         "path": "Patient.communication.id",
         "representation": [
           "xmlAttr"
         ],
-        "name": "Patient:argoprofile.communication.id",
+        "name": "Patient.communication.id",
         "short": "xml:id (or equivalent in JSON)",
         "definition": "unique id for the element within a resource (for internal references).",
         "min": 0,
@@ -2616,9 +2248,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.communication.extension",
+        "id": "Patient.communication.extension",
         "path": "Patient.communication.extension",
-        "name": "Patient:argoprofile.communication.extension",
+        "name": "Patient.communication.extension",
         "short": "Additional Content defined by implementations",
         "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -2650,9 +2282,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.communication.modifierExtension",
+        "id": "Patient.communication.modifierExtension",
         "path": "Patient.communication.modifierExtension",
-        "name": "Patient:argoprofile.communication.modifierExtension",
+        "name": "Patient.communication.modifierExtension",
         "short": "Extensions that cannot be ignored",
         "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -2685,9 +2317,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.communication.language",
+        "id": "Patient.communication.language",
         "path": "Patient.communication.language",
-        "name": "Patient:argoprofile.communication.language",
+        "name": "Patient.communication.language",
         "short": "The language which can be used to communicate with the patient about his or her health",
         "definition": "The ISO-639-1 alpha 2 code in lower case for the language, optionally followed by a hyphen and the ISO-3166-1 alpha 2 code for the region in upper case; e.g. \"en\" for English, or \"en-US\" for American English versus \"en-EN\" for England English.",
         "comments": "The structure aa-BB with this exact casing is one the most widely used notations for locale. However not all systems actually code this but instead have it as free text. Hence CodeableConcept instead of code as the data type.",
@@ -2730,9 +2362,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.communication.preferred",
+        "id": "Patient.communication.preferred",
         "path": "Patient.communication.preferred",
-        "name": "Patient:argoprofile.communication.preferred",
+        "name": "Patient.communication.preferred",
         "short": "Language preference indicator",
         "definition": "Indicates whether or not the patient prefers this language (over other languages he masters up a certain level).",
         "comments": "This language is specifically identified for communicating healthcare information.",
@@ -2769,9 +2401,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.careProvider",
+        "id": "Patient.careProvider",
         "path": "Patient.careProvider",
-        "name": "Patient:argoprofile.careProvider",
+        "name": "Patient.careProvider",
         "short": "Patient's nominated primary care provider",
         "definition": "Patient's nominated care provider.",
         "comments": "This may be the primary care provider (in a GP context), or it may be a patient nominated care manager in a community/disablity setting, or even organization that will provide people to perform the care provider roles.  This is not to be used to record Care Teams, these should be recorded on either the CarePlan or EpisodeOfCare resources.",
@@ -2811,9 +2443,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.managingOrganization",
+        "id": "Patient.managingOrganization",
         "path": "Patient.managingOrganization",
-        "name": "Patient:argoprofile.managingOrganization",
+        "name": "Patient.managingOrganization",
         "short": "Organization that is the custodian of the patient record",
         "definition": "Organization that is the custodian of the patient record.",
         "comments": "There is only one managing organization for a specific patient record. Other organizations will have their own Patient record, and may use the Link property to join the records together (or a Person resource which can include confidence ratings for the association).",
@@ -2849,9 +2481,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.link",
+        "id": "Patient.link",
         "path": "Patient.link",
-        "name": "Patient:argoprofile.link",
+        "name": "Patient.link",
         "short": "Link to another patient resource that concerns the same actual person",
         "definition": "Link to another patient resource that concerns the same actual patient.",
         "comments": "There is no assumption that linked patient records have mutual links.",
@@ -2884,12 +2516,12 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.link.id",
+        "id": "Patient.link.id",
         "path": "Patient.link.id",
         "representation": [
           "xmlAttr"
         ],
-        "name": "Patient:argoprofile.link.id",
+        "name": "Patient.link.id",
         "short": "xml:id (or equivalent in JSON)",
         "definition": "unique id for the element within a resource (for internal references).",
         "min": 0,
@@ -2916,9 +2548,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.link.extension",
+        "id": "Patient.link.extension",
         "path": "Patient.link.extension",
-        "name": "Patient:argoprofile.link.extension",
+        "name": "Patient.link.extension",
         "short": "Additional Content defined by implementations",
         "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -2950,9 +2582,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.link.modifierExtension",
+        "id": "Patient.link.modifierExtension",
         "path": "Patient.link.modifierExtension",
-        "name": "Patient:argoprofile.link.modifierExtension",
+        "name": "Patient.link.modifierExtension",
         "short": "Extensions that cannot be ignored",
         "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -2985,9 +2617,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.link.other",
+        "id": "Patient.link.other",
         "path": "Patient.link.other",
-        "name": "Patient:argoprofile.link.other",
+        "name": "Patient.link.other",
         "short": "The other patient resource that the link refers to",
         "definition": "The other patient resource that the link refers to.",
         "min": 1,
@@ -3025,9 +2657,9 @@
         ]
       },
       {
-        "id": "Patient:argoprofile.link.type",
+        "id": "Patient.link.type",
         "path": "Patient.link.type",
-        "name": "Patient:argoprofile.link.type",
+        "name": "Patient.link.type",
         "short": "replace | refer | seealso - type of link",
         "definition": "The type of link between this patient resource and another patient resource.",
         "min": 1,
@@ -3111,9 +2743,9 @@
         "isSummary": false
       },
       {
-        "id": "Patient.extension.valueCodeableConcept",
+        "id": "Patient.extension-status.valueCodeableConcept",
         "path": "Patient.extension.valueCodeableConcept",
-        "name": "Patient.extension.valueCodeableConcept",
+        "name": "Patient.extension-status.valueCodeableConcept",
         "min": 0,
         "maxLength": 0,
         "mustSupport": false,
@@ -3122,7 +2754,7 @@
         "binding": {
           "strength": "required",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/ActiveOrInactiveVS"
+            "reference": "http://hl7.org/fhir/us/mcode/shr/core/vs/ActiveOrInactiveVS"
           }
         }
       },
@@ -3152,6 +2784,36 @@
         ],
         "maxLength": 0,
         "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "Patient.deceased-x-",
+        "path": "Patient.deceased[x]",
+        "name": "Patient.deceased-x-",
+        "min": 0,
+        "maxLength": 0,
+        "mustSupport": true,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "Patient.address",
+        "path": "Patient.address",
+        "name": "Patient.address",
+        "min": 0,
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "Patient.address.postalCode",
+        "path": "Patient.address.postalCode",
+        "name": "Patient.address.postalCode",
+        "min": 0,
+        "maxLength": 0,
+        "mustSupport": true,
         "isModifier": false,
         "isSummary": false
       }

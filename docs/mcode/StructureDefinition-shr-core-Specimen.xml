@@ -26,8 +26,9 @@
   ReceivedTime maps to receivedTime
   AmountOrSize maps to collection.quantity
   CollectionSite.BodyLocation.LocationCode maps to collection.bodySite
-  CollectionSite.BodyLocation.LocationQualifier maps to collection.bodySite.extension
-  CollectionSite.BodyLocation.Landmark maps to collection.bodySite.extension
+  CollectionSite.BodyLocation.Laterality maps to collection.bodySite.extension
+  CollectionSite.BodyLocation.Orientation maps to collection.bodySite.extension
+  CollectionSite.BodyLocation.RelationToLandmark maps to collection.bodySite.extension
   CollectionTime maps to collection.collected[x]
   CollectionMethod maps to collection.method
   SpecimenContainer.Identifier maps to container.identifier
@@ -41,10 +42,10 @@
   </text>
   <url value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Specimen"/>
   <identifier>
-    <system value="http://hl7.org/fhir/us/projectURL"/>
+    <system value="http://hl7.org/fhir/us/mcode"/>
     <value value="shr.core.Specimen"/>
   </identifier>
-  <version value="0.7.0"/>
+  <version value="0.9.0 draft candidate 1"/>
   <name value="Specimen"/>
   <display value="shr-core-Specimen"/>
   <status value="draft"/>
@@ -52,11 +53,11 @@
   <contact>
     <telecom>
       <system value="other"/>
-      <value value="http://www.hl7.org/Special/committees/cic/index.cfm"/>
+      <value value="http://standardhealthrecord.org"/>
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-03-27T00:00:00-04:00"/>
+  <date value="2019-04-08T00:00:00-04:00"/>
   <description value="A specimen is a substance, physical object, or collection of objects, that the laboratory considers a single discrete, uniquely identified unit that is the subject of one or more steps in the laboratory workflow. A specimen may include multiple physical pieces as long as they are considered a single unit within the laboratory workflow. A specimen results from one to many specimen collection procedures, and may be contained in multiple specimen containers. Specimen may have one or more processing activities."/>
   <fhirVersion value="1.0.2"/>
   <mapping>
@@ -132,139 +133,6 @@
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
-    </element>
-    <element id="Specimen.meta.id">
-      <path value="Specimen.meta.id"/>
-      <representation value="xmlAttr"/>
-      <name value="Specimen.meta.id"/>
-      <short value="xml:id (or equivalent in JSON)"/>
-      <definition value="unique id for the element within a resource (for internal references)."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="id"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Specimen.meta.extension">
-      <path value="Specimen.meta.extension"/>
-      <name value="Specimen.meta.extension"/>
-      <short value="Additional Content defined by implementations"/>
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
-      <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-      <alias value="extensions"/>
-      <alias value="user content"/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="Extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Specimen.meta.versionId">
-      <path value="Specimen.meta.versionId"/>
-      <name value="Specimen.meta.versionId"/>
-      <short value="Version specific identifier"/>
-      <definition value="The version specific identifier, as it appears in the version portion of the URL. This values changes when the resource is created, updated, or deleted."/>
-      <comments value="The server assigns this value, and ignores what the client specifies, except in the case that the server is imposing version integrity on updates/deletes."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="id"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-    </element>
-    <element id="Specimen.meta.lastUpdated">
-      <path value="Specimen.meta.lastUpdated"/>
-      <name value="Specimen.meta.lastUpdated"/>
-      <short value="When the resource version last changed"/>
-      <definition value="When the resource last changed - e.g. when the version changed."/>
-      <comments value="This value is always populated except when the resource is first being created. The server / resource manager sets this value; what a client provides is irrelevant."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="instant"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-    </element>
-    <element id="Specimen.meta.profile">
-      <path value="Specimen.meta.profile"/>
-      <name value="Specimen.meta.profile"/>
-      <short value="Profiles this resource claims to conform to"/>
-      <definition value="A list of profiles [[[StructureDefinition]]]s that this resource claims to conform to. The URL is a reference to [[[StructureDefinition.url]]]."/>
-      <comments value="It is up to the server and/or other infrastructure of policy to determine whether/how these claims are verified and/or updated over time.  The list of profile URLs is a set."/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="uri"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-    </element>
-    <element id="Specimen.meta.security">
-      <path value="Specimen.meta.security"/>
-      <name value="Specimen.meta.security"/>
-      <short value="Security Labels applied to this resource"/>
-      <definition value="Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure."/>
-      <comments value="The security labels can be updated without changing the stated version of the resource  The list of security labels is a set. Uniqueness is based the system/code, and version and display are ignored."/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <binding>
-        <strength value="extensible"/>
-        <description value="Security Labels from the Healthcare Privacy and Security Classification System."/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/security-labels"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="Specimen.meta.tag">
-      <path value="Specimen.meta.tag"/>
-      <name value="Specimen.meta.tag"/>
-      <short value="Tags applied to this resource"/>
-      <definition value="Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource."/>
-      <comments value="The tags can be updated without changing the stated version of the resource.  The list of tags is a set. Uniqueness is based the system/code, and version and display are ignored."/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <binding>
-        <strength value="example"/>
-        <description value="Codes that represent various types of tags, commonly workflow-related; e.g. &quot;Needs review by Dr. Jones&quot;"/>
-      </binding>
     </element>
     <element id="Specimen.implicitRules">
       <path value="Specimen.implicitRules"/>
@@ -807,9 +675,9 @@
         <map value=".inboundRelationship[typeCode=SUBJ].source[classCode=OBS, moodCode=EVN, code=&quot;annotation&quot;].value"/>
       </mapping>
     </element>
-    <element id="Specimen.collection.collected[x]">
+    <element id="Specimen.collection.collected-x-">
       <path value="Specimen.collection.collected[x]"/>
-      <name value="Specimen.collection.collected[x]"/>
+      <name value="Specimen.collection.collected-x-"/>
       <short value="Collection time"/>
       <definition value="Time when specimen was collected from subject - the physiologically relevant time."/>
       <min value="0"/>
@@ -909,7 +777,7 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
+          <reference value="http://hl7.org/fhir/us/mcode/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -968,12 +836,12 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="locationqualifier">
+    <element id="laterality">
       <path value="Specimen.collection.bodySite.extension"/>
-      <name value="locationqualifier"/>
-      <definition value="Additional information, such as laterality or direction, that helps define the body location."/>
+      <name value="laterality"/>
+      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body."/>
       <min value="0"/>
-      <max value="*"/>
+      <max value="1"/>
       <base>
         <path value="Specimen.collection.bodySite.extension"/>
         <min value="0"/>
@@ -981,16 +849,36 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="landmark">
+    <element id="orientation">
       <path value="Specimen.collection.bodySite.extension"/>
-      <name value="landmark"/>
+      <name value="orientation"/>
+      <definition value="Orientation of the body location, if needed to distinguish from a similar location in another orientation."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Specimen.collection.bodySite.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Orientation-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="relationtolandmark">
+      <path value="Specimen.collection.bodySite.extension"/>
+      <name value="relationtolandmark"/>
       <definition value="An anatomical landmark that helps determine a body location."/>
       <min value="0"/>
       <max value="*"/>
@@ -1001,7 +889,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelationToLandmark-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1423,9 +1311,9 @@
         <map value=".playedRole[classCode=CONT].quantity"/>
       </mapping>
     </element>
-    <element id="Specimen.container.additive[x]">
+    <element id="Specimen.container.additive-x-">
       <path value="Specimen.container.additive[x]"/>
-      <name value="Specimen.container.additive[x]"/>
+      <name value="Specimen.container.additive-x-"/>
       <short value="Additive associated with container"/>
       <definition value="Introduced substance to preserve, maintain or enhance the specimen. Examples: Formalin, Citrate, EDTA."/>
       <min value="0"/>
@@ -1637,7 +1525,7 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
+          <reference value="http://hl7.org/fhir/us/mcode/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -1655,12 +1543,12 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="locationqualifier">
+    <element id="laterality">
       <path value="Specimen.collection.bodySite.extension"/>
-      <name value="locationqualifier"/>
-      <definition value="Additional information, such as laterality or direction, that helps define the body location."/>
+      <name value="laterality"/>
+      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body."/>
       <min value="0"/>
-      <max value="*"/>
+      <max value="1"/>
       <base>
         <path value="Specimen.collection.bodySite.extension"/>
         <min value="0"/>
@@ -1668,16 +1556,36 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="landmark">
+    <element id="orientation">
       <path value="Specimen.collection.bodySite.extension"/>
-      <name value="landmark"/>
+      <name value="orientation"/>
+      <definition value="Orientation of the body location, if needed to distinguish from a similar location in another orientation."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Specimen.collection.bodySite.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Orientation-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="relationtolandmark">
+      <path value="Specimen.collection.bodySite.extension"/>
+      <name value="relationtolandmark"/>
       <definition value="An anatomical landmark that helps determine a body location."/>
       <min value="0"/>
       <max value="*"/>
@@ -1688,7 +1596,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelationToLandmark-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1704,9 +1612,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Specimen.container.additive[x]">
+    <element id="Specimen.container.additive-x-">
       <path value="Specimen.container.additive[x]"/>
-      <name value="Specimen.container.additive[x]"/>
+      <name value="Specimen.container.additive-x-"/>
       <min value="0"/>
       <type>
         <code value="CodeableConcept"/>

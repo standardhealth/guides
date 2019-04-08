@@ -5,7 +5,7 @@
   <text>
     <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">
   <p><b>SurgicalProcedure Profile</b></p>
-  <p>A surgical action.</p>
+  <p/>
   <p><b>Mapping Summary</b></p>
   <p><pre>shr.core.SurgicalProcedure maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-procedure:
   _Entry.EntryId maps to id
@@ -19,13 +19,14 @@
   Metadata.Tag maps to meta.tag
   Identifier maps to identifier
   Code maps to code
-  ProcedureSubjectOfRecord maps to subject
+  PatientSubjectOfRecord maps to subject
   Category maps to category
   constrain notPerformed to 0..0
   constrain reasonNotPerformed to 0..0
   SurgicalBodyLocation.LocationCode maps to bodySite
-  SurgicalBodyLocation.LocationQualifier maps to bodySite.extension
-  SurgicalBodyLocation.Landmark maps to bodySite.extension
+  SurgicalBodyLocation.Laterality maps to bodySite.extension
+  SurgicalBodyLocation.Orientation maps to bodySite.extension
+  SurgicalBodyLocation.RelationToLandmark maps to bodySite.extension
   Annotation maps to notes
   CareContext maps to encounter
   OccurrenceTimeOrPeriod maps to performed[x]
@@ -45,10 +46,10 @@
   </text>
   <url value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SurgicalProcedure"/>
   <identifier>
-    <system value="http://hl7.org/fhir/us/projectURL"/>
+    <system value="http://hl7.org/fhir/us/mcode"/>
     <value value="shr.core.SurgicalProcedure"/>
   </identifier>
-  <version value="0.7.0"/>
+  <version value="0.9.0 draft candidate 1"/>
   <name value="SurgicalProcedure"/>
   <display value="shr-core-SurgicalProcedure"/>
   <status value="draft"/>
@@ -56,12 +57,11 @@
   <contact>
     <telecom>
       <system value="other"/>
-      <value value="http://www.hl7.org/Special/committees/cic/index.cfm"/>
+      <value value="http://standardhealthrecord.org"/>
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-03-27T00:00:00-04:00"/>
-  <description value="A surgical action."/>
+  <date value="2019-04-08T00:00:00-04:00"/>
   <fhirVersion value="1.0.2"/>
   <mapping>
     <identity value="rim"/>
@@ -83,11 +83,11 @@
   <abstract value="false"/>
   <base value="http://fhir.org/guides/argonaut/StructureDefinition/argo-procedure"/>
   <snapshot>
-    <element id="argoprofile">
+    <element id="Procedure">
       <path value="Procedure"/>
-      <name value="argoprofile"/>
+      <name value="Procedure"/>
       <short value="shr-core-SurgicalProcedure"/>
-      <definition value="A surgical action."/>
+      <definition value="An action that is or was performed on a patient. This can be a physical intervention like an operation, or less invasive like counseling or hypnotherapy."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -117,9 +117,9 @@
         <map value="clinical.general"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.id">
+    <element id="Procedure.id">
       <path value="Procedure.id"/>
-      <name value="Procedure:argoprofile.id"/>
+      <name value="Procedure.id"/>
       <short value="Logical id of this artifact"/>
       <definition value="The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes."/>
       <comments value="The only time that a resource does not have an id is when it is being submitted to the server using a create operation. Bundles always have an id, though it is usually a generated UUID."/>
@@ -138,9 +138,9 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Procedure:argoprofile.meta">
+    <element id="Procedure.meta">
       <path value="Procedure.meta"/>
-      <name value="Procedure:argoprofile.meta"/>
+      <name value="Procedure.meta"/>
       <short value="Metadata about the resource"/>
       <definition value="The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content may not always be associated with version changes to the resource."/>
       <min value="0"/>
@@ -158,142 +158,9 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Procedure.meta.id">
-      <path value="Procedure.meta.id"/>
-      <representation value="xmlAttr"/>
-      <name value="Procedure.meta.id"/>
-      <short value="xml:id (or equivalent in JSON)"/>
-      <definition value="unique id for the element within a resource (for internal references)."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="id"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Procedure.meta.extension">
-      <path value="Procedure.meta.extension"/>
-      <name value="Procedure.meta.extension"/>
-      <short value="Additional Content defined by implementations"/>
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
-      <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-      <alias value="extensions"/>
-      <alias value="user content"/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="Extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Procedure.meta.versionId">
-      <path value="Procedure.meta.versionId"/>
-      <name value="Procedure.meta.versionId"/>
-      <short value="Version specific identifier"/>
-      <definition value="The version specific identifier, as it appears in the version portion of the URL. This values changes when the resource is created, updated, or deleted."/>
-      <comments value="The server assigns this value, and ignores what the client specifies, except in the case that the server is imposing version integrity on updates/deletes."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="id"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-    </element>
-    <element id="Procedure.meta.lastUpdated">
-      <path value="Procedure.meta.lastUpdated"/>
-      <name value="Procedure.meta.lastUpdated"/>
-      <short value="When the resource version last changed"/>
-      <definition value="When the resource last changed - e.g. when the version changed."/>
-      <comments value="This value is always populated except when the resource is first being created. The server / resource manager sets this value; what a client provides is irrelevant."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="instant"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-    </element>
-    <element id="Procedure.meta.profile">
-      <path value="Procedure.meta.profile"/>
-      <name value="Procedure.meta.profile"/>
-      <short value="Profiles this resource claims to conform to"/>
-      <definition value="A list of profiles [[[StructureDefinition]]]s that this resource claims to conform to. The URL is a reference to [[[StructureDefinition.url]]]."/>
-      <comments value="It is up to the server and/or other infrastructure of policy to determine whether/how these claims are verified and/or updated over time.  The list of profile URLs is a set."/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="uri"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-    </element>
-    <element id="Procedure.meta.security">
-      <path value="Procedure.meta.security"/>
-      <name value="Procedure.meta.security"/>
-      <short value="Security Labels applied to this resource"/>
-      <definition value="Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure."/>
-      <comments value="The security labels can be updated without changing the stated version of the resource  The list of security labels is a set. Uniqueness is based the system/code, and version and display are ignored."/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <binding>
-        <strength value="extensible"/>
-        <description value="Security Labels from the Healthcare Privacy and Security Classification System."/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/security-labels"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="Procedure.meta.tag">
-      <path value="Procedure.meta.tag"/>
-      <name value="Procedure.meta.tag"/>
-      <short value="Tags applied to this resource"/>
-      <definition value="Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource."/>
-      <comments value="The tags can be updated without changing the stated version of the resource.  The list of tags is a set. Uniqueness is based the system/code, and version and display are ignored."/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <binding>
-        <strength value="example"/>
-        <description value="Codes that represent various types of tags, commonly workflow-related; e.g. &quot;Needs review by Dr. Jones&quot;"/>
-      </binding>
-    </element>
-    <element id="Procedure:argoprofile.implicitRules">
+    <element id="Procedure.implicitRules">
       <path value="Procedure.implicitRules"/>
-      <name value="Procedure:argoprofile.implicitRules"/>
+      <name value="Procedure.implicitRules"/>
       <short value="A set of rules under which this content was created"/>
       <definition value="A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content."/>
       <comments value="Asserting this rule set restricts the content to be only understood by a limited set of trading partners. This inherently limits the usefulness of the data in the long term. However, the existing health eco-system is highly fractured, and not yet ready to define, collect, and exchange data in a generally computable sense. Wherever possible, implementers and/or specification writers should avoid using this element as much as possible."/>
@@ -312,9 +179,9 @@
       <isModifier value="true"/>
       <isSummary value="true"/>
     </element>
-    <element id="Procedure:argoprofile.language">
+    <element id="Procedure.language">
       <path value="Procedure.language"/>
-      <name value="Procedure:argoprofile.language"/>
+      <name value="Procedure.language"/>
       <short value="Language of the resource content"/>
       <definition value="The base language in which the resource is written."/>
       <comments value="Language is provided to support indexing and accessibility (typically, services such as text to speech use the language tag). The html language tag in the narrative applies  to the narrative. The language tag on the resource may be used to specify the language of other presentations generated from the data in the resource  Not all the content has to be in the base language. The Resource.language should not be assumed to apply to the narrative automatically. If a language is specified, it should it also be specified on the div element in the html (see rules in HTML5 for information about the relationship between xml:lang and the html lang attribute)."/>
@@ -340,9 +207,9 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="Procedure:argoprofile.text">
+    <element id="Procedure.text">
       <path value="Procedure.text"/>
-      <name value="Procedure:argoprofile.text"/>
+      <name value="Procedure.text"/>
       <short value="Text summary of the resource, for human interpretation"/>
       <definition value="A human-readable narrative that contains a summary of the resource, and may be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it &quot;clinically safe&quot; for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety."/>
       <comments value="Contained resources do not have narrative. Resources that are not contained SHOULD have a narrative."/>
@@ -370,9 +237,9 @@
         <map value="Act.text?"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.contained">
+    <element id="Procedure.contained">
       <path value="Procedure.contained"/>
-      <name value="Procedure:argoprofile.contained"/>
+      <name value="Procedure.contained"/>
       <short value="Contained, inline Resources"/>
       <definition value="These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."/>
       <comments value="This should never be done when the content can be identified properly, as once identification is lost, it is extremely difficult (and context dependent) to restore it again."/>
@@ -398,9 +265,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.extension">
+    <element id="Procedure.extension">
       <path value="Procedure.extension"/>
-      <name value="Procedure:argoprofile.extension"/>
+      <name value="Procedure.extension"/>
       <slicing id="2">
         <discriminator value="url"/>
         <ordered value="false"/>
@@ -510,10 +377,10 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Procedure.extension.id">
+    <element id="Procedure.extension-partof.id">
       <path value="Procedure.extension.id"/>
       <representation value="xmlAttr"/>
-      <name value="Procedure.extension.id"/>
+      <name value="Procedure.extension-partof.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
       <min value="0"/>
@@ -535,9 +402,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Procedure.extension.extension">
+    <element id="Procedure.extension-partof.extension-extension">
       <path value="Procedure.extension.extension"/>
-      <name value="Procedure.extension.extension"/>
+      <name value="Procedure.extension-partof.extension-extension"/>
       <short value="Extension"/>
       <definition value="An Extension"/>
       <min value="0"/>
@@ -555,10 +422,10 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Procedure.extension.url">
+    <element id="Procedure.extension-partof.url">
       <path value="Procedure.extension.url"/>
       <representation value="xmlAttr"/>
-      <name value="Procedure.extension.url"/>
+      <name value="Procedure.extension-partof.url"/>
       <short value="identifies the meaning of the extension"/>
       <definition value="Source of the definition for the extension code - a logical name or a URL."/>
       <min value="1"/>
@@ -581,9 +448,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Procedure.extension.valueReference">
+    <element id="Procedure.extension-partof.valueReference">
       <path value="Procedure.extension.valueReference"/>
-      <name value="Procedure.extension.valueReference"/>
+      <name value="Procedure.extension-partof.valueReference"/>
       <short value="Procedure"/>
       <definition value="A procedure that has been performed."/>
       <min value="1"/>
@@ -626,9 +493,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Procedure:argoprofile.modifierExtension">
+    <element id="Procedure.modifierExtension">
       <path value="Procedure.modifierExtension"/>
-      <name value="Procedure:argoprofile.modifierExtension"/>
+      <name value="Procedure.modifierExtension"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the resource, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -653,9 +520,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.identifier">
+    <element id="Procedure.identifier">
       <path value="Procedure.identifier"/>
-      <name value="Procedure:argoprofile.identifier"/>
+      <name value="Procedure.identifier"/>
       <short value="External Identifiers for this procedure"/>
       <definition value="This records identifiers associated with this procedure that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation)."/>
       <requirements value="Need to allow connection to a wider workflow."/>
@@ -686,9 +553,9 @@
         <map value="id"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.subject">
+    <element id="Procedure.subject">
       <path value="Procedure.subject"/>
-      <name value="Procedure:argoprofile.subject"/>
+      <name value="Procedure.subject"/>
       <short value="Who the procedure was performed on"/>
       <definition value="The person, animal or group on which the procedure was performed."/>
       <min value="1"/>
@@ -719,9 +586,9 @@
         <map value="who.focus"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.status">
+    <element id="Procedure.status">
       <path value="Procedure.status"/>
-      <name value="Procedure:argoprofile.status"/>
+      <name value="Procedure.status"/>
       <short value="in-progress | aborted | completed | entered-in-error"/>
       <definition value="A code specifying the state of the procedure. Generally this will be in-progress or completed state."/>
       <min value="1"/>
@@ -745,9 +612,9 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="Procedure:argoprofile.category">
+    <element id="Procedure.category">
       <path value="Procedure.category"/>
-      <name value="Procedure:argoprofile.category"/>
+      <name value="Procedure.category"/>
       <short value="Classification of the procedure"/>
       <definition value="A code that classifies the procedure for searching, sorting and display purposes (e.g. &quot;Surgical Procedure&quot;)."/>
       <min value="0"/>
@@ -776,9 +643,9 @@
         <map value=".outboundRelationship[typeCode=&quot;COMP].target[classCode=&quot;LIST&quot;, moodCode=&quot;EVN&quot;].code"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.code">
+    <element id="Procedure.code">
       <path value="Procedure.code"/>
-      <name value="Procedure:argoprofile.code"/>
+      <name value="Procedure.code"/>
       <short value="SNOMED-CT | ICD-10 | CPT-4"/>
       <definition value="The specific procedure that is performed. Use text if the exact nature of the procedure cannot be coded (e.g. &quot;Laparoscopic Appendectomy&quot;)."/>
       <min value="1"/>
@@ -798,7 +665,7 @@
       <binding>
         <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/SurgicalProcedureVS"/>
+          <reference value="http://hl7.org/fhir/us/mcode/shr/core/vs/SurgicalProcedureVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -814,9 +681,9 @@
         <map value="class"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.notPerformed">
+    <element id="Procedure.notPerformed">
       <path value="Procedure.notPerformed"/>
-      <name value="Procedure:argoprofile.notPerformed"/>
+      <name value="Procedure.notPerformed"/>
       <short value="True if procedure was not performed as scheduled"/>
       <definition value="Set this to true if the record is saying that the procedure was NOT performed."/>
       <min value="0"/>
@@ -839,9 +706,9 @@
         <map value=".actionNegationInd"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.reasonNotPerformed">
+    <element id="Procedure.reasonNotPerformed">
       <path value="Procedure.reasonNotPerformed"/>
-      <name value="Procedure:argoprofile.reasonNotPerformed"/>
+      <name value="Procedure.reasonNotPerformed"/>
       <short value="Reason procedure was not performed"/>
       <definition value="A code indicating why the procedure was not performed."/>
       <min value="0"/>
@@ -871,9 +738,9 @@
         <map value=".reason.Observation.value"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.bodySite">
+    <element id="Procedure.bodySite">
       <path value="Procedure.bodySite"/>
-      <name value="Procedure:argoprofile.bodySite"/>
+      <name value="Procedure.bodySite"/>
       <short value="Target body sites"/>
       <definition value="Detailed and structured anatomical location information. Multiple locations are allowed - e.g. multiple punch biopsies of a lesion."/>
       <min value="0"/>
@@ -893,7 +760,7 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
+          <reference value="http://hl7.org/fhir/us/mcode/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -952,10 +819,10 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="locationqualifier">
+    <element id="laterality">
       <path value="Procedure.bodySite.extension"/>
-      <name value="locationqualifier"/>
-      <definition value="Additional information, such as laterality or direction, that helps define the body location."/>
+      <name value="laterality"/>
+      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -965,16 +832,36 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="landmark">
+    <element id="orientation">
       <path value="Procedure.bodySite.extension"/>
-      <name value="landmark"/>
+      <name value="orientation"/>
+      <definition value="Orientation of the body location, if needed to distinguish from a similar location in another orientation."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Procedure.bodySite.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Orientation-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="relationtolandmark">
+      <path value="Procedure.bodySite.extension"/>
+      <name value="relationtolandmark"/>
       <definition value="An anatomical landmark that helps determine a body location."/>
       <min value="0"/>
       <max value="*"/>
@@ -985,7 +872,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelationToLandmark-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1070,9 +957,9 @@
         <map value="./originalText[mediaType/code=&quot;text/plain&quot;]/data"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.reason[x]">
+    <element id="Procedure.reason-x-">
       <path value="Procedure.reason[x]"/>
-      <name value="Procedure:argoprofile.reason[x]"/>
+      <name value="Procedure.reason-x-"/>
       <short value="Reason procedure performed"/>
       <definition value="The reason why the procedure was performed. This may be due to a Condition, may be coded entity of some type, or may simply be present as text."/>
       <comments value="e.g. endoscopy for dilatation and biopsy, combination diagnosis and therapeutic."/>
@@ -1106,9 +993,9 @@
         <map value=".reasonCode"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.performer">
+    <element id="Procedure.performer">
       <path value="Procedure.performer"/>
-      <name value="Procedure:argoprofile.performer"/>
+      <name value="Procedure.performer"/>
       <short value="The people who performed the procedure"/>
       <definition value="Limited to &#39;real&#39; people rather than equipment."/>
       <min value="0"/>
@@ -1130,10 +1017,10 @@
         <map value=".participation[typeCode=PFM]"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.performer.id">
+    <element id="Procedure.performer.id">
       <path value="Procedure.performer.id"/>
       <representation value="xmlAttr"/>
-      <name value="Procedure:argoprofile.performer.id"/>
+      <name value="Procedure.performer.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -1155,9 +1042,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.performer.extension">
+    <element id="Procedure.performer.extension">
       <path value="Procedure.performer.extension"/>
-      <name value="Procedure:argoprofile.performer.extension"/>
+      <name value="Procedure.performer.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1182,9 +1069,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.performer.modifierExtension">
+    <element id="Procedure.performer.modifierExtension">
       <path value="Procedure.performer.modifierExtension"/>
-      <name value="Procedure:argoprofile.performer.modifierExtension"/>
+      <name value="Procedure.performer.modifierExtension"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1210,9 +1097,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.performer.actor">
+    <element id="Procedure.performer.actor">
       <path value="Procedure.performer.actor"/>
-      <name value="Procedure:argoprofile.performer.actor"/>
+      <name value="Procedure.performer.actor"/>
       <short value="The reference to the practitioner"/>
       <definition value="The practitioner who was involved in the procedure."/>
       <min value="0"/>
@@ -1246,9 +1133,9 @@
         <map value="who.actor"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.performer.role">
+    <element id="Procedure.performer.role">
       <path value="Procedure.performer.role"/>
-      <name value="Procedure:argoprofile.performer.role"/>
+      <name value="Procedure.performer.role"/>
       <short value="The role the actor was in"/>
       <definition value="For example: surgeon, anaethetist, endoscopist."/>
       <min value="0"/>
@@ -1281,9 +1168,9 @@
         <map value=".functionCode"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.performed[x]">
+    <element id="Procedure.performed-x-">
       <path value="Procedure.performed[x]"/>
-      <name value="Procedure:argoprofile.performed[x]"/>
+      <name value="Procedure.performed-x-"/>
       <short value="Date/Period the procedure was performed"/>
       <definition value="The date(time)/period over which the procedure was performed. Allows a period to support complex procedures that span more than one date, and also allows for the length of the procedure to be captured."/>
       <min value="1"/>
@@ -1316,9 +1203,9 @@
         <map value="when.done"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.encounter">
+    <element id="Procedure.encounter">
       <path value="Procedure.encounter"/>
-      <name value="Procedure:argoprofile.encounter"/>
+      <name value="Procedure.encounter"/>
       <short value="The encounter associated with the procedure"/>
       <definition value="The encounter during which the procedure was performed."/>
       <min value="0"/>
@@ -1349,9 +1236,9 @@
         <map value="context"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.location">
+    <element id="Procedure.location">
       <path value="Procedure.location"/>
-      <name value="Procedure:argoprofile.location"/>
+      <name value="Procedure.location"/>
       <short value="Where the procedure happened"/>
       <definition value="The location where the procedure actually happened.  E.g. a newborn at home, a tracheostomy at a restaurant."/>
       <requirements value="Ties a procedure to where the records are likely kept."/>
@@ -1375,9 +1262,9 @@
         <map value="where"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.outcome">
+    <element id="Procedure.outcome">
       <path value="Procedure.outcome"/>
-      <name value="Procedure:argoprofile.outcome"/>
+      <name value="Procedure.outcome"/>
       <short value="The result of procedure"/>
       <definition value="The outcome of the procedure - did it resolve reasons for the procedure being performed?"/>
       <comments value="If outcome contains narrative text only, it can be captured using the CodeableConcept.text."/>
@@ -1407,9 +1294,9 @@
         <map value=".outboundRelationship[typeCode=OUT].target.text"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.report">
+    <element id="Procedure.report">
       <path value="Procedure.report"/>
-      <name value="Procedure:argoprofile.report"/>
+      <name value="Procedure.report"/>
       <short value="Any report resulting from the procedure"/>
       <definition value="This could be a histology result, pathology report, surgical report, etc.."/>
       <comments value="There could potentially be multiple reports - e.g. if this was a procedure which took multiple biopsies resulting in a number of anatomical pathology reports."/>
@@ -1433,9 +1320,9 @@
         <map value=".inboundRelationship[typeCode=SUBJ].source[classCode=OBS, moodCode=EVN]"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.complication">
+    <element id="Procedure.complication">
       <path value="Procedure.complication"/>
-      <name value="Procedure:argoprofile.complication"/>
+      <name value="Procedure.complication"/>
       <short value="Complication following the procedure"/>
       <definition value="Any complications that occurred during the procedure, or in the immediate post-performance period. These are generally tracked separately from the notes, which will typically describe the procedure itself rather than any &#39;post procedure&#39; issues."/>
       <comments value="If complications are only expressed by the narrative text, they can be captured using the CodeableConcept.text."/>
@@ -1465,9 +1352,9 @@
         <map value="Need specialization of OUT for this."/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.followUp">
+    <element id="Procedure.followUp">
       <path value="Procedure.followUp"/>
-      <name value="Procedure:argoprofile.followUp"/>
+      <name value="Procedure.followUp"/>
       <short value="Instructions for follow up"/>
       <definition value="If the procedure required specific follow up - e.g. removal of sutures. The followup may be represented as a simple note, or could potentially be more complex in which case the CarePlan resource can be used."/>
       <min value="0"/>
@@ -1496,9 +1383,9 @@
         <map value=".outboundRelationship[typeCode=COMP].target[classCode=ACT, moodCode=INT].code"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.request">
+    <element id="Procedure.request">
       <path value="Procedure.request"/>
-      <name value="Procedure:argoprofile.request"/>
+      <name value="Procedure.request"/>
       <short value="A request for this procedure"/>
       <definition value="A reference to a resource that contains details of the request for this procedure."/>
       <min value="0"/>
@@ -1511,17 +1398,15 @@
       <type>
         <code value="Reference"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Procedure:argoprofile.notes">
+    <element id="Procedure.notes">
       <path value="Procedure.notes"/>
-      <name value="Procedure:argoprofile.notes"/>
+      <name value="Procedure.notes"/>
       <short value="Additional information about the procedure"/>
       <definition value="Any other notes about the procedure.  E.g. the operative notes."/>
       <min value="0"/>
@@ -1548,9 +1433,9 @@
         <map value=".inboundRelationship[typeCode=SUBJ].source[classCode=OBS, moodCode=EVN, code=&quot;annotation&quot;].value"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.focalDevice">
+    <element id="Procedure.focalDevice">
       <path value="Procedure.focalDevice"/>
-      <name value="Procedure:argoprofile.focalDevice"/>
+      <name value="Procedure.focalDevice"/>
       <short value="Device changed in procedure"/>
       <definition value="A device that is implanted, removed or otherwise manipulated (calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure."/>
       <min value="0"/>
@@ -1568,10 +1453,10 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Procedure:argoprofile.focalDevice.id">
+    <element id="Procedure.focalDevice.id">
       <path value="Procedure.focalDevice.id"/>
       <representation value="xmlAttr"/>
-      <name value="Procedure:argoprofile.focalDevice.id"/>
+      <name value="Procedure.focalDevice.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -1593,9 +1478,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.focalDevice.extension">
+    <element id="Procedure.focalDevice.extension">
       <path value="Procedure.focalDevice.extension"/>
-      <name value="Procedure:argoprofile.focalDevice.extension"/>
+      <name value="Procedure.focalDevice.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1620,9 +1505,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.focalDevice.modifierExtension">
+    <element id="Procedure.focalDevice.modifierExtension">
       <path value="Procedure.focalDevice.modifierExtension"/>
-      <name value="Procedure:argoprofile.focalDevice.modifierExtension"/>
+      <name value="Procedure.focalDevice.modifierExtension"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1648,9 +1533,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Procedure:argoprofile.focalDevice.action">
+    <element id="Procedure.focalDevice.action">
       <path value="Procedure.focalDevice.action"/>
-      <name value="Procedure:argoprofile.focalDevice.action"/>
+      <name value="Procedure.focalDevice.action"/>
       <short value="Kind of change to device"/>
       <definition value="The kind of change that happened to the device during the procedure."/>
       <min value="0"/>
@@ -1675,9 +1560,9 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="Procedure:argoprofile.focalDevice.manipulated">
+    <element id="Procedure.focalDevice.manipulated">
       <path value="Procedure.focalDevice.manipulated"/>
-      <name value="Procedure:argoprofile.focalDevice.manipulated"/>
+      <name value="Procedure.focalDevice.manipulated"/>
       <short value="Device that was changed"/>
       <definition value="The device that was manipulated (changed) during the procedure."/>
       <min value="1"/>
@@ -1696,9 +1581,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Procedure:argoprofile.used">
+    <element id="Procedure.used">
       <path value="Procedure.used"/>
-      <name value="Procedure:argoprofile.used"/>
+      <name value="Procedure.used"/>
       <short value="Items used during procedure"/>
       <definition value="Identifies medications, devices and any other substance used as part of the procedure."/>
       <comments value="For devices actually implanted or removed, use Procedure.device."/>
@@ -1727,7 +1612,7 @@
       <path value="Procedure"/>
       <name value="Procedure"/>
       <short value="shr-core-SurgicalProcedure"/>
-      <definition value="A surgical action."/>
+      <definition value="An action that is or was performed on a patient. This can be a physical intervention like an operation, or less invasive like counseling or hypnotherapy."/>
       <min value="0"/>
       <type>
         <code value="argo-procedure"/>
@@ -1831,9 +1716,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Procedure.extension.valueReference">
+    <element id="Procedure.extension-partof.valueReference">
       <path value="Procedure.extension.valueReference"/>
-      <name value="Procedure.extension.valueReference"/>
+      <name value="Procedure.extension-partof.valueReference"/>
       <short value="Procedure"/>
       <definition value="A procedure that has been performed."/>
       <min value="0"/>
@@ -1890,7 +1775,7 @@
       <binding>
         <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/SurgicalProcedureVS"/>
+          <reference value="http://hl7.org/fhir/us/mcode/shr/core/vs/SurgicalProcedureVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -1925,7 +1810,7 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"/>
+          <reference value="http://hl7.org/fhir/us/mcode/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -1943,10 +1828,10 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="locationqualifier">
+    <element id="laterality">
       <path value="Procedure.bodySite.extension"/>
-      <name value="locationqualifier"/>
-      <definition value="Additional information, such as laterality or direction, that helps define the body location."/>
+      <name value="laterality"/>
+      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1956,16 +1841,36 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="landmark">
+    <element id="orientation">
       <path value="Procedure.bodySite.extension"/>
-      <name value="landmark"/>
+      <name value="orientation"/>
+      <definition value="Orientation of the body location, if needed to distinguish from a similar location in another orientation."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Procedure.bodySite.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Orientation-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="relationtolandmark">
+      <path value="Procedure.bodySite.extension"/>
+      <name value="relationtolandmark"/>
       <definition value="An anatomical landmark that helps determine a body location."/>
       <min value="0"/>
       <max value="*"/>
@@ -1976,7 +1881,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelationToLandmark-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -2060,8 +1965,6 @@
       <min value="0"/>
       <type>
         <code value="Reference"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest"/>
       </type>
       <maxLength value="0"/>

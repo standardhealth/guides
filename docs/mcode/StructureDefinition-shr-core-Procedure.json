@@ -3,16 +3,16 @@
   "id": "shr-core-Procedure",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Procedure Profile</b></p>\n  <p>A procedure that has been performed.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Procedure maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-procedure:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Code maps to code\n  ProcedureSubjectOfRecord maps to subject\n  Category maps to category\n  constrain notPerformed to 0..0\n  constrain reasonNotPerformed to 0..0\n  BodyLocation.LocationCode maps to bodySite\n  BodyLocation.LocationQualifier maps to bodySite.extension\n  BodyLocation.Landmark maps to bodySite.extension\n  Annotation maps to notes\n  CareContext maps to encounter\n  OccurrenceTimeOrPeriod maps to performed[x]\n  Participation maps to performer\n  Participation.Participant maps to performer.actor\n  Participation.ParticipationType maps to performer.role\n  Status maps to status\n  RelatedRequest.MedicationRequest maps to request\n  RelatedRequest.ProcedureRequest maps to request\n  RelatedRequest.ReferralRequest maps to request\n  Outcome maps to outcome\n  Location maps to location\n  MaterialUsed maps to used\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Procedure Profile</b></p>\n  <p>A procedure that has been performed.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Procedure maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-procedure:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Code maps to code\n  PatientSubjectOfRecord maps to subject\n  Category maps to category\n  constrain notPerformed to 0..0\n  constrain reasonNotPerformed to 0..0\n  BodyLocation.LocationCode maps to bodySite\n  BodyLocation.Laterality maps to bodySite.extension\n  BodyLocation.Orientation maps to bodySite.extension\n  BodyLocation.RelationToLandmark maps to bodySite.extension\n  Annotation maps to notes\n  CareContext maps to encounter\n  OccurrenceTimeOrPeriod maps to performed[x]\n  Participation maps to performer\n  Participation.Participant maps to performer.actor\n  Participation.ParticipationType maps to performer.role\n  Status maps to status\n  RelatedRequest.MedicationRequest maps to request\n  RelatedRequest.ProcedureRequest maps to request\n  RelatedRequest.ReferralRequest maps to request\n  Outcome maps to outcome\n  Location maps to location\n  MaterialUsed maps to used\n</pre></p>\n</div>"
   },
   "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure",
   "identifier": [
     {
-      "system": "http://hl7.org/fhir/us/projectURL",
+      "system": "http://hl7.org/fhir/us/mcode",
       "value": "shr.core.Procedure"
     }
   ],
-  "version": "0.7.0",
+  "version": "0.9.0 draft candidate 1",
   "name": "Procedure",
   "display": "shr-core-Procedure",
   "status": "draft",
@@ -22,13 +22,13 @@
       "telecom": [
         {
           "system": "other",
-          "value": "http://www.hl7.org/Special/committees/cic/index.cfm",
+          "value": "http://standardhealthrecord.org",
           "rank": 0
         }
       ]
     }
   ],
-  "date": "2019-03-27T00:00:00-04:00",
+  "date": "2019-04-08T00:00:00-04:00",
   "description": "A procedure that has been performed.",
   "fhirVersion": "1.0.2",
   "mapping": [
@@ -55,9 +55,9 @@
   "snapshot": {
     "element": [
       {
-        "id": "argoprofile",
+        "id": "Procedure",
         "path": "Procedure",
-        "name": "argoprofile",
+        "name": "Procedure",
         "short": "shr-core-Procedure",
         "definition": "A procedure that has been performed.",
         "min": 0,
@@ -96,9 +96,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.id",
+        "id": "Procedure.id",
         "path": "Procedure.id",
-        "name": "Procedure:argoprofile.id",
+        "name": "Procedure.id",
         "short": "Logical id of this artifact",
         "definition": "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
         "comments": "The only time that a resource does not have an id is when it is being submitted to the server using a create operation. Bundles always have an id, though it is usually a generated UUID.",
@@ -120,9 +120,9 @@
         "isSummary": true
       },
       {
-        "id": "Procedure:argoprofile.meta",
+        "id": "Procedure.meta",
         "path": "Procedure.meta",
-        "name": "Procedure:argoprofile.meta",
+        "name": "Procedure.meta",
         "short": "Metadata about the resource",
         "definition": "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content may not always be associated with version changes to the resource.",
         "min": 0,
@@ -143,171 +143,9 @@
         "isSummary": true
       },
       {
-        "id": "Procedure.meta.id",
-        "path": "Procedure.meta.id",
-        "representation": [
-          "xmlAttr"
-        ],
-        "name": "Procedure.meta.id",
-        "short": "xml:id (or equivalent in JSON)",
-        "definition": "unique id for the element within a resource (for internal references).",
-        "min": 0,
-        "max": "1",
-        "type": [
-          {
-            "code": "id"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "n/a"
-          }
-        ]
-      },
-      {
-        "id": "Procedure.meta.extension",
-        "path": "Procedure.meta.extension",
-        "name": "Procedure.meta.extension",
-        "short": "Additional Content defined by implementations",
-        "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
-        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
-        "alias": [
-          "extensions",
-          "user content"
-        ],
-        "min": 0,
-        "max": "*",
-        "type": [
-          {
-            "code": "Extension"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "n/a"
-          }
-        ]
-      },
-      {
-        "id": "Procedure.meta.versionId",
-        "path": "Procedure.meta.versionId",
-        "name": "Procedure.meta.versionId",
-        "short": "Version specific identifier",
-        "definition": "The version specific identifier, as it appears in the version portion of the URL. This values changes when the resource is created, updated, or deleted.",
-        "comments": "The server assigns this value, and ignores what the client specifies, except in the case that the server is imposing version integrity on updates/deletes.",
-        "min": 0,
-        "max": "1",
-        "type": [
-          {
-            "code": "id"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true
-      },
-      {
-        "id": "Procedure.meta.lastUpdated",
-        "path": "Procedure.meta.lastUpdated",
-        "name": "Procedure.meta.lastUpdated",
-        "short": "When the resource version last changed",
-        "definition": "When the resource last changed - e.g. when the version changed.",
-        "comments": "This value is always populated except when the resource is first being created. The server / resource manager sets this value; what a client provides is irrelevant.",
-        "min": 0,
-        "max": "1",
-        "type": [
-          {
-            "code": "instant"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true
-      },
-      {
-        "id": "Procedure.meta.profile",
-        "path": "Procedure.meta.profile",
-        "name": "Procedure.meta.profile",
-        "short": "Profiles this resource claims to conform to",
-        "definition": "A list of profiles [[[StructureDefinition]]]s that this resource claims to conform to. The URL is a reference to [[[StructureDefinition.url]]].",
-        "comments": "It is up to the server and/or other infrastructure of policy to determine whether/how these claims are verified and/or updated over time.  The list of profile URLs is a set.",
-        "min": 0,
-        "max": "*",
-        "type": [
-          {
-            "code": "uri"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true
-      },
-      {
-        "id": "Procedure.meta.security",
-        "path": "Procedure.meta.security",
-        "name": "Procedure.meta.security",
-        "short": "Security Labels applied to this resource",
-        "definition": "Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure.",
-        "comments": "The security labels can be updated without changing the stated version of the resource  The list of security labels is a set. Uniqueness is based the system/code, and version and display are ignored.",
-        "min": 0,
-        "max": "*",
-        "type": [
-          {
-            "code": "Coding"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true,
-        "binding": {
-          "strength": "extensible",
-          "description": "Security Labels from the Healthcare Privacy and Security Classification System.",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/security-labels"
-          }
-        }
-      },
-      {
-        "id": "Procedure.meta.tag",
-        "path": "Procedure.meta.tag",
-        "name": "Procedure.meta.tag",
-        "short": "Tags applied to this resource",
-        "definition": "Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource.",
-        "comments": "The tags can be updated without changing the stated version of the resource.  The list of tags is a set. Uniqueness is based the system/code, and version and display are ignored.",
-        "min": 0,
-        "max": "*",
-        "type": [
-          {
-            "code": "Coding"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": true,
-        "binding": {
-          "strength": "example",
-          "description": "Codes that represent various types of tags, commonly workflow-related; e.g. \"Needs review by Dr. Jones\""
-        }
-      },
-      {
-        "id": "Procedure:argoprofile.implicitRules",
+        "id": "Procedure.implicitRules",
         "path": "Procedure.implicitRules",
-        "name": "Procedure:argoprofile.implicitRules",
+        "name": "Procedure.implicitRules",
         "short": "A set of rules under which this content was created",
         "definition": "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content.",
         "comments": "Asserting this rule set restricts the content to be only understood by a limited set of trading partners. This inherently limits the usefulness of the data in the long term. However, the existing health eco-system is highly fractured, and not yet ready to define, collect, and exchange data in a generally computable sense. Wherever possible, implementers and/or specification writers should avoid using this element as much as possible.",
@@ -329,9 +167,9 @@
         "isSummary": true
       },
       {
-        "id": "Procedure:argoprofile.language",
+        "id": "Procedure.language",
         "path": "Procedure.language",
-        "name": "Procedure:argoprofile.language",
+        "name": "Procedure.language",
         "short": "Language of the resource content",
         "definition": "The base language in which the resource is written.",
         "comments": "Language is provided to support indexing and accessibility (typically, services such as text to speech use the language tag). The html language tag in the narrative applies  to the narrative. The language tag on the resource may be used to specify the language of other presentations generated from the data in the resource  Not all the content has to be in the base language. The Resource.language should not be assumed to apply to the narrative automatically. If a language is specified, it should it also be specified on the div element in the html (see rules in HTML5 for information about the relationship between xml:lang and the html lang attribute).",
@@ -360,9 +198,9 @@
         }
       },
       {
-        "id": "Procedure:argoprofile.text",
+        "id": "Procedure.text",
         "path": "Procedure.text",
-        "name": "Procedure:argoprofile.text",
+        "name": "Procedure.text",
         "short": "Text summary of the resource, for human interpretation",
         "definition": "A human-readable narrative that contains a summary of the resource, and may be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
         "comments": "Contained resources do not have narrative. Resources that are not contained SHOULD have a narrative.",
@@ -399,9 +237,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.contained",
+        "id": "Procedure.contained",
         "path": "Procedure.contained",
-        "name": "Procedure:argoprofile.contained",
+        "name": "Procedure.contained",
         "short": "Contained, inline Resources",
         "definition": "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.",
         "comments": "This should never be done when the content can be identified properly, as once identification is lost, it is extremely difficult (and context dependent) to restore it again.",
@@ -434,9 +272,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.extension",
+        "id": "Procedure.extension",
         "path": "Procedure.extension",
-        "name": "Procedure:argoprofile.extension",
+        "name": "Procedure.extension",
         "slicing": {
           "id": "2",
           "discriminator": [
@@ -576,12 +414,12 @@
         "isSummary": false
       },
       {
-        "id": "Procedure.extension.id",
+        "id": "Procedure.extension-partof.id",
         "path": "Procedure.extension.id",
         "representation": [
           "xmlAttr"
         ],
-        "name": "Procedure.extension.id",
+        "name": "Procedure.extension-partof.id",
         "short": "xml:id (or equivalent in JSON)",
         "definition": "unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
         "min": 0,
@@ -608,9 +446,9 @@
         ]
       },
       {
-        "id": "Procedure.extension.extension",
+        "id": "Procedure.extension-partof.extension-extension",
         "path": "Procedure.extension.extension",
-        "name": "Procedure.extension.extension",
+        "name": "Procedure.extension-partof.extension-extension",
         "short": "Extension",
         "definition": "An Extension",
         "min": 0,
@@ -631,12 +469,12 @@
         "isSummary": false
       },
       {
-        "id": "Procedure.extension.url",
+        "id": "Procedure.extension-partof.url",
         "path": "Procedure.extension.url",
         "representation": [
           "xmlAttr"
         ],
-        "name": "Procedure.extension.url",
+        "name": "Procedure.extension-partof.url",
         "short": "identifies the meaning of the extension",
         "definition": "Source of the definition for the extension code - a logical name or a URL.",
         "min": 1,
@@ -664,9 +502,9 @@
         ]
       },
       {
-        "id": "Procedure.extension.valueReference",
+        "id": "Procedure.extension-partof.valueReference",
         "path": "Procedure.extension.valueReference",
-        "name": "Procedure.extension.valueReference",
+        "name": "Procedure.extension-partof.valueReference",
         "short": "Procedure",
         "definition": "A procedure that has been performed.",
         "min": 1,
@@ -721,9 +559,9 @@
         "isSummary": false
       },
       {
-        "id": "Procedure:argoprofile.modifierExtension",
+        "id": "Procedure.modifierExtension",
         "path": "Procedure.modifierExtension",
-        "name": "Procedure:argoprofile.modifierExtension",
+        "name": "Procedure.modifierExtension",
         "short": "Extensions that cannot be ignored",
         "definition": "May be used to represent additional information that is not part of the basic definition of the resource, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -755,9 +593,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.identifier",
+        "id": "Procedure.identifier",
         "path": "Procedure.identifier",
-        "name": "Procedure:argoprofile.identifier",
+        "name": "Procedure.identifier",
         "short": "External Identifiers for this procedure",
         "definition": "This records identifiers associated with this procedure that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation).",
         "requirements": "Need to allow connection to a wider workflow.",
@@ -793,9 +631,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.subject",
+        "id": "Procedure.subject",
         "path": "Procedure.subject",
-        "name": "Procedure:argoprofile.subject",
+        "name": "Procedure.subject",
         "short": "Who the procedure was performed on",
         "definition": "The person, animal or group on which the procedure was performed.",
         "min": 1,
@@ -833,9 +671,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.status",
+        "id": "Procedure.status",
         "path": "Procedure.status",
-        "name": "Procedure:argoprofile.status",
+        "name": "Procedure.status",
         "short": "in-progress | aborted | completed | entered-in-error",
         "definition": "A code specifying the state of the procedure. Generally this will be in-progress or completed state.",
         "min": 1,
@@ -862,9 +700,9 @@
         }
       },
       {
-        "id": "Procedure:argoprofile.category",
+        "id": "Procedure.category",
         "path": "Procedure.category",
-        "name": "Procedure:argoprofile.category",
+        "name": "Procedure.category",
         "short": "Classification of the procedure",
         "definition": "A code that classifies the procedure for searching, sorting and display purposes (e.g. \"Surgical Procedure\").",
         "min": 0,
@@ -898,9 +736,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.code",
+        "id": "Procedure.code",
         "path": "Procedure.code",
-        "name": "Procedure:argoprofile.code",
+        "name": "Procedure.code",
         "short": "SNOMED-CT | ICD-10 | CPT-4",
         "definition": "The specific procedure that is performed. Use text if the exact nature of the procedure cannot be coded (e.g. \"Laparoscopic Appendectomy\").",
         "min": 1,
@@ -941,9 +779,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.notPerformed",
+        "id": "Procedure.notPerformed",
         "path": "Procedure.notPerformed",
-        "name": "Procedure:argoprofile.notPerformed",
+        "name": "Procedure.notPerformed",
         "short": "True if procedure was not performed as scheduled",
         "definition": "Set this to true if the record is saying that the procedure was NOT performed.",
         "min": 0,
@@ -971,9 +809,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.reasonNotPerformed",
+        "id": "Procedure.reasonNotPerformed",
         "path": "Procedure.reasonNotPerformed",
-        "name": "Procedure:argoprofile.reasonNotPerformed",
+        "name": "Procedure.reasonNotPerformed",
         "short": "Reason procedure was not performed",
         "definition": "A code indicating why the procedure was not performed.",
         "min": 0,
@@ -1010,9 +848,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.bodySite",
+        "id": "Procedure.bodySite",
         "path": "Procedure.bodySite",
-        "name": "Procedure:argoprofile.bodySite",
+        "name": "Procedure.bodySite",
         "short": "Target body sites",
         "definition": "Detailed and structured anatomical location information. Multiple locations are allowed - e.g. multiple punch biopsies of a lesion.",
         "min": 0,
@@ -1034,7 +872,7 @@
         "binding": {
           "strength": "preferred",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
+            "reference": "http://hl7.org/fhir/us/mcode/shr/core/vs/BodyLocationVS"
           }
         },
         "mapping": [
@@ -1113,10 +951,10 @@
         ]
       },
       {
-        "id": "locationqualifier",
+        "id": "laterality",
         "path": "Procedure.bodySite.extension",
-        "name": "locationqualifier",
-        "definition": "Additional information, such as laterality or direction, that helps define the body location.",
+        "name": "laterality",
+        "definition": "Body side of the body location, if needed to distinguish from a similar location on the other side of the body.",
         "min": 0,
         "max": "*",
         "base": {
@@ -1128,7 +966,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"
             ]
           }
         ],
@@ -1138,9 +976,34 @@
         "isSummary": false
       },
       {
-        "id": "landmark",
+        "id": "orientation",
         "path": "Procedure.bodySite.extension",
-        "name": "landmark",
+        "name": "orientation",
+        "definition": "Orientation of the body location, if needed to distinguish from a similar location in another orientation.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "Procedure.bodySite.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Orientation-extension"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "relationtolandmark",
+        "path": "Procedure.bodySite.extension",
+        "name": "relationtolandmark",
         "definition": "An anatomical landmark that helps determine a body location.",
         "min": 0,
         "max": "*",
@@ -1153,7 +1016,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelationToLandmark-extension"
             ]
           }
         ],
@@ -1231,9 +1094,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.reason[x]",
+        "id": "Procedure.reason-x-",
         "path": "Procedure.reason[x]",
-        "name": "Procedure:argoprofile.reason[x]",
+        "name": "Procedure.reason-x-",
         "short": "Reason procedure performed",
         "definition": "The reason why the procedure was performed. This may be due to a Condition, may be coded entity of some type, or may simply be present as text.",
         "comments": "e.g. endoscopy for dilatation and biopsy, combination diagnosis and therapeutic.",
@@ -1274,9 +1137,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.performer",
+        "id": "Procedure.performer",
         "path": "Procedure.performer",
-        "name": "Procedure:argoprofile.performer",
+        "name": "Procedure.performer",
         "short": "The people who performed the procedure",
         "definition": "Limited to 'real' people rather than equipment.",
         "min": 0,
@@ -1303,12 +1166,12 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.performer.id",
+        "id": "Procedure.performer.id",
         "path": "Procedure.performer.id",
         "representation": [
           "xmlAttr"
         ],
-        "name": "Procedure:argoprofile.performer.id",
+        "name": "Procedure.performer.id",
         "short": "xml:id (or equivalent in JSON)",
         "definition": "unique id for the element within a resource (for internal references).",
         "min": 0,
@@ -1335,9 +1198,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.performer.extension",
+        "id": "Procedure.performer.extension",
         "path": "Procedure.performer.extension",
-        "name": "Procedure:argoprofile.performer.extension",
+        "name": "Procedure.performer.extension",
         "short": "Additional Content defined by implementations",
         "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -1369,9 +1232,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.performer.modifierExtension",
+        "id": "Procedure.performer.modifierExtension",
         "path": "Procedure.performer.modifierExtension",
-        "name": "Procedure:argoprofile.performer.modifierExtension",
+        "name": "Procedure.performer.modifierExtension",
         "short": "Extensions that cannot be ignored",
         "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -1404,9 +1267,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.performer.actor",
+        "id": "Procedure.performer.actor",
         "path": "Procedure.performer.actor",
-        "name": "Procedure:argoprofile.performer.actor",
+        "name": "Procedure.performer.actor",
         "short": "The reference to the practitioner",
         "definition": "The practitioner who was involved in the procedure.",
         "min": 0,
@@ -1447,9 +1310,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.performer.role",
+        "id": "Procedure.performer.role",
         "path": "Procedure.performer.role",
-        "name": "Procedure:argoprofile.performer.role",
+        "name": "Procedure.performer.role",
         "short": "The role the actor was in",
         "definition": "For example: surgeon, anaethetist, endoscopist.",
         "min": 0,
@@ -1487,9 +1350,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.performed[x]",
+        "id": "Procedure.performed-x-",
         "path": "Procedure.performed[x]",
-        "name": "Procedure:argoprofile.performed[x]",
+        "name": "Procedure.performed-x-",
         "short": "Date/Period the procedure was performed",
         "definition": "The date(time)/period over which the procedure was performed. Allows a period to support complex procedures that span more than one date, and also allows for the length of the procedure to be captured.",
         "min": 1,
@@ -1527,9 +1390,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.encounter",
+        "id": "Procedure.encounter",
         "path": "Procedure.encounter",
-        "name": "Procedure:argoprofile.encounter",
+        "name": "Procedure.encounter",
         "short": "The encounter associated with the procedure",
         "definition": "The encounter during which the procedure was performed.",
         "min": 0,
@@ -1567,9 +1430,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.location",
+        "id": "Procedure.location",
         "path": "Procedure.location",
-        "name": "Procedure:argoprofile.location",
+        "name": "Procedure.location",
         "short": "Where the procedure happened",
         "definition": "The location where the procedure actually happened.  E.g. a newborn at home, a tracheostomy at a restaurant.",
         "requirements": "Ties a procedure to where the records are likely kept.",
@@ -1600,9 +1463,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.outcome",
+        "id": "Procedure.outcome",
         "path": "Procedure.outcome",
-        "name": "Procedure:argoprofile.outcome",
+        "name": "Procedure.outcome",
         "short": "The result of procedure",
         "definition": "The outcome of the procedure - did it resolve reasons for the procedure being performed?",
         "comments": "If outcome contains narrative text only, it can be captured using the CodeableConcept.text.",
@@ -1637,9 +1500,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.report",
+        "id": "Procedure.report",
         "path": "Procedure.report",
-        "name": "Procedure:argoprofile.report",
+        "name": "Procedure.report",
         "short": "Any report resulting from the procedure",
         "definition": "This could be a histology result, pathology report, surgical report, etc..",
         "comments": "There could potentially be multiple reports - e.g. if this was a procedure which took multiple biopsies resulting in a number of anatomical pathology reports.",
@@ -1670,9 +1533,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.complication",
+        "id": "Procedure.complication",
         "path": "Procedure.complication",
-        "name": "Procedure:argoprofile.complication",
+        "name": "Procedure.complication",
         "short": "Complication following the procedure",
         "definition": "Any complications that occurred during the procedure, or in the immediate post-performance period. These are generally tracked separately from the notes, which will typically describe the procedure itself rather than any 'post procedure' issues.",
         "comments": "If complications are only expressed by the narrative text, they can be captured using the CodeableConcept.text.",
@@ -1707,9 +1570,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.followUp",
+        "id": "Procedure.followUp",
         "path": "Procedure.followUp",
-        "name": "Procedure:argoprofile.followUp",
+        "name": "Procedure.followUp",
         "short": "Instructions for follow up",
         "definition": "If the procedure required specific follow up - e.g. removal of sutures. The followup may be represented as a simple note, or could potentially be more complex in which case the CarePlan resource can be used.",
         "min": 0,
@@ -1743,9 +1606,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.request",
+        "id": "Procedure.request",
         "path": "Procedure.request",
-        "name": "Procedure:argoprofile.request",
+        "name": "Procedure.request",
         "short": "A request for this procedure",
         "definition": "A reference to a resource that contains details of the request for this procedure.",
         "min": 0,
@@ -1759,8 +1622,6 @@
           {
             "code": "Reference",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest",
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest",
               "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest"
             ]
           }
@@ -1771,9 +1632,9 @@
         "isSummary": false
       },
       {
-        "id": "Procedure:argoprofile.notes",
+        "id": "Procedure.notes",
         "path": "Procedure.notes",
-        "name": "Procedure:argoprofile.notes",
+        "name": "Procedure.notes",
         "short": "Additional information about the procedure",
         "definition": "Any other notes about the procedure.  E.g. the operative notes.",
         "min": 0,
@@ -1807,9 +1668,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.focalDevice",
+        "id": "Procedure.focalDevice",
         "path": "Procedure.focalDevice",
-        "name": "Procedure:argoprofile.focalDevice",
+        "name": "Procedure.focalDevice",
         "short": "Device changed in procedure",
         "definition": "A device that is implanted, removed or otherwise manipulated (calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure.",
         "min": 0,
@@ -1830,12 +1691,12 @@
         "isSummary": false
       },
       {
-        "id": "Procedure:argoprofile.focalDevice.id",
+        "id": "Procedure.focalDevice.id",
         "path": "Procedure.focalDevice.id",
         "representation": [
           "xmlAttr"
         ],
-        "name": "Procedure:argoprofile.focalDevice.id",
+        "name": "Procedure.focalDevice.id",
         "short": "xml:id (or equivalent in JSON)",
         "definition": "unique id for the element within a resource (for internal references).",
         "min": 0,
@@ -1862,9 +1723,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.focalDevice.extension",
+        "id": "Procedure.focalDevice.extension",
         "path": "Procedure.focalDevice.extension",
-        "name": "Procedure:argoprofile.focalDevice.extension",
+        "name": "Procedure.focalDevice.extension",
         "short": "Additional Content defined by implementations",
         "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -1896,9 +1757,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.focalDevice.modifierExtension",
+        "id": "Procedure.focalDevice.modifierExtension",
         "path": "Procedure.focalDevice.modifierExtension",
-        "name": "Procedure:argoprofile.focalDevice.modifierExtension",
+        "name": "Procedure.focalDevice.modifierExtension",
         "short": "Extensions that cannot be ignored",
         "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
         "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -1931,9 +1792,9 @@
         ]
       },
       {
-        "id": "Procedure:argoprofile.focalDevice.action",
+        "id": "Procedure.focalDevice.action",
         "path": "Procedure.focalDevice.action",
-        "name": "Procedure:argoprofile.focalDevice.action",
+        "name": "Procedure.focalDevice.action",
         "short": "Kind of change to device",
         "definition": "The kind of change that happened to the device during the procedure.",
         "min": 0,
@@ -1961,9 +1822,9 @@
         }
       },
       {
-        "id": "Procedure:argoprofile.focalDevice.manipulated",
+        "id": "Procedure.focalDevice.manipulated",
         "path": "Procedure.focalDevice.manipulated",
-        "name": "Procedure:argoprofile.focalDevice.manipulated",
+        "name": "Procedure.focalDevice.manipulated",
         "short": "Device that was changed",
         "definition": "The device that was manipulated (changed) during the procedure.",
         "min": 1,
@@ -1987,9 +1848,9 @@
         "isSummary": false
       },
       {
-        "id": "Procedure:argoprofile.used",
+        "id": "Procedure.used",
         "path": "Procedure.used",
-        "name": "Procedure:argoprofile.used",
+        "name": "Procedure.used",
         "short": "Items used during procedure",
         "definition": "Identifies medications, devices and any other substance used as part of the procedure.",
         "comments": "For devices actually implanted or removed, use Procedure.device.",
@@ -2156,9 +2017,9 @@
         "isSummary": false
       },
       {
-        "id": "Procedure.extension.valueReference",
+        "id": "Procedure.extension-partof.valueReference",
         "path": "Procedure.extension.valueReference",
-        "name": "Procedure.extension.valueReference",
+        "name": "Procedure.extension-partof.valueReference",
         "short": "Procedure",
         "definition": "A procedure that has been performed.",
         "min": 0,
@@ -2268,7 +2129,7 @@
         "binding": {
           "strength": "preferred",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/projectURL/shr/core/vs/BodyLocationVS"
+            "reference": "http://hl7.org/fhir/us/mcode/shr/core/vs/BodyLocationVS"
           }
         }
       },
@@ -2291,10 +2152,10 @@
         "isSummary": false
       },
       {
-        "id": "locationqualifier",
+        "id": "laterality",
         "path": "Procedure.bodySite.extension",
-        "name": "locationqualifier",
-        "definition": "Additional information, such as laterality or direction, that helps define the body location.",
+        "name": "laterality",
+        "definition": "Body side of the body location, if needed to distinguish from a similar location on the other side of the body.",
         "min": 0,
         "max": "*",
         "base": {
@@ -2306,7 +2167,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LocationQualifier-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"
             ]
           }
         ],
@@ -2316,9 +2177,34 @@
         "isSummary": false
       },
       {
-        "id": "landmark",
+        "id": "orientation",
         "path": "Procedure.bodySite.extension",
-        "name": "landmark",
+        "name": "orientation",
+        "definition": "Orientation of the body location, if needed to distinguish from a similar location in another orientation.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "Procedure.bodySite.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Orientation-extension"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "relationtolandmark",
+        "path": "Procedure.bodySite.extension",
+        "name": "relationtolandmark",
         "definition": "An anatomical landmark that helps determine a body location.",
         "min": 0,
         "max": "*",
@@ -2331,7 +2217,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Landmark-extension"
+              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelationToLandmark-extension"
             ]
           }
         ],
@@ -2416,8 +2302,6 @@
           {
             "code": "Reference",
             "profile": [
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest",
-              "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest",
               "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest"
             ]
           }

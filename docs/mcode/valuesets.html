@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8"/>
   
-  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1)</title>
+  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1) FHIR Profiles"/>
+  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 FHIR Profiles"/>
 
   <link rel="stylesheet" href="fhir.css"/>
 
@@ -40,7 +40,7 @@
     </a>
     <div id="hl7-status" class="hl7-status">
       
-      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1)</b>
+      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0</b>
     </div>
 
     <div id="hl7-nav">
@@ -183,7 +183,12 @@
         </tr>
         <tr>
           <td><a href="ValueSet-shr-core-BodyWeightPreconditionVS.html">BodyWeightPreconditionVS</a></td>
-          <td><p>Circumstances for body weight measurement. Some of these terms are unavilable in SNOMED</p>
+          <td><p>Circumstances for body weight measurement. The choices are limited by availability of SNOMED terms, and could contain terms like pre- and post-dialysis, mother ante- and post-delivery, etc.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="ValueSet-oncocore-CancerBodyLocationVS.html">CancerBodyLocationVS</a></td>
+          <td><p>Codes describing the location of primary or secondary cancer. The value set includes all codes from ICD-O-3 topology and SNOMED-CT body locations.</p>
 </td>
         </tr>
         <tr>
@@ -192,23 +197,13 @@
 </td>
         </tr>
         <tr>
-          <td><a href="ValueSet-oncocore-CancerDiseaseStatusVS.html">CancerDiseaseStatusVS</a></td>
-          <td><p>Concepts describing the status of disease in cancer. Analogous values to LOINC list LL4721-8.</p>
-</td>
-        </tr>
-        <tr>
           <td><a href="ValueSet-oncocore-CancerDisorderVS.html">CancerDisorderVS</a></td>
-          <td><p>Types of malignant neoplastic disease. Includes SNOMED CT disorder hierarchy codes for malignant neoplastic disease, as well as ICD-10-CM codes for malignant neoplasms and neoplasms of uncertain or unspecified behavior. Both SNOMED CT and ICD-10-CM can precoordinate the cancer location and the histologic type, which will result in some overlap between Cancer Condition and Cancer Histologic Type. For ICD-10-CM in particular, if the histology is known it must be coded.</p>
+          <td><p>A broad cancer-related value set containing both primary and secondary tumor types, with codes from ICD-10, ICD-O-3, and SNOMED CT, including both diagnosis and histology/morphology/behavior codes.</p>
 </td>
         </tr>
         <tr>
           <td><a href="ValueSet-oncocore-CancerHistologicGradeVS.html">CancerHistologicGradeVS</a></td>
           <td><p>The classification for the grade of the tumor. This is a subset of the LOINC answer list LL213-0, which represents allowable values for NAACCR data item #440. The original answer list is outdated, as it includes terms pointing to the lineage of hematopoietic/lymphoid neoplasms, which have been retired by NAACCR as of version 18 Data Standards and Data Dictionary.</p>
-</td>
-        </tr>
-        <tr>
-          <td><a href="ValueSet-oncocore-CancerHistologicTypeVS.html">CancerHistologicTypeVS</a></td>
-          <td><p>Neoplasm (morphologic abnormality)</p>
 </td>
         </tr>
         <tr>
@@ -228,101 +223,43 @@
         </tr>
         <tr>
           <td><a href="ValueSet-shr-core-ComorbidConditionCodeVS.html">ComorbidConditionCodeVS</a></td>
-          <td><p>Preferred codes for common comorbid conditions. Aligns with Adult Comorbitity Evaluation (ACE-27).</p>
+          <td><p>Preferred SNOMED and ICD-10 codes for common comorbid conditions. Aligns with Elixhauser comorbidity scale. ICD-10 codes are drawn from https://www.hcup-us.ahrq.gov/toolssoftware/comorbidityicd10/comformat_icd10cm_2019_1.txt</p>
 </td>
         </tr>
         <tr>
           <td><a href="ValueSet-shr-core-ConditionCategoryVS.html">ConditionCategoryVS</a></td>
-          <td><p>A category assigned to the condition, for example, a disease, concern, symptom, adverse reaction, functional impairment, or structural abnormality.</p>
+          <td><p>A category assigned to the condition, for example, a disease, concern, symptom, functional impairment, or structural abnormality. Based on http://fhir.org/guides/argonaut/ValueSet/condition-category but with SNOMED CT codes.</p>
 </td>
         </tr>
         <tr>
-          <td><a href="ValueSet-shr-lab-Equivalence-g-per-L-VS.html">Equivalence-g-per-L-VS</a></td>
-          <td></td>
+          <td><a href="ValueSet-shr-core-ConditionStatusTrendVS.html">ConditionStatusTrendVS</a></td>
+          <td><p>Standardized value set that describes the trend or status of a disease, condition, or ability. Based on LL2751-7, LL4721-8.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="ValueSet-shr-core-DetectedNotDetectedVS.html">DetectedNotDetectedVS</a></td>
+          <td><p>Value set consisting of the answers Detected (Present) and NotDetected (Absent). The terms detected and not detected are preferred because they reflect outcomes of experimental observation, while present and absent suggest ground truth. This value set reconciles or combines LOINC answer lists LL956-4, LL750-1, LL744-4,  LL955-6, LL3950-4, LL3250-9, LL2872-1, LL2410-0, LL2355-7.</p>
+</td>
         </tr>
         <tr>
           <td><a href="ValueSet-oncocore-GeneticTestMethodVS.html">GeneticTestMethodVS</a></td>
-          <td><p>The method used to perform the genetic test.  Examples include Fluorescent in situ hybridization (FISH), polymerase chain reaction-based assays (PCR), Sanger sequencing, and next-generation sequencing (NGS).</p>
+          <td><p>The method used to perform the genetic test.  Examples include Fluorescent in situ hybridization (FISH), polymerase chain reaction-based assays (PCR), Sanger sequencing, and next-generation sequencing (NGS).
+Contains the following values from NCI Thesaurus</p>
 </td>
         </tr>
         <tr>
           <td><a href="ValueSet-oncocore-GenomicSourceClassVS.html">GenomicSourceClassVS</a></td>
-          <td><p>The genomic class of the specimen being analyzed: Germline for inherited genome, somatic for cancer genome, and prenatal for fetal genome. (source: LOINC).</p>
+          <td><p>The genomic class of the specimen being analyzed: Germline for inherited genome, somatic for cancer genome, and prenatal for fetal genome. (source: LOINC). These are answers to the question specimen source (SCT#703065002).</p>
 </td>
         </tr>
         <tr>
-          <td><a href="ValueSet-oncocore-MetastasesVS.html">MetastasesVS</a></td>
-          <td><p>Code for secondary malignant neoplastic disease</p>
+          <td><a href="ValueSet-oncocore-HistologyMorphologyBehaviorVS.html">HistologyMorphologyBehaviorVS</a></td>
+          <td><p>The histologic type codes can be taken either from ICD-O-3 morphology codes (including behavior suffix) or SNOMED CT neoplasm morphology codes. For primary cancers, the ICD-O-3 behavior suffix should be /1, /2, or /3. For secondary cancers, the ICD-O-3 code should be /6 or /9.</p>
 </td>
         </tr>
         <tr>
-          <td><a href="ValueSet-oncocore-MorphologyBehaviorVS.html">MorphologyBehaviorVS</a></td>
-          <td><p>The morphologic behavior of the cancer. These are the suffix to the ICD-O-3 histologic type codes. Codes are presented as local codes because they are portions of the full code to be post-coordinated, and not full ICD-O-3 codes.</p>
-</td>
-        </tr>
-        <tr>
-          <td><a href="ValueSet-shr-core-PositiveNegativeVS.html">PositiveNegativeVS</a></td>
-          <td><p>Interpretation of a test result as positive, negative or equivocal. Equivalent values to LOINC LL2009-0.</p>
-</td>
-        </tr>
-        <tr>
-          <td><a href="ValueSet-shr-lab-QuantitativeLaboratoryCodes-U-per-L.html">QuantitativeLaboratoryCodes-U-per-L</a></td>
-          <td><p>Value set that contains codes for labs that may report their quantitative results in U/L</p>
-</td>
-        </tr>
-        <tr>
-          <td><a href="ValueSet-shr-lab-QuantitativeLaboratoryCodes-fL.html">QuantitativeLaboratoryCodes-fL</a></td>
-          <td><p>Value set that contains codes for labs that may report their quantitative results as fL</p>
-</td>
-        </tr>
-        <tr>
-          <td><a href="ValueSet-shr-lab-QuantitativeLaboratoryCodes-g-per-L.html">QuantitativeLaboratoryCodes-g-per-L</a></td>
-          <td><p>Value set that contains codes for labs that may report their quantitative results as g/L</p>
-</td>
-        </tr>
-        <tr>
-          <td><a href="ValueSet-shr-lab-QuantitativeLaboratoryCodes-g-per-dL.html">QuantitativeLaboratoryCodes-g-per-dL</a></td>
-          <td><p>Value set that contains codes for labs that may report their quantitative results as g/dL</p>
-</td>
-        </tr>
-        <tr>
-          <td><a href="ValueSet-shr-lab-QuantitativeLaboratoryCodes-mL-per-min.html">QuantitativeLaboratoryCodes-mL-per-min</a></td>
-          <td><p>Value set that contains codes for labs that may report their quantitative results as mL/min</p>
-</td>
-        </tr>
-        <tr>
-          <td><a href="ValueSet-shr-lab-QuantitativeLaboratoryCodes-mg-per-dL.html">QuantitativeLaboratoryCodes-mg-per-dL</a></td>
-          <td><p>Value set that contains codes for labs that may report their quantitative results as mg/dL</p>
-</td>
-        </tr>
-        <tr>
-          <td><a href="ValueSet-shr-lab-QuantitativeLaboratoryCodes-million-per-uL.html">QuantitativeLaboratoryCodes-million-per-uL</a></td>
-          <td><p>Value set that contains codes for labs that may report their quantitative results in 10*6/uL</p>
-</td>
-        </tr>
-        <tr>
-          <td><a href="ValueSet-shr-lab-QuantitativeLaboratoryCodes-mmol-per-L.html">QuantitativeLaboratoryCodes-mmol-per-L</a></td>
-          <td><p>Value set that contains codes for labs that may report their quantitative results as mmol/L</p>
-</td>
-        </tr>
-        <tr>
-          <td><a href="ValueSet-shr-lab-QuantitativeLaboratoryCodes-percent.html">QuantitativeLaboratoryCodes-percent</a></td>
-          <td><p>Value set that contains codes for labs that may report their quantitative results in %</p>
-</td>
-        </tr>
-        <tr>
-          <td><a href="ValueSet-shr-lab-QuantitativeLaboratoryCodes-pg.html">QuantitativeLaboratoryCodes-pg</a></td>
-          <td><p>Value set that contains codes for labs that may report their quantitative results as pg</p>
-</td>
-        </tr>
-        <tr>
-          <td><a href="ValueSet-shr-lab-QuantitativeLaboratoryCodes-ratio.html">QuantitativeLaboratoryCodes-ratio</a></td>
-          <td><p>Value set that contains codes for labs that may report their quantitative results as {ratio}</p>
-</td>
-        </tr>
-        <tr>
-          <td><a href="ValueSet-shr-lab-QuantitativeLaboratoryCodes-thousand-per-uL.html">QuantitativeLaboratoryCodes-thousand-per-uL</a></td>
-          <td><p>Value set that contains codes for labs that may report their quantitative results in 10*3/uL</p>
+          <td><a href="ValueSet-oncocore-PrimaryCancerDisorderVS.html">PrimaryCancerDisorderVS</a></td>
+          <td><p>Types of malignant neoplastic disease. The value set includes SNOMED CT disorder hierarchy codes from SCT#363346000 ‘Malignant neoplastic disease (disorder)’ but excludes those descending from SCT#128462008 ‘Secondary malignant neoplastic disease (disorder)’. The value includes ICD-10-CM codes for malignant neoplasms and neoplasms of uncertain or unspecified behavior. For ICD-10-CM coding of the primary disease, the disorder code must be SCT#363346000 (Malignant neoplastic disease), and histology/morphology/behavior code and the topology code (body site) and should be specified separately in the HistologyMorphologyBehavior extension and BodySite, respectively.</p>
 </td>
         </tr>
         <tr>
@@ -333,6 +270,11 @@
         <tr>
           <td><a href="ValueSet-shr-core-RadiationProcedureVS.html">RadiationProcedureVS</a></td>
           <td><p>Radiation oncology AND/OR radiotherapy (procedure)</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="ValueSet-oncocore-SecondaryCancerConditionVS.html">SecondaryCancerConditionVS</a></td>
+          <td><p>Types of secondary malignant neoplastic disease. Includes SNOMED CT disorder hierarchy codes for secondard malignant neoplastic disease, as well as ICD-10-CM codes for malignant neoplasms and neoplasms of uncertain or unspecified behavior. If body site is not precoordinated (implied by the code), it shall be separately specified. For ICD-10-CM coding of the secondary disease, the disorder code should always be SCT#128462008 (Secondary malignant neoplastic disease), and histology/morphology/behavior code and the topology code (body site) and should be specified separately in the HistologyMorphologyBehavior extension and BodySite, respectively.</p>
 </td>
         </tr>
         <tr>
@@ -352,12 +294,16 @@
         </tr>
         <tr>
           <td><a href="ValueSet-oncocore-TNMTumorStagingSystemVS.html">TNMTumorStagingSystemVS</a></td>
-          <td><p>System used for TNM classification.</p>
+          <td><p>System used for TNM classification. Includes the following codes:
+SCT#444256004 ‘American Joint Commission on Cancer, Cancer Staging Manual, 6th edition neoplasm staging system (tumor staging)’
+SCT#443830009 ‘American Joint Commission on Cancer, Cancer Staging Manual, 7th edition neoplasm staging system (tumor staging’
+#AJCC8 ‘American Joint Commission on Cancer, Cancer Staging Manual, 8th edition neoplasm staging system (tumor staging)’
+SCT#258235000 ‘International Union Against Cancer (tumor staging)’</p>
 </td>
         </tr>
         <tr>
           <td><a href="ValueSet-shr-core-TreatmentIntentVS.html">TreatmentIntentVS</a></td>
-          <td><p>The purpose of a treatment.  Examples include curative, palliative, and supportive.</p>
+          <td><p>The purpose of a treatment. A simplified set taken from SNOMED, only including curative and palliative.</p>
 </td>
         </tr>
         <tr>
@@ -366,8 +312,9 @@
 </td>
         </tr>
         <tr>
-          <td><a href="ValueSet-oncocore-TumorMarkerVS.html">TumorMarkerVS</a></td>
-          <td><p>A tumor marker is a substance found in tissue or blood or other body fluids that may be a sign of cancer or certain benign (noncancer) conditions. This value set of LOINC codes will include a comprehensive list of tumor markers across all cancers, and regardless of method or specimen type. Subsets specific to a cancer type will be created as needed. Sources vary but include https://labtestsonline.org/tests/tumor-markers.</p>
+          <td><a href="ValueSet-oncocore-TumorMarkerTestVS.html">TumorMarkerTestVS</a></td>
+          <td><p>A tumor marker is a substance found in tissue or blood or other body fluids that may be a sign of cancer or certain benign (noncancer) conditions. This value set of LOINC codes will include a comprehensive list of tumor markers across all cancers, and regardless of method or specimen type. Subsets specific to a cancer type will be created as needed. Sources vary but include https://labtestsonline.org/tests/tumor-markers.
+At the current time, profiles for the LOINC tests do not exist.</p>
 </td>
         </tr>
         
@@ -389,6 +336,20 @@
   </thead>
   <tbody>
     <tr>
+        <td><a href="http://hl7.org/fhir/ValueSet/address-type">AddressType</a></td>
+        <td><p>The type of an address (physical / postal)</p>
+
+<p>The type of an address (physical / postal).</p>
+</td>
+      </tr>
+      <tr>
+        <td><a href="http://hl7.org/fhir/ValueSet/address-use">AddressUse</a></td>
+        <td><p>The use of an address</p>
+
+<p>The use of an address (home / work / etc.).</p>
+</td>
+      </tr>
+      <tr>
         <td><a href="http://hl7.org/fhir/ValueSet/administrative-gender">AdministrativeGender</a></td>
         <td><p>The gender of a person used for administrative purposes.</p>
 </td>
@@ -396,11 +357,6 @@
       <tr>
         <td><a href="https://www.fhir.org/guides/argonaut/r2/ValueSet-languages.html">All Languages</a></td>
         <td><p>This value set includes all possible codes from BCP-47 (http://tools.ietf.org/html/bcp47)</p>
-</td>
-      </tr>
-      <tr>
-        <td><a href="http://hl7.org/fhir/ValueSet/security-labels">All Security Labels</a></td>
-        <td><p>A single value set for all security labels defined by FHIR.</p>
 </td>
       </tr>
       <tr>
@@ -464,16 +420,6 @@
 </td>
       </tr>
       <tr>
-        <td><a href="http://hl7.org/fhir/ValueSet/identifier-type">Identifier Type Codes</a></td>
-        <td><p>A coded type for an identifier that can be used to determine which identifier to use for a specific purpose.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a href="http://hl7.org/fhir/ValueSet/identifier-use">IdentifierUse</a></td>
-        <td><p>Identifies the purpose for this identifier, if known .</p>
-</td>
-      </tr>
-      <tr>
         <td><a href="http://hl7.org/fhir/ValueSet/observation-codes">LOINC Codes</a></td>
         <td><p>This value set includes all LOINC codes</p>
 </td>
@@ -501,11 +447,6 @@
       <tr>
         <td><a href="http://hl7.org/fhir/ValueSet/medication-statement-status">MedicationStatementStatus</a></td>
         <td><p>A set of codes indicating the current status of a MedicationStatement.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a href="http://hl7.org/fhir/ValueSet/name-use">NameUse</a></td>
-        <td><p>The use of a human name</p>
 </td>
       </tr>
       <tr>
@@ -604,11 +545,11 @@
 </td>
       </tr>
       <tr>
-        <td><a href="http://hl7.org/fhir/ValueSet/administration-method-codes">http://hl7.org/fhir/ValueSet/administration-method-codes</a></td>
+        <td><a href="http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes">http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes</a></td>
         <td></td>
       </tr>
       <tr>
-        <td><a href="http://hl7.org/fhir/ValueSet/clinvar">http://hl7.org/fhir/ValueSet/clinvar</a></td>
+        <td><a href="http://hl7.org/fhir/ValueSet/administration-method-codes">http://hl7.org/fhir/ValueSet/administration-method-codes</a></td>
         <td></td>
       </tr>
       <tr>
@@ -676,11 +617,11 @@
 <div igtool="footer" id="segment-footer" class="segment">    <!-- segment-footer -->
   <div class="container">    <!-- container -->
    <div class="inner-wrapper">
-    <p><a name="b97206a1-de56-4256-ae03-c3b1254011b5">​</a>
+    <p><a name="c4a65810-42d3-46ef-82dc-22de86814357">​</a>
       
-      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), Release 0.8 - US Realm (Draft for Comment 1), Version: 0.7.0
+      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0, Version: 0.9.0 draft candidate 1
       ; <a style="color: #81BEF7" href="http://hl7.org/fhir/DSTU2/">FHIR &copy; Version: 1.0.2</a>
-      ; Generated on Wed, Mar 27, 2019 14:58-0400.
+      ; Generated on Mon, Apr 8, 2019 12:40-0400.
     </p>
    </div>    <!-- /inner-wrapper -->
   </div>    <!-- /container -->

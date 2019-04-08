@@ -25,8 +25,9 @@
   CommentOrDescription maps to comments
   Category maps to category
   BodyLocation.LocationCode maps to bodySite
-  BodyLocation.LocationQualifier maps to bodySite.extension
-  BodyLocation.Landmark maps to bodySite.extension
+  BodyLocation.Laterality maps to bodySite.extension
+  BodyLocation.Orientation maps to bodySite.extension
+  BodyLocation.RelationToLandmark maps to bodySite.extension
   Device maps to device
   StatementDateTime maps to issued
   ReferenceRange maps to referenceRange
@@ -53,10 +54,10 @@
   </text>
   <url value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BloodPressure"/>
   <identifier>
-    <system value="http://hl7.org/fhir/us/projectURL"/>
+    <system value="http://hl7.org/fhir/us/mcode"/>
     <value value="shr.core.BloodPressure"/>
   </identifier>
-  <version value="0.7.0"/>
+  <version value="0.9.0 draft candidate 1"/>
   <name value="BloodPressure"/>
   <display value="shr-core-BloodPressure"/>
   <status value="draft"/>
@@ -64,11 +65,11 @@
   <contact>
     <telecom>
       <system value="other"/>
-      <value value="http://www.hl7.org/Special/committees/cic/index.cfm"/>
+      <value value="http://standardhealthrecord.org"/>
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-03-27T00:00:00-04:00"/>
+  <date value="2019-04-08T00:00:00-04:00"/>
   <description value="The force of circulating blood on the walls of the arteries."/>
   <requirements value="Observations are a key aspect of healthcare.  This resource is used to capture those that do not require more sophisticated mechanisms."/>
   <fhirVersion value="1.0.2"/>
@@ -166,139 +167,6 @@
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
-    </element>
-    <element id="Observation.meta.id">
-      <path value="Observation.meta.id"/>
-      <representation value="xmlAttr"/>
-      <name value="Observation.meta.id"/>
-      <short value="xml:id (or equivalent in JSON)"/>
-      <definition value="unique id for the element within a resource (for internal references)."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="id"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Observation.meta.extension">
-      <path value="Observation.meta.extension"/>
-      <name value="Observation.meta.extension"/>
-      <short value="Additional Content defined by implementations"/>
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
-      <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-      <alias value="extensions"/>
-      <alias value="user content"/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="Extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Observation.meta.versionId">
-      <path value="Observation.meta.versionId"/>
-      <name value="Observation.meta.versionId"/>
-      <short value="Version specific identifier"/>
-      <definition value="The version specific identifier, as it appears in the version portion of the URL. This values changes when the resource is created, updated, or deleted."/>
-      <comments value="The server assigns this value, and ignores what the client specifies, except in the case that the server is imposing version integrity on updates/deletes."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="id"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-    </element>
-    <element id="Observation.meta.lastUpdated">
-      <path value="Observation.meta.lastUpdated"/>
-      <name value="Observation.meta.lastUpdated"/>
-      <short value="When the resource version last changed"/>
-      <definition value="When the resource last changed - e.g. when the version changed."/>
-      <comments value="This value is always populated except when the resource is first being created. The server / resource manager sets this value; what a client provides is irrelevant."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="instant"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-    </element>
-    <element id="Observation.meta.profile">
-      <path value="Observation.meta.profile"/>
-      <name value="Observation.meta.profile"/>
-      <short value="Profiles this resource claims to conform to"/>
-      <definition value="A list of profiles [[[StructureDefinition]]]s that this resource claims to conform to. The URL is a reference to [[[StructureDefinition.url]]]."/>
-      <comments value="It is up to the server and/or other infrastructure of policy to determine whether/how these claims are verified and/or updated over time.  The list of profile URLs is a set."/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="uri"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-    </element>
-    <element id="Observation.meta.security">
-      <path value="Observation.meta.security"/>
-      <name value="Observation.meta.security"/>
-      <short value="Security Labels applied to this resource"/>
-      <definition value="Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure."/>
-      <comments value="The security labels can be updated without changing the stated version of the resource  The list of security labels is a set. Uniqueness is based the system/code, and version and display are ignored."/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <binding>
-        <strength value="extensible"/>
-        <description value="Security Labels from the Healthcare Privacy and Security Classification System."/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/security-labels"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="Observation.meta.tag">
-      <path value="Observation.meta.tag"/>
-      <name value="Observation.meta.tag"/>
-      <short value="Tags applied to this resource"/>
-      <definition value="Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource."/>
-      <comments value="The tags can be updated without changing the stated version of the resource.  The list of tags is a set. Uniqueness is based the system/code, and version and display are ignored."/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <binding>
-        <strength value="example"/>
-        <description value="Codes that represent various types of tags, commonly workflow-related; e.g. &quot;Needs review by Dr. Jones&quot;"/>
-      </binding>
     </element>
     <element id="Observation.implicitRules">
       <path value="Observation.implicitRules"/>
@@ -434,10 +302,10 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.extension.id">
+    <element id="Observation.extension-precondition.id">
       <path value="Observation.extension.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.extension.id"/>
+      <name value="Observation.extension-precondition.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
       <min value="0"/>
@@ -459,9 +327,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation.extension.extension">
+    <element id="Observation.extension-precondition.extension-extension">
       <path value="Observation.extension.extension"/>
-      <name value="Observation.extension.extension"/>
+      <name value="Observation.extension-precondition.extension-extension"/>
       <short value="Extension"/>
       <definition value="An Extension"/>
       <min value="0"/>
@@ -479,10 +347,10 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.extension.url">
+    <element id="Observation.extension-precondition.url">
       <path value="Observation.extension.url"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.extension.url"/>
+      <name value="Observation.extension-precondition.url"/>
       <short value="identifies the meaning of the extension"/>
       <definition value="Source of the definition for the extension code - a logical name or a URL."/>
       <min value="1"/>
@@ -505,9 +373,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation.extension.valueCodeableConcept">
+    <element id="Observation.extension-precondition.valueCodeableConcept">
       <path value="Observation.extension.valueCodeableConcept"/>
-      <name value="Observation.extension.valueCodeableConcept"/>
+      <name value="Observation.extension-precondition.valueCodeableConcept"/>
       <short value="Value of extension"/>
       <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
       <min value="1"/>
@@ -527,7 +395,7 @@
       <binding>
         <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/CardiopulmonaryPreconditionVS"/>
+          <reference value="http://hl7.org/fhir/us/mcode/shr/core/vs/CardiopulmonaryPreconditionVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -789,10 +657,10 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation.category.coding.id">
+    <element id="Observation.category.coding-Fixed-vital-signs.id">
       <path value="Observation.category.coding.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.category.coding.id"/>
+      <name value="Observation.category.coding-Fixed-vital-signs.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -809,9 +677,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.category.coding.extension">
+    <element id="Observation.category.coding-Fixed-vital-signs.extension">
       <path value="Observation.category.coding.extension"/>
-      <name value="Observation.category.coding.extension"/>
+      <name value="Observation.category.coding-Fixed-vital-signs.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -831,9 +699,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.category.coding.system">
+    <element id="Observation.category.coding-Fixed-vital-signs.system">
       <path value="Observation.category.coding.system"/>
-      <name value="Observation.category.coding.system"/>
+      <name value="Observation.category.coding-Fixed-vital-signs.system"/>
       <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
       <comments value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7&#39;s list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously."/>
@@ -861,9 +729,9 @@
         <map value="./codeSystem"/>
       </mapping>
     </element>
-    <element id="Observation.category.coding.version">
+    <element id="Observation.category.coding-Fixed-vital-signs.version">
       <path value="Observation.category.coding.version"/>
-      <name value="Observation.category.coding.version"/>
+      <name value="Observation.category.coding-Fixed-vital-signs.version"/>
       <short value="Version of the system - if relevant"/>
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged."/>
       <comments value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date."/>
@@ -889,9 +757,9 @@
         <map value="./codeSystemVersion"/>
       </mapping>
     </element>
-    <element id="Observation.category.coding.code">
+    <element id="Observation.category.coding-Fixed-vital-signs.code">
       <path value="Observation.category.coding.code"/>
-      <name value="Observation.category.coding.code"/>
+      <name value="Observation.category.coding-Fixed-vital-signs.code"/>
       <short value="Symbol in syntax defined by the system"/>
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)."/>
       <requirements value="Need to refer to a particular code in the system."/>
@@ -918,9 +786,9 @@
         <map value="./code"/>
       </mapping>
     </element>
-    <element id="Observation.category.coding.display">
+    <element id="Observation.category.coding-Fixed-vital-signs.display">
       <path value="Observation.category.coding.display"/>
-      <name value="Observation.category.coding.display"/>
+      <name value="Observation.category.coding-Fixed-vital-signs.display"/>
       <short value="Representation defined by the system"/>
       <definition value="A representation of the meaning of the code in the system, following the rules of the system."/>
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system."/>
@@ -946,9 +814,9 @@
         <map value="CV.displayName"/>
       </mapping>
     </element>
-    <element id="Observation.category.coding.userSelected">
+    <element id="Observation.category.coding-Fixed-vital-signs.userSelected">
       <path value="Observation.category.coding.userSelected"/>
-      <name value="Observation.category.coding.userSelected"/>
+      <name value="Observation.category.coding-Fixed-vital-signs.userSelected"/>
       <short value="If this coding was chosen directly by the user"/>
       <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)."/>
       <comments value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly &#39;directly chosen&#39; implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely."/>
@@ -1016,7 +884,7 @@
         <code value="CodeableConcept"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <binding>
@@ -1130,10 +998,10 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation.code.coding.id">
+    <element id="Observation.code.coding-Fixed-55284-4.id">
       <path value="Observation.code.coding.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.code.coding.id"/>
+      <name value="Observation.code.coding-Fixed-55284-4.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -1150,9 +1018,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.code.coding.extension">
+    <element id="Observation.code.coding-Fixed-55284-4.extension">
       <path value="Observation.code.coding.extension"/>
-      <name value="Observation.code.coding.extension"/>
+      <name value="Observation.code.coding-Fixed-55284-4.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1172,9 +1040,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.code.coding.system">
+    <element id="Observation.code.coding-Fixed-55284-4.system">
       <path value="Observation.code.coding.system"/>
-      <name value="Observation.code.coding.system"/>
+      <name value="Observation.code.coding-Fixed-55284-4.system"/>
       <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
       <comments value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7&#39;s list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously."/>
@@ -1202,9 +1070,9 @@
         <map value="./codeSystem"/>
       </mapping>
     </element>
-    <element id="Observation.code.coding.version">
+    <element id="Observation.code.coding-Fixed-55284-4.version">
       <path value="Observation.code.coding.version"/>
-      <name value="Observation.code.coding.version"/>
+      <name value="Observation.code.coding-Fixed-55284-4.version"/>
       <short value="Version of the system - if relevant"/>
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged."/>
       <comments value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date."/>
@@ -1230,9 +1098,9 @@
         <map value="./codeSystemVersion"/>
       </mapping>
     </element>
-    <element id="Observation.code.coding.code">
+    <element id="Observation.code.coding-Fixed-55284-4.code">
       <path value="Observation.code.coding.code"/>
-      <name value="Observation.code.coding.code"/>
+      <name value="Observation.code.coding-Fixed-55284-4.code"/>
       <short value="Symbol in syntax defined by the system"/>
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)."/>
       <requirements value="Need to refer to a particular code in the system."/>
@@ -1259,9 +1127,9 @@
         <map value="./code"/>
       </mapping>
     </element>
-    <element id="Observation.code.coding.display">
+    <element id="Observation.code.coding-Fixed-55284-4.display">
       <path value="Observation.code.coding.display"/>
-      <name value="Observation.code.coding.display"/>
+      <name value="Observation.code.coding-Fixed-55284-4.display"/>
       <short value="Representation defined by the system"/>
       <definition value="A representation of the meaning of the code in the system, following the rules of the system."/>
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system."/>
@@ -1287,9 +1155,9 @@
         <map value="CV.displayName"/>
       </mapping>
     </element>
-    <element id="Observation.code.coding.userSelected">
+    <element id="Observation.code.coding-Fixed-55284-4.userSelected">
       <path value="Observation.code.coding.userSelected"/>
-      <name value="Observation.code.coding.userSelected"/>
+      <name value="Observation.code.coding-Fixed-55284-4.userSelected"/>
       <short value="If this coding was chosen directly by the user"/>
       <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)."/>
       <comments value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly &#39;directly chosen&#39; implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely."/>
@@ -1364,7 +1232,7 @@
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -1409,9 +1277,9 @@
         <map value="context"/>
       </mapping>
     </element>
-    <element id="Observation.effective[x]">
+    <element id="Observation.effective-x-">
       <path value="Observation.effective[x]"/>
-      <name value="Observation.effective[x]"/>
+      <name value="Observation.effective-x-"/>
       <short value="Clinically relevant time/time-period for observation"/>
       <definition value="The time or time-period the observed value is asserted as being true. For biological subjects - e.g. human patients - this is usually called the &quot;physiologically relevant time&quot;. This is usually either the time of the procedure or of specimen collection, but very often the source of the date/time is not known, only the date/time itself."/>
       <comments value="At least a date should be present unless this observation is a historical report."/>
@@ -1425,7 +1293,7 @@
         <code value="Period"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -1587,7 +1455,7 @@
       <binding>
         <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/QuantitativeResultInterpretationVS"/>
+          <reference value="http://hl7.org/fhir/us/mcode/shr/core/vs/QuantitativeResultInterpretationVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -1642,7 +1510,7 @@
       <binding>
         <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BloodPressureBodyLocationVS"/>
+          <reference value="http://hl7.org/fhir/us/mcode/shr/core/vs/BloodPressureBodyLocationVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -1652,106 +1520,6 @@
       <mapping>
         <identity value="rim"/>
         <map value="targetSiteCode"/>
-      </mapping>
-    </element>
-    <element id="Observation.bodySite.id">
-      <path value="Observation.bodySite.id"/>
-      <representation value="xmlAttr"/>
-      <name value="Observation.bodySite.id"/>
-      <short value="xml:id (or equivalent in JSON)"/>
-      <definition value="unique id for the element within a resource (for internal references)."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="id"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Observation.bodySite.extension">
-      <path value="Observation.bodySite.extension"/>
-      <name value="Observation.bodySite.extension"/>
-      <short value="Additional Content defined by implementations"/>
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
-      <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-      <alias value="extensions"/>
-      <alias value="user content"/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="Extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Observation.bodySite.coding">
-      <path value="Observation.bodySite.coding"/>
-      <name value="Observation.bodySite.coding"/>
-      <short value="Code defined by a terminology system"/>
-      <definition value="A reference to a code defined by a terminology system."/>
-      <comments value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labelled as UserSelected = true."/>
-      <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings."/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="orim"/>
-        <map value="fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding"/>
-      </mapping>
-      <mapping>
-        <identity value="v2"/>
-        <map value="C*E.1-8, C*E.10-22"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="union(., ./translation)"/>
-      </mapping>
-    </element>
-    <element id="Observation.bodySite.text">
-      <path value="Observation.bodySite.text"/>
-      <name value="Observation.bodySite.text"/>
-      <short value="Plain text representation of the concept"/>
-      <definition value="A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user."/>
-      <comments value="Very often the text is the same as a displayName of one of the codings."/>
-      <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="string"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="orim"/>
-        <map value="fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText"/>
-      </mapping>
-      <mapping>
-        <identity value="v2"/>
-        <map value="C*E.9. But note many systems use C*E.2 for this"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="./originalText[mediaType/code=&quot;text/plain&quot;]/data"/>
       </mapping>
     </element>
     <element id="Observation.method">
@@ -1773,7 +1541,7 @@
       <binding>
         <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BloodPressureMethodVS"/>
+          <reference value="http://hl7.org/fhir/us/mcode/shr/core/vs/BloodPressureMethodVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -1845,9 +1613,9 @@
         <map value="participation[typeCode=DEV]"/>
       </mapping>
     </element>
-    <element id="referenceRange">
+    <element id="Observation.referenceRange">
       <path value="Observation.referenceRange"/>
-      <name value="referenceRange"/>
+      <name value="Observation.referenceRange"/>
       <short value="Provides guide for interpretation"/>
       <definition value="Guidance on how to interpret the value by comparison to a normal or recommended range."/>
       <comments value="Most observations only have one generic reference range. Systems MAY choose to restrict to only supplying the relevant reference range based on knowledge about the patient (e.g. specific to the patient&#39;s age, gender, weight and other factors), but this may not be possible or appropriate. Whenever more than one reference range is supplied, the differences between them SHOULD be provided in the reference range and/or age properties."/>
@@ -2237,7 +2005,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -2265,7 +2033,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -2277,10 +2045,10 @@
         <map value="outBoundRelationship[typeCode=COMP]"/>
       </mapping>
     </element>
-    <element id="Observation.component.id">
+    <element id="Observation.component-SystolicPressure.id">
       <path value="Observation.component.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.component.id"/>
+      <name value="Observation.component-SystolicPressure.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -2297,9 +2065,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.extension">
+    <element id="Observation.component-SystolicPressure.extension">
       <path value="Observation.component.extension"/>
-      <name value="Observation.component.extension"/>
+      <name value="Observation.component-SystolicPressure.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -2319,9 +2087,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.modifierExtension">
+    <element id="Observation.component-SystolicPressure.modifierExtension">
       <path value="Observation.component.modifierExtension"/>
-      <name value="Observation.component.modifierExtension"/>
+      <name value="Observation.component-SystolicPressure.modifierExtension"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -2342,9 +2110,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation.component.code">
+    <element id="Observation.component-SystolicPressure.code">
       <path value="Observation.component.code"/>
-      <name value="Observation.component.code"/>
+      <name value="Observation.component-SystolicPressure.code"/>
       <short value="Type of component observation (code / type)"/>
       <definition value="Describes what was observed. Sometimes this is called the observation &quot;code&quot;."/>
       <requirements value="Knowing what kind of observation is being made is essential to understanding the observation."/>
@@ -2378,10 +2146,10 @@
         <map value="what"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.id">
+    <element id="Observation.component-SystolicPressure.code.id">
       <path value="Observation.component.code.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.component.code.id"/>
+      <name value="Observation.component-SystolicPressure.code.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -2398,9 +2166,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.extension">
+    <element id="Observation.component-SystolicPressure.code.extension">
       <path value="Observation.component.code.extension"/>
-      <name value="Observation.component.code.extension"/>
+      <name value="Observation.component-SystolicPressure.code.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -2420,9 +2188,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.coding">
+    <element id="Observation.component-SystolicPressure.code.coding">
       <path value="Observation.component.code.coding"/>
-      <name value="Observation.component.code.coding"/>
+      <name value="Observation.component-SystolicPressure.code.coding"/>
       <slicing id="4">
         <discriminator value="code"/>
         <ordered value="false"/>
@@ -2468,10 +2236,10 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation.component.code.coding.id">
+    <element id="Observation.component-SystolicPressure.code.coding-Fixed-8480-6.id">
       <path value="Observation.component.code.coding.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.component.code.coding.id"/>
+      <name value="Observation.component-SystolicPressure.code.coding-Fixed-8480-6.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -2488,9 +2256,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.coding.extension">
+    <element id="Observation.component-SystolicPressure.code.coding-Fixed-8480-6.extension">
       <path value="Observation.component.code.coding.extension"/>
-      <name value="Observation.component.code.coding.extension"/>
+      <name value="Observation.component-SystolicPressure.code.coding-Fixed-8480-6.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -2510,9 +2278,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.coding.system">
+    <element id="Observation.component-SystolicPressure.code.coding-Fixed-8480-6.system">
       <path value="Observation.component.code.coding.system"/>
-      <name value="Observation.component.code.coding.system"/>
+      <name value="Observation.component-SystolicPressure.code.coding-Fixed-8480-6.system"/>
       <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
       <comments value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7&#39;s list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously."/>
@@ -2540,9 +2308,9 @@
         <map value="./codeSystem"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.coding.version">
+    <element id="Observation.component-SystolicPressure.code.coding-Fixed-8480-6.version">
       <path value="Observation.component.code.coding.version"/>
-      <name value="Observation.component.code.coding.version"/>
+      <name value="Observation.component-SystolicPressure.code.coding-Fixed-8480-6.version"/>
       <short value="Version of the system - if relevant"/>
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged."/>
       <comments value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date."/>
@@ -2568,9 +2336,9 @@
         <map value="./codeSystemVersion"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.coding.code">
+    <element id="Observation.component-SystolicPressure.code.coding-Fixed-8480-6.code">
       <path value="Observation.component.code.coding.code"/>
-      <name value="Observation.component.code.coding.code"/>
+      <name value="Observation.component-SystolicPressure.code.coding-Fixed-8480-6.code"/>
       <short value="Symbol in syntax defined by the system"/>
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)."/>
       <requirements value="Need to refer to a particular code in the system."/>
@@ -2597,9 +2365,9 @@
         <map value="./code"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.coding.display">
+    <element id="Observation.component-SystolicPressure.code.coding-Fixed-8480-6.display">
       <path value="Observation.component.code.coding.display"/>
-      <name value="Observation.component.code.coding.display"/>
+      <name value="Observation.component-SystolicPressure.code.coding-Fixed-8480-6.display"/>
       <short value="Representation defined by the system"/>
       <definition value="A representation of the meaning of the code in the system, following the rules of the system."/>
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system."/>
@@ -2625,9 +2393,9 @@
         <map value="CV.displayName"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.coding.userSelected">
+    <element id="Observation.component-SystolicPressure.code.coding-Fixed-8480-6.userSelected">
       <path value="Observation.component.code.coding.userSelected"/>
-      <name value="Observation.component.code.coding.userSelected"/>
+      <name value="Observation.component-SystolicPressure.code.coding-Fixed-8480-6.userSelected"/>
       <short value="If this coding was chosen directly by the user"/>
       <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)."/>
       <comments value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly &#39;directly chosen&#39; implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely."/>
@@ -2654,9 +2422,9 @@
         <map value="CD.codingRationale"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.text">
+    <element id="Observation.component-SystolicPressure.code.text">
       <path value="Observation.component.code.text"/>
-      <name value="Observation.component.code.text"/>
+      <name value="Observation.component-SystolicPressure.code.text"/>
       <short value="Plain text representation of the concept"/>
       <definition value="A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user."/>
       <comments value="Very often the text is the same as a displayName of one of the codings."/>
@@ -2683,9 +2451,9 @@
         <map value="./originalText[mediaType/code=&quot;text/plain&quot;]/data"/>
       </mapping>
     </element>
-    <element id="Quantity">
+    <element id="Observation.component-SystolicPressure.valueQuantity-Quantity">
       <path value="Observation.component.valueQuantity"/>
-      <name value="Quantity"/>
+      <name value="Observation.component-SystolicPressure.valueQuantity-Quantity"/>
       <short value="mmHg"/>
       <definition value="mmHg"/>
       <min value="0"/>
@@ -2703,10 +2471,10 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation.component.valueQuantity.id">
+    <element id="Observation.component-SystolicPressure.valueQuantity-Quantity.id">
       <path value="Observation.component.valueQuantity.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.component.valueQuantity.id"/>
+      <name value="Observation.component-SystolicPressure.valueQuantity-Quantity.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -2723,9 +2491,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.valueQuantity.extension">
+    <element id="Observation.component-SystolicPressure.valueQuantity-Quantity.extension">
       <path value="Observation.component.valueQuantity.extension"/>
-      <name value="Observation.component.valueQuantity.extension"/>
+      <name value="Observation.component-SystolicPressure.valueQuantity-Quantity.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -2745,9 +2513,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.valueQuantity.value">
+    <element id="Observation.component-SystolicPressure.valueQuantity-Quantity.value">
       <path value="Observation.component.valueQuantity.value"/>
-      <name value="Observation.component.valueQuantity.value"/>
+      <name value="Observation.component-SystolicPressure.valueQuantity-Quantity.value"/>
       <short value="Numerical value (with implicit precision)"/>
       <definition value="The value of the measured amount. The value includes an implicit precision in the presentation of the value."/>
       <comments value="The implicit precision in the value should always be honored. Monetary values have their own rules for handling precision (refer to standard accounting text books)."/>
@@ -2770,9 +2538,9 @@
         <map value="PQ.value, CO.value, MO.value, IVL.high or IVL.low depending on the value"/>
       </mapping>
     </element>
-    <element id="Observation.component.valueQuantity.comparator">
+    <element id="Observation.component-SystolicPressure.valueQuantity-Quantity.comparator">
       <path value="Observation.component.valueQuantity.comparator"/>
-      <name value="Observation.component.valueQuantity.comparator"/>
+      <name value="Observation.component-SystolicPressure.valueQuantity-Quantity.comparator"/>
       <short value="&lt; | &lt;= | &gt;= | &gt; - how to understand the value"/>
       <definition value="How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is &quot;&lt;&quot; , then the real value is &lt; stated value."/>
       <comments value="This is labeled as &quot;Is Modifier&quot; because the comparator modifies the interpretation of the value significantly. If there is no comparator, then there is no modification of the value."/>
@@ -2803,9 +2571,9 @@
         <map value="IVL properties"/>
       </mapping>
     </element>
-    <element id="Observation.component.valueQuantity.unit">
+    <element id="Observation.component-SystolicPressure.valueQuantity-Quantity.unit">
       <path value="Observation.component.valueQuantity.unit"/>
-      <name value="Observation.component.valueQuantity.unit"/>
+      <name value="Observation.component-SystolicPressure.valueQuantity-Quantity.unit"/>
       <short value="Unit representation"/>
       <definition value="A human-readable form of the unit."/>
       <requirements value="There are many representations for units of measure and in many contexts, particular representations are fixed and required. I.e. mcg for micrograms."/>
@@ -2827,9 +2595,9 @@
         <map value="PQ.unit"/>
       </mapping>
     </element>
-    <element id="Observation.component.valueQuantity.system">
+    <element id="Observation.component-SystolicPressure.valueQuantity-Quantity.system">
       <path value="Observation.component.valueQuantity.system"/>
-      <name value="Observation.component.valueQuantity.system"/>
+      <name value="Observation.component-SystolicPressure.valueQuantity-Quantity.system"/>
       <short value="System that defines coded unit form"/>
       <definition value="The identification of the system that provides the coded form of the unit."/>
       <requirements value="Need to know the system that defines the coded form of the unit."/>
@@ -2853,9 +2621,9 @@
         <map value="CO.codeSystem, PQ.translation.codeSystem"/>
       </mapping>
     </element>
-    <element id="Observation.component.valueQuantity.code">
+    <element id="Observation.component-SystolicPressure.valueQuantity-Quantity.code">
       <path value="Observation.component.valueQuantity.code"/>
-      <name value="Observation.component.valueQuantity.code"/>
+      <name value="Observation.component-SystolicPressure.valueQuantity-Quantity.code"/>
       <short value="Coded form of the unit"/>
       <definition value="A computer processable form of the unit in some unit representation system."/>
       <comments value="The preferred system is UCUM, but SNOMED CT can also be used (for customary units) or ISO 4217 for currency.  The context of use may additionally require a code from a particular system."/>
@@ -2879,9 +2647,9 @@
         <map value="PQ.code, MO.currency, PQ.translation.code"/>
       </mapping>
     </element>
-    <element id="Observation.component.dataAbsentReason">
+    <element id="Observation.component-SystolicPressure.dataAbsentReason">
       <path value="Observation.component.dataAbsentReason"/>
-      <name value="Observation.component.dataAbsentReason"/>
+      <name value="Observation.component-SystolicPressure.dataAbsentReason"/>
       <short value="Why the component result is missing"/>
       <definition value="Provides a reason why the expected value in the element Observation.value[x] is missing."/>
       <comments value="&quot;Null&quot; or exceptional values can be represented two ways in FHIR Observations.  One way is to simply include them in the value set and represent the exceptions in the value.  For example, measurement values for a serology test could be  &quot;detected&quot;, &quot;not detected&quot;, &quot;inconclusive&quot;, or  &quot;test not done&quot;.   The alternate way is to use the value element for actual observations and use the explicit dataAbsentReason element to record exceptional values.  For example, the dataAbsentReason code &quot;error&quot; could be used when the measurement was not completed.  Because of these options, use-case agreements are required to interpret general observations for exceptional values."/>
@@ -2911,9 +2679,9 @@
         <map value="value.nullFlavor"/>
       </mapping>
     </element>
-    <element id="Observation.component.referenceRange">
+    <element id="Observation.component-SystolicPressure.referenceRange">
       <path value="Observation.component.referenceRange"/>
-      <name value="Observation.component.referenceRange"/>
+      <name value="Observation.component-SystolicPressure.referenceRange"/>
       <short value="Provides guide for interpretation of component result"/>
       <definition value="Guidance on how to interpret the value by comparison to a normal or recommended range."/>
       <comments value="Most observations only have one generic reference range. Systems MAY choose to restrict to only supplying the relevant reference range based on knowledge about the patient (e.g. specific to the patient&#39;s age, gender, weight and other factors), but this may not be possible or appropriate. Whenever more than one reference range is supplied, the differences between them SHOULD be provided in the reference range and/or age properties."/>
@@ -2941,10 +2709,10 @@
         <map value="outboundRelationship[typeCode=REFV]/target[classCode=OBS, moodCode=EVN]"/>
       </mapping>
     </element>
-    <element id="Observation.component.referenceRange.id">
+    <element id="Observation.component-SystolicPressure.referenceRange.id">
       <path value="Observation.component.referenceRange.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.component.referenceRange.id"/>
+      <name value="Observation.component-SystolicPressure.referenceRange.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -2961,9 +2729,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.referenceRange.extension">
+    <element id="Observation.component-SystolicPressure.referenceRange.extension">
       <path value="Observation.component.referenceRange.extension"/>
-      <name value="Observation.component.referenceRange.extension"/>
+      <name value="Observation.component-SystolicPressure.referenceRange.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -2983,9 +2751,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.referenceRange.modifierExtension">
+    <element id="Observation.component-SystolicPressure.referenceRange.modifierExtension">
       <path value="Observation.component.referenceRange.modifierExtension"/>
-      <name value="Observation.component.referenceRange.modifierExtension"/>
+      <name value="Observation.component-SystolicPressure.referenceRange.modifierExtension"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -3006,9 +2774,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation.component.referenceRange.low">
+    <element id="Observation.component-SystolicPressure.referenceRange.low">
       <path value="Observation.component.referenceRange.low"/>
-      <name value="Observation.component.referenceRange.low"/>
+      <name value="Observation.component-SystolicPressure.referenceRange.low"/>
       <short value="Low Range, if relevant"/>
       <definition value="The value of the low bound of the reference range.  The low bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9).   If the low bound is omitted,  it is assumed to be meaningless (e.g. reference range is &lt;=2.3)."/>
       <min value="0"/>
@@ -3031,9 +2799,9 @@
         <map value="value:IVL_PQ.low"/>
       </mapping>
     </element>
-    <element id="Observation.component.referenceRange.high">
+    <element id="Observation.component-SystolicPressure.referenceRange.high">
       <path value="Observation.component.referenceRange.high"/>
-      <name value="Observation.component.referenceRange.high"/>
+      <name value="Observation.component-SystolicPressure.referenceRange.high"/>
       <short value="High Range, if relevant"/>
       <definition value="The value of the high bound of the reference range.  The high bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9).   If the high bound is omitted,  it is assumed to be meaningless (e.g. reference range is &gt;= 2.3)."/>
       <min value="0"/>
@@ -3056,9 +2824,9 @@
         <map value="value:IVL_PQ.high"/>
       </mapping>
     </element>
-    <element id="Observation.component.referenceRange.meaning">
+    <element id="Observation.component-SystolicPressure.referenceRange.meaning">
       <path value="Observation.component.referenceRange.meaning"/>
-      <name value="Observation.component.referenceRange.meaning"/>
+      <name value="Observation.component-SystolicPressure.referenceRange.meaning"/>
       <short value="Indicates the meaning/use of this range of this range"/>
       <definition value="Code for the meaning of the reference range."/>
       <comments value="This SHOULD be populated if there is more than one range."/>
@@ -3088,9 +2856,9 @@
         <map value="interpretationCode"/>
       </mapping>
     </element>
-    <element id="Observation.component.referenceRange.age">
+    <element id="Observation.component-SystolicPressure.referenceRange.age">
       <path value="Observation.component.referenceRange.age"/>
-      <name value="Observation.component.referenceRange.age"/>
+      <name value="Observation.component-SystolicPressure.referenceRange.age"/>
       <short value="Applicable age range, if relevant"/>
       <definition value="The age at which this reference range is applicable. This is a neonatal age (e.g. number of weeks at term) if the meaning says so."/>
       <requirements value="Some analytes vary greatly over age."/>
@@ -3108,9 +2876,9 @@
         <map value="outboundRelationship[typeCode=PRCN].targetObservationCriterion[code=&quot;age&quot;].value"/>
       </mapping>
     </element>
-    <element id="Observation.component.referenceRange.text">
+    <element id="Observation.component-SystolicPressure.referenceRange.text">
       <path value="Observation.component.referenceRange.text"/>
-      <name value="Observation.component.referenceRange.text"/>
+      <name value="Observation.component-SystolicPressure.referenceRange.text"/>
       <short value="Text based reference range in an observation"/>
       <definition value="Text based reference range in an observation which may be used when a quantitative range is not appropriate for an observation.  An example would be a reference value of &quot;Negative&quot; or a list or table of &#39;normals&#39;."/>
       <min value="0"/>
@@ -3147,7 +2915,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -3159,10 +2927,10 @@
         <map value="outBoundRelationship[typeCode=COMP]"/>
       </mapping>
     </element>
-    <element id="Observation.component.id">
+    <element id="Observation.component-DiastolicPressure.id">
       <path value="Observation.component.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.component.id"/>
+      <name value="Observation.component-DiastolicPressure.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -3179,9 +2947,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.extension">
+    <element id="Observation.component-DiastolicPressure.extension">
       <path value="Observation.component.extension"/>
-      <name value="Observation.component.extension"/>
+      <name value="Observation.component-DiastolicPressure.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -3201,9 +2969,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.modifierExtension">
+    <element id="Observation.component-DiastolicPressure.modifierExtension">
       <path value="Observation.component.modifierExtension"/>
-      <name value="Observation.component.modifierExtension"/>
+      <name value="Observation.component-DiastolicPressure.modifierExtension"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -3224,9 +2992,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation.component.code">
+    <element id="Observation.component-DiastolicPressure.code">
       <path value="Observation.component.code"/>
-      <name value="Observation.component.code"/>
+      <name value="Observation.component-DiastolicPressure.code"/>
       <short value="Type of component observation (code / type)"/>
       <definition value="Describes what was observed. Sometimes this is called the observation &quot;code&quot;."/>
       <requirements value="Knowing what kind of observation is being made is essential to understanding the observation."/>
@@ -3260,10 +3028,10 @@
         <map value="what"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.id">
+    <element id="Observation.component-DiastolicPressure.code.id">
       <path value="Observation.component.code.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.component.code.id"/>
+      <name value="Observation.component-DiastolicPressure.code.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -3280,9 +3048,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.extension">
+    <element id="Observation.component-DiastolicPressure.code.extension">
       <path value="Observation.component.code.extension"/>
-      <name value="Observation.component.code.extension"/>
+      <name value="Observation.component-DiastolicPressure.code.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -3302,9 +3070,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.coding">
+    <element id="Observation.component-DiastolicPressure.code.coding">
       <path value="Observation.component.code.coding"/>
-      <name value="Observation.component.code.coding"/>
+      <name value="Observation.component-DiastolicPressure.code.coding"/>
       <slicing id="5">
         <discriminator value="code"/>
         <ordered value="false"/>
@@ -3350,10 +3118,10 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation.component.code.coding.id">
+    <element id="Observation.component-DiastolicPressure.code.coding-Fixed-8462-4.id">
       <path value="Observation.component.code.coding.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.component.code.coding.id"/>
+      <name value="Observation.component-DiastolicPressure.code.coding-Fixed-8462-4.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -3370,9 +3138,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.coding.extension">
+    <element id="Observation.component-DiastolicPressure.code.coding-Fixed-8462-4.extension">
       <path value="Observation.component.code.coding.extension"/>
-      <name value="Observation.component.code.coding.extension"/>
+      <name value="Observation.component-DiastolicPressure.code.coding-Fixed-8462-4.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -3392,9 +3160,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.coding.system">
+    <element id="Observation.component-DiastolicPressure.code.coding-Fixed-8462-4.system">
       <path value="Observation.component.code.coding.system"/>
-      <name value="Observation.component.code.coding.system"/>
+      <name value="Observation.component-DiastolicPressure.code.coding-Fixed-8462-4.system"/>
       <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
       <comments value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7&#39;s list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously."/>
@@ -3422,9 +3190,9 @@
         <map value="./codeSystem"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.coding.version">
+    <element id="Observation.component-DiastolicPressure.code.coding-Fixed-8462-4.version">
       <path value="Observation.component.code.coding.version"/>
-      <name value="Observation.component.code.coding.version"/>
+      <name value="Observation.component-DiastolicPressure.code.coding-Fixed-8462-4.version"/>
       <short value="Version of the system - if relevant"/>
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged."/>
       <comments value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date."/>
@@ -3450,9 +3218,9 @@
         <map value="./codeSystemVersion"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.coding.code">
+    <element id="Observation.component-DiastolicPressure.code.coding-Fixed-8462-4.code">
       <path value="Observation.component.code.coding.code"/>
-      <name value="Observation.component.code.coding.code"/>
+      <name value="Observation.component-DiastolicPressure.code.coding-Fixed-8462-4.code"/>
       <short value="Symbol in syntax defined by the system"/>
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)."/>
       <requirements value="Need to refer to a particular code in the system."/>
@@ -3479,9 +3247,9 @@
         <map value="./code"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.coding.display">
+    <element id="Observation.component-DiastolicPressure.code.coding-Fixed-8462-4.display">
       <path value="Observation.component.code.coding.display"/>
-      <name value="Observation.component.code.coding.display"/>
+      <name value="Observation.component-DiastolicPressure.code.coding-Fixed-8462-4.display"/>
       <short value="Representation defined by the system"/>
       <definition value="A representation of the meaning of the code in the system, following the rules of the system."/>
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system."/>
@@ -3507,9 +3275,9 @@
         <map value="CV.displayName"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.coding.userSelected">
+    <element id="Observation.component-DiastolicPressure.code.coding-Fixed-8462-4.userSelected">
       <path value="Observation.component.code.coding.userSelected"/>
-      <name value="Observation.component.code.coding.userSelected"/>
+      <name value="Observation.component-DiastolicPressure.code.coding-Fixed-8462-4.userSelected"/>
       <short value="If this coding was chosen directly by the user"/>
       <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)."/>
       <comments value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly &#39;directly chosen&#39; implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely."/>
@@ -3536,9 +3304,9 @@
         <map value="CD.codingRationale"/>
       </mapping>
     </element>
-    <element id="Observation.component.code.text">
+    <element id="Observation.component-DiastolicPressure.code.text">
       <path value="Observation.component.code.text"/>
-      <name value="Observation.component.code.text"/>
+      <name value="Observation.component-DiastolicPressure.code.text"/>
       <short value="Plain text representation of the concept"/>
       <definition value="A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user."/>
       <comments value="Very often the text is the same as a displayName of one of the codings."/>
@@ -3565,9 +3333,9 @@
         <map value="./originalText[mediaType/code=&quot;text/plain&quot;]/data"/>
       </mapping>
     </element>
-    <element id="Quantity">
+    <element id="Observation.component-DiastolicPressure.valueQuantity-Quantity">
       <path value="Observation.component.valueQuantity"/>
-      <name value="Quantity"/>
+      <name value="Observation.component-DiastolicPressure.valueQuantity-Quantity"/>
       <short value="mmHg"/>
       <definition value="mmHg"/>
       <min value="0"/>
@@ -3585,10 +3353,10 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation.component.valueQuantity.id">
+    <element id="Observation.component-DiastolicPressure.valueQuantity-Quantity.id">
       <path value="Observation.component.valueQuantity.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.component.valueQuantity.id"/>
+      <name value="Observation.component-DiastolicPressure.valueQuantity-Quantity.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -3605,9 +3373,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.valueQuantity.extension">
+    <element id="Observation.component-DiastolicPressure.valueQuantity-Quantity.extension">
       <path value="Observation.component.valueQuantity.extension"/>
-      <name value="Observation.component.valueQuantity.extension"/>
+      <name value="Observation.component-DiastolicPressure.valueQuantity-Quantity.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -3627,9 +3395,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.valueQuantity.value">
+    <element id="Observation.component-DiastolicPressure.valueQuantity-Quantity.value">
       <path value="Observation.component.valueQuantity.value"/>
-      <name value="Observation.component.valueQuantity.value"/>
+      <name value="Observation.component-DiastolicPressure.valueQuantity-Quantity.value"/>
       <short value="Numerical value (with implicit precision)"/>
       <definition value="The value of the measured amount. The value includes an implicit precision in the presentation of the value."/>
       <comments value="The implicit precision in the value should always be honored. Monetary values have their own rules for handling precision (refer to standard accounting text books)."/>
@@ -3652,9 +3420,9 @@
         <map value="PQ.value, CO.value, MO.value, IVL.high or IVL.low depending on the value"/>
       </mapping>
     </element>
-    <element id="Observation.component.valueQuantity.comparator">
+    <element id="Observation.component-DiastolicPressure.valueQuantity-Quantity.comparator">
       <path value="Observation.component.valueQuantity.comparator"/>
-      <name value="Observation.component.valueQuantity.comparator"/>
+      <name value="Observation.component-DiastolicPressure.valueQuantity-Quantity.comparator"/>
       <short value="&lt; | &lt;= | &gt;= | &gt; - how to understand the value"/>
       <definition value="How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is &quot;&lt;&quot; , then the real value is &lt; stated value."/>
       <comments value="This is labeled as &quot;Is Modifier&quot; because the comparator modifies the interpretation of the value significantly. If there is no comparator, then there is no modification of the value."/>
@@ -3685,9 +3453,9 @@
         <map value="IVL properties"/>
       </mapping>
     </element>
-    <element id="Observation.component.valueQuantity.unit">
+    <element id="Observation.component-DiastolicPressure.valueQuantity-Quantity.unit">
       <path value="Observation.component.valueQuantity.unit"/>
-      <name value="Observation.component.valueQuantity.unit"/>
+      <name value="Observation.component-DiastolicPressure.valueQuantity-Quantity.unit"/>
       <short value="Unit representation"/>
       <definition value="A human-readable form of the unit."/>
       <requirements value="There are many representations for units of measure and in many contexts, particular representations are fixed and required. I.e. mcg for micrograms."/>
@@ -3709,9 +3477,9 @@
         <map value="PQ.unit"/>
       </mapping>
     </element>
-    <element id="Observation.component.valueQuantity.system">
+    <element id="Observation.component-DiastolicPressure.valueQuantity-Quantity.system">
       <path value="Observation.component.valueQuantity.system"/>
-      <name value="Observation.component.valueQuantity.system"/>
+      <name value="Observation.component-DiastolicPressure.valueQuantity-Quantity.system"/>
       <short value="System that defines coded unit form"/>
       <definition value="The identification of the system that provides the coded form of the unit."/>
       <requirements value="Need to know the system that defines the coded form of the unit."/>
@@ -3735,9 +3503,9 @@
         <map value="CO.codeSystem, PQ.translation.codeSystem"/>
       </mapping>
     </element>
-    <element id="Observation.component.valueQuantity.code">
+    <element id="Observation.component-DiastolicPressure.valueQuantity-Quantity.code">
       <path value="Observation.component.valueQuantity.code"/>
-      <name value="Observation.component.valueQuantity.code"/>
+      <name value="Observation.component-DiastolicPressure.valueQuantity-Quantity.code"/>
       <short value="Coded form of the unit"/>
       <definition value="A computer processable form of the unit in some unit representation system."/>
       <comments value="The preferred system is UCUM, but SNOMED CT can also be used (for customary units) or ISO 4217 for currency.  The context of use may additionally require a code from a particular system."/>
@@ -3761,9 +3529,9 @@
         <map value="PQ.code, MO.currency, PQ.translation.code"/>
       </mapping>
     </element>
-    <element id="Observation.component.dataAbsentReason">
+    <element id="Observation.component-DiastolicPressure.dataAbsentReason">
       <path value="Observation.component.dataAbsentReason"/>
-      <name value="Observation.component.dataAbsentReason"/>
+      <name value="Observation.component-DiastolicPressure.dataAbsentReason"/>
       <short value="Why the component result is missing"/>
       <definition value="Provides a reason why the expected value in the element Observation.value[x] is missing."/>
       <comments value="&quot;Null&quot; or exceptional values can be represented two ways in FHIR Observations.  One way is to simply include them in the value set and represent the exceptions in the value.  For example, measurement values for a serology test could be  &quot;detected&quot;, &quot;not detected&quot;, &quot;inconclusive&quot;, or  &quot;test not done&quot;.   The alternate way is to use the value element for actual observations and use the explicit dataAbsentReason element to record exceptional values.  For example, the dataAbsentReason code &quot;error&quot; could be used when the measurement was not completed.  Because of these options, use-case agreements are required to interpret general observations for exceptional values."/>
@@ -3793,9 +3561,9 @@
         <map value="value.nullFlavor"/>
       </mapping>
     </element>
-    <element id="Observation.component.referenceRange">
+    <element id="Observation.component-DiastolicPressure.referenceRange">
       <path value="Observation.component.referenceRange"/>
-      <name value="Observation.component.referenceRange"/>
+      <name value="Observation.component-DiastolicPressure.referenceRange"/>
       <short value="Provides guide for interpretation of component result"/>
       <definition value="Guidance on how to interpret the value by comparison to a normal or recommended range."/>
       <comments value="Most observations only have one generic reference range. Systems MAY choose to restrict to only supplying the relevant reference range based on knowledge about the patient (e.g. specific to the patient&#39;s age, gender, weight and other factors), but this may not be possible or appropriate. Whenever more than one reference range is supplied, the differences between them SHOULD be provided in the reference range and/or age properties."/>
@@ -3823,10 +3591,10 @@
         <map value="outboundRelationship[typeCode=REFV]/target[classCode=OBS, moodCode=EVN]"/>
       </mapping>
     </element>
-    <element id="Observation.component.referenceRange.id">
+    <element id="Observation.component-DiastolicPressure.referenceRange.id">
       <path value="Observation.component.referenceRange.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.component.referenceRange.id"/>
+      <name value="Observation.component-DiastolicPressure.referenceRange.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -3843,9 +3611,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.referenceRange.extension">
+    <element id="Observation.component-DiastolicPressure.referenceRange.extension">
       <path value="Observation.component.referenceRange.extension"/>
-      <name value="Observation.component.referenceRange.extension"/>
+      <name value="Observation.component-DiastolicPressure.referenceRange.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -3865,9 +3633,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component.referenceRange.modifierExtension">
+    <element id="Observation.component-DiastolicPressure.referenceRange.modifierExtension">
       <path value="Observation.component.referenceRange.modifierExtension"/>
-      <name value="Observation.component.referenceRange.modifierExtension"/>
+      <name value="Observation.component-DiastolicPressure.referenceRange.modifierExtension"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -3888,9 +3656,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation.component.referenceRange.low">
+    <element id="Observation.component-DiastolicPressure.referenceRange.low">
       <path value="Observation.component.referenceRange.low"/>
-      <name value="Observation.component.referenceRange.low"/>
+      <name value="Observation.component-DiastolicPressure.referenceRange.low"/>
       <short value="Low Range, if relevant"/>
       <definition value="The value of the low bound of the reference range.  The low bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9).   If the low bound is omitted,  it is assumed to be meaningless (e.g. reference range is &lt;=2.3)."/>
       <min value="0"/>
@@ -3913,9 +3681,9 @@
         <map value="value:IVL_PQ.low"/>
       </mapping>
     </element>
-    <element id="Observation.component.referenceRange.high">
+    <element id="Observation.component-DiastolicPressure.referenceRange.high">
       <path value="Observation.component.referenceRange.high"/>
-      <name value="Observation.component.referenceRange.high"/>
+      <name value="Observation.component-DiastolicPressure.referenceRange.high"/>
       <short value="High Range, if relevant"/>
       <definition value="The value of the high bound of the reference range.  The high bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9).   If the high bound is omitted,  it is assumed to be meaningless (e.g. reference range is &gt;= 2.3)."/>
       <min value="0"/>
@@ -3938,9 +3706,9 @@
         <map value="value:IVL_PQ.high"/>
       </mapping>
     </element>
-    <element id="Observation.component.referenceRange.meaning">
+    <element id="Observation.component-DiastolicPressure.referenceRange.meaning">
       <path value="Observation.component.referenceRange.meaning"/>
-      <name value="Observation.component.referenceRange.meaning"/>
+      <name value="Observation.component-DiastolicPressure.referenceRange.meaning"/>
       <short value="Indicates the meaning/use of this range of this range"/>
       <definition value="Code for the meaning of the reference range."/>
       <comments value="This SHOULD be populated if there is more than one range."/>
@@ -3970,9 +3738,9 @@
         <map value="interpretationCode"/>
       </mapping>
     </element>
-    <element id="Observation.component.referenceRange.age">
+    <element id="Observation.component-DiastolicPressure.referenceRange.age">
       <path value="Observation.component.referenceRange.age"/>
-      <name value="Observation.component.referenceRange.age"/>
+      <name value="Observation.component-DiastolicPressure.referenceRange.age"/>
       <short value="Applicable age range, if relevant"/>
       <definition value="The age at which this reference range is applicable. This is a neonatal age (e.g. number of weeks at term) if the meaning says so."/>
       <requirements value="Some analytes vary greatly over age."/>
@@ -3990,9 +3758,9 @@
         <map value="outboundRelationship[typeCode=PRCN].targetObservationCriterion[code=&quot;age&quot;].value"/>
       </mapping>
     </element>
-    <element id="Observation.component.referenceRange.text">
+    <element id="Observation.component-DiastolicPressure.referenceRange.text">
       <path value="Observation.component.referenceRange.text"/>
-      <name value="Observation.component.referenceRange.text"/>
+      <name value="Observation.component-DiastolicPressure.referenceRange.text"/>
       <short value="Text based reference range in an observation"/>
       <definition value="Text based reference range in an observation which may be used when a quantitative range is not appropriate for an observation.  An example would be a reference value of &quot;Negative&quot; or a list or table of &#39;normals&#39;."/>
       <min value="0"/>
@@ -4063,9 +3831,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.extension.valueCodeableConcept">
+    <element id="Observation.extension-precondition.valueCodeableConcept">
       <path value="Observation.extension.valueCodeableConcept"/>
-      <name value="Observation.extension.valueCodeableConcept"/>
+      <name value="Observation.extension-precondition.valueCodeableConcept"/>
       <min value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -4074,7 +3842,7 @@
       <binding>
         <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/CardiopulmonaryPreconditionVS"/>
+          <reference value="http://hl7.org/fhir/us/mcode/shr/core/vs/CardiopulmonaryPreconditionVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -4162,9 +3930,9 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation.category.coding.system">
+    <element id="Observation.category.coding-Fixed-vital-signs.system">
       <path value="Observation.category.coding.system"/>
-      <name value="Observation.category.coding.system"/>
+      <name value="Observation.category.coding-Fixed-vital-signs.system"/>
       <min value="0"/>
       <fixedUri value="http://hl7.org/fhir/observation-category"/>
       <maxLength value="0"/>
@@ -4172,9 +3940,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.category.coding.code">
+    <element id="Observation.category.coding-Fixed-vital-signs.code">
       <path value="Observation.category.coding.code"/>
-      <name value="Observation.category.coding.code"/>
+      <name value="Observation.category.coding-Fixed-vital-signs.code"/>
       <min value="0"/>
       <fixedCode value="vital-signs"/>
       <maxLength value="0"/>
@@ -4187,7 +3955,7 @@
       <name value="Observation.code"/>
       <min value="0"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -4221,9 +3989,9 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation.code.coding.system">
+    <element id="Observation.code.coding-Fixed-55284-4.system">
       <path value="Observation.code.coding.system"/>
-      <name value="Observation.code.coding.system"/>
+      <name value="Observation.code.coding-Fixed-55284-4.system"/>
       <min value="0"/>
       <fixedUri value="http://loinc.org"/>
       <maxLength value="0"/>
@@ -4231,9 +3999,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.code.coding.code">
+    <element id="Observation.code.coding-Fixed-55284-4.code">
       <path value="Observation.code.coding.code"/>
-      <name value="Observation.code.coding.code"/>
+      <name value="Observation.code.coding-Fixed-55284-4.code"/>
       <min value="0"/>
       <fixedCode value="55284-4"/>
       <maxLength value="0"/>
@@ -4256,7 +4024,7 @@
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -4270,6 +4038,15 @@
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Observation.effective-x-">
+      <path value="Observation.effective[x]"/>
+      <name value="Observation.effective-x-"/>
+      <min value="0"/>
+      <maxLength value="0"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -4339,7 +4116,7 @@
       <binding>
         <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/QuantitativeResultInterpretationVS"/>
+          <reference value="http://hl7.org/fhir/us/mcode/shr/core/vs/QuantitativeResultInterpretationVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -4354,7 +4131,7 @@
       <binding>
         <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BloodPressureBodyLocationVS"/>
+          <reference value="http://hl7.org/fhir/us/mcode/shr/core/vs/BloodPressureBodyLocationVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -4369,7 +4146,7 @@
       <binding>
         <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/projectURL/shr/core/vs/BloodPressureMethodVS"/>
+          <reference value="http://hl7.org/fhir/us/mcode/shr/core/vs/BloodPressureMethodVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -4486,7 +4263,7 @@
       </slicing>
       <min value="0"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -4503,22 +4280,22 @@
         <max value="*"/>
       </base>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component.code">
+    <element id="Observation.component-SystolicPressure.code">
       <path value="Observation.component.code"/>
-      <name value="Observation.component.code"/>
+      <name value="Observation.component-SystolicPressure.code"/>
       <min value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component.code.coding">
+    <element id="Observation.component-SystolicPressure.code.coding">
       <path value="Observation.component.code.coding"/>
-      <name value="Observation.component.code.coding"/>
+      <name value="Observation.component-SystolicPressure.code.coding"/>
       <slicing id="4">
         <discriminator value="code"/>
         <ordered value="false"/>
@@ -4545,9 +4322,9 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation.component.code.coding.system">
+    <element id="Observation.component-SystolicPressure.code.coding-Fixed-8480-6.system">
       <path value="Observation.component.code.coding.system"/>
-      <name value="Observation.component.code.coding.system"/>
+      <name value="Observation.component-SystolicPressure.code.coding-Fixed-8480-6.system"/>
       <min value="0"/>
       <fixedUri value="http://loinc.org"/>
       <maxLength value="0"/>
@@ -4555,9 +4332,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component.code.coding.code">
+    <element id="Observation.component-SystolicPressure.code.coding-Fixed-8480-6.code">
       <path value="Observation.component.code.coding.code"/>
-      <name value="Observation.component.code.coding.code"/>
+      <name value="Observation.component-SystolicPressure.code.coding-Fixed-8480-6.code"/>
       <min value="0"/>
       <fixedCode value="8480-6"/>
       <maxLength value="0"/>
@@ -4565,9 +4342,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component.valueQuantity">
+    <element id="Observation.component-SystolicPressure.valueQuantity-Quantity">
       <path value="Observation.component.valueQuantity"/>
-      <name value="Observation.component.valueQuantity"/>
+      <name value="Observation.component-SystolicPressure.valueQuantity-Quantity"/>
       <short value="mmHg"/>
       <definition value="mmHg"/>
       <min value="0"/>
@@ -4579,9 +4356,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component.valueQuantity.system">
+    <element id="Observation.component-SystolicPressure.valueQuantity-Quantity.system">
       <path value="Observation.component.valueQuantity.system"/>
-      <name value="Observation.component.valueQuantity.system"/>
+      <name value="Observation.component-SystolicPressure.valueQuantity-Quantity.system"/>
       <min value="0"/>
       <fixedUri value="http://unitsofmeasure.org"/>
       <maxLength value="0"/>
@@ -4589,9 +4366,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component.valueQuantity.code">
+    <element id="Observation.component-SystolicPressure.valueQuantity-Quantity.code">
       <path value="Observation.component.valueQuantity.code"/>
-      <name value="Observation.component.valueQuantity.code"/>
+      <name value="Observation.component-SystolicPressure.valueQuantity-Quantity.code"/>
       <min value="0"/>
       <fixedCode value="mm[Hg]"/>
       <maxLength value="0"/>
@@ -4599,9 +4376,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component.dataAbsentReason">
+    <element id="Observation.component-SystolicPressure.dataAbsentReason">
       <path value="Observation.component.dataAbsentReason"/>
-      <name value="Observation.component.dataAbsentReason"/>
+      <name value="Observation.component-SystolicPressure.dataAbsentReason"/>
       <min value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -4614,9 +4391,9 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="Observation.component.referenceRange">
+    <element id="Observation.component-SystolicPressure.referenceRange">
       <path value="Observation.component.referenceRange"/>
-      <name value="Observation.component.referenceRange"/>
+      <name value="Observation.component-SystolicPressure.referenceRange"/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -4642,22 +4419,22 @@
         <max value="*"/>
       </base>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component.code">
+    <element id="Observation.component-DiastolicPressure.code">
       <path value="Observation.component.code"/>
-      <name value="Observation.component.code"/>
+      <name value="Observation.component-DiastolicPressure.code"/>
       <min value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component.code.coding">
+    <element id="Observation.component-DiastolicPressure.code.coding">
       <path value="Observation.component.code.coding"/>
-      <name value="Observation.component.code.coding"/>
+      <name value="Observation.component-DiastolicPressure.code.coding"/>
       <slicing id="5">
         <discriminator value="code"/>
         <ordered value="false"/>
@@ -4684,9 +4461,9 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation.component.code.coding.system">
+    <element id="Observation.component-DiastolicPressure.code.coding-Fixed-8462-4.system">
       <path value="Observation.component.code.coding.system"/>
-      <name value="Observation.component.code.coding.system"/>
+      <name value="Observation.component-DiastolicPressure.code.coding-Fixed-8462-4.system"/>
       <min value="0"/>
       <fixedUri value="http://loinc.org"/>
       <maxLength value="0"/>
@@ -4694,9 +4471,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component.code.coding.code">
+    <element id="Observation.component-DiastolicPressure.code.coding-Fixed-8462-4.code">
       <path value="Observation.component.code.coding.code"/>
-      <name value="Observation.component.code.coding.code"/>
+      <name value="Observation.component-DiastolicPressure.code.coding-Fixed-8462-4.code"/>
       <min value="0"/>
       <fixedCode value="8462-4"/>
       <maxLength value="0"/>
@@ -4704,9 +4481,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component.valueQuantity">
+    <element id="Observation.component-DiastolicPressure.valueQuantity-Quantity">
       <path value="Observation.component.valueQuantity"/>
-      <name value="Observation.component.valueQuantity"/>
+      <name value="Observation.component-DiastolicPressure.valueQuantity-Quantity"/>
       <short value="mmHg"/>
       <definition value="mmHg"/>
       <min value="0"/>
@@ -4718,9 +4495,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component.valueQuantity.system">
+    <element id="Observation.component-DiastolicPressure.valueQuantity-Quantity.system">
       <path value="Observation.component.valueQuantity.system"/>
-      <name value="Observation.component.valueQuantity.system"/>
+      <name value="Observation.component-DiastolicPressure.valueQuantity-Quantity.system"/>
       <min value="0"/>
       <fixedUri value="http://unitsofmeasure.org"/>
       <maxLength value="0"/>
@@ -4728,9 +4505,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component.valueQuantity.code">
+    <element id="Observation.component-DiastolicPressure.valueQuantity-Quantity.code">
       <path value="Observation.component.valueQuantity.code"/>
-      <name value="Observation.component.valueQuantity.code"/>
+      <name value="Observation.component-DiastolicPressure.valueQuantity-Quantity.code"/>
       <min value="0"/>
       <fixedCode value="mm[Hg]"/>
       <maxLength value="0"/>
@@ -4738,9 +4515,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component.dataAbsentReason">
+    <element id="Observation.component-DiastolicPressure.dataAbsentReason">
       <path value="Observation.component.dataAbsentReason"/>
-      <name value="Observation.component.dataAbsentReason"/>
+      <name value="Observation.component-DiastolicPressure.dataAbsentReason"/>
       <min value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -4753,9 +4530,9 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="Observation.component.referenceRange">
+    <element id="Observation.component-DiastolicPressure.referenceRange">
       <path value="Observation.component.referenceRange"/>
-      <name value="Observation.component.referenceRange"/>
+      <name value="Observation.component-DiastolicPressure.referenceRange"/>
       <min value="0"/>
       <max value="1"/>
       <base>
