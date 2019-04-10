@@ -5,7 +5,9 @@
   <text>
     <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">
   <p><b>CBCWAutoDifferentialPanel Profile</b></p>
-  <p>LOINC 57021-8 CBC W Auto Differential panel - Blood.</p>
+  <p>Complete blood count (CBC) with auto differential panel. Includes various measures of red blood cells, platelets, and various types of white blood cells and other related measures, such as hemoglobin. The components of this panel are not entirely standardized, so the definition of the CBC includes tests that are optional, or performed by certain laboratories but not others. Therefore, instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.
+
+Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (related groups of observations) should be represented by the DiagnosticReport resource. mCODE deviates from this approach by using Observation for panels. This is because panels can contain other panels, but a DiagnosticReport cannot contain other DiagnosticReports. Nested panels are, in fact, quite common in LOINC (see 39135-9 Wound assessment panel for an example of a deeply nested panel). To represent nested panels, the each sub-panel _must be_ an Observation. Of course, any sub-panel can also be a stand-alone panel, as well. Following the Argonaut/US Core recommended approach of using DiagnosticReport would imply that many or perhaps all panels would have to be represented twice: once as an Observation to permit the panel to be used as a sub-panel, and once as a DiagnosticReport to permit it to be used as a top-level panel. The mCODE authors believe there is little added value in representing panels as DiagnosticReports when Observation provides additional opportunity for nesting, and equivalent expressive power.</p>
   <p><b>Mapping Summary</b></p>
   <p><pre>shr.lab.CBCWAutoDifferentialPanel maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-observationresults:
   _Entry.EntryId maps to id
@@ -17,9 +19,9 @@
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
-  Identifier maps to identifier (slice on = Type.coding.code; slice strategy = includes)
+  Identifier maps to identifier (slice on = type.coding.code; slice strategy = includes)
   PatientSubjectOfRecord maps to subject
-  Performer maps to performer (slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)
+  PractitionerPerformer maps to performer (slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)
   Code maps to code
   Method maps to method
   CommentOrDescription maps to comments
@@ -57,7 +59,7 @@
     <system value="http://hl7.org/fhir/us/mcode"/>
     <value value="shr.lab.CBCWAutoDifferentialPanel"/>
   </identifier>
-  <version value="0.9.0 draft candidate 1"/>
+  <version value="0.9.0 Beta 1"/>
   <name value="CBCWAutoDifferentialPanel"/>
   <display value="shr-lab-CBCWAutoDifferentialPanel"/>
   <status value="draft"/>
@@ -69,8 +71,8 @@
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-04-08T00:00:00-04:00"/>
-  <description value="LOINC 57021-8 CBC W Auto Differential panel - Blood."/>
+  <date value="2019-04-10T00:00:00-04:00"/>
+  <description value="Complete blood count (CBC) with auto differential panel. Includes various measures of red blood cells, platelets, and various types of white blood cells and other related measures, such as hemoglobin. The components of this panel are not entirely standardized, so the definition of the CBC includes tests that are optional, or performed by certain laboratories but not others. Therefore, instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.&#xA;&#xA;Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (related groups of observations) should be represented by the DiagnosticReport resource. mCODE deviates from this approach by using Observation for panels. This is because panels can contain other panels, but a DiagnosticReport cannot contain other DiagnosticReports. Nested panels are, in fact, quite common in LOINC (see 39135-9 Wound assessment panel for an example of a deeply nested panel). To represent nested panels, the each sub-panel _must be_ an Observation. Of course, any sub-panel can also be a stand-alone panel, as well. Following the Argonaut/US Core recommended approach of using DiagnosticReport would imply that many or perhaps all panels would have to be represented twice: once as an Observation to permit the panel to be used as a sub-panel, and once as a DiagnosticReport to permit it to be used as a top-level panel. The mCODE authors believe there is little added value in representing panels as DiagnosticReports when Observation provides additional opportunity for nesting, and equivalent expressive power."/>
   <fhirVersion value="1.0.2"/>
   <mapping>
     <identity value="v2"/>
@@ -96,7 +98,7 @@
       <path value="Observation"/>
       <name value="Observation"/>
       <short value="shr-lab-CBCWAutoDifferentialPanel"/>
-      <definition value="LOINC 57021-8 CBC W Auto Differential panel - Blood."/>
+      <definition value="Complete blood count (CBC) with auto differential panel. Includes various measures of red blood cells, platelets, and various types of white blood cells and other related measures, such as hemoglobin. The components of this panel are not entirely standardized, so the definition of the CBC includes tests that are optional, or performed by certain laboratories but not others. Therefore, instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.&#xA;&#xA;Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (related groups of observations) should be represented by the DiagnosticReport resource. mCODE deviates from this approach by using Observation for panels. This is because panels can contain other panels, but a DiagnosticReport cannot contain other DiagnosticReports. Nested panels are, in fact, quite common in LOINC (see 39135-9 Wound assessment panel for an example of a deeply nested panel). To represent nested panels, the each sub-panel _must be_ an Observation. Of course, any sub-panel can also be a stand-alone panel, as well. Following the Argonaut/US Core recommended approach of using DiagnosticReport would imply that many or perhaps all panels would have to be represented twice: once as an Observation to permit the panel to be used as a sub-panel, and once as a DiagnosticReport to permit it to be used as a top-level panel. The mCODE authors believe there is little added value in representing panels as DiagnosticReports when Observation provides additional opportunity for nesting, and equivalent expressive power."/>
       <comments value="Used for simple observations such as device measurements, laboratory atomic results, vital signs, height, weight, smoking status, comments, etc.  Other resources are used to provide context for observations such as lab reports, etc."/>
       <alias value="Vital Signs"/>
       <alias value="Measurement"/>
@@ -356,7 +358,7 @@
       <path value="Observation.identifier"/>
       <name value="Observation.identifier"/>
       <slicing id="2">
-        <discriminator value="Type.coding.code"/>
+        <discriminator value="type.coding.code"/>
         <ordered value="false"/>
         <rules value="open"/>
       </slicing>
@@ -696,7 +698,8 @@
     <element id="Fixed_57021-8">
       <path value="Observation.code.coding"/>
       <name value="Fixed_57021-8"/>
-      <definition value="A reference to a code defined by a terminology system."/>
+      <short value="CBC W Auto Differential panel - Blood"/>
+      <definition value="CBC W Auto Differential panel - Blood"/>
       <min value="1"/>
       <max value="1"/>
       <type>
@@ -991,9 +994,9 @@
         <map value="context"/>
       </mapping>
     </element>
-    <element id="Observation.effective-x-">
+    <element id="Observation.effectivex">
       <path value="Observation.effective[x]"/>
-      <name value="Observation.effective-x-"/>
+      <name value="Observation.effectivex"/>
       <short value="Clinically relevant time/time-period for observation"/>
       <definition value="For lab tests this is the specimen collection date.  For Ask at Order Entry Questions (AOE)&#39;s this is the date the question was asked."/>
       <comments value="At least a date should be present unless this observation is a historical report."/>
@@ -1086,9 +1089,6 @@
       <type>
         <code value="Reference"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1107,9 +1107,9 @@
         <map value="who.actor"/>
       </mapping>
     </element>
-    <element id="Observation.value-x-">
+    <element id="Observation.valuex">
       <path value="Observation.value[x]"/>
-      <name value="Observation.value-x-"/>
+      <name value="Observation.valuex"/>
       <short value="Actual result"/>
       <definition value="If codeableConcept, valueCodeableConcept *SHOULD*  be selected from [SNOMED CT](http://hl7.org/fhir/ValueSet/uslab-obs-codedresults).  If Quantity, valueQuantity units *SHALL* be selected from [UCUM](http://unitsofmeasure.org)."/>
       <comments value="Normally, an observation will have either a value or a set of related observations. A few observations (e.g. Apgar score) may have both a value and related observations (for an Apgar score, the observations from which the measure is derived). If a value is present, the datatype for this element should be determined by Observation.code. This element has a variable name depending on the type as follows: valueQuantity, valueCodeableConcept, valueString, valueRange, valueRatio, valueSampledData, valueAttachment, valueTime, valueDateTime, or valuePeriod. (The name format is &quot;&#39;value&#39; + the type name&quot; with a capital on the first letter of the type).   If the data element is usually coded or if the type associated with the Observation.value defines a coded value, use CodeableConcept instead of string datatype even if the value is uncoded text.  A value set is bound to the ValueCodeableConcept element.  For boolean values use valueCodeableConcept and select codes from [HL7 Version 2 Table 0136](v2/0136/index.html). These &quot;yes/no&quot; concepts can be mapped to the display name &quot;true/false&quot; or other mutually exclusive terms that may be needed.   For further discussion and examples see the  [notes section](observation.html#4.20.4) below."/>
@@ -1704,7 +1704,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -1732,7 +1732,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -1903,7 +1903,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -2074,7 +2074,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -2245,7 +2245,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -2416,7 +2416,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -2587,7 +2587,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -2758,7 +2758,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -2929,7 +2929,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -3100,7 +3100,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -3271,7 +3271,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -3442,7 +3442,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -3613,7 +3613,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -3784,7 +3784,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -3955,7 +3955,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -4126,7 +4126,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -4297,7 +4297,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -4468,7 +4468,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -4639,7 +4639,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -4810,7 +4810,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -4981,7 +4981,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -5152,7 +5152,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -5323,7 +5323,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -5494,7 +5494,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -5665,7 +5665,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -5836,7 +5836,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -6007,7 +6007,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -6178,7 +6178,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -6349,7 +6349,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -6520,7 +6520,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -6691,7 +6691,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -6862,7 +6862,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -7033,7 +7033,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -7204,7 +7204,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -7375,7 +7375,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -7546,7 +7546,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -7717,7 +7717,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -7888,7 +7888,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -8059,7 +8059,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -8230,7 +8230,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -8401,7 +8401,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -8572,7 +8572,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -8743,7 +8743,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -8914,7 +8914,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -9085,7 +9085,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -9256,7 +9256,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -9427,7 +9427,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -9598,7 +9598,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -9769,7 +9769,7 @@
         <code value="BackboneElement"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -10075,9 +10075,9 @@
         <map value="what"/>
       </mapping>
     </element>
-    <element id="Observation.component.value-x-">
+    <element id="Observation.component.valuex">
       <path value="Observation.component.value[x]"/>
-      <name value="Observation.component.value-x-"/>
+      <name value="Observation.component.valuex"/>
       <short value="Actual component result"/>
       <definition value="The information determined as a result of making the observation, if the information has a simple value."/>
       <comments value="Normally, an observation will have either a value or a set of related observations. A few observations (e.g. Apgar score) may have both a value and related observations (for an Apgar score, the observations from which the measure is derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.   For boolean values use valueCodeableConcept and select codes from &lt;http://hl7.org/fhir/ValueSet/v2-0136&gt; (These &quot;yes/no&quot; concepts can be mapped to the display name &quot;true/false&quot; or other mutually exclusive terms that may be needed&quot;).  The element, Observation.value[x], has a variable name depending on the type as follows: valueQuantity, valueCodeableConcept, valueRatio, valueChoice, valuePeriod, valueSampleData, or valueString (The name format is &quot;&#39;value&#39; + the type name&quot; with a capital on the first letter of the type)."/>
@@ -10389,7 +10389,7 @@
       <path value="Observation"/>
       <name value="Observation"/>
       <short value="shr-lab-CBCWAutoDifferentialPanel"/>
-      <definition value="LOINC 57021-8 CBC W Auto Differential panel - Blood."/>
+      <definition value="Complete blood count (CBC) with auto differential panel. Includes various measures of red blood cells, platelets, and various types of white blood cells and other related measures, such as hemoglobin. The components of this panel are not entirely standardized, so the definition of the CBC includes tests that are optional, or performed by certain laboratories but not others. Therefore, instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.&#xA;&#xA;Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (related groups of observations) should be represented by the DiagnosticReport resource. mCODE deviates from this approach by using Observation for panels. This is because panels can contain other panels, but a DiagnosticReport cannot contain other DiagnosticReports. Nested panels are, in fact, quite common in LOINC (see 39135-9 Wound assessment panel for an example of a deeply nested panel). To represent nested panels, the each sub-panel _must be_ an Observation. Of course, any sub-panel can also be a stand-alone panel, as well. Following the Argonaut/US Core recommended approach of using DiagnosticReport would imply that many or perhaps all panels would have to be represented twice: once as an Observation to permit the panel to be used as a sub-panel, and once as a DiagnosticReport to permit it to be used as a top-level panel. The mCODE authors believe there is little added value in representing panels as DiagnosticReports when Observation provides additional opportunity for nesting, and equivalent expressive power."/>
       <min value="0"/>
       <type>
         <code value="argo-observationresults"/>
@@ -10403,7 +10403,7 @@
       <path value="Observation.identifier"/>
       <name value="Observation.identifier"/>
       <slicing id="2">
-        <discriminator value="Type.coding.code"/>
+        <discriminator value="type.coding.code"/>
         <ordered value="false"/>
         <rules value="open"/>
       </slicing>
@@ -10488,7 +10488,8 @@
     <element id="Fixed_57021-8">
       <path value="Observation.code.coding"/>
       <name value="Fixed_57021-8"/>
-      <definition value="A reference to a code defined by a terminology system."/>
+      <short value="CBC W Auto Differential panel - Blood"/>
+      <definition value="CBC W Auto Differential panel - Blood"/>
       <min value="1"/>
       <max value="1"/>
       <type>
@@ -10552,18 +10553,15 @@
       <type>
         <code value="Reference"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.value-x-">
+    <element id="Observation.valuex">
       <path value="Observation.value[x]"/>
-      <name value="Observation.value-x-"/>
+      <name value="Observation.valuex"/>
       <min value="0"/>
       <max value="0"/>
       <type>
@@ -10691,7 +10689,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -10703,7 +10701,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -10738,7 +10736,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -10773,7 +10771,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -10808,7 +10806,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -10843,7 +10841,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -10878,7 +10876,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -10913,7 +10911,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -10948,7 +10946,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -10983,7 +10981,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11018,7 +11016,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11053,7 +11051,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11088,7 +11086,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11123,7 +11121,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11158,7 +11156,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11193,7 +11191,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11228,7 +11226,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11263,7 +11261,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11298,7 +11296,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11333,7 +11331,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11368,7 +11366,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11403,7 +11401,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11438,7 +11436,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11473,7 +11471,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11508,7 +11506,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11543,7 +11541,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11578,7 +11576,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11613,7 +11611,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11648,7 +11646,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11683,7 +11681,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11718,7 +11716,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11753,7 +11751,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11788,7 +11786,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11823,7 +11821,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11858,7 +11856,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11893,7 +11891,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11928,7 +11926,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11963,7 +11961,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -11998,7 +11996,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -12033,7 +12031,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -12068,7 +12066,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -12103,7 +12101,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -12138,7 +12136,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -12173,7 +12171,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -12208,7 +12206,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -12243,7 +12241,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -12278,7 +12276,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -12313,7 +12311,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -12348,7 +12346,7 @@
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -12385,9 +12383,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component.value-x-">
+    <element id="Observation.component.valuex">
       <path value="Observation.component.value[x]"/>
-      <name value="Observation.component.value-x-"/>
+      <name value="Observation.component.valuex"/>
       <min value="0"/>
       <type>
         <code value="Quantity"/>

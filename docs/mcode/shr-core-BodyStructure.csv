@@ -92,11 +92,43 @@ user content","",0,*,"","","","Extension {[]} {[]}
 ","Additional Content defined by implementations","May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.","There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.","","","","","","","","",,,,,"","value:url}
 ","",,"open","",0,null,"","","n/a"
 "Condition.bodySite.extension","laterality","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension]]} {[]}
-","","Body side of the body location, if needed to distinguish from a similar location on the other side of the body.","","","","","","","","","",,,,,"",,,,"Condition.bodySite.extension",0,*,"",""
+","","Body side of the body location, if needed to distinguish from a similar location on the other side of the body.
+
+This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
+
++ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
++ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
++ Relation to landmark: The location relative to a landmark is specified by:
+- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and
+- Specifying the direction and distance from the landmark to the body location.
+
+Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).","","","","","","","","","",,,,,"",,,,"Condition.bodySite.extension",0,*,"",""
 "Condition.bodySite.extension","orientation","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Orientation-extension]]} {[]}
-","","Orientation of the body location, if needed to distinguish from a similar location in another orientation.","","","","","","","","","",,,,,"",,,,"Condition.bodySite.extension",0,*,"",""
+","","Orientation of the body location, if needed to distinguish from a similar location in another orientation.
+This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
+
++ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
++ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
++ Relation to landmark: The location relative to a landmark is specified by:
+- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and
+- Specifying the direction and distance from the landmark to the body location.
+
+Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).","","","","","","","","","",,,,,"",,,,"Condition.bodySite.extension",0,*,"",""
 "Condition.bodySite.extension","relationtolandmark","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelationToLandmark-extension]]} {[]}
-","","An anatomical landmark that helps determine a body location.","","","","","","","","","",,,,,"",,,,"Condition.bodySite.extension",0,*,"",""
+","","The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:
+* Specifying the location and type of landmark using a body site code and optional laterality/orientation,
+* Specifying the direction from the landmark to the body location, and
+* Specifying the distance from the landmark to the body location.
+
+This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
+
++ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
++ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
++ Relation to landmark: The location relative to a landmark is specified by:
+- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and
+- Specifying the direction and distance from the landmark to the body location.
+
+Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).","","","","","","","","","",,,,,"",,,,"Condition.bodySite.extension",0,*,"",""
 "Condition.bodySite.coding","","","",0,*,"","","Y","Coding {[]} {[]}
 ","Code defined by a terminology system","A reference to a code defined by a terminology system.","Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labelled as UserSelected = true.","Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings.","","","","","","","",,,,,"",,,,"",0,null,"","","C*E.1-8, C*E.10-22","union(., ./translation)"
 "Condition.bodySite.text","","","",0,1,"","","Y","string {[]} {[]}

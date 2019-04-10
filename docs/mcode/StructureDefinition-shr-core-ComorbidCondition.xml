@@ -5,7 +5,7 @@
   <text>
     <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">
   <p><b>ComorbidCondition Profile</b></p>
-  <p>A comorbidity refers to one or more diseases or conditions that occur along with another condition in the same person at the same time. Conditions considered comorbidities are often long-term or chronic conditions. Comorbidities are defined relative to an index disease and may be categorical, rather than described in full detail. The comorbid condition class provides comorbidity codes corresponding to the Adult Cormorbidity Evaluation-27. If the grade (1-3) is reported, it shall be reported in the stage summary field.</p>
+  <p>A comorbidity refers to one or more diseases or conditions that occur along with another condition in the same person at the same time. Conditions considered comorbidities are often long-term or chronic conditions. Comorbidities are defined relative to an index disease and may be categorical, rather than described in full detail. The comorbid condition class provides comorbidity codes corresponding the Elixhauser Comorbidity Index.</p>
   <p><b>Mapping Summary</b></p>
   <p><pre>shr.core.ComorbidCondition maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-condition:
   _Entry.EntryId maps to id
@@ -46,7 +46,7 @@
     <system value="http://hl7.org/fhir/us/mcode"/>
     <value value="shr.core.ComorbidCondition"/>
   </identifier>
-  <version value="0.9.0 draft candidate 1"/>
+  <version value="0.9.0 Beta 1"/>
   <name value="ComorbidCondition"/>
   <display value="shr-core-ComorbidCondition"/>
   <status value="draft"/>
@@ -58,8 +58,8 @@
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-04-08T00:00:00-04:00"/>
-  <description value="A comorbidity refers to one or more diseases or conditions that occur along with another condition in the same person at the same time. Conditions considered comorbidities are often long-term or chronic conditions. Comorbidities are defined relative to an index disease and may be categorical, rather than described in full detail. The comorbid condition class provides comorbidity codes corresponding to the Adult Cormorbidity Evaluation-27. If the grade (1-3) is reported, it shall be reported in the stage summary field."/>
+  <date value="2019-04-10T00:00:00-04:00"/>
+  <description value="A comorbidity refers to one or more diseases or conditions that occur along with another condition in the same person at the same time. Conditions considered comorbidities are often long-term or chronic conditions. Comorbidities are defined relative to an index disease and may be categorical, rather than described in full detail. The comorbid condition class provides comorbidity codes corresponding the Elixhauser Comorbidity Index."/>
   <fhirVersion value="1.0.2"/>
   <mapping>
     <identity value="us-core-stu3"/>
@@ -90,7 +90,7 @@
       <path value="Condition"/>
       <name value="Condition"/>
       <short value="shr-core-ComorbidCondition"/>
-      <definition value="A comorbidity refers to one or more diseases or conditions that occur along with another condition in the same person at the same time. Conditions considered comorbidities are often long-term or chronic conditions. Comorbidities are defined relative to an index disease and may be categorical, rather than described in full detail. The comorbid condition class provides comorbidity codes corresponding to the Adult Cormorbidity Evaluation-27. If the grade (1-3) is reported, it shall be reported in the stage summary field."/>
+      <definition value="A comorbidity refers to one or more diseases or conditions that occur along with another condition in the same person at the same time. Conditions considered comorbidities are often long-term or chronic conditions. Comorbidities are defined relative to an index disease and may be categorical, rather than described in full detail. The comorbid condition class provides comorbidity codes corresponding the Elixhauser Comorbidity Index."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -282,11 +282,6 @@
     <element id="Condition.extension">
       <path value="Condition.extension"/>
       <name value="Condition.extension"/>
-      <slicing id="3">
-        <discriminator value="url"/>
-        <ordered value="false"/>
-        <rules value="open"/>
-      </slicing>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -310,26 +305,6 @@
         <identity value="rim"/>
         <map value="N/A"/>
       </mapping>
-    </element>
-    <element id="dateofdiagnosis">
-      <path value="Condition.extension"/>
-      <name value="dateofdiagnosis"/>
-      <definition value="The date the disease was first clinically recognized with sufficient certainty, regardless of whether it was fully characterized at that time."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Condition.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DateOfDiagnosis-extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
     </element>
     <element id="Condition.modifierExtension">
       <path value="Condition.modifierExtension"/>
@@ -1037,9 +1012,9 @@
         <map value="grade"/>
       </mapping>
     </element>
-    <element id="Condition.onset-x-">
+    <element id="Condition.onsetx">
       <path value="Condition.onset[x]"/>
-      <name value="Condition.onset-x-"/>
+      <name value="Condition.onsetx"/>
       <short value="Estimated or actual date,  date-time, or age"/>
       <definition value="Estimated or actual date or date-time  the condition began, in the opinion of the clinician."/>
       <comments value="Age is generally used when the patient reports an age at which the Condition began to occur."/>
@@ -1083,9 +1058,9 @@
         <map value="when.init"/>
       </mapping>
     </element>
-    <element id="Condition.abatement-x-">
+    <element id="Condition.abatementx">
       <path value="Condition.abatement[x]"/>
-      <name value="Condition.abatement-x-"/>
+      <name value="Condition.abatementx"/>
       <short value="If/when in resolution/remission"/>
       <definition value="The date or estimated date that the condition resolved or went into remission. This is called &quot;abatement&quot; because of the many overloaded connotations associated with &quot;remission&quot; or &quot;resolution&quot; - Conditions are never really resolved, but they can abate."/>
       <comments value="There is no explicit distinction between resolution and remission because in many cases the distinction is not clear. Age is generally used when the patient reports an age at which the Condition abated.  If there is no abatement element, it is unknown whether the condition has resolved or entered remission; applications and users should generally assume that the condition is still valid."/>
@@ -1549,7 +1524,7 @@
     <element id="laterality">
       <path value="Condition.bodySite.extension"/>
       <name value="laterality"/>
-      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body."/>
+      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body.&#xA;&#xA;This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1569,7 +1544,7 @@
     <element id="orientation">
       <path value="Condition.bodySite.extension"/>
       <name value="orientation"/>
-      <definition value="Orientation of the body location, if needed to distinguish from a similar location in another orientation."/>
+      <definition value="Orientation of the body location, if needed to distinguish from a similar location in another orientation.&#xA;This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1589,7 +1564,7 @@
     <element id="relationtolandmark">
       <path value="Condition.bodySite.extension"/>
       <name value="relationtolandmark"/>
-      <definition value="An anatomical landmark that helps determine a body location."/>
+      <definition value="The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:&#xA;* Specifying the location and type of landmark using a body site code and optional laterality/orientation,&#xA;* Specifying the direction from the landmark to the body location, and&#xA;* Specifying the distance from the landmark to the body location.&#xA;&#xA;This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1698,44 +1673,10 @@
       <path value="Condition"/>
       <name value="Condition"/>
       <short value="shr-core-ComorbidCondition"/>
-      <definition value="A comorbidity refers to one or more diseases or conditions that occur along with another condition in the same person at the same time. Conditions considered comorbidities are often long-term or chronic conditions. Comorbidities are defined relative to an index disease and may be categorical, rather than described in full detail. The comorbid condition class provides comorbidity codes corresponding to the Adult Cormorbidity Evaluation-27. If the grade (1-3) is reported, it shall be reported in the stage summary field."/>
+      <definition value="A comorbidity refers to one or more diseases or conditions that occur along with another condition in the same person at the same time. Conditions considered comorbidities are often long-term or chronic conditions. Comorbidities are defined relative to an index disease and may be categorical, rather than described in full detail. The comorbid condition class provides comorbidity codes corresponding the Elixhauser Comorbidity Index."/>
       <min value="0"/>
       <type>
         <code value="argo-condition"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="Condition.extension">
-      <path value="Condition.extension"/>
-      <name value="Condition.extension"/>
-      <slicing id="3">
-        <discriminator value="url"/>
-        <ordered value="false"/>
-        <rules value="open"/>
-      </slicing>
-      <min value="0"/>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="dateofdiagnosis">
-      <path value="Condition.extension"/>
-      <name value="dateofdiagnosis"/>
-      <definition value="The date the disease was first clinically recognized with sufficient certainty, regardless of whether it was fully characterized at that time."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Condition.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DateOfDiagnosis-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1974,7 +1915,7 @@
     <element id="laterality">
       <path value="Condition.bodySite.extension"/>
       <name value="laterality"/>
-      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body."/>
+      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body.&#xA;&#xA;This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1994,7 +1935,7 @@
     <element id="orientation">
       <path value="Condition.bodySite.extension"/>
       <name value="orientation"/>
-      <definition value="Orientation of the body location, if needed to distinguish from a similar location in another orientation."/>
+      <definition value="Orientation of the body location, if needed to distinguish from a similar location in another orientation.&#xA;This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -2014,7 +1955,7 @@
     <element id="relationtolandmark">
       <path value="Condition.bodySite.extension"/>
       <name value="relationtolandmark"/>
-      <definition value="An anatomical landmark that helps determine a body location."/>
+      <definition value="The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:&#xA;* Specifying the location and type of landmark using a body site code and optional laterality/orientation,&#xA;* Specifying the direction from the landmark to the body location, and&#xA;* Specifying the distance from the landmark to the body location.&#xA;&#xA;This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>

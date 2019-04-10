@@ -12,7 +12,7 @@
       "value": "shr.core.MedicationStatement"
     }
   ],
-  "version": "0.9.0 draft candidate 1",
+  "version": "0.9.0 Beta 1",
   "name": "MedicationStatement",
   "display": "shr-core-MedicationStatement",
   "status": "draft",
@@ -28,7 +28,7 @@
       ]
     }
   ],
-  "date": "2019-04-08T00:00:00-04:00",
+  "date": "2019-04-10T00:00:00-04:00",
   "description": "A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.",
   "code": [
     {
@@ -435,9 +435,9 @@
         ]
       },
       {
-        "id": "MedicationStatement-MedicationStatement.extension-category.extension-extension",
+        "id": "MedicationStatement-MedicationStatement.extension-category.ext1",
         "path": "MedicationStatement.extension.extension",
-        "name": "MedicationStatement-MedicationStatement.extension-category.extension-extension",
+        "name": "MedicationStatement-MedicationStatement.extension-category.ext1",
         "short": "Extension",
         "definition": "An Extension",
         "min": 0,
@@ -491,9 +491,9 @@
         ]
       },
       {
-        "id": "MedicationStatement-MedicationStatement.extension-category.valueCodeableConcept",
+        "id": "MedicationStatement-MedicationStatement.extension-category.val",
         "path": "MedicationStatement.extension.valueCodeableConcept",
-        "name": "MedicationStatement-MedicationStatement.extension-category.valueCodeableConcept",
+        "name": "MedicationStatement-MedicationStatement.extension-category.val",
         "short": "Value of extension",
         "definition": "Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).",
         "min": 1,
@@ -529,9 +529,9 @@
         "id": "treatmentintent",
         "path": "MedicationStatement.extension",
         "name": "treatmentintent",
-        "definition": "The intended result from a given treatment.  Examples include curative, palliative, and supportive.",
+        "definition": "The purpose of a treatment. A simplified set of values include only two choices: curative and palliative. Curative is defined as any treatment meant to reduce or control a disease process, even if a 'cure' is not anticipated. Palliative includes treatments meant to reduce symptoms and side effects, such as antiemetics. If a treatment does both, it should be recorded as curative.",
         "min": 0,
-        "max": "*",
+        "max": "1",
         "base": {
           "path": "MedicationStatement.extension",
           "min": 0,
@@ -576,12 +576,12 @@
         "isSummary": false
       },
       {
-        "id": "MedicationStatement-MedicationStatement.extension-terminationreason.id",
+        "id": "MedicationStatement-MedicationStatement.ext3.id",
         "path": "MedicationStatement.extension.id",
         "representation": [
           "xmlAttr"
         ],
-        "name": "MedicationStatement-MedicationStatement.extension-terminationreason.id",
+        "name": "MedicationStatement-MedicationStatement.ext3.id",
         "short": "xml:id (or equivalent in JSON)",
         "definition": "unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
         "min": 0,
@@ -608,9 +608,9 @@
         ]
       },
       {
-        "id": "MedicationStatement-MedicationStatement.extension-terminationreason.extension-extension",
+        "id": "MedicationStatement-MedicationStatement.ext3.ext1",
         "path": "MedicationStatement.extension.extension",
-        "name": "MedicationStatement-MedicationStatement.extension-terminationreason.extension-extension",
+        "name": "MedicationStatement-MedicationStatement.ext3.ext1",
         "short": "Extension",
         "definition": "An Extension",
         "min": 0,
@@ -631,12 +631,12 @@
         "isSummary": false
       },
       {
-        "id": "MedicationStatement-MedicationStatement.extension-terminationreason.url",
+        "id": "MedicationStatement-MedicationStatement.ext3.url",
         "path": "MedicationStatement.extension.url",
         "representation": [
           "xmlAttr"
         ],
-        "name": "MedicationStatement-MedicationStatement.extension-terminationreason.url",
+        "name": "MedicationStatement-MedicationStatement.ext3.url",
         "short": "identifies the meaning of the extension",
         "definition": "Source of the definition for the extension code - a logical name or a URL.",
         "min": 1,
@@ -664,9 +664,9 @@
         ]
       },
       {
-        "id": "MedicationStatement-MedicationStatement.extension-terminationreason.valueCodeableConcept",
+        "id": "MedicationStatement-MedicationStatement.ext3.val",
         "path": "MedicationStatement.extension.valueCodeableConcept",
-        "name": "MedicationStatement-MedicationStatement.extension-terminationreason.valueCodeableConcept",
+        "name": "MedicationStatement-MedicationStatement.ext3.val",
         "short": "Value of extension",
         "definition": "Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).",
         "min": 1,
@@ -965,9 +965,9 @@
         ]
       },
       {
-        "id": "MedicationStatement-MedicationStatement.reasonForUse-x-",
+        "id": "MedicationStatement-MedicationStatement.reasonForUsex",
         "path": "MedicationStatement.reasonForUse[x]",
-        "name": "MedicationStatement-MedicationStatement.reasonForUse-x-",
+        "name": "MedicationStatement-MedicationStatement.reasonForUsex",
         "definition": "A reason for why the medication is being/was taken.",
         "min": 0,
         "max": "1",
@@ -1000,9 +1000,9 @@
         }
       },
       {
-        "id": "MedicationStatement-MedicationStatement.effective-x-",
+        "id": "MedicationStatement-MedicationStatement.effectivex",
         "path": "MedicationStatement.effective[x]",
-        "name": "MedicationStatement-MedicationStatement.effective-x-",
+        "name": "MedicationStatement-MedicationStatement.effectivex",
         "short": "Over what period was medication consumed?",
         "definition": "The interval of time during which it is being asserted that the patient was taking the medication (or was not taking, when the wasNotGiven element is true).",
         "comments": "If the medication is still being taken at the time the statement is recorded, the \"end\" date will be omitted.",
@@ -1087,9 +1087,9 @@
         "isSummary": true
       },
       {
-        "id": "MedicationStatement-MedicationStatement.medication-x-",
+        "id": "MedicationStatement-MedicationStatement.medicationx",
         "path": "MedicationStatement.medication[x]",
-        "name": "MedicationStatement-MedicationStatement.medication-x-",
+        "name": "MedicationStatement-MedicationStatement.medicationx",
         "slicing": {
           "id": "3",
           "discriminator": [
@@ -1142,9 +1142,9 @@
         ]
       },
       {
-        "id": "MedicationStatement-MedicationStatement.medicationCodeableConcept-CodeableConcept",
+        "id": "MedicationStatement-MedicationStatement.med",
         "path": "MedicationStatement.medicationCodeableConcept",
-        "name": "MedicationStatement-MedicationStatement.medicationCodeableConcept-CodeableConcept",
+        "name": "MedicationStatement-MedicationStatement.med",
         "short": "What medication was taken",
         "definition": "Identifies the medication being administered. This is either a link to a resource representing the details of the medication or a simple attribute carrying a code that identifies the medication from a known list of medications.",
         "min": 1,
@@ -1164,7 +1164,7 @@
         "isModifier": false,
         "isSummary": false,
         "binding": {
-          "strength": "required",
+          "strength": "extensible",
           "valueSetReference": {
             "reference": "http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes"
           }
@@ -1356,9 +1356,9 @@
         ]
       },
       {
-        "id": "MedicationStatement-MedicationStatement.dosage.asNeeded-x-",
+        "id": "MedicationStatement-MedicationStatement.dosage.asNeededx",
         "path": "MedicationStatement.dosage.asNeeded[x]",
-        "name": "MedicationStatement-MedicationStatement.dosage.asNeeded-x-",
+        "name": "MedicationStatement-MedicationStatement.dosage.asNeededx",
         "slicing": {
           "id": "1",
           "discriminator": [
@@ -1400,9 +1400,9 @@
         ]
       },
       {
-        "id": "MedicationStatement-MedicationStatement.dosage.asNeededCodeableConcept-CodeableConcept",
+        "id": "MedicationStatement-MedicationStatement.dosage.asN",
         "path": "MedicationStatement.dosage.asNeededCodeableConcept",
-        "name": "MedicationStatement-MedicationStatement.dosage.asNeededCodeableConcept-CodeableConcept",
+        "name": "MedicationStatement-MedicationStatement.dosage.asN",
         "short": "Take \"as needed\" (for x)",
         "definition": "Indicates whether the Medication is only taken when needed within a specific dosing schedule (Boolean option), or it indicates the precondition for taking the Medication (CodeableConcept).    Specifically if 'boolean' datatype is selected, then the following logic applies:  If set to True, this indicates that the medication is only taken when needed, within the specified schedule.",
         "min": 0,
@@ -1429,9 +1429,9 @@
         }
       },
       {
-        "id": "MedicationStatement-MedicationStatement.dosage.siteCodeableConcept-CodeableConcept",
+        "id": "MedicationStatement-MedicationStatement.dosage.sit",
         "path": "MedicationStatement.dosage.siteCodeableConcept",
-        "name": "MedicationStatement-MedicationStatement.dosage.siteCodeableConcept-CodeableConcept",
+        "name": "MedicationStatement-MedicationStatement.dosage.sit",
         "short": "Where (on body) medication is/was administered",
         "definition": "A coded specification of or a reference to the anatomic site where the medication first enters the body.",
         "min": 0,
@@ -1530,9 +1530,9 @@
         ]
       },
       {
-        "id": "MedicationStatement-MedicationStatement.dosage.quantity-x-",
+        "id": "MedicationStatement-MedicationStatement.dosage.quantityx",
         "path": "MedicationStatement.dosage.quantity[x]",
-        "name": "MedicationStatement-MedicationStatement.dosage.quantity-x-",
+        "name": "MedicationStatement-MedicationStatement.dosage.quantityx",
         "short": "Amount administered in one dose",
         "definition": "The amount of therapeutic or other substance given at one administration event.",
         "min": 0,
@@ -1565,9 +1565,9 @@
         ]
       },
       {
-        "id": "MedicationStatement-MedicationStatement.dosage.rate-x-",
+        "id": "MedicationStatement-MedicationStatement.dosage.ratex",
         "path": "MedicationStatement.dosage.rate[x]",
-        "name": "MedicationStatement-MedicationStatement.dosage.rate-x-",
+        "name": "MedicationStatement-MedicationStatement.dosage.ratex",
         "short": "Dose quantity per unit of time",
         "definition": "Identifies the speed with which the medication was or will be introduced into the patient. Typically the rate for an infusion e.g. 100 ml per 1 hour or 100 ml/hr.  May also be expressed as a rate per unit of time e.g. 500 ml per 2 hours.   Currently we do not specify a default of '1' in the denominator, but this is being discussed. Other examples: 200 mcg/min or 200 mcg/1 minute; 1 liter/8 hours.",
         "min": 0,
@@ -1740,9 +1740,9 @@
         "isSummary": false
       },
       {
-        "id": "MedicationStatement-MedicationStatement.extension-category.valueCodeableConcept",
+        "id": "MedicationStatement-MedicationStatement.extension-category.val",
         "path": "MedicationStatement.extension.valueCodeableConcept",
-        "name": "MedicationStatement-MedicationStatement.extension-category.valueCodeableConcept",
+        "name": "MedicationStatement-MedicationStatement.extension-category.val",
         "min": 0,
         "maxLength": 0,
         "mustSupport": false,
@@ -1759,9 +1759,9 @@
         "id": "treatmentintent",
         "path": "MedicationStatement.extension",
         "name": "treatmentintent",
-        "definition": "The intended result from a given treatment.  Examples include curative, palliative, and supportive.",
+        "definition": "The purpose of a treatment. A simplified set of values include only two choices: curative and palliative. Curative is defined as any treatment meant to reduce or control a disease process, even if a 'cure' is not anticipated. Palliative includes treatments meant to reduce symptoms and side effects, such as antiemetics. If a treatment does both, it should be recorded as curative.",
         "min": 0,
-        "max": "*",
+        "max": "1",
         "base": {
           "path": "MedicationStatement.extension",
           "min": 0,
@@ -1806,9 +1806,9 @@
         "isSummary": false
       },
       {
-        "id": "MedicationStatement-MedicationStatement.extension-terminationreason.valueCodeableConcept",
+        "id": "MedicationStatement-MedicationStatement.ext3.val",
         "path": "MedicationStatement.extension.valueCodeableConcept",
-        "name": "MedicationStatement-MedicationStatement.extension-terminationreason.valueCodeableConcept",
+        "name": "MedicationStatement-MedicationStatement.ext3.val",
         "min": 0,
         "maxLength": 0,
         "mustSupport": false,
@@ -1882,9 +1882,9 @@
         "isSummary": false
       },
       {
-        "id": "MedicationStatement-MedicationStatement.reasonForUse-x-",
+        "id": "MedicationStatement-MedicationStatement.reasonForUsex",
         "path": "MedicationStatement.reasonForUse[x]",
-        "name": "MedicationStatement-MedicationStatement.reasonForUse-x-",
+        "name": "MedicationStatement-MedicationStatement.reasonForUsex",
         "min": 0,
         "type": [
           {
@@ -1903,9 +1903,9 @@
         "isSummary": false
       },
       {
-        "id": "MedicationStatement-MedicationStatement.effective-x-",
+        "id": "MedicationStatement-MedicationStatement.effectivex",
         "path": "MedicationStatement.effective[x]",
-        "name": "MedicationStatement-MedicationStatement.effective-x-",
+        "name": "MedicationStatement-MedicationStatement.effectivex",
         "min": 1,
         "max": "1",
         "maxLength": 0,
@@ -1914,9 +1914,9 @@
         "isSummary": false
       },
       {
-        "id": "MedicationStatement-MedicationStatement.medication-x-",
+        "id": "MedicationStatement-MedicationStatement.medicationx",
         "path": "MedicationStatement.medication[x]",
-        "name": "MedicationStatement-MedicationStatement.medication-x-",
+        "name": "MedicationStatement-MedicationStatement.medicationx",
         "slicing": {
           "id": "3",
           "discriminator": [
@@ -1943,9 +1943,9 @@
         "isSummary": false
       },
       {
-        "id": "MedicationStatement-MedicationStatement.medicationCodeableConcept-CodeableConcept",
+        "id": "MedicationStatement-MedicationStatement.med",
         "path": "MedicationStatement.medicationCodeableConcept",
-        "name": "MedicationStatement-MedicationStatement.medicationCodeableConcept-CodeableConcept",
+        "name": "MedicationStatement-MedicationStatement.med",
         "min": 0,
         "type": [
           {
@@ -1957,7 +1957,7 @@
         "isModifier": false,
         "isSummary": false,
         "binding": {
-          "strength": "required",
+          "strength": "extensible",
           "valueSetReference": {
             "reference": "http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes"
           }
@@ -1993,9 +1993,9 @@
         "isSummary": false
       },
       {
-        "id": "MedicationStatement-MedicationStatement.dosage.asNeeded-x-",
+        "id": "MedicationStatement-MedicationStatement.dosage.asNeededx",
         "path": "MedicationStatement.dosage.asNeeded[x]",
-        "name": "MedicationStatement-MedicationStatement.dosage.asNeeded-x-",
+        "name": "MedicationStatement-MedicationStatement.dosage.asNeededx",
         "slicing": {
           "id": "1",
           "discriminator": [
@@ -2011,9 +2011,9 @@
         "isSummary": false
       },
       {
-        "id": "MedicationStatement-MedicationStatement.dosage.asNeededCodeableConcept-CodeableConcept",
+        "id": "MedicationStatement-MedicationStatement.dosage.asN",
         "path": "MedicationStatement.dosage.asNeededCodeableConcept",
-        "name": "MedicationStatement-MedicationStatement.dosage.asNeededCodeableConcept-CodeableConcept",
+        "name": "MedicationStatement-MedicationStatement.dosage.asN",
         "min": 0,
         "type": [
           {
@@ -2032,9 +2032,9 @@
         }
       },
       {
-        "id": "MedicationStatement-MedicationStatement.dosage.siteCodeableConcept-CodeableConcept",
+        "id": "MedicationStatement-MedicationStatement.dosage.sit",
         "path": "MedicationStatement.dosage.siteCodeableConcept",
-        "name": "MedicationStatement-MedicationStatement.dosage.siteCodeableConcept-CodeableConcept",
+        "name": "MedicationStatement-MedicationStatement.dosage.sit",
         "min": 0,
         "type": [
           {

@@ -48,7 +48,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
     <system value="http://hl7.org/fhir/us/mcode"/>
     <value value="shr.core.MedicationStatement"/>
   </identifier>
-  <version value="0.9.0 draft candidate 1"/>
+  <version value="0.9.0 Beta 1"/>
   <name value="MedicationStatement"/>
   <display value="shr-core-MedicationStatement"/>
   <status value="draft"/>
@@ -60,7 +60,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-04-08T00:00:00-04:00"/>
+  <date value="2019-04-10T00:00:00-04:00"/>
   <description value="A record of the use of a medication.&#xA;Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).&#xA;The treatment of &#39;not taken&#39; has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the &#39;not taken&#39; attributes are profiled out.&#xA;ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously."/>
   <code>
     <system value="http://snomed.info/sct"/>
@@ -394,9 +394,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="MedicationStatement-MedicationStatement.extension-category.extension-extension">
+    <element id="MedicationStatement-MedicationStatement.extension-category.ext1">
       <path value="MedicationStatement.extension.extension"/>
-      <name value="MedicationStatement-MedicationStatement.extension-category.extension-extension"/>
+      <name value="MedicationStatement-MedicationStatement.extension-category.ext1"/>
       <short value="Extension"/>
       <definition value="An Extension"/>
       <min value="0"/>
@@ -440,9 +440,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="MedicationStatement-MedicationStatement.extension-category.valueCodeableConcept">
+    <element id="MedicationStatement-MedicationStatement.extension-category.val">
       <path value="MedicationStatement.extension.valueCodeableConcept"/>
-      <name value="MedicationStatement-MedicationStatement.extension-category.valueCodeableConcept"/>
+      <name value="MedicationStatement-MedicationStatement.extension-category.val"/>
       <short value="Value of extension"/>
       <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
       <min value="1"/>
@@ -473,9 +473,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
     <element id="treatmentintent">
       <path value="MedicationStatement.extension"/>
       <name value="treatmentintent"/>
-      <definition value="The intended result from a given treatment.  Examples include curative, palliative, and supportive."/>
+      <definition value="The purpose of a treatment. A simplified set of values include only two choices: curative and palliative. Curative is defined as any treatment meant to reduce or control a disease process, even if a &#39;cure&#39; is not anticipated. Palliative includes treatments meant to reduce symptoms and side effects, such as antiemetics. If a treatment does both, it should be recorded as curative."/>
       <min value="0"/>
-      <max value="*"/>
+      <max value="1"/>
       <base>
         <path value="MedicationStatement.extension"/>
         <min value="0"/>
@@ -510,10 +510,10 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="MedicationStatement-MedicationStatement.extension-terminationreason.id">
+    <element id="MedicationStatement-MedicationStatement.ext3.id">
       <path value="MedicationStatement.extension.id"/>
       <representation value="xmlAttr"/>
-      <name value="MedicationStatement-MedicationStatement.extension-terminationreason.id"/>
+      <name value="MedicationStatement-MedicationStatement.ext3.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
       <min value="0"/>
@@ -535,9 +535,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="MedicationStatement-MedicationStatement.extension-terminationreason.extension-extension">
+    <element id="MedicationStatement-MedicationStatement.ext3.ext1">
       <path value="MedicationStatement.extension.extension"/>
-      <name value="MedicationStatement-MedicationStatement.extension-terminationreason.extension-extension"/>
+      <name value="MedicationStatement-MedicationStatement.ext3.ext1"/>
       <short value="Extension"/>
       <definition value="An Extension"/>
       <min value="0"/>
@@ -555,10 +555,10 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="MedicationStatement-MedicationStatement.extension-terminationreason.url">
+    <element id="MedicationStatement-MedicationStatement.ext3.url">
       <path value="MedicationStatement.extension.url"/>
       <representation value="xmlAttr"/>
-      <name value="MedicationStatement-MedicationStatement.extension-terminationreason.url"/>
+      <name value="MedicationStatement-MedicationStatement.ext3.url"/>
       <short value="identifies the meaning of the extension"/>
       <definition value="Source of the definition for the extension code - a logical name or a URL."/>
       <min value="1"/>
@@ -581,9 +581,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="MedicationStatement-MedicationStatement.extension-terminationreason.valueCodeableConcept">
+    <element id="MedicationStatement-MedicationStatement.ext3.val">
       <path value="MedicationStatement.extension.valueCodeableConcept"/>
-      <name value="MedicationStatement-MedicationStatement.extension-terminationreason.valueCodeableConcept"/>
+      <name value="MedicationStatement-MedicationStatement.ext3.val"/>
       <short value="Value of extension"/>
       <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
       <min value="1"/>
@@ -833,9 +833,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         <map value="SubstanceAdministration-&gt;Reason-&gt;Observation-&gt;Value"/>
       </mapping>
     </element>
-    <element id="MedicationStatement-MedicationStatement.reasonForUse-x-">
+    <element id="MedicationStatement-MedicationStatement.reasonForUsex">
       <path value="MedicationStatement.reasonForUse[x]"/>
-      <name value="MedicationStatement-MedicationStatement.reasonForUse-x-"/>
+      <name value="MedicationStatement-MedicationStatement.reasonForUsex"/>
       <definition value="A reason for why the medication is being/was taken."/>
       <min value="0"/>
       <max value="1"/>
@@ -863,9 +863,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         </valueSetReference>
       </binding>
     </element>
-    <element id="MedicationStatement-MedicationStatement.effective-x-">
+    <element id="MedicationStatement-MedicationStatement.effectivex">
       <path value="MedicationStatement.effective[x]"/>
-      <name value="MedicationStatement-MedicationStatement.effective-x-"/>
+      <name value="MedicationStatement-MedicationStatement.effectivex"/>
       <short value="Over what period was medication consumed?"/>
       <definition value="The interval of time during which it is being asserted that the patient was taking the medication (or was not taking, when the wasNotGiven element is true)."/>
       <comments value="If the medication is still being taken at the time the statement is recorded, the &quot;end&quot; date will be omitted."/>
@@ -937,9 +937,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="MedicationStatement-MedicationStatement.medication-x-">
+    <element id="MedicationStatement-MedicationStatement.medicationx">
       <path value="MedicationStatement.medication[x]"/>
-      <name value="MedicationStatement-MedicationStatement.medication-x-"/>
+      <name value="MedicationStatement-MedicationStatement.medicationx"/>
       <slicing id="3">
         <discriminator value="$this/@type"/>
         <ordered value="false"/>
@@ -982,9 +982,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         <map value="what"/>
       </mapping>
     </element>
-    <element id="MedicationStatement-MedicationStatement.medicationCodeableConcept-CodeableConcept">
+    <element id="MedicationStatement-MedicationStatement.med">
       <path value="MedicationStatement.medicationCodeableConcept"/>
-      <name value="MedicationStatement-MedicationStatement.medicationCodeableConcept-CodeableConcept"/>
+      <name value="MedicationStatement-MedicationStatement.med"/>
       <short value="What medication was taken"/>
       <definition value="Identifies the medication being administered. This is either a link to a resource representing the details of the medication or a simple attribute carrying a code that identifies the medication from a known list of medications."/>
       <min value="1"/>
@@ -1002,7 +1002,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <isModifier value="false"/>
       <isSummary value="false"/>
       <binding>
-        <strength value="required"/>
+        <strength value="extensible"/>
         <valueSetReference>
           <reference value="http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes"/>
         </valueSetReference>
@@ -1157,9 +1157,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         <map value=".effectiveTime"/>
       </mapping>
     </element>
-    <element id="MedicationStatement-MedicationStatement.dosage.asNeeded-x-">
+    <element id="MedicationStatement-MedicationStatement.dosage.asNeededx">
       <path value="MedicationStatement.dosage.asNeeded[x]"/>
-      <name value="MedicationStatement-MedicationStatement.dosage.asNeeded-x-"/>
+      <name value="MedicationStatement-MedicationStatement.dosage.asNeededx"/>
       <slicing id="1">
         <discriminator value="$this/@type"/>
         <ordered value="false"/>
@@ -1193,9 +1193,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         <map value="boolean: .outboundRelationship[typeCode=PRCN].negationInd (inversed - so negationInd = true means asNeeded=false  CodeableConcept: .outboundRelationship[typCode=PRCN].target[classCode=OBS, moodCode=EVN, isCriterionInd=true, code=&quot;Assertion&quot;].value"/>
       </mapping>
     </element>
-    <element id="MedicationStatement-MedicationStatement.dosage.asNeededCodeableConcept-CodeableConcept">
+    <element id="MedicationStatement-MedicationStatement.dosage.asN">
       <path value="MedicationStatement.dosage.asNeededCodeableConcept"/>
-      <name value="MedicationStatement-MedicationStatement.dosage.asNeededCodeableConcept-CodeableConcept"/>
+      <name value="MedicationStatement-MedicationStatement.dosage.asN"/>
       <short value="Take &quot;as needed&quot; (for x)"/>
       <definition value="Indicates whether the Medication is only taken when needed within a specific dosing schedule (Boolean option), or it indicates the precondition for taking the Medication (CodeableConcept).    Specifically if &#39;boolean&#39; datatype is selected, then the following logic applies:  If set to True, this indicates that the medication is only taken when needed, within the specified schedule."/>
       <min value="0"/>
@@ -1219,9 +1219,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         </valueSetReference>
       </binding>
     </element>
-    <element id="MedicationStatement-MedicationStatement.dosage.siteCodeableConcept-CodeableConcept">
+    <element id="MedicationStatement-MedicationStatement.dosage.sit">
       <path value="MedicationStatement.dosage.siteCodeableConcept"/>
-      <name value="MedicationStatement-MedicationStatement.dosage.siteCodeableConcept-CodeableConcept"/>
+      <name value="MedicationStatement-MedicationStatement.dosage.sit"/>
       <short value="Where (on body) medication is/was administered"/>
       <definition value="A coded specification of or a reference to the anatomic site where the medication first enters the body."/>
       <min value="0"/>
@@ -1307,9 +1307,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         <map value=".methodCode"/>
       </mapping>
     </element>
-    <element id="MedicationStatement-MedicationStatement.dosage.quantity-x-">
+    <element id="MedicationStatement-MedicationStatement.dosage.quantityx">
       <path value="MedicationStatement.dosage.quantity[x]"/>
-      <name value="MedicationStatement-MedicationStatement.dosage.quantity-x-"/>
+      <name value="MedicationStatement-MedicationStatement.dosage.quantityx"/>
       <short value="Amount administered in one dose"/>
       <definition value="The amount of therapeutic or other substance given at one administration event."/>
       <min value="0"/>
@@ -1335,9 +1335,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         <map value=".doseQuantity"/>
       </mapping>
     </element>
-    <element id="MedicationStatement-MedicationStatement.dosage.rate-x-">
+    <element id="MedicationStatement-MedicationStatement.dosage.ratex">
       <path value="MedicationStatement.dosage.rate[x]"/>
-      <name value="MedicationStatement-MedicationStatement.dosage.rate-x-"/>
+      <name value="MedicationStatement-MedicationStatement.dosage.ratex"/>
       <short value="Dose quantity per unit of time"/>
       <definition value="Identifies the speed with which the medication was or will be introduced into the patient. Typically the rate for an infusion e.g. 100 ml per 1 hour or 100 ml/hr.  May also be expressed as a rate per unit of time e.g. 500 ml per 2 hours.   Currently we do not specify a default of &#39;1&#39; in the denominator, but this is being discussed. Other examples: 200 mcg/min or 200 mcg/1 minute; 1 liter/8 hours."/>
       <min value="0"/>
@@ -1476,9 +1476,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="MedicationStatement-MedicationStatement.extension-category.valueCodeableConcept">
+    <element id="MedicationStatement-MedicationStatement.extension-category.val">
       <path value="MedicationStatement.extension.valueCodeableConcept"/>
-      <name value="MedicationStatement-MedicationStatement.extension-category.valueCodeableConcept"/>
+      <name value="MedicationStatement-MedicationStatement.extension-category.val"/>
       <min value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1494,9 +1494,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
     <element id="treatmentintent">
       <path value="MedicationStatement.extension"/>
       <name value="treatmentintent"/>
-      <definition value="The intended result from a given treatment.  Examples include curative, palliative, and supportive."/>
+      <definition value="The purpose of a treatment. A simplified set of values include only two choices: curative and palliative. Curative is defined as any treatment meant to reduce or control a disease process, even if a &#39;cure&#39; is not anticipated. Palliative includes treatments meant to reduce symptoms and side effects, such as antiemetics. If a treatment does both, it should be recorded as curative."/>
       <min value="0"/>
-      <max value="*"/>
+      <max value="1"/>
       <base>
         <path value="MedicationStatement.extension"/>
         <min value="0"/>
@@ -1531,9 +1531,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="MedicationStatement-MedicationStatement.extension-terminationreason.valueCodeableConcept">
+    <element id="MedicationStatement-MedicationStatement.ext3.val">
       <path value="MedicationStatement.extension.valueCodeableConcept"/>
-      <name value="MedicationStatement-MedicationStatement.extension-terminationreason.valueCodeableConcept"/>
+      <name value="MedicationStatement-MedicationStatement.ext3.val"/>
       <min value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1594,9 +1594,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="MedicationStatement-MedicationStatement.reasonForUse-x-">
+    <element id="MedicationStatement-MedicationStatement.reasonForUsex">
       <path value="MedicationStatement.reasonForUse[x]"/>
-      <name value="MedicationStatement-MedicationStatement.reasonForUse-x-"/>
+      <name value="MedicationStatement-MedicationStatement.reasonForUsex"/>
       <min value="0"/>
       <type>
         <code value="CodeableConcept"/>
@@ -1610,9 +1610,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="MedicationStatement-MedicationStatement.effective-x-">
+    <element id="MedicationStatement-MedicationStatement.effectivex">
       <path value="MedicationStatement.effective[x]"/>
-      <name value="MedicationStatement-MedicationStatement.effective-x-"/>
+      <name value="MedicationStatement-MedicationStatement.effectivex"/>
       <min value="1"/>
       <max value="1"/>
       <maxLength value="0"/>
@@ -1620,9 +1620,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="MedicationStatement-MedicationStatement.medication-x-">
+    <element id="MedicationStatement-MedicationStatement.medicationx">
       <path value="MedicationStatement.medication[x]"/>
-      <name value="MedicationStatement-MedicationStatement.medication-x-"/>
+      <name value="MedicationStatement-MedicationStatement.medicationx"/>
       <slicing id="3">
         <discriminator value="$this/@type"/>
         <ordered value="false"/>
@@ -1641,9 +1641,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="MedicationStatement-MedicationStatement.medicationCodeableConcept-CodeableConcept">
+    <element id="MedicationStatement-MedicationStatement.med">
       <path value="MedicationStatement.medicationCodeableConcept"/>
-      <name value="MedicationStatement-MedicationStatement.medicationCodeableConcept-CodeableConcept"/>
+      <name value="MedicationStatement-MedicationStatement.med"/>
       <min value="0"/>
       <type>
         <code value="CodeableConcept"/>
@@ -1653,7 +1653,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <isModifier value="false"/>
       <isSummary value="false"/>
       <binding>
-        <strength value="required"/>
+        <strength value="extensible"/>
         <valueSetReference>
           <reference value="http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes"/>
         </valueSetReference>
@@ -1682,9 +1682,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="MedicationStatement-MedicationStatement.dosage.asNeeded-x-">
+    <element id="MedicationStatement-MedicationStatement.dosage.asNeededx">
       <path value="MedicationStatement.dosage.asNeeded[x]"/>
-      <name value="MedicationStatement-MedicationStatement.dosage.asNeeded-x-"/>
+      <name value="MedicationStatement-MedicationStatement.dosage.asNeededx"/>
       <slicing id="1">
         <discriminator value="$this/@type"/>
         <ordered value="false"/>
@@ -1696,9 +1696,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="MedicationStatement-MedicationStatement.dosage.asNeededCodeableConcept-CodeableConcept">
+    <element id="MedicationStatement-MedicationStatement.dosage.asN">
       <path value="MedicationStatement.dosage.asNeededCodeableConcept"/>
-      <name value="MedicationStatement-MedicationStatement.dosage.asNeededCodeableConcept-CodeableConcept"/>
+      <name value="MedicationStatement-MedicationStatement.dosage.asN"/>
       <min value="0"/>
       <type>
         <code value="CodeableConcept"/>
@@ -1714,9 +1714,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         </valueSetReference>
       </binding>
     </element>
-    <element id="MedicationStatement-MedicationStatement.dosage.siteCodeableConcept-CodeableConcept">
+    <element id="MedicationStatement-MedicationStatement.dosage.sit">
       <path value="MedicationStatement.dosage.siteCodeableConcept"/>
-      <name value="MedicationStatement-MedicationStatement.dosage.siteCodeableConcept-CodeableConcept"/>
+      <name value="MedicationStatement-MedicationStatement.dosage.sit"/>
       <min value="0"/>
       <type>
         <code value="CodeableConcept"/>

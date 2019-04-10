@@ -3,7 +3,7 @@
   "id": "shr-core-Procedure",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Procedure Profile</b></p>\n  <p>A procedure that has been performed.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Procedure maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-procedure:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Code maps to code\n  PatientSubjectOfRecord maps to subject\n  Category maps to category\n  constrain notPerformed to 0..0\n  constrain reasonNotPerformed to 0..0\n  BodyLocation.LocationCode maps to bodySite\n  BodyLocation.Laterality maps to bodySite.extension\n  BodyLocation.Orientation maps to bodySite.extension\n  BodyLocation.RelationToLandmark maps to bodySite.extension\n  Annotation maps to notes\n  CareContext maps to encounter\n  OccurrenceTimeOrPeriod maps to performed[x]\n  Participation maps to performer\n  Participation.Participant maps to performer.actor\n  Participation.ParticipationType maps to performer.role\n  Status maps to status\n  RelatedRequest.MedicationRequest maps to request\n  RelatedRequest.ProcedureRequest maps to request\n  RelatedRequest.ReferralRequest maps to request\n  Outcome maps to outcome\n  Location maps to location\n  MaterialUsed maps to used\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Procedure Profile</b></p>\n  <p>A procedure that has been performed.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Procedure maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-procedure:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Code maps to code\n  PatientSubjectOfRecord maps to subject\n  Category maps to category\n  constrain notPerformed to 0..0\n  constrain reasonNotPerformed to 0..0\n  BodyLocation.LocationCode maps to bodySite\n  BodyLocation.Laterality maps to bodySite.extension\n  BodyLocation.Orientation maps to bodySite.extension\n  BodyLocation.RelationToLandmark maps to bodySite.extension\n  Annotation maps to notes\n  CareContext maps to encounter\n  OccurrenceTimeOrPeriod maps to performed[x]\n  Participation maps to performer\n  Participation.Participant maps to performer.actor\n  Participation.ParticipationType maps to performer.role\n  Status maps to status\n  RelatedRequest.MedicationRequest maps to request\n  RelatedRequest.ProcedureRequest maps to request\n  RelatedRequest.ReferralRequest maps to request\n  Outcome maps to outcome\n  Location maps to location\n  MaterialUsed maps to used\n  FocalDevice maps to focalDevice\n</pre></p>\n</div>"
   },
   "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure",
   "identifier": [
@@ -12,7 +12,7 @@
       "value": "shr.core.Procedure"
     }
   ],
-  "version": "0.9.0 draft candidate 1",
+  "version": "0.9.0 Beta 1",
   "name": "Procedure",
   "display": "shr-core-Procedure",
   "status": "draft",
@@ -28,7 +28,7 @@
       ]
     }
   ],
-  "date": "2019-04-08T00:00:00-04:00",
+  "date": "2019-04-10T00:00:00-04:00",
   "description": "A procedure that has been performed.",
   "fhirVersion": "1.0.2",
   "mapping": [
@@ -537,9 +537,9 @@
         "id": "treatmentintent",
         "path": "Procedure.extension",
         "name": "treatmentintent",
-        "definition": "The intended result from a given treatment.  Examples include curative, palliative, and supportive.",
+        "definition": "The purpose of a treatment. A simplified set of values include only two choices: curative and palliative. Curative is defined as any treatment meant to reduce or control a disease process, even if a 'cure' is not anticipated. Palliative includes treatments meant to reduce symptoms and side effects, such as antiemetics. If a treatment does both, it should be recorded as curative.",
         "min": 0,
-        "max": "*",
+        "max": "1",
         "base": {
           "path": "Procedure.extension",
           "min": 0,
@@ -954,7 +954,7 @@
         "id": "laterality",
         "path": "Procedure.bodySite.extension",
         "name": "laterality",
-        "definition": "Body side of the body location, if needed to distinguish from a similar location on the other side of the body.",
+        "definition": "Body side of the body location, if needed to distinguish from a similar location on the other side of the body.\n\nThis extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
         "min": 0,
         "max": "*",
         "base": {
@@ -979,7 +979,7 @@
         "id": "orientation",
         "path": "Procedure.bodySite.extension",
         "name": "orientation",
-        "definition": "Orientation of the body location, if needed to distinguish from a similar location in another orientation.",
+        "definition": "Orientation of the body location, if needed to distinguish from a similar location in another orientation.\nThis extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
         "min": 0,
         "max": "*",
         "base": {
@@ -1004,7 +1004,7 @@
         "id": "relationtolandmark",
         "path": "Procedure.bodySite.extension",
         "name": "relationtolandmark",
-        "definition": "An anatomical landmark that helps determine a body location.",
+        "definition": "The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:\n* Specifying the location and type of landmark using a body site code and optional laterality/orientation,\n* Specifying the direction from the landmark to the body location, and\n* Specifying the distance from the landmark to the body location.\n\nThis extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
         "min": 0,
         "max": "*",
         "base": {
@@ -1094,9 +1094,9 @@
         ]
       },
       {
-        "id": "Procedure.reason-x-",
+        "id": "Procedure.reasonx",
         "path": "Procedure.reason[x]",
-        "name": "Procedure.reason-x-",
+        "name": "Procedure.reasonx",
         "short": "Reason procedure performed",
         "definition": "The reason why the procedure was performed. This may be due to a Condition, may be coded entity of some type, or may simply be present as text.",
         "comments": "e.g. endoscopy for dilatation and biopsy, combination diagnosis and therapeutic.",
@@ -1350,9 +1350,9 @@
         ]
       },
       {
-        "id": "Procedure.performed-x-",
+        "id": "Procedure.performedx",
         "path": "Procedure.performed[x]",
-        "name": "Procedure.performed-x-",
+        "name": "Procedure.performedx",
         "short": "Date/Period the procedure was performed",
         "definition": "The date(time)/period over which the procedure was performed. Allows a period to support complex procedures that span more than one date, and also allows for the length of the procedure to be captured.",
         "min": 1,
@@ -2040,9 +2040,9 @@
         "id": "treatmentintent",
         "path": "Procedure.extension",
         "name": "treatmentintent",
-        "definition": "The intended result from a given treatment.  Examples include curative, palliative, and supportive.",
+        "definition": "The purpose of a treatment. A simplified set of values include only two choices: curative and palliative. Curative is defined as any treatment meant to reduce or control a disease process, even if a 'cure' is not anticipated. Palliative includes treatments meant to reduce symptoms and side effects, such as antiemetics. If a treatment does both, it should be recorded as curative.",
         "min": 0,
-        "max": "*",
+        "max": "1",
         "base": {
           "path": "Procedure.extension",
           "min": 0,
@@ -2155,7 +2155,7 @@
         "id": "laterality",
         "path": "Procedure.bodySite.extension",
         "name": "laterality",
-        "definition": "Body side of the body location, if needed to distinguish from a similar location on the other side of the body.",
+        "definition": "Body side of the body location, if needed to distinguish from a similar location on the other side of the body.\n\nThis extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
         "min": 0,
         "max": "*",
         "base": {
@@ -2180,7 +2180,7 @@
         "id": "orientation",
         "path": "Procedure.bodySite.extension",
         "name": "orientation",
-        "definition": "Orientation of the body location, if needed to distinguish from a similar location in another orientation.",
+        "definition": "Orientation of the body location, if needed to distinguish from a similar location in another orientation.\nThis extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
         "min": 0,
         "max": "*",
         "base": {
@@ -2205,7 +2205,7 @@
         "id": "relationtolandmark",
         "path": "Procedure.bodySite.extension",
         "name": "relationtolandmark",
-        "definition": "An anatomical landmark that helps determine a body location.",
+        "definition": "The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:\n* Specifying the location and type of landmark using a body site code and optional laterality/orientation,\n* Specifying the direction from the landmark to the body location, and\n* Specifying the distance from the landmark to the body location.\n\nThis extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
         "min": 0,
         "max": "*",
         "base": {

@@ -44,7 +44,7 @@
     <system value="http://hl7.org/fhir/us/mcode"/>
     <value value="shr.core.ProcedureRequest"/>
   </identifier>
-  <version value="0.9.0 draft candidate 1"/>
+  <version value="0.9.0 Beta 1"/>
   <name value="ProcedureRequest"/>
   <display value="shr-core-ProcedureRequest"/>
   <status value="draft"/>
@@ -56,7 +56,7 @@
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-04-08T00:00:00-04:00"/>
+  <date value="2019-04-10T00:00:00-04:00"/>
   <description value="A request for a procedure to be performed. May be a proposal or an order."/>
   <fhirVersion value="1.0.2"/>
   <mapping>
@@ -288,9 +288,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="ProcedureRequest-ProcedureRequest.extension-requestintent.extension-extension">
+    <element id="ProcedureRequest-ProcedureRequest.extension-requestintent.ext">
       <path value="ProcedureRequest.extension.extension"/>
-      <name value="ProcedureRequest-ProcedureRequest.extension-requestintent.extension-extension"/>
+      <name value="ProcedureRequest-ProcedureRequest.extension-requestintent.ext"/>
       <short value="Extension"/>
       <definition value="An Extension"/>
       <min value="0"/>
@@ -334,9 +334,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="ProcedureRequest-ProcedureRequest.extension-requestintent.valueCodeableConcept">
+    <element id="ProcedureRequest-ProcedureRequest.extension-requestintent.val">
       <path value="ProcedureRequest.extension.valueCodeableConcept"/>
-      <name value="ProcedureRequest-ProcedureRequest.extension-requestintent.valueCodeableConcept"/>
+      <name value="ProcedureRequest-ProcedureRequest.extension-requestintent.val"/>
       <short value="Value of extension"/>
       <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
       <min value="1"/>
@@ -449,9 +449,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="ProcedureRequest-ProcedureRequest.extension-partof.extension-extension">
+    <element id="ProcedureRequest-ProcedureRequest.extension-partof.ext">
       <path value="ProcedureRequest.extension.extension"/>
-      <name value="ProcedureRequest-ProcedureRequest.extension-partof.extension-extension"/>
+      <name value="ProcedureRequest-ProcedureRequest.extension-partof.ext"/>
       <short value="Extension"/>
       <definition value="An Extension"/>
       <min value="0"/>
@@ -495,9 +495,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="ProcedureRequest-ProcedureRequest.extension-partof.valueReference">
+    <element id="ProcedureRequest-ProcedureRequest.extension-partof.val1">
       <path value="ProcedureRequest.extension.valueReference"/>
-      <name value="ProcedureRequest-ProcedureRequest.extension-partof.valueReference"/>
+      <name value="ProcedureRequest-ProcedureRequest.extension-partof.val1"/>
       <short value="Procedure"/>
       <definition value="A procedure that has been performed."/>
       <min value="1"/>
@@ -785,7 +785,7 @@
     <element id="laterality">
       <path value="ProcedureRequest.bodySite.extension"/>
       <name value="laterality"/>
-      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body."/>
+      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body.&#xA;&#xA;This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -805,7 +805,7 @@
     <element id="orientation">
       <path value="ProcedureRequest.bodySite.extension"/>
       <name value="orientation"/>
-      <definition value="Orientation of the body location, if needed to distinguish from a similar location in another orientation."/>
+      <definition value="Orientation of the body location, if needed to distinguish from a similar location in another orientation.&#xA;This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -825,7 +825,7 @@
     <element id="relationtolandmark">
       <path value="ProcedureRequest.bodySite.extension"/>
       <name value="relationtolandmark"/>
-      <definition value="An anatomical landmark that helps determine a body location."/>
+      <definition value="The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:&#xA;* Specifying the location and type of landmark using a body site code and optional laterality/orientation,&#xA;* Specifying the direction from the landmark to the body location, and&#xA;* Specifying the distance from the landmark to the body location.&#xA;&#xA;This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -900,9 +900,9 @@
         <map value="./originalText[mediaType/code=&quot;text/plain&quot;]/data"/>
       </mapping>
     </element>
-    <element id="ProcedureRequest-ProcedureRequest.reason-x-">
+    <element id="ProcedureRequest-ProcedureRequest.reasonx">
       <path value="ProcedureRequest.reason[x]"/>
-      <name value="ProcedureRequest-ProcedureRequest.reason-x-"/>
+      <name value="ProcedureRequest-ProcedureRequest.reasonx"/>
       <short value="Why procedure should occur"/>
       <definition value="The reason why the procedure is being proposed or ordered. This procedure request may be motivated by a Condition for instance."/>
       <min value="0"/>
@@ -930,9 +930,9 @@
         <map value="Action.indication.reason"/>
       </mapping>
     </element>
-    <element id="ProcedureRequest-ProcedureRequest.scheduled-x-">
+    <element id="ProcedureRequest-ProcedureRequest.scheduledx">
       <path value="ProcedureRequest.scheduled[x]"/>
-      <name value="ProcedureRequest-ProcedureRequest.scheduled-x-"/>
+      <name value="ProcedureRequest-ProcedureRequest.scheduledx"/>
       <short value="When procedure should occur"/>
       <definition value="The timing schedule for the proposed or ordered procedure. The Schedule data type allows many different expressions.  E.g. &quot;Every 8 hours&quot;; &quot;Three times a day&quot;; &quot;1/2 an hour before breakfast for 10 days from 23-Dec 2011:&quot;; &quot;15 Oct 2013, 17 Oct 2013 and 1 Nov 2013&quot;."/>
       <min value="0"/>
@@ -1062,9 +1062,9 @@
         <map value="ClinicalStatement.additionalText"/>
       </mapping>
     </element>
-    <element id="ProcedureRequest-ProcedureRequest.asNeeded-x-">
+    <element id="ProcedureRequest-ProcedureRequest.asNeededx">
       <path value="ProcedureRequest.asNeeded[x]"/>
-      <name value="ProcedureRequest-ProcedureRequest.asNeeded-x-"/>
+      <name value="ProcedureRequest-ProcedureRequest.asNeededx"/>
       <short value="Preconditions for procedure"/>
       <definition value="If a CodeableConcept is present, it indicates the pre-condition for performing the procedure."/>
       <min value="0"/>
@@ -1217,9 +1217,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="ProcedureRequest-ProcedureRequest.extension-requestintent.valueCodeableConcept">
+    <element id="ProcedureRequest-ProcedureRequest.extension-requestintent.val">
       <path value="ProcedureRequest.extension.valueCodeableConcept"/>
-      <name value="ProcedureRequest-ProcedureRequest.extension-requestintent.valueCodeableConcept"/>
+      <name value="ProcedureRequest-ProcedureRequest.extension-requestintent.val"/>
       <min value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1292,9 +1292,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="ProcedureRequest-ProcedureRequest.extension-partof.valueReference">
+    <element id="ProcedureRequest-ProcedureRequest.extension-partof.val1">
       <path value="ProcedureRequest.extension.valueReference"/>
-      <name value="ProcedureRequest-ProcedureRequest.extension-partof.valueReference"/>
+      <name value="ProcedureRequest-ProcedureRequest.extension-partof.val1"/>
       <short value="Procedure"/>
       <definition value="A procedure that has been performed."/>
       <min value="0"/>
@@ -1453,7 +1453,7 @@
     <element id="laterality">
       <path value="ProcedureRequest.bodySite.extension"/>
       <name value="laterality"/>
-      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body."/>
+      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body.&#xA;&#xA;This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1473,7 +1473,7 @@
     <element id="orientation">
       <path value="ProcedureRequest.bodySite.extension"/>
       <name value="orientation"/>
-      <definition value="Orientation of the body location, if needed to distinguish from a similar location in another orientation."/>
+      <definition value="Orientation of the body location, if needed to distinguish from a similar location in another orientation.&#xA;This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1493,7 +1493,7 @@
     <element id="relationtolandmark">
       <path value="ProcedureRequest.bodySite.extension"/>
       <name value="relationtolandmark"/>
-      <definition value="An anatomical landmark that helps determine a body location."/>
+      <definition value="The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:&#xA;* Specifying the location and type of landmark using a body site code and optional laterality/orientation,&#xA;* Specifying the direction from the landmark to the body location, and&#xA;* Specifying the distance from the landmark to the body location.&#xA;&#xA;This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1510,9 +1510,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="ProcedureRequest-ProcedureRequest.reason-x-">
+    <element id="ProcedureRequest-ProcedureRequest.reasonx">
       <path value="ProcedureRequest.reason[x]"/>
-      <name value="ProcedureRequest-ProcedureRequest.reason-x-"/>
+      <name value="ProcedureRequest-ProcedureRequest.reasonx"/>
       <min value="0"/>
       <type>
         <code value="CodeableConcept"/>
@@ -1526,9 +1526,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="ProcedureRequest-ProcedureRequest.scheduled-x-">
+    <element id="ProcedureRequest-ProcedureRequest.scheduledx">
       <path value="ProcedureRequest.scheduled[x]"/>
-      <name value="ProcedureRequest-ProcedureRequest.scheduled-x-"/>
+      <name value="ProcedureRequest-ProcedureRequest.scheduledx"/>
       <min value="0"/>
       <type>
         <code value="dateTime"/>

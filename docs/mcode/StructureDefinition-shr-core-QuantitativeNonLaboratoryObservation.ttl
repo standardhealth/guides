@@ -18,7 +18,7 @@
      fhir:Identifier.system [ fhir:value "http://hl7.org/fhir/us/mcode" ];
      fhir:Identifier.value [ fhir:value "shr.core.QuantitativeNonLaboratoryObservation" ]
   ];
-  fhir:StructureDefinition.version [ fhir:value "0.9.0 draft candidate 1"];
+  fhir:StructureDefinition.version [ fhir:value "0.9.0 Beta 1"];
   fhir:StructureDefinition.name [ fhir:value "QuantitativeNonLaboratoryObservation"];
   fhir:StructureDefinition.display [ fhir:value "shr-core-QuantitativeNonLaboratoryObservation"];
   fhir:StructureDefinition.status [ fhir:value "draft"];
@@ -32,7 +32,7 @@
        fhir:ContactPoint.rank [ fhir:value "0"^^xsd:positiveInteger ]
      ]
   ];
-  fhir:StructureDefinition.date [ fhir:value "2019-04-08T00:00:00-04:00"^^xsd:dateTime];
+  fhir:StructureDefinition.date [ fhir:value "2019-04-10T00:00:00-04:00"^^xsd:dateTime];
   fhir:StructureDefinition.description [ fhir:value "The result of evaluations (measurements, tests, or questions) whose answer is expressed as a code."];
   fhir:StructureDefinition.requirements [ fhir:value "Observations are a key aspect of healthcare.  This resource is used to capture those that do not require more sophisticated mechanisms."];
   fhir:StructureDefinition.fhirVersion [ fhir:value "1.0.2"];
@@ -562,9 +562,9 @@
        ]
      ], [
        fhir:index 15;
-       fhir:ElementDefinition.id [ fhir:value "Observation.effective-x-" ];
+       fhir:ElementDefinition.id [ fhir:value "Observation.effectivex" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.effective[x]" ];
-       fhir:ElementDefinition.name [ fhir:value "Observation.effective-x-" ];
+       fhir:ElementDefinition.name [ fhir:value "Observation.effectivex" ];
        fhir:ElementDefinition.short [ fhir:value "Clinically relevant time/time-period for observation" ];
        fhir:ElementDefinition.definition [ fhir:value "The time or time-period the observed value is asserted as being true. For biological subjects - e.g. human patients - this is usually called the \"physiologically relevant time\". This is usually either the time of the procedure or of specimen collection, but very often the source of the date/time is not known, only the date/time itself." ];
        fhir:ElementDefinition.comments [ fhir:value "At least a date should be present unless this observation is a historical report." ];
@@ -907,7 +907,7 @@
        fhir:ElementDefinition.id [ fhir:value "laterality" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.bodySite.extension" ];
        fhir:ElementDefinition.name [ fhir:value "laterality" ];
-       fhir:ElementDefinition.definition [ fhir:value "Body side of the body location, if needed to distinguish from a similar location on the other side of the body." ];
+       fhir:ElementDefinition.definition [ fhir:value "Body side of the body location, if needed to distinguish from a similar location on the other side of the body.\n\nThis extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5)." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
@@ -932,7 +932,7 @@
        fhir:ElementDefinition.id [ fhir:value "orientation" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.bodySite.extension" ];
        fhir:ElementDefinition.name [ fhir:value "orientation" ];
-       fhir:ElementDefinition.definition [ fhir:value "Orientation of the body location, if needed to distinguish from a similar location in another orientation." ];
+       fhir:ElementDefinition.definition [ fhir:value "Orientation of the body location, if needed to distinguish from a similar location in another orientation.\nThis extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5)." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
@@ -957,7 +957,7 @@
        fhir:ElementDefinition.id [ fhir:value "relationtolandmark" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.bodySite.extension" ];
        fhir:ElementDefinition.name [ fhir:value "relationtolandmark" ];
-       fhir:ElementDefinition.definition [ fhir:value "An anatomical landmark that helps determine a body location." ];
+       fhir:ElementDefinition.definition [ fhir:value "The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:\n* Specifying the location and type of landmark using a body site code and optional laterality/orientation,\n* Specifying the direction from the landmark to the body location, and\n* Specifying the distance from the landmark to the body location.\n\nThis extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5)." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.max [ fhir:value "*" ];
        fhir:ElementDefinition.base [
@@ -1773,9 +1773,9 @@
        ]
      ], [
        fhir:index 53;
-       fhir:ElementDefinition.id [ fhir:value "Observation.component.value-x-" ];
+       fhir:ElementDefinition.id [ fhir:value "Observation.component.valuex" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.component.value[x]" ];
-       fhir:ElementDefinition.name [ fhir:value "Observation.component.value-x-" ];
+       fhir:ElementDefinition.name [ fhir:value "Observation.component.valuex" ];
        fhir:ElementDefinition.short [ fhir:value "Actual component result" ];
        fhir:ElementDefinition.definition [ fhir:value "The information determined as a result of making the observation, if the information has a simple value." ];
        fhir:ElementDefinition.comments [ fhir:value "Normally, an observation will have either a value or a set of related observations. A few observations (e.g. Apgar score) may have both a value and related observations (for an Apgar score, the observations from which the measure is derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.   For boolean values use valueCodeableConcept and select codes from <http://hl7.org/fhir/ValueSet/v2-0136> (These \"yes/no\" concepts can be mapped to the display name \"true/false\" or other mutually exclusive terms that may be needed\").  The element, Observation.value[x], has a variable name depending on the type as follows: valueQuantity, valueCodeableConcept, valueRatio, valueChoice, valuePeriod, valueSampleData, or valueString (The name format is \"'value' + the type name\" with a capital on the first letter of the type)." ];
@@ -2333,7 +2333,7 @@
        fhir:ElementDefinition.id [ fhir:value "laterality" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.bodySite.extension" ];
        fhir:ElementDefinition.name [ fhir:value "laterality" ];
-       fhir:ElementDefinition.definition [ fhir:value "Body side of the body location, if needed to distinguish from a similar location on the other side of the body." ];
+       fhir:ElementDefinition.definition [ fhir:value "Body side of the body location, if needed to distinguish from a similar location on the other side of the body.\n\nThis extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5)." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
@@ -2358,7 +2358,7 @@
        fhir:ElementDefinition.id [ fhir:value "orientation" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.bodySite.extension" ];
        fhir:ElementDefinition.name [ fhir:value "orientation" ];
-       fhir:ElementDefinition.definition [ fhir:value "Orientation of the body location, if needed to distinguish from a similar location in another orientation." ];
+       fhir:ElementDefinition.definition [ fhir:value "Orientation of the body location, if needed to distinguish from a similar location in another orientation.\nThis extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5)." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
@@ -2383,7 +2383,7 @@
        fhir:ElementDefinition.id [ fhir:value "relationtolandmark" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.bodySite.extension" ];
        fhir:ElementDefinition.name [ fhir:value "relationtolandmark" ];
-       fhir:ElementDefinition.definition [ fhir:value "An anatomical landmark that helps determine a body location." ];
+       fhir:ElementDefinition.definition [ fhir:value "The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:\n* Specifying the location and type of landmark using a body site code and optional laterality/orientation,\n* Specifying the direction from the landmark to the body location, and\n* Specifying the distance from the landmark to the body location.\n\nThis extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5)." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.max [ fhir:value "*" ];
        fhir:ElementDefinition.base [
@@ -2528,9 +2528,9 @@
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 21;
-       fhir:ElementDefinition.id [ fhir:value "Observation.component.value-x-" ];
+       fhir:ElementDefinition.id [ fhir:value "Observation.component.valuex" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.component.value[x]" ];
-       fhir:ElementDefinition.name [ fhir:value "Observation.component.value-x-" ];
+       fhir:ElementDefinition.name [ fhir:value "Observation.component.valuex" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.type [
          fhir:index 0;

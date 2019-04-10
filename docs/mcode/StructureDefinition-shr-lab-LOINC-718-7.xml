@@ -17,9 +17,9 @@
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
-  Identifier maps to identifier (slice on = Type.coding.code; slice strategy = includes)
+  Identifier maps to identifier (slice on = type.coding.code; slice strategy = includes)
   ObservationSubjectOfRecord maps to subject
-  Performer maps to performer (slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)
+  PractitionerPerformer maps to performer (slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)
   Code maps to code
   Method maps to method
   CommentOrDescription maps to comments
@@ -57,7 +57,7 @@
     <system value="http://hl7.org/fhir/us/mcode"/>
     <value value="shr.lab.LOINC-718-7"/>
   </identifier>
-  <version value="0.9.0 draft candidate 1"/>
+  <version value="0.9.0 Beta 1"/>
   <name value="LOINC-718-7"/>
   <display value="shr-lab-LOINC-718-7"/>
   <status value="draft"/>
@@ -69,7 +69,7 @@
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-04-08T00:00:00-04:00"/>
+  <date value="2019-04-10T00:00:00-04:00"/>
   <description value="Hemoglobin [Mass/&#x200B;volume] in Blood"/>
   <fhirVersion value="1.0.2"/>
   <mapping>
@@ -356,7 +356,7 @@
       <path value="Observation.identifier"/>
       <name value="Observation.identifier"/>
       <slicing id="2">
-        <discriminator value="Type.coding.code"/>
+        <discriminator value="type.coding.code"/>
         <ordered value="false"/>
         <rules value="open"/>
       </slicing>
@@ -992,9 +992,9 @@
         <map value="context"/>
       </mapping>
     </element>
-    <element id="Observation.effective-x-">
+    <element id="Observation.effectivex">
       <path value="Observation.effective[x]"/>
-      <name value="Observation.effective-x-"/>
+      <name value="Observation.effectivex"/>
       <short value="Clinically relevant time/time-period for observation"/>
       <definition value="For lab tests this is the specimen collection date.  For Ask at Order Entry Questions (AOE)&#39;s this is the date the question was asked."/>
       <comments value="At least a date should be present unless this observation is a historical report."/>
@@ -1087,9 +1087,6 @@
       <type>
         <code value="Reference"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1128,182 +1125,12 @@
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
-    </element>
-    <element id="Observation.valueQuantity-QuantityWithRequiredUnits.id">
-      <path value="Observation.valueQuantity.id"/>
-      <representation value="xmlAttr"/>
-      <name value="Observation.valueQuantity-QuantityWithRequiredUnits.id"/>
-      <short value="xml:id (or equivalent in JSON)"/>
-      <definition value="unique id for the element within a resource (for internal references)."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="id"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Observation.valueQuantity-QuantityWithRequiredUnits.extension">
-      <path value="Observation.valueQuantity.extension"/>
-      <name value="Observation.valueQuantity-QuantityWithRequiredUnits.extension"/>
-      <short value="Additional Content defined by implementations"/>
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
-      <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-      <alias value="extensions"/>
-      <alias value="user content"/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="Extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Observation.valueQuantity-QuantityWithRequiredUnits.value">
-      <path value="Observation.valueQuantity.value"/>
-      <name value="Observation.valueQuantity-QuantityWithRequiredUnits.value"/>
-      <short value="Numerical value (with implicit precision)"/>
-      <definition value="The value of the measured amount. The value includes an implicit precision in the presentation of the value."/>
-      <comments value="The implicit precision in the value should always be honored. Monetary values have their own rules for handling precision (refer to standard accounting text books)."/>
-      <requirements value="Precision is handled implicitly in almost all cases of measurement."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="decimal"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="v2"/>
-        <map value="SN.2  / CQ - N/A"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="PQ.value, CO.value, MO.value, IVL.high or IVL.low depending on the value"/>
-      </mapping>
-    </element>
-    <element id="Observation.valueQuantity-QuantityWithRequiredUnits.comparator">
-      <path value="Observation.valueQuantity.comparator"/>
-      <name value="Observation.valueQuantity-QuantityWithRequiredUnits.comparator"/>
-      <short value="&lt; | &lt;= | &gt;= | &gt; - how to understand the value"/>
-      <definition value="How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is &quot;&lt;&quot; , then the real value is &lt; stated value."/>
-      <comments value="This is labeled as &quot;Is Modifier&quot; because the comparator modifies the interpretation of the value significantly. If there is no comparator, then there is no modification of the value."/>
-      <requirements value="Need a framework for handling measures where the value is &lt;5ug/L or &gt;400mg/L due to the limitations of measuring methodology."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="code"/>
-      </type>
-      <meaningWhenMissing value="If there is no comparator, then there is no modification of the value"/>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="true"/>
-      <isSummary value="true"/>
       <binding>
         <strength value="required"/>
-        <description value="How the Quantity should be understood and represented."/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/quantity-comparator"/>
+          <reference value="http://hl7.org/fhir/us/mcode/shr/lab/vs/ChoiceOfUnitsVS-g-per-dL"/>
         </valueSetReference>
       </binding>
-      <mapping>
-        <identity value="v2"/>
-        <map value="SN.1  / CQ.1"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="IVL properties"/>
-      </mapping>
-    </element>
-    <element id="Observation.valueQuantity-QuantityWithRequiredUnits.unit">
-      <path value="Observation.valueQuantity.unit"/>
-      <name value="Observation.valueQuantity-QuantityWithRequiredUnits.unit"/>
-      <short value="Unit representation"/>
-      <definition value="A human-readable form of the unit."/>
-      <requirements value="There are many representations for units of measure and in many contexts, particular representations are fixed and required. I.e. mcg for micrograms."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="string"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="v2"/>
-        <map value="(see OBX.6 etc.) / CQ.2"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="PQ.unit"/>
-      </mapping>
-    </element>
-    <element id="Observation.valueQuantity-QuantityWithRequiredUnits.system">
-      <path value="Observation.valueQuantity.system"/>
-      <name value="Observation.valueQuantity-QuantityWithRequiredUnits.system"/>
-      <short value="System that defines coded unit form"/>
-      <definition value="The identification of the system that provides the coded form of the unit."/>
-      <requirements value="Need to know the system that defines the coded form of the unit."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="uri"/>
-      </type>
-      <fixedUri value="http://unitsofmeasure.org"/>
-      <maxLength value="0"/>
-      <condition value="qty-3"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="v2"/>
-        <map value="(see OBX.6 etc.) / CQ.2"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="CO.codeSystem, PQ.translation.codeSystem"/>
-      </mapping>
-    </element>
-    <element id="Observation.valueQuantity-QuantityWithRequiredUnits.code">
-      <path value="Observation.valueQuantity.code"/>
-      <name value="Observation.valueQuantity-QuantityWithRequiredUnits.code"/>
-      <short value="Coded form of the unit"/>
-      <definition value="A computer processable form of the unit in some unit representation system."/>
-      <comments value="The preferred system is UCUM, but SNOMED CT can also be used (for customary units) or ISO 4217 for currency.  The context of use may additionally require a code from a particular system."/>
-      <requirements value="Need a computable form of the unit that is fixed across all forms. UCUM provides this for quantities, but SNOMED CT provides many units of interest."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="code"/>
-      </type>
-      <fixedCode value="g/dL"/>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="v2"/>
-        <map value="(see OBX.6 etc.) / CQ.2"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="PQ.code, MO.currency, PQ.translation.code"/>
-      </mapping>
     </element>
     <element id="Observation.dataAbsentReason">
       <path value="Observation.dataAbsentReason"/>
@@ -1313,7 +1140,7 @@
       <comments value="Null or exceptional values can be represented two ways in FHIR Observations.  One way is to simply include them in the value set and represent the exceptions in the value.  For example, measurement values for a serology test could be  &quot;detected&quot;, &quot;not detected&quot;, &quot;inconclusive&quot;, or  &quot;specimen unsatisfactory&quot;.   The alternate way is to use the value element for actual observations and use the explicit dataAbsentReason element to record exceptional values.  For example, the dataAbsentReason code &quot;error&quot; could be used when the measurement was not completed.  Because of these options, use-case agreements are required to interpret general observations for exceptional values."/>
       <requirements value="For many results it is necessary to handle exceptional values in measurements."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="0"/>
       <base>
         <path value="Observation.dataAbsentReason"/>
         <min value="0"/>
@@ -2130,9 +1957,9 @@
         <map value="what"/>
       </mapping>
     </element>
-    <element id="Observation.component.value-x-">
+    <element id="Observation.component.valuex">
       <path value="Observation.component.value[x]"/>
-      <name value="Observation.component.value-x-"/>
+      <name value="Observation.component.valuex"/>
       <short value="Actual component result"/>
       <definition value="The information determined as a result of making the observation, if the information has a simple value."/>
       <comments value="Normally, an observation will have either a value or a set of related observations. A few observations (e.g. Apgar score) may have both a value and related observations (for an Apgar score, the observations from which the measure is derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.   For boolean values use valueCodeableConcept and select codes from &lt;http://hl7.org/fhir/ValueSet/v2-0136&gt; (These &quot;yes/no&quot; concepts can be mapped to the display name &quot;true/false&quot; or other mutually exclusive terms that may be needed&quot;).  The element, Observation.value[x], has a variable name depending on the type as follows: valueQuantity, valueCodeableConcept, valueRatio, valueChoice, valuePeriod, valueSampleData, or valueString (The name format is &quot;&#39;value&#39; + the type name&quot; with a capital on the first letter of the type)."/>
@@ -2458,7 +2285,7 @@
       <path value="Observation.identifier"/>
       <name value="Observation.identifier"/>
       <slicing id="2">
-        <discriminator value="Type.coding.code"/>
+        <discriminator value="type.coding.code"/>
         <ordered value="false"/>
         <rules value="open"/>
       </slicing>
@@ -2608,9 +2435,6 @@
       <type>
         <code value="Reference"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -2629,31 +2453,18 @@
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
-    </element>
-    <element id="Observation.valueQuantity-QuantityWithRequiredUnits.system">
-      <path value="Observation.valueQuantity.system"/>
-      <name value="Observation.valueQuantity-QuantityWithRequiredUnits.system"/>
-      <min value="0"/>
-      <fixedUri value="http://unitsofmeasure.org"/>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="Observation.valueQuantity-QuantityWithRequiredUnits.code">
-      <path value="Observation.valueQuantity.code"/>
-      <name value="Observation.valueQuantity-QuantityWithRequiredUnits.code"/>
-      <min value="0"/>
-      <fixedCode value="g/dL"/>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
+      <binding>
+        <strength value="required"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/us/mcode/shr/lab/vs/ChoiceOfUnitsVS-g-per-dL"/>
+        </valueSetReference>
+      </binding>
     </element>
     <element id="Observation.dataAbsentReason">
       <path value="Observation.dataAbsentReason"/>
       <name value="Observation.dataAbsentReason"/>
       <min value="0"/>
+      <max value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -2791,9 +2602,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component.value-x-">
+    <element id="Observation.component.valuex">
       <path value="Observation.component.value[x]"/>
-      <name value="Observation.component.value-x-"/>
+      <name value="Observation.component.valuex"/>
       <min value="0"/>
       <type>
         <code value="Quantity"/>

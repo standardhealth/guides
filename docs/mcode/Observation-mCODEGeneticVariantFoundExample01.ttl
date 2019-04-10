@@ -11,15 +11,22 @@
   fhir:Observation.id [ fhir:value "mCODEGeneticVariantFoundExample01"];
   fhir:Observation.meta [
      fhir:Meta.profile [
-       fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-GeneticVariantFound";
+       fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-GeneticVariantFound";
        fhir:index 0
      ]
   ];
   fhir:Observation.text [
      fhir:Narrative.status [ fhir:value "generated" ];
-     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n			<p>\n				<b>Genetic Variant Assessment</b>\n			</p>\n			<p>\n				<b>id</b>: example</p>\n			<p>\n				<b>Patient identifier</b>: m123</p>\n			<p><b>Name</b>: John B. Anyperson </p>\n			<p>\n				<b>Test date</b>: April 1, 2019</p>\n			<p>\n				<b>Genomic source class [Type]</b>: Somatic</p>\n			<p>\n				<b>Complex genetic variant [ID]</b>: 372524 - NM_000455.4(STK11):c.921-1G>C</p>\n			<p>\n				<b>Complex variant HGVS name</b>: NM_000455.4:c.921-1G>C</p>\n			<p><b>Complex variant common name</b>: STK11 single nucleotide variant - translocation at c921-1 from G to C</p>\n			</div>"
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n			<p>\n				<b>Genetic Variant Assessment</b>\n			</p>\n			<p>\n				<b>Patient identifier</b>: m123</p>\n			<p><b>Name</b>: John B. Anyperson </p>\n			<p>\n				<b>Test date</b>: April 1, 2019</p>\n			<p>\n				<b>Genomic source class [Type]</b>: Somatic</p>\n			<p>\n				<b>Variant HGVS name</b>: NM_000455.4:c.921-1G>C</p>\n			<p><b>Variant common name</b>: STK11 single nucleotide variant - translocation at c921-1 from G to C</p>\n			</div>"
   ];
   fhir:Observation.status [ fhir:value "final"];
+  fhir:Observation.category [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value "http://terminology.hl7.org/CodeSystem/observation-category" ];
+       fhir:Coding.code [ fhir:value "laboratory" ]
+     ]
+  ];
   fhir:Observation.code [
      fhir:CodeableConcept.coding [
        fhir:index 0;
@@ -36,8 +43,8 @@
      ]
   ];
   fhir:Observation.subject [
-     fhir:link <http://hl7.org/fhir/us/shr/Patient/m123>;
-     fhir:Reference.reference [ fhir:value "Patient/m123" ];
+     fhir:link <http://hl7.org/fhir/us/shr/Patient/mCODEPatientExample01>;
+     fhir:Reference.reference [ fhir:value "Patient/mCODEPatientExample01" ];
      fhir:Reference.display [ fhir:value "John B. Anyperson" ]
   ];
   fhir:Observation.effectiveDateTime [ fhir:value "2019-04-01"^^xsd:date];
@@ -55,7 +62,7 @@
      fhir:Observation.component.valueCodeableConcept [
        fhir:CodeableConcept.coding [
          fhir:index 0;
-         fhir:Coding.system [ fhir:value "http://hl7.org/fhir/us/mcode/oncocore/vs/GenomicSourceClassVS" ];
+         fhir:Coding.system [ fhir:value "http://hl7.org/fhir/us/mcode/onco-core/vs/GenomicSourceClassVS" ];
          fhir:Coding.code [ fhir:value "LA6684-0" ];
          fhir:Coding.display [ fhir:value "Somatic" ]
        ];
@@ -92,22 +99,29 @@
          fhir:Coding.display [ fhir:value "Complex variant HGVS name" ]
        ]
      ];
-     fhir:Observation.component.valueString [ fhir:value "NM_000455.4:c.921-1G>C" ]
+     fhir:Observation.component.valueCodeableConcept [
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value "http://varnomen.hgvs.org" ];
+         fhir:Coding.code [ fhir:value "NM_000455.4:c.921-1G>C" ];
+         fhir:Coding.display [ fhir:value "NM_000455.4:c.921-1G>C" ]
+       ]
+     ]
   ], [
      fhir:index 3;
      fhir:Observation.component.code [
        fhir:CodeableConcept.coding [
          fhir:index 0;
-         a loinc:81262-8;
+         a loinc:47998-0;
          fhir:Coding.system [ fhir:value "http://loinc.org" ];
-         fhir:Coding.code [ fhir:value "81262-8" ];
-         fhir:Coding.display [ fhir:value "Complex variant HGVS name" ]
+         fhir:Coding.code [ fhir:value "47998-0" ];
+         fhir:Coding.display [ fhir:value "Complex variant common name" ]
        ]
      ];
      fhir:Observation.component.valueString [ fhir:value "STK11 single nucleotide variant - translocation at c921-1 from G to C" ]
   ] .
 
-<http://hl7.org/fhir/us/shr/Patient/m123> a fhir:us .
+<http://hl7.org/fhir/us/shr/Patient/mCODEPatientExample01> a fhir:us .
 
 # - ontology header ------------------------------------------------------------
 

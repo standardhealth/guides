@@ -37,8 +37,8 @@ Reason is a string or CodeableConcept in DSTU2 but in later versions only a Code
 ","identifies the meaning of the extension","Source of the definition for the extension code - a logical name or a URL.","","","","","<valueUri xmlns=""http://hl7.org/fhir"" value=""http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PartOf-extension""/>","","","","",,,,,"",,,,"Extension.url",1,1,"","","N/A"
 "Procedure.extension.valueReference","","","",1,1,"","","","Reference {[]} {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure]]}
 ","Procedure","A procedure that has been performed.","","","","","","","","","",,,,,"",,,,"Extension.value[x]",0,1,"","","N/A"
-"Procedure.extension","treatmentintent","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TreatmentIntent-extension]]} {[]}
-","","The intended result from a given treatment.  Examples include curative, palliative, and supportive.","","","","","","","","","",0,,,,"",,,,"Procedure.extension",0,*,"",""
+"Procedure.extension","treatmentintent","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TreatmentIntent-extension]]} {[]}
+","","The purpose of a treatment. A simplified set of values include only two choices: curative and palliative. Curative is defined as any treatment meant to reduce or control a disease process, even if a 'cure' is not anticipated. Palliative includes treatments meant to reduce symptoms and side effects, such as antiemetics. If a treatment does both, it should be recorded as curative.","","","","","","","","","",0,,,,"",,,,"Procedure.extension",0,*,"",""
 "Procedure.modifierExtension","","extensions
 user content","",0,*,"","Y","","Extension {[]} {[]}
 ","Extensions that cannot be ignored","May be used to represent additional information that is not part of the basic definition of the resource, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.","There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.","","","","","","","","",0,,,,"",,,,"Procedure.modifierExtension",0,*,"","","N/A"
@@ -66,11 +66,43 @@ user content","",0,*,"","","","Extension {[]} {[]}
 ","Additional Content defined by implementations","May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.","There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.","","","","","","","","",,,,,"","value:url}
 ","",,"open","",0,null,"","","n/a"
 "Procedure.bodySite.extension","laterality","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension]]} {[]}
-","","Body side of the body location, if needed to distinguish from a similar location on the other side of the body.","","","","","","","","","",,,,,"",,,,"Procedure.bodySite.extension",0,*,"",""
+","","Body side of the body location, if needed to distinguish from a similar location on the other side of the body.
+
+This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
+
++ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
++ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
++ Relation to landmark: The location relative to a landmark is specified by:
+- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and
+- Specifying the direction and distance from the landmark to the body location.
+
+Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).","","","","","","","","","",,,,,"",,,,"Procedure.bodySite.extension",0,*,"",""
 "Procedure.bodySite.extension","orientation","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Orientation-extension]]} {[]}
-","","Orientation of the body location, if needed to distinguish from a similar location in another orientation.","","","","","","","","","",,,,,"",,,,"Procedure.bodySite.extension",0,*,"",""
+","","Orientation of the body location, if needed to distinguish from a similar location in another orientation.
+This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
+
++ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
++ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
++ Relation to landmark: The location relative to a landmark is specified by:
+- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and
+- Specifying the direction and distance from the landmark to the body location.
+
+Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).","","","","","","","","","",,,,,"",,,,"Procedure.bodySite.extension",0,*,"",""
 "Procedure.bodySite.extension","relationtolandmark","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelationToLandmark-extension]]} {[]}
-","","An anatomical landmark that helps determine a body location.","","","","","","","","","",,,,,"",,,,"Procedure.bodySite.extension",0,*,"",""
+","","The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:
+* Specifying the location and type of landmark using a body site code and optional laterality/orientation,
+* Specifying the direction from the landmark to the body location, and
+* Specifying the distance from the landmark to the body location.
+
+This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
+
++ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
++ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
++ Relation to landmark: The location relative to a landmark is specified by:
+- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and
+- Specifying the direction and distance from the landmark to the body location.
+
+Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).","","","","","","","","","",,,,,"",,,,"Procedure.bodySite.extension",0,*,"",""
 "Procedure.bodySite.extension","surgicalbodylocationrole","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SurgicalBodyLocationRole-extension]]} {[]}
 ","","Describes the role played by the body site in the surgery.","","","","","","","","","",,,,,"",,,,"Procedure.bodySite.extension",0,*,"",""
 "Procedure.bodySite.coding","","","",0,*,"","","Y","Coding {[]} {[]}
@@ -89,7 +121,7 @@ user content","",0,*,"","","","Extension {[]} {[]}
 "Procedure.performer.modifierExtension","","extensions
 user contentmodifiers","",0,*,"","Y","","Extension {[]} {[]}
 ","Extensions that cannot be ignored","May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.","There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.","","","","","","","","",0,,,,"",,,,"Procedure.performer.modifierExtension",0,*,"","","N/A"
-"Procedure.performer.actor","","","",0,1,"","","Y","Reference {[]} {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner], CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization], CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient], CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson]]}
+"Procedure.performer.actor","","","",0,1,"","","Y","Reference {[]} {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner]]}
 ","The reference to the practitioner","The practitioner who was involved in the procedure.","","","","","","","","","",0,,,,"",,,,"Procedure.performer.actor",0,1,"","",".role","who.actor","ORC-19/PRT-5"
 "Procedure.performer.role","","","",0,1,"","","Y","CodeableConcept {[]} {[]}
 ","The role the actor was in","For example: surgeon, anaethetist, endoscopist.","","","","","","","","","",0,"example","A code that identifies the role of a performer of the procedure.","http://hl7.org/fhir/ValueSet/performer-role","",,,,"Procedure.performer.role",0,1,"","",".functionCode","Some combination of STF-18 / PRA-3 / PRT-4 / ROL-3 / ORC-12 / OBR-16 / PV1-7 / PV1-8 / PV1-9 / PV1-17 / OBX-25"

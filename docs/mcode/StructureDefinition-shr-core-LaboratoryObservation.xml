@@ -17,9 +17,9 @@
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
-  Identifier maps to identifier (slice on = Type.coding.code; slice strategy = includes)
+  Identifier maps to identifier (slice on = type.coding.code; slice strategy = includes)
   ObservationSubjectOfRecord maps to subject
-  Performer maps to performer (slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)
+  PractitionerPerformer maps to performer (slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)
   Code maps to code
   Method maps to method
   CommentOrDescription maps to comments
@@ -57,7 +57,7 @@
     <system value="http://hl7.org/fhir/us/mcode"/>
     <value value="shr.core.LaboratoryObservation"/>
   </identifier>
-  <version value="0.9.0 draft candidate 1"/>
+  <version value="0.9.0 Beta 1"/>
   <name value="LaboratoryObservation"/>
   <display value="shr-core-LaboratoryObservation"/>
   <status value="draft"/>
@@ -69,7 +69,7 @@
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-04-08T00:00:00-04:00"/>
+  <date value="2019-04-10T00:00:00-04:00"/>
   <description value="A coded finding based on a specimen, usually collected from a patient (but possibly from a location)."/>
   <fhirVersion value="1.0.2"/>
   <mapping>
@@ -356,7 +356,7 @@
       <path value="Observation.identifier"/>
       <name value="Observation.identifier"/>
       <slicing id="1">
-        <discriminator value="Type.coding.code"/>
+        <discriminator value="type.coding.code"/>
         <ordered value="false"/>
         <rules value="open"/>
       </slicing>
@@ -686,9 +686,9 @@
         <map value="context"/>
       </mapping>
     </element>
-    <element id="Observation.effective-x-">
+    <element id="Observation.effectivex">
       <path value="Observation.effective[x]"/>
-      <name value="Observation.effective-x-"/>
+      <name value="Observation.effectivex"/>
       <short value="Clinically relevant time/time-period for observation"/>
       <definition value="For lab tests this is the specimen collection date.  For Ask at Order Entry Questions (AOE)&#39;s this is the date the question was asked."/>
       <comments value="At least a date should be present unless this observation is a historical report."/>
@@ -781,9 +781,6 @@
       <type>
         <code value="Reference"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -802,9 +799,9 @@
         <map value="who.actor"/>
       </mapping>
     </element>
-    <element id="Observation.value-x-">
+    <element id="Observation.valuex">
       <path value="Observation.value[x]"/>
-      <name value="Observation.value-x-"/>
+      <name value="Observation.valuex"/>
       <short value="Actual result"/>
       <definition value="If codeableConcept, valueCodeableConcept *SHOULD*  be selected from [SNOMED CT](http://hl7.org/fhir/ValueSet/uslab-obs-codedresults).  If Quantity, valueQuantity units *SHALL* be selected from [UCUM](http://unitsofmeasure.org)."/>
       <comments value="Normally, an observation will have either a value or a set of related observations. A few observations (e.g. Apgar score) may have both a value and related observations (for an Apgar score, the observations from which the measure is derived). If a value is present, the datatype for this element should be determined by Observation.code. This element has a variable name depending on the type as follows: valueQuantity, valueCodeableConcept, valueString, valueRange, valueRatio, valueSampledData, valueAttachment, valueTime, valueDateTime, or valuePeriod. (The name format is &quot;&#39;value&#39; + the type name&quot; with a capital on the first letter of the type).   If the data element is usually coded or if the type associated with the Observation.value defines a coded value, use CodeableConcept instead of string datatype even if the value is uncoded text.  A value set is bound to the ValueCodeableConcept element.  For boolean values use valueCodeableConcept and select codes from [HL7 Version 2 Table 0136](v2/0136/index.html). These &quot;yes/no&quot; concepts can be mapped to the display name &quot;true/false&quot; or other mutually exclusive terms that may be needed.   For further discussion and examples see the  [notes section](observation.html#4.20.4) below."/>
@@ -1700,9 +1697,9 @@
         <map value="what"/>
       </mapping>
     </element>
-    <element id="Observation.component.value-x-">
+    <element id="Observation.component.valuex">
       <path value="Observation.component.value[x]"/>
-      <name value="Observation.component.value-x-"/>
+      <name value="Observation.component.valuex"/>
       <short value="Actual component result"/>
       <definition value="The information determined as a result of making the observation, if the information has a simple value."/>
       <comments value="Normally, an observation will have either a value or a set of related observations. A few observations (e.g. Apgar score) may have both a value and related observations (for an Apgar score, the observations from which the measure is derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.   For boolean values use valueCodeableConcept and select codes from &lt;http://hl7.org/fhir/ValueSet/v2-0136&gt; (These &quot;yes/no&quot; concepts can be mapped to the display name &quot;true/false&quot; or other mutually exclusive terms that may be needed&quot;).  The element, Observation.value[x], has a variable name depending on the type as follows: valueQuantity, valueCodeableConcept, valueRatio, valueChoice, valuePeriod, valueSampleData, or valueString (The name format is &quot;&#39;value&#39; + the type name&quot; with a capital on the first letter of the type)."/>
@@ -2028,7 +2025,7 @@
       <path value="Observation.identifier"/>
       <name value="Observation.identifier"/>
       <slicing id="1">
-        <discriminator value="Type.coding.code"/>
+        <discriminator value="type.coding.code"/>
         <ordered value="false"/>
         <rules value="open"/>
       </slicing>
@@ -2119,18 +2116,15 @@
       <type>
         <code value="Reference"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.value-x-">
+    <element id="Observation.valuex">
       <path value="Observation.value[x]"/>
-      <name value="Observation.value-x-"/>
+      <name value="Observation.valuex"/>
       <min value="0"/>
       <type>
         <code value="Quantity"/>
@@ -2286,9 +2280,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component.value-x-">
+    <element id="Observation.component.valuex">
       <path value="Observation.component.value[x]"/>
-      <name value="Observation.component.value-x-"/>
+      <name value="Observation.component.valuex"/>
       <min value="0"/>
       <type>
         <code value="Quantity"/>
