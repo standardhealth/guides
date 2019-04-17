@@ -10,7 +10,7 @@
   fhir:StructureDefinition.id [ fhir:value "onco-core-GenomicsReport"];
   fhir:StructureDefinition.text [
      fhir:Narrative.status [ fhir:value "generated" ];
-     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>GenomicsReport Profile</b></p>\n  <p>Genetic analysis summary report</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>onco.core.GenomicsReport maps to DiagnosticReport:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Status maps to status\n  Code maps to code\n  Category maps to category\n  PatientSubjectOfRecord maps to subject\n  CareContext maps to encounter\n  RelevantTime maps to effective[x]\n  StatementDateTime maps to issued\n  Participation.ParticipationType maps to performer.extension\n  Participation.Participant maps to performer\n  MedicationStatementRelatedRequest maps to request\n  Specimen maps to specimen\n  GeneticRegionAnalyzed maps to result (slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)\n  Media maps to image.link\n  Conclusion maps to conclusion\n  DiagnosisCode maps to codedDiagnosis\n  OriginalReport maps to presentedForm\n</pre></p>\n</div>"
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>GenomicsReport Profile</b></p>\n  <p>Genetic analysis summary report. The report may include one or more tests, with two distinct test types. The first type is a targeted mutation test, where a specific mutation on a specific gene is tested for. The result is either positive or negative for that mutation. The second type is a more general test for variants. This type of test returns the identity of variants found in a certain region of the genome.\n\nThe identity of laboratory tests is typically represented by a LOINC code. However, many genetic tests and panels do not have LOINC codes, although some might have an identifier in NCBI Genetic Testing Registry (GTR), a central location for voluntary submission of genetic test information by providers. To identify the diagnostic report, the name of the report must be in the text sub-field of the code structure. If there is a coded identifier from GTR, LOINC, or other source, then it should be included into the the code sub-field of the code structure. If there is no suitable code, the code can be omitted.\n\nThe performer of the test (organization or practitioner) should be included in the FHIR profile as the performer.actor.\n\nFHIR implementation note: The category for this profile is set to GE (Genetics), a code from http://hl7.org/fhir/ValueSet/diagnostic-service-sections. This may be contrary to the Argonaut specification, which assigns the category LAB to any diagnostic report containing a laboratory result.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>onco.core.GenomicsReport maps to DiagnosticReport:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Status maps to status\n  Code maps to code\n  Category maps to category\n  PatientSubjectOfRecord maps to subject\n  CareContext maps to encounter\n  RelevantTime maps to effective[x]\n  StatementDateTime maps to issued\n  Participation.ParticipationType maps to performer.extension\n  Participation.Participant maps to performer\n  MedicationStatementRelatedRequest maps to request\n  Specimen maps to specimen\n  Observation maps to result (slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)\n  Media maps to image.link\n  Conclusion maps to conclusion\n  DiagnosisCode maps to codedDiagnosis\n  OriginalReport maps to presentedForm\n</pre></p>\n</div>"
   ];
   fhir:StructureDefinition.url [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-GenomicsReport"];
   fhir:StructureDefinition.identifier [
@@ -18,7 +18,7 @@
      fhir:Identifier.system [ fhir:value "http://hl7.org/fhir/us/mcode" ];
      fhir:Identifier.value [ fhir:value "onco.core.GenomicsReport" ]
   ];
-  fhir:StructureDefinition.version [ fhir:value "0.9.0 Beta 1"];
+  fhir:StructureDefinition.version [ fhir:value "0.9.0"];
   fhir:StructureDefinition.name [ fhir:value "GenomicsReport"];
   fhir:StructureDefinition.display [ fhir:value "onco-core-GenomicsReport"];
   fhir:StructureDefinition.status [ fhir:value "draft"];
@@ -32,8 +32,8 @@
        fhir:ContactPoint.rank [ fhir:value "0"^^xsd:positiveInteger ]
      ]
   ];
-  fhir:StructureDefinition.date [ fhir:value "2019-04-10T00:00:00-04:00"^^xsd:dateTime];
-  fhir:StructureDefinition.description [ fhir:value "Genetic analysis summary report"];
+  fhir:StructureDefinition.date [ fhir:value "2019-04-17T00:00:00-04:00"^^xsd:dateTime];
+  fhir:StructureDefinition.description [ fhir:value "Genetic analysis summary report. The report may include one or more tests, with two distinct test types. The first type is a targeted mutation test, where a specific mutation on a specific gene is tested for. The result is either positive or negative for that mutation. The second type is a more general test for variants. This type of test returns the identity of variants found in a certain region of the genome.\n\nThe identity of laboratory tests is typically represented by a LOINC code. However, many genetic tests and panels do not have LOINC codes, although some might have an identifier in NCBI Genetic Testing Registry (GTR), a central location for voluntary submission of genetic test information by providers. To identify the diagnostic report, the name of the report must be in the text sub-field of the code structure. If there is a coded identifier from GTR, LOINC, or other source, then it should be included into the the code sub-field of the code structure. If there is no suitable code, the code can be omitted.\n\nThe performer of the test (organization or practitioner) should be included in the FHIR profile as the performer.actor.\n\nFHIR implementation note: The category for this profile is set to GE (Genetics), a code from http://hl7.org/fhir/ValueSet/diagnostic-service-sections. This may be contrary to the Argonaut specification, which assigns the category LAB to any diagnostic report containing a laboratory result."];
   fhir:StructureDefinition.requirements [ fhir:value "To support reporting for any diagnostic report into a clinical data repository."];
   fhir:StructureDefinition.fhirVersion [ fhir:value "1.0.2"];
   fhir:StructureDefinition.mapping [
@@ -63,7 +63,7 @@
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport" ];
        fhir:ElementDefinition.short [ fhir:value "onco-core-GenomicsReport" ];
-       fhir:ElementDefinition.definition [ fhir:value "Genetic analysis summary report" ];
+       fhir:ElementDefinition.definition [ fhir:value "Genetic analysis summary report. The report may include one or more tests, with two distinct test types. The first type is a targeted mutation test, where a specific mutation on a specific gene is tested for. The result is either positive or negative for that mutation. The second type is a more general test for variants. This type of test returns the identity of variants found in a certain region of the genome.\n\nThe identity of laboratory tests is typically represented by a LOINC code. However, many genetic tests and panels do not have LOINC codes, although some might have an identifier in NCBI Genetic Testing Registry (GTR), a central location for voluntary submission of genetic test information by providers. To identify the diagnostic report, the name of the report must be in the text sub-field of the code structure. If there is a coded identifier from GTR, LOINC, or other source, then it should be included into the the code sub-field of the code structure. If there is no suitable code, the code can be omitted.\n\nThe performer of the test (organization or practitioner) should be included in the FHIR profile as the performer.actor.\n\nFHIR implementation note: The category for this profile is set to GE (Genetics), a code from http://hl7.org/fhir/ValueSet/diagnostic-service-sections. This may be contrary to the Argonaut specification, which assigns the category LAB to any diagnostic report containing a laboratory result." ];
        fhir:ElementDefinition.comments [ fhir:value "This is intended to capture a single report, and is not suitable for use in displaying summary information that covers multiple reports.  For example, this resource has not been designed for laboratory cumulative reporting formats nor detailed structured reports for sequencing." ];
        fhir:ElementDefinition.alias [
          fhir:value "Report";
@@ -264,6 +264,15 @@
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.extension" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.extension" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.extension" ];
+       fhir:ElementDefinition.slicing [
+         fhir:ElementDefinition.slicing.id [ fhir:value "3" ];
+         fhir:ElementDefinition.slicing.discriminator [
+           fhir:value "url";
+           fhir:index 0
+         ];
+         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
+         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
+       ];
        fhir:ElementDefinition.short [ fhir:value "Additional Content defined by implementations" ];
        fhir:ElementDefinition.definition [ fhir:value "May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." ];
        fhir:ElementDefinition.comments [ fhir:value "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." ];
@@ -291,6 +300,175 @@
        ]
      ], [
        fhir:index 8;
+       fhir:ElementDefinition.id [ fhir:value "specimentype" ];
+       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.extension" ];
+       fhir:ElementDefinition.name [ fhir:value "specimentype" ];
+       fhir:ElementDefinition.definition [ fhir:value "The type of material the specimen contains or consists of." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DiagnosticReport.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [
+           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SpecimenType-extension";
+           fhir:index 0
+         ]
+       ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "true"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 9;
+       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.extension-specimentype.id" ];
+       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.extension.id" ];
+       fhir:ElementDefinition.representation [
+         fhir:value "xmlAttr";
+         fhir:index 0
+       ];
+       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.extension-specimentype.id" ];
+       fhir:ElementDefinition.short [ fhir:value "xml:id (or equivalent in JSON)" ];
+       fhir:ElementDefinition.definition [ fhir:value "unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Element.id" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "string" ]
+       ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.mapping [
+         fhir:index 0;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
+       ]
+     ], [
+       fhir:index 10;
+       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.extension-specimentype.ext" ];
+       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.extension.extension" ];
+       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.extension-specimentype.ext" ];
+       fhir:ElementDefinition.short [ fhir:value "Extension" ];
+       fhir:ElementDefinition.definition [ fhir:value "An Extension" ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.max [ fhir:value "0" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Element.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ]
+       ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 11;
+       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.extension-specimentype.url" ];
+       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.extension.url" ];
+       fhir:ElementDefinition.representation [
+         fhir:value "xmlAttr";
+         fhir:index 0
+       ];
+       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.extension-specimentype.url" ];
+       fhir:ElementDefinition.short [ fhir:value "identifies the meaning of the extension" ];
+       fhir:ElementDefinition.definition [ fhir:value "Source of the definition for the extension code - a logical name or a URL." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:integer ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Extension.url" ];
+         fhir:ElementDefinition.base.min [ fhir:value "1"^^xsd:integer ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "uri" ]
+       ];
+       fhir:ElementDefinition.fixedUri [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SpecimenType-extension" ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.mapping [
+         fhir:index 0;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
+       ]
+     ], [
+       fhir:index 12;
+       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.extension-specimentype.val" ];
+       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.extension.valueCodeableConcept" ];
+       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.extension-specimentype.val" ];
+       fhir:ElementDefinition.short [ fhir:value "Value of extension" ];
+       fhir:ElementDefinition.definition [ fhir:value "Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:integer ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Extension.value[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "CodeableConcept" ]
+       ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.binding [
+         fhir:ElementDefinition.binding.strength [ fhir:value "extensible" ];
+         fhir:ElementDefinition.binding.valueSetReference [
+           fhir:link <http://hl7.org/fhir/us/mcode/onco/core/vs/GeneticSpecimenTypeVS>;
+           fhir:Reference.reference [ fhir:value "http://hl7.org/fhir/us/mcode/onco/core/vs/GeneticSpecimenTypeVS" ]
+         ]
+       ];
+       fhir:ElementDefinition.mapping [
+         fhir:index 0;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
+       ]
+     ], [
+       fhir:index 13;
+       fhir:ElementDefinition.id [ fhir:value "regionstudied" ];
+       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.extension" ];
+       fhir:ElementDefinition.name [ fhir:value "regionstudied" ];
+       fhir:ElementDefinition.definition [ fhir:value "A description of the coverage of the genome that was tested for variants." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DiagnosticReport.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [
+           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-RegionStudied-extension";
+           fhir:index 0
+         ]
+       ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 14;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.modifierExtension" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.modifierExtension" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.modifierExtension" ];
@@ -320,7 +498,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 9;
+       fhir:index 15;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.identifier" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.identifier" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.identifier" ];
@@ -355,7 +533,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "id" ]
        ]
      ], [
-       fhir:index 10;
+       fhir:index 16;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.status" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.status" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.status" ];
@@ -395,7 +573,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "status" ]
        ]
      ], [
-       fhir:index 11;
+       fhir:index 17;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.category" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.category" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.category" ];
@@ -452,7 +630,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "class" ]
        ]
      ], [
-       fhir:index 12;
+       fhir:index 18;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.category.id" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.category.id" ];
        fhir:ElementDefinition.representation [
@@ -478,7 +656,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 13;
+       fhir:index 19;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.category.extension" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.category.extension" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.category.extension" ];
@@ -508,7 +686,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 14;
+       fhir:index 20;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.category.coding" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.category.coding" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.category.coding" ];
@@ -549,7 +727,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "union(., ./translation)" ]
        ]
      ], [
-       fhir:index 15;
+       fhir:index 21;
        fhir:ElementDefinition.id [ fhir:value "Fixed_GE" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.category.coding" ];
        fhir:ElementDefinition.name [ fhir:value "Fixed_GE" ];
@@ -565,7 +743,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ]
      ], [
-       fhir:index 16;
+       fhir:index 22;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.id" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.category.coding.id" ];
        fhir:ElementDefinition.representation [
@@ -591,10 +769,10 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 17;
-       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.ext" ];
+       fhir:index 23;
+       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.ext1" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.category.coding.extension" ];
-       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.ext" ];
+       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.ext1" ];
        fhir:ElementDefinition.short [ fhir:value "Additional Content defined by implementations" ];
        fhir:ElementDefinition.definition [ fhir:value "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." ];
        fhir:ElementDefinition.comments [ fhir:value "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." ];
@@ -621,7 +799,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 18;
+       fhir:index 24;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.system" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.category.coding.system" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.system" ];
@@ -635,7 +813,7 @@
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "uri" ]
        ];
-       fhir:ElementDefinition.fixedUri [ fhir:value "http://hl7.org/fhir/observation-category" ];
+       fhir:ElementDefinition.fixedUri [ fhir:value "http://terminology.hl7.org/CodeSystem/v2-0074" ];
        fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
@@ -654,7 +832,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "./codeSystem" ]
        ]
      ], [
-       fhir:index 19;
+       fhir:index 25;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.version" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.category.coding.version" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.version" ];
@@ -685,7 +863,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "./codeSystemVersion" ]
        ]
      ], [
-       fhir:index 20;
+       fhir:index 26;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.code" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.category.coding.code" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.code" ];
@@ -717,7 +895,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "./code" ]
        ]
      ], [
-       fhir:index 21;
+       fhir:index 27;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.display" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.category.coding.display" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.display" ];
@@ -748,7 +926,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "CV.displayName" ]
        ]
      ], [
-       fhir:index 22;
+       fhir:index 28;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.use" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.category.coding.userSelected" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.use" ];
@@ -780,7 +958,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "CD.codingRationale" ]
        ]
      ], [
-       fhir:index 23;
+       fhir:index 29;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.category.text" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.category.text" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.category.text" ];
@@ -812,7 +990,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "./originalText[mediaType/code=\"text/plain\"]/data" ]
        ]
      ], [
-       fhir:index 24;
+       fhir:index 30;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.code" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.code" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.code" ];
@@ -825,15 +1003,14 @@
          fhir:ElementDefinition.type.code [ fhir:value "CodeableConcept" ]
        ];
        fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "true"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ];
        fhir:ElementDefinition.binding [
          fhir:ElementDefinition.binding.strength [ fhir:value "preferred" ];
-         fhir:ElementDefinition.binding.description [ fhir:value "Codes that describe Diagnostic Reports." ];
          fhir:ElementDefinition.binding.valueSetReference [
-           fhir:link <http://hl7.org/fhir/ValueSet/report-codes>;
-           fhir:Reference.reference [ fhir:value "http://hl7.org/fhir/ValueSet/report-codes" ]
+           fhir:link <https://www.ncbi.nlm.nih.gov/gtr>;
+           fhir:Reference.reference [ fhir:value "https://www.ncbi.nlm.nih.gov/gtr" ]
          ]
        ];
        fhir:ElementDefinition.mapping [
@@ -850,368 +1027,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "what" ]
        ]
      ], [
-       fhir:index 25;
-       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.code.id" ];
-       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.code.id" ];
-       fhir:ElementDefinition.representation [
-         fhir:value "xmlAttr";
-         fhir:index 0
-       ];
-       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.code.id" ];
-       fhir:ElementDefinition.short [ fhir:value "xml:id (or equivalent in JSON)" ];
-       fhir:ElementDefinition.definition [ fhir:value "unique id for the element within a resource (for internal references)." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "id" ]
-       ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.mapping [
-         fhir:index 0;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
-       ]
-     ], [
-       fhir:index 26;
-       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.code.extension" ];
-       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.code.extension" ];
-       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.code.extension" ];
-       fhir:ElementDefinition.short [ fhir:value "Additional Content defined by implementations" ];
-       fhir:ElementDefinition.definition [ fhir:value "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." ];
-       fhir:ElementDefinition.comments [ fhir:value "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." ];
-       fhir:ElementDefinition.alias [
-         fhir:value "extensions";
-         fhir:index 0
-       ], [
-         fhir:value "user content";
-         fhir:index 1
-       ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "*" ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Extension" ]
-       ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.mapping [
-         fhir:index 0;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
-       ]
-     ], [
-       fhir:index 27;
-       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.code.coding" ];
-       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.code.coding" ];
-       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.code.coding" ];
-       fhir:ElementDefinition.slicing [
-         fhir:ElementDefinition.slicing.id [ fhir:value "2" ];
-         fhir:ElementDefinition.slicing.discriminator [
-           fhir:value "code";
-           fhir:index 0
-         ];
-         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
-         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
-       ];
-       fhir:ElementDefinition.short [ fhir:value "Code defined by a terminology system" ];
-       fhir:ElementDefinition.definition [ fhir:value "A reference to a code defined by a terminology system." ];
-       fhir:ElementDefinition.comments [ fhir:value "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labelled as UserSelected = true." ];
-       fhir:ElementDefinition.requirements [ fhir:value "Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." ];
-       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "*" ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Coding" ]
-       ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ];
-       fhir:ElementDefinition.mapping [
-         fhir:index 0;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "orim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding" ]
-       ], [
-         fhir:index 1;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "v2" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "C*E.1-8, C*E.10-22" ]
-       ], [
-         fhir:index 2;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "union(., ./translation)" ]
-       ]
-     ], [
-       fhir:index 28;
-       fhir:ElementDefinition.id [ fhir:value "Fixed_81247-9" ];
-       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.code.coding" ];
-       fhir:ElementDefinition.name [ fhir:value "Fixed_81247-9" ];
-       fhir:ElementDefinition.short [ fhir:value "Master HL7 genetic variant reporting panel" ];
-       fhir:ElementDefinition.definition [ fhir:value "Master HL7 genetic variant reporting panel" ];
-       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Coding" ]
-       ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ]
-     ], [
-       fhir:index 29;
-       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.id" ];
-       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.code.coding.id" ];
-       fhir:ElementDefinition.representation [
-         fhir:value "xmlAttr";
-         fhir:index 0
-       ];
-       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.id" ];
-       fhir:ElementDefinition.short [ fhir:value "xml:id (or equivalent in JSON)" ];
-       fhir:ElementDefinition.definition [ fhir:value "unique id for the element within a resource (for internal references)." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "id" ]
-       ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.mapping [
-         fhir:index 0;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
-       ]
-     ], [
-       fhir:index 30;
-       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.ext" ];
-       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.code.coding.extension" ];
-       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.ext" ];
-       fhir:ElementDefinition.short [ fhir:value "Additional Content defined by implementations" ];
-       fhir:ElementDefinition.definition [ fhir:value "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." ];
-       fhir:ElementDefinition.comments [ fhir:value "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." ];
-       fhir:ElementDefinition.alias [
-         fhir:value "extensions";
-         fhir:index 0
-       ], [
-         fhir:value "user content";
-         fhir:index 1
-       ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "*" ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Extension" ]
-       ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.mapping [
-         fhir:index 0;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
-       ]
-     ], [
        fhir:index 31;
-       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.system" ];
-       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.code.coding.system" ];
-       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.system" ];
-       fhir:ElementDefinition.short [ fhir:value "Identity of the terminology system" ];
-       fhir:ElementDefinition.definition [ fhir:value "The identification of the code system that defines the meaning of the symbol in the code." ];
-       fhir:ElementDefinition.comments [ fhir:value "The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." ];
-       fhir:ElementDefinition.requirements [ fhir:value "Need to be unambiguous about the source of the definition of the symbol." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "uri" ]
-       ];
-       fhir:ElementDefinition.fixedUri [ fhir:value "http://loinc.org" ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ];
-       fhir:ElementDefinition.mapping [
-         fhir:index 0;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "orim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" ]
-       ], [
-         fhir:index 1;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "v2" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "C*E.3" ]
-       ], [
-         fhir:index 2;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "./codeSystem" ]
-       ]
-     ], [
-       fhir:index 32;
-       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.ver" ];
-       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.code.coding.version" ];
-       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.ver" ];
-       fhir:ElementDefinition.short [ fhir:value "Version of the system - if relevant" ];
-       fhir:ElementDefinition.definition [ fhir:value "The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." ];
-       fhir:ElementDefinition.comments [ fhir:value "Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "string" ]
-       ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ];
-       fhir:ElementDefinition.mapping [
-         fhir:index 0;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "orim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion" ]
-       ], [
-         fhir:index 1;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "v2" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "C*E.7" ]
-       ], [
-         fhir:index 2;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "./codeSystemVersion" ]
-       ]
-     ], [
-       fhir:index 33;
-       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.code" ];
-       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.code.coding.code" ];
-       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.code" ];
-       fhir:ElementDefinition.short [ fhir:value "Symbol in syntax defined by the system" ];
-       fhir:ElementDefinition.definition [ fhir:value "A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." ];
-       fhir:ElementDefinition.requirements [ fhir:value "Need to refer to a particular code in the system." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "code" ]
-       ];
-       fhir:ElementDefinition.fixedCode [ fhir:value "81247-9" ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ];
-       fhir:ElementDefinition.mapping [
-         fhir:index 0;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "orim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code" ]
-       ], [
-         fhir:index 1;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "v2" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "C*E.1" ]
-       ], [
-         fhir:index 2;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "./code" ]
-       ]
-     ], [
-       fhir:index 34;
-       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.dis" ];
-       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.code.coding.display" ];
-       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.dis" ];
-       fhir:ElementDefinition.short [ fhir:value "Representation defined by the system" ];
-       fhir:ElementDefinition.definition [ fhir:value "A representation of the meaning of the code in the system, following the rules of the system." ];
-       fhir:ElementDefinition.requirements [ fhir:value "Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "string" ]
-       ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ];
-       fhir:ElementDefinition.mapping [
-         fhir:index 0;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "orim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName" ]
-       ], [
-         fhir:index 1;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "v2" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "C*E.2 - but note this is not well followed" ]
-       ], [
-         fhir:index 2;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "CV.displayName" ]
-       ]
-     ], [
-       fhir:index 35;
-       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.use" ];
-       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.code.coding.userSelected" ];
-       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.use" ];
-       fhir:ElementDefinition.short [ fhir:value "If this coding was chosen directly by the user" ];
-       fhir:ElementDefinition.definition [ fhir:value "Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." ];
-       fhir:ElementDefinition.comments [ fhir:value "Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." ];
-       fhir:ElementDefinition.requirements [ fhir:value "This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "boolean" ]
-       ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ];
-       fhir:ElementDefinition.mapping [
-         fhir:index 0;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "orim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\\#true a [     fhir:source \"true\";     fhir:target dt:CDCoding.codingRationale\\#O   ]" ]
-       ], [
-         fhir:index 1;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "v2" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "Sometimes implied by being first" ]
-       ], [
-         fhir:index 2;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "CD.codingRationale" ]
-       ]
-     ], [
-       fhir:index 36;
-       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.code.text" ];
-       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.code.text" ];
-       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.code.text" ];
-       fhir:ElementDefinition.short [ fhir:value "Plain text representation of the concept" ];
-       fhir:ElementDefinition.definition [ fhir:value "A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user." ];
-       fhir:ElementDefinition.comments [ fhir:value "Very often the text is the same as a displayName of one of the codings." ];
-       fhir:ElementDefinition.requirements [ fhir:value "The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "string" ]
-       ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ];
-       fhir:ElementDefinition.mapping [
-         fhir:index 0;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "orim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText" ]
-       ], [
-         fhir:index 1;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "v2" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "C*E.9. But note many systems use C*E.2 for this" ]
-       ], [
-         fhir:index 2;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "./originalText[mediaType/code=\"text/plain\"]/data" ]
-       ]
-     ], [
-       fhir:index 37;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.subject" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.subject" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.subject" ];
@@ -1250,7 +1066,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "who.focus" ]
        ]
      ], [
-       fhir:index 38;
+       fhir:index 32;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.encounter" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.encounter" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.encounter" ];
@@ -1284,7 +1100,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "context" ]
        ]
      ], [
-       fhir:index 39;
+       fhir:index 33;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.effectivex" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.effective[x]" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.effectivex" ];
@@ -1309,7 +1125,7 @@
          fhir:ElementDefinition.type.code [ fhir:value "Period" ]
        ];
        fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "true"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ];
        fhir:ElementDefinition.mapping [
@@ -1326,7 +1142,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "when.done" ]
        ]
      ], [
-       fhir:index 40;
+       fhir:index 34;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.issued" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.issued" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.issued" ];
@@ -1368,7 +1184,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "when.recorded" ]
        ]
      ], [
-       fhir:index 41;
+       fhir:index 35;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.performer" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.performer" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.performer" ];
@@ -1423,7 +1239,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "who.witness" ]
        ]
      ], [
-       fhir:index 42;
+       fhir:index 36;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.request" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.request" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.request" ];
@@ -1458,7 +1274,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "outboundRelationship[typeCode=FLFS].target" ]
        ]
      ], [
-       fhir:index 43;
+       fhir:index 37;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.specimen" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.specimen" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.specimen" ];
@@ -1490,10 +1306,19 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "participation[typeCode=SBJ]" ]
        ]
      ], [
-       fhir:index 44;
+       fhir:index 38;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.result" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.result" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.result" ];
+       fhir:ElementDefinition.slicing [
+         fhir:ElementDefinition.slicing.id [ fhir:value "2" ];
+         fhir:ElementDefinition.slicing.discriminator [
+           fhir:value "target.reference/@profile";
+           fhir:index 0
+         ];
+         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
+         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
+       ];
        fhir:ElementDefinition.short [ fhir:value "Observations - simple, or complex nested groups" ];
        fhir:ElementDefinition.definition [ fhir:value "Observations that are part of this diagnostic report. Observations can be simple name/value pairs (e.g. \"atomic\" results), or they can be grouping observations that include references to other members of the group (e.g. \"panels\")." ];
        fhir:ElementDefinition.requirements [ fhir:value "Need to support individual results, or report groups of results, where the result grouping is arbitrary, but meaningful. This structure is recursive - observations can contain observations." ];
@@ -1531,7 +1356,7 @@
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
          fhir:ElementDefinition.type.profile [
-           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-GeneticRegionAnalyzed";
+           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation";
            fhir:index 0
          ]
        ];
@@ -1549,7 +1374,133 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "outboundRelationship[typeCode=COMP].target" ]
        ]
      ], [
-       fhir:index 45;
+       fhir:index 39;
+       fhir:ElementDefinition.id [ fhir:value "onco-core-GeneticVariantFound" ];
+       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.result" ];
+       fhir:ElementDefinition.name [ fhir:value "onco-core-GeneticVariantFound" ];
+       fhir:ElementDefinition.short [ fhir:value "GeneticVariantFound" ];
+       fhir:ElementDefinition.definition [ fhir:value "Data structure recording an alteration in the most common DNA nucleotide sequence. The term variant can be used to describe an alteration that may be benign, pathogenic, or of unknown significance. The term variant is increasingly being used in place of the term mutation." ];
+       fhir:ElementDefinition.alias [
+         fhir:value "Data";
+         fhir:index 0
+       ], [
+         fhir:value "Atomic Value";
+         fhir:index 1
+       ], [
+         fhir:value "Result";
+         fhir:index 2
+       ], [
+         fhir:value "Atomic result";
+         fhir:index 3
+       ], [
+         fhir:value "Data";
+         fhir:index 4
+       ], [
+         fhir:value "Test";
+         fhir:index 5
+       ], [
+         fhir:value "Analyte";
+         fhir:index 6
+       ], [
+         fhir:value "Battery";
+         fhir:index 7
+       ], [
+         fhir:value "Organizer";
+         fhir:index 8
+       ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DiagnosticReport.result" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.profile [
+           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-GeneticVariantFound";
+           fhir:index 0
+         ]
+       ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "true"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.mapping [
+         fhir:index 0;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "v2" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "OBXs" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "outboundRelationship[typeCode=COMP].target" ]
+       ]
+     ], [
+       fhir:index 40;
+       fhir:ElementDefinition.id [ fhir:value "onco-core-GeneticMutationTestResult" ];
+       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.result" ];
+       fhir:ElementDefinition.name [ fhir:value "onco-core-GeneticMutationTestResult" ];
+       fhir:ElementDefinition.short [ fhir:value "GeneticMutationTestResult" ];
+       fhir:ElementDefinition.definition [ fhir:value "A test for a specific mutation on a particular gene." ];
+       fhir:ElementDefinition.alias [
+         fhir:value "Data";
+         fhir:index 0
+       ], [
+         fhir:value "Atomic Value";
+         fhir:index 1
+       ], [
+         fhir:value "Result";
+         fhir:index 2
+       ], [
+         fhir:value "Atomic result";
+         fhir:index 3
+       ], [
+         fhir:value "Data";
+         fhir:index 4
+       ], [
+         fhir:value "Test";
+         fhir:index 5
+       ], [
+         fhir:value "Analyte";
+         fhir:index 6
+       ], [
+         fhir:value "Battery";
+         fhir:index 7
+       ], [
+         fhir:value "Organizer";
+         fhir:index 8
+       ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DiagnosticReport.result" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.profile [
+           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-GeneticMutationTestResult";
+           fhir:index 0
+         ]
+       ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "true"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.mapping [
+         fhir:index 0;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "v2" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "OBXs" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "outboundRelationship[typeCode=COMP].target" ]
+       ]
+     ], [
+       fhir:index 41;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.imagingStudy" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.imagingStudy" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.imagingStudy" ];
@@ -1579,7 +1530,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "outboundRelationship[typeCode=COMP].target[classsCode=DGIMG, moodCode=EVN]" ]
        ]
      ], [
-       fhir:index 46;
+       fhir:index 42;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.image" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.image" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.image" ];
@@ -1616,7 +1567,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "outboundRelationship[typeCode=COMP].target" ]
        ]
      ], [
-       fhir:index 47;
+       fhir:index 43;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.image.id" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.image.id" ];
        fhir:ElementDefinition.representation [
@@ -1642,7 +1593,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 48;
+       fhir:index 44;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.image.extension" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.image.extension" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.image.extension" ];
@@ -1672,7 +1623,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 49;
+       fhir:index 45;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.image.modifierExtension" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.image.modifierExtension" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.image.modifierExtension" ];
@@ -1705,7 +1656,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 50;
+       fhir:index 46;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.image.comment" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.image.comment" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.image.comment" ];
@@ -1729,7 +1680,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".inboundRelationship[typeCode=COMP].source[classCode=OBS, moodCode=EVN, code=\"annotation\"].value" ]
        ]
      ], [
-       fhir:index 51;
+       fhir:index 47;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.image.link" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.image.link" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.image.link" ];
@@ -1755,7 +1706,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".value.reference" ]
        ]
      ], [
-       fhir:index 52;
+       fhir:index 48;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.conclusion" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.conclusion" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.conclusion" ];
@@ -1787,7 +1738,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "inboundRelationship[typeCode=\"SPRT\"].source[classCode=OBS, moodCode=EVN, code=LOINC:48767-8].value (type=ST)" ]
        ]
      ], [
-       fhir:index 53;
+       fhir:index 49;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.codedDiagnosis" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.codedDiagnosis" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.codedDiagnosis" ];
@@ -1821,7 +1772,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "inboundRelationship[typeCode=SPRT].source[classCode=OBS, moodCode=EVN, code=LOINC:54531-9].value (type=CD)" ]
        ]
      ], [
-       fhir:index 54;
+       fhir:index 50;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.presentedForm" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.presentedForm" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.presentedForm" ];
@@ -1857,7 +1808,7 @@
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport" ];
        fhir:ElementDefinition.short [ fhir:value "onco-core-GenomicsReport" ];
-       fhir:ElementDefinition.definition [ fhir:value "Genetic analysis summary report" ];
+       fhir:ElementDefinition.definition [ fhir:value "Genetic analysis summary report. The report may include one or more tests, with two distinct test types. The first type is a targeted mutation test, where a specific mutation on a specific gene is tested for. The result is either positive or negative for that mutation. The second type is a more general test for variants. This type of test returns the identity of variants found in a certain region of the genome.\n\nThe identity of laboratory tests is typically represented by a LOINC code. However, many genetic tests and panels do not have LOINC codes, although some might have an identifier in NCBI Genetic Testing Registry (GTR), a central location for voluntary submission of genetic test information by providers. To identify the diagnostic report, the name of the report must be in the text sub-field of the code structure. If there is a coded identifier from GTR, LOINC, or other source, then it should be included into the the code sub-field of the code structure. If there is no suitable code, the code can be omitted.\n\nThe performer of the test (organization or practitioner) should be included in the FHIR profile as the performer.actor.\n\nFHIR implementation note: The category for this profile is set to GE (Genetics), a code from http://hl7.org/fhir/ValueSet/diagnostic-service-sections. This may be contrary to the Argonaut specification, which assigns the category LAB to any diagnostic report containing a laboratory result." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.type [
          fhir:index 0;
@@ -1869,6 +1820,92 @@
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 1;
+       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.extension" ];
+       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.extension" ];
+       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.extension" ];
+       fhir:ElementDefinition.slicing [
+         fhir:ElementDefinition.slicing.id [ fhir:value "3" ];
+         fhir:ElementDefinition.slicing.discriminator [
+           fhir:value "url";
+           fhir:index 0
+         ];
+         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
+         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
+       ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 2;
+       fhir:ElementDefinition.id [ fhir:value "specimentype" ];
+       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.extension" ];
+       fhir:ElementDefinition.name [ fhir:value "specimentype" ];
+       fhir:ElementDefinition.definition [ fhir:value "The type of material the specimen contains or consists of." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DiagnosticReport.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [
+           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SpecimenType-extension";
+           fhir:index 0
+         ]
+       ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "true"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 3;
+       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.extension-specimentype.val" ];
+       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.extension.valueCodeableConcept" ];
+       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.extension-specimentype.val" ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.binding [
+         fhir:ElementDefinition.binding.strength [ fhir:value "extensible" ];
+         fhir:ElementDefinition.binding.valueSetReference [
+           fhir:link <http://hl7.org/fhir/us/mcode/onco/core/vs/GeneticSpecimenTypeVS>;
+           fhir:Reference.reference [ fhir:value "http://hl7.org/fhir/us/mcode/onco/core/vs/GeneticSpecimenTypeVS" ]
+         ]
+       ]
+     ], [
+       fhir:index 4;
+       fhir:ElementDefinition.id [ fhir:value "regionstudied" ];
+       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.extension" ];
+       fhir:ElementDefinition.name [ fhir:value "regionstudied" ];
+       fhir:ElementDefinition.definition [ fhir:value "A description of the coverage of the genome that was tested for variants." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DiagnosticReport.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [
+           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-RegionStudied-extension";
+           fhir:index 0
+         ]
+       ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 5;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.category" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.category" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.category" ];
@@ -1884,7 +1921,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 2;
+       fhir:index 6;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.category.coding" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.category.coding" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.category.coding" ];
@@ -1904,7 +1941,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 3;
+       fhir:index 7;
        fhir:ElementDefinition.id [ fhir:value "Fixed_GE" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.category.coding" ];
        fhir:ElementDefinition.name [ fhir:value "Fixed_GE" ];
@@ -1920,18 +1957,18 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ]
      ], [
-       fhir:index 4;
+       fhir:index 8;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.system" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.category.coding.system" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.system" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.fixedUri [ fhir:value "http://hl7.org/fhir/observation-category" ];
+       fhir:ElementDefinition.fixedUri [ fhir:value "http://terminology.hl7.org/CodeSystem/v2-0074" ];
        fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 5;
+       fhir:index 9;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.code" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.category.coding.code" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.code" ];
@@ -1942,74 +1979,22 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 6;
+       fhir:index 10;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.code" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.code" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.code" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "true"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
-     ], [
-       fhir:index 7;
-       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.code.coding" ];
-       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.code.coding" ];
-       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.code.coding" ];
-       fhir:ElementDefinition.slicing [
-         fhir:ElementDefinition.slicing.id [ fhir:value "2" ];
-         fhir:ElementDefinition.slicing.discriminator [
-           fhir:value "code";
-           fhir:index 0
-         ];
-         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
-         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
-       ];
-       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "*" ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
-     ], [
-       fhir:index 8;
-       fhir:ElementDefinition.id [ fhir:value "Fixed_81247-9" ];
-       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.code.coding" ];
-       fhir:ElementDefinition.name [ fhir:value "Fixed_81247-9" ];
-       fhir:ElementDefinition.short [ fhir:value "Master HL7 genetic variant reporting panel" ];
-       fhir:ElementDefinition.definition [ fhir:value "Master HL7 genetic variant reporting panel" ];
-       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:integer ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Coding" ]
-       ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ]
-     ], [
-       fhir:index 9;
-       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.system" ];
-       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.code.coding.system" ];
-       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.system" ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.fixedUri [ fhir:value "http://loinc.org" ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
-     ], [
-       fhir:index 10;
-       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.code" ];
-       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.code.coding.code" ];
-       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.code" ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.fixedCode [ fhir:value "81247-9" ];
-       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.binding [
+         fhir:ElementDefinition.binding.strength [ fhir:value "preferred" ];
+         fhir:ElementDefinition.binding.valueSetReference [
+           fhir:link <https://www.ncbi.nlm.nih.gov/gtr>;
+           fhir:Reference.reference [ fhir:value "https://www.ncbi.nlm.nih.gov/gtr" ]
+         ]
+       ]
      ], [
        fhir:index 11;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.subject" ];
@@ -2048,6 +2033,16 @@
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 13;
+       fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.effectivex" ];
+       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.effective[x]" ];
+       fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.effectivex" ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "true"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 14;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.performer" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.performer" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.performer" ];
@@ -2068,7 +2063,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 14;
+       fhir:index 15;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.request" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.request" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.request" ];
@@ -2089,7 +2084,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 15;
+       fhir:index 16;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.specimen" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.specimen" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.specimen" ];
@@ -2107,16 +2102,25 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 16;
+       fhir:index 17;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.result" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.result" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.result" ];
+       fhir:ElementDefinition.slicing [
+         fhir:ElementDefinition.slicing.id [ fhir:value "2" ];
+         fhir:ElementDefinition.slicing.discriminator [
+           fhir:value "target.reference/@profile";
+           fhir:index 0
+         ];
+         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
+         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
+       ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
          fhir:ElementDefinition.type.profile [
-           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-GeneticRegionAnalyzed";
+           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation";
            fhir:index 0
          ]
        ];
@@ -2125,7 +2129,59 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 17;
+       fhir:index 18;
+       fhir:ElementDefinition.id [ fhir:value "onco-core-GeneticVariantFound" ];
+       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.result" ];
+       fhir:ElementDefinition.name [ fhir:value "onco-core-GeneticVariantFound" ];
+       fhir:ElementDefinition.short [ fhir:value "GeneticVariantFound" ];
+       fhir:ElementDefinition.definition [ fhir:value "Data structure recording an alteration in the most common DNA nucleotide sequence. The term variant can be used to describe an alteration that may be benign, pathogenic, or of unknown significance. The term variant is increasingly being used in place of the term mutation." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DiagnosticReport.result" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.profile [
+           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-GeneticVariantFound";
+           fhir:index 0
+         ]
+       ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "true"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 19;
+       fhir:ElementDefinition.id [ fhir:value "onco-core-GeneticMutationTestResult" ];
+       fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.result" ];
+       fhir:ElementDefinition.name [ fhir:value "onco-core-GeneticMutationTestResult" ];
+       fhir:ElementDefinition.short [ fhir:value "GeneticMutationTestResult" ];
+       fhir:ElementDefinition.definition [ fhir:value "A test for a specific mutation on a particular gene." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DiagnosticReport.result" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:integer ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.profile [
+           fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-GeneticMutationTestResult";
+           fhir:index 0
+         ]
+       ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "true"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 20;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.image" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.image" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.image" ];
@@ -2135,7 +2191,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 18;
+       fhir:index 21;
        fhir:ElementDefinition.id [ fhir:value "DiagnosticReport-GenomicsReport.image.link" ];
        fhir:ElementDefinition.path [ fhir:value "DiagnosticReport.image.link" ];
        fhir:ElementDefinition.name [ fhir:value "DiagnosticReport-GenomicsReport.image.link" ];
@@ -2155,11 +2211,11 @@
      ]
   ] .
 
+<http://hl7.org/fhir/us/mcode/onco/core/vs/GeneticSpecimenTypeVS> a fhir:us .
+
 <http://hl7.org/fhir/ValueSet/diagnostic-report-status> a fhir:ValueSet .
 
 <http://hl7.org/fhir/ValueSet/diagnostic-service-sections> a fhir:ValueSet .
-
-<http://hl7.org/fhir/ValueSet/report-codes> a fhir:ValueSet .
 
 <http://hl7.org/fhir/ValueSet/clinical-findings> a fhir:ValueSet .
 

@@ -61,7 +61,10 @@ if (location.href.indexOf('is-external=true') == -1) {
       <dl>
         <dt>Documentation:</dt>
         <dd>
-          <div class="block"><p>Genetic analysis summary report</p></div>
+          <div class="block"><p>Genetic analysis summary report. The report may include one or more tests, with two distinct test types. The first type is a targeted mutation test, where a specific mutation on a specific gene is tested for. The result is either positive or negative for that mutation. The second type is a more general test for variants. This type of test returns the identity of variants found in a certain region of the genome.</p>
+<p>The identity of laboratory tests is typically represented by a LOINC code. However, many genetic tests and panels do not have LOINC codes, although some might have an identifier in NCBI Genetic Testing Registry (GTR), a central location for voluntary submission of genetic test information by providers. To identify the diagnostic report, the name of the report must be in the text sub-field of the code structure. If there is a coded identifier from GTR, LOINC, or other source, then it should be included into the the code sub-field of the code structure. If there is no suitable code, the code can be omitted.</p>
+<p>The performer of the test (organization or practitioner) should be included in the FHIR profile as the performer.actor.</p>
+<p>FHIR implementation note: The category for this profile is set to GE (Genetics), a code from http://hl7.org/fhir/ValueSet/diagnostic-service-sections. This may be contrary to the Argonaut specification, which assigns the category LAB to any diagnostic report containing a laboratory result.</p></div>
         </dd>
       </dl>
       <dl>
@@ -171,7 +174,57 @@ if (location.href.indexOf('is-external=true') == -1) {
   </tr>
   
       
-                                                                                                                                                                                                                  </table>                              <table class="overviewSummary" border="0" cellpadding="3" cellspacing="0">
+                                                                                                                                                                                                                              
+  <tr class="rowColor">
+
+  <td class="colFirst">
+    <div class="block">
+    
+      <code><strong><a href="../shr-core/SpecimenType.html">SpecimenType</a></strong></code>
+    
+    </div>
+    <div class="block"><p>The type of material the specimen contains or consists of.</p></div>
+  </td>
+  <td class="colMiddle">
+          <div class="block"><code><strong>DataType</strong></code></div>
+          <div class="block"><code><strong>Cardinality</strong></code></div>
+          <div class="block"><code><strong>Value Set</strong></code></div>
+    
+  </td>
+  <td class="colLast">
+                  <div class="block">
+          
+                      <a href="../shr-core/SpecimenType.html">SpecimenType</a>
+                    
+        </div>
+                        <div class="block">0..1</div>
+                        <div class="block">http://hl7.org/fhir/us/mcode/onco/core/vs/GeneticSpecimenTypeVS (EXTENSIBLE)</div>
+            </td>
+</tr>                        
+  <tr class="altColor">
+
+  <td class="colFirst">
+    <div class="block">
+    
+      <code><strong><a href="../onco-core/RegionStudied.html">RegionStudied</a></strong></code>
+    
+    </div>
+    <div class="block"><p>A description of the coverage of the genome that was tested for variants.</p></div>
+  </td>
+  <td class="colMiddle">
+          <div class="block"><code><strong>DataType</strong></code></div>
+          <div class="block"><code><strong>Cardinality</strong></code></div>
+    
+  </td>
+  <td class="colLast">
+                  <div class="block">
+          
+                      <a href="../onco-core/RegionStudied.html">RegionStudied</a>
+                    
+        </div>
+                        <div class="block">0..*</div>
+            </td>
+</tr>            </table>                              <table class="overviewSummary" border="0" cellpadding="3" cellspacing="0">
   <tr>
     <th class="colFirst" scope="col">Properties Constrained</th>
     <th class="colMiddle">Constraint</th>
@@ -214,13 +267,13 @@ if (location.href.indexOf('is-external=true') == -1) {
         
       </td>
       <td class="colMiddle">
-        <code><strong>Fixed Value</strong></code>
+        <code><strong>Value Set</strong></code>
         
           <div class="block">Constrained in <a href="../onco-core/GenomicsReport.html">GenomicsReport</a></div>
         
       </td>
       <td class="colLast">
-                  <div class="block">http://loinc.org (code: 81247-9)</div>
+                  <div class="block">https://www.ncbi.nlm.nih.gov/gtr (PREFERRED)</div>
               </td>
       <!-- <td class="colLast">
         <div class="block">GenomicsReport</div>
@@ -264,7 +317,7 @@ if (location.href.indexOf('is-external=true') == -1) {
         
       </td>
       <td class="colLast">
-                  <div class="block">http://hl7.org/fhir/observation-category (code: GE)</div>
+                  <div class="block">http://terminology.hl7.org/CodeSystem/v2-0074 (code: GE)</div>
               </td>
       <!-- <td class="colLast">
         <div class="block">GenomicsReport</div>
@@ -280,15 +333,41 @@ if (location.href.indexOf('is-external=true') == -1) {
         
       </td>
       <td class="colMiddle">
-        <code><strong>DataType</strong></code>
+        <code><strong>Includes Type</strong></code>
         
           <div class="block">Constrained in <a href="../onco-core/GenomicsReport.html">GenomicsReport</a></div>
         
       </td>
       <td class="colLast">
                   <div class="block">
-            
-                          <a href="../onco-core/GeneticRegionAnalyzed.html">ref(GeneticRegionAnalyzed)</a>
+            0..*
+                          <a href="../onco-core/GeneticVariantFound.html">GeneticVariantFound</a>
+                        
+          </div>
+              </td>
+      <!-- <td class="colLast">
+        <div class="block">GenomicsReport</div>
+      </td> -->
+    </tr>
+      
+      <tr class="altColor">
+    
+      <td class="colFirst">
+        <code><strong>Observation</strong></code>
+        
+          <div class="block">Defined in <a href="../shr-core/DiagnosticReport.html">DiagnosticReport</a></div>
+        
+      </td>
+      <td class="colMiddle">
+        <code><strong>Includes Type</strong></code>
+        
+          <div class="block">Constrained in <a href="../onco-core/GenomicsReport.html">GenomicsReport</a></div>
+        
+      </td>
+      <td class="colLast">
+                  <div class="block">
+            0..*
+                          <a href="../onco-core/GeneticMutationTestResult.html">GeneticMutationTestResult</a>
                         
           </div>
               </td>

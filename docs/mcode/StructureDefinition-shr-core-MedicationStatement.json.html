@@ -5,10 +5,10 @@
 <head>
   <meta charset="UTF-8" />
   
-  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 Beta 1</title>
+  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 Beta 1 FHIR Profiles" />
+  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 FHIR Profiles" />
 
   <link href="fhir.css" rel="stylesheet" />
 
@@ -41,7 +41,7 @@
     </a>
     <div id="hl7-status" class="hl7-status">
       
-      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 Beta 1</b>
+      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0</b>
     </div>
 
     <div id="hl7-nav">
@@ -122,7 +122,7 @@
    <div class="row">
      <div class="inner-wrapper">
        <div class="col-12">
-       <!--ReleaseHeader--><p id="publish-box"> - Local Development build (v0.9.0 Beta 1). See the <a href="http://hl7.org/fhir/us/shr/history.html">Directory of published versions</a></p></p><!--EndReleaseHeader-->
+       <!--ReleaseHeader--><p id="publish-box"> - Local Development build (v0.9.0). See the <a href="http://hl7.org/fhir/us/shr/history.html">Directory of published versions</a></p></p><!--EndReleaseHeader-->
 
 <!-- ============CONTENT CONTENT=============== -->
 
@@ -149,7 +149,7 @@
   "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.id">id</a>" : "shr-core-MedicationStatement",
   "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.text">text</a>" : {
     "<a href="http://hl7.org/fhir/DSTU2/narrative.html#Narrative.status">status</a>" : "generated",
-    "<a href="http://hl7.org/fhir/DSTU2/narrative.html#Narrative.div">div</a>" : "&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;\n  &lt;p&gt;&lt;b&gt;MedicationStatement Profile&lt;/b&gt;&lt;/p&gt;\n  &lt;p&gt;A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.&lt;/p&gt;\n  &lt;p&gt;&lt;b&gt;Mapping Summary&lt;/b&gt;&lt;/p&gt;\n  &lt;p&gt;&lt;pre&gt;shr.core.MedicationStatement maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-medicationstatement:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  MedicationStatementInformationSource maps to informationSource\n  StatementDateTime maps to dateAsserted  // slight semantic difference?\n  PatientSubjectOfRecord maps to patient\n  constrain wasNotTaken to 0..0\n  constrain reasonNotTaken to 0..0\n  constrain dosage to 0..1\n  MedicationCodeOrReference maps to medication[x]\n  ReasonCode maps to reasonForUse[x]\n  ReasonReference maps to reasonForUse[x]\n  OccurrenceTimeOrPeriod maps to effective[x]\n  Status maps to status\n  Dosage.DoseAmount maps to dosage.quantity[x]\n  Dosage.TimingOfDoses maps to dosage.timing\n  Dosage.AsNeededIndicator maps to dosage.asNeeded[x]\n  Dosage.DosageInstructionsText maps to dosage.text\n  Dosage.RouteIntoBody maps to dosage.route\n  Dosage.DosageMethod maps to dosage.method\n  Dosage.DosageBodyLocation maps to dosage.site[x]\n  Dosage.MaximumDosePerTimePeriod maps to dosage.maxDosePerPeriod\n&lt;/pre&gt;&lt;/p&gt;\n&lt;/div&gt;"
+    "<a href="http://hl7.org/fhir/DSTU2/narrative.html#Narrative.div">div</a>" : "&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;\n  &lt;p&gt;&lt;b&gt;MedicationStatement Profile&lt;/b&gt;&lt;/p&gt;\n  &lt;p&gt;A record of the use of a medication. The use may be reported by the patient or clinician and adminstration does not have to be directly observed.\n\nFHIR Notes:\n\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement). Extensions are provided.\n\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.\n\nPreference is given to using the National Library of Medicine (NLM) RxNorm terminology for medications. RxNorm is a coding standard established by the Office of the National Coordinator (ONC). However, RxNorm is restricted to FDA-approved drugs and does not include clinical trial drugs. MedicationStatement allows for the inclusion of other coding systems like the NCI Thesaurus (NCIT) to represent clinical trial oncology drugs.&lt;/p&gt;\n  &lt;p&gt;&lt;b&gt;Mapping Summary&lt;/b&gt;&lt;/p&gt;\n  &lt;p&gt;&lt;pre&gt;shr.core.MedicationStatement maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-medicationstatement:\n  _Entry.EntryId maps to id\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  MedicationStatementInformationSource maps to informationSource\n  StatementDateTime maps to dateAsserted  // slight semantic difference?\n  PatientSubjectOfRecord maps to patient\n  constrain wasNotTaken to 0..0\n  constrain reasonNotTaken to 0..0\n  constrain dosage to 0..1\n  MedicationCodeOrReference maps to medication[x]\n  ReasonCode maps to reasonForUse[x]\n  ReasonReference maps to reasonForUse[x]\n  OccurrenceTimeOrPeriod maps to effective[x]\n  Status maps to status\n  Dosage.DoseAmount maps to dosage.quantity[x]\n  Dosage.TimingOfDoses maps to dosage.timing\n  Dosage.AsNeededIndicator maps to dosage.asNeeded[x]\n  Dosage.DosageInstructionsText maps to dosage.text\n  Dosage.RouteIntoBody maps to dosage.route\n  Dosage.DosageMethod maps to dosage.method\n  Dosage.DosageBodyLocation maps to dosage.site[x]\n  Dosage.MaximumDosePerTimePeriod maps to dosage.maxDosePerPeriod\n&lt;/pre&gt;&lt;/p&gt;\n&lt;/div&gt;"
   },
   "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.url">url</a>" : "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationStatement",
   "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.identifier">identifier</a>" : [
@@ -158,7 +158,7 @@
       "<a href="http://hl7.org/fhir/DSTU2/datatypes.html#Identifier#Identifier.value">value</a>" : "shr.core.MedicationStatement"
     }
   ],
-  "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.version">version</a>" : "0.9.0 Beta 1",
+  "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.version">version</a>" : "0.9.0",
   "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.name">name</a>" : "MedicationStatement",
   "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.display">display</a>" : "shr-core-MedicationStatement",
   "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.status">status</a>" : "draft",
@@ -174,8 +174,8 @@
       ]
     }
   ],
-  "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.date">date</a>" : "2019-04-10T00:00:00-04:00",
-  "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.description">description</a>" : "A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.",
+  "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.date">date</a>" : "2019-04-17T00:00:00-04:00",
+  "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.description">description</a>" : "A record of the use of a medication. The use may be reported by the patient or clinician and adminstration does not have to be directly observed.\n\nFHIR Notes:\n\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement). Extensions are provided.\n\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.\n\nPreference is given to using the National Library of Medicine (NLM) RxNorm terminology for medications. RxNorm is a coding standard established by the Office of the National Coordinator (ONC). However, RxNorm is restricted to FDA-approved drugs and does not include clinical trial drugs. MedicationStatement allows for the inclusion of other coding systems like the NCI Thesaurus (NCIT) to represent clinical trial oncology drugs.",
   "<a href="http://hl7.org/fhir/DSTU2/structuredefinition.html#StructureDefinition.code">code</a>" : [
     {
       "<a href="http://hl7.org/fhir/DSTU2/datatypes.html#Coding#Coding.system">system</a>" : "http://snomed.info/sct",
@@ -213,7 +213,7 @@
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "MedicationStatement",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "MedicationStatement-MedicationStatement",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a>" : "shr-core-MedicationStatement",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "A record of the use of a medication. The use may be reported by the patient or clinician and adminstration does not have to be directly observed.\n\nFHIR Notes:\n\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement). Extensions are provided.\n\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.\n\nPreference is given to using the National Library of Medicine (NLM) RxNorm terminology for medications. RxNorm is a coding standard established by the Office of the National Coordinator (ONC). However, RxNorm is restricted to FDA-approved drugs and does not include clinical trial drugs. MedicationStatement allows for the inclusion of other coding systems like the NCI Thesaurus (NCIT) to represent clinical trial oncology drugs.",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "*",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
@@ -675,7 +675,7 @@
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "treatmentintent",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "MedicationStatement.extension",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "treatmentintent",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "The purpose of a treatment. A simplified set of values include only two choices: curative and palliative. Curative is defined as any treatment meant to reduce or control a disease process, even if a 'cure' is not anticipated. Palliative includes treatments meant to reduce symptoms and side effects, such as antiemetics. If a treatment does both, it should be recorded as curative.",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "The purpose of a treatment.",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "1",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
@@ -1780,7 +1780,7 @@
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "MedicationStatement",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "MedicationStatement-MedicationStatement",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.short">short</a>" : "shr-core-MedicationStatement",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "A record of the use of a medication.\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "A record of the use of a medication. The use may be reported by the patient or clinician and adminstration does not have to be directly observed.\n\nFHIR Notes:\n\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement). Extensions are provided.\n\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.\n\nPreference is given to using the National Library of Medicine (NLM) RxNorm terminology for medications. RxNorm is a coding standard established by the Office of the National Coordinator (ONC). However, RxNorm is restricted to FDA-approved drugs and does not include clinical trial drugs. MedicationStatement allows for the inclusion of other coding systems like the NCI Thesaurus (NCIT) to represent clinical trial oncology drugs.",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.type">type</a>" : [
           {
@@ -1905,7 +1905,7 @@
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.id">id</a>" : "treatmentintent",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.path">path</a>" : "MedicationStatement.extension",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.name">name</a>" : "treatmentintent",
-        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "The purpose of a treatment. A simplified set of values include only two choices: curative and palliative. Curative is defined as any treatment meant to reduce or control a disease process, even if a 'cure' is not anticipated. Palliative includes treatments meant to reduce symptoms and side effects, such as antiemetics. If a treatment does both, it should be recorded as curative.",
+        "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.definition">definition</a>" : "The purpose of a treatment.",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.min">min</a>" : 0,
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.max">max</a>" : "1",
         "<a href="http://hl7.org/fhir/DSTU2/elementdefinition.html#ElementDefinition.base">base</a>" : {
@@ -2255,9 +2255,9 @@
    <div class="inner-wrapper">
     <p>
       
-      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 Beta 1, Version: 0.9.0 Beta 1
+      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0, Version: 0.9.0
       ; <a style="color: #81BEF7" href="http://hl7.org/fhir/DSTU2/">FHIR &copy; Version: 1.0.2</a>
-      ; Generated on Wed, Apr 10, 2019 14:32-0400.
+      ; Generated on Wed, Apr 17, 2019 12:01-0400.
     </p>
    </div>  <!-- /inner-wrapper -->
   </div>  <!-- /container -->

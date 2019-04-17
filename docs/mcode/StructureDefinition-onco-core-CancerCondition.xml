@@ -46,7 +46,7 @@
     <system value="http://hl7.org/fhir/us/mcode"/>
     <value value="onco.core.CancerCondition"/>
   </identifier>
-  <version value="0.9.0 Beta 1"/>
+  <version value="0.9.0"/>
   <name value="CancerCondition"/>
   <display value="onco-core-CancerCondition"/>
   <status value="draft"/>
@@ -58,7 +58,7 @@
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-04-10T00:00:00-04:00"/>
+  <date value="2019-04-17T00:00:00-04:00"/>
   <description value="Abstract class for describing a primary or secondary metastatic neoplastic diseases."/>
   <fhirVersion value="1.0.2"/>
   <mapping>
@@ -282,7 +282,7 @@
     <element id="Condition.extension">
       <path value="Condition.extension"/>
       <name value="Condition.extension"/>
-      <slicing id="2">
+      <slicing id="3">
         <discriminator value="url"/>
         <ordered value="false"/>
         <rules value="open"/>
@@ -608,8 +608,9 @@
       <isSummary value="false"/>
       <binding>
         <strength value="preferred"/>
+        <description value="Extended category code valueset to support the intent of the separate concepts of problems and health concerns"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/mcode/shr/core/vs/ConditionCategoryVS"/>
+          <reference value="http://fhir.org/guides/argonaut/ValueSet/condition-category"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -627,6 +628,312 @@
       <mapping>
         <identity value="us-core-stu3"/>
         <map value="Condition.category"/>
+      </mapping>
+    </element>
+    <element id="Condition.category.id">
+      <path value="Condition.category.id"/>
+      <representation value="xmlAttr"/>
+      <name value="Condition.category.id"/>
+      <short value="xml:id (or equivalent in JSON)"/>
+      <definition value="unique id for the element within a resource (for internal references)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="id"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Condition.category.extension">
+      <path value="Condition.category.extension"/>
+      <name value="Condition.category.extension"/>
+      <short value="Additional Content defined by implementations"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
+      <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Condition.category.coding">
+      <path value="Condition.category.coding"/>
+      <name value="Condition.category.coding"/>
+      <slicing id="2">
+        <discriminator value="code"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="Code defined by a terminology system"/>
+      <definition value="A reference to a code defined by a terminology system."/>
+      <comments value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labelled as UserSelected = true."/>
+      <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings."/>
+      <min value="1"/>
+      <max value="*"/>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="orim"/>
+        <map value="fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding"/>
+      </mapping>
+      <mapping>
+        <identity value="v2"/>
+        <map value="C*E.1-8, C*E.10-22"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="union(., ./translation)"/>
+      </mapping>
+    </element>
+    <element id="Fixed_64572001">
+      <path value="Condition.category.coding"/>
+      <name value="Fixed_64572001"/>
+      <short value="Disease"/>
+      <definition value="Disease"/>
+      <min value="1"/>
+      <max value="1"/>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+    </element>
+    <element id="Condition.category.coding-Fixed-64572001.id">
+      <path value="Condition.category.coding.id"/>
+      <representation value="xmlAttr"/>
+      <name value="Condition.category.coding-Fixed-64572001.id"/>
+      <short value="xml:id (or equivalent in JSON)"/>
+      <definition value="unique id for the element within a resource (for internal references)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="id"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Condition.category.coding-Fixed-64572001.extension">
+      <path value="Condition.category.coding.extension"/>
+      <name value="Condition.category.coding-Fixed-64572001.extension"/>
+      <short value="Additional Content defined by implementations"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
+      <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Condition.category.coding-Fixed-64572001.system">
+      <path value="Condition.category.coding.system"/>
+      <name value="Condition.category.coding-Fixed-64572001.system"/>
+      <short value="Identity of the terminology system"/>
+      <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
+      <comments value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7&#39;s list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously."/>
+      <requirements value="Need to be unambiguous about the source of the definition of the symbol."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="uri"/>
+      </type>
+      <fixedUri value="http://snomed.info/sct"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="orim"/>
+        <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem"/>
+      </mapping>
+      <mapping>
+        <identity value="v2"/>
+        <map value="C*E.3"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="./codeSystem"/>
+      </mapping>
+    </element>
+    <element id="Condition.category.coding-Fixed-64572001.version">
+      <path value="Condition.category.coding.version"/>
+      <name value="Condition.category.coding-Fixed-64572001.version"/>
+      <short value="Version of the system - if relevant"/>
+      <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged."/>
+      <comments value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="string"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="orim"/>
+        <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion"/>
+      </mapping>
+      <mapping>
+        <identity value="v2"/>
+        <map value="C*E.7"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="./codeSystemVersion"/>
+      </mapping>
+    </element>
+    <element id="Condition.category.coding-Fixed-64572001.code">
+      <path value="Condition.category.coding.code"/>
+      <name value="Condition.category.coding-Fixed-64572001.code"/>
+      <short value="Symbol in syntax defined by the system"/>
+      <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)."/>
+      <requirements value="Need to refer to a particular code in the system."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="code"/>
+      </type>
+      <fixedCode value="64572001"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="orim"/>
+        <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code"/>
+      </mapping>
+      <mapping>
+        <identity value="v2"/>
+        <map value="C*E.1"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="./code"/>
+      </mapping>
+    </element>
+    <element id="Condition.category.coding-Fixed-64572001.display">
+      <path value="Condition.category.coding.display"/>
+      <name value="Condition.category.coding-Fixed-64572001.display"/>
+      <short value="Representation defined by the system"/>
+      <definition value="A representation of the meaning of the code in the system, following the rules of the system."/>
+      <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="string"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="orim"/>
+        <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName"/>
+      </mapping>
+      <mapping>
+        <identity value="v2"/>
+        <map value="C*E.2 - but note this is not well followed"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="CV.displayName"/>
+      </mapping>
+    </element>
+    <element id="Condition.category.coding-Fixed-64572001.userSelected">
+      <path value="Condition.category.coding.userSelected"/>
+      <name value="Condition.category.coding-Fixed-64572001.userSelected"/>
+      <short value="If this coding was chosen directly by the user"/>
+      <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)."/>
+      <comments value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly &#39;directly chosen&#39; implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely."/>
+      <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="boolean"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="orim"/>
+        <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]"/>
+      </mapping>
+      <mapping>
+        <identity value="v2"/>
+        <map value="Sometimes implied by being first"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="CD.codingRationale"/>
+      </mapping>
+    </element>
+    <element id="Condition.category.text">
+      <path value="Condition.category.text"/>
+      <name value="Condition.category.text"/>
+      <short value="Plain text representation of the concept"/>
+      <definition value="A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user."/>
+      <comments value="Very often the text is the same as a displayName of one of the codings."/>
+      <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="string"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="orim"/>
+        <map value="fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText"/>
+      </mapping>
+      <mapping>
+        <identity value="v2"/>
+        <map value="C*E.9. But note many systems use C*E.2 for this"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="./originalText[mediaType/code=&quot;text/plain&quot;]/data"/>
       </mapping>
     </element>
     <element id="Condition.clinicalStatus">
@@ -1201,7 +1508,7 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
       <binding>
-        <strength value="extensible"/>
+        <strength value="preferred"/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/us/mcode/onco/core/vs/CancerBodyLocationVS"/>
         </valueSetReference>
@@ -1261,7 +1568,7 @@
     <element id="laterality">
       <path value="Condition.bodySite.extension"/>
       <name value="laterality"/>
-      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body.&#xA;&#xA;This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
+      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body.&#xA;&#xA;The laterality element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1281,7 +1588,7 @@
     <element id="orientation">
       <path value="Condition.bodySite.extension"/>
       <name value="orientation"/>
-      <definition value="Orientation of the body location, if needed to distinguish from a similar location in another orientation.&#xA;This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
+      <definition value="Orientation of the body location, if needed to distinguish from a similar location in another orientation.&#xA;The orientation element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1301,7 +1608,7 @@
     <element id="relationtolandmark">
       <path value="Condition.bodySite.extension"/>
       <name value="relationtolandmark"/>
-      <definition value="The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:&#xA;* Specifying the location and type of landmark using a body site code and optional laterality/orientation,&#xA;* Specifying the direction from the landmark to the body location, and&#xA;* Specifying the distance from the landmark to the body location.&#xA;&#xA;This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
+      <definition value="The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:&#xA;* Specifying the location and type of landmark using a body site code and optional laterality/orientation,&#xA;* Specifying the direction from the landmark to the body location, and&#xA;* Specifying the distance from the landmark to the body location.&#xA;&#xA;The RelationToLandmark element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1423,7 +1730,7 @@
     <element id="Condition.extension">
       <path value="Condition.extension"/>
       <name value="Condition.extension"/>
-      <slicing id="2">
+      <slicing id="3">
         <discriminator value="url"/>
         <ordered value="false"/>
         <rules value="open"/>
@@ -1536,12 +1843,56 @@
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
-      <binding>
-        <strength value="preferred"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/mcode/shr/core/vs/ConditionCategoryVS"/>
-        </valueSetReference>
-      </binding>
+    </element>
+    <element id="Condition.category.coding">
+      <path value="Condition.category.coding"/>
+      <name value="Condition.category.coding"/>
+      <slicing id="2">
+        <discriminator value="code"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <min value="1"/>
+      <max value="*"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Fixed_64572001">
+      <path value="Condition.category.coding"/>
+      <name value="Fixed_64572001"/>
+      <short value="Disease"/>
+      <definition value="Disease"/>
+      <min value="1"/>
+      <max value="1"/>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+    </element>
+    <element id="Condition.category.coding-Fixed-64572001.system">
+      <path value="Condition.category.coding.system"/>
+      <name value="Condition.category.coding-Fixed-64572001.system"/>
+      <min value="0"/>
+      <fixedUri value="http://snomed.info/sct"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Condition.category.coding-Fixed-64572001.code">
+      <path value="Condition.category.coding.code"/>
+      <name value="Condition.category.coding-Fixed-64572001.code"/>
+      <min value="0"/>
+      <fixedCode value="64572001"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
     </element>
     <element id="Condition.clinicalStatus">
       <path value="Condition.clinicalStatus"/>
@@ -1639,7 +1990,7 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
       <binding>
-        <strength value="extensible"/>
+        <strength value="preferred"/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/us/mcode/onco/core/vs/CancerBodyLocationVS"/>
         </valueSetReference>
@@ -1662,7 +2013,7 @@
     <element id="laterality">
       <path value="Condition.bodySite.extension"/>
       <name value="laterality"/>
-      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body.&#xA;&#xA;This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
+      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body.&#xA;&#xA;The laterality element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1682,7 +2033,7 @@
     <element id="orientation">
       <path value="Condition.bodySite.extension"/>
       <name value="orientation"/>
-      <definition value="Orientation of the body location, if needed to distinguish from a similar location in another orientation.&#xA;This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
+      <definition value="Orientation of the body location, if needed to distinguish from a similar location in another orientation.&#xA;The orientation element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1702,7 +2053,7 @@
     <element id="relationtolandmark">
       <path value="Condition.bodySite.extension"/>
       <name value="relationtolandmark"/>
-      <definition value="The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:&#xA;* Specifying the location and type of landmark using a body site code and optional laterality/orientation,&#xA;* Specifying the direction from the landmark to the body location, and&#xA;* Specifying the distance from the landmark to the body location.&#xA;&#xA;This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
+      <definition value="The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:&#xA;* Specifying the location and type of landmark using a body site code and optional laterality/orientation,&#xA;* Specifying the direction from the landmark to the body location, and&#xA;* Specifying the distance from the landmark to the body location.&#xA;&#xA;The RelationToLandmark element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>

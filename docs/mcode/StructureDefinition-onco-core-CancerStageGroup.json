@@ -12,7 +12,7 @@
       "value": "onco.core.CancerStageGroup"
     }
   ],
-  "version": "0.9.0 Beta 1",
+  "version": "0.9.0",
   "name": "CancerStageGroup",
   "display": "onco-core-CancerStageGroup",
   "status": "draft",
@@ -28,7 +28,7 @@
       ]
     }
   ],
-  "date": "2019-04-10T00:00:00-04:00",
+  "date": "2019-04-17T00:00:00-04:00",
   "description": "A panel that contains cancer staging information. This class is the parent of panels containing information related to clinical and pathologic staging, including TNMClinicalStageGroup and TNMPathologicStageGroup.",
   "requirements": "Observations are a key aspect of healthcare.  This resource is used to capture those that do not require more sophisticated mechanisms.",
   "fhirVersion": "1.0.2",
@@ -295,7 +295,7 @@
         "id": "primarycancercondition",
         "path": "Observation.extension",
         "name": "primarycancercondition",
-        "definition": "Primary cancer condition, in which abnormal cells divide without control and can invade nearby tissues. A primary cancer is defined as the original site (organ or tissue) where a cancer began.",
+        "definition": "Records the history of the primary cancer condition, the original or first tumor in the body, abnormal cells that divide without control and can invade nearby tissues.",
         "min": 0,
         "max": "1",
         "base": {
@@ -892,10 +892,9 @@
         "isModifier": false,
         "isSummary": false,
         "binding": {
-          "strength": "example",
-          "description": "Methods for simple observations.",
+          "strength": "extensible",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/observation-methods"
+            "reference": "http://hl7.org/fhir/us/mcode/onco/core/vs/CancerStagingSystemVS"
           }
         },
         "mapping": [
@@ -2027,7 +2026,7 @@
         "id": "primarycancercondition",
         "path": "Observation.extension",
         "name": "primarycancercondition",
-        "definition": "Primary cancer condition, in which abnormal cells divide without control and can invade nearby tissues. A primary cancer is defined as the original site (organ or tissue) where a cancer began.",
+        "definition": "Records the history of the primary cancer condition, the original or first tumor in the body, abnormal cells that divide without control and can invade nearby tissues.",
         "min": 0,
         "max": "1",
         "base": {
@@ -2187,6 +2186,22 @@
           "strength": "preferred",
           "valueSetReference": {
             "reference": "http://hl7.org/fhir/us/mcode/shr/core/vs/BodyLocationVS"
+          }
+        }
+      },
+      {
+        "id": "Observation.method",
+        "path": "Observation.method",
+        "name": "Observation.method",
+        "min": 0,
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "extensible",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/us/mcode/onco/core/vs/CancerStagingSystemVS"
           }
         }
       },

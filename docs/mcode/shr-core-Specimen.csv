@@ -33,7 +33,7 @@ user content","",0,*,"","Y","","Extension {[]} {[]}
 "Specimen.status","","","",0,1,"","Y","Y","code {[]} {[]}
 ","available | unavailable | unsatisfactory | entered-in-error","The availability of the specimen.","","","","","","","","","",,"required","Codes providing the status/availability of a specimen.","http://hl7.org/fhir/ValueSet/specimen-status","",,,,"",0,null,"","","status","status","SPM-20"
 "Specimen.type","","","",1,1,"","","Y","CodeableConcept {[]} {[]}
-","Kind of material that forms the specimen","The kind of material that forms the specimen.","The type can change the way that a specimen is handled, and drives what kind of analyses can properly be performed on the specimen. It is frequently used in diagnostic work flow decision making systems.","","","","","","","","",,"required","The type of the specimen.","http://hl7.org/fhir/ValueSet/v2-0487","",,,,"Specimen.type",0,1,"","",".code","class","SPM-4 and possibly SPM-5"
+","Kind of material that forms the specimen","The kind of material that forms the specimen.","The type can change the way that a specimen is handled, and drives what kind of analyses can properly be performed on the specimen. It is frequently used in diagnostic work flow decision making systems.","","","","","","","","",,"example","The type of the specimen.","http://hl7.org/fhir/ValueSet/v2-0487","",,,,"Specimen.type",0,1,"","",".code","class","SPM-4 and possibly SPM-5"
 "Specimen.parent","","","",0,1,"","","","Reference {[]} {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Specimen]]}
 ","Specimen from which this specimen originated","Reference to the parent (source) specimen which is used when the specimen was either derived from or a component of another specimen.","The parent specimen could be the source from which the current specimen is derived by some processing step (e.g. an aliquot or isolate or extracted nucleic acids from clinical samples) or one of many specimens that were combined to create a pooled sample.","","","","","","","","",,,,,"",,,,"Specimen.parent",0,*,"","",".scoper (if parent) .player.scopesRole[classCode=SPEC].player (if child)"
 "Specimen.subject","","","",1,1,"","","Y","Reference {[]} {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient], CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Group], CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device], CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Substance]]}
@@ -73,7 +73,7 @@ user content","",0,*,"","","","Extension {[]} {[]}
 "Specimen.collection.bodySite.extension","laterality","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension]]} {[]}
 ","","Body side of the body location, if needed to distinguish from a similar location on the other side of the body.
 
-This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
+The laterality element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
 
 + Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
 + Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
@@ -84,7 +84,7 @@ This extension is part of the profile on body site appearing throughout the mCOD
 Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).","","","","","","","","","",,,,,"",,,,"Specimen.collection.bodySite.extension",0,*,"",""
 "Specimen.collection.bodySite.extension","orientation","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Orientation-extension]]} {[]}
 ","","Orientation of the body location, if needed to distinguish from a similar location in another orientation.
-This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
+The orientation element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
 
 + Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
 + Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
@@ -99,7 +99,7 @@ Note that BodyLocation is a data type (a reusable structure), not a stand-alone 
 * Specifying the direction from the landmark to the body location, and
 * Specifying the distance from the landmark to the body location.
 
-This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
+The RelationToLandmark element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
 
 + Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
 + Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.

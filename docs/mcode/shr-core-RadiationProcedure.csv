@@ -38,7 +38,7 @@ Reason is a string or CodeableConcept in DSTU2 but in later versions only a Code
 "Procedure.extension.valueReference","","","",1,1,"","","","Reference {[]} {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure]]}
 ","Procedure","A procedure that has been performed.","","","","","","","","","",,,,,"",,,,"Extension.value[x]",0,1,"","","N/A"
 "Procedure.extension","treatmentintent","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TreatmentIntent-extension]]} {[]}
-","","The purpose of a treatment. A simplified set of values include only two choices: curative and palliative. Curative is defined as any treatment meant to reduce or control a disease process, even if a 'cure' is not anticipated. Palliative includes treatments meant to reduce symptoms and side effects, such as antiemetics. If a treatment does both, it should be recorded as curative.","","","","","","","","","",0,,,,"",,,,"Procedure.extension",0,*,"",""
+","","The purpose of a treatment.","","","","","","","","","",0,,,,"",,,,"Procedure.extension",0,*,"",""
 "Procedure.extension","radiationdoseperfraction","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RadiationDosePerFraction-extension]]} {[]}
 ","","The total number of treatment sessions (fractions) administered during a course of radiation therapy therapy. A fraction is a portion of the total radiation dose, delivered as a series of treatments that make up the full course of radiotherapy. (source: LOINC)","","","","","","","","","",0,,,,"",,,,"Procedure.extension",0,*,"",""
 "Procedure.extension","radiationfractionsdelivered","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RadiationFractionsDelivered-extension]]} {[]}
@@ -74,7 +74,7 @@ user content","",0,*,"","Y","","Extension {[]} {[]}
 ","Reason procedure was not performed","A code indicating why the procedure was not performed.","","","","","","","","","",0,"example","A code that identifies the reason a procedure was not performed.","http://hl7.org/fhir/ValueSet/procedure-not-performed-reason","",,,,"Procedure.reasonNotPerformed",0,*,"pro-1
 ","",".reason.Observation.value"
 "Procedure.bodySite","","","",0,*,"","","Y","CodeableConcept {[]} {[]}
-","Target body sites","Detailed and structured anatomical location information. Multiple locations are allowed - e.g. multiple punch biopsies of a lesion.","","","","","","","","","",0,"preferred","","http://hl7.org/fhir/us/mcode/shr/core/vs/BodyLocationVS","",,,,"Procedure.bodySite",0,*,"","",".targetSiteCode","OBX-20"
+","Target body sites","Detailed and structured anatomical location information. Multiple locations are allowed - e.g. multiple punch biopsies of a lesion.","","","","","","","","","",0,"extensible","","http://hl7.org/fhir/us/mcode/shr/core/vs/RadiationTargetBodySiteVS","",,,,"Procedure.bodySite",0,*,"","",".targetSiteCode","OBX-20"
 "Procedure.bodySite.id","","","",0,1,"","","","id {[]} {[]}
 ","xml:id (or equivalent in JSON)","unique id for the element within a resource (for internal references).","","","","","","","","","",,,,,"",,,,"",0,null,"","","n/a"
 "Procedure.bodySite.extension","","extensions
@@ -84,7 +84,7 @@ user content","",0,*,"","","","Extension {[]} {[]}
 "Procedure.bodySite.extension","laterality","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension]]} {[]}
 ","","Body side of the body location, if needed to distinguish from a similar location on the other side of the body.
 
-This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
+The laterality element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
 
 + Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
 + Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
@@ -95,7 +95,7 @@ This extension is part of the profile on body site appearing throughout the mCOD
 Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).","","","","","","","","","",,,,,"",,,,"Procedure.bodySite.extension",0,*,"",""
 "Procedure.bodySite.extension","orientation","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Orientation-extension]]} {[]}
 ","","Orientation of the body location, if needed to distinguish from a similar location in another orientation.
-This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
+The orientation element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
 
 + Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
 + Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
@@ -110,7 +110,7 @@ Note that BodyLocation is a data type (a reusable structure), not a stand-alone 
 * Specifying the direction from the landmark to the body location, and
 * Specifying the distance from the landmark to the body location.
 
-This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
+The RelationToLandmark element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
 
 + Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
 + Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.

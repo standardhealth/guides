@@ -5,7 +5,7 @@
   <text>
     <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">
   <p><b>GeneticVariantFound Profile</b></p>
-  <p>An alteration in the most common DNA nucleotide sequence. The term variant can be used to describe an alteration that may be benign, pathogenic, or of unknown significance. The term variant is increasingly being used in place of the term mutation. (source: NCI)</p>
+  <p>Data structure recording an alteration in the most common DNA nucleotide sequence. The term variant can be used to describe an alteration that may be benign, pathogenic, or of unknown significance. The term variant is increasingly being used in place of the term mutation.</p>
   <p><b>Mapping Summary</b></p>
   <p><pre>onco.core.GeneticVariantFound maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-observationresults:
   _Entry.EntryId maps to id
@@ -19,7 +19,7 @@
   Metadata.Tag maps to meta.tag
   Identifier maps to identifier (slice on = type.coding.code; slice strategy = includes)
   PatientSubjectOfRecord maps to subject
-  PractitionerPerformer maps to performer (slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)
+  PractitionerOrOrganizationPerformer maps to performer (slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)
   Code maps to code
   Method maps to method
   CommentOrDescription maps to comments
@@ -57,7 +57,7 @@
     <system value="http://hl7.org/fhir/us/mcode"/>
     <value value="onco.core.GeneticVariantFound"/>
   </identifier>
-  <version value="0.9.0 Beta 1"/>
+  <version value="0.9.0"/>
   <name value="GeneticVariantFound"/>
   <display value="onco-core-GeneticVariantFound"/>
   <status value="draft"/>
@@ -69,8 +69,8 @@
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-04-10T00:00:00-04:00"/>
-  <description value="An alteration in the most common DNA nucleotide sequence. The term variant can be used to describe an alteration that may be benign, pathogenic, or of unknown significance. The term variant is increasingly being used in place of the term mutation. (source: NCI)"/>
+  <date value="2019-04-17T00:00:00-04:00"/>
+  <description value="Data structure recording an alteration in the most common DNA nucleotide sequence. The term variant can be used to describe an alteration that may be benign, pathogenic, or of unknown significance. The term variant is increasingly being used in place of the term mutation."/>
   <fhirVersion value="1.0.2"/>
   <mapping>
     <identity value="v2"/>
@@ -96,7 +96,7 @@
       <path value="Observation"/>
       <name value="Observation"/>
       <short value="onco-core-GeneticVariantFound"/>
-      <definition value="An alteration in the most common DNA nucleotide sequence. The term variant can be used to describe an alteration that may be benign, pathogenic, or of unknown significance. The term variant is increasingly being used in place of the term mutation. (source: NCI)"/>
+      <definition value="Data structure recording an alteration in the most common DNA nucleotide sequence. The term variant can be used to describe an alteration that may be benign, pathogenic, or of unknown significance. The term variant is increasingly being used in place of the term mutation."/>
       <comments value="Used for simple observations such as device measurements, laboratory atomic results, vital signs, height, weight, smoking status, comments, etc.  Other resources are used to provide context for observations such as lab reports, etc."/>
       <alias value="Vital Signs"/>
       <alias value="Measurement"/>
@@ -355,7 +355,7 @@
     <element id="Observation.identifier">
       <path value="Observation.identifier"/>
       <name value="Observation.identifier"/>
-      <slicing id="8">
+      <slicing id="9">
         <discriminator value="type.coding.code"/>
         <ordered value="false"/>
         <rules value="open"/>
@@ -1087,6 +1087,7 @@
       <type>
         <code value="Reference"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1334,11 +1335,11 @@
         <code value="CodeableConcept"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
       <binding>
-        <strength value="required"/>
+        <strength value="extensible"/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/us/mcode/onco/core/vs/GeneticTestMethodVS"/>
         </valueSetReference>
@@ -1890,7 +1891,7 @@
       <path value="Observation.component"/>
       <name value="onco-core-GenomicSourceClass"/>
       <short value="GenomicSourceClass"/>
-      <definition value="The genomic class of the specimen being analyzed: Germline for inherited genome, somatic for cancer genome, and prenatal for fetal genome. (source: LOINC)"/>
+      <definition value="The genomic class of the specimen being analyzed, for example, germline for inherited genome, somatic for cancer genome, and prenatal for fetal genome."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -2375,7 +2376,7 @@
       <comments value="&quot;Null&quot; or exceptional values can be represented two ways in FHIR Observations.  One way is to simply include them in the value set and represent the exceptions in the value.  For example, measurement values for a serology test could be  &quot;detected&quot;, &quot;not detected&quot;, &quot;inconclusive&quot;, or  &quot;test not done&quot;.   The alternate way is to use the value element for actual observations and use the explicit dataAbsentReason element to record exceptional values.  For example, the dataAbsentReason code &quot;error&quot; could be used when the measurement was not completed.  Because of these options, use-case agreements are required to interpret general observations for exceptional values."/>
       <requirements value="For many results it is necessary to handle exceptional values in measurements."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="0"/>
       <base>
         <path value="Observation.component.dataAbsentReason"/>
         <min value="0"/>
@@ -2624,11 +2625,11 @@
         <map value="value:ST"/>
       </mapping>
     </element>
-    <element id="onco-core-ComplexVariantHGVSName">
+    <element id="onco-core-VariantFoundIdentifier">
       <path value="Observation.component"/>
-      <name value="onco-core-ComplexVariantHGVSName"/>
-      <short value="ComplexVariantHGVSName"/>
-      <definition value="This term is used to report the name of the complex variant found in this study in HGVS format. For example, c.[886C&gt;T;457G&gt;C], which represents two separate base substitutions in one gene on one chromosome, or c.[886C&gt;T];[457G&gt;C], which represents two separate base substitutions in one gene on two different chromosomes. (source: LOINC)"/>
+      <name value="onco-core-VariantFoundIdentifier"/>
+      <short value="VariantFoundIdentifier"/>
+      <definition value="The variation ID assigned by HGVS, for example, 360448 is the identifier for NM_005228.4(EGFR):c.-237A&gt;G (single nucleotide variant in EGFR)."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -2652,10 +2653,10 @@
         <map value="outBoundRelationship[typeCode=COMP]"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.id">
+    <element id="Observation.component-VariantFoundIdentifier.id">
       <path value="Observation.component.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.component-ComplexVariantHGVSName.id"/>
+      <name value="Observation.component-VariantFoundIdentifier.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -2677,9 +2678,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.extension">
+    <element id="Observation.component-VariantFoundIdentifier.extension">
       <path value="Observation.component.extension"/>
-      <name value="Observation.component-ComplexVariantHGVSName.extension"/>
+      <name value="Observation.component-VariantFoundIdentifier.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -2704,9 +2705,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.modifierExtension">
+    <element id="Observation.component-VariantFoundIdentifier.modifierExtension">
       <path value="Observation.component.modifierExtension"/>
-      <name value="Observation.component-ComplexVariantHGVSName.modifierExtension"/>
+      <name value="Observation.component-VariantFoundIdentifier.modifierExtension"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -2732,9 +2733,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.code">
+    <element id="Observation.component-VariantFoundIdentifier.code">
       <path value="Observation.component.code"/>
-      <name value="Observation.component-ComplexVariantHGVSName.code"/>
+      <name value="Observation.component-VariantFoundIdentifier.code"/>
       <short value="Type of component observation (code / type)"/>
       <definition value="Describes what was observed. Sometimes this is called the observation &quot;code&quot;."/>
       <requirements value="Knowing what kind of observation is being made is essential to understanding the observation."/>
@@ -2773,10 +2774,10 @@
         <map value="what"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.code.id">
+    <element id="Observation.component-VariantFoundIdentifier.code.id">
       <path value="Observation.component.code.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.component-ComplexVariantHGVSName.code.id"/>
+      <name value="Observation.component-VariantFoundIdentifier.code.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -2793,9 +2794,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.code.extension">
+    <element id="Observation.component-VariantFoundIdentifier.code.extension">
       <path value="Observation.component.code.extension"/>
-      <name value="Observation.component-ComplexVariantHGVSName.code.extension"/>
+      <name value="Observation.component-VariantFoundIdentifier.code.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -2815,9 +2816,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.code.coding">
+    <element id="Observation.component-VariantFoundIdentifier.code.coding">
       <path value="Observation.component.code.coding"/>
-      <name value="Observation.component-ComplexVariantHGVSName.code.coding"/>
+      <name value="Observation.component-VariantFoundIdentifier.code.coding"/>
       <slicing id="4">
         <discriminator value="code"/>
         <ordered value="false"/>
@@ -2849,11 +2850,11 @@
         <map value="union(., ./translation)"/>
       </mapping>
     </element>
-    <element id="Fixed_81262-8">
+    <element id="Fixed_48003-8">
       <path value="Observation.component.code.coding"/>
-      <name value="Fixed_81262-8"/>
-      <short value="Complex variant HGVS name"/>
-      <definition value="Complex variant HGVS name"/>
+      <name value="Fixed_48003-8"/>
+      <short value="DNA sequence variation identifier"/>
+      <definition value="DNA sequence variation identifier"/>
       <min value="1"/>
       <max value="1"/>
       <type>
@@ -2864,10 +2865,10 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.code.cod2.id">
+    <element id="Observation.component-VariantFoundIdentifier.code.cod2.id">
       <path value="Observation.component.code.coding.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.component-ComplexVariantHGVSName.code.cod2.id"/>
+      <name value="Observation.component-VariantFoundIdentifier.code.cod2.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -2884,9 +2885,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.code.cod2.ext">
+    <element id="Observation.component-VariantFoundIdentifier.code.cod2.ext">
       <path value="Observation.component.code.coding.extension"/>
-      <name value="Observation.component-ComplexVariantHGVSName.code.cod2.ext"/>
+      <name value="Observation.component-VariantFoundIdentifier.code.cod2.ext"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -2906,9 +2907,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.code.cod2.sys">
+    <element id="Observation.component-VariantFoundIdentifier.code.cod2.sys">
       <path value="Observation.component.code.coding.system"/>
-      <name value="Observation.component-ComplexVariantHGVSName.code.cod2.sys"/>
+      <name value="Observation.component-VariantFoundIdentifier.code.cod2.sys"/>
       <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
       <comments value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7&#39;s list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously."/>
@@ -2936,9 +2937,9 @@
         <map value="./codeSystem"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.code.cod2.ver">
+    <element id="Observation.component-VariantFoundIdentifier.code.cod2.ver">
       <path value="Observation.component.code.coding.version"/>
-      <name value="Observation.component-ComplexVariantHGVSName.code.cod2.ver"/>
+      <name value="Observation.component-VariantFoundIdentifier.code.cod2.ver"/>
       <short value="Version of the system - if relevant"/>
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged."/>
       <comments value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date."/>
@@ -2964,9 +2965,9 @@
         <map value="./codeSystemVersion"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.code.cod2.cod1">
+    <element id="Observation.component-VariantFoundIdentifier.code.cod2.cod1">
       <path value="Observation.component.code.coding.code"/>
-      <name value="Observation.component-ComplexVariantHGVSName.code.cod2.cod1"/>
+      <name value="Observation.component-VariantFoundIdentifier.code.cod2.cod1"/>
       <short value="Symbol in syntax defined by the system"/>
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)."/>
       <requirements value="Need to refer to a particular code in the system."/>
@@ -2975,7 +2976,7 @@
       <type>
         <code value="code"/>
       </type>
-      <fixedCode value="81262-8"/>
+      <fixedCode value="48003-8"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -2993,9 +2994,9 @@
         <map value="./code"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.code.cod2.dis">
+    <element id="Observation.component-VariantFoundIdentifier.code.cod2.dis">
       <path value="Observation.component.code.coding.display"/>
-      <name value="Observation.component-ComplexVariantHGVSName.code.cod2.dis"/>
+      <name value="Observation.component-VariantFoundIdentifier.code.cod2.dis"/>
       <short value="Representation defined by the system"/>
       <definition value="A representation of the meaning of the code in the system, following the rules of the system."/>
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system."/>
@@ -3021,9 +3022,9 @@
         <map value="CV.displayName"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.code.cod2.use">
+    <element id="Observation.component-VariantFoundIdentifier.code.cod2.use">
       <path value="Observation.component.code.coding.userSelected"/>
-      <name value="Observation.component-ComplexVariantHGVSName.code.cod2.use"/>
+      <name value="Observation.component-VariantFoundIdentifier.code.cod2.use"/>
       <short value="If this coding was chosen directly by the user"/>
       <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)."/>
       <comments value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly &#39;directly chosen&#39; implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely."/>
@@ -3050,9 +3051,9 @@
         <map value="CD.codingRationale"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.code.text">
+    <element id="Observation.component-VariantFoundIdentifier.code.text">
       <path value="Observation.component.code.text"/>
-      <name value="Observation.component-ComplexVariantHGVSName.code.text"/>
+      <name value="Observation.component-VariantFoundIdentifier.code.text"/>
       <short value="Plain text representation of the concept"/>
       <definition value="A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user."/>
       <comments value="Very often the text is the same as a displayName of one of the codings."/>
@@ -3079,65 +3080,9 @@
         <map value="./originalText[mediaType/code=&quot;text/plain&quot;]/data"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.valuex">
-      <path value="Observation.component.value[x]"/>
-      <name value="Observation.component-ComplexVariantHGVSName.valuex"/>
-      <slicing id="7">
-        <discriminator value="$this/@type"/>
-        <ordered value="false"/>
-        <rules value="open"/>
-      </slicing>
-      <short value="Actual component result"/>
-      <definition value="The information determined as a result of making the observation, if the information has a simple value."/>
-      <comments value="Normally, an observation will have either a value or a set of related observations. A few observations (e.g. Apgar score) may have both a value and related observations (for an Apgar score, the observations from which the measure is derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.   For boolean values use valueCodeableConcept and select codes from &lt;http://hl7.org/fhir/ValueSet/v2-0136&gt; (These &quot;yes/no&quot; concepts can be mapped to the display name &quot;true/false&quot; or other mutually exclusive terms that may be needed&quot;).  The element, Observation.value[x], has a variable name depending on the type as follows: valueQuantity, valueCodeableConcept, valueRatio, valueChoice, valuePeriod, valueSampleData, or valueString (The name format is &quot;&#39;value&#39; + the type name&quot; with a capital on the first letter of the type)."/>
-      <requirements value="An observation exists to have a value, though it may not if it is in error, or it represents a group of observations."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.component.value[x]"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Quantity"/>
-      </type>
-      <type>
-        <code value="CodeableConcept"/>
-      </type>
-      <type>
-        <code value="string"/>
-      </type>
-      <type>
-        <code value="Range"/>
-      </type>
-      <type>
-        <code value="Ratio"/>
-      </type>
-      <type>
-        <code value="time"/>
-      </type>
-      <type>
-        <code value="dateTime"/>
-      </type>
-      <type>
-        <code value="Period"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="v2"/>
-        <map value="OBX.2, OBX.5, OBX.6"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="value"/>
-      </mapping>
-    </element>
-    <element id="Observation.component-ComplexVariantHGVSName.val">
+    <element id="Observation.component-VariantFoundIdentifier.val">
       <path value="Observation.component.valueCodeableConcept"/>
-      <name value="Observation.component-ComplexVariantHGVSName.val"/>
+      <name value="Observation.component-VariantFoundIdentifier.val"/>
       <short value="Actual component result"/>
       <definition value="The information determined as a result of making the observation, if the information has a simple value."/>
       <min value="0"/>
@@ -3155,21 +3100,21 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
       <binding>
-        <strength value="required"/>
+        <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://varnomen.hgvs.org"/>
+          <reference value="https://www.ncbi.nlm.nih.gov/clinvar"/>
         </valueSetReference>
       </binding>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.dataAbsentReason">
+    <element id="Observation.component-VariantFoundIdentifier.dataAbsentReason">
       <path value="Observation.component.dataAbsentReason"/>
-      <name value="Observation.component-ComplexVariantHGVSName.dataAbsentReason"/>
+      <name value="Observation.component-VariantFoundIdentifier.dataAbsentReason"/>
       <short value="Why the component result is missing"/>
       <definition value="Provides a reason why the expected value in the element Observation.value[x] is missing."/>
       <comments value="&quot;Null&quot; or exceptional values can be represented two ways in FHIR Observations.  One way is to simply include them in the value set and represent the exceptions in the value.  For example, measurement values for a serology test could be  &quot;detected&quot;, &quot;not detected&quot;, &quot;inconclusive&quot;, or  &quot;test not done&quot;.   The alternate way is to use the value element for actual observations and use the explicit dataAbsentReason element to record exceptional values.  For example, the dataAbsentReason code &quot;error&quot; could be used when the measurement was not completed.  Because of these options, use-case agreements are required to interpret general observations for exceptional values."/>
       <requirements value="For many results it is necessary to handle exceptional values in measurements."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="0"/>
       <base>
         <path value="Observation.component.dataAbsentReason"/>
         <min value="0"/>
@@ -3198,15 +3143,15 @@
         <map value="value.nullFlavor"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.referenceRange">
+    <element id="Observation.component-VariantFoundIdentifier.referenceRange">
       <path value="Observation.component.referenceRange"/>
-      <name value="Observation.component-ComplexVariantHGVSName.referenceRange"/>
+      <name value="Observation.component-VariantFoundIdentifier.referenceRange"/>
       <short value="Provides guide for interpretation of component result"/>
       <definition value="Guidance on how to interpret the value by comparison to a normal or recommended range."/>
       <comments value="Most observations only have one generic reference range. Systems MAY choose to restrict to only supplying the relevant reference range based on knowledge about the patient (e.g. specific to the patient&#39;s age, gender, weight and other factors), but this may not be possible or appropriate. Whenever more than one reference range is supplied, the differences between them SHOULD be provided in the reference range and/or age properties."/>
       <requirements value="Knowing what values are considered &quot;normal&quot; can help evaluate the significance of a particular result. Need to be able to provide multiple reference ranges for different contexts."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="0"/>
       <base>
         <path value="Observation.component.referenceRange"/>
         <min value="0"/>
@@ -3228,10 +3173,10 @@
         <map value="outboundRelationship[typeCode=REFV]/target[classCode=OBS, moodCode=EVN]"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.referenceRange.id">
+    <element id="Observation.component-VariantFoundIdentifier.referenceRange.id">
       <path value="Observation.component.referenceRange.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.component-ComplexVariantHGVSName.referenceRange.id"/>
+      <name value="Observation.component-VariantFoundIdentifier.referenceRange.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -3248,9 +3193,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.referenceRange.ext">
+    <element id="Observation.component-VariantFoundIdentifier.referenceRange.ext">
       <path value="Observation.component.referenceRange.extension"/>
-      <name value="Observation.component-ComplexVariantHGVSName.referenceRange.ext"/>
+      <name value="Observation.component-VariantFoundIdentifier.referenceRange.ext"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -3270,9 +3215,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.referenceRange.mod">
+    <element id="Observation.component-VariantFoundIdentifier.referenceRange.mod">
       <path value="Observation.component.referenceRange.modifierExtension"/>
-      <name value="Observation.component-ComplexVariantHGVSName.referenceRange.mod"/>
+      <name value="Observation.component-VariantFoundIdentifier.referenceRange.mod"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -3293,9 +3238,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.referenceRange.low">
+    <element id="Observation.component-VariantFoundIdentifier.referenceRange.low">
       <path value="Observation.component.referenceRange.low"/>
-      <name value="Observation.component-ComplexVariantHGVSName.referenceRange.low"/>
+      <name value="Observation.component-VariantFoundIdentifier.referenceRange.low"/>
       <short value="Low Range, if relevant"/>
       <definition value="The value of the low bound of the reference range.  The low bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9).   If the low bound is omitted,  it is assumed to be meaningless (e.g. reference range is &lt;=2.3)."/>
       <min value="0"/>
@@ -3318,9 +3263,9 @@
         <map value="value:IVL_PQ.low"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.referenceRange.high">
+    <element id="Observation.component-VariantFoundIdentifier.referenceRange.high">
       <path value="Observation.component.referenceRange.high"/>
-      <name value="Observation.component-ComplexVariantHGVSName.referenceRange.high"/>
+      <name value="Observation.component-VariantFoundIdentifier.referenceRange.high"/>
       <short value="High Range, if relevant"/>
       <definition value="The value of the high bound of the reference range.  The high bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9).   If the high bound is omitted,  it is assumed to be meaningless (e.g. reference range is &gt;= 2.3)."/>
       <min value="0"/>
@@ -3343,9 +3288,9 @@
         <map value="value:IVL_PQ.high"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.referenceRange.mea">
+    <element id="Observation.component-VariantFoundIdentifier.referenceRange.mea">
       <path value="Observation.component.referenceRange.meaning"/>
-      <name value="Observation.component-ComplexVariantHGVSName.referenceRange.mea"/>
+      <name value="Observation.component-VariantFoundIdentifier.referenceRange.mea"/>
       <short value="Indicates the meaning/use of this range of this range"/>
       <definition value="Code for the meaning of the reference range."/>
       <comments value="This SHOULD be populated if there is more than one range."/>
@@ -3375,9 +3320,9 @@
         <map value="interpretationCode"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.referenceRange.age">
+    <element id="Observation.component-VariantFoundIdentifier.referenceRange.age">
       <path value="Observation.component.referenceRange.age"/>
-      <name value="Observation.component-ComplexVariantHGVSName.referenceRange.age"/>
+      <name value="Observation.component-VariantFoundIdentifier.referenceRange.age"/>
       <short value="Applicable age range, if relevant"/>
       <definition value="The age at which this reference range is applicable. This is a neonatal age (e.g. number of weeks at term) if the meaning says so."/>
       <requirements value="Some analytes vary greatly over age."/>
@@ -3395,9 +3340,9 @@
         <map value="outboundRelationship[typeCode=PRCN].targetObservationCriterion[code=&quot;age&quot;].value"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.referenceRange.text">
+    <element id="Observation.component-VariantFoundIdentifier.referenceRange.text">
       <path value="Observation.component.referenceRange.text"/>
-      <name value="Observation.component-ComplexVariantHGVSName.referenceRange.text"/>
+      <name value="Observation.component-VariantFoundIdentifier.referenceRange.text"/>
       <short value="Text based reference range in an observation"/>
       <definition value="Text based reference range in an observation which may be used when a quantitative range is not appropriate for an observation.  An example would be a reference value of &quot;Negative&quot; or a list or table of &#39;normals&#39;."/>
       <min value="0"/>
@@ -3418,13 +3363,13 @@
         <map value="value:ST"/>
       </mapping>
     </element>
-    <element id="onco-core-ComplexVariantCommonName">
+    <element id="onco-core-VariantFoundHGVSName">
       <path value="Observation.component"/>
-      <name value="onco-core-ComplexVariantCommonName"/>
-      <short value="ComplexVariantCommonName"/>
-      <definition value="Thumbnail &#39;textual display&#39; convention of a single DNA Marker and its interpretation (source: LOINC).  This ideally should be a human-readable display of the value &#39;ComplexVariantHGVSName&#39;"/>
+      <name value="onco-core-VariantFoundHGVSName"/>
+      <short value="VariantFoundHGVSName"/>
+      <definition value="Symbolic representation of the variant used in HGVS, for example, NM_005228.4(EGFR):c.-237A&gt;G for HVGS variation ID 360448."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="*"/>
       <base>
         <path value="Observation.component"/>
         <min value="0"/>
@@ -3446,10 +3391,10 @@
         <map value="outBoundRelationship[typeCode=COMP]"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.id">
+    <element id="Observation.component-VariantFoundHGVSName.id">
       <path value="Observation.component.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.component-ComplexVariantCommonName.id"/>
+      <name value="Observation.component-VariantFoundHGVSName.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -3471,9 +3416,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.extension">
+    <element id="Observation.component-VariantFoundHGVSName.extension">
       <path value="Observation.component.extension"/>
-      <name value="Observation.component-ComplexVariantCommonName.extension"/>
+      <name value="Observation.component-VariantFoundHGVSName.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -3498,9 +3443,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.modifierExtension">
+    <element id="Observation.component-VariantFoundHGVSName.modifierExtension">
       <path value="Observation.component.modifierExtension"/>
-      <name value="Observation.component-ComplexVariantCommonName.modifierExtension"/>
+      <name value="Observation.component-VariantFoundHGVSName.modifierExtension"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -3526,9 +3471,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.code">
+    <element id="Observation.component-VariantFoundHGVSName.code">
       <path value="Observation.component.code"/>
-      <name value="Observation.component-ComplexVariantCommonName.code"/>
+      <name value="Observation.component-VariantFoundHGVSName.code"/>
       <short value="Type of component observation (code / type)"/>
       <definition value="Describes what was observed. Sometimes this is called the observation &quot;code&quot;."/>
       <requirements value="Knowing what kind of observation is being made is essential to understanding the observation."/>
@@ -3567,10 +3512,10 @@
         <map value="what"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.code.id">
+    <element id="Observation.component-VariantFoundHGVSName.code.id">
       <path value="Observation.component.code.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.component-ComplexVariantCommonName.code.id"/>
+      <name value="Observation.component-VariantFoundHGVSName.code.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -3587,9 +3532,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.code.extension">
+    <element id="Observation.component-VariantFoundHGVSName.code.extension">
       <path value="Observation.component.code.extension"/>
-      <name value="Observation.component-ComplexVariantCommonName.code.extension"/>
+      <name value="Observation.component-VariantFoundHGVSName.code.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -3609,10 +3554,752 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.code.coding">
+    <element id="Observation.component-VariantFoundHGVSName.code.coding">
       <path value="Observation.component.code.coding"/>
-      <name value="Observation.component-ComplexVariantCommonName.code.coding"/>
+      <name value="Observation.component-VariantFoundHGVSName.code.coding"/>
       <slicing id="5">
+        <discriminator value="code"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="Code defined by a terminology system"/>
+      <definition value="A reference to a code defined by a terminology system."/>
+      <comments value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labelled as UserSelected = true."/>
+      <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings."/>
+      <min value="1"/>
+      <max value="*"/>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="orim"/>
+        <map value="fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding"/>
+      </mapping>
+      <mapping>
+        <identity value="v2"/>
+        <map value="C*E.1-8, C*E.10-22"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="union(., ./translation)"/>
+      </mapping>
+    </element>
+    <element id="Fixed_82154-6">
+      <path value="Observation.component.code.coding"/>
+      <name value="Fixed_82154-6"/>
+      <short value="Genomic structural variant name"/>
+      <definition value="Genomic structural variant name"/>
+      <min value="1"/>
+      <max value="1"/>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.code.cod3.id">
+      <path value="Observation.component.code.coding.id"/>
+      <representation value="xmlAttr"/>
+      <name value="Observation.component-VariantFoundHGVSName.code.cod3.id"/>
+      <short value="xml:id (or equivalent in JSON)"/>
+      <definition value="unique id for the element within a resource (for internal references)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="id"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.code.cod3.ext">
+      <path value="Observation.component.code.coding.extension"/>
+      <name value="Observation.component-VariantFoundHGVSName.code.cod3.ext"/>
+      <short value="Additional Content defined by implementations"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
+      <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.code.cod3.sys">
+      <path value="Observation.component.code.coding.system"/>
+      <name value="Observation.component-VariantFoundHGVSName.code.cod3.sys"/>
+      <short value="Identity of the terminology system"/>
+      <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
+      <comments value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7&#39;s list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously."/>
+      <requirements value="Need to be unambiguous about the source of the definition of the symbol."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="uri"/>
+      </type>
+      <fixedUri value="http://loinc.org"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="orim"/>
+        <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem"/>
+      </mapping>
+      <mapping>
+        <identity value="v2"/>
+        <map value="C*E.3"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="./codeSystem"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.code.cod3.ver">
+      <path value="Observation.component.code.coding.version"/>
+      <name value="Observation.component-VariantFoundHGVSName.code.cod3.ver"/>
+      <short value="Version of the system - if relevant"/>
+      <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged."/>
+      <comments value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="string"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="orim"/>
+        <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion"/>
+      </mapping>
+      <mapping>
+        <identity value="v2"/>
+        <map value="C*E.7"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="./codeSystemVersion"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.code.cod3.cod1">
+      <path value="Observation.component.code.coding.code"/>
+      <name value="Observation.component-VariantFoundHGVSName.code.cod3.cod1"/>
+      <short value="Symbol in syntax defined by the system"/>
+      <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)."/>
+      <requirements value="Need to refer to a particular code in the system."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="code"/>
+      </type>
+      <fixedCode value="82154-6"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="orim"/>
+        <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code"/>
+      </mapping>
+      <mapping>
+        <identity value="v2"/>
+        <map value="C*E.1"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="./code"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.code.cod3.dis">
+      <path value="Observation.component.code.coding.display"/>
+      <name value="Observation.component-VariantFoundHGVSName.code.cod3.dis"/>
+      <short value="Representation defined by the system"/>
+      <definition value="A representation of the meaning of the code in the system, following the rules of the system."/>
+      <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="string"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="orim"/>
+        <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName"/>
+      </mapping>
+      <mapping>
+        <identity value="v2"/>
+        <map value="C*E.2 - but note this is not well followed"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="CV.displayName"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.code.cod3.use">
+      <path value="Observation.component.code.coding.userSelected"/>
+      <name value="Observation.component-VariantFoundHGVSName.code.cod3.use"/>
+      <short value="If this coding was chosen directly by the user"/>
+      <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)."/>
+      <comments value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly &#39;directly chosen&#39; implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely."/>
+      <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="boolean"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="orim"/>
+        <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]"/>
+      </mapping>
+      <mapping>
+        <identity value="v2"/>
+        <map value="Sometimes implied by being first"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="CD.codingRationale"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.code.text">
+      <path value="Observation.component.code.text"/>
+      <name value="Observation.component-VariantFoundHGVSName.code.text"/>
+      <short value="Plain text representation of the concept"/>
+      <definition value="A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user."/>
+      <comments value="Very often the text is the same as a displayName of one of the codings."/>
+      <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="string"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="orim"/>
+        <map value="fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText"/>
+      </mapping>
+      <mapping>
+        <identity value="v2"/>
+        <map value="C*E.9. But note many systems use C*E.2 for this"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="./originalText[mediaType/code=&quot;text/plain&quot;]/data"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.valueString">
+      <path value="Observation.component.valueString"/>
+      <name value="Observation.component-VariantFoundHGVSName.valueString"/>
+      <short value="Actual component result"/>
+      <definition value="The information determined as a result of making the observation, if the information has a simple value."/>
+      <comments value="Normally, an observation will have either a value or a set of related observations. A few observations (e.g. Apgar score) may have both a value and related observations (for an Apgar score, the observations from which the measure is derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.   For boolean values use valueCodeableConcept and select codes from &lt;http://hl7.org/fhir/ValueSet/v2-0136&gt; (These &quot;yes/no&quot; concepts can be mapped to the display name &quot;true/false&quot; or other mutually exclusive terms that may be needed&quot;).  The element, Observation.value[x], has a variable name depending on the type as follows: valueQuantity, valueCodeableConcept, valueRatio, valueChoice, valuePeriod, valueSampleData, or valueString (The name format is &quot;&#39;value&#39; + the type name&quot; with a capital on the first letter of the type)."/>
+      <requirements value="An observation exists to have a value, though it may not if it is in error, or it represents a group of observations."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.component.value[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="string"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX.2, OBX.5, OBX.6"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="value"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.dataAbsentReason">
+      <path value="Observation.component.dataAbsentReason"/>
+      <name value="Observation.component-VariantFoundHGVSName.dataAbsentReason"/>
+      <short value="Why the component result is missing"/>
+      <definition value="Provides a reason why the expected value in the element Observation.value[x] is missing."/>
+      <comments value="&quot;Null&quot; or exceptional values can be represented two ways in FHIR Observations.  One way is to simply include them in the value set and represent the exceptions in the value.  For example, measurement values for a serology test could be  &quot;detected&quot;, &quot;not detected&quot;, &quot;inconclusive&quot;, or  &quot;test not done&quot;.   The alternate way is to use the value element for actual observations and use the explicit dataAbsentReason element to record exceptional values.  For example, the dataAbsentReason code &quot;error&quot; could be used when the measurement was not completed.  Because of these options, use-case agreements are required to interpret general observations for exceptional values."/>
+      <requirements value="For many results it is necessary to handle exceptional values in measurements."/>
+      <min value="0"/>
+      <max value="0"/>
+      <base>
+        <path value="Observation.component.dataAbsentReason"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <maxLength value="0"/>
+      <condition value="obs-6"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="extensible"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/data-absent-reason"/>
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="v2"/>
+        <map value="N/A"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="value.nullFlavor"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.referenceRange">
+      <path value="Observation.component.referenceRange"/>
+      <name value="Observation.component-VariantFoundHGVSName.referenceRange"/>
+      <short value="Provides guide for interpretation of component result"/>
+      <definition value="Guidance on how to interpret the value by comparison to a normal or recommended range."/>
+      <comments value="Most observations only have one generic reference range. Systems MAY choose to restrict to only supplying the relevant reference range based on knowledge about the patient (e.g. specific to the patient&#39;s age, gender, weight and other factors), but this may not be possible or appropriate. Whenever more than one reference range is supplied, the differences between them SHOULD be provided in the reference range and/or age properties."/>
+      <requirements value="Knowing what values are considered &quot;normal&quot; can help evaluate the significance of a particular result. Need to be able to provide multiple reference ranges for different contexts."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Observation.component.referenceRange"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="BackboneElement"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX.7"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="outboundRelationship[typeCode=REFV]/target[classCode=OBS, moodCode=EVN]"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.referenceRange.id">
+      <path value="Observation.component.referenceRange.id"/>
+      <representation value="xmlAttr"/>
+      <name value="Observation.component-VariantFoundHGVSName.referenceRange.id"/>
+      <short value="xml:id (or equivalent in JSON)"/>
+      <definition value="unique id for the element within a resource (for internal references)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="id"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.referenceRange.ext">
+      <path value="Observation.component.referenceRange.extension"/>
+      <name value="Observation.component-VariantFoundHGVSName.referenceRange.ext"/>
+      <short value="Additional Content defined by implementations"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
+      <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.referenceRange.mod">
+      <path value="Observation.component.referenceRange.modifierExtension"/>
+      <name value="Observation.component-VariantFoundHGVSName.referenceRange.mod"/>
+      <short value="Extensions that cannot be ignored"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
+      <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <alias value="modifiers"/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="true"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.referenceRange.low">
+      <path value="Observation.component.referenceRange.low"/>
+      <name value="Observation.component-VariantFoundHGVSName.referenceRange.low"/>
+      <short value="Low Range, if relevant"/>
+      <definition value="The value of the low bound of the reference range.  The low bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9).   If the low bound is omitted,  it is assumed to be meaningless (e.g. reference range is &lt;=2.3)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="Quantity"/>
+        <profile value="http://hl7.org/fhir/StructureDefinition/SimpleQuantity"/>
+      </type>
+      <maxLength value="0"/>
+      <condition value="obs-3"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX-7"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="value:IVL_PQ.low"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.referenceRange.high">
+      <path value="Observation.component.referenceRange.high"/>
+      <name value="Observation.component-VariantFoundHGVSName.referenceRange.high"/>
+      <short value="High Range, if relevant"/>
+      <definition value="The value of the high bound of the reference range.  The high bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9).   If the high bound is omitted,  it is assumed to be meaningless (e.g. reference range is &gt;= 2.3)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="Quantity"/>
+        <profile value="http://hl7.org/fhir/StructureDefinition/SimpleQuantity"/>
+      </type>
+      <maxLength value="0"/>
+      <condition value="obs-3"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX-7"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="value:IVL_PQ.high"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.referenceRange.mea">
+      <path value="Observation.component.referenceRange.meaning"/>
+      <name value="Observation.component-VariantFoundHGVSName.referenceRange.mea"/>
+      <short value="Indicates the meaning/use of this range of this range"/>
+      <definition value="Code for the meaning of the reference range."/>
+      <comments value="This SHOULD be populated if there is more than one range."/>
+      <requirements value="Need to be able to say what kind of reference range this is - normal, recommended, therapeutic, or perhaps what state this reference range applies to (i.e. age, hormonal cycles, etc.)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="example"/>
+        <description value="Code for the meaning of a reference range."/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/referencerange-meaning"/>
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX-10?"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="interpretationCode"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.referenceRange.age">
+      <path value="Observation.component.referenceRange.age"/>
+      <name value="Observation.component-VariantFoundHGVSName.referenceRange.age"/>
+      <short value="Applicable age range, if relevant"/>
+      <definition value="The age at which this reference range is applicable. This is a neonatal age (e.g. number of weeks at term) if the meaning says so."/>
+      <requirements value="Some analytes vary greatly over age."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="Range"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="outboundRelationship[typeCode=PRCN].targetObservationCriterion[code=&quot;age&quot;].value"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.referenceRange.text">
+      <path value="Observation.component.referenceRange.text"/>
+      <name value="Observation.component-VariantFoundHGVSName.referenceRange.text"/>
+      <short value="Text based reference range in an observation"/>
+      <definition value="Text based reference range in an observation which may be used when a quantitative range is not appropriate for an observation.  An example would be a reference value of &quot;Negative&quot; or a list or table of &#39;normals&#39;."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="string"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX-7"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="value:ST"/>
+      </mapping>
+    </element>
+    <element id="onco-core-VariantFoundDescription">
+      <path value="Observation.component"/>
+      <name value="onco-core-VariantFoundDescription"/>
+      <short value="VariantFoundDescription"/>
+      <definition value="Description of the variant. Ideally, this should be a human-readable &#39;thumbnail&#39; display."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.component"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="BackboneElement"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="true"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="containment by OBX-4?"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="outBoundRelationship[typeCode=COMP]"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundDescription.id">
+      <path value="Observation.component.id"/>
+      <representation value="xmlAttr"/>
+      <name value="Observation.component-VariantFoundDescription.id"/>
+      <short value="xml:id (or equivalent in JSON)"/>
+      <definition value="unique id for the element within a resource (for internal references)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.component.id"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="id"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundDescription.extension">
+      <path value="Observation.component.extension"/>
+      <name value="Observation.component-VariantFoundDescription.extension"/>
+      <short value="Additional Content defined by implementations"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
+      <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Observation.component.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundDescription.modifierExtension">
+      <path value="Observation.component.modifierExtension"/>
+      <name value="Observation.component-VariantFoundDescription.modifierExtension"/>
+      <short value="Extensions that cannot be ignored"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
+      <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <alias value="modifiers"/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Observation.component.modifierExtension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="true"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundDescription.code">
+      <path value="Observation.component.code"/>
+      <name value="Observation.component-VariantFoundDescription.code"/>
+      <short value="Type of component observation (code / type)"/>
+      <definition value="Describes what was observed. Sometimes this is called the observation &quot;code&quot;."/>
+      <requirements value="Knowing what kind of observation is being made is essential to understanding the observation."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.component.code"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <maxLength value="0"/>
+      <condition value="obs-7"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <binding>
+        <strength value="example"/>
+        <description value="Codes identifying names of simple observations."/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/observation-codes"/>
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX-3"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="code"/>
+      </mapping>
+      <mapping>
+        <identity value="w5"/>
+        <map value="what"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundDescription.code.id">
+      <path value="Observation.component.code.id"/>
+      <representation value="xmlAttr"/>
+      <name value="Observation.component-VariantFoundDescription.code.id"/>
+      <short value="xml:id (or equivalent in JSON)"/>
+      <definition value="unique id for the element within a resource (for internal references)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="id"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundDescription.code.extension">
+      <path value="Observation.component.code.extension"/>
+      <name value="Observation.component-VariantFoundDescription.code.extension"/>
+      <short value="Additional Content defined by implementations"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
+      <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Observation.component-VariantFoundDescription.code.coding">
+      <path value="Observation.component.code.coding"/>
+      <name value="Observation.component-VariantFoundDescription.code.coding"/>
+      <slicing id="6">
         <discriminator value="code"/>
         <ordered value="false"/>
         <rules value="open"/>
@@ -3658,10 +4345,10 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.code.cod3.id">
+    <element id="Observation.component-VariantFoundDescription.code.cod4.id">
       <path value="Observation.component.code.coding.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.component-ComplexVariantCommonName.code.cod3.id"/>
+      <name value="Observation.component-VariantFoundDescription.code.cod4.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -3678,9 +4365,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.code.cod3.ext">
+    <element id="Observation.component-VariantFoundDescription.code.cod4.ext">
       <path value="Observation.component.code.coding.extension"/>
-      <name value="Observation.component-ComplexVariantCommonName.code.cod3.ext"/>
+      <name value="Observation.component-VariantFoundDescription.code.cod4.ext"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -3700,9 +4387,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.code.cod3.sys">
+    <element id="Observation.component-VariantFoundDescription.code.cod4.sys">
       <path value="Observation.component.code.coding.system"/>
-      <name value="Observation.component-ComplexVariantCommonName.code.cod3.sys"/>
+      <name value="Observation.component-VariantFoundDescription.code.cod4.sys"/>
       <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
       <comments value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7&#39;s list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously."/>
@@ -3730,9 +4417,9 @@
         <map value="./codeSystem"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.code.cod3.ver">
+    <element id="Observation.component-VariantFoundDescription.code.cod4.ver">
       <path value="Observation.component.code.coding.version"/>
-      <name value="Observation.component-ComplexVariantCommonName.code.cod3.ver"/>
+      <name value="Observation.component-VariantFoundDescription.code.cod4.ver"/>
       <short value="Version of the system - if relevant"/>
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged."/>
       <comments value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date."/>
@@ -3758,9 +4445,9 @@
         <map value="./codeSystemVersion"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.code.cod3.cod1">
+    <element id="Observation.component-VariantFoundDescription.code.cod4.cod1">
       <path value="Observation.component.code.coding.code"/>
-      <name value="Observation.component-ComplexVariantCommonName.code.cod3.cod1"/>
+      <name value="Observation.component-VariantFoundDescription.code.cod4.cod1"/>
       <short value="Symbol in syntax defined by the system"/>
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)."/>
       <requirements value="Need to refer to a particular code in the system."/>
@@ -3787,9 +4474,9 @@
         <map value="./code"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.code.cod3.dis">
+    <element id="Observation.component-VariantFoundDescription.code.cod4.dis">
       <path value="Observation.component.code.coding.display"/>
-      <name value="Observation.component-ComplexVariantCommonName.code.cod3.dis"/>
+      <name value="Observation.component-VariantFoundDescription.code.cod4.dis"/>
       <short value="Representation defined by the system"/>
       <definition value="A representation of the meaning of the code in the system, following the rules of the system."/>
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system."/>
@@ -3815,9 +4502,9 @@
         <map value="CV.displayName"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.code.cod3.use">
+    <element id="Observation.component-VariantFoundDescription.code.cod4.use">
       <path value="Observation.component.code.coding.userSelected"/>
-      <name value="Observation.component-ComplexVariantCommonName.code.cod3.use"/>
+      <name value="Observation.component-VariantFoundDescription.code.cod4.use"/>
       <short value="If this coding was chosen directly by the user"/>
       <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)."/>
       <comments value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly &#39;directly chosen&#39; implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely."/>
@@ -3844,9 +4531,9 @@
         <map value="CD.codingRationale"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.code.text">
+    <element id="Observation.component-VariantFoundDescription.code.text">
       <path value="Observation.component.code.text"/>
-      <name value="Observation.component-ComplexVariantCommonName.code.text"/>
+      <name value="Observation.component-VariantFoundDescription.code.text"/>
       <short value="Plain text representation of the concept"/>
       <definition value="A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user."/>
       <comments value="Very often the text is the same as a displayName of one of the codings."/>
@@ -3873,9 +4560,9 @@
         <map value="./originalText[mediaType/code=&quot;text/plain&quot;]/data"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.valueString">
+    <element id="Observation.component-VariantFoundDescription.valueString">
       <path value="Observation.component.valueString"/>
-      <name value="Observation.component-ComplexVariantCommonName.valueString"/>
+      <name value="Observation.component-VariantFoundDescription.valueString"/>
       <short value="Actual component result"/>
       <definition value="The information determined as a result of making the observation, if the information has a simple value."/>
       <comments value="Normally, an observation will have either a value or a set of related observations. A few observations (e.g. Apgar score) may have both a value and related observations (for an Apgar score, the observations from which the measure is derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.   For boolean values use valueCodeableConcept and select codes from &lt;http://hl7.org/fhir/ValueSet/v2-0136&gt; (These &quot;yes/no&quot; concepts can be mapped to the display name &quot;true/false&quot; or other mutually exclusive terms that may be needed&quot;).  The element, Observation.value[x], has a variable name depending on the type as follows: valueQuantity, valueCodeableConcept, valueRatio, valueChoice, valuePeriod, valueSampleData, or valueString (The name format is &quot;&#39;value&#39; + the type name&quot; with a capital on the first letter of the type)."/>
@@ -3903,15 +4590,15 @@
         <map value="value"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.dataAbsentReason">
+    <element id="Observation.component-VariantFoundDescription.dataAbsentReason">
       <path value="Observation.component.dataAbsentReason"/>
-      <name value="Observation.component-ComplexVariantCommonName.dataAbsentReason"/>
+      <name value="Observation.component-VariantFoundDescription.dataAbsentReason"/>
       <short value="Why the component result is missing"/>
       <definition value="Provides a reason why the expected value in the element Observation.value[x] is missing."/>
       <comments value="&quot;Null&quot; or exceptional values can be represented two ways in FHIR Observations.  One way is to simply include them in the value set and represent the exceptions in the value.  For example, measurement values for a serology test could be  &quot;detected&quot;, &quot;not detected&quot;, &quot;inconclusive&quot;, or  &quot;test not done&quot;.   The alternate way is to use the value element for actual observations and use the explicit dataAbsentReason element to record exceptional values.  For example, the dataAbsentReason code &quot;error&quot; could be used when the measurement was not completed.  Because of these options, use-case agreements are required to interpret general observations for exceptional values."/>
       <requirements value="For many results it is necessary to handle exceptional values in measurements."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="0"/>
       <base>
         <path value="Observation.component.dataAbsentReason"/>
         <min value="0"/>
@@ -3940,9 +4627,9 @@
         <map value="value.nullFlavor"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.referenceRange">
+    <element id="Observation.component-VariantFoundDescription.referenceRange">
       <path value="Observation.component.referenceRange"/>
-      <name value="Observation.component-ComplexVariantCommonName.referenceRange"/>
+      <name value="Observation.component-VariantFoundDescription.referenceRange"/>
       <short value="Provides guide for interpretation of component result"/>
       <definition value="Guidance on how to interpret the value by comparison to a normal or recommended range."/>
       <comments value="Most observations only have one generic reference range. Systems MAY choose to restrict to only supplying the relevant reference range based on knowledge about the patient (e.g. specific to the patient&#39;s age, gender, weight and other factors), but this may not be possible or appropriate. Whenever more than one reference range is supplied, the differences between them SHOULD be provided in the reference range and/or age properties."/>
@@ -3970,10 +4657,10 @@
         <map value="outboundRelationship[typeCode=REFV]/target[classCode=OBS, moodCode=EVN]"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.referenceRange.id">
+    <element id="Observation.component-VariantFoundDescription.referenceRange.id">
       <path value="Observation.component.referenceRange.id"/>
       <representation value="xmlAttr"/>
-      <name value="Observation.component-ComplexVariantCommonName.referenceRange.id"/>
+      <name value="Observation.component-VariantFoundDescription.referenceRange.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -3990,9 +4677,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.ref.ext">
+    <element id="Observation.component-VariantFoundDescription.referenceRange.ext">
       <path value="Observation.component.referenceRange.extension"/>
-      <name value="Observation.component-ComplexVariantCommonName.ref.ext"/>
+      <name value="Observation.component-VariantFoundDescription.referenceRange.ext"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -4012,9 +4699,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.ref.mod">
+    <element id="Observation.component-VariantFoundDescription.referenceRange.mod">
       <path value="Observation.component.referenceRange.modifierExtension"/>
-      <name value="Observation.component-ComplexVariantCommonName.ref.mod"/>
+      <name value="Observation.component-VariantFoundDescription.referenceRange.mod"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -4035,9 +4722,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.ref.low">
+    <element id="Observation.component-VariantFoundDescription.referenceRange.low">
       <path value="Observation.component.referenceRange.low"/>
-      <name value="Observation.component-ComplexVariantCommonName.ref.low"/>
+      <name value="Observation.component-VariantFoundDescription.referenceRange.low"/>
       <short value="Low Range, if relevant"/>
       <definition value="The value of the low bound of the reference range.  The low bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9).   If the low bound is omitted,  it is assumed to be meaningless (e.g. reference range is &lt;=2.3)."/>
       <min value="0"/>
@@ -4060,9 +4747,9 @@
         <map value="value:IVL_PQ.low"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.ref.hig">
+    <element id="Observation.component-VariantFoundDescription.referenceRange.hig">
       <path value="Observation.component.referenceRange.high"/>
-      <name value="Observation.component-ComplexVariantCommonName.ref.hig"/>
+      <name value="Observation.component-VariantFoundDescription.referenceRange.hig"/>
       <short value="High Range, if relevant"/>
       <definition value="The value of the high bound of the reference range.  The high bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9).   If the high bound is omitted,  it is assumed to be meaningless (e.g. reference range is &gt;= 2.3)."/>
       <min value="0"/>
@@ -4085,9 +4772,9 @@
         <map value="value:IVL_PQ.high"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.ref.mea">
+    <element id="Observation.component-VariantFoundDescription.referenceRange.mea">
       <path value="Observation.component.referenceRange.meaning"/>
-      <name value="Observation.component-ComplexVariantCommonName.ref.mea"/>
+      <name value="Observation.component-VariantFoundDescription.referenceRange.mea"/>
       <short value="Indicates the meaning/use of this range of this range"/>
       <definition value="Code for the meaning of the reference range."/>
       <comments value="This SHOULD be populated if there is more than one range."/>
@@ -4117,9 +4804,9 @@
         <map value="interpretationCode"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.ref.age">
+    <element id="Observation.component-VariantFoundDescription.referenceRange.age">
       <path value="Observation.component.referenceRange.age"/>
-      <name value="Observation.component-ComplexVariantCommonName.ref.age"/>
+      <name value="Observation.component-VariantFoundDescription.referenceRange.age"/>
       <short value="Applicable age range, if relevant"/>
       <definition value="The age at which this reference range is applicable. This is a neonatal age (e.g. number of weeks at term) if the meaning says so."/>
       <requirements value="Some analytes vary greatly over age."/>
@@ -4137,9 +4824,9 @@
         <map value="outboundRelationship[typeCode=PRCN].targetObservationCriterion[code=&quot;age&quot;].value"/>
       </mapping>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.ref.tex">
+    <element id="Observation.component-VariantFoundDescription.referenceRange.tex">
       <path value="Observation.component.referenceRange.text"/>
-      <name value="Observation.component-ComplexVariantCommonName.ref.tex"/>
+      <name value="Observation.component-VariantFoundDescription.referenceRange.tex"/>
       <short value="Text based reference range in an observation"/>
       <definition value="Text based reference range in an observation which may be used when a quantitative range is not appropriate for an observation.  An example would be a reference value of &quot;Negative&quot; or a list or table of &#39;normals&#39;."/>
       <min value="0"/>
@@ -4166,7 +4853,7 @@
       <path value="Observation"/>
       <name value="Observation"/>
       <short value="onco-core-GeneticVariantFound"/>
-      <definition value="An alteration in the most common DNA nucleotide sequence. The term variant can be used to describe an alteration that may be benign, pathogenic, or of unknown significance. The term variant is increasingly being used in place of the term mutation. (source: NCI)"/>
+      <definition value="Data structure recording an alteration in the most common DNA nucleotide sequence. The term variant can be used to describe an alteration that may be benign, pathogenic, or of unknown significance. The term variant is increasingly being used in place of the term mutation."/>
       <min value="0"/>
       <type>
         <code value="argo-observationresults"/>
@@ -4179,7 +4866,7 @@
     <element id="Observation.identifier">
       <path value="Observation.identifier"/>
       <name value="Observation.identifier"/>
-      <slicing id="8">
+      <slicing id="9">
         <discriminator value="type.coding.code"/>
         <ordered value="false"/>
         <rules value="open"/>
@@ -4330,6 +5017,7 @@
       <type>
         <code value="Reference"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -4407,11 +5095,11 @@
       <name value="Observation.method"/>
       <min value="0"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
       <binding>
-        <strength value="required"/>
+        <strength value="extensible"/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/us/mcode/onco/core/vs/GeneticTestMethodVS"/>
         </valueSetReference>
@@ -4520,7 +5208,7 @@
       <path value="Observation.component"/>
       <name value="onco-core-GenomicSourceClass"/>
       <short value="GenomicSourceClass"/>
-      <definition value="The genomic class of the specimen being analyzed: Germline for inherited genome, somatic for cancer genome, and prenatal for fetal genome. (source: LOINC)"/>
+      <definition value="The genomic class of the specimen being analyzed, for example, germline for inherited genome, somatic for cancer genome, and prenatal for fetal genome."/>
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
@@ -4609,6 +5297,7 @@
       <path value="Observation.component.dataAbsentReason"/>
       <name value="Observation.component-GenomicSourceClass.dataAbsentReason"/>
       <min value="0"/>
+      <max value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -4630,11 +5319,11 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="onco-core-ComplexVariantHGVSName">
+    <element id="onco-core-VariantFoundIdentifier">
       <path value="Observation.component"/>
-      <name value="onco-core-ComplexVariantHGVSName"/>
-      <short value="ComplexVariantHGVSName"/>
-      <definition value="This term is used to report the name of the complex variant found in this study in HGVS format. For example, c.[886C&gt;T;457G&gt;C], which represents two separate base substitutions in one gene on one chromosome, or c.[886C&gt;T];[457G&gt;C], which represents two separate base substitutions in one gene on two different chromosomes. (source: LOINC)"/>
+      <name value="onco-core-VariantFoundIdentifier"/>
+      <short value="VariantFoundIdentifier"/>
+      <definition value="The variation ID assigned by HGVS, for example, 360448 is the identifier for NM_005228.4(EGFR):c.-237A&gt;G (single nucleotide variant in EGFR)."/>
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
@@ -4642,18 +5331,18 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.code">
+    <element id="Observation.component-VariantFoundIdentifier.code">
       <path value="Observation.component.code"/>
-      <name value="Observation.component-ComplexVariantHGVSName.code"/>
+      <name value="Observation.component-VariantFoundIdentifier.code"/>
       <min value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.code.coding">
+    <element id="Observation.component-VariantFoundIdentifier.code.coding">
       <path value="Observation.component.code.coding"/>
-      <name value="Observation.component-ComplexVariantHGVSName.code.coding"/>
+      <name value="Observation.component-VariantFoundIdentifier.code.coding"/>
       <slicing id="4">
         <discriminator value="code"/>
         <ordered value="false"/>
@@ -4666,11 +5355,11 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Fixed_81262-8">
+    <element id="Fixed_48003-8">
       <path value="Observation.component.code.coding"/>
-      <name value="Fixed_81262-8"/>
-      <short value="Complex variant HGVS name"/>
-      <definition value="Complex variant HGVS name"/>
+      <name value="Fixed_48003-8"/>
+      <short value="DNA sequence variation identifier"/>
+      <definition value="DNA sequence variation identifier"/>
       <min value="1"/>
       <max value="1"/>
       <type>
@@ -4681,9 +5370,9 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.code.cod2.sys">
+    <element id="Observation.component-VariantFoundIdentifier.code.cod2.sys">
       <path value="Observation.component.code.coding.system"/>
-      <name value="Observation.component-ComplexVariantHGVSName.code.cod2.sys"/>
+      <name value="Observation.component-VariantFoundIdentifier.code.cod2.sys"/>
       <min value="0"/>
       <fixedUri value="http://loinc.org"/>
       <maxLength value="0"/>
@@ -4691,57 +5380,19 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.code.cod2.cod1">
+    <element id="Observation.component-VariantFoundIdentifier.code.cod2.cod1">
       <path value="Observation.component.code.coding.code"/>
-      <name value="Observation.component-ComplexVariantHGVSName.code.cod2.cod1"/>
+      <name value="Observation.component-VariantFoundIdentifier.code.cod2.cod1"/>
       <min value="0"/>
-      <fixedCode value="81262-8"/>
+      <fixedCode value="48003-8"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.valuex">
-      <path value="Observation.component.value[x]"/>
-      <name value="Observation.component-ComplexVariantHGVSName.valuex"/>
-      <slicing id="7">
-        <discriminator value="$this/@type"/>
-        <ordered value="false"/>
-        <rules value="open"/>
-      </slicing>
-      <min value="0"/>
-      <type>
-        <code value="Quantity"/>
-      </type>
-      <type>
-        <code value="CodeableConcept"/>
-      </type>
-      <type>
-        <code value="string"/>
-      </type>
-      <type>
-        <code value="Range"/>
-      </type>
-      <type>
-        <code value="Ratio"/>
-      </type>
-      <type>
-        <code value="time"/>
-      </type>
-      <type>
-        <code value="dateTime"/>
-      </type>
-      <type>
-        <code value="Period"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="Observation.component-ComplexVariantHGVSName.val">
+    <element id="Observation.component-VariantFoundIdentifier.val">
       <path value="Observation.component.valueCodeableConcept"/>
-      <name value="Observation.component-ComplexVariantHGVSName.val"/>
+      <name value="Observation.component-VariantFoundIdentifier.val"/>
       <min value="0"/>
       <type>
         <code value="CodeableConcept"/>
@@ -4751,16 +5402,17 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
       <binding>
-        <strength value="required"/>
+        <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://varnomen.hgvs.org"/>
+          <reference value="https://www.ncbi.nlm.nih.gov/clinvar"/>
         </valueSetReference>
       </binding>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.dataAbsentReason">
+    <element id="Observation.component-VariantFoundIdentifier.dataAbsentReason">
       <path value="Observation.component.dataAbsentReason"/>
-      <name value="Observation.component-ComplexVariantHGVSName.dataAbsentReason"/>
+      <name value="Observation.component-VariantFoundIdentifier.dataAbsentReason"/>
       <min value="0"/>
+      <max value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -4772,21 +5424,120 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="Observation.component-ComplexVariantHGVSName.referenceRange">
+    <element id="Observation.component-VariantFoundIdentifier.referenceRange">
       <path value="Observation.component.referenceRange"/>
-      <name value="Observation.component-ComplexVariantHGVSName.referenceRange"/>
+      <name value="Observation.component-VariantFoundIdentifier.referenceRange"/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="onco-core-ComplexVariantCommonName">
+    <element id="onco-core-VariantFoundHGVSName">
       <path value="Observation.component"/>
-      <name value="onco-core-ComplexVariantCommonName"/>
-      <short value="ComplexVariantCommonName"/>
-      <definition value="Thumbnail &#39;textual display&#39; convention of a single DNA Marker and its interpretation (source: LOINC).  This ideally should be a human-readable display of the value &#39;ComplexVariantHGVSName&#39;"/>
+      <name value="onco-core-VariantFoundHGVSName"/>
+      <short value="VariantFoundHGVSName"/>
+      <definition value="Symbolic representation of the variant used in HGVS, for example, NM_005228.4(EGFR):c.-237A&gt;G for HVGS variation ID 360448."/>
+      <min value="0"/>
+      <max value="*"/>
+      <maxLength value="0"/>
+      <mustSupport value="true"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.code">
+      <path value="Observation.component.code"/>
+      <name value="Observation.component-VariantFoundHGVSName.code"/>
+      <min value="0"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.code.coding">
+      <path value="Observation.component.code.coding"/>
+      <name value="Observation.component-VariantFoundHGVSName.code.coding"/>
+      <slicing id="5">
+        <discriminator value="code"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <min value="1"/>
+      <max value="*"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Fixed_82154-6">
+      <path value="Observation.component.code.coding"/>
+      <name value="Fixed_82154-6"/>
+      <short value="Genomic structural variant name"/>
+      <definition value="Genomic structural variant name"/>
+      <min value="1"/>
+      <max value="1"/>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.code.cod3.sys">
+      <path value="Observation.component.code.coding.system"/>
+      <name value="Observation.component-VariantFoundHGVSName.code.cod3.sys"/>
+      <min value="0"/>
+      <fixedUri value="http://loinc.org"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.code.cod3.cod1">
+      <path value="Observation.component.code.coding.code"/>
+      <name value="Observation.component-VariantFoundHGVSName.code.cod3.cod1"/>
+      <min value="0"/>
+      <fixedCode value="82154-6"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.valueString">
+      <path value="Observation.component.valueString"/>
+      <name value="Observation.component-VariantFoundHGVSName.valueString"/>
+      <min value="0"/>
+      <type>
+        <code value="string"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Observation.component-VariantFoundHGVSName.dataAbsentReason">
+      <path value="Observation.component.dataAbsentReason"/>
+      <name value="Observation.component-VariantFoundHGVSName.dataAbsentReason"/>
+      <min value="0"/>
+      <max value="0"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="extensible"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/data-absent-reason"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="onco-core-VariantFoundDescription">
+      <path value="Observation.component"/>
+      <name value="onco-core-VariantFoundDescription"/>
+      <short value="VariantFoundDescription"/>
+      <definition value="Description of the variant. Ideally, this should be a human-readable &#39;thumbnail&#39; display."/>
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>
@@ -4794,19 +5545,19 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.code">
+    <element id="Observation.component-VariantFoundDescription.code">
       <path value="Observation.component.code"/>
-      <name value="Observation.component-ComplexVariantCommonName.code"/>
+      <name value="Observation.component-VariantFoundDescription.code"/>
       <min value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.code.coding">
+    <element id="Observation.component-VariantFoundDescription.code.coding">
       <path value="Observation.component.code.coding"/>
-      <name value="Observation.component-ComplexVariantCommonName.code.coding"/>
-      <slicing id="5">
+      <name value="Observation.component-VariantFoundDescription.code.coding"/>
+      <slicing id="6">
         <discriminator value="code"/>
         <ordered value="false"/>
         <rules value="open"/>
@@ -4833,9 +5584,9 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.code.cod3.sys">
+    <element id="Observation.component-VariantFoundDescription.code.cod4.sys">
       <path value="Observation.component.code.coding.system"/>
-      <name value="Observation.component-ComplexVariantCommonName.code.cod3.sys"/>
+      <name value="Observation.component-VariantFoundDescription.code.cod4.sys"/>
       <min value="0"/>
       <fixedUri value="http://loinc.org"/>
       <maxLength value="0"/>
@@ -4843,9 +5594,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.code.cod3.cod1">
+    <element id="Observation.component-VariantFoundDescription.code.cod4.cod1">
       <path value="Observation.component.code.coding.code"/>
-      <name value="Observation.component-ComplexVariantCommonName.code.cod3.cod1"/>
+      <name value="Observation.component-VariantFoundDescription.code.cod4.cod1"/>
       <min value="0"/>
       <fixedCode value="47998-0"/>
       <maxLength value="0"/>
@@ -4853,9 +5604,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.valueString">
+    <element id="Observation.component-VariantFoundDescription.valueString">
       <path value="Observation.component.valueString"/>
-      <name value="Observation.component-ComplexVariantCommonName.valueString"/>
+      <name value="Observation.component-VariantFoundDescription.valueString"/>
       <min value="0"/>
       <type>
         <code value="string"/>
@@ -4865,10 +5616,11 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.dataAbsentReason">
+    <element id="Observation.component-VariantFoundDescription.dataAbsentReason">
       <path value="Observation.component.dataAbsentReason"/>
-      <name value="Observation.component-ComplexVariantCommonName.dataAbsentReason"/>
+      <name value="Observation.component-VariantFoundDescription.dataAbsentReason"/>
       <min value="0"/>
+      <max value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -4880,9 +5632,9 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="Observation.component-ComplexVariantCommonName.referenceRange">
+    <element id="Observation.component-VariantFoundDescription.referenceRange">
       <path value="Observation.component.referenceRange"/>
-      <name value="Observation.component-ComplexVariantCommonName.referenceRange"/>
+      <name value="Observation.component-VariantFoundDescription.referenceRange"/>
       <min value="0"/>
       <max value="1"/>
       <maxLength value="0"/>

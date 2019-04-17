@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8"/>
   
-  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 Beta 1</title>
+  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 Beta 1 FHIR Profiles"/>
+  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 FHIR Profiles"/>
 
   <link rel="stylesheet" href="fhir.css"/>
 
@@ -40,7 +40,7 @@
     </a>
     <div id="hl7-status" class="hl7-status">
       
-      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 Beta 1</b>
+      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0</b>
     </div>
 
     <div id="hl7-nav">
@@ -141,10 +141,12 @@
 
 <table class="dict">
   <tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="MedicationStatement-MedicationStatement"> </a><a name="MedicationStatement"> </a><span style="color: grey">1.</span> <b>MedicationStatement-MedicationStatement</b><a href="#MedicationStatement-MedicationStatement" title="link to here" class="self-link"><svg viewBox="0 0 1792 1792" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z" fill="navy"></path></svg></a></span></td></tr>
-  <tr><td>Definition</td><td><p>A record of the use of a medication.
-Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).
-The treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.
+  <tr><td>Definition</td><td><p>A record of the use of a medication. The use may be reported by the patient or clinician and adminstration does not have to be directly observed.</p>
+<p>FHIR Notes:</p>
+<p>Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement). Extensions are provided.</p>
+<p>The treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.
 ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.</p>
+<p>Preference is given to using the National Library of Medicine (NLM) RxNorm terminology for medications. RxNorm is a coding standard established by the Office of the National Coordinator (ONC). However, RxNorm is restricted to FDA-approved drugs and does not include clinical trial drugs. MedicationStatement allows for the inclusion of other coding systems like the NCI Thesaurus (NCIT) to represent clinical trial oncology drugs.</p>
 </td></tr>
   <tr><td><a href="http://hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
   <tr><td>Max Length</td><td>0</td></tr>
@@ -247,10 +249,10 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
   <tr><td>Definition</td><td><p>Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).</p>
 </td></tr>
   <tr><td><a href="http://hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="http://hl7.org/fhir/DSTU2/terminologies.html">Binding</a></td><td><a name="bcdf4237-a871-42e6-b6d3-550e01d23458">​</a>The codes SHOULD be taken from <a href="medication-statement-category.html">medication-statement-category</a></td></tr>
+  <tr><td><a href="http://hl7.org/fhir/DSTU2/terminologies.html">Binding</a></td><td><a name="46f6e277-8cf1-49b1-a696-31613d5c923f">​</a>The codes SHOULD be taken from <a href="medication-statement-category.html">medication-statement-category</a></td></tr>
   <tr><td><a href="http://hl7.org/fhir/DSTU2/datatypes.html">Type</a></td><td><a href="http://hl7.org/fhir/DSTU2/datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="treatmentintent"> </a><span style="color: grey">16.</span> <b>treatmentintent</b><a href="#treatmentintent" title="link to here" class="self-link"><svg viewBox="0 0 1792 1792" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z" fill="navy"></path></svg></a></span></td></tr>
-  <tr><td>Definition</td><td><p>The purpose of a treatment. A simplified set of values include only two choices: curative and palliative. Curative is defined as any treatment meant to reduce or control a disease process, even if a 'cure' is not anticipated. Palliative includes treatments meant to reduce symptoms and side effects, such as antiemetics. If a treatment does both, it should be recorded as curative.</p>
+  <tr><td>Definition</td><td><p>The purpose of a treatment.</p>
 </td></tr>
   <tr><td><a href="http://hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="http://hl7.org/fhir/DSTU2/datatypes.html">Type</a></td><td><a href="http://hl7.org/fhir/DSTU2/extensibility.html#extension">Extension</a>(<a href="StructureDefinition-shr-core-TreatmentIntent-extension.html" title="[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TreatmentIntent-extension]]">TreatmentIntent</a>)  (Extension Type: <a href="http://hl7.org/fhir/DSTU2/datatypes.html#CodeableConcept">CodeableConcept</a>)</td></tr>
@@ -451,7 +453,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
   <tr><td>Definition</td><td><p>Indicates whether the Medication is only taken when needed within a specific dosing schedule (Boolean option), or it indicates the precondition for taking the Medication (CodeableConcept).    Specifically if 'boolean' datatype is selected, then the following logic applies:  If set to True, this indicates that the medication is only taken when needed, within the specified schedule.</p>
 </td></tr>
   <tr><td><a href="http://hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="http://hl7.org/fhir/DSTU2/terminologies.html">Binding</a></td><td><a name="d70a01d6-51e1-451a-9cfe-fb2c2f58ce06">​</a>For example codes, see <a href="medication-as-needed-reason.html">medication-as-needed-reason</a></td></tr>
+  <tr><td><a href="http://hl7.org/fhir/DSTU2/terminologies.html">Binding</a></td><td><a name="0f9383c6-b709-4541-a282-9a1977fdb38d">​</a>For example codes, see <a href="medication-as-needed-reason.html">medication-as-needed-reason</a></td></tr>
   <tr><td><a href="http://hl7.org/fhir/DSTU2/datatypes.html">Type</a></td><td><a href="http://hl7.org/fhir/DSTU2/datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="MedicationStatement-MedicationStatement.dosage.sit"> </a><a name="MedicationStatement-MedicationStatement.dosage.site[x]"> </a><a name="MedicationStatement-MedicationStatement.dosage.site[x]"> </a><span style="color: grey">44.</span> <b>MedicationStatement-MedicationStatement.dosage.sit</b><a href="#MedicationStatement-MedicationStatement.dosage.sit" title="link to here" class="self-link"><svg viewBox="0 0 1792 1792" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z" fill="navy"></path></svg></a></span></td></tr>
   <tr><td>Definition</td><td><p>A coded specification of or a reference to the anatomic site where the medication first enters the body.</p>
@@ -470,7 +472,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
   <tr><td>Definition</td><td><p>A coded value indicating the method by which the medication is intended to be or was introduced into or on the body.  This attribute will most often NOT be populated.  It is most commonly used for injections.  For example, Slow Push, Deep IV.</p>
 </td></tr>
   <tr><td><a href="http://hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="http://hl7.org/fhir/DSTU2/terminologies.html">Binding</a></td><td><a name="b52b9e77-b68f-4ed5-a52e-af466dbd9c6a">​</a>The codes SHALL be taken from <a href="administration-method-codes.html">administration-method-codes</a></td></tr>
+  <tr><td><a href="http://hl7.org/fhir/DSTU2/terminologies.html">Binding</a></td><td><a name="400a290c-8be4-46bd-bf51-015007b2d7eb">​</a>The codes SHALL be taken from <a href="administration-method-codes.html">administration-method-codes</a></td></tr>
   <tr><td><a href="http://hl7.org/fhir/DSTU2/datatypes.html">Type</a></td><td><a href="http://hl7.org/fhir/DSTU2/datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Comments</td><td><p>One of the reasons this attribute is not used often, is that the method is often pre-coordinated with the route and/or form of administration.  This means the codes used in route or form may pre-coordinate the method in the route code or the form code.  The implementation decision about what coding system to use for route or form code will determine how frequently the method code will be populated e.g. if route or form code pre-coordinate method code, then this attribute will not be populated often; if there is no pre-coordination then method code may  be used frequently.</p>
 </td></tr>
@@ -517,9 +519,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
    <div class="inner-wrapper">
     <p>
       
-      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 Beta 1, Version: 0.9.0 Beta 1
+      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0, Version: 0.9.0
       ; <a style="color: #81BEF7" href="http://hl7.org/fhir/DSTU2/">FHIR &copy; Version: 1.0.2</a>
-      ; Generated on Wed, Apr 10, 2019 14:32-0400.
+      ; Generated on Wed, Apr 17, 2019 12:01-0400.
     </p>
    </div>    <!-- /inner-wrapper -->
   </div>    <!-- /container -->
