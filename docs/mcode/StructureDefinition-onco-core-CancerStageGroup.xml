@@ -57,7 +57,7 @@
     <system value="http://hl7.org/fhir/us/mcode"/>
     <value value="onco.core.CancerStageGroup"/>
   </identifier>
-  <version value="0.9.0 Beta 1"/>
+  <version value="0.9.0"/>
   <name value="CancerStageGroup"/>
   <display value="onco-core-CancerStageGroup"/>
   <status value="draft"/>
@@ -69,7 +69,7 @@
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-04-10T00:00:00-04:00"/>
+  <date value="2019-04-17T00:00:00-04:00"/>
   <description value="A panel that contains cancer staging information. This class is the parent of panels containing information related to clinical and pathologic staging, including TNMClinicalStageGroup and TNMPathologicStageGroup."/>
   <requirements value="Observations are a key aspect of healthcare.  This resource is used to capture those that do not require more sophisticated mechanisms."/>
   <fhirVersion value="1.0.2"/>
@@ -285,7 +285,7 @@
     <element id="primarycancercondition">
       <path value="Observation.extension"/>
       <name value="primarycancercondition"/>
-      <definition value="Primary cancer condition, in which abnormal cells divide without control and can invade nearby tissues. A primary cancer is defined as the original site (organ or tissue) where a cancer began."/>
+      <definition value="Records the history of the primary cancer condition, the original or first tumor in the body,&#xA0;abnormal cells that divide without control and can invade nearby tissues."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -785,10 +785,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
       <binding>
-        <strength value="example"/>
-        <description value="Methods for simple observations."/>
+        <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/observation-methods"/>
+          <reference value="http://hl7.org/fhir/us/mcode/onco/core/vs/CancerStagingSystemVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -1691,7 +1690,7 @@
     <element id="primarycancercondition">
       <path value="Observation.extension"/>
       <name value="primarycancercondition"/>
-      <definition value="Primary cancer condition, in which abnormal cells divide without control and can invade nearby tissues. A primary cancer is defined as the original site (organ or tissue) where a cancer began."/>
+      <definition value="Records the history of the primary cancer condition, the original or first tumor in the body,&#xA0;abnormal cells that divide without control and can invade nearby tissues."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -1826,6 +1825,21 @@
         <strength value="preferred"/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/us/mcode/shr/core/vs/BodyLocationVS"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="Observation.method">
+      <path value="Observation.method"/>
+      <name value="Observation.method"/>
+      <min value="0"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="extensible"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/us/mcode/onco/core/vs/CancerStagingSystemVS"/>
         </valueSetReference>
       </binding>
     </element>

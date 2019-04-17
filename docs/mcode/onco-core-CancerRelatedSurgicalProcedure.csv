@@ -1,7 +1,5 @@
 "Path","Slice Name","Alias(s)","Label","Min","Max","Must Support?","Is Modifier?","Is Summary?","Type(s)","Short","Definition","Comments","Requirements","Default Value","Meaning When Missing","Fixed Value","Pattern","Example","Minimum Value","Maximum Value","Maximum Length","Binding Strength","Binding Description","Binding Value Set","Code","Slicing Discriminator","Slicing Description","Slicing Ordered","Slicing Rules","Base Path","Base Min","Base Max","Condition(s)","Constraint(s)","Mapping: RIM","Mapping: W5 Mapping","Mapping: HL7 v2"
-"Procedure","","","",0,*,"","","","","onco-core-CancerRelatedSurgicalProcedure","A surgical action addressing a cancer condition. Any surgical procedure relevant to the cancer condition is of interest in mCODE.
-
-In the context of FHIR, the way to indicate that unrelated surgeries are _not_ included in mCODE involves constraining the ReasonReference or ReasonCode to a cancer condition.","","","","","","","","","",0,,,,"",,,,"Procedure",0,*,"","pro-1:Reason not performed is only permitted if notPerformed indicator is true {null}
+"Procedure","","","",0,*,"","","","","onco-core-CancerRelatedSurgicalProcedure","A surgical action addressing a cancer condition.","","","","","","","","","",0,,,,"",,,,"Procedure",0,*,"","pro-1:Reason not performed is only permitted if notPerformed indicator is true {null}
 ","Procedure[moodCode=EVN]","clinical.general"
 "Procedure.id","","","",0,1,"","","Y","id {[]} {[]}
 ","Logical id of this artifact","The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.","The only time that a resource does not have an id is when it is being submitted to the server using a create operation. Bundles always have an id, though it is usually a generated UUID.","","","","","","","","",0,,,,"",,,,"Procedure.id",0,1,"",""
@@ -24,7 +22,7 @@ user content","",0,*,"","","","Extension {[]} {[]}
 ","",,"open","Procedure.extension",0,*,"","","N/A"
 "Procedure.extension","statementdatetime","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatementDateTime-extension]]} {[]}
 ","","The point in time when the statement was created.","","","","","","","","","",0,,,,"",,,,"Procedure.extension",0,*,"",""
-"Procedure.extension","reasoncode","","",0,1,"Y","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonCode-extension]]} {[]}
+"Procedure.extension","reasoncode","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonCode-extension]]} {[]}
 ","","The justification, as a code.
 Reason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept, so we are not going to support a string.","","","","","","","","","",0,,,,"",,,,"Procedure.extension",0,*,"",""
 "Procedure.extension.id","","","",0,1,"","","","string {[]} {[]}
@@ -35,16 +33,8 @@ Reason is a string or CodeableConcept in DSTU2 but in later versions only a Code
 ","identifies the meaning of the extension","Source of the definition for the extension code - a logical name or a URL.","","","","","<valueUri xmlns=""http://hl7.org/fhir"" value=""http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonCode-extension""/>","","","","",,,,,"",,,,"Extension.url",1,1,"","","N/A"
 "Procedure.extension.valueCodeableConcept","","","",1,1,"","","","CodeableConcept {[]} {[]}
 ","Value of extension","Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).","","","","","","","","","",,"extensible","","http://hl7.org/fhir/us/mcode/onco/core/vs/CancerDisorderVS","",,,,"Extension.value[x]",0,1,"","","N/A"
-"Procedure.extension","reasonreference","","",0,1,"Y","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension]]} {[]}
-","","The justification, as reference to a condition or observation.","","","","","","","","","",0,,,,"",,,,"Procedure.extension",0,*,"",""
-"Procedure.extension.id","","","",0,1,"","","","string {[]} {[]}
-","xml:id (or equivalent in JSON)","unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.","","","","","","","","","",,,,,"",,,,"Element.id",0,1,"","","N/A"
-"Procedure.extension.extension","","","",0,0,"","","","Extension {[]} {[]}
-","Extension","An Extension","","","","","","","","","",,,,,"",,,,"Element.extension",0,*,"",""
-"Procedure.extension.url","","","",1,1,"","","","uri {[]} {[]}
-","identifies the meaning of the extension","Source of the definition for the extension code - a logical name or a URL.","","","","","<valueUri xmlns=""http://hl7.org/fhir"" value=""http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension""/>","","","","",,,,,"",,,,"Extension.url",1,1,"","","N/A"
-"Procedure.extension.valueReference","","","",1,1,"","","","Reference {[]} {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-CancerCondition]]}
-","CancerCondition","Abstract class for describing a primary or secondary metastatic neoplastic diseases.","","","","","","","","","",,,,,"",,,,"Extension.value[x]",0,1,"","","N/A"
+"Procedure.extension","cancerreasonreference","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-CancerReasonReference-extension]]} {[]}
+","","Reference to a primary or secondary cancer condition.","","","","","","","","","",0,,,,"",,,,"Procedure.extension",0,*,"",""
 "Procedure.extension","partof","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PartOf-extension]]} {[]}
 ","","The larger entity that the asserted item is a portion of. For example, an organization part of a larger organization, or an encounter with a hospitalist might be part of a larger hospitalization encounter.","","","","","","","","","",0,,,,"",,,,"Procedure.extension",0,*,"",""
 "Procedure.extension.id","","","",0,1,"","","","string {[]} {[]}
@@ -56,7 +46,7 @@ Reason is a string or CodeableConcept in DSTU2 but in later versions only a Code
 "Procedure.extension.valueReference","","","",1,1,"","","","Reference {[]} {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure]]}
 ","Procedure","A procedure that has been performed.","","","","","","","","","",,,,,"",,,,"Extension.value[x]",0,1,"","","N/A"
 "Procedure.extension","treatmentintent","","",0,1,"Y","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TreatmentIntent-extension]]} {[]}
-","","The purpose of a treatment. A simplified set of values include only two choices: curative and palliative. Curative is defined as any treatment meant to reduce or control a disease process, even if a 'cure' is not anticipated. Palliative includes treatments meant to reduce symptoms and side effects, such as antiemetics. If a treatment does both, it should be recorded as curative.","","","","","","","","","",0,,,,"",,,,"Procedure.extension",0,*,"",""
+","","The purpose of a treatment.","","","","","","","","","",0,,,,"",,,,"Procedure.extension",0,*,"",""
 "Procedure.modifierExtension","","extensions
 user content","",0,*,"","Y","","Extension {[]} {[]}
 ","Extensions that cannot be ignored","May be used to represent additional information that is not part of the basic definition of the resource, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.","There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.","","","","","","","","",0,,,,"",,,,"Procedure.modifierExtension",0,*,"","","N/A"
@@ -69,7 +59,7 @@ user content","",0,*,"","Y","","Extension {[]} {[]}
 "Procedure.category","","","",0,1,"","","Y","CodeableConcept {[]} {[]}
 ","Classification of the procedure","A code that classifies the procedure for searching, sorting and display purposes (e.g. ""Surgical Procedure"").","","","","","","","","","",0,"example","A code that classifies a procedure for searching, sorting and display purposes.","http://hl7.org/fhir/ValueSet/procedure-category","",,,,"Procedure.category",0,1,"","",".outboundRelationship[typeCode=""COMP].target[classCode=""LIST"", moodCode=""EVN""].code"
 "Procedure.code","","","",1,1,"Y","","","CodeableConcept {[]} {[]}
-","SNOMED-CT | ICD-10 | CPT-4","The specific procedure that is performed. Use text if the exact nature of the procedure cannot be coded (e.g. ""Laparoscopic Appendectomy"").","","","","","","","","","",0,"extensible","","http://hl7.org/fhir/us/mcode/shr/core/vs/SurgicalProcedureVS","",,,,"Procedure.code",1,1,"","",".code","class","OBR-44/OBR-45"
+","SNOMED-CT | ICD-10 | CPT-4","The specific procedure that is performed. Use text if the exact nature of the procedure cannot be coded (e.g. ""Laparoscopic Appendectomy"").","","","","","","","","","",0,"extensible","","http://hl7.org/fhir/us/mcode/onco/core/vs/CancerRelatedSurgicalProcedureVS","",,,,"Procedure.code",1,1,"","",".code","class","OBR-44/OBR-45"
 "Procedure.notPerformed","","","",0,0,"","Y","","boolean {[]} {[]}
 ","True if procedure was not performed as scheduled","Set this to true if the record is saying that the procedure was NOT performed.","","","<valueBoolean xmlns=""http://hl7.org/fhir"" value=""false""/>","","","","","","",0,,,,"",,,,"Procedure.notPerformed",0,1,"","",".actionNegationInd"
 "Procedure.reasonNotPerformed","","","",0,0,"","","","CodeableConcept {[]} {[]}
@@ -86,7 +76,7 @@ user content","",0,*,"","","","Extension {[]} {[]}
 "Procedure.bodySite.extension","laterality","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension]]} {[]}
 ","","Body side of the body location, if needed to distinguish from a similar location on the other side of the body.
 
-This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
+The laterality element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
 
 + Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
 + Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
@@ -97,7 +87,7 @@ This extension is part of the profile on body site appearing throughout the mCOD
 Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).","","","","","","","","","",,,,,"",,,,"Procedure.bodySite.extension",0,*,"",""
 "Procedure.bodySite.extension","orientation","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Orientation-extension]]} {[]}
 ","","Orientation of the body location, if needed to distinguish from a similar location in another orientation.
-This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
+The orientation element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
 
 + Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
 + Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
@@ -112,7 +102,7 @@ Note that BodyLocation is a data type (a reusable structure), not a stand-alone 
 * Specifying the direction from the landmark to the body location, and
 * Specifying the distance from the landmark to the body location.
 
-This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
+The RelationToLandmark element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
 
 + Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
 + Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.

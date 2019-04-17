@@ -5,7 +5,13 @@
   <text>
     <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">
   <p><b>GenomicsReport Profile</b></p>
-  <p>Genetic analysis summary report</p>
+  <p>Genetic analysis summary report. The report may include one or more tests, with two distinct test types. The first type is a targeted mutation test, where a specific mutation on a specific gene is tested for. The result is either positive or negative for that mutation. The second type is a more general test for variants. This type of test returns the identity of variants found in a certain region of the genome.
+
+The identity of laboratory tests is typically represented by a LOINC code. However, many genetic tests and panels do not have LOINC codes, although some might have an identifier in NCBI Genetic Testing Registry (GTR), a central location for voluntary submission of genetic test information by providers. To identify the diagnostic report, the name of the report must be in the text sub-field of the code structure. If there is a coded identifier from GTR, LOINC, or other source, then it should be included into the the code sub-field of the code structure. If there is no suitable code, the code can be omitted.
+
+The performer of the test (organization or practitioner) should be included in the FHIR profile as the performer.actor.
+
+FHIR implementation note: The category for this profile is set to GE (Genetics), a code from http://hl7.org/fhir/ValueSet/diagnostic-service-sections. This may be contrary to the Argonaut specification, which assigns the category LAB to any diagnostic report containing a laboratory result.</p>
   <p><b>Mapping Summary</b></p>
   <p><pre>onco.core.GenomicsReport maps to DiagnosticReport:
   _Entry.EntryId maps to id
@@ -29,7 +35,7 @@
   Participation.Participant maps to performer
   MedicationStatementRelatedRequest maps to request
   Specimen maps to specimen
-  GeneticRegionAnalyzed maps to result (slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)
+  Observation maps to result (slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)
   Media maps to image.link
   Conclusion maps to conclusion
   DiagnosisCode maps to codedDiagnosis
@@ -42,7 +48,7 @@
     <system value="http://hl7.org/fhir/us/mcode"/>
     <value value="onco.core.GenomicsReport"/>
   </identifier>
-  <version value="0.9.0 Beta 1"/>
+  <version value="0.9.0"/>
   <name value="GenomicsReport"/>
   <display value="onco-core-GenomicsReport"/>
   <status value="draft"/>
@@ -54,8 +60,8 @@
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-04-10T00:00:00-04:00"/>
-  <description value="Genetic analysis summary report"/>
+  <date value="2019-04-17T00:00:00-04:00"/>
+  <description value="Genetic analysis summary report. The report may include one or more tests, with two distinct test types. The first type is a targeted mutation test, where a specific mutation on a specific gene is tested for. The result is either positive or negative for that mutation. The second type is a more general test for variants. This type of test returns the identity of variants found in a certain region of the genome.&#xA;&#xA;The identity of laboratory tests is typically represented by a LOINC code. However, many genetic tests and panels do not have LOINC codes, although some might have an identifier in NCBI Genetic Testing Registry (GTR), a central location for voluntary submission of genetic test information by providers. To identify the diagnostic report, the name of the report must be in the text sub-field of the code structure. If there is a coded identifier from GTR, LOINC, or other source, then it should be included into the the code sub-field of the code structure. If there is no suitable code, the code can be omitted.&#xA;&#xA;The performer of the test (organization or practitioner) should be included in the FHIR profile as the performer.actor.&#xA;&#xA;FHIR implementation note: The category for this profile is set to GE (Genetics), a code from http://hl7.org/fhir/ValueSet/diagnostic-service-sections. This may be contrary to the Argonaut specification, which assigns the category LAB to any diagnostic report containing a laboratory result."/>
   <requirements value="To support reporting for any diagnostic report into a clinical data repository."/>
   <fhirVersion value="1.0.2"/>
   <mapping>
@@ -82,7 +88,7 @@
       <path value="DiagnosticReport"/>
       <name value="DiagnosticReport-GenomicsReport"/>
       <short value="onco-core-GenomicsReport"/>
-      <definition value="Genetic analysis summary report"/>
+      <definition value="Genetic analysis summary report. The report may include one or more tests, with two distinct test types. The first type is a targeted mutation test, where a specific mutation on a specific gene is tested for. The result is either positive or negative for that mutation. The second type is a more general test for variants. This type of test returns the identity of variants found in a certain region of the genome.&#xA;&#xA;The identity of laboratory tests is typically represented by a LOINC code. However, many genetic tests and panels do not have LOINC codes, although some might have an identifier in NCBI Genetic Testing Registry (GTR), a central location for voluntary submission of genetic test information by providers. To identify the diagnostic report, the name of the report must be in the text sub-field of the code structure. If there is a coded identifier from GTR, LOINC, or other source, then it should be included into the the code sub-field of the code structure. If there is no suitable code, the code can be omitted.&#xA;&#xA;The performer of the test (organization or practitioner) should be included in the FHIR profile as the performer.actor.&#xA;&#xA;FHIR implementation note: The category for this profile is set to GE (Genetics), a code from http://hl7.org/fhir/ValueSet/diagnostic-service-sections. This may be contrary to the Argonaut specification, which assigns the category LAB to any diagnostic report containing a laboratory result."/>
       <comments value="This is intended to capture a single report, and is not suitable for use in displaying summary information that covers multiple reports.  For example, this resource has not been designed for laboratory cumulative reporting formats nor detailed structured reports for sequencing."/>
       <alias value="Report"/>
       <alias value="Test"/>
@@ -233,6 +239,11 @@
     <element id="DiagnosticReport-GenomicsReport.extension">
       <path value="DiagnosticReport.extension"/>
       <name value="DiagnosticReport-GenomicsReport.extension"/>
+      <slicing id="3">
+        <discriminator value="url"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -251,6 +262,147 @@
         <identity value="rim"/>
         <map value="N/A"/>
       </mapping>
+    </element>
+    <element id="specimentype">
+      <path value="DiagnosticReport.extension"/>
+      <name value="specimentype"/>
+      <definition value="The type of material the specimen contains or consists of."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DiagnosticReport.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SpecimenType-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="true"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="DiagnosticReport-GenomicsReport.extension-specimentype.id">
+      <path value="DiagnosticReport.extension.id"/>
+      <representation value="xmlAttr"/>
+      <name value="DiagnosticReport-GenomicsReport.extension-specimentype.id"/>
+      <short value="xml:id (or equivalent in JSON)"/>
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.id"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="string"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="DiagnosticReport-GenomicsReport.extension-specimentype.ext">
+      <path value="DiagnosticReport.extension.extension"/>
+      <name value="DiagnosticReport-GenomicsReport.extension-specimentype.ext"/>
+      <short value="Extension"/>
+      <definition value="An Extension"/>
+      <min value="0"/>
+      <max value="0"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="DiagnosticReport-GenomicsReport.extension-specimentype.url">
+      <path value="DiagnosticReport.extension.url"/>
+      <representation value="xmlAttr"/>
+      <name value="DiagnosticReport-GenomicsReport.extension-specimentype.url"/>
+      <short value="identifies the meaning of the extension"/>
+      <definition value="Source of the definition for the extension code - a logical name or a URL."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Extension.url"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="uri"/>
+      </type>
+      <fixedUri value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SpecimenType-extension"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="DiagnosticReport-GenomicsReport.extension-specimentype.val">
+      <path value="DiagnosticReport.extension.valueCodeableConcept"/>
+      <name value="DiagnosticReport-GenomicsReport.extension-specimentype.val"/>
+      <short value="Value of extension"/>
+      <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Extension.value[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="extensible"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/us/mcode/onco/core/vs/GeneticSpecimenTypeVS"/>
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="regionstudied">
+      <path value="DiagnosticReport.extension"/>
+      <name value="regionstudied"/>
+      <definition value="A description of the coverage of the genome that was tested for variants."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="DiagnosticReport.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-RegionStudied-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
     </element>
     <element id="DiagnosticReport-GenomicsReport.modifierExtension">
       <path value="DiagnosticReport.modifierExtension"/>
@@ -493,9 +645,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.ext">
+    <element id="DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.ext1">
       <path value="DiagnosticReport.category.coding.extension"/>
-      <name value="DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.ext"/>
+      <name value="DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.ext1"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -527,7 +679,7 @@
       <type>
         <code value="uri"/>
       </type>
-      <fixedUri value="http://hl7.org/fhir/observation-category"/>
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/v2-0074"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -699,14 +851,13 @@
         <code value="CodeableConcept"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <binding>
         <strength value="preferred"/>
-        <description value="Codes that describe Diagnostic Reports."/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/report-codes"/>
+          <reference value="https://www.ncbi.nlm.nih.gov/gtr"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -720,312 +871,6 @@
       <mapping>
         <identity value="w5"/>
         <map value="what"/>
-      </mapping>
-    </element>
-    <element id="DiagnosticReport-GenomicsReport.code.id">
-      <path value="DiagnosticReport.code.id"/>
-      <representation value="xmlAttr"/>
-      <name value="DiagnosticReport-GenomicsReport.code.id"/>
-      <short value="xml:id (or equivalent in JSON)"/>
-      <definition value="unique id for the element within a resource (for internal references)."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="id"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="DiagnosticReport-GenomicsReport.code.extension">
-      <path value="DiagnosticReport.code.extension"/>
-      <name value="DiagnosticReport-GenomicsReport.code.extension"/>
-      <short value="Additional Content defined by implementations"/>
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
-      <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-      <alias value="extensions"/>
-      <alias value="user content"/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="Extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="DiagnosticReport-GenomicsReport.code.coding">
-      <path value="DiagnosticReport.code.coding"/>
-      <name value="DiagnosticReport-GenomicsReport.code.coding"/>
-      <slicing id="2">
-        <discriminator value="code"/>
-        <ordered value="false"/>
-        <rules value="open"/>
-      </slicing>
-      <short value="Code defined by a terminology system"/>
-      <definition value="A reference to a code defined by a terminology system."/>
-      <comments value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labelled as UserSelected = true."/>
-      <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings."/>
-      <min value="1"/>
-      <max value="*"/>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="orim"/>
-        <map value="fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding"/>
-      </mapping>
-      <mapping>
-        <identity value="v2"/>
-        <map value="C*E.1-8, C*E.10-22"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="union(., ./translation)"/>
-      </mapping>
-    </element>
-    <element id="Fixed_81247-9">
-      <path value="DiagnosticReport.code.coding"/>
-      <name value="Fixed_81247-9"/>
-      <short value="Master HL7 genetic variant reporting panel"/>
-      <definition value="Master HL7 genetic variant reporting panel"/>
-      <min value="1"/>
-      <max value="1"/>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-    </element>
-    <element id="DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.id">
-      <path value="DiagnosticReport.code.coding.id"/>
-      <representation value="xmlAttr"/>
-      <name value="DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.id"/>
-      <short value="xml:id (or equivalent in JSON)"/>
-      <definition value="unique id for the element within a resource (for internal references)."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="id"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.ext">
-      <path value="DiagnosticReport.code.coding.extension"/>
-      <name value="DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.ext"/>
-      <short value="Additional Content defined by implementations"/>
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
-      <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-      <alias value="extensions"/>
-      <alias value="user content"/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="Extension"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.system">
-      <path value="DiagnosticReport.code.coding.system"/>
-      <name value="DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.system"/>
-      <short value="Identity of the terminology system"/>
-      <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
-      <comments value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7&#39;s list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously."/>
-      <requirements value="Need to be unambiguous about the source of the definition of the symbol."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="uri"/>
-      </type>
-      <fixedUri value="http://loinc.org"/>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="orim"/>
-        <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem"/>
-      </mapping>
-      <mapping>
-        <identity value="v2"/>
-        <map value="C*E.3"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="./codeSystem"/>
-      </mapping>
-    </element>
-    <element id="DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.ver">
-      <path value="DiagnosticReport.code.coding.version"/>
-      <name value="DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.ver"/>
-      <short value="Version of the system - if relevant"/>
-      <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged."/>
-      <comments value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="string"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="orim"/>
-        <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion"/>
-      </mapping>
-      <mapping>
-        <identity value="v2"/>
-        <map value="C*E.7"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="./codeSystemVersion"/>
-      </mapping>
-    </element>
-    <element id="DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.code">
-      <path value="DiagnosticReport.code.coding.code"/>
-      <name value="DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.code"/>
-      <short value="Symbol in syntax defined by the system"/>
-      <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)."/>
-      <requirements value="Need to refer to a particular code in the system."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="code"/>
-      </type>
-      <fixedCode value="81247-9"/>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="orim"/>
-        <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code"/>
-      </mapping>
-      <mapping>
-        <identity value="v2"/>
-        <map value="C*E.1"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="./code"/>
-      </mapping>
-    </element>
-    <element id="DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.dis">
-      <path value="DiagnosticReport.code.coding.display"/>
-      <name value="DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.dis"/>
-      <short value="Representation defined by the system"/>
-      <definition value="A representation of the meaning of the code in the system, following the rules of the system."/>
-      <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="string"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="orim"/>
-        <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName"/>
-      </mapping>
-      <mapping>
-        <identity value="v2"/>
-        <map value="C*E.2 - but note this is not well followed"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="CV.displayName"/>
-      </mapping>
-    </element>
-    <element id="DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.use">
-      <path value="DiagnosticReport.code.coding.userSelected"/>
-      <name value="DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.use"/>
-      <short value="If this coding was chosen directly by the user"/>
-      <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)."/>
-      <comments value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly &#39;directly chosen&#39; implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely."/>
-      <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="boolean"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="orim"/>
-        <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]"/>
-      </mapping>
-      <mapping>
-        <identity value="v2"/>
-        <map value="Sometimes implied by being first"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="CD.codingRationale"/>
-      </mapping>
-    </element>
-    <element id="DiagnosticReport-GenomicsReport.code.text">
-      <path value="DiagnosticReport.code.text"/>
-      <name value="DiagnosticReport-GenomicsReport.code.text"/>
-      <short value="Plain text representation of the concept"/>
-      <definition value="A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user."/>
-      <comments value="Very often the text is the same as a displayName of one of the codings."/>
-      <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="string"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="orim"/>
-        <map value="fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText"/>
-      </mapping>
-      <mapping>
-        <identity value="v2"/>
-        <map value="C*E.9. But note many systems use C*E.2 for this"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="./originalText[mediaType/code=&quot;text/plain&quot;]/data"/>
       </mapping>
     </element>
     <element id="DiagnosticReport-GenomicsReport.subject">
@@ -1104,7 +949,7 @@
         <code value="Period"/>
       </type>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -1244,6 +1089,11 @@
     <element id="DiagnosticReport-GenomicsReport.result">
       <path value="DiagnosticReport.result"/>
       <name value="DiagnosticReport-GenomicsReport.result"/>
+      <slicing id="2">
+        <discriminator value="target.reference/@profile"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <short value="Observations - simple, or complex nested groups"/>
       <definition value="Observations that are part of this diagnostic report. Observations can be simple name/value pairs (e.g. &quot;atomic&quot; results), or they can be grouping observations that include references to other members of the group (e.g. &quot;panels&quot;)."/>
       <requirements value="Need to support individual results, or report groups of results, where the result grouping is arbitrary, but meaningful. This structure is recursive - observations can contain observations."/>
@@ -1260,7 +1110,83 @@
       <max value="*"/>
       <type>
         <code value="Reference"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-GeneticRegionAnalyzed"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="true"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBXs"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="outboundRelationship[typeCode=COMP].target"/>
+      </mapping>
+    </element>
+    <element id="onco-core-GeneticVariantFound">
+      <path value="DiagnosticReport.result"/>
+      <name value="onco-core-GeneticVariantFound"/>
+      <short value="GeneticVariantFound"/>
+      <definition value="Data structure recording an alteration in the most common DNA nucleotide sequence. The term variant can be used to describe an alteration that may be benign, pathogenic, or of unknown significance. The term variant is increasingly being used in place of the term mutation."/>
+      <alias value="Data"/>
+      <alias value="Atomic Value"/>
+      <alias value="Result"/>
+      <alias value="Atomic result"/>
+      <alias value="Data"/>
+      <alias value="Test"/>
+      <alias value="Analyte"/>
+      <alias value="Battery"/>
+      <alias value="Organizer"/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="DiagnosticReport.result"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-GeneticVariantFound"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="true"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBXs"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="outboundRelationship[typeCode=COMP].target"/>
+      </mapping>
+    </element>
+    <element id="onco-core-GeneticMutationTestResult">
+      <path value="DiagnosticReport.result"/>
+      <name value="onco-core-GeneticMutationTestResult"/>
+      <short value="GeneticMutationTestResult"/>
+      <definition value="A test for a specific mutation on a particular gene."/>
+      <alias value="Data"/>
+      <alias value="Atomic Value"/>
+      <alias value="Result"/>
+      <alias value="Atomic result"/>
+      <alias value="Data"/>
+      <alias value="Test"/>
+      <alias value="Analyte"/>
+      <alias value="Battery"/>
+      <alias value="Organizer"/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="DiagnosticReport.result"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-GeneticMutationTestResult"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="true"/>
@@ -1517,10 +1443,79 @@
       <path value="DiagnosticReport"/>
       <name value="DiagnosticReport-GenomicsReport"/>
       <short value="onco-core-GenomicsReport"/>
-      <definition value="Genetic analysis summary report"/>
+      <definition value="Genetic analysis summary report. The report may include one or more tests, with two distinct test types. The first type is a targeted mutation test, where a specific mutation on a specific gene is tested for. The result is either positive or negative for that mutation. The second type is a more general test for variants. This type of test returns the identity of variants found in a certain region of the genome.&#xA;&#xA;The identity of laboratory tests is typically represented by a LOINC code. However, many genetic tests and panels do not have LOINC codes, although some might have an identifier in NCBI Genetic Testing Registry (GTR), a central location for voluntary submission of genetic test information by providers. To identify the diagnostic report, the name of the report must be in the text sub-field of the code structure. If there is a coded identifier from GTR, LOINC, or other source, then it should be included into the the code sub-field of the code structure. If there is no suitable code, the code can be omitted.&#xA;&#xA;The performer of the test (organization or practitioner) should be included in the FHIR profile as the performer.actor.&#xA;&#xA;FHIR implementation note: The category for this profile is set to GE (Genetics), a code from http://hl7.org/fhir/ValueSet/diagnostic-service-sections. This may be contrary to the Argonaut specification, which assigns the category LAB to any diagnostic report containing a laboratory result."/>
       <min value="0"/>
       <type>
         <code value="DiagnosticReport"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="DiagnosticReport-GenomicsReport.extension">
+      <path value="DiagnosticReport.extension"/>
+      <name value="DiagnosticReport-GenomicsReport.extension"/>
+      <slicing id="3">
+        <discriminator value="url"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <min value="0"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="specimentype">
+      <path value="DiagnosticReport.extension"/>
+      <name value="specimentype"/>
+      <definition value="The type of material the specimen contains or consists of."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DiagnosticReport.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SpecimenType-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="true"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="DiagnosticReport-GenomicsReport.extension-specimentype.val">
+      <path value="DiagnosticReport.extension.valueCodeableConcept"/>
+      <name value="DiagnosticReport-GenomicsReport.extension-specimentype.val"/>
+      <min value="0"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="extensible"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/us/mcode/onco/core/vs/GeneticSpecimenTypeVS"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="regionstudied">
+      <path value="DiagnosticReport.extension"/>
+      <name value="regionstudied"/>
+      <definition value="A description of the coverage of the genome that was tested for variants."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="DiagnosticReport.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-RegionStudied-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1575,7 +1570,7 @@
       <path value="DiagnosticReport.category.coding.system"/>
       <name value="DiagnosticReport-GenomicsReport.category.coding-Fixed-GE.system"/>
       <min value="0"/>
-      <fixedUri value="http://hl7.org/fhir/observation-category"/>
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/v2-0074"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1596,59 +1591,15 @@
       <name value="DiagnosticReport-GenomicsReport.code"/>
       <min value="0"/>
       <maxLength value="0"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
-    </element>
-    <element id="DiagnosticReport-GenomicsReport.code.coding">
-      <path value="DiagnosticReport.code.coding"/>
-      <name value="DiagnosticReport-GenomicsReport.code.coding"/>
-      <slicing id="2">
-        <discriminator value="code"/>
-        <ordered value="false"/>
-        <rules value="open"/>
-      </slicing>
-      <min value="1"/>
-      <max value="*"/>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="Fixed_81247-9">
-      <path value="DiagnosticReport.code.coding"/>
-      <name value="Fixed_81247-9"/>
-      <short value="Master HL7 genetic variant reporting panel"/>
-      <definition value="Master HL7 genetic variant reporting panel"/>
-      <min value="1"/>
-      <max value="1"/>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-    </element>
-    <element id="DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.system">
-      <path value="DiagnosticReport.code.coding.system"/>
-      <name value="DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.system"/>
-      <min value="0"/>
-      <fixedUri value="http://loinc.org"/>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.code">
-      <path value="DiagnosticReport.code.coding.code"/>
-      <name value="DiagnosticReport-GenomicsReport.code.coding-Fixed-81247-9.code"/>
-      <min value="0"/>
-      <fixedCode value="81247-9"/>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
+      <binding>
+        <strength value="preferred"/>
+        <valueSetReference>
+          <reference value="https://www.ncbi.nlm.nih.gov/gtr"/>
+        </valueSetReference>
+      </binding>
     </element>
     <element id="DiagnosticReport-GenomicsReport.subject">
       <path value="DiagnosticReport.subject"/>
@@ -1673,6 +1624,15 @@
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="DiagnosticReport-GenomicsReport.effectivex">
+      <path value="DiagnosticReport.effective[x]"/>
+      <name value="DiagnosticReport-GenomicsReport.effectivex"/>
+      <min value="0"/>
+      <maxLength value="0"/>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -1720,10 +1680,57 @@
     <element id="DiagnosticReport-GenomicsReport.result">
       <path value="DiagnosticReport.result"/>
       <name value="DiagnosticReport-GenomicsReport.result"/>
+      <slicing id="2">
+        <discriminator value="target.reference/@profile"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <min value="0"/>
       <type>
         <code value="Reference"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-GeneticRegionAnalyzed"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="true"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="onco-core-GeneticVariantFound">
+      <path value="DiagnosticReport.result"/>
+      <name value="onco-core-GeneticVariantFound"/>
+      <short value="GeneticVariantFound"/>
+      <definition value="Data structure recording an alteration in the most common DNA nucleotide sequence. The term variant can be used to describe an alteration that may be benign, pathogenic, or of unknown significance. The term variant is increasingly being used in place of the term mutation."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="DiagnosticReport.result"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-GeneticVariantFound"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="true"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="onco-core-GeneticMutationTestResult">
+      <path value="DiagnosticReport.result"/>
+      <name value="onco-core-GeneticMutationTestResult"/>
+      <short value="GeneticMutationTestResult"/>
+      <definition value="A test for a specific mutation on a particular gene."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="DiagnosticReport.result"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-GeneticMutationTestResult"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="true"/>

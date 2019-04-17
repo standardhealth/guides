@@ -5,10 +5,10 @@
 <head>
   <meta charset="UTF-8" />
   
-  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 Beta 1</title>
+  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 Beta 1 FHIR Profiles" />
+  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 FHIR Profiles" />
 
   <link href="fhir.css" rel="stylesheet" />
 
@@ -41,7 +41,7 @@
     </a>
     <div id="hl7-status" class="hl7-status">
       
-      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 Beta 1</b>
+      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0</b>
     </div>
 
     <div id="hl7-nav">
@@ -119,12 +119,9 @@
    <div class="row">
      <div class="inner-wrapper">
        <div class="col-12">
-       <!--ReleaseHeader--><p id="publish-box"> - Local Development build (v0.9.0 Beta 1). See the <a href="http://hl7.org/fhir/us/shr/history.html">Directory of published versions</a></p></p><!--EndReleaseHeader-->
+       <!--ReleaseHeader--><p id="publish-box"> - Local Development build (v0.9.0). See the <a href="http://hl7.org/fhir/us/shr/history.html">Directory of published versions</a></p></p><!--EndReleaseHeader-->
 
 <!-- ============CONTENT CONTENT=============== -->
-
-<p><font color="red">*** This is a <strong>DRAFT VERSION</strong> of the Minimum Common Oncology Data Elements (mCODE&#8482;) implementation guide. ***</font></p>
-<p>&nbsp;</p>
 
 <h1><a name="#Implementation"></a>Appendix A: Technical  Implementation Notes</h1>
 
@@ -138,7 +135,7 @@
 <ul>
     <li>The data dictionary elements are meant to address a clinical and project leadership audience who seek a high level list of mCODE elements and might not reflect the detailed list of of must-support elements which appear in the FHIR IG.</li>
     <p></p>
-    <li>mCODE profiles align, where possible, with the <a href="http://www.fhir.org/guides/argonaut/r2/">Argonaut Data Query IG</a>  profiles, which are based on <a href="http://hl7.org/fhir/DSTU2/index.html">FHIR DSTU2</a>. However extensions to the Argonaut profiles may exist in cases where there was better alignment between a change to a subsequent FHIR release with mCODE elements.
+    <li>mCODE profiles align, where possible, with the <a href="http://www.fhir.org/guides/argonaut/r2/">Argonaut Data Query IG</a> profiles, which are based on <a href="http://hl7.org/fhir/DSTU2/index.html">FHIR DSTU2</a>. However extensions to the Argonaut profiles may exist in cases where there was better alignment between a change to a subsequent FHIR release with mCODE elements.
     </li>
 </ul>
 <p>It is anticipated that mCODE will move to <a href="http://hl7.org/fhir/R4/">FHIR Release 4</a> when commercial vendors and US Core and/or Argonaut officially support the parts of R4 required by mCODE.</p>
@@ -166,7 +163,7 @@
 <h2>Laboratory and Vital Signs</h2>
 
 <h3><i>Tumor Markers</i></h3>
-<p>mCODE identifies a dedicated FHIR profile called <strong><i>TumorMarkerObservation</i></strong> for the identification of serum and tissue-based tumor markers.</p>
+<p>mCODE identifies a dedicated FHIR profile called <strong><i>TumorMarkerTest</i></strong> for the identification of serum and tissue-based tumor markers.</p>
 <ul>
     <li>Tumor marker tests identified by their LOINC order code. The assigned TumorMarkerTestVS value set is also extensible to account for new LOINC version and code updates.</li>
     <p></p>
@@ -193,6 +190,12 @@
 
 <p>There may be differences across these specifications in the value sets used, as well as binding strength. This guide addresses these discrepancies by using the lowest common denominator amongst the specifications. This approach is not without challenges, as there cases where different value sets are required by different specifications, which leaves no choice but to opt for one value set over another.</p>
 
+<h3>On SNOMED extensions</h3>
+<p>mCODE aligns with the Systematic Nomenclature of Medicine, Clinical Terms <b>(SNOMED CT) U.S. Edition</b>. SNOMED CT extensions outside of the U.S. Edition (e.g.: HSPC extensions, local extensions) are not included at this time.<p>
+
+<p>The specification of SNOMED US Edition is handled within the FHIR <b>CodeableConcept.version</b> attribute:</i></p>
+<p><code>{version: "http://snomed.info/sct/731000124108"}</code></p>
+<p>where <i>731000124108</i> is the SNOMED namespace assigned to the National Library of Medicine (NLM), who manages the SNOMED US Edition.</p>
 <p>&nbsp;</p>
 
 <h3><i>Local Value Sets</i></h3>
@@ -205,7 +208,7 @@
 
 <h3><i>Cancer Staging and Proprietary Terminologies</i></h3>
 
-<p>Several proprietary terminologies, including ICD-O-3 and the American Joint Commission on Cancer (AJCC) Staging System are widely used in the cancer domain. Others, such as CPT(R), while not cancer-specific, are relevant for the representation of cancer-related procedures, such as surgeries or radiation procedures. This guide does not include content from these terminologies due to licensing restrictions. The guide does, however, indicate where it is appropriate to use codes from such terminologies.</p>
+<p>Several proprietary terminologies, including ICD-O-3 and the American Joint Commission on Cancer (AJCC) Staging System are widely used in the cancer domain. Others, such as Current Procedural Terminology (CPT&#174;), while not cancer-specific, are relevant for the representation of cancer-related procedures, such as surgeries or radiation procedures. This guide does not include content from these terminologies due to licensing restrictions. The guide does, however, indicate where it is appropriate to use codes from such terminologies.</p>
 
 <p>&nbsp;</p>
 <footer>
@@ -232,9 +235,9 @@
    <div class="inner-wrapper">
     <p>
       
-      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 Beta 1, Version: 0.9.0 Beta 1
+      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0, Version: 0.9.0
       ; <a style="color: #81BEF7" href="http://hl7.org/fhir/DSTU2/">FHIR &copy; Version: 1.0.2</a>
-      ; Generated on Wed, Apr 10, 2019 14:32-0400.
+      ; Generated on Wed, Apr 17, 2019 12:01-0400.
     </p>
    </div>  <!-- /inner-wrapper -->
   </div>  <!-- /container -->

@@ -1,8 +1,14 @@
 "Path","Slice Name","Alias(s)","Label","Min","Max","Must Support?","Is Modifier?","Is Summary?","Type(s)","Short","Definition","Comments","Requirements","Default Value","Meaning When Missing","Fixed Value","Pattern","Example","Minimum Value","Maximum Value","Maximum Length","Binding Strength","Binding Description","Binding Value Set","Code","Slicing Discriminator","Slicing Description","Slicing Ordered","Slicing Rules","Base Path","Base Min","Base Max","Condition(s)","Constraint(s)","Mapping: RIM","Mapping: W5 Mapping","Mapping: HL7 v2"
-"MedicationStatement","","","",0,*,"","","","","shr-core-MedicationStatement","A record of the use of a medication.
-Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).
+"MedicationStatement","","","",0,*,"","","","","shr-core-MedicationStatement","A record of the use of a medication. The use may be reported by the patient or clinician and adminstration does not have to be directly observed.
+
+FHIR Notes:
+
+Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement). Extensions are provided.
+
 The treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.
-ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.","","","","","","","","","",0,,,,"",,,,"MedicationStatement",0,*,"","mst-2:Reason for use is only permitted if wasNotTaken is false {null}
+ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.
+
+Preference is given to using the National Library of Medicine (NLM) RxNorm terminology for medications. RxNorm is a coding standard established by the Office of the National Coordinator (ONC). However, RxNorm is restricted to FDA-approved drugs and does not include clinical trial drugs. MedicationStatement allows for the inclusion of other coding systems like the NCI Thesaurus (NCIT) to represent clinical trial oncology drugs.","","","","","","","","","",0,,,,"",,,,"MedicationStatement",0,*,"","mst-2:Reason for use is only permitted if wasNotTaken is false {null}
 mst-1:Reason not taken is only permitted if wasNotTaken is true {null}","SubstanceAdministration","clinical.medication"
 "MedicationStatement.id","","","",0,1,"","","Y","id {[]} {[]}
 ","Logical id of this artifact","The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.","The only time that a resource does not have an id is when it is being submitted to the server using a create operation. Bundles always have an id, though it is usually a generated UUID.","","","","","","","","",0,,,,"",,,,"MedicationStatement.id",0,1,"",""
@@ -38,7 +44,7 @@ user content","",0,*,"","","","Extension {[]} {[]}
 "MedicationStatement.extension.valueCodeableConcept","","","",1,1,"","","","CodeableConcept {[]} {[]}
 ","Value of extension","Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).","","","","","","","","","",,"preferred","","http://hl7.org/fhir/ValueSet/medication-statement-category","",,,,"Extension.value[x]",0,1,"","","N/A"
 "MedicationStatement.extension","treatmentintent","","",0,1,"Y","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TreatmentIntent-extension]]} {[]}
-","","The purpose of a treatment. A simplified set of values include only two choices: curative and palliative. Curative is defined as any treatment meant to reduce or control a disease process, even if a 'cure' is not anticipated. Palliative includes treatments meant to reduce symptoms and side effects, such as antiemetics. If a treatment does both, it should be recorded as curative.","","","","","","","","","",0,,,,"",,,,"MedicationStatement.extension",0,*,"",""
+","","The purpose of a treatment.","","","","","","","","","",0,,,,"",,,,"MedicationStatement.extension",0,*,"",""
 "MedicationStatement.extension","terminationreason","","",0,*,"Y","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TerminationReason-extension]]} {[]}
 ","","A code explaining unplanned or premature termination of a plan of treatment, course of medication, or research study.","","","","","","","","","",0,,,,"",,,,"MedicationStatement.extension",0,*,"",""
 "MedicationStatement.extension.id","","","",0,1,"","","","string {[]} {[]}

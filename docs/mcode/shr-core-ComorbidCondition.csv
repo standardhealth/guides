@@ -33,7 +33,7 @@ user content","",0,*,"","Y","","Extension {[]} {[]}
 "Condition.dateRecorded","","","",0,1,"","","Y","date {[]} {[]}
 ","When first entered","A date, when  the Condition statement was documented.","The Date Recorded represents the date when this particular Condition record was created in the EHR, not the date of the most recent update in terms of when severity, abatement, etc. were specified.  The date of the last record modification can be retrieved from the resource metadata.","","","","","","","","",0,,,,"",,,,"Condition.dateRecorded",0,1,"","","REL-11",".participation[typeCode=AUT].time","when.recorded"
 "Condition.code","","","",1,1,"Y","","","CodeableConcept {[]} {[]}
-","Identification of the condition, problem or diagnosis","Identification of the condition, problem or diagnosis.","","","","","","","","","",0,"extensible","","http://hl7.org/fhir/us/mcode/shr/core/vs/ComorbidConditionCodeVS","",,,,"Condition.code",1,1,"","","Condition.code","PRB-3",".value","what"
+","Identification of the condition, problem or diagnosis","Identification of the condition, problem or diagnosis.","","","","","","","","","",0,"extensible","","http://hl7.org/fhir/us/mcode/shr/core/vs/ComorbidConditionVS","",,,,"Condition.code",1,1,"","","Condition.code","PRB-3",".value","what"
 "Condition.category","","","",1,1,"","","","CodeableConcept {[]} {[]}
 ","complaint | symptom | finding | diagnosis","A category assigned to the condition.","The categorization is often highly contextual and may appear poorly differentiated or not very useful in other contexts.","","","","","","","","",0,"preferred","Extended category code valueset to support the intent of the separate concepts of problems and health concerns","http://fhir.org/guides/argonaut/ValueSet/condition-category","",,,,"Condition.category",0,1,"","","Condition.category","'problem' if from PRB-3. 'diagnosis' if from DG1 segment in PV1 message",".code","class"
 "Condition.category.id","","","",0,1,"","","","id {[]} {[]}
@@ -118,7 +118,7 @@ user content","",0,*,"","","","Extension {[]} {[]}
 "Condition.bodySite.extension","laterality","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension]]} {[]}
 ","","Body side of the body location, if needed to distinguish from a similar location on the other side of the body.
 
-This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
+The laterality element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
 
 + Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
 + Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
@@ -129,7 +129,7 @@ This extension is part of the profile on body site appearing throughout the mCOD
 Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).","","","","","","","","","",,,,,"",,,,"Condition.bodySite.extension",0,*,"",""
 "Condition.bodySite.extension","orientation","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Orientation-extension]]} {[]}
 ","","Orientation of the body location, if needed to distinguish from a similar location in another orientation.
-This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
+The orientation element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
 
 + Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
 + Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
@@ -144,7 +144,7 @@ Note that BodyLocation is a data type (a reusable structure), not a stand-alone 
 * Specifying the direction from the landmark to the body location, and
 * Specifying the distance from the landmark to the body location.
 
-This extension is part of the profile on body site appearing throughout the mCODE implementation guide. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
+The RelationToLandmark element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
 
 + Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
 + Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.

@@ -5,10 +5,10 @@
 <head>
   <meta charset="UTF-8" />
   
-  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 Beta 1</title>
+  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 Beta 1 FHIR Profiles" />
+  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 FHIR Profiles" />
 
   <link href="fhir.css" rel="stylesheet" />
 
@@ -41,7 +41,7 @@
     </a>
     <div id="hl7-status" class="hl7-status">
       
-      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 Beta 1</b>
+      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0</b>
     </div>
 
     <div id="hl7-nav">
@@ -119,7 +119,7 @@
    <div class="row">
      <div class="inner-wrapper">
        <div class="col-12">
-       <!--ReleaseHeader--><p id="publish-box"> - Local Development build (v0.9.0 Beta 1). See the <a href="http://hl7.org/fhir/us/shr/history.html">Directory of published versions</a></p></p><!--EndReleaseHeader-->
+       <!--ReleaseHeader--><p id="publish-box"> - Local Development build (v0.9.0). See the <a href="http://hl7.org/fhir/us/shr/history.html">Directory of published versions</a></p></p><!--EndReleaseHeader-->
 
 <!-- ============CONTENT CONTENT=============== -->
 
@@ -150,49 +150,39 @@
     <tr>
       <td><a href="StructureDefinition-shr-core-BodyHeight.html">BodyHeight</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>The distance from the sole to the crown of the head.</p>
+      <td><p>Data structure for recording the body height, defined as the distance from the sole to the crown of the head.</p>
 </td>
     </tr>
     <tr>
       <td><a href="StructureDefinition-shr-core-BodyWeight.html">BodyWeight</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>The mass or quantity of heaviness of an individual. This LOINC code should not be used for fetal body weight estimates.</p>
+      <td><p>Data structure for recording the body weight, defined as the mass or quantity of heaviness of the individual.</p>
 </td>
     </tr>
     <tr>
       <td><a href="StructureDefinition-shr-lab-CBCWAutoDifferentialPanel.html">CBCWAutoDifferentialPanel</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Complete blood count (CBC) with auto differential panel. Includes various measures of red blood cells, platelets, and various types of white blood cells and other related measures, such as hemoglobin. The components of this panel are not entirely standardized, so the definition of the CBC includes tests that are optional, or performed by certain laboratories but not others. Therefore, instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.</p>
+      <td><p>Complete blood count (CBC) with auto differential panel. Includes various measures of red blood cells, platelets, and various types of white blood cells and other related measures, such as hemoglobin. The components of this panel are not entirely standardized, so the definition of the CBC includes tests that are optional, or performed by certain laboratories but not others. Instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.</p>
 
-<p>Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (related groups of observations) should be represented by the DiagnosticReport resource. mCODE deviates from this approach by using Observation for panels. This is because panels can contain other panels, but a DiagnosticReport cannot contain other DiagnosticReports. Nested panels are, in fact, quite common in LOINC (see 39135-9 Wound assessment panel for an example of a deeply nested panel). To represent nested panels, the each sub-panel <em>must be</em> an Observation. Of course, any sub-panel can also be a stand-alone panel, as well. Following the Argonaut/US Core recommended approach of using DiagnosticReport would imply that many or perhaps all panels would have to be represented twice: once as an Observation to permit the panel to be used as a sub-panel, and once as a DiagnosticReport to permit it to be used as a top-level panel. The mCODE authors believe there is little added value in representing panels as DiagnosticReports when Observation provides additional opportunity for nesting, and equivalent expressive power.</p>
+<p>Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (related groups of observations) should be represented by the DiagnosticReport resource. This specification deviates from this approach by using Observation for panels. This is because panels can contain other panels, but a DiagnosticReport cannot contain other DiagnosticReports. Nested panels are, in fact, quite common in LOINC (see 39135-9 Wound assessment panel for an example of a deeply nested panel). To represent nested panels, the each sub-panel <em>must be</em> an Observation. Of course, any sub-panel can also be a stand-alone panel, as well. Following the Argonaut/US Core recommended approach of using DiagnosticReport would imply that many or perhaps all panels would have to be represented twice: once as an Observation to permit the panel to be used as a sub-panel, and once as a DiagnosticReport to permit it to be used as a top-level panel. The specification authors believe there is little added value in representing panels as DiagnosticReports when Observation provides additional opportunity for nesting, and equivalent expressive power.</p>
 </td>
     </tr>
     <tr>
       <td><a href="StructureDefinition-onco-core-CancerDiseaseStatus.html">CancerDiseaseStatus</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>The status of the cancer, in terms of whether it is stable, worsening (progressing), improving (responding), or in remission.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-onco-core-CancerHistologicGrade.html">CancerHistologicGrade</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>A description of a tumor based on how abnormal the cancer cells and tissue look under a microscope and how quickly the cancer cells are likely to grow and spread. Low-grade cancer cells look more like normal cells and tend to grow and spread more slowly than high-grade cancer cells. (Source: NCI Dictionary of Cancer Terms)</p>
+      <td><p>A clinician’s qualitative judgment on the current trend of the cancer, e.g., whether it is stable, worsening (progressing), or improving (responding). The judgment may be based a single type or multiple kinds of evidence, such as imaging data, assessment of symptoms, tumor markers, laboratory data, etc.</p>
 </td>
     </tr>
     <tr>
       <td><a href="StructureDefinition-onco-core-CancerRelatedRadiationProcedure.html">CancerRelatedRadiationProcedure</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/procedure.html">Procedure</a></td>
-      <td><p>A radiological treatment addressing a cancer condition. Any radiological procedure relevant to the cancer condition is of interest in mCODE.</p>
-
-<p>In the context of FHIR, the way to indicate that unrelated radiation procedures are <em>not</em> included in mCODE involves constraining the ReasonReference or ReasonCode to a cancer condition.</p>
+      <td><p>A radiological treatment addressing a cancer condition. The scope of this profile has been narrowed to cancer-related procedures by constraining the ReasonReference and ReasonCode to cancer conditions.</p>
 </td>
     </tr>
     <tr>
       <td><a href="StructureDefinition-onco-core-CancerRelatedSurgicalProcedure.html">CancerRelatedSurgicalProcedure</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/procedure.html">Procedure</a></td>
-      <td><p>A surgical action addressing a cancer condition. Any surgical procedure relevant to the cancer condition is of interest in mCODE.</p>
-
-<p>In the context of FHIR, the way to indicate that unrelated surgeries are <em>not</em> included in mCODE involves constraining the ReasonReference or ReasonCode to a cancer condition.</p>
+      <td><p>A surgical action addressing a cancer condition.</p>
 </td>
     </tr>
     <tr>
@@ -206,46 +196,58 @@
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
       <td><p>Represents a comprehensive metabolic 2000 panel (CMP) from serum or plasma, which measures various components such as glucose, electrolytes, kidney function, and liver function. The components of this panel are not entirely standardized, so the definition of the CMP includes tests that are optional, or performed by certain laboratories but not others. Therefore, instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.</p>
 
-<p>Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (related groups of observations) should be represented by the DiagnosticReport resource. mCODE deviates from this approach by using Observation for panels. This is because panels can contain other panels, but a DiagnosticReport cannot contain other DiagnosticReports. Nested panels are, in fact, quite common in LOINC (see 39135-9 Wound assessment panel for an example of a deeply nested panel). To represent nested panels, the each sub-panel <em>must be</em> an Observation. Of course, any sub-panel can also be a stand-alone panel, as well. Following the Argonaut/US Core recommended approach of using DiagnosticReport would imply that many or perhaps all panels would have to be represented twice: once as an Observation to permit the panel to be used as a sub-panel, and once as a DiagnosticReport to permit it to be used as a top-level panel. The mCODE authors believe there is little added value in representing panels as DiagnosticReports when Observation provides additional opportunity for nesting, and equivalent expressive power.</p>
+<p>Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (related groups of observations) should be represented by the DiagnosticReport resource. This specification deviates from this approach by using Observation for panels. This is because panels can contain other panels, but a DiagnosticReport cannot contain other DiagnosticReports. Nested panels are, in fact, quite common in LOINC (see 39135-9 Wound assessment panel for an example of a deeply nested panel). To represent nested panels, the each sub-panel <em>must be</em> an Observation. Of course, any sub-panel can also be a stand-alone panel, as well. Following the Argonaut/US Core recommended approach of using DiagnosticReport would imply that many or perhaps all panels would have to be represented twice: once as an Observation to permit the panel to be used as a sub-panel, and once as a DiagnosticReport to permit it to be used as a top-level panel. The authors of this specification believe there is little added value in representing panels as DiagnosticReports when Observation provides additional opportunity for nesting, and equivalent expressive power.</p>
 </td>
     </tr>
     <tr>
       <td><a href="StructureDefinition-shr-core-ECOGPerformanceStatus.html">ECOGPerformanceStatus</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>The Eastern Cooperative Oncology Group (ECOG) performance status grade or score, which indicates a patient’s level of daily functioning and physical ability. Source: LOINC</p>
+      <td><p>The Eastern Cooperative Oncology Group (ECOG) Performance Status represents the patient’s functional status and is used to determine their ability to tolerate therapies in serious illness, specifically for chemotherapy. Source: LOINC</p>
 </td>
     </tr>
     <tr>
-      <td><a href="StructureDefinition-onco-core-GeneticRegionAnalyzed.html">GeneticRegionAnalyzed</a></td>
+      <td><a href="StructureDefinition-onco-core-GeneticMutationTestResult.html">GeneticMutationTestResult</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Results of analyzing a specified genetic region to detect the presence of genetic alterations or defects that may predispose to the future development of a disease or disorder.</p>
+      <td><p>A test for a specific mutation on a particular gene.</p>
 </td>
     </tr>
     <tr>
       <td><a href="StructureDefinition-onco-core-GeneticVariantFound.html">GeneticVariantFound</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>An alteration in the most common DNA nucleotide sequence. The term variant can be used to describe an alteration that may be benign, pathogenic, or of unknown significance. The term variant is increasingly being used in place of the term mutation. (source: NCI)</p>
+      <td><p>Data structure recording an alteration in the most common DNA nucleotide sequence. The term variant can be used to describe an alteration that may be benign, pathogenic, or of unknown significance. The term variant is increasingly being used in place of the term mutation.</p>
 </td>
     </tr>
     <tr>
       <td><a href="StructureDefinition-onco-core-GenomicsReport.html">GenomicsReport</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/diagnosticreport.html">DiagnosticReport</a></td>
-      <td><p>Genetic analysis summary report</p>
+      <td><p>Genetic analysis summary report. The report may include one or more tests, with two distinct test types. The first type is a targeted mutation test, where a specific mutation on a specific gene is tested for. The result is either positive or negative for that mutation. The second type is a more general test for variants. This type of test returns the identity of variants found in a certain region of the genome.</p>
+
+<p>The identity of laboratory tests is typically represented by a LOINC code. However, many genetic tests and panels do not have LOINC codes, although some might have an identifier in NCBI Genetic Testing Registry (GTR), a central location for voluntary submission of genetic test information by providers. To identify the diagnostic report, the name of the report must be in the text sub-field of the code structure. If there is a coded identifier from GTR, LOINC, or other source, then it should be included into the the code sub-field of the code structure. If there is no suitable code, the code can be omitted.</p>
+
+<p>The performer of the test (organization or practitioner) should be included in the FHIR profile as the performer.actor.</p>
+
+<p>FHIR implementation note: The category for this profile is set to GE (Genetics), a code from http://hl7.org/fhir/ValueSet/diagnostic-service-sections. This may be contrary to the Argonaut specification, which assigns the category LAB to any diagnostic report containing a laboratory result.</p>
 </td>
     </tr>
     <tr>
       <td><a href="StructureDefinition-shr-core-KarnofskyPerformanceStatus.html">KarnofskyPerformanceStatus</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>The Karnofsky Performance Status (KPS) is a tool used to measure a patient’s functional status. It can be used to compare the effectiveness of different therapies and to help assess the prognosis of certain patients, such as those with certain cancers. The KPS score ranges from 0 to 100. Higher scores are associated with better functional status, with 100 representing no symptoms or evidence of disease, and 0 representing death [PMID: 23870327] . This panel contains LOINC terms to report the KPS score [LOINC: 89243-0] and its interpretation [LOINC: 89245-5].</p>
+      <td><p>The Karnofsky Performance Status (KPS) is a tool used to measure a patient’s functional status. It can be used to compare the effectiveness of different therapies and to help assess the prognosis of certain patients, such as those with certain cancers. The KPS score ranges from 0 to 100 in intervals of 10. Higher scores are associated with better functional status, with 100 representing no symptoms or evidence of disease, and 0 representing death [PMID: 23870327].</p>
 </td>
     </tr>
     <tr>
       <td><a href="StructureDefinition-shr-core-MedicationStatement.html">MedicationStatement</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/medicationstatement.html">MedicationStatement</a></td>
-      <td><p>A record of the use of a medication.
-Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).
-The treatment of ‘not taken’ has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the ‘not taken’ attributes are profiled out.
+      <td><p>A record of the use of a medication. The use may be reported by the patient or clinician and adminstration does not have to be directly observed.</p>
+
+<p>FHIR Notes:</p>
+
+<p>Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement). Extensions are provided.</p>
+
+<p>The treatment of ‘not taken’ has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the ‘not taken’ attributes are profiled out.
 ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.</p>
+
+<p>Preference is given to using the National Library of Medicine (NLM) RxNorm terminology for medications. RxNorm is a coding standard established by the Office of the National Coordinator (ONC). However, RxNorm is restricted to FDA-approved drugs and does not include clinical trial drugs. MedicationStatement allows for the inclusion of other coding systems like the NCI Thesaurus (NCIT) to represent clinical trial oncology drugs.</p>
 </td>
     </tr>
     <tr>
@@ -260,67 +262,69 @@ MaritalStatus has a required binding in Argonaut, but an extensible binding in U
     <tr>
       <td><a href="StructureDefinition-onco-core-PrimaryCancerCondition.html">PrimaryCancerCondition</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/condition.html">Condition</a></td>
-      <td><p>Primary cancer condition, in which abnormal cells divide without control and can invade nearby tissues. A primary cancer is defined as the original site (organ or tissue) where a cancer began.</p>
+      <td><p>Records the history of the primary cancer condition, the original or first tumor in the body, abnormal cells that divide without control and can invade nearby tissues.</p>
 </td>
     </tr>
     <tr>
       <td><a href="StructureDefinition-onco-core-SecondaryCancerCondition.html">SecondaryCancerCondition</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/condition.html">Condition</a></td>
-      <td><p>Records the history of secondary neoplasms, including location(s) and the date of onset of metastases. A secondary cancer is when a primary cancer spreads to another area of the body.</p>
+      <td><p>Records the history of secondary neoplasms, including location(s) and the date of onset of metastases. A secondary cancer results from the spread (metastasization) of cancer from its original site.</p>
 </td>
     </tr>
     <tr>
-      <td><a href="StructureDefinition-onco-core-TNMClinicalDistantMetastasesClassification.html">TNMClinicalDistantMetastasesClassification</a></td>
+      <td><a href="StructureDefinition-onco-core-TNMClinicalDistantMetastasesCategory.html">TNMClinicalDistantMetastasesCategory</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Classification of the presence or absense of metastases in remote anatomical locations, assessed using tests that are done before surgery. These include physical exams, imaging tests, laboratory tests (such as blood tests), and biopsies (definition adapted from NCI Dictionary of Cancer Terms).</p>
+      <td><p>Category describing the presence or absence of metastases in remote anatomical locations, assessed using tests that are done before surgery. These include physical exams, imaging tests, laboratory tests (such as blood tests), and biopsies (definition adapted from NCI Dictionary of Cancer Terms).</p>
 </td>
     </tr>
     <tr>
-      <td><a href="StructureDefinition-onco-core-TNMClinicalPrimaryTumorClassification.html">TNMClinicalPrimaryTumorClassification</a></td>
+      <td><a href="StructureDefinition-onco-core-TNMClinicalPrimaryTumorCategory.html">TNMClinicalPrimaryTumorCategory</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Classification of the primary tumor, based on its size and extent, assessed prior to surgery, based on evidence such as physical examination, imaging, and/or biopsy.</p>
+      <td><p>Category of the primary tumor, based on its size and extent, assessed prior to surgery, based on evidence such as physical examination, imaging, and/or biopsy.</p>
 </td>
     </tr>
     <tr>
-      <td><a href="StructureDefinition-onco-core-TNMClinicalRegionalNodesClassification.html">TNMClinicalRegionalNodesClassification</a></td>
+      <td><a href="StructureDefinition-onco-core-TNMClinicalRegionalNodesCategory.html">TNMClinicalRegionalNodesCategory</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Classification of the presence or absence of metastases in regional lymph nodes, assessed using tests that are done before surgery. These include physical exams, imaging tests, laboratory tests (such as blood tests), and biopsies (definition adapted from NCI Dictionary of Cancer Terms).</p>
+      <td><p>Category of the presence or absence of metastases in regional lymph nodes, assessed using tests that are done before surgery. These include physical exams, imaging tests, laboratory tests (such as blood tests), and biopsies (definition adapted from NCI Dictionary of Cancer Terms).</p>
 </td>
     </tr>
     <tr>
       <td><a href="StructureDefinition-onco-core-TNMClinicalStageGroup.html">TNMClinicalStageGroup</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>A panel of TNM staging classifications, based on information obtained prior to neoadjuvant treatment and surgery, e.g. based on evidence such as physical examination, imaging, and/or biopsy.</p>
+      <td><p>The extent of the cancer in the body, according to the TNM classification system, based on information obtained prior to neoadjuvant treatment and surgery, e.g. based on evidence such as physical examination, imaging, and/or biopsy.</p>
 </td>
     </tr>
     <tr>
-      <td><a href="StructureDefinition-onco-core-TNMPathologicDistantMetastasesClassification.html">TNMPathologicDistantMetastasesClassification</a></td>
+      <td><a href="StructureDefinition-onco-core-TNMPathologicDistantMetastasesCategory.html">TNMPathologicDistantMetastasesCategory</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Classification of the presence or absense of metastases in remote anatomical locations, assessed through pathologic analysis of a specimen.</p>
+      <td><p>Category describing the presence or absence of metastases in remote anatomical locations, assessed through pathologic analysis of a specimen.</p>
 </td>
     </tr>
     <tr>
-      <td><a href="StructureDefinition-onco-core-TNMPathologicPrimaryTumorClassification.html">TNMPathologicPrimaryTumorClassification</a></td>
+      <td><a href="StructureDefinition-onco-core-TNMPathologicPrimaryTumorCategory.html">TNMPathologicPrimaryTumorCategory</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Classification of the primary tumor, based on its size and extent, assessed through pathologic analysis of a tumor specimen.</p>
+      <td><p>Category describing the primary tumor, based on its size and extent, assessed through pathologic analysis of a tumor specimen.</p>
 </td>
     </tr>
     <tr>
-      <td><a href="StructureDefinition-onco-core-TNMPathologicRegionalNodesClassification.html">TNMPathologicRegionalNodesClassification</a></td>
+      <td><a href="StructureDefinition-onco-core-TNMPathologicRegionalNodesCategory.html">TNMPathologicRegionalNodesCategory</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Classification of the presence or absence of metastases in regional lymph nodes, assessed through pathologic analysis of a specimen.</p>
+      <td><p>Category describing the presence or absence of metastases in regional lymph nodes, assessed through pathologic analysis of a specimen.</p>
 </td>
     </tr>
     <tr>
       <td><a href="StructureDefinition-onco-core-TNMPathologicStageGroup.html">TNMPathologicStageGroup</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>A panel of staging information that is based on examination of tissue samples removed during surgery, in addition to physical examination and imaging and potentially, other prognostic factors.</p>
+      <td><p>The extent of the cancer in the body, according to the TNM classification system, based on examination of tissue samples removed during surgery, in addition to physical examination and imaging and potentially, other prognostic factors.</p>
 </td>
     </tr>
     <tr>
-      <td><a href="StructureDefinition-onco-core-TumorMarkerObservation.html">TumorMarkerObservation</a></td>
+      <td><a href="StructureDefinition-onco-core-TumorMarkerTest.html">TumorMarkerTest</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>A substance found in tissue or blood or other body fluids that may be a sign of cancer or certain benign (noncancer) conditions. Most tumor markers are made by both normal cells and cancer cells, but they are made in larger amounts by cancer cells. A tumor marker may help to diagnose cancer, plan treatment, or find out how well treatment is working or if cancer has come back. Examples of tumor markers include CA-125 (in ovarian cancer), CA 15-3 (in breast cancer), CEA (in colon cancer), and PSA (in prostate cancer). (Source: <a href="https://www.cancer.gov/publications/dictionaries/cancer-terms/def/tumor-marker/">NCI Dictionary of Cancer Terms</a>).  Tumor markers differ from genetic markers in that they are measured at the levels of the protein and substance post-RNA protein synthesis.</p>
+      <td><p>The result of a tumor marker test. Tumor marker tests are generally used to guide cancer treatment decisions and monitor treatment, as well as to predict the chance of recovery and cancer recurrence. A tumor marker is a substance found in tissue or blood or other body fluids that may be a sign of cancer or certain benign (noncancer) conditions. Most tumor markers are made by both normal cells and cancer cells, but they are made in larger amounts by cancer cells. A tumor marker may help to diagnose cancer, plan treatment, or find out how well treatment is working or if cancer has come back. Examples of tumor markers include CA-125 (in ovarian cancer), CA 15-3 (in breast cancer), CEA (in colon cancer), and PSA (in prostate cancer). Tumor markers differ from genetic markers in that they are measured at the levels of the protein and substance post-RNA protein synthesis. (Source: Adapted from NCI Dictionary of Cancer Terms and Cancer.net)</p>
+
+<p>Implementation note: The data value element is ‘required if known’ (0..1) because, for quantitative tests that are indeterminate, no data value will be reported, and the reason for the null value should be reported in the DataAbsentReason field.</p>
 </td>
     </tr>
     
@@ -370,6 +374,36 @@ MaritalStatus has a required binding in Argonaut, but an extensible binding in U
 </td>
     </tr>
     <tr>
+      <td><a href="StructureDefinition-shr-lab-AlanineAminotransferaseCCncPtSerPlasQnLabObs.html">AlanineAminotransferaseCCncPtSerPlasQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Alanine aminotransferase [Enzymatic activity/​volume] in Serum or Plasma</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-AlbuminGlobulinMRtoPtSerPlasQnLabObs.html">AlbuminGlobulinMRtoPtSerPlasQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Albumin/​Globulin [Mass Ratio] in Serum or Plasma</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-AlbuminMCncPtSerPlasQnLabObs.html">AlbuminMCncPtSerPlasQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Albumin [Mass/​volume] in Serum or Plasma</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-AlkalinePhosphataseCCncPtSerPlasQnLabObs.html">AlkalinePhosphataseCCncPtSerPlasQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Alkaline phosphatase [Enzymatic activity/​volume] in Serum or Plasma</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-AniongapSCncPtSerPlasQnLabObs.html">AniongapSCncPtSerPlasQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Anion gap in Serum or Plasma. Units are optional but if provided, must be in mmol/L.</p>
+</td>
+    </tr>
+    <tr>
       <td><a href="StructureDefinition-shr-core-Annotation.html">Annotation</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/datatypes.html#annotation">Annotation</a></td>
       <td><p>An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.</p>
@@ -382,9 +416,63 @@ MaritalStatus has a required binding in Argonaut, but an extensible binding in U
 </td>
     </tr>
     <tr>
+      <td><a href="StructureDefinition-shr-lab-AspartateAminotransferaseCCncPtSerPlasQnLabObs.html">AspartateAminotransferaseCCncPtSerPlasQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Aspartate aminotransferase [Enzymatic activity/​volume] in Serum or Plasma</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-Basophils100WBCNFrPtBldQnAutoCntLabObs.html">Basophils100WBCNFrPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Basophils/​100 leukocytes in Blood by Automated count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-BasophilsNCncPtBldQnAutoCntLabObs.html">BasophilsNCncPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Basophils [#/​volume] in Blood by Automated count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-BicarbonateSCncPtSerPlasQnLabObs.html">BicarbonateSCncPtSerPlasQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Bicarbonate [Moles/​volume] in Serum or Plasma</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-BilirubinDirectMCncPtSerPlasQnLabObs.html">BilirubinDirectMCncPtSerPlasQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Bilirubin.direct [Mass/​volume] in Serum or Plasma</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-BilirubinMCncPtSerPlasQnLabObs.html">BilirubinMCncPtSerPlasQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Bilirubin.total [Mass/​volume] in Serum or Plasma</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-Blasts100WBCNFrPtBldQnManCntLabObs.html">Blasts100WBCNFrPtBldQnManCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Blasts/100 leukocytes in Blood by Manual count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-BlastsNCncPtBldQnLabObs.html">BlastsNCncPtBldQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Blasts [#/volume] in Blood. Units not required by LOINC but are strongly recommended.</p>
+</td>
+    </tr>
+    <tr>
       <td><a href="StructureDefinition-shr-core-BodyStructure.html">BodyStructure</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/condition.html">Condition</a></td>
       <td><p>A body structure such as wound or tumor, observed to be present in a patient. The body structure is a condition that persists over time. The Code represents the body structure itself (the morphology), while the BodyLocation is the location of that structure. This corresponds to FHIR R4, where the BodyStructure resource has morphology (corresponding to Code) and a location. For example, the Code could be blunt force injury (SCT 3821009) and location left knee.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-CalciumMCncPtSerPlasQnLabObs.html">CalciumMCncPtSerPlasQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Calcium [Mass/​volume] in Serum or Plasma</p>
 </td>
     </tr>
     <tr>
@@ -394,7 +482,7 @@ MaritalStatus has a required binding in Argonaut, but an extensible binding in U
 </td>
     </tr>
     <tr>
-      <td><a href="StructureDefinition-onco-core-CancerStageClassification.html">CancerStageClassification</a></td>
+      <td><a href="StructureDefinition-onco-core-CancerStageCategory.html">CancerStageCategory</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
       <td><p>Abstract parent class for members of cancer staging panels. Cancer panel members must include a timing element and staging system, and focus on a cancer disorder. Specific realizations will have value sets specific to certain staging systems.</p>
 </td>
@@ -403,6 +491,18 @@ MaritalStatus has a required binding in Argonaut, but an extensible binding in U
       <td><a href="StructureDefinition-onco-core-CancerStageGroup.html">CancerStageGroup</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
       <td><p>A panel that contains cancer staging information. This class is the parent of panels containing information related to clinical and pathologic staging, including TNMClinicalStageGroup and TNMPathologicStageGroup.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-CarbonDioxideSCncPtSerPlasQnLabObs.html">CarbonDioxideSCncPtSerPlasQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Carbon dioxide, total [Moles/​volume] in Serum or Plasma</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-ChlorideSCncPtSerPlasQnLabObs.html">ChlorideSCncPtSerPlasQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Chloride [Moles/​volume] in Serum or Plasma</p>
 </td>
     </tr>
     <tr>
@@ -429,6 +529,12 @@ MaritalStatus has a required binding in Argonaut, but an extensible binding in U
       <td><p>A condition that is or may be present in a subject. ‘Condition’ is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.
 The Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.
 SHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-CreatinineMCncPtSerPlasQnLabObs.html">CreatinineMCncPtSerPlasQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Creatinine [Mass/​volume] in Serum or Plasma</p>
 </td>
     </tr>
     <tr>
@@ -489,15 +595,129 @@ Device type has extensible mappings to different value sets in Argonaut and US-C
 </td>
     </tr>
     <tr>
+      <td><a href="StructureDefinition-shr-lab-Eosinophils100WBCNFrPtBldQnAutoCntLabObs.html">Eosinophils100WBCNFrPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Eosinophils/​100 leukocytes in Blood by Automated count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-EosinophilsNCncPtBldQnAutoCntLabObs.html">EosinophilsNCncPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Eosinophils [#/​volume] in Blood by Automated count</p>
+</td>
+    </tr>
+    <tr>
       <td><a href="StructureDefinition-shr-core-EpisodeOfCare.html">EpisodeOfCare</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/episodeofcare.html">EpisodeOfCare</a></td>
       <td><p>An association between a patient and an organization / healthcare provider(s) during which time encounters may occur. The managing organization assumes a level of responsibility for the patient during this time.</p>
 </td>
     </tr>
     <tr>
+      <td><a href="StructureDefinition-shr-lab-ErythrocyteDistributionWidthEntVolPtRBCQnLabObs.html">ErythrocyteDistributionWidthEntVolPtRBCQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Erythrocyte distribution width [Entitic volume] by Automated count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-ErythrocyteDistributionWidthRatioPtRBCQnAutoCntLabObs.html">ErythrocyteDistributionWidthRatioPtRBCQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Erythrocyte distribution width [Ratio] by Automated count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-ErythrocyteMCHCMCncPtRBCQnAutoCntLabObs.html">ErythrocyteMCHCMCncPtRBCQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>MCHC [Mass/​volume] by Automated count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-ErythrocyteMCHEntMassPtRBCQnAutoCntLabObs.html">ErythrocyteMCHEntMassPtRBCQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>MCH [Entitic mass] by Automated count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-ErythrocytesNCncPtBldQnAutoCntLabObs.html">ErythrocytesNCncPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Erythrocytes [#/​volume] in Blood by Automated count.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-ErythrocytesNucleated100WBCRatioPtBldQnAutoCntLabObs.html">ErythrocytesNucleated100WBCRatioPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Nucleated erythrocytes/100 leukocytes [Ratio] in Blood by Automated count. Units not required by LOINC but are strongly recommended.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-ErythrocytesNucleated100WBCRatioPtBldQnLabObs.html">ErythrocytesNucleated100WBCRatioPtBldQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Nucleated erythrocytes/100 leukocytes [Ratio] in Blood.  Units are required.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-ErythrocytesNucleatedNCncPtBldQnLabObs.html">ErythrocytesNucleatedNCncPtBldQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Nucleated erythrocytes [#/volume] in Blood. Units not required by LOINC but are strongly recommended.</p>
+</td>
+    </tr>
+    <tr>
       <td><a href="StructureDefinition-shr-core-FillerOrderNumber.html">FillerOrderNumber</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/datatypes.html#identifier">Identifier</a></td>
       <td><p>Identifier assigned by the lab carrying out the test.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-GFR173sqMPredArVRatPtSerPlasQnMDRDLabObs.html">GFR173sqMPredArVRatPtSerPlasQnMDRDLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Glomerular filtration rate/​1.73 sq M.predicted [Volume Rate/​Area] in Serum or Plasma by Creatinine-based formula (MDRD). Units are optional.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-GFR173sqMPredBlackArVRatPtSerPlasBldQnMDRDLabObs.html">GFR173sqMPredBlackArVRatPtSerPlasBldQnMDRDLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Glomerular filtration rate/​1.73 sq M predicted among blacks [Volume Rate/​Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD). Units are optional.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-GFR173sqMPredFemaleArVRatPtSerPlasBldQnMDRDLabObs.html">GFR173sqMPredFemaleArVRatPtSerPlasBldQnMDRDLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Glomerular filtration rate/​1.73 sq M predicted among females [Volume Rate/​Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD). Units are optional.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-GFR173sqMPredNonBlackArVRatPtSerPlasBldQnMDRDLabObs.html">GFR173sqMPredNonBlackArVRatPtSerPlasBldQnMDRDLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Glomerular filtration rate/​1.73 sq M predicted among non-blacks [Volume Rate/​Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD). Units are optional.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-GlobulinMCncPtSerQnCalculatedLabObs.html">GlobulinMCncPtSerQnCalculatedLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Globulin [Mass/​volume] in Serum by calculation</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-GlucoseMCncPtSerPlasQnLabObs.html">GlucoseMCncPtSerPlasQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Glucose [Mass/​volume] in Serum or Plasma</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-Granulocytes100WBCNFrPtBldQnAutoCntLabObs.html">Granulocytes100WBCNFrPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Granulocytes/​100 leukocytes in Blood by Automated count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-GranulocytesImmature100WBCNFrPtBldQnAutoCntLabObs.html">GranulocytesImmature100WBCNFrPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Immature granulocytes/100 leukocytes in Blood by Automated count. LOINC does not specify that units are required.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-GranulocytesImmatureNCncPtBldQnAutoCntLabObs.html">GranulocytesImmatureNCncPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Immature granulocytes [#/volume] in Blood by Automated count. Units are not required</p>
 </td>
     </tr>
     <tr>
@@ -513,441 +733,21 @@ Device type has extensible mappings to different value sets in Argonaut and US-C
 </td>
     </tr>
     <tr>
-      <td><a href="StructureDefinition-shr-core-HumanName.html">HumanName</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/datatypes.html#humanname">HumanName</a></td>
-      <td><p>A name used by a human being, written as it would be typically expressed. May include a breakdown of the various elements of the name (family name, given name, etc.).</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-10834-0.html">LOINC-10834-0</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Globulin [Mass/​volume] in Serum by calculation</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-13046-8.html">LOINC-13046-8</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Variant lymphocytes/100 leukocytes in Blood</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-1742-6.html">LOINC-1742-6</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Alanine aminotransferase [Enzymatic activity/​volume] in Serum or Plasma</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-1751-7.html">LOINC-1751-7</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Albumin [Mass/​volume] in Serum or Plasma</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-1759-0.html">LOINC-1759-0</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Albumin/​Globulin [Mass Ratio] in Serum or Plasma</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-17861-6.html">LOINC-17861-6</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Calcium [Mass/​volume] in Serum or Plasma</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-18314-5.html">LOINC-18314-5</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Morphology [Interpretation] in Blood Narrative.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-19023-1.html">LOINC-19023-1</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Granulocytes/​100 leukocytes in Blood by Automated count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-19048-8.html">LOINC-19048-8</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Nucleated erythrocytes/100 leukocytes [Ratio] in Blood.  Units are required.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-1920-8.html">LOINC-1920-8</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Aspartate aminotransferase [Enzymatic activity/​volume] in Serum or Plasma</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-1963-8.html">LOINC-1963-8</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Bicarbonate [Moles/​volume] in Serum or Plasma</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-1968-7.html">LOINC-1968-7</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Bilirubin.direct [Mass/​volume] in Serum or Plasma</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-1975-2.html">LOINC-1975-2</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Bilirubin.total [Mass/​volume] in Serum or Plasma</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-2028-9.html">LOINC-2028-9</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Carbon dioxide, total [Moles/​volume] in Serum or Plasma</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-2075-0.html">LOINC-2075-0</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Chloride [Moles/​volume] in Serum or Plasma</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-21000-5.html">LOINC-21000-5</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Erythrocyte distribution width [Entitic volume] by Automated count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-2160-0.html">LOINC-2160-0</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Creatinine [Mass/​volume] in Serum or Plasma</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-2345-7.html">LOINC-2345-7</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Glucose [Mass/​volume] in Serum or Plasma</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-26507-4.html">LOINC-26507-4</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Band form neutrophils [#/volume] in Blood</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-26523-1.html">LOINC-26523-1</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Promyelocytes [#/volume] in Blood</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-2823-3.html">LOINC-2823-3</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Potassium [Moles/​volume] in Serum or Plasma</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-2885-2.html">LOINC-2885-2</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Protein [Mass/​volume] in Serum or Plasma</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-2951-2.html">LOINC-2951-2</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Sodium [Moles/​volume] in Serum or Plasma</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-30229-9.html">LOINC-30229-9</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Band form neutrophils [#/​volume] in Blood by Automated count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-30376-8.html">LOINC-30376-8</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Blasts [#/volume] in Blood. Units not required by LOINC but are strongly recommended.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-30392-5.html">LOINC-30392-5</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Nucleated erythrocytes [#/volume] in Blood. Units not required by LOINC but are strongly recommended.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-30433-7.html">LOINC-30433-7</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Metamyelocytes [#/volume] in Blood</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-30446-9.html">LOINC-30446-9</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Myelocytes [#/volume] in Blood. Units not required by LOINC but are strongly recommended.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-3094-0.html">LOINC-3094-0</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Urea nitrogen [Mass/​volume] in Serum or Plasma</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-3097-3.html">LOINC-3097-3</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Urea nitrogen/​Creatinine [Mass Ratio] in Serum or Plasma</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-32207-3.html">LOINC-32207-3</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Platelet distribution width [Entitic volume] in Blood by Automated count. Units not required by LOINC but are strongly recommended.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-32623-1.html">LOINC-32623-1</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Platelet mean volume [Entitic volume] in Blood by Automated count. Units not required by LOINC but are strongly recommended.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-33037-3.html">LOINC-33037-3</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Anion gap in Serum or Plasma. Units are optional but if provided, must be in mmol/L.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-33914-3.html">LOINC-33914-3</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Glomerular filtration rate/​1.73 sq M.predicted [Volume Rate/​Area] in Serum or Plasma by Creatinine-based formula (MDRD). Units are optional.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-35332-6.html">LOINC-35332-6</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Band form neutrophils/​100 leukocytes in Blood by Automated count. Units not required by LOINC but are strongly recommended.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-42250-1.html">LOINC-42250-1</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Variant lymphocytes/​100 leukocytes in Blood by Automated count. Units not required by LOINC but are strongly recommended.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-43743-4.html">LOINC-43743-4</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Variant lymphocytes [#/​volume] in Blood by Automated count. Units not required by LOINC but are strongly recommended.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-4544-3.html">LOINC-4544-3</a></td>
+      <td><a href="StructureDefinition-shr-lab-HematocritVFrPtBldQnAutoCntLabObs.html">HematocritVFrPtBldQnAutoCntLabObs</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
       <td><p>Hematocrit [Volume Fraction] of Blood by Automated count</p>
 </td>
     </tr>
     <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-48642-3.html">LOINC-48642-3</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Glomerular filtration rate/​1.73 sq M predicted among non-blacks [Volume Rate/​Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD). Units are optional.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-48643-1.html">LOINC-48643-1</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Glomerular filtration rate/​1.73 sq M predicted among blacks [Volume Rate/​Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD). Units are optional.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-50044-7.html">LOINC-50044-7</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Glomerular filtration rate/​1.73 sq M predicted among females [Volume Rate/​Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD). Units are optional.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-51383-8.html">LOINC-51383-8</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Leukocytes other [#/​volume] in Blood by Automated count. Units not required by LOINC but are strongly recommended.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-53115-2.html">LOINC-53115-2</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Immature granulocytes [#/volume] in Blood by Automated count. Units are not required</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-58409-4.html">LOINC-58409-4</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Other cells/​100 leukocytes in Blood by Automated count. Units not required by LOINC but are strongly recommended.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-58413-6.html">LOINC-58413-6</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Nucleated erythrocytes/100 leukocytes [Ratio] in Blood by Automated count. Units not required by LOINC but are strongly recommended.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-58443-3.html">LOINC-58443-3</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Other cells [#/​volume] in Blood by Automated count. Units not required by LOINC but are strongly recommended.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-5905-5.html">LOINC-5905-5</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Monocytes/​100 leukocytes in Blood by Automated count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-6690-2.html">LOINC-6690-2</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Leukocytes [#/​volume] in Blood by Automated count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-6768-6.html">LOINC-6768-6</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Alkaline phosphatase [Enzymatic activity/​volume] in Serum or Plasma</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-704-7.html">LOINC-704-7</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Basophils [#/​volume] in Blood by Automated count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-706-2.html">LOINC-706-2</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Basophils/​100 leukocytes in Blood by Automated count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-709-6.html">LOINC-709-6</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Blasts/100 leukocytes in Blood by Manual count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-711-2.html">LOINC-711-2</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Eosinophils [#/​volume] in Blood by Automated count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-713-8.html">LOINC-713-8</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Eosinophils/​100 leukocytes in Blood by Automated count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-71695-1.html">LOINC-71695-1</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Immature granulocytes/100 leukocytes in Blood by Automated count. LOINC does not specify that units are required.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-718-7.html">LOINC-718-7</a></td>
+      <td><a href="StructureDefinition-shr-lab-HemoglobinMCncPtBldQnLabObs.html">HemoglobinMCncPtBldQnLabObs</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
       <td><p>Hemoglobin [Mass/​volume] in Blood</p>
 </td>
     </tr>
     <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-731-0.html">LOINC-731-0</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Lymphocytes [#/​volume] in Blood by Automated count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-736-9.html">LOINC-736-9</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Lymphocytes/​100 leukocytes in Blood by Automated count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-740-1.html">LOINC-740-1</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Metamyelocytes/100 leukocytes in Blood by Manual count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-742-7.html">LOINC-742-7</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Monocytes [#/​volume] in Blood by Automated count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-749-2.html">LOINC-749-2</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Myelocytes/100 leukocytes in Blood by Manual count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-751-8.html">LOINC-751-8</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Neutrophils [#/​volume] in Blood by Automated count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-764-1.html">LOINC-764-1</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Band form neutrophils/100 leukocytes in Blood by Manual count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-770-8.html">LOINC-770-8</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Neutrophils/​100 leukocytes in Blood by Automated count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-776-5.html">LOINC-776-5</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Platelet mean volume [Entitic volume] in Blood by Rees-Ecker.</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-777-3.html">LOINC-777-3</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Platelets [#/​volume] in Blood by Automated count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-783-1.html">LOINC-783-1</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Promyelocytes/100 leukocytes in Blood by Manual count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-785-6.html">LOINC-785-6</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>MCH [Entitic mass] by Automated count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-786-4.html">LOINC-786-4</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>MCHC [Mass/​volume] by Automated count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-787-2.html">LOINC-787-2</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>MCV [Entitic volume] by Automated count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-788-0.html">LOINC-788-0</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Erythrocyte distribution width [Ratio] by Automated count</p>
-</td>
-    </tr>
-    <tr>
-      <td><a href="StructureDefinition-shr-lab-LOINC-789-8.html">LOINC-789-8</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>Erythrocytes [#/​volume] in Blood by Automated count.</p>
+      <td><a href="StructureDefinition-shr-core-HumanName.html">HumanName</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/datatypes.html#humanname">HumanName</a></td>
+      <td><p>A name used by a human being, written as it would be typically expressed. May include a breakdown of the various elements of the name (family name, given name, etc.).</p>
 </td>
     </tr>
     <tr>
@@ -963,9 +763,57 @@ Device type has extensible mappings to different value sets in Argonaut and US-C
 </td>
     </tr>
     <tr>
+      <td><a href="StructureDefinition-shr-lab-LeukocytesNCncPtBldQnAutoCntLabObs.html">LeukocytesNCncPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Leukocytes [#/​volume] in Blood by Automated count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-LeukocytesOtherNCncPtBldQnAutoCntLabObs.html">LeukocytesOtherNCncPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Leukocytes other [#/​volume] in Blood by Automated count. Units not required by LOINC but are strongly recommended.</p>
+</td>
+    </tr>
+    <tr>
       <td><a href="StructureDefinition-shr-core-Location.html">Location</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/location.html">Location</a></td>
       <td><p>Services and space and equipment provided for a particular purpose; a building or place that provides a particular service or is used for a particular industry. Could be a clinical site, community site, or a mobile facility.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-Lymphocytes100WBCNFrPtBldQnAutoCntLabObs.html">Lymphocytes100WBCNFrPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Lymphocytes/​100 leukocytes in Blood by Automated count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-LymphocytesNCncPtBldQnAutoCntLabObs.html">LymphocytesNCncPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Lymphocytes [#/​volume] in Blood by Automated count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-LymphocytesVariant100WBCNFrPtBldQnAutoCntLabObs.html">LymphocytesVariant100WBCNFrPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Variant lymphocytes/​100 leukocytes in Blood by Automated count. Units not required by LOINC but are strongly recommended.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-LymphocytesVariant100WBCNFrPtBldQnLabObs.html">LymphocytesVariant100WBCNFrPtBldQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Variant lymphocytes/100 leukocytes in Blood</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-LymphocytesVariantNCncPtBldQnAutoCntLabObs.html">LymphocytesVariantNCncPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Variant lymphocytes [#/​volume] in Blood by Automated count. Units not required by LOINC but are strongly recommended.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-MeanCorpuscularVolumeEntVolPtRBCQnAutoCntLabObs.html">MeanCorpuscularVolumeEntVolPtRBCQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>MCV [Entitic volume] by Automated count</p>
 </td>
     </tr>
     <tr>
@@ -999,9 +847,87 @@ Intent was added in STU3 and is provided as an extension with required binding.<
 </td>
     </tr>
     <tr>
+      <td><a href="StructureDefinition-shr-lab-Metamyelocytes100WBCNFrPtBldQnManCntLabObs.html">Metamyelocytes100WBCNFrPtBldQnManCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Metamyelocytes/100 leukocytes in Blood by Manual count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-MetamyelocytesNCncPtBldQnLabObs.html">MetamyelocytesNCncPtBldQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Metamyelocytes [#/volume] in Blood</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-Monocytes100WBCNFrPtBldQnAutoCntLabObs.html">Monocytes100WBCNFrPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Monocytes/​100 leukocytes in Blood by Automated count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-MonocytesNCncPtBldQnAutoCntLabObs.html">MonocytesNCncPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Monocytes [#/​volume] in Blood by Automated count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-MorphologyImpPtBldNarLabObs.html">MorphologyImpPtBldNarLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Morphology [Interpretation] in Blood Narrative.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-Myelocytes100WBCNFrPtBldQnManCntLabObs.html">Myelocytes100WBCNFrPtBldQnManCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Myelocytes/100 leukocytes in Blood by Manual count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-MyelocytesNCncPtBldQnLabObs.html">MyelocytesNCncPtBldQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Myelocytes [#/volume] in Blood. Units not required by LOINC but are strongly recommended.</p>
+</td>
+    </tr>
+    <tr>
       <td><a href="StructureDefinition-shr-core-NationalProviderIdentifier.html">NationalProviderIdentifier</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/datatypes.html#identifier">Identifier</a></td>
       <td><p>NPI: a unique 10 digit number to allow US healthcare providers to identify themselves in a standard way throughout the healthcare industry.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-Neutrophils100WBCNFrPtBldQnAutoCntLabObs.html">Neutrophils100WBCNFrPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Neutrophils/​100 leukocytes in Blood by Automated count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-NeutrophilsBandForm100WBCNFrPtBldQnAutoCntLabObs.html">NeutrophilsBandForm100WBCNFrPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Band form neutrophils/​100 leukocytes in Blood by Automated count. Units not required by LOINC but are strongly recommended.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-NeutrophilsBandForm100WBCNFrPtBldQnManCntLabObs.html">NeutrophilsBandForm100WBCNFrPtBldQnManCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Band form neutrophils/100 leukocytes in Blood by Manual count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-NeutrophilsBandFormNCncPtBldQnAutoCntLabObs.html">NeutrophilsBandFormNCncPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Band form neutrophils [#/​volume] in Blood by Automated count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-NeutrophilsBandFormNCncPtBldQnLabObs.html">NeutrophilsBandFormNCncPtBldQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Band form neutrophils [#/volume] in Blood</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-NeutrophilsNCncPtBldQnAutoCntLabObs.html">NeutrophilsNCncPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Neutrophils [#/​volume] in Blood by Automated count</p>
 </td>
     </tr>
     <tr>
@@ -1027,9 +953,51 @@ For an Observation, the Code describes the aspect or property of the subject bei
 </td>
     </tr>
     <tr>
+      <td><a href="StructureDefinition-shr-lab-OtherCells100WBCNFrPtBldQnAutoCntLabObs.html">OtherCells100WBCNFrPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Other cells/​100 leukocytes in Blood by Automated count. Units not required by LOINC but are strongly recommended.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-OtherCellsNCncPtBldQnAutoCntLabObs.html">OtherCellsNCncPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Other cells [#/​volume] in Blood by Automated count. Units not required by LOINC but are strongly recommended.</p>
+</td>
+    </tr>
+    <tr>
       <td><a href="StructureDefinition-shr-core-PlacerOrderNumber.html">PlacerOrderNumber</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/datatypes.html#identifier">Identifier</a></td>
       <td><p>Identifier assigned by the requester of the lab.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-PlateletDistributionWidthEntVolPtBldQnAutoCntLabObs.html">PlateletDistributionWidthEntVolPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Platelet distribution width [Entitic volume] in Blood by Automated count. Units not required by LOINC but are strongly recommended.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-PlateletMeanVolumeEntVolPtBldQnAutoCntLabObs.html">PlateletMeanVolumeEntVolPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Platelet mean volume [Entitic volume] in Blood by Automated count. Units not required by LOINC but are strongly recommended.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-PlateletMeanVolumeEntVolPtBldQnReesEckerLabObs.html">PlateletMeanVolumeEntVolPtBldQnReesEckerLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Platelet mean volume [Entitic volume] in Blood by Rees-Ecker.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-PlateletsNCncPtBldQnAutoCntLabObs.html">PlateletsNCncPtBldQnAutoCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Platelets [#/​volume] in Blood by Automated count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-PotassiumSCncPtSerPlasQnLabObs.html">PotassiumSCncPtSerPlasQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Potassium [Moles/​volume] in Serum or Plasma</p>
 </td>
     </tr>
     <tr>
@@ -1049,6 +1017,24 @@ HumanName is limited to one required value by US-Core. Gender is required by US-
       <td><a href="StructureDefinition-shr-core-ProcedureRequest.html">ProcedureRequest</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/procedurerequest.html">ProcedureRequest</a></td>
       <td><p>A request for a procedure to be performed. May be a proposal or an order.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-Promyelocytes100WBCNFrPtBldQnManCntLabObs.html">Promyelocytes100WBCNFrPtBldQnManCntLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Promyelocytes/100 leukocytes in Blood by Manual count</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-PromyelocytesNCncPtBldQnLabObs.html">PromyelocytesNCncPtBldQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Promyelocytes [#/volume] in Blood</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-ProteinMCncPtSerPlasQnLabObs.html">ProteinMCncPtSerPlasQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Protein [Mass/​volume] in Serum or Plasma</p>
 </td>
     </tr>
     <tr>
@@ -1118,12 +1104,6 @@ HumanName is limited to one required value by US-Core. Gender is required by US-
 </td>
     </tr>
     <tr>
-      <td><a href="StructureDefinition-shr-core-SimpleNonLaboratoryObservation.html">SimpleNonLaboratoryObservation</a></td>
-      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
-      <td><p>An observation having no components or panel members</p>
-</td>
-    </tr>
-    <tr>
       <td><a href="StructureDefinition-shr-lab-SimpleQuantLabWithRequiredUnits.html">SimpleQuantLabWithRequiredUnits</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
       <td><p>Laboratory tests that must be reported with units, following the LOINC UNITSREQUIRED field, a Y/N field that indicates that units are required when this LOINC is included as an OBX segment in a HIPAA attachment</p>
@@ -1139,6 +1119,12 @@ HumanName is limited to one required value by US-Core. Gender is required by US-
       <td><a href="StructureDefinition-shr-core-SituationStatement.html">SituationStatement</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/domainresource.html">DomainResource</a></td>
       <td><p>An assertion, determination, opinion, evaluation, result, observation, or measurement made by a person or device.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-SodiumSCncPtSerPlasQnLabObs.html">SodiumSCncPtSerPlasQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Sodium [Moles/​volume] in Serum or Plasma</p>
 </td>
     </tr>
     <tr>
@@ -1178,6 +1164,18 @@ Timing offers a choice of multiple OccurrenceTime (used is used to specify speci
 </td>
     </tr>
     <tr>
+      <td><a href="StructureDefinition-shr-lab-UreaNitrogenCreatinineMRtoPtSerPlasQnLabObs.html">UreaNitrogenCreatinineMRtoPtSerPlasQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Urea nitrogen/​Creatinine [Mass Ratio] in Serum or Plasma</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-shr-lab-UreaNitrogenMCncPtSerPlasQnLabObs.html">UreaNitrogenMCncPtSerPlasQnLabObs</a></td>
+      <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
+      <td><p>Urea nitrogen [Mass/​volume] in Serum or Plasma</p>
+</td>
+    </tr>
+    <tr>
       <td><a href="StructureDefinition-shr-core-VitalSign.html">VitalSign</a></td>
       <td><a href="http://hl7.org/fhir/DSTU2/observation.html">Observation</a></td>
       <td><p>Abstract class parent for all vital sign profiles.</p>
@@ -1206,9 +1204,9 @@ Timing offers a choice of multiple OccurrenceTime (used is used to specify speci
    <div class="inner-wrapper">
     <p>
       
-      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 Beta 1, Version: 0.9.0 Beta 1
+      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0, Version: 0.9.0
       ; <a style="color: #81BEF7" href="http://hl7.org/fhir/DSTU2/">FHIR &copy; Version: 1.0.2</a>
-      ; Generated on Wed, Apr 10, 2019 14:32-0400.
+      ; Generated on Wed, Apr 17, 2019 12:01-0400.
     </p>
    </div>  <!-- /inner-wrapper -->
   </div>  <!-- /container -->

@@ -18,7 +18,7 @@
      fhir:Identifier.system [ fhir:value "http://hl7.org/fhir/us/mcode" ];
      fhir:Identifier.value [ fhir:value "onco.core.CancerStageGroup" ]
   ];
-  fhir:StructureDefinition.version [ fhir:value "0.9.0 Beta 1"];
+  fhir:StructureDefinition.version [ fhir:value "0.9.0"];
   fhir:StructureDefinition.name [ fhir:value "CancerStageGroup"];
   fhir:StructureDefinition.display [ fhir:value "onco-core-CancerStageGroup"];
   fhir:StructureDefinition.status [ fhir:value "draft"];
@@ -32,7 +32,7 @@
        fhir:ContactPoint.rank [ fhir:value "0"^^xsd:positiveInteger ]
      ]
   ];
-  fhir:StructureDefinition.date [ fhir:value "2019-04-10T00:00:00-04:00"^^xsd:dateTime];
+  fhir:StructureDefinition.date [ fhir:value "2019-04-17T00:00:00-04:00"^^xsd:dateTime];
   fhir:StructureDefinition.description [ fhir:value "A panel that contains cancer staging information. This class is the parent of panels containing information related to clinical and pathologic staging, including TNMClinicalStageGroup and TNMPathologicStageGroup."];
   fhir:StructureDefinition.requirements [ fhir:value "Observations are a key aspect of healthcare.  This resource is used to capture those that do not require more sophisticated mechanisms."];
   fhir:StructureDefinition.fhirVersion [ fhir:value "1.0.2"];
@@ -310,7 +310,7 @@
        fhir:ElementDefinition.id [ fhir:value "primarycancercondition" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.extension" ];
        fhir:ElementDefinition.name [ fhir:value "primarycancercondition" ];
-       fhir:ElementDefinition.definition [ fhir:value "Primary cancer condition, in which abnormal cells divide without control and can invade nearby tissues. A primary cancer is defined as the original site (organ or tissue) where a cancer began." ];
+       fhir:ElementDefinition.definition [ fhir:value "Records the history of the primary cancer condition, the original or first tumor in the body, abnormal cells that divide without control and can invade nearby tissues." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
@@ -889,11 +889,10 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.binding [
-         fhir:ElementDefinition.binding.strength [ fhir:value "example" ];
-         fhir:ElementDefinition.binding.description [ fhir:value "Methods for simple observations." ];
+         fhir:ElementDefinition.binding.strength [ fhir:value "extensible" ];
          fhir:ElementDefinition.binding.valueSetReference [
-           fhir:link <http://hl7.org/fhir/ValueSet/observation-methods>;
-           fhir:Reference.reference [ fhir:value "http://hl7.org/fhir/ValueSet/observation-methods" ]
+           fhir:link <http://hl7.org/fhir/us/mcode/onco/core/vs/CancerStagingSystemVS>;
+           fhir:Reference.reference [ fhir:value "http://hl7.org/fhir/us/mcode/onco/core/vs/CancerStagingSystemVS" ]
          ]
        ];
        fhir:ElementDefinition.mapping [
@@ -2010,7 +2009,7 @@
        fhir:ElementDefinition.id [ fhir:value "primarycancercondition" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.extension" ];
        fhir:ElementDefinition.name [ fhir:value "primarycancercondition" ];
-       fhir:ElementDefinition.definition [ fhir:value "Primary cancer condition, in which abnormal cells divide without control and can invade nearby tissues. A primary cancer is defined as the original site (organ or tissue) where a cancer began." ];
+       fhir:ElementDefinition.definition [ fhir:value "Records the history of the primary cancer condition, the original or first tumor in the body, abnormal cells that divide without control and can invade nearby tissues." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
        fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
@@ -2176,6 +2175,23 @@
        ]
      ], [
        fhir:index 10;
+       fhir:ElementDefinition.id [ fhir:value "Observation.method" ];
+       fhir:ElementDefinition.path [ fhir:value "Observation.method" ];
+       fhir:ElementDefinition.name [ fhir:value "Observation.method" ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.maxLength [ fhir:value "0"^^xsd:integer ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.binding [
+         fhir:ElementDefinition.binding.strength [ fhir:value "extensible" ];
+         fhir:ElementDefinition.binding.valueSetReference [
+           fhir:link <http://hl7.org/fhir/us/mcode/onco/core/vs/CancerStagingSystemVS>;
+           fhir:Reference.reference [ fhir:value "http://hl7.org/fhir/us/mcode/onco/core/vs/CancerStagingSystemVS" ]
+         ]
+       ]
+     ], [
+       fhir:index 11;
        fhir:ElementDefinition.id [ fhir:value "Observation.specimen" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.specimen" ];
        fhir:ElementDefinition.name [ fhir:value "Observation.specimen" ];
@@ -2191,7 +2207,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 11;
+       fhir:index 12;
        fhir:ElementDefinition.id [ fhir:value "Observation.device" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.device" ];
        fhir:ElementDefinition.name [ fhir:value "Observation.device" ];
@@ -2215,7 +2231,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 12;
+       fhir:index 13;
        fhir:ElementDefinition.id [ fhir:value "Observation.referenceRange" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.referenceRange" ];
        fhir:ElementDefinition.name [ fhir:value "Observation.referenceRange" ];
@@ -2231,7 +2247,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 13;
+       fhir:index 14;
        fhir:ElementDefinition.id [ fhir:value "Observation.referenceRange.meaning" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.referenceRange.meaning" ];
        fhir:ElementDefinition.name [ fhir:value "Observation.referenceRange.meaning" ];
@@ -2249,7 +2265,7 @@
          ]
        ]
      ], [
-       fhir:index 14;
+       fhir:index 15;
        fhir:ElementDefinition.id [ fhir:value "Observation.related" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.related" ];
        fhir:ElementDefinition.name [ fhir:value "Observation.related" ];
@@ -2265,7 +2281,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 15;
+       fhir:index 16;
        fhir:ElementDefinition.id [ fhir:value "Observation.related.type" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.related.type" ];
        fhir:ElementDefinition.name [ fhir:value "Observation.related.type" ];
@@ -2276,7 +2292,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 16;
+       fhir:index 17;
        fhir:ElementDefinition.id [ fhir:value "Observation.related.target" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.related.target" ];
        fhir:ElementDefinition.name [ fhir:value "Observation.related.target" ];
@@ -2294,7 +2310,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 17;
+       fhir:index 18;
        fhir:ElementDefinition.id [ fhir:value "Observation.component" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.component" ];
        fhir:ElementDefinition.name [ fhir:value "Observation.component" ];
@@ -2310,7 +2326,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 18;
+       fhir:index 19;
        fhir:ElementDefinition.id [ fhir:value "Observation.component.valuex" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.component.value[x]" ];
        fhir:ElementDefinition.name [ fhir:value "Observation.component.valuex" ];
@@ -2345,7 +2361,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 19;
+       fhir:index 20;
        fhir:ElementDefinition.id [ fhir:value "Observation.component.dataAbsentReason" ];
        fhir:ElementDefinition.path [ fhir:value "Observation.component.dataAbsentReason" ];
        fhir:ElementDefinition.name [ fhir:value "Observation.component.dataAbsentReason" ];
@@ -2376,7 +2392,7 @@
 
 <http://hl7.org/fhir/us/mcode/shr/core/vs/BodyLocationVS> a fhir:us .
 
-<http://hl7.org/fhir/ValueSet/observation-methods> a fhir:ValueSet .
+<http://hl7.org/fhir/us/mcode/onco/core/vs/CancerStagingSystemVS> a fhir:us .
 
 <http://hl7.org/fhir/ValueSet/referencerange-meaning> a fhir:ValueSet .
 
