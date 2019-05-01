@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="shr-core-Signature-model"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">
+  <p><b>Signature Logical Model</b></p>
+  <p>A Signature holds an electronic representation of a signature and its supporting context in a FHIR accessible form. The signature may either be a cryptographic type (XML DigSig or a JWS), which is able to provide non-repudiation proof, or it may be a graphical image that represents a signature or a signature process.</p>
+</div>
+  </text>
+  <url value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Signature-model"/>
+  <identifier>
+    <system value="http://hl7.org/fhir/us/shrcore"/>
+    <value value="shr.core.Signature"/>
+  </identifier>
+  <version value="0.5.0"/>
+  <name value="Signature"/>
+  <title value="shr-core-Signature"/>
+  <status value="draft"/>
+  <date value="2019-05-01T00:00:00-04:00"/>
+  <publisher value="The MITRE Corporation"/>
+  <contact>
+    <telecom>
+      <system value="url"/>
+      <value value="http://www.standardhealthrecord.org"/>
+    </telecom>
+  </contact>
+  <description value="A Signature holds an electronic representation of a signature and its supporting context in a FHIR accessible form. The signature may either be a cryptographic type (XML DigSig or a JWS), which is able to provide non-repudiation proof, or it may be a graphical image that represents a signature or a signature process."/>
+  <kind value="logical"/>
+  <abstract value="false"/>
+  <type value="shr-core-Signature-model"/>
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Element"/>
+  <derivation value="specialization"/>
+  <snapshot>
+    <element id="shr-core-Signature-model">
+      <path value="shr-core-Signature-model"/>
+      <definition value="A Signature holds an electronic representation of a signature and its supporting context in a FHIR accessible form. The signature may either be a cryptographic type (XML DigSig or a JWS), which is able to provide non-repudiation proof, or it may be a graphical image that represents a signature or a signature process."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Signature-model"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Signature-model.signatureType">
+      <path value="shr-core-Signature-model.signatureType"/>
+      <short value="Type of signature"/>
+      <definition value="Type of signature"/>
+      <min value="1"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Signature-model.signatureType"/>
+        <min value="1"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="extensible"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/signature-type"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="shr-core-Signature-model.creationDateTime">
+      <path value="shr-core-Signature-model.creationDateTime"/>
+      <code>
+        <system value="http://ncimeta.nci.nih.gov"/>
+        <code value="C3669169"/>
+      </code>
+      <short value="The point in time when the item was created."/>
+      <definition value="The point in time when the item was created."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Signature-model.creationDateTime"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="dateTime"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Signature-model.signer[x]">
+      <path value="shr-core-Signature-model.signer[x]"/>
+      <short value="The party signing."/>
+      <definition value="The party signing."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Signature-model.signer[x]"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Signature-model.onBehalfOf[x]">
+      <path value="shr-core-Signature-model.onBehalfOf[x]"/>
+      <short value="The party represented by the actual participant."/>
+      <definition value="The party represented by the actual participant."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Signature-model.onBehalfOf[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Signature-model.signatureFormat">
+      <path value="shr-core-Signature-model.signatureFormat"/>
+      <short value="The technical format of the signature."/>
+      <definition value="The technical format of the signature."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Signature-model.signatureFormat"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="code"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Signature-model.targetFormat">
+      <path value="shr-core-Signature-model.targetFormat"/>
+      <short value="The technical format of the signed resources."/>
+      <definition value="The technical format of the signed resources."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Signature-model.targetFormat"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="code"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="required"/>
+        <valueSetUri value="http://www.rfc-editor.org/bcp/bcp13.txt"/>
+      </binding>
+    </element>
+    <element id="shr-core-Signature-model.binaryData">
+      <path value="shr-core-Signature-model.binaryData"/>
+      <short value="The data itself."/>
+      <definition value="The data itself."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Signature-model.binaryData"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="base64Binary"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+  </snapshot>
+  <differential>
+    <element id="shr-core-Signature-model">
+      <path value="shr-core-Signature-model"/>
+      <definition value="A Signature holds an electronic representation of a signature and its supporting context in a FHIR accessible form. The signature may either be a cryptographic type (XML DigSig or a JWS), which is able to provide non-repudiation proof, or it may be a graphical image that represents a signature or a signature process."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Signature-model"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Signature-model.signatureType">
+      <path value="shr-core-Signature-model.signatureType"/>
+      <short value="Type of signature"/>
+      <definition value="Type of signature"/>
+      <min value="1"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Signature-model.signatureType"/>
+        <min value="1"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="extensible"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/signature-type"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="shr-core-Signature-model.creationDateTime">
+      <path value="shr-core-Signature-model.creationDateTime"/>
+      <code>
+        <system value="http://ncimeta.nci.nih.gov"/>
+        <code value="C3669169"/>
+      </code>
+      <short value="The point in time when the item was created."/>
+      <definition value="The point in time when the item was created."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Signature-model.creationDateTime"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="dateTime"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Signature-model.signer[x]">
+      <path value="shr-core-Signature-model.signer[x]"/>
+      <short value="The party signing."/>
+      <definition value="The party signing."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Signature-model.signer[x]"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Signature-model.onBehalfOf[x]">
+      <path value="shr-core-Signature-model.onBehalfOf[x]"/>
+      <short value="The party represented by the actual participant."/>
+      <definition value="The party represented by the actual participant."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Signature-model.onBehalfOf[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Signature-model.signatureFormat">
+      <path value="shr-core-Signature-model.signatureFormat"/>
+      <short value="The technical format of the signature."/>
+      <definition value="The technical format of the signature."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Signature-model.signatureFormat"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="code"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Signature-model.targetFormat">
+      <path value="shr-core-Signature-model.targetFormat"/>
+      <short value="The technical format of the signed resources."/>
+      <definition value="The technical format of the signed resources."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Signature-model.targetFormat"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="code"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="required"/>
+        <valueSetUri value="http://www.rfc-editor.org/bcp/bcp13.txt"/>
+      </binding>
+    </element>
+    <element id="shr-core-Signature-model.binaryData">
+      <path value="shr-core-Signature-model.binaryData"/>
+      <short value="The data itself."/>
+      <definition value="The data itself."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Signature-model.binaryData"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="base64Binary"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+  </differential>
+</StructureDefinition>
