@@ -19,18 +19,22 @@
   Metadata.Tag maps to meta.tag
   Identifier maps to identifier
   MediaBasedOn maps to basedOn
+  PartOf maps to extension
+  Status maps to extension
   Type maps to type
-  Subtype maps to subtype
+  Modality maps to subtype
   View maps to view
   MediaSubjectOfRecord maps to subject
   CareContext maps to context
   RelevantTime maps to occurrence[x]
-  Practitioner maps to operator
+  StatementDateTime maps to extension
+  Performer maps to operator
   ReasonCode maps to reasonCode
   BodyLocation.Code maps to bodySite
   BodyLocation.Laterality maps to bodySite.extension
   BodyLocation.Orientation maps to bodySite.extension
   BodyLocation.RelationToLandmark maps to bodySite.extension
+  DeviceName maps to extension
   Device maps to device
   PixelHeight maps to height
   PixelWidth maps to width
@@ -46,11 +50,11 @@
     <system value="http://hl7.org/fhir/us/shrcore"/>
     <value value="shr.core.Media"/>
   </identifier>
-  <version value="0.5.0"/>
+  <version value="0.6.0"/>
   <name value="Media"/>
   <title value="shr-core-Media"/>
   <status value="draft"/>
-  <date value="2019-05-01T00:00:00-04:00"/>
+  <date value="2019-05-07T00:00:00-04:00"/>
   <publisher value="The MITRE Corporation"/>
   <contact>
     <telecom>
@@ -472,7 +476,7 @@
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
       <alias value="extensions"/>
       <alias value="user content"/>
-      <min value="0"/>
+      <min value="1"/>
       <max value="*"/>
       <base>
         <path value="DomainResource.extension"/>
@@ -486,22 +490,6 @@
         <identity value="rim"/>
         <map value="N/A"/>
       </mapping>
-    </element>
-    <element id="Media:shr-core-Media.extension:status">
-      <path value="Media.extension"/>
-      <sliceName value="status"/>
-      <definition value="A state that relates to the workflow or interpretation of this resource. Certain status values can modify the meaning of the resource, for example, entered-in-error. When a boolean value is used, Status of true indicates the record is active, false means inactive."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="DomainResource.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Status-extension"/>
-      </type>
     </element>
     <element id="Media:shr-core-Media.extension:partof">
       <path value="Media.extension"/>
@@ -517,6 +505,135 @@
       <type>
         <code value="Extension"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PartOf-extension"/>
+      </type>
+    </element>
+    <element id="Media:shr-core-Media.extension:status">
+      <path value="Media.extension"/>
+      <sliceName value="status"/>
+      <definition value="A state that relates to the workflow or interpretation of this resource. Certain status values can modify the meaning of the resource, for example, entered-in-error. When a boolean value is used, Status of true indicates the record is active, false means inactive."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Status-extension"/>
+      </type>
+    </element>
+    <element id="Media:shr-core-Media.extension:status.id">
+      <path value="Media.extension.id"/>
+      <representation value="xmlAttr"/>
+      <short value="xml:id (or equivalent in JSON)"/>
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.id"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="string"/>
+      </type>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="Media:shr-core-Media.extension:status.extension:extension">
+      <path value="Media.extension.extension"/>
+      <short value="Extension"/>
+      <definition value="An Extension"/>
+      <min value="0"/>
+      <max value="0"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+      </type>
+    </element>
+    <element id="Media:shr-core-Media.extension:status.url">
+      <path value="Media.extension.url"/>
+      <representation value="xmlAttr"/>
+      <short value="identifies the meaning of the extension"/>
+      <definition value="Source of the definition for the extension code - a logical name or a URL."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Extension.url"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="uri"/>
+      </type>
+      <fixedUri value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Status-extension"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="Media:shr-core-Media.extension:status.valueCodeableConcept">
+      <path value="Media.extension.valueCodeableConcept"/>
+      <short value="Value of extension"/>
+      <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Extension.value[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <binding>
+        <strength value="required"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/event-status"/>
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="Media:shr-core-Media.extension:statementdatetime">
+      <path value="Media.extension"/>
+      <sliceName value="statementdatetime"/>
+      <definition value="The point in time when the statement was created."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatementDateTime-extension"/>
+      </type>
+    </element>
+    <element id="Media:shr-core-Media.extension:devicename">
+      <path value="Media.extension"/>
+      <sliceName value="devicename"/>
+      <definition value="The name of the device."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DeviceName-extension"/>
       </type>
     </element>
     <element id="Media:shr-core-Media.modifierExtension">
@@ -727,10 +844,6 @@
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare"/>
       </type>
       <isSummary value="true"/>
       <mapping>
@@ -1173,22 +1286,8 @@
         <ordered value="false"/>
         <rules value="open"/>
       </slicing>
-    </element>
-    <element id="Media:shr-core-Media.extension:status">
-      <path value="Media.extension"/>
-      <sliceName value="status"/>
-      <definition value="A state that relates to the workflow or interpretation of this resource. Certain status values can modify the meaning of the resource, for example, entered-in-error. When a boolean value is used, Status of true indicates the record is active, false means inactive."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="DomainResource.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Status-extension"/>
-      </type>
+      <min value="1"/>
+      <max value="*"/>
     </element>
     <element id="Media:shr-core-Media.extension:partof">
       <path value="Media.extension"/>
@@ -1204,6 +1303,63 @@
       <type>
         <code value="Extension"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PartOf-extension"/>
+      </type>
+    </element>
+    <element id="Media:shr-core-Media.extension:status">
+      <path value="Media.extension"/>
+      <sliceName value="status"/>
+      <definition value="A state that relates to the workflow or interpretation of this resource. Certain status values can modify the meaning of the resource, for example, entered-in-error. When a boolean value is used, Status of true indicates the record is active, false means inactive."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Status-extension"/>
+      </type>
+    </element>
+    <element id="Media:shr-core-Media.extension:status.valueCodeableConcept">
+      <path value="Media.extension.valueCodeableConcept"/>
+      <binding>
+        <strength value="required"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/event-status"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="Media:shr-core-Media.extension:statementdatetime">
+      <path value="Media.extension"/>
+      <sliceName value="statementdatetime"/>
+      <definition value="The point in time when the statement was created."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatementDateTime-extension"/>
+      </type>
+    </element>
+    <element id="Media:shr-core-Media.extension:devicename">
+      <path value="Media.extension"/>
+      <sliceName value="devicename"/>
+      <definition value="The name of the device."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DeviceName-extension"/>
       </type>
     </element>
     <element id="Media:shr-core-Media.basedOn">
@@ -1241,10 +1397,6 @@
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare"/>
       </type>
     </element>
     <element id="Media:shr-core-Media.operator">

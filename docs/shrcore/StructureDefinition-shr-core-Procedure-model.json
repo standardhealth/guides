@@ -12,11 +12,11 @@
       "value": "shr.core.Procedure"
     }
   ],
-  "version": "0.5.0",
+  "version": "0.6.0",
   "name": "Procedure",
   "title": "shr-core-Procedure",
   "status": "draft",
-  "date": "2019-05-01T00:00:00-04:00",
+  "date": "2019-05-07T00:00:00-04:00",
   "publisher": "The MITRE Corporation",
   "contact": [
     {
@@ -227,14 +227,14 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Procedure-model.careContext[x]",
-        "path": "shr-core-Procedure-model.careContext[x]",
+        "id": "shr-core-Procedure-model.careContext",
+        "path": "shr-core-Procedure-model.careContext",
         "short": "The encounter or episode of care",
         "definition": "The encounter or episode of care",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-Procedure-model.careContext[x]",
+          "path": "shr-core-Procedure-model.careContext",
           "min": 0,
           "max": "1"
         },
@@ -242,10 +242,6 @@
           {
             "code": "Reference",
             "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare-model"
           }
         ],
         "mustSupport": false,
@@ -667,12 +663,6 @@
       {
         "id": "shr-core-Procedure-model.participation.participationType",
         "path": "shr-core-Procedure-model.participation.participationType",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C1553854"
-          }
-        ],
         "short": "The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc.",
         "definition": "The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc.",
         "min": 0,
@@ -755,54 +745,6 @@
         "type": [
           {
             "code": "Coding"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-Procedure-model.code",
-        "path": "shr-core-Procedure-model.code",
-        "short": "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary.",
-        "definition": "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary.",
-        "min": 1,
-        "max": "1",
-        "base": {
-          "path": "shr-core-Procedure-model.code",
-          "min": 1,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "Coding"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "binding": {
-          "strength": "extensible",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/core/ValueSet/us-core-procedure-code"
-          }
-        }
-      },
-      {
-        "id": "shr-core-Procedure-model.bodyLocation",
-        "path": "shr-core-Procedure-model.bodyLocation",
-        "short": "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.",
-        "definition": "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\nNote that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "shr-core-Procedure-model.bodyLocation",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BodyLocation-model"
           }
         ],
         "mustSupport": false,
@@ -940,43 +882,15 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Procedure-model.annotation",
-        "path": "shr-core-Procedure-model.annotation",
-        "short": "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.",
-        "definition": "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "shr-core-Procedure-model.annotation",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-Procedure-model.treatmentIntent",
-        "path": "shr-core-Procedure-model.treatmentIntent",
-        "code": [
-          {
-            "system": "http://snomed.info/sct",
-            "code": "395077000",
-            "display": "Treatment intent (situation)"
-          }
-        ],
-        "short": "The purpose of a treatment.",
-        "definition": "The purpose of a treatment.",
-        "min": 0,
+        "id": "shr-core-Procedure-model.code",
+        "path": "shr-core-Procedure-model.code",
+        "short": "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary.",
+        "definition": "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary.",
+        "min": 1,
         "max": "1",
         "base": {
-          "path": "shr-core-Procedure-model.treatmentIntent",
-          "min": 0,
+          "path": "shr-core-Procedure-model.code",
+          "min": 1,
           "max": "1"
         },
         "type": [
@@ -988,11 +902,71 @@
         "isModifier": false,
         "isSummary": false,
         "binding": {
-          "strength": "required",
+          "strength": "extensible",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/shrcore/shr/core/vs/TreatmentIntentVS"
+            "reference": "http://hl7.org/fhir/us/core/ValueSet/us-core-procedure-code"
           }
         }
+      },
+      {
+        "id": "shr-core-Procedure-model.personAuthor[x]",
+        "path": "shr-core-Procedure-model.personAuthor[x]",
+        "short": "A human author, patient, practitioner, or related person, as opposed to an organization or device.",
+        "definition": "A human author, patient, practitioner, or related person, as opposed to an organization or device.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Procedure-model.personAuthor[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.personInformationSource[x]",
+        "path": "shr-core-Procedure-model.personInformationSource[x]",
+        "short": "The person who provided the information, not necessarily the patient.",
+        "definition": "The person who provided the information, not necessarily the patient.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Procedure-model.personInformationSource[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
       },
       {
         "id": "shr-core-Procedure-model.location",
@@ -1010,6 +984,27 @@
           {
             "code": "Reference",
             "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Location-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.bodyLocation",
+        "path": "shr-core-Procedure-model.bodyLocation",
+        "short": "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.",
+        "definition": "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\nNote that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Procedure-model.bodyLocation",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BodyLocation-model"
           }
         ],
         "mustSupport": false,
@@ -1066,14 +1061,164 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Procedure-model.materialUsed[x]",
-        "path": "shr-core-Procedure-model.materialUsed[x]",
-        "short": "Items used during procedure",
-        "definition": "Items used during procedure",
+        "id": "shr-core-Procedure-model.complicationCode",
+        "path": "shr-core-Procedure-model.complicationCode",
+        "short": "Complication following the procedure, as a code.",
+        "definition": "Complication following the procedure, as a code.",
         "min": 0,
         "max": "*",
         "base": {
-          "path": "shr-core-Procedure-model.materialUsed[x]",
+          "path": "shr-core-Procedure-model.complicationCode",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.complicationReference",
+        "path": "shr-core-Procedure-model.complicationReference",
+        "short": "Complication following the procedure, as a reference to a Condition.",
+        "definition": "Complication following the procedure, as a reference to a Condition.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Procedure-model.complicationReference",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.followUp",
+        "path": "shr-core-Procedure-model.followUp",
+        "short": "Instructions for follow up.",
+        "definition": "Instructions for follow up.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Procedure-model.followUp",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.annotation",
+        "path": "shr-core-Procedure-model.annotation",
+        "short": "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.",
+        "definition": "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Procedure-model.annotation",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.focalDevice",
+        "path": "shr-core-Procedure-model.focalDevice",
+        "short": "Activity involving a device that is implanted, removed or otherwise manipulated (e.g., calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure.",
+        "definition": "Activity involving a device that is implanted, removed or otherwise manipulated (e.g., calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Procedure-model.focalDevice",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-FocalDevice-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.treatmentIntent",
+        "path": "shr-core-Procedure-model.treatmentIntent",
+        "code": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "395077000",
+            "display": "Treatment intent (situation)"
+          }
+        ],
+        "short": "The purpose of a treatment.",
+        "definition": "The purpose of a treatment.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Procedure-model.treatmentIntent",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "required",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/us/shrcore/shr/core/vs/TreatmentIntentVS"
+          }
+        }
+      },
+      {
+        "id": "shr-core-Procedure-model.materialUsedReference[x]",
+        "path": "shr-core-Procedure-model.materialUsedReference[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Identifies medications, devices and any other substance used as part of the procedure.",
+        "definition": "Identifies medications, devices and any other substance used as part of the procedure.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Procedure-model.materialUsedReference[x]",
           "min": 0,
           "max": "*"
         },
@@ -1096,20 +1241,89 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Procedure-model.focalDevice",
-        "path": "shr-core-Procedure-model.focalDevice",
-        "short": "A device that is implanted, removed or otherwise manipulated (e.g., calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure.",
-        "definition": "A device that is implanted, removed or otherwise manipulated (e.g., calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure.",
-        "min": 0,
-        "max": "*",
+        "id": "shr-core-Procedure-model.materialUsedReferenceShr-core-Device-model:Device",
+        "path": "shr-core-Procedure-model.materialUsedReferenceShr-core-Device-model",
+        "sliceName": "Device",
+        "short": "A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients.",
+        "definition": "A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients.\nDevice status cannot be reconciled between Argonaut and US-Core, each having different required value sets.\nDevice type has extensible mappings to different value sets in Argonaut and US-Core, however both value sets have identical SNOMED content (descendants of 49062001 (Device). We adopt the US-Core value set, which is allowable because the binding is extensible.",
+        "min": 1,
+        "max": "1",
         "base": {
-          "path": "shr-core-Procedure-model.focalDevice",
+          "path": "shr-core-Procedure-model.materialUsedReference[x]",
           "min": 0,
           "max": "*"
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-FocalDevice-model"
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.materialUsedReferenceShr-core-Medication-model:Medication",
+        "path": "shr-core-Procedure-model.materialUsedReferenceShr-core-Medication-model",
+        "sliceName": "Medication",
+        "short": "A type of prescription drug or over-the-counter drug that is used to prevent, treat, or relieve symptoms of a disease or abnormal condition, but excluding vaccines.",
+        "definition": "A type of prescription drug or over-the-counter drug that is used to prevent, treat, or relieve symptoms of a disease or abnormal condition, but excluding vaccines.\nIn FHIR DSTU2 and STU3, Medication lacks the identifier attribute, which is included in SHR as an extension.\nDSTU2 lacks the status attribute, which is required by US-Core.\nBatch is 0..1 in FHIR R4, and accordingly is restricted here.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Procedure-model.materialUsedReference[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Medication-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.materialUsedReferenceShr-core-Substance-model:Substance",
+        "path": "shr-core-Procedure-model.materialUsedReferenceShr-core-Substance-model",
+        "sliceName": "Substance",
+        "short": "Any matter of defined composition that has discrete existence, whose origin may be biological, mineral or chemical.",
+        "definition": "Any matter of defined composition that has discrete existence, whose origin may be biological, mineral or chemical.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Procedure-model.materialUsedReference[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Substance-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.usedCode",
+        "path": "shr-core-Procedure-model.usedCode",
+        "short": "Item used during an activity, represented as a code.",
+        "definition": "Item used during an activity, represented as a code.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Procedure-model.usedCode",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Coding"
           }
         ],
         "mustSupport": false,
@@ -1311,14 +1525,14 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Procedure-model.careContext[x]",
-        "path": "shr-core-Procedure-model.careContext[x]",
+        "id": "shr-core-Procedure-model.careContext",
+        "path": "shr-core-Procedure-model.careContext",
         "short": "The encounter or episode of care",
         "definition": "The encounter or episode of care",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-Procedure-model.careContext[x]",
+          "path": "shr-core-Procedure-model.careContext",
           "min": 0,
           "max": "1"
         },
@@ -1326,10 +1540,6 @@
           {
             "code": "Reference",
             "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare-model"
           }
         ],
         "mustSupport": false,
@@ -1751,12 +1961,6 @@
       {
         "id": "shr-core-Procedure-model.participation.participationType",
         "path": "shr-core-Procedure-model.participation.participationType",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C1553854"
-          }
-        ],
         "short": "The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc.",
         "definition": "The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc.",
         "min": 0,
@@ -1839,54 +2043,6 @@
         "type": [
           {
             "code": "Coding"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-Procedure-model.code",
-        "path": "shr-core-Procedure-model.code",
-        "short": "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary.",
-        "definition": "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary.",
-        "min": 1,
-        "max": "1",
-        "base": {
-          "path": "shr-core-Procedure-model.code",
-          "min": 1,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "Coding"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "binding": {
-          "strength": "extensible",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/core/ValueSet/us-core-procedure-code"
-          }
-        }
-      },
-      {
-        "id": "shr-core-Procedure-model.bodyLocation",
-        "path": "shr-core-Procedure-model.bodyLocation",
-        "short": "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.",
-        "definition": "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\nNote that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "shr-core-Procedure-model.bodyLocation",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BodyLocation-model"
           }
         ],
         "mustSupport": false,
@@ -2024,43 +2180,15 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Procedure-model.annotation",
-        "path": "shr-core-Procedure-model.annotation",
-        "short": "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.",
-        "definition": "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "shr-core-Procedure-model.annotation",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-Procedure-model.treatmentIntent",
-        "path": "shr-core-Procedure-model.treatmentIntent",
-        "code": [
-          {
-            "system": "http://snomed.info/sct",
-            "code": "395077000",
-            "display": "Treatment intent (situation)"
-          }
-        ],
-        "short": "The purpose of a treatment.",
-        "definition": "The purpose of a treatment.",
-        "min": 0,
+        "id": "shr-core-Procedure-model.code",
+        "path": "shr-core-Procedure-model.code",
+        "short": "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary.",
+        "definition": "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary.",
+        "min": 1,
         "max": "1",
         "base": {
-          "path": "shr-core-Procedure-model.treatmentIntent",
-          "min": 0,
+          "path": "shr-core-Procedure-model.code",
+          "min": 1,
           "max": "1"
         },
         "type": [
@@ -2072,11 +2200,71 @@
         "isModifier": false,
         "isSummary": false,
         "binding": {
-          "strength": "required",
+          "strength": "extensible",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/shrcore/shr/core/vs/TreatmentIntentVS"
+            "reference": "http://hl7.org/fhir/us/core/ValueSet/us-core-procedure-code"
           }
         }
+      },
+      {
+        "id": "shr-core-Procedure-model.personAuthor[x]",
+        "path": "shr-core-Procedure-model.personAuthor[x]",
+        "short": "A human author, patient, practitioner, or related person, as opposed to an organization or device.",
+        "definition": "A human author, patient, practitioner, or related person, as opposed to an organization or device.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Procedure-model.personAuthor[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.personInformationSource[x]",
+        "path": "shr-core-Procedure-model.personInformationSource[x]",
+        "short": "The person who provided the information, not necessarily the patient.",
+        "definition": "The person who provided the information, not necessarily the patient.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Procedure-model.personInformationSource[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
       },
       {
         "id": "shr-core-Procedure-model.location",
@@ -2094,6 +2282,27 @@
           {
             "code": "Reference",
             "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Location-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.bodyLocation",
+        "path": "shr-core-Procedure-model.bodyLocation",
+        "short": "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.",
+        "definition": "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\nNote that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Procedure-model.bodyLocation",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BodyLocation-model"
           }
         ],
         "mustSupport": false,
@@ -2150,14 +2359,164 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Procedure-model.materialUsed[x]",
-        "path": "shr-core-Procedure-model.materialUsed[x]",
-        "short": "Items used during procedure",
-        "definition": "Items used during procedure",
+        "id": "shr-core-Procedure-model.complicationCode",
+        "path": "shr-core-Procedure-model.complicationCode",
+        "short": "Complication following the procedure, as a code.",
+        "definition": "Complication following the procedure, as a code.",
         "min": 0,
         "max": "*",
         "base": {
-          "path": "shr-core-Procedure-model.materialUsed[x]",
+          "path": "shr-core-Procedure-model.complicationCode",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.complicationReference",
+        "path": "shr-core-Procedure-model.complicationReference",
+        "short": "Complication following the procedure, as a reference to a Condition.",
+        "definition": "Complication following the procedure, as a reference to a Condition.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Procedure-model.complicationReference",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.followUp",
+        "path": "shr-core-Procedure-model.followUp",
+        "short": "Instructions for follow up.",
+        "definition": "Instructions for follow up.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Procedure-model.followUp",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.annotation",
+        "path": "shr-core-Procedure-model.annotation",
+        "short": "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.",
+        "definition": "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Procedure-model.annotation",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.focalDevice",
+        "path": "shr-core-Procedure-model.focalDevice",
+        "short": "Activity involving a device that is implanted, removed or otherwise manipulated (e.g., calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure.",
+        "definition": "Activity involving a device that is implanted, removed or otherwise manipulated (e.g., calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Procedure-model.focalDevice",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-FocalDevice-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.treatmentIntent",
+        "path": "shr-core-Procedure-model.treatmentIntent",
+        "code": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "395077000",
+            "display": "Treatment intent (situation)"
+          }
+        ],
+        "short": "The purpose of a treatment.",
+        "definition": "The purpose of a treatment.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Procedure-model.treatmentIntent",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "required",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/us/shrcore/shr/core/vs/TreatmentIntentVS"
+          }
+        }
+      },
+      {
+        "id": "shr-core-Procedure-model.materialUsedReference[x]",
+        "path": "shr-core-Procedure-model.materialUsedReference[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Identifies medications, devices and any other substance used as part of the procedure.",
+        "definition": "Identifies medications, devices and any other substance used as part of the procedure.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Procedure-model.materialUsedReference[x]",
           "min": 0,
           "max": "*"
         },
@@ -2180,20 +2539,89 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Procedure-model.focalDevice",
-        "path": "shr-core-Procedure-model.focalDevice",
-        "short": "A device that is implanted, removed or otherwise manipulated (e.g., calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure.",
-        "definition": "A device that is implanted, removed or otherwise manipulated (e.g., calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure.",
-        "min": 0,
-        "max": "*",
+        "id": "shr-core-Procedure-model.materialUsedReferenceShr-core-Device-model:Device",
+        "path": "shr-core-Procedure-model.materialUsedReferenceShr-core-Device-model",
+        "sliceName": "Device",
+        "short": "A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients.",
+        "definition": "A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients.\nDevice status cannot be reconciled between Argonaut and US-Core, each having different required value sets.\nDevice type has extensible mappings to different value sets in Argonaut and US-Core, however both value sets have identical SNOMED content (descendants of 49062001 (Device). We adopt the US-Core value set, which is allowable because the binding is extensible.",
+        "min": 1,
+        "max": "1",
         "base": {
-          "path": "shr-core-Procedure-model.focalDevice",
+          "path": "shr-core-Procedure-model.materialUsedReference[x]",
           "min": 0,
           "max": "*"
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-FocalDevice-model"
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.materialUsedReferenceShr-core-Medication-model:Medication",
+        "path": "shr-core-Procedure-model.materialUsedReferenceShr-core-Medication-model",
+        "sliceName": "Medication",
+        "short": "A type of prescription drug or over-the-counter drug that is used to prevent, treat, or relieve symptoms of a disease or abnormal condition, but excluding vaccines.",
+        "definition": "A type of prescription drug or over-the-counter drug that is used to prevent, treat, or relieve symptoms of a disease or abnormal condition, but excluding vaccines.\nIn FHIR DSTU2 and STU3, Medication lacks the identifier attribute, which is included in SHR as an extension.\nDSTU2 lacks the status attribute, which is required by US-Core.\nBatch is 0..1 in FHIR R4, and accordingly is restricted here.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Procedure-model.materialUsedReference[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Medication-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.materialUsedReferenceShr-core-Substance-model:Substance",
+        "path": "shr-core-Procedure-model.materialUsedReferenceShr-core-Substance-model",
+        "sliceName": "Substance",
+        "short": "Any matter of defined composition that has discrete existence, whose origin may be biological, mineral or chemical.",
+        "definition": "Any matter of defined composition that has discrete existence, whose origin may be biological, mineral or chemical.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Procedure-model.materialUsedReference[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Substance-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Procedure-model.usedCode",
+        "path": "shr-core-Procedure-model.usedCode",
+        "short": "Item used during an activity, represented as a code.",
+        "definition": "Item used during an activity, represented as a code.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Procedure-model.usedCode",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Coding"
           }
         ],
         "mustSupport": false,

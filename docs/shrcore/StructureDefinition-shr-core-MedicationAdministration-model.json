@@ -12,11 +12,11 @@
       "value": "shr.core.MedicationAdministration"
     }
   ],
-  "version": "0.5.0",
+  "version": "0.6.0",
   "name": "MedicationAdministration",
   "title": "shr-core-MedicationAdministration",
   "status": "draft",
-  "date": "2019-05-01T00:00:00-04:00",
+  "date": "2019-05-07T00:00:00-04:00",
   "publisher": "The MITRE Corporation",
   "contact": [
     {
@@ -163,6 +163,27 @@
         }
       },
       {
+        "id": "shr-core-MedicationAdministration-model.statusReason",
+        "path": "shr-core-MedicationAdministration-model.statusReason",
+        "short": "Captures the reason for the current state of the procedure.",
+        "definition": "Captures the reason for the current state of the procedure.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-MedicationAdministration-model.statusReason",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
         "id": "shr-core-MedicationAdministration-model.identifier",
         "path": "shr-core-MedicationAdministration-model.identifier",
         "short": "Business identifier or external id for this resource.",
@@ -503,20 +524,14 @@
       {
         "id": "shr-core-MedicationAdministration-model.participation.participationType",
         "path": "shr-core-MedicationAdministration-model.participation.participationType",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C1553854"
-          }
-        ],
         "short": "The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc.",
         "definition": "The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc.",
         "min": 0,
-        "max": "0",
+        "max": "1",
         "base": {
           "path": "shr-core-MedicationAdministration-model.participation.participationType",
           "min": 0,
-          "max": "0"
+          "max": "1"
         },
         "type": [
           {
@@ -703,11 +718,11 @@
         "short": "Dose number within series.",
         "definition": "Dose number within series.",
         "min": 0,
-        "max": "0",
+        "max": "1",
         "base": {
           "path": "shr-core-MedicationAdministration-model.dosage.doseSequenceNumber",
           "min": 0,
-          "max": "0"
+          "max": "1"
         },
         "type": [
           {
@@ -941,90 +956,6 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-MedicationAdministration-model.dosage.doseAndRate.type",
-        "path": "shr-core-MedicationAdministration-model.dosage.doseAndRate.type",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0332307"
-          }
-        ],
-        "short": "A code describing the item at a greater level of detail.",
-        "definition": "A code describing the item at a greater level of detail.",
-        "min": 0,
-        "max": "0",
-        "base": {
-          "path": "shr-core-MedicationAdministration-model.dosage.doseAndRate.type",
-          "min": 0,
-          "max": "0"
-        },
-        "type": [
-          {
-            "code": "Coding"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "binding": {
-          "strength": "example",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/dose-rate-type"
-          }
-        }
-      },
-      {
-        "id": "shr-core-MedicationAdministration-model.dosage.doseAndRate.doseAmount[x]",
-        "path": "shr-core-MedicationAdministration-model.dosage.doseAndRate.doseAmount[x]",
-        "short": "The amount of medication taken per dose, as a quantity or range. Relative dose (e.g., per kg body weight or surface area) are indicated by specifying appropriate units (e.g., mg/kg or mg/m2 etc).",
-        "definition": "The amount of medication taken per dose, as a quantity or range. Relative dose (e.g., per kg body weight or surface area) are indicated by specifying appropriate units (e.g., mg/kg or mg/m2 etc).",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "shr-core-MedicationAdministration-model.dosage.doseAndRate.doseAmount[x]",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SimpleQuantity-model"
-          },
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Range-model"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-MedicationAdministration-model.dosage.doseAndRate.doseRate[x]",
-        "path": "shr-core-MedicationAdministration-model.dosage.doseAndRate.doseRate[x]",
-        "short": "The speed with which the medication was or will be introduced into the patient. Typically the rate is used to describe an infusion, e.g,. 100 ml per 1 hour or 100 ml/hr.",
-        "definition": "The speed with which the medication was or will be introduced into the patient. Typically the rate is used to describe an infusion, e.g,. 100 ml per 1 hour or 100 ml/hr.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "shr-core-MedicationAdministration-model.dosage.doseAndRate.doseRate[x]",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Ratio-model"
-          },
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Range-model"
-          },
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SimpleQuantity-model"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
         "id": "shr-core-MedicationAdministration-model.dosage.maxDosePerPeriod",
         "path": "shr-core-MedicationAdministration-model.dosage.maxDosePerPeriod",
         "short": "The maximum amount of a medication to be taken in a given period of time (e.g., no more than x in any 24-hour period)",
@@ -1088,6 +1019,88 @@
         "isSummary": false
       },
       {
+        "id": "shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]",
+        "path": "shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "A larger event of which this particular event is a component or step.",
+        "definition": "A larger event of which this particular event is a component or step.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationAdministration-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationAdministration-model.medicationAdministrationPartOfShr-core-MedicationAdministration-model:MedicationAdministration",
+        "path": "shr-core-MedicationAdministration-model.medicationAdministrationPartOfShr-core-MedicationAdministration-model",
+        "sliceName": "MedicationAdministration",
+        "short": "A record of the use of a medication. If the medication is given as part of a course of treatment, the PartOf attribute should refer to the CourseOfTreatment.",
+        "definition": "A record of the use of a medication. If the medication is given as part of a course of treatment, the PartOf attribute should refer to the CourseOfTreatment.\nAlthough FHIR MedicationAdministration supports date of administration, information source, performer, it lacks common provenance elements, statement creation date, author, and recorder. These are supported as optional extensions.\nFHIR DSTU2 lacks a category attribute, which is provided as an extension in that version.\nSHR does not allow the 'not given' attributes from DSTU2 and STU3, since they are dropped in R4. The status element is used to document medications not given.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationAdministration-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationAdministration-model.medicationAdministrationPartOfShr-core-Procedure-model:Procedure",
+        "path": "shr-core-MedicationAdministration-model.medicationAdministrationPartOfShr-core-Procedure-model",
+        "sliceName": "Procedure",
+        "short": "An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy.",
+        "definition": "An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
         "id": "shr-core-MedicationAdministration-model.category",
         "path": "shr-core-MedicationAdministration-model.category",
         "short": "The general type or class of this item.",
@@ -1113,6 +1126,71 @@
             "reference": "http://hl7.org/fhir/ValueSet/medication-admin-category"
           }
         }
+      },
+      {
+        "id": "shr-core-MedicationAdministration-model.supportingInformation",
+        "path": "shr-core-MedicationAdministration-model.supportingInformation",
+        "short": "Additional information to support this request.",
+        "definition": "Additional information to support this request.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-MedicationAdministration-model.supportingInformation",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationAdministration-model.device",
+        "path": "shr-core-MedicationAdministration-model.device",
+        "short": "A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients.",
+        "definition": "A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients.\nDevice status cannot be reconciled between Argonaut and US-Core, each having different required value sets.\nDevice type has extensible mappings to different value sets in Argonaut and US-Core, however both value sets have identical SNOMED content (descendants of 49062001 (Device). We adopt the US-Core value set, which is allowable because the binding is extensible.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-MedicationAdministration-model.device",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationAdministration-model.annotation",
+        "path": "shr-core-MedicationAdministration-model.annotation",
+        "short": "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.",
+        "definition": "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-MedicationAdministration-model.annotation",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
       }
     ]
   },
@@ -1245,6 +1323,27 @@
         }
       },
       {
+        "id": "shr-core-MedicationAdministration-model.statusReason",
+        "path": "shr-core-MedicationAdministration-model.statusReason",
+        "short": "Captures the reason for the current state of the procedure.",
+        "definition": "Captures the reason for the current state of the procedure.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-MedicationAdministration-model.statusReason",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
         "id": "shr-core-MedicationAdministration-model.identifier",
         "path": "shr-core-MedicationAdministration-model.identifier",
         "short": "Business identifier or external id for this resource.",
@@ -1585,20 +1684,14 @@
       {
         "id": "shr-core-MedicationAdministration-model.participation.participationType",
         "path": "shr-core-MedicationAdministration-model.participation.participationType",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C1553854"
-          }
-        ],
         "short": "The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc.",
         "definition": "The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc.",
         "min": 0,
-        "max": "0",
+        "max": "1",
         "base": {
           "path": "shr-core-MedicationAdministration-model.participation.participationType",
           "min": 0,
-          "max": "0"
+          "max": "1"
         },
         "type": [
           {
@@ -1785,11 +1878,11 @@
         "short": "Dose number within series.",
         "definition": "Dose number within series.",
         "min": 0,
-        "max": "0",
+        "max": "1",
         "base": {
           "path": "shr-core-MedicationAdministration-model.dosage.doseSequenceNumber",
           "min": 0,
-          "max": "0"
+          "max": "1"
         },
         "type": [
           {
@@ -2023,90 +2116,6 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-MedicationAdministration-model.dosage.doseAndRate.type",
-        "path": "shr-core-MedicationAdministration-model.dosage.doseAndRate.type",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0332307"
-          }
-        ],
-        "short": "A code describing the item at a greater level of detail.",
-        "definition": "A code describing the item at a greater level of detail.",
-        "min": 0,
-        "max": "0",
-        "base": {
-          "path": "shr-core-MedicationAdministration-model.dosage.doseAndRate.type",
-          "min": 0,
-          "max": "0"
-        },
-        "type": [
-          {
-            "code": "Coding"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "binding": {
-          "strength": "example",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/dose-rate-type"
-          }
-        }
-      },
-      {
-        "id": "shr-core-MedicationAdministration-model.dosage.doseAndRate.doseAmount[x]",
-        "path": "shr-core-MedicationAdministration-model.dosage.doseAndRate.doseAmount[x]",
-        "short": "The amount of medication taken per dose, as a quantity or range. Relative dose (e.g., per kg body weight or surface area) are indicated by specifying appropriate units (e.g., mg/kg or mg/m2 etc).",
-        "definition": "The amount of medication taken per dose, as a quantity or range. Relative dose (e.g., per kg body weight or surface area) are indicated by specifying appropriate units (e.g., mg/kg or mg/m2 etc).",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "shr-core-MedicationAdministration-model.dosage.doseAndRate.doseAmount[x]",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SimpleQuantity-model"
-          },
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Range-model"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-MedicationAdministration-model.dosage.doseAndRate.doseRate[x]",
-        "path": "shr-core-MedicationAdministration-model.dosage.doseAndRate.doseRate[x]",
-        "short": "The speed with which the medication was or will be introduced into the patient. Typically the rate is used to describe an infusion, e.g,. 100 ml per 1 hour or 100 ml/hr.",
-        "definition": "The speed with which the medication was or will be introduced into the patient. Typically the rate is used to describe an infusion, e.g,. 100 ml per 1 hour or 100 ml/hr.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "shr-core-MedicationAdministration-model.dosage.doseAndRate.doseRate[x]",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Ratio-model"
-          },
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Range-model"
-          },
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SimpleQuantity-model"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
         "id": "shr-core-MedicationAdministration-model.dosage.maxDosePerPeriod",
         "path": "shr-core-MedicationAdministration-model.dosage.maxDosePerPeriod",
         "short": "The maximum amount of a medication to be taken in a given period of time (e.g., no more than x in any 24-hour period)",
@@ -2170,6 +2179,88 @@
         "isSummary": false
       },
       {
+        "id": "shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]",
+        "path": "shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "A larger event of which this particular event is a component or step.",
+        "definition": "A larger event of which this particular event is a component or step.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationAdministration-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationAdministration-model.medicationAdministrationPartOfShr-core-MedicationAdministration-model:MedicationAdministration",
+        "path": "shr-core-MedicationAdministration-model.medicationAdministrationPartOfShr-core-MedicationAdministration-model",
+        "sliceName": "MedicationAdministration",
+        "short": "A record of the use of a medication. If the medication is given as part of a course of treatment, the PartOf attribute should refer to the CourseOfTreatment.",
+        "definition": "A record of the use of a medication. If the medication is given as part of a course of treatment, the PartOf attribute should refer to the CourseOfTreatment.\nAlthough FHIR MedicationAdministration supports date of administration, information source, performer, it lacks common provenance elements, statement creation date, author, and recorder. These are supported as optional extensions.\nFHIR DSTU2 lacks a category attribute, which is provided as an extension in that version.\nSHR does not allow the 'not given' attributes from DSTU2 and STU3, since they are dropped in R4. The status element is used to document medications not given.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationAdministration-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationAdministration-model.medicationAdministrationPartOfShr-core-Procedure-model:Procedure",
+        "path": "shr-core-MedicationAdministration-model.medicationAdministrationPartOfShr-core-Procedure-model",
+        "sliceName": "Procedure",
+        "short": "An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy.",
+        "definition": "An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
         "id": "shr-core-MedicationAdministration-model.category",
         "path": "shr-core-MedicationAdministration-model.category",
         "short": "The general type or class of this item.",
@@ -2195,6 +2286,71 @@
             "reference": "http://hl7.org/fhir/ValueSet/medication-admin-category"
           }
         }
+      },
+      {
+        "id": "shr-core-MedicationAdministration-model.supportingInformation",
+        "path": "shr-core-MedicationAdministration-model.supportingInformation",
+        "short": "Additional information to support this request.",
+        "definition": "Additional information to support this request.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-MedicationAdministration-model.supportingInformation",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationAdministration-model.device",
+        "path": "shr-core-MedicationAdministration-model.device",
+        "short": "A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients.",
+        "definition": "A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients.\nDevice status cannot be reconciled between Argonaut and US-Core, each having different required value sets.\nDevice type has extensible mappings to different value sets in Argonaut and US-Core, however both value sets have identical SNOMED content (descendants of 49062001 (Device). We adopt the US-Core value set, which is allowable because the binding is extensible.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-MedicationAdministration-model.device",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationAdministration-model.annotation",
+        "path": "shr-core-MedicationAdministration-model.annotation",
+        "short": "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.",
+        "definition": "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-MedicationAdministration-model.annotation",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
       }
     ]
   }

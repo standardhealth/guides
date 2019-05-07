@@ -12,11 +12,11 @@
       "value": "shr.core.ProcedureRequest"
     }
   ],
-  "version": "0.5.0",
+  "version": "0.6.0",
   "name": "ProcedureRequest",
   "title": "shr-core-ProcedureRequest",
   "status": "draft",
-  "date": "2019-05-01T00:00:00-04:00",
+  "date": "2019-05-07T00:00:00-04:00",
   "publisher": "The MITRE Corporation",
   "contact": [
     {
@@ -386,14 +386,24 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-ProcedureRequest-model.serviceBasedOn",
-        "path": "shr-core-ProcedureRequest-model.serviceBasedOn",
+        "id": "shr-core-ProcedureRequest-model.serviceBasedOn[x]",
+        "path": "shr-core-ProcedureRequest-model.serviceBasedOn[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
         "short": "The original or initiating plan, proposal, or request.",
         "definition": "The original or initiating plan, proposal, or request.",
         "min": 0,
         "max": "*",
         "base": {
-          "path": "shr-core-ProcedureRequest-model.serviceBasedOn",
+          "path": "shr-core-ProcedureRequest-model.serviceBasedOn[x]",
           "min": 0,
           "max": "*"
         },
@@ -401,6 +411,83 @@
           {
             "code": "Reference",
             "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ServiceRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ServiceRequest-model:ServiceRequest",
+        "path": "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ServiceRequest-model",
+        "sliceName": "ServiceRequest",
+        "short": "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.",
+        "definition": "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-ProcedureRequest-model.serviceBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ServiceRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ReferralRequest-model:ReferralRequest",
+        "path": "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ReferralRequest-model",
+        "sliceName": "ReferralRequest",
+        "short": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
+        "definition": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-ProcedureRequest-model.serviceBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ProcedureRequest-model:ProcedureRequest",
+        "path": "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ProcedureRequest-model",
+        "sliceName": "ProcedureRequest",
+        "short": "A request for a procedure to be performed. May be a proposal or an order.",
+        "definition": "A request for a procedure to be performed. May be a proposal or an order.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-ProcedureRequest-model.serviceBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest-model"
           }
         ],
         "mustSupport": false,
@@ -662,14 +749,14 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-ProcedureRequest-model.requisition",
-        "path": "shr-core-ProcedureRequest-model.requisition",
+        "id": "shr-core-ProcedureRequest-model.groupIdentifier",
+        "path": "shr-core-ProcedureRequest-model.groupIdentifier",
         "short": "A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier.",
         "definition": "A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-ProcedureRequest-model.requisition",
+          "path": "shr-core-ProcedureRequest-model.groupIdentifier",
           "min": 0,
           "max": "1"
         },
@@ -1362,14 +1449,24 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-ProcedureRequest-model.serviceBasedOn",
-        "path": "shr-core-ProcedureRequest-model.serviceBasedOn",
+        "id": "shr-core-ProcedureRequest-model.serviceBasedOn[x]",
+        "path": "shr-core-ProcedureRequest-model.serviceBasedOn[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
         "short": "The original or initiating plan, proposal, or request.",
         "definition": "The original or initiating plan, proposal, or request.",
         "min": 0,
         "max": "*",
         "base": {
-          "path": "shr-core-ProcedureRequest-model.serviceBasedOn",
+          "path": "shr-core-ProcedureRequest-model.serviceBasedOn[x]",
           "min": 0,
           "max": "*"
         },
@@ -1377,6 +1474,83 @@
           {
             "code": "Reference",
             "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ServiceRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ServiceRequest-model:ServiceRequest",
+        "path": "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ServiceRequest-model",
+        "sliceName": "ServiceRequest",
+        "short": "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.",
+        "definition": "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-ProcedureRequest-model.serviceBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ServiceRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ReferralRequest-model:ReferralRequest",
+        "path": "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ReferralRequest-model",
+        "sliceName": "ReferralRequest",
+        "short": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
+        "definition": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-ProcedureRequest-model.serviceBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ProcedureRequest-model:ProcedureRequest",
+        "path": "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ProcedureRequest-model",
+        "sliceName": "ProcedureRequest",
+        "short": "A request for a procedure to be performed. May be a proposal or an order.",
+        "definition": "A request for a procedure to be performed. May be a proposal or an order.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-ProcedureRequest-model.serviceBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest-model"
           }
         ],
         "mustSupport": false,
@@ -1638,14 +1812,14 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-ProcedureRequest-model.requisition",
-        "path": "shr-core-ProcedureRequest-model.requisition",
+        "id": "shr-core-ProcedureRequest-model.groupIdentifier",
+        "path": "shr-core-ProcedureRequest-model.groupIdentifier",
         "short": "A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier.",
         "definition": "A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-ProcedureRequest-model.requisition",
+          "path": "shr-core-ProcedureRequest-model.groupIdentifier",
           "min": 0,
           "max": "1"
         },

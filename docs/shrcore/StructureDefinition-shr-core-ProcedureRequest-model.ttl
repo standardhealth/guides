@@ -18,11 +18,11 @@
      fhir:Identifier.system [ fhir:value "http://hl7.org/fhir/us/shrcore" ];
      fhir:Identifier.value [ fhir:value "shr.core.ProcedureRequest" ]
   ];
-  fhir:StructureDefinition.version [ fhir:value "0.5.0"];
+  fhir:StructureDefinition.version [ fhir:value "0.6.0"];
   fhir:StructureDefinition.name [ fhir:value "ProcedureRequest"];
   fhir:StructureDefinition.title [ fhir:value "shr-core-ProcedureRequest"];
   fhir:StructureDefinition.status [ fhir:value "draft"];
-  fhir:StructureDefinition.date [ fhir:value "2019-05-01T00:00:00-04:00"^^xsd:dateTime];
+  fhir:StructureDefinition.date [ fhir:value "2019-05-07T00:00:00-04:00"^^xsd:dateTime];
   fhir:StructureDefinition.publisher [ fhir:value "The MITRE Corporation"];
   fhir:StructureDefinition.contact [
      fhir:index 0;
@@ -374,14 +374,53 @@
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 14;
-       fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOn" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOn" ];
+       fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOn[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOn[x]" ];
+       fhir:ElementDefinition.slicing [
+         fhir:ElementDefinition.slicing.discriminator [
+           fhir:index 0;
+           fhir:ElementDefinition.slicing.discriminator.type [ fhir:value "type" ];
+           fhir:ElementDefinition.slicing.discriminator.path [ fhir:value "$this" ]
+         ];
+         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
+         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
+       ];
        fhir:ElementDefinition.short [ fhir:value "The original or initiating plan, proposal, or request." ];
        fhir:ElementDefinition.definition [ fhir:value "The original or initiating plan, proposal, or request." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "*" ];
        fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOn" ];
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOn[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ServiceRequest-model" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model" ]
+       ], [
+         fhir:index 2;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 15;
+       fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ServiceRequest-model:ServiceRequest" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ServiceRequest-model" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "ServiceRequest" ];
+       fhir:ElementDefinition.short [ fhir:value "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed." ];
+       fhir:ElementDefinition.definition [ fhir:value "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOn[x]" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
          fhir:ElementDefinition.base.max [ fhir:value "*" ]
        ];
@@ -394,7 +433,51 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 15;
+       fhir:index 16;
+       fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ReferralRequest-model:ReferralRequest" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ReferralRequest-model" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "ReferralRequest" ];
+       fhir:ElementDefinition.short [ fhir:value "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization." ];
+       fhir:ElementDefinition.definition [ fhir:value "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOn[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 17;
+       fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ProcedureRequest-model:ProcedureRequest" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ProcedureRequest-model" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "ProcedureRequest" ];
+       fhir:ElementDefinition.short [ fhir:value "A request for a procedure to be performed. May be a proposal or an order." ];
+       fhir:ElementDefinition.definition [ fhir:value "A request for a procedure to be performed. May be a proposal or an order." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOn[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 18;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.code" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.code" ];
        fhir:ElementDefinition.short [ fhir:value "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary." ];
@@ -421,7 +504,7 @@
          ]
        ]
      ], [
-       fhir:index 16;
+       fhir:index 19;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.category" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.category" ];
        fhir:ElementDefinition.short [ fhir:value "The general type or class of this item." ];
@@ -441,7 +524,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 17;
+       fhir:index 20;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.procedureRequester[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.procedureRequester[x]" ];
        fhir:ElementDefinition.short [ fhir:value "The agent requesting the procedure. Allows Practitioner and Device, since these represent the intersection between DSTU 2 and STU 3. DSTU 2 allows Organization, and STU 3 allows Patient and RelatedPerson." ];
@@ -466,7 +549,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 18;
+       fhir:index 21;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.requestIntent" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.requestIntent" ];
        fhir:ElementDefinition.short [ fhir:value "Indicates the level of authority/intentionality associated with the request and where the request fits into the workflow chain." ];
@@ -493,7 +576,7 @@
          ]
        ]
      ], [
-       fhir:index 19;
+       fhir:index 22;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.expectedPerformanceTime[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.expectedPerformanceTime[x]" ];
        fhir:ElementDefinition.short [ fhir:value "When an action should be done. If the action is a series or recurs (e.g. daily blood sugar testing in the morning) then a Timing can be used to describe the periodicity." ];
@@ -519,7 +602,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 20;
+       fhir:index 23;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.expectedPerformerType" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.expectedPerformerType" ];
        fhir:ElementDefinition.short [ fhir:value "What type of party should carry out the testing." ];
@@ -539,7 +622,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 21;
+       fhir:index 24;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.expectedPerformer[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.expectedPerformer[x]" ];
        fhir:ElementDefinition.short [ fhir:value "Who this request is being addressed to." ];
@@ -576,7 +659,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 22;
+       fhir:index 25;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.priorityCode[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.priorityCode[x]" ];
        fhir:ElementDefinition.short [ fhir:value "An indication of the importance of an action relative to other actions." ];
@@ -599,7 +682,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 23;
+       fhir:index 26;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.annotation" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.annotation" ];
        fhir:ElementDefinition.short [ fhir:value "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when." ];
@@ -619,7 +702,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 24;
+       fhir:index 27;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.replaces" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.replaces" ];
        fhir:ElementDefinition.short [ fhir:value "Request(s) replaced by this request" ];
@@ -640,15 +723,15 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 25;
-       fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.requisition" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.requisition" ];
+       fhir:index 28;
+       fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.groupIdentifier" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.groupIdentifier" ];
        fhir:ElementDefinition.short [ fhir:value "A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier." ];
        fhir:ElementDefinition.definition [ fhir:value "A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ProcedureRequest-model.requisition" ];
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ProcedureRequest-model.groupIdentifier" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
          fhir:ElementDefinition.base.max [ fhir:value "1" ]
        ];
@@ -660,7 +743,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 26;
+       fhir:index 29;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.doNotPerform" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.doNotPerform" ];
        fhir:ElementDefinition.short [ fhir:value "A flag, when set to true, indicates that the service/procedure should NOT be performed." ];
@@ -680,7 +763,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 27;
+       fhir:index 30;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.serviceDetails" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.serviceDetails" ];
        fhir:ElementDefinition.short [ fhir:value "A service requested or performed. Additional details and instructions about the service requested or performed. For example, and order for a urinary catheter may have an order detail for an external or indwelling catheter, or an order for a bandage may require additional instructions specifying how the bandage should be applied." ];
@@ -707,7 +790,7 @@
          ]
        ]
      ], [
-       fhir:index 28;
+       fhir:index 31;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.requestQuantity[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.requestQuantity[x]" ];
        fhir:ElementDefinition.short [ fhir:value "An amount of service being requested which can be a quantity ( for example $1,500 home modification), a ratio ( for example, 20 half day visits per month), or a range (2.0 to 1.8 Gy per fraction)." ];
@@ -733,7 +816,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 29;
+       fhir:index 32;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.procedureRequestSubjectOfRecord[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.procedureRequestSubjectOfRecord[x]" ];
        fhir:ElementDefinition.short [ fhir:value "A choice of Patient or Group. These are the potential subjects for Procedure and ReferralRequest resources." ];
@@ -758,7 +841,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 30;
+       fhir:index 33;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.asNeeded[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.asNeeded[x]" ];
        fhir:ElementDefinition.short [ fhir:value "Preconditions for service, either 'true' indicating to be performed if needed, or a code indicating the pre-condition for performing the service. For example 'pain', 'on flare-up', etc." ];
@@ -781,7 +864,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 31;
+       fhir:index 34;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.location" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.location" ];
        fhir:ElementDefinition.short [ fhir:value "Services and space and equipment provided for a particular purpose; a building or place that provides a particular service or is used for a particular industry. Could be a clinical site, community site, or a mobile facility." ];
@@ -802,7 +885,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 32;
+       fhir:index 35;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.locationType" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.locationType" ];
        fhir:ElementDefinition.short [ fhir:value "The preferred type of location(s) where the service should happen, in coded or free text form, e.g. at home or nursing day care center." ];
@@ -822,7 +905,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 33;
+       fhir:index 36;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.insurance" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.insurance" ];
        fhir:ElementDefinition.code [
@@ -849,7 +932,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 34;
+       fhir:index 37;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.supportingInformation" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.supportingInformation" ];
        fhir:ElementDefinition.short [ fhir:value "Additional information to support this request." ];
@@ -870,7 +953,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 35;
+       fhir:index 38;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.specimen" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.specimen" ];
        fhir:ElementDefinition.short [ fhir:value "A specimen is a substance, physical object, or collection of objects, that the laboratory considers a single discrete, uniquely identified unit that is the subject of one or more steps in the laboratory workflow. A specimen may include multiple physical pieces as long as they are considered a single unit within the laboratory workflow. A specimen results from one to many specimen collection procedures, and may be contained in multiple specimen containers. Specimen may have one or more processing activities." ];
@@ -891,7 +974,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 36;
+       fhir:index 39;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.bodyLocation" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.bodyLocation" ];
        fhir:ElementDefinition.short [ fhir:value "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases." ];
@@ -911,7 +994,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 37;
+       fhir:index 40;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.patientInstruction" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.patientInstruction" ];
        fhir:ElementDefinition.short [ fhir:value "Patient or consumer-oriented instructions." ];
@@ -931,7 +1014,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 38;
+       fhir:index 41;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.partOf" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.partOf" ];
        fhir:ElementDefinition.short [ fhir:value "The larger entity that the asserted item is a portion of. For example, an organization part of a larger organization, or an encounter with a hospitalist might be part of a larger hospitalization encounter." ];
@@ -952,7 +1035,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 39;
+       fhir:index 42;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.method" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.method" ];
        fhir:ElementDefinition.short [ fhir:value "The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle." ];
@@ -1309,14 +1392,53 @@
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 14;
-       fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOn" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOn" ];
+       fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOn[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOn[x]" ];
+       fhir:ElementDefinition.slicing [
+         fhir:ElementDefinition.slicing.discriminator [
+           fhir:index 0;
+           fhir:ElementDefinition.slicing.discriminator.type [ fhir:value "type" ];
+           fhir:ElementDefinition.slicing.discriminator.path [ fhir:value "$this" ]
+         ];
+         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
+         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
+       ];
        fhir:ElementDefinition.short [ fhir:value "The original or initiating plan, proposal, or request." ];
        fhir:ElementDefinition.definition [ fhir:value "The original or initiating plan, proposal, or request." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "*" ];
        fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOn" ];
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOn[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ServiceRequest-model" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model" ]
+       ], [
+         fhir:index 2;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 15;
+       fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ServiceRequest-model:ServiceRequest" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ServiceRequest-model" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "ServiceRequest" ];
+       fhir:ElementDefinition.short [ fhir:value "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed." ];
+       fhir:ElementDefinition.definition [ fhir:value "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOn[x]" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
          fhir:ElementDefinition.base.max [ fhir:value "*" ]
        ];
@@ -1329,7 +1451,51 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 15;
+       fhir:index 16;
+       fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ReferralRequest-model:ReferralRequest" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ReferralRequest-model" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "ReferralRequest" ];
+       fhir:ElementDefinition.short [ fhir:value "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization." ];
+       fhir:ElementDefinition.definition [ fhir:value "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOn[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 17;
+       fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ProcedureRequest-model:ProcedureRequest" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOnShr-core-ProcedureRequest-model" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "ProcedureRequest" ];
+       fhir:ElementDefinition.short [ fhir:value "A request for a procedure to be performed. May be a proposal or an order." ];
+       fhir:ElementDefinition.definition [ fhir:value "A request for a procedure to be performed. May be a proposal or an order." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ProcedureRequest-model.serviceBasedOn[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 18;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.code" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.code" ];
        fhir:ElementDefinition.short [ fhir:value "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary." ];
@@ -1356,7 +1522,7 @@
          ]
        ]
      ], [
-       fhir:index 16;
+       fhir:index 19;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.category" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.category" ];
        fhir:ElementDefinition.short [ fhir:value "The general type or class of this item." ];
@@ -1376,7 +1542,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 17;
+       fhir:index 20;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.procedureRequester[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.procedureRequester[x]" ];
        fhir:ElementDefinition.short [ fhir:value "The agent requesting the procedure. Allows Practitioner and Device, since these represent the intersection between DSTU 2 and STU 3. DSTU 2 allows Organization, and STU 3 allows Patient and RelatedPerson." ];
@@ -1401,7 +1567,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 18;
+       fhir:index 21;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.requestIntent" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.requestIntent" ];
        fhir:ElementDefinition.short [ fhir:value "Indicates the level of authority/intentionality associated with the request and where the request fits into the workflow chain." ];
@@ -1428,7 +1594,7 @@
          ]
        ]
      ], [
-       fhir:index 19;
+       fhir:index 22;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.expectedPerformanceTime[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.expectedPerformanceTime[x]" ];
        fhir:ElementDefinition.short [ fhir:value "When an action should be done. If the action is a series or recurs (e.g. daily blood sugar testing in the morning) then a Timing can be used to describe the periodicity." ];
@@ -1454,7 +1620,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 20;
+       fhir:index 23;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.expectedPerformerType" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.expectedPerformerType" ];
        fhir:ElementDefinition.short [ fhir:value "What type of party should carry out the testing." ];
@@ -1474,7 +1640,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 21;
+       fhir:index 24;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.expectedPerformer[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.expectedPerformer[x]" ];
        fhir:ElementDefinition.short [ fhir:value "Who this request is being addressed to." ];
@@ -1511,7 +1677,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 22;
+       fhir:index 25;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.priorityCode[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.priorityCode[x]" ];
        fhir:ElementDefinition.short [ fhir:value "An indication of the importance of an action relative to other actions." ];
@@ -1534,7 +1700,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 23;
+       fhir:index 26;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.annotation" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.annotation" ];
        fhir:ElementDefinition.short [ fhir:value "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when." ];
@@ -1554,7 +1720,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 24;
+       fhir:index 27;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.replaces" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.replaces" ];
        fhir:ElementDefinition.short [ fhir:value "Request(s) replaced by this request" ];
@@ -1575,15 +1741,15 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 25;
-       fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.requisition" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.requisition" ];
+       fhir:index 28;
+       fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.groupIdentifier" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.groupIdentifier" ];
        fhir:ElementDefinition.short [ fhir:value "A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier." ];
        fhir:ElementDefinition.definition [ fhir:value "A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ProcedureRequest-model.requisition" ];
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ProcedureRequest-model.groupIdentifier" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
          fhir:ElementDefinition.base.max [ fhir:value "1" ]
        ];
@@ -1595,7 +1761,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 26;
+       fhir:index 29;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.doNotPerform" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.doNotPerform" ];
        fhir:ElementDefinition.short [ fhir:value "A flag, when set to true, indicates that the service/procedure should NOT be performed." ];
@@ -1615,7 +1781,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 27;
+       fhir:index 30;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.serviceDetails" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.serviceDetails" ];
        fhir:ElementDefinition.short [ fhir:value "A service requested or performed. Additional details and instructions about the service requested or performed. For example, and order for a urinary catheter may have an order detail for an external or indwelling catheter, or an order for a bandage may require additional instructions specifying how the bandage should be applied." ];
@@ -1642,7 +1808,7 @@
          ]
        ]
      ], [
-       fhir:index 28;
+       fhir:index 31;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.requestQuantity[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.requestQuantity[x]" ];
        fhir:ElementDefinition.short [ fhir:value "An amount of service being requested which can be a quantity ( for example $1,500 home modification), a ratio ( for example, 20 half day visits per month), or a range (2.0 to 1.8 Gy per fraction)." ];
@@ -1668,7 +1834,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 29;
+       fhir:index 32;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.procedureRequestSubjectOfRecord[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.procedureRequestSubjectOfRecord[x]" ];
        fhir:ElementDefinition.short [ fhir:value "A choice of Patient or Group. These are the potential subjects for Procedure and ReferralRequest resources." ];
@@ -1693,7 +1859,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 30;
+       fhir:index 33;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.asNeeded[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.asNeeded[x]" ];
        fhir:ElementDefinition.short [ fhir:value "Preconditions for service, either 'true' indicating to be performed if needed, or a code indicating the pre-condition for performing the service. For example 'pain', 'on flare-up', etc." ];
@@ -1716,7 +1882,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 31;
+       fhir:index 34;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.location" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.location" ];
        fhir:ElementDefinition.short [ fhir:value "Services and space and equipment provided for a particular purpose; a building or place that provides a particular service or is used for a particular industry. Could be a clinical site, community site, or a mobile facility." ];
@@ -1737,7 +1903,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 32;
+       fhir:index 35;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.locationType" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.locationType" ];
        fhir:ElementDefinition.short [ fhir:value "The preferred type of location(s) where the service should happen, in coded or free text form, e.g. at home or nursing day care center." ];
@@ -1757,7 +1923,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 33;
+       fhir:index 36;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.insurance" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.insurance" ];
        fhir:ElementDefinition.code [
@@ -1784,7 +1950,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 34;
+       fhir:index 37;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.supportingInformation" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.supportingInformation" ];
        fhir:ElementDefinition.short [ fhir:value "Additional information to support this request." ];
@@ -1805,7 +1971,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 35;
+       fhir:index 38;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.specimen" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.specimen" ];
        fhir:ElementDefinition.short [ fhir:value "A specimen is a substance, physical object, or collection of objects, that the laboratory considers a single discrete, uniquely identified unit that is the subject of one or more steps in the laboratory workflow. A specimen may include multiple physical pieces as long as they are considered a single unit within the laboratory workflow. A specimen results from one to many specimen collection procedures, and may be contained in multiple specimen containers. Specimen may have one or more processing activities." ];
@@ -1826,7 +1992,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 36;
+       fhir:index 39;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.bodyLocation" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.bodyLocation" ];
        fhir:ElementDefinition.short [ fhir:value "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases." ];
@@ -1846,7 +2012,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 37;
+       fhir:index 40;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.patientInstruction" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.patientInstruction" ];
        fhir:ElementDefinition.short [ fhir:value "Patient or consumer-oriented instructions." ];
@@ -1866,7 +2032,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 38;
+       fhir:index 41;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.partOf" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.partOf" ];
        fhir:ElementDefinition.short [ fhir:value "The larger entity that the asserted item is a portion of. For example, an organization part of a larger organization, or an encounter with a hospitalist might be part of a larger hospitalization encounter." ];
@@ -1887,7 +2053,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 39;
+       fhir:index 42;
        fhir:Element.id [ fhir:value "shr-core-ProcedureRequest-model.method" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ProcedureRequest-model.method" ];
        fhir:ElementDefinition.short [ fhir:value "The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle." ];

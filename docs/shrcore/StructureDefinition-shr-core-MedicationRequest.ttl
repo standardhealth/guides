@@ -10,7 +10,7 @@
   fhir:Resource.id [ fhir:value "shr-core-MedicationRequest"];
   fhir:DomainResource.text [
      fhir:Narrative.status [ fhir:value "generated" ];
-     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>MedicationRequest Profile</b></p>\n  <p>An order for a medication to be dispensed and instructions for use.\nValue sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.\nCategory does not exist in DSTU2 and is provided as an extension.\nIntent was added in STU3 and is provided as an extension with required binding.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.MedicationRequest maps to http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest:\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.extension\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  SubjectOfRecord maps to subject\n  CareContext maps to context\n  StatementDateTime maps to authoredOn\n  Identifier maps to identifier\n  Requester maps to requester\n  RequestIntent maps to intent\n  MedicationCodeOrReference maps to medication[x]\n  NumberOfRefillsAllowed maps to dispenseRequest.numberOfRepeatsAllowed\n  QuantityPerDispense maps to dispenseRequest.quantity\n  SupplyDuration maps to dispenseRequest.expectedSupplyDuration\n  constrain dosageInstruction to 0..1\n  Dosage maps to dosageInstruction\n  ReasonCode maps to reasonCode\n  MedicationReasonReference maps to reasonReference\n  Status maps to status\n  ExpectedPerformanceTime maps to dispenseRequest.validityPeriod\n  PriorityCode maps to priority\n  Annotation maps to note\n  ExpectedPerformer maps to dispenseRequest.performer\n  constrain note to 0..1\n  SubstitutionAllowed maps to substitution.allowed\n  SubstitutionReason maps to substitution.reason\n  Category maps to category\n</pre></p>\n</div>"
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>MedicationRequest Profile</b></p>\n  <p>An order for a medication to be dispensed and instructions for use.\nValue sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.\nCategory does not exist in DSTU2 and is provided as an extension.\nIntent was added in STU3 and is provided as an extension with required binding.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.MedicationRequest maps to http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest:\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.extension\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  MedicationBasedOn maps to extension\n  GroupIdentifier maps to groupIdentifier\n  Status maps to status\n  StatusReason maps to extension\n  RequestIntent maps to intent\n  Category maps to category\n  PriorityCode maps to priority\n  DoNotPerform maps to modifierExtension\n  Reported maps to extension\n  MedicationCodeOrReference maps to medication[x]\n  SubjectOfRecord maps to subject\n  CareContext maps to context\n  SupportingInformation maps to supportingInformation\n  StatementDateTime maps to authoredOn\n  Requester maps to requester.agent\n  ExpectedPerformer maps to extension\n  ExpectedPerformerType maps to extension\n  Author maps to recorder\n  ReasonCode maps to reasonCode\n  MedicationReasonReference maps to reasonReference\n  CourseOfTherapyType maps to extension\n  Insurance maps to extension\n  Annotation maps to note\n  Dosage maps to dosageInstruction\n  DispenseRequest maps to dispenseRequest\n  DispenseRequest.InitialFill maps to dispenseRequest.extension\n  DispenseRequest.DispenseInterval maps to dispenseRequest.extension\n  DispenseRequest.ValidityPeriod maps to dispenseRequest.validityPeriod\n  constrain dispenseRequest.numberOfRepeatsAllowed to 0..0\n  DispenseRequest.NumberOfRefillsAllowed maps to dispenseRequest.extension\n  DispenseRequest.QuantityPerDispense maps to dispenseRequest.quantity\n  DispenseRequest.SupplyDuration maps to dispenseRequest.expectedSupplyDuration\n  DispenseRequest.ExpectedPerformer maps to dispenseRequest.performer\n  Substitution maps to substitution\n  Substitution.SubstitutionAllowed maps to substitution.allowed\n  Substitution.SubstitutionReason maps to substitution.reason\n  Replaces maps to priorPrescription\n</pre></p>\n</div>"
   ];
   fhir:StructureDefinition.url [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationRequest"];
   fhir:StructureDefinition.identifier [
@@ -18,11 +18,11 @@
      fhir:Identifier.system [ fhir:value "http://hl7.org/fhir/us/shrcore" ];
      fhir:Identifier.value [ fhir:value "shr.core.MedicationRequest" ]
   ];
-  fhir:StructureDefinition.version [ fhir:value "0.5.0"];
+  fhir:StructureDefinition.version [ fhir:value "0.6.0"];
   fhir:StructureDefinition.name [ fhir:value "MedicationRequest"];
   fhir:StructureDefinition.title [ fhir:value "shr-core-MedicationRequest"];
   fhir:StructureDefinition.status [ fhir:value "draft"];
-  fhir:StructureDefinition.date [ fhir:value "2019-05-01T00:00:00-04:00"^^xsd:dateTime];
+  fhir:StructureDefinition.date [ fhir:value "2019-05-07T00:00:00-04:00"^^xsd:dateTime];
   fhir:StructureDefinition.publisher [ fhir:value "The MITRE Corporation"];
   fhir:StructureDefinition.contact [
      fhir:index 0;
@@ -556,10 +556,10 @@
        ]
      ], [
        fhir:index 16;
-       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:reasonreference" ];
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:medicationbasedon" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.extension" ];
-       fhir:ElementDefinition.sliceName [ fhir:value "reasonreference" ];
-       fhir:ElementDefinition.definition [ fhir:value "The justification, as reference to a condition or observation." ];
+       fhir:ElementDefinition.sliceName [ fhir:value "medicationbasedon" ];
+       fhir:ElementDefinition.definition [ fhir:value "MedicationBasedOn" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "*" ];
        fhir:ElementDefinition.base [
@@ -570,14 +570,104 @@
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
-         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension" ]
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationBasedOn-extension" ]
        ]
      ], [
        fhir:index 17;
-       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:basedon" ];
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:statusreason" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.extension" ];
-       fhir:ElementDefinition.sliceName [ fhir:value "basedon" ];
-       fhir:ElementDefinition.definition [ fhir:value "The proposal, order, or plan that is partly or wholly fulfilled by this item." ];
+       fhir:ElementDefinition.sliceName [ fhir:value "statusreason" ];
+       fhir:ElementDefinition.definition [ fhir:value "Captures the reason for the current state of the procedure." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DomainResource.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatusReason-extension" ]
+       ]
+     ], [
+       fhir:index 18;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:reported" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "reported" ];
+       fhir:ElementDefinition.definition [ fhir:value "Indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth record. It may also indicate the source of the report." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DomainResource.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Reported-extension" ]
+       ]
+     ], [
+       fhir:index 19;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:expectedperformer" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "expectedperformer" ];
+       fhir:ElementDefinition.definition [ fhir:value "Who this request is being addressed to." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DomainResource.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ExpectedPerformer-extension" ]
+       ]
+     ], [
+       fhir:index 20;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:expectedperformertype" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "expectedperformertype" ];
+       fhir:ElementDefinition.definition [ fhir:value "What type of party should carry out the testing." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DomainResource.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ExpectedPerformerType-extension" ]
+       ]
+     ], [
+       fhir:index 21;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:courseoftherapytype" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "courseoftherapytype" ];
+       fhir:ElementDefinition.definition [ fhir:value "The description of the overall pattern of the administration of the medication to the patient." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DomainResource.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CourseOfTherapyType-extension" ]
+       ]
+     ], [
+       fhir:index 22;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:insurance" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "insurance" ];
+       fhir:ElementDefinition.definition [ fhir:value "Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "*" ];
        fhir:ElementDefinition.base [
@@ -588,10 +678,10 @@
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
-         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BasedOn-extension" ]
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Insurance-extension" ]
        ]
      ], [
-       fhir:index 18;
+       fhir:index 23;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:code" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.extension" ];
        fhir:ElementDefinition.sliceName [ fhir:value "code" ];
@@ -609,9 +699,37 @@
          fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Code-extension" ]
        ]
      ], [
-       fhir:index 19;
+       fhir:index 24;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:expectedperformancetime" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "expectedperformancetime" ];
+       fhir:ElementDefinition.definition [ fhir:value "When an action should be done. If the action is a series or recurs (e.g. daily blood sugar testing in the morning) then a Timing can be used to describe the periodicity." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DomainResource.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ExpectedPerformanceTime-extension" ]
+       ]
+     ], [
+       fhir:index 25;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.modifierExtension" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.modifierExtension" ];
+       fhir:ElementDefinition.slicing [
+         fhir:Element.id [ fhir:value "4" ];
+         fhir:ElementDefinition.slicing.discriminator [
+           fhir:index 0;
+           fhir:ElementDefinition.slicing.discriminator.type [ fhir:value "value" ];
+           fhir:ElementDefinition.slicing.discriminator.path [ fhir:value "url" ]
+         ];
+         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
+         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
+       ];
        fhir:ElementDefinition.short [ fhir:value "Extensions that cannot be ignored" ];
        fhir:ElementDefinition.definition [ fhir:value "May be used to represent additional information that is not part of the basic definition of the resource, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." ];
        fhir:ElementDefinition.comment [ fhir:value "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." ];
@@ -640,7 +758,27 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 20;
+       fhir:index 26;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.modifierExtension:donotperform" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.modifierExtension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "donotperform" ];
+       fhir:ElementDefinition.definition [ fhir:value "A flag, when set to true, indicates that the service/procedure should NOT be performed." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DomainResource.modifierExtension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DoNotPerform-extension" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "true"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "true"^^xsd:boolean ]
+     ], [
+       fhir:index 27;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.identifier" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.identifier" ];
        fhir:ElementDefinition.short [ fhir:value "External ids for this request" ];
@@ -678,7 +816,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "id" ]
        ]
      ], [
-       fhir:index 21;
+       fhir:index 28;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.definition" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.definition" ];
        fhir:ElementDefinition.short [ fhir:value "Protocol or definition" ];
@@ -710,7 +848,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".outboundRelationship[typeCode=DEFN].target[classCode=unspecified]" ]
        ]
      ], [
-       fhir:index 22;
+       fhir:index 29;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.basedOn" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.basedOn" ];
        fhir:ElementDefinition.short [ fhir:value "What request fulfills" ];
@@ -750,7 +888,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".outboundRelationship[typeCode=FLFS].target[classCode=SBADM or PROC or PCPR or OBS, moodCode=RQO orPLAN or PRP]" ]
        ]
      ], [
-       fhir:index 23;
+       fhir:index 30;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.groupIdentifier" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.groupIdentifier" ];
        fhir:ElementDefinition.short [ fhir:value "Composite request this is part of" ];
@@ -778,7 +916,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".outboundRelationship(typeCode=COMP].target[classCode=SBADM, moodCode=INT].id" ]
        ]
      ], [
-       fhir:index 24;
+       fhir:index 31;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.status" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.status" ];
        fhir:ElementDefinition.short [ fhir:value "active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown" ];
@@ -828,7 +966,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "MedicationOrder.status" ]
        ]
      ], [
-       fhir:index 25;
+       fhir:index 32;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.intent" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.intent" ];
        fhir:ElementDefinition.short [ fhir:value "proposal | plan | order | instance-order" ];
@@ -874,7 +1012,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "class" ]
        ]
      ], [
-       fhir:index 26;
+       fhir:index 33;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.category" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.category" ];
        fhir:ElementDefinition.short [ fhir:value "Type of medication usage" ];
@@ -911,7 +1049,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "class" ]
        ]
      ], [
-       fhir:index 27;
+       fhir:index 34;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.priority" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.priority" ];
        fhir:ElementDefinition.short [ fhir:value "routine | urgent | stat | asap" ];
@@ -955,11 +1093,11 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "grade" ]
        ]
      ], [
-       fhir:index 28;
+       fhir:index 35;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.medication[x]" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.medication[x]" ];
        fhir:ElementDefinition.slicing [
-         fhir:Element.id [ fhir:value "1" ];
+         fhir:Element.id [ fhir:value "3" ];
          fhir:ElementDefinition.slicing.discriminator [
            fhir:index 0;
            fhir:ElementDefinition.slicing.discriminator.type [ fhir:value "type" ];
@@ -1022,7 +1160,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "MedicationOrder.medication[x]" ]
        ]
      ], [
-       fhir:index 29;
+       fhir:index 36;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.medicationCodeableConcept:CodeableConcept" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.medicationCodeableConcept" ];
        fhir:ElementDefinition.sliceName [ fhir:value "CodeableConcept" ];
@@ -1048,7 +1186,7 @@
          ]
        ]
      ], [
-       fhir:index 30;
+       fhir:index 37;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.subject" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.subject" ];
        fhir:ElementDefinition.short [ fhir:value "Who or group medication request is for" ];
@@ -1094,7 +1232,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "MedicationOrder.patient" ]
        ]
      ], [
-       fhir:index 31;
+       fhir:index 38;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.context" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.context" ];
        fhir:ElementDefinition.short [ fhir:value "Created during encounter/admission/stay" ];
@@ -1111,10 +1249,6 @@
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
          fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter" ]
-       ], [
-         fhir:index 1;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare" ]
        ];
        fhir:ElementDefinition.mapping [
          fhir:index 0;
@@ -1138,7 +1272,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "context" ]
        ]
      ], [
-       fhir:index 32;
+       fhir:index 39;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.supportingInformation" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.supportingInformation" ];
        fhir:ElementDefinition.short [ fhir:value "Information to support ordering of the medication" ];
@@ -1153,7 +1287,7 @@
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/StructureDefinition/Resource" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource" ]
        ];
        fhir:ElementDefinition.mapping [
          fhir:index 0;
@@ -1165,7 +1299,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "context" ]
        ]
      ], [
-       fhir:index 33;
+       fhir:index 40;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.authoredOn" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.authoredOn" ];
        fhir:ElementDefinition.short [ fhir:value "When request was initially authored" ];
@@ -1209,7 +1343,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "MedicationOrder.dateWritten" ]
        ]
      ], [
-       fhir:index 34;
+       fhir:index 41;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.requester" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.requester" ];
        fhir:ElementDefinition.short [ fhir:value "Who/What requested the Request" ];
@@ -1262,7 +1396,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "NA (new element in STU3)" ]
        ]
      ], [
-       fhir:index 35;
+       fhir:index 42;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.requester.id" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.requester.id" ];
        fhir:ElementDefinition.representation [
@@ -1288,7 +1422,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 36;
+       fhir:index 43;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.requester.extension" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.requester.extension" ];
        fhir:ElementDefinition.short [ fhir:value "Additional Content defined by implementations" ];
@@ -1318,7 +1452,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 37;
+       fhir:index 44;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.requester.modifierExtension" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.requester.modifierExtension" ];
        fhir:ElementDefinition.short [ fhir:value "Extensions that cannot be ignored" ];
@@ -1353,7 +1487,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 38;
+       fhir:index 45;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.requester.agent" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.requester.agent" ];
        fhir:ElementDefinition.short [ fhir:value "Who ordered the initial medication(s)" ];
@@ -1369,7 +1503,7 @@
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "true"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ];
@@ -1395,7 +1529,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "MedicationOrder.prescriber" ]
        ]
      ], [
-       fhir:index 39;
+       fhir:index 46;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.requester.onBehalfOf" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.requester.onBehalfOf" ];
        fhir:ElementDefinition.short [ fhir:value "Organization agent is acting for" ];
@@ -1428,7 +1562,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".scoper" ]
        ]
      ], [
-       fhir:index 40;
+       fhir:index 47;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.recorder" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.recorder" ];
        fhir:ElementDefinition.short [ fhir:value "Person who entered the request" ];
@@ -1443,7 +1577,7 @@
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/StructureDefinition/Practitioner" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner" ]
        ];
        fhir:ElementDefinition.mapping [
          fhir:index 0;
@@ -1455,7 +1589,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "who" ]
        ]
      ], [
-       fhir:index 41;
+       fhir:index 48;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.reasonCode" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.reasonCode" ];
        fhir:ElementDefinition.short [ fhir:value "Reason or indication for writing the prescription" ];
@@ -1507,7 +1641,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "why" ]
        ]
      ], [
-       fhir:index 42;
+       fhir:index 49;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.reasonReference" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.reasonReference" ];
        fhir:ElementDefinition.short [ fhir:value "Condition or Observation that supports why the prescription is being written" ];
@@ -1547,7 +1681,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "why" ]
        ]
      ], [
-       fhir:index 43;
+       fhir:index 50;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.note" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.note" ];
        fhir:ElementDefinition.short [ fhir:value "Information about the prescription" ];
@@ -1578,14 +1712,14 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".inboundRelationship[typeCode=SUBJ]/source[classCode=OBS,moodCode=EVN,code=\"annotation\"].value" ]
        ]
      ], [
-       fhir:index 44;
+       fhir:index 51;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dosageInstruction" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dosageInstruction" ];
        fhir:ElementDefinition.short [ fhir:value "How the medication should be taken" ];
        fhir:ElementDefinition.definition [ fhir:value "Indicates how the medication is to be used by the patient." ];
        fhir:ElementDefinition.comment [ fhir:value "There are examples where a medication request may include the option of an oral dose or an Intravenous or Intramuscular dose.  For example, \"Ondansetron 8mg orally or IV twice a day as needed for nausea\" or \"Compazine® (prochlorperazine) 5-10mg PO or 25mg PR bid prn nausea or vomiting\".  In these cases, two medication requests would be created that could be grouped together.  The decision on which dose and route of administration to use is based on the patient's condition at the time the dose is needed." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
        fhir:ElementDefinition.base [
          fhir:ElementDefinition.base.path [ fhir:value "MedicationRequest.dosageInstruction" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
@@ -1606,7 +1740,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "see dosageInstruction mapping" ]
        ]
      ], [
-       fhir:index 45;
+       fhir:index 52;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest" ];
        fhir:ElementDefinition.short [ fhir:value "Medication supply authorization" ];
@@ -1641,7 +1775,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "component.supplyEvent" ]
        ]
      ], [
-       fhir:index 46;
+       fhir:index 53;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.id" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest.id" ];
        fhir:ElementDefinition.representation [
@@ -1667,9 +1801,19 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 47;
+       fhir:index 54;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest.extension" ];
+       fhir:ElementDefinition.slicing [
+         fhir:Element.id [ fhir:value "1" ];
+         fhir:ElementDefinition.slicing.discriminator [
+           fhir:index 0;
+           fhir:ElementDefinition.slicing.discriminator.type [ fhir:value "value" ];
+           fhir:ElementDefinition.slicing.discriminator.path [ fhir:value "url" ]
+         ];
+         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
+         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
+       ];
        fhir:ElementDefinition.short [ fhir:value "Additional Content defined by implementations" ];
        fhir:ElementDefinition.definition [ fhir:value "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." ];
        fhir:ElementDefinition.comment [ fhir:value "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." ];
@@ -1697,7 +1841,61 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 48;
+       fhir:index 55;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension:initialfill" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "initialfill" ];
+       fhir:ElementDefinition.definition [ fhir:value "Indicates the quantity or duration for the first dispense of the medication." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Element.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-InitialFill-extension" ]
+       ]
+     ], [
+       fhir:index 56;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension:dispenseinterval" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "dispenseinterval" ];
+       fhir:ElementDefinition.definition [ fhir:value "The minimum period of time that must occur between dispenses of the medication." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Element.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DispenseInterval-extension" ]
+       ]
+     ], [
+       fhir:index 57;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension:numberofrefillsallowed" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "numberofrefillsallowed" ];
+       fhir:ElementDefinition.definition [ fhir:value "The maximum number of times the dispense can be repeated. For medication dispense, this integer does NOT include the original order dispense. This means that if an order indicates dispense 30 tablets plus 3 repeats, then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Element.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-NumberOfRefillsAllowed-extension" ]
+       ]
+     ], [
+       fhir:index 58;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.modifierExtension" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest.modifierExtension" ];
        fhir:ElementDefinition.short [ fhir:value "Extensions that cannot be ignored" ];
@@ -1732,7 +1930,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 49;
+       fhir:index 59;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.validityPeriod" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest.validityPeriod" ];
        fhir:ElementDefinition.short [ fhir:value "Time period supply is authorized for" ];
@@ -1760,14 +1958,14 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "effectiveTime" ]
        ]
      ], [
-       fhir:index 50;
+       fhir:index 60;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.numberOfRepeatsAllowed" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest.numberOfRepeatsAllowed" ];
        fhir:ElementDefinition.short [ fhir:value "Number of refills authorized" ];
        fhir:ElementDefinition.definition [ fhir:value "An integer indicating the number of times, in addition to the original dispense, (aka refills or repeats) that the patient can receive the prescribed medication. Usage Notes: This integer does not include the original order dispense. This means that if an order indicates dispense 30 tablets plus \"3 repeats\", then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets." ];
        fhir:ElementDefinition.comment [ fhir:value "If displaying \"number of authorized fills\", add 1 to this number." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.max [ fhir:value "0" ];
        fhir:ElementDefinition.base [
          fhir:ElementDefinition.base.path [ fhir:value "MedicationRequest.dispenseRequest.numberOfRepeatsAllowed" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
@@ -1791,7 +1989,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "repeatNumber" ]
        ]
      ], [
-       fhir:index 51;
+       fhir:index 61;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.quantity" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest.quantity" ];
        fhir:ElementDefinition.short [ fhir:value "Amount of medication to supply per dispense" ];
@@ -1822,7 +2020,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "quantity" ]
        ]
      ], [
-       fhir:index 52;
+       fhir:index 62;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.expectedSupplyDuration" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest.expectedSupplyDuration" ];
        fhir:ElementDefinition.short [ fhir:value "Number of days supply per dispense" ];
@@ -1850,7 +2048,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "expectedUseTime" ]
        ]
      ], [
-       fhir:index 53;
+       fhir:index 63;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.performer" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest.performer" ];
        fhir:ElementDefinition.short [ fhir:value "Intended dispenser" ];
@@ -1877,7 +2075,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "who" ]
        ]
      ], [
-       fhir:index 54;
+       fhir:index 64;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.substitution" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.substitution" ];
        fhir:ElementDefinition.short [ fhir:value "Any restrictions on medication substitution" ];
@@ -1912,7 +2110,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "subjectOf.substitutionPersmission" ]
        ]
      ], [
-       fhir:index 55;
+       fhir:index 65;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.substitution.id" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.substitution.id" ];
        fhir:ElementDefinition.representation [
@@ -1938,7 +2136,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 56;
+       fhir:index 66;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.substitution.extension" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.substitution.extension" ];
        fhir:ElementDefinition.short [ fhir:value "Additional Content defined by implementations" ];
@@ -1968,7 +2166,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 57;
+       fhir:index 67;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.substitution.modifierExtension" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.substitution.modifierExtension" ];
        fhir:ElementDefinition.short [ fhir:value "Extensions that cannot be ignored" ];
@@ -2003,7 +2201,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 58;
+       fhir:index 68;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.substitution.allowed" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.substitution.allowed" ];
        fhir:ElementDefinition.short [ fhir:value "Whether substitution is allowed or not" ];
@@ -2035,7 +2233,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "code" ]
        ]
      ], [
-       fhir:index 59;
+       fhir:index 69;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.substitution.reason" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.substitution.reason" ];
        fhir:ElementDefinition.short [ fhir:value "Why should (not) substitution be made" ];
@@ -2057,7 +2255,7 @@
            fhir:Extension.url [ fhir:value "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ];
            fhir:Extension.valueString [ fhir:value "MedicationIntendedSubstitutionReason" ]
          ];
-         fhir:ElementDefinition.binding.strength [ fhir:value "required" ];
+         fhir:ElementDefinition.binding.strength [ fhir:value "example" ];
          fhir:ElementDefinition.binding.description [ fhir:value "A coded concept describing the reason that a different medication should (or should not) be substituted from what was prescribed." ];
          fhir:ElementDefinition.binding.valueSetReference [
            fhir:link <http://hl7.org/fhir/ValueSet/v3-SubstanceAdminSubstitutionReason>;
@@ -2078,7 +2276,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "reasonCode" ]
        ]
      ], [
-       fhir:index 60;
+       fhir:index 70;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.priorPrescription" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.priorPrescription" ];
        fhir:ElementDefinition.short [ fhir:value "An order/prescription that is being replaced" ];
@@ -2093,7 +2291,7 @@
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/StructureDefinition/MedicationRequest" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationRequest" ]
        ];
        fhir:ElementDefinition.mapping [
          fhir:index 0;
@@ -2109,7 +2307,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".outboundRelationship[typeCode=?RPLC or ?SUCC]/target[classCode=SBADM,moodCode=RQO]" ]
        ]
      ], [
-       fhir:index 61;
+       fhir:index 71;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.detectedIssue" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.detectedIssue" ];
        fhir:ElementDefinition.short [ fhir:value "Clinical Issue with action" ];
@@ -2142,7 +2340,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".inboundRelationship[typeCode=SUBJ]/source[classCode=ALRT,moodCode=EVN].value" ]
        ]
      ], [
-       fhir:index 62;
+       fhir:index 72;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.eventHistory" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.eventHistory" ];
        fhir:ElementDefinition.short [ fhir:value "A list of events of interest in the lifecycle" ];
@@ -2217,10 +2415,10 @@
        ]
      ], [
        fhir:index 4;
-       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:reasonreference" ];
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:medicationbasedon" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.extension" ];
-       fhir:ElementDefinition.sliceName [ fhir:value "reasonreference" ];
-       fhir:ElementDefinition.definition [ fhir:value "The justification, as reference to a condition or observation." ];
+       fhir:ElementDefinition.sliceName [ fhir:value "medicationbasedon" ];
+       fhir:ElementDefinition.definition [ fhir:value "MedicationBasedOn" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "*" ];
        fhir:ElementDefinition.base [
@@ -2231,14 +2429,104 @@
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
-         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension" ]
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationBasedOn-extension" ]
        ]
      ], [
        fhir:index 5;
-       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:basedon" ];
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:statusreason" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.extension" ];
-       fhir:ElementDefinition.sliceName [ fhir:value "basedon" ];
-       fhir:ElementDefinition.definition [ fhir:value "The proposal, order, or plan that is partly or wholly fulfilled by this item." ];
+       fhir:ElementDefinition.sliceName [ fhir:value "statusreason" ];
+       fhir:ElementDefinition.definition [ fhir:value "Captures the reason for the current state of the procedure." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DomainResource.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatusReason-extension" ]
+       ]
+     ], [
+       fhir:index 6;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:reported" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "reported" ];
+       fhir:ElementDefinition.definition [ fhir:value "Indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth record. It may also indicate the source of the report." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DomainResource.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Reported-extension" ]
+       ]
+     ], [
+       fhir:index 7;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:expectedperformer" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "expectedperformer" ];
+       fhir:ElementDefinition.definition [ fhir:value "Who this request is being addressed to." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DomainResource.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ExpectedPerformer-extension" ]
+       ]
+     ], [
+       fhir:index 8;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:expectedperformertype" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "expectedperformertype" ];
+       fhir:ElementDefinition.definition [ fhir:value "What type of party should carry out the testing." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DomainResource.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ExpectedPerformerType-extension" ]
+       ]
+     ], [
+       fhir:index 9;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:courseoftherapytype" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "courseoftherapytype" ];
+       fhir:ElementDefinition.definition [ fhir:value "The description of the overall pattern of the administration of the medication to the patient." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DomainResource.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CourseOfTherapyType-extension" ]
+       ]
+     ], [
+       fhir:index 10;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:insurance" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "insurance" ];
+       fhir:ElementDefinition.definition [ fhir:value "Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "*" ];
        fhir:ElementDefinition.base [
@@ -2249,10 +2537,10 @@
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
-         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BasedOn-extension" ]
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Insurance-extension" ]
        ]
      ], [
-       fhir:index 6;
+       fhir:index 11;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:code" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.extension" ];
        fhir:ElementDefinition.sliceName [ fhir:value "code" ];
@@ -2270,7 +2558,59 @@
          fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Code-extension" ]
        ]
      ], [
-       fhir:index 7;
+       fhir:index 12;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.extension:expectedperformancetime" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "expectedperformancetime" ];
+       fhir:ElementDefinition.definition [ fhir:value "When an action should be done. If the action is a series or recurs (e.g. daily blood sugar testing in the morning) then a Timing can be used to describe the periodicity." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DomainResource.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ExpectedPerformanceTime-extension" ]
+       ]
+     ], [
+       fhir:index 13;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.modifierExtension" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.modifierExtension" ];
+       fhir:ElementDefinition.slicing [
+         fhir:Element.id [ fhir:value "4" ];
+         fhir:ElementDefinition.slicing.discriminator [
+           fhir:index 0;
+           fhir:ElementDefinition.slicing.discriminator.type [ fhir:value "value" ];
+           fhir:ElementDefinition.slicing.discriminator.path [ fhir:value "url" ]
+         ];
+         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
+         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
+       ]
+     ], [
+       fhir:index 14;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.modifierExtension:donotperform" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.modifierExtension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "donotperform" ];
+       fhir:ElementDefinition.definition [ fhir:value "A flag, when set to true, indicates that the service/procedure should NOT be performed." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DomainResource.modifierExtension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DoNotPerform-extension" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "true"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "true"^^xsd:boolean ]
+     ], [
+       fhir:index 15;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.category" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.category" ];
        fhir:ElementDefinition.binding [
@@ -2281,11 +2621,11 @@
          ]
        ]
      ], [
-       fhir:index 8;
+       fhir:index 16;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.medication[x]" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.medication[x]" ];
        fhir:ElementDefinition.slicing [
-         fhir:Element.id [ fhir:value "1" ];
+         fhir:Element.id [ fhir:value "3" ];
          fhir:ElementDefinition.slicing.discriminator [
            fhir:index 0;
            fhir:ElementDefinition.slicing.discriminator.type [ fhir:value "type" ];
@@ -2303,7 +2643,7 @@
          fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Medication" ]
        ]
      ], [
-       fhir:index 9;
+       fhir:index 17;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.medicationCodeableConcept:CodeableConcept" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.medicationCodeableConcept" ];
        fhir:ElementDefinition.type [
@@ -2318,7 +2658,7 @@
          ]
        ]
      ], [
-       fhir:index 10;
+       fhir:index 18;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.subject" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.subject" ];
        fhir:ElementDefinition.type [
@@ -2327,26 +2667,53 @@
          fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient" ]
        ]
      ], [
-       fhir:index 11;
+       fhir:index 19;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.context" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.context" ];
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
          fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter" ]
-       ], [
-         fhir:index 1;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare" ]
        ]
      ], [
-       fhir:index 12;
+       fhir:index 20;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.supportingInformation" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.supportingInformation" ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource" ]
+       ]
+     ], [
+       fhir:index 21;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.requester" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.requester" ]
+     ], [
+       fhir:index 22;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.requester.agent" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.requester.agent" ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner" ]
+       ]
+     ], [
+       fhir:index 23;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.recorder" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.recorder" ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner" ]
+       ]
+     ], [
+       fhir:index 24;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.reasonCode" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.reasonCode" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "1" ]
      ], [
-       fhir:index 13;
+       fhir:index 25;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.reasonReference" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.reasonReference" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
@@ -2361,7 +2728,7 @@
          fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation" ]
        ]
      ], [
-       fhir:index 14;
+       fhir:index 26;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.note" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.note" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
@@ -2372,22 +2739,94 @@
          fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation" ]
        ]
      ], [
-       fhir:index 15;
+       fhir:index 27;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dosageInstruction" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dosageInstruction" ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Dosage" ];
          fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Dosage" ]
        ]
      ], [
-       fhir:index 16;
+       fhir:index 28;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest" ]
      ], [
-       fhir:index 17;
+       fhir:index 29;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest.extension" ];
+       fhir:ElementDefinition.slicing [
+         fhir:Element.id [ fhir:value "1" ];
+         fhir:ElementDefinition.slicing.discriminator [
+           fhir:index 0;
+           fhir:ElementDefinition.slicing.discriminator.type [ fhir:value "value" ];
+           fhir:ElementDefinition.slicing.discriminator.path [ fhir:value "url" ]
+         ];
+         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
+         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
+       ]
+     ], [
+       fhir:index 30;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension:initialfill" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "initialfill" ];
+       fhir:ElementDefinition.definition [ fhir:value "Indicates the quantity or duration for the first dispense of the medication." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Element.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-InitialFill-extension" ]
+       ]
+     ], [
+       fhir:index 31;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension:dispenseinterval" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "dispenseinterval" ];
+       fhir:ElementDefinition.definition [ fhir:value "The minimum period of time that must occur between dispenses of the medication." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Element.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DispenseInterval-extension" ]
+       ]
+     ], [
+       fhir:index 32;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension:numberofrefillsallowed" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "numberofrefillsallowed" ];
+       fhir:ElementDefinition.definition [ fhir:value "The maximum number of times the dispense can be repeated. For medication dispense, this integer does NOT include the original order dispense. This means that if an order indicates dispense 30 tablets plus 3 repeats, then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Element.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-NumberOfRefillsAllowed-extension" ]
+       ]
+     ], [
+       fhir:index 33;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.numberOfRepeatsAllowed" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest.numberOfRepeatsAllowed" ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "0" ]
+     ], [
+       fhir:index 34;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.expectedSupplyDuration" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest.expectedSupplyDuration" ];
        fhir:ElementDefinition.type [
@@ -2396,7 +2835,7 @@
          fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Duration" ]
        ]
      ], [
-       fhir:index 18;
+       fhir:index 35;
        fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.performer" ];
        fhir:ElementDefinition.path [ fhir:value "MedicationRequest.dispenseRequest.performer" ];
        fhir:ElementDefinition.type [
@@ -2405,25 +2844,13 @@
          fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization" ]
        ]
      ], [
-       fhir:index 19;
-       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.substitution" ];
-       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.substitution" ]
-     ], [
-       fhir:index 20;
-       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.substitution.reason" ];
-       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.substitution.reason" ];
-       fhir:ElementDefinition.binding [
-         fhir:Element.extension [
-           fhir:index 0;
-           fhir:Extension.url [ fhir:value "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ];
-           fhir:Extension.valueString [ fhir:value "MedicationIntendedSubstitutionReason" ]
-         ];
-         fhir:ElementDefinition.binding.strength [ fhir:value "required" ];
-         fhir:ElementDefinition.binding.description [ fhir:value "A coded concept describing the reason that a different medication should (or should not) be substituted from what was prescribed." ];
-         fhir:ElementDefinition.binding.valueSetReference [
-           fhir:link <http://hl7.org/fhir/ValueSet/v3-SubstanceAdminSubstitutionReason>;
-           fhir:Reference.reference [ fhir:value "http://hl7.org/fhir/ValueSet/v3-SubstanceAdminSubstitutionReason" ]
-         ]
+       fhir:index 36;
+       fhir:Element.id [ fhir:value "MedicationRequest:shr-core-MedicationRequest.priorPrescription" ];
+       fhir:ElementDefinition.path [ fhir:value "MedicationRequest.priorPrescription" ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationRequest" ]
        ]
      ]
   ] .

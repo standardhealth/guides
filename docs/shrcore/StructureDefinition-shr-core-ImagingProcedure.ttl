@@ -10,7 +10,7 @@
   fhir:Resource.id [ fhir:value "shr-core-ImagingProcedure"];
   fhir:DomainResource.text [
      fhir:Narrative.status [ fhir:value "generated" ];
-     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>ImagingProcedure Profile</b></p>\n  <p>Experimental class for an imaging procedure. This class is still incomplete at this time.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.ImagingProcedure maps to http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure:\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.extension\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Code maps to code\n  SubjectOfRecord maps to subject\n  Category maps to category\n  constrain notDone to 0..0\n  constrain notDoneReason to 0..0\n  BodyLocation.Code maps to bodySite\n  BodyLocation.Laterality maps to bodySite.extension\n  BodyLocation.Orientation maps to bodySite.extension\n  BodyLocation.RelationToLandmark maps to bodySite.extension\n  ProcedurePartOf maps to partOf\n  Annotation maps to note\n  CareContext maps to context\n  ReasonCode maps to reasonCode\n  ProcedureReasonReference maps to reasonReference\n  OccurrenceTimeOrPeriod maps to performed[x]\n  Participation maps to performer\n  Participation.Participant maps to performer.actor\n  Participation.ParticipationType maps to performer.role\n  Participation.OnBehalfOf maps to performer.onBehalfOf\n  Status maps to status\n  StatusReason maps to extension\n  ProcedureBasedOn maps to basedOn\n  Outcome maps to outcome\n  DiagnosticReport maps to report\n  Location maps to location\n  MaterialUsed maps to usedReference\n  FocalDevice maps to focalDevice\n  FocalDevice.Device maps to focalDevice.manipulated\n  FocalDevice.FocalDeviceAction maps to focalDevice.action\n</pre></p>\n</div>"
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>ImagingProcedure Profile</b></p>\n  <p>Experimental class for an imaging procedure. This class is still incomplete at this time.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.ImagingProcedure maps to http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure:\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.extension\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  ProcedureBasedOn maps to basedOn\n  ProcedurePartOf maps to partOf  // add Observation, MedicationAdministration\n  Status maps to status\n  StatusReason maps to extension\n  constrain notDone to 0..0\n  constrain notDoneReason to 0..0\n  Category maps to category\n  Code maps to code\n  SubjectOfRecord maps to subject\n  CareContext maps to context\n  OccurrenceTimeOrPeriod maps to performed[x]\n  Participation maps to performer\n  Participation.Participant maps to performer.actor\n  Participation.ParticipationType maps to performer.role\n  Participation.OnBehalfOf maps to performer.onBehalfOf\n  Location maps to location\n  ReasonCode maps to reasonCode\n  ProcedureReasonReference maps to reasonReference\n  BodyLocation.Code maps to bodySite\n  BodyLocation.Laterality maps to bodySite.extension\n  BodyLocation.Orientation maps to bodySite.extension\n  BodyLocation.RelationToLandmark maps to bodySite.extension\n  Outcome maps to outcome\n  DiagnosticReport maps to report\n  ComplicationCode maps to complication\n  ComplicationReference maps to complicationDetail\n  FollowUp maps to followUp\n  Annotation maps to note\n  FocalDevice maps to focalDevice\n  FocalDevice.Device maps to focalDevice.manipulated\n  FocalDevice.FocalDeviceAction maps to focalDevice.action\n  MaterialUsedReference maps to usedReference\n  UsedCode maps to usedCode\n</pre></p>\n</div>"
   ];
   fhir:StructureDefinition.url [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ImagingProcedure"];
   fhir:StructureDefinition.identifier [
@@ -18,11 +18,11 @@
      fhir:Identifier.system [ fhir:value "http://hl7.org/fhir/us/shrcore" ];
      fhir:Identifier.value [ fhir:value "shr.core.ImagingProcedure" ]
   ];
-  fhir:StructureDefinition.version [ fhir:value "0.5.0"];
+  fhir:StructureDefinition.version [ fhir:value "0.6.0"];
   fhir:StructureDefinition.name [ fhir:value "ImagingProcedure"];
   fhir:StructureDefinition.title [ fhir:value "shr-core-ImagingProcedure"];
   fhir:StructureDefinition.status [ fhir:value "draft"];
-  fhir:StructureDefinition.date [ fhir:value "2019-05-01T00:00:00-04:00"^^xsd:dateTime];
+  fhir:StructureDefinition.date [ fhir:value "2019-05-07T00:00:00-04:00"^^xsd:dateTime];
   fhir:StructureDefinition.publisher [ fhir:value "The MITRE Corporation"];
   fhir:StructureDefinition.contact [
      fhir:index 0;
@@ -575,6 +575,42 @@
        ]
      ], [
        fhir:index 18;
+       fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.extension:personauthor" ];
+       fhir:ElementDefinition.path [ fhir:value "Procedure.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "personauthor" ];
+       fhir:ElementDefinition.definition [ fhir:value "A human author, patient, practitioner, or related person, as opposed to an organization or device." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DomainResource.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PersonAuthor-extension" ]
+       ]
+     ], [
+       fhir:index 19;
+       fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.extension:personinformationsource" ];
+       fhir:ElementDefinition.path [ fhir:value "Procedure.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "personinformationsource" ];
+       fhir:ElementDefinition.definition [ fhir:value "The person who provided the information, not necessarily the patient." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DomainResource.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PersonInformationSource-extension" ]
+       ]
+     ], [
+       fhir:index 20;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.extension:treatmentintent" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.extension" ];
        fhir:ElementDefinition.sliceName [ fhir:value "treatmentintent" ];
@@ -592,7 +628,7 @@
          fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TreatmentIntent-extension" ]
        ]
      ], [
-       fhir:index 19;
+       fhir:index 21;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.extension:imagingsubstance" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.extension" ];
        fhir:ElementDefinition.sliceName [ fhir:value "imagingsubstance" ];
@@ -610,7 +646,7 @@
          fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ImagingSubstance-extension" ]
        ]
      ], [
-       fhir:index 20;
+       fhir:index 22;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.modifierExtension" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.modifierExtension" ];
        fhir:ElementDefinition.short [ fhir:value "Extensions that cannot be ignored" ];
@@ -641,7 +677,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 21;
+       fhir:index 23;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.identifier" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.identifier" ];
        fhir:ElementDefinition.short [ fhir:value "External Identifiers for this procedure" ];
@@ -673,7 +709,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "id" ]
        ]
      ], [
-       fhir:index 22;
+       fhir:index 24;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.definition" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.definition" ];
        fhir:ElementDefinition.short [ fhir:value "Instantiates protocol or definition" ];
@@ -705,7 +741,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".outboundRelationship[typeCode=DEFN].target" ]
        ]
      ], [
-       fhir:index 23;
+       fhir:index 25;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.basedOn" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.basedOn" ];
        fhir:ElementDefinition.short [ fhir:value "A request for this procedure" ];
@@ -741,7 +777,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".outboundRelationship[typeCode=FLFS].target[classCode=(various e.g. PROC, OBS, PCPR, ACT,  moodCode=RQO].code" ]
        ]
      ], [
-       fhir:index 24;
+       fhir:index 26;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.partOf" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.partOf" ];
        fhir:ElementDefinition.short [ fhir:value "Part of referenced event" ];
@@ -778,7 +814,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".inboundRelationship[typeCode=COMP].source[classCode=SBADM or PROC or OBS, moodCode=EVN]" ]
        ]
      ], [
-       fhir:index 25;
+       fhir:index 27;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.status" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.status" ];
        fhir:ElementDefinition.short [ fhir:value "preparation | in-progress | suspended | aborted | completed | entered-in-error | unknown" ];
@@ -819,7 +855,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "Procedure.status" ]
        ]
      ], [
-       fhir:index 26;
+       fhir:index 28;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.notDone" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.notDone" ];
        fhir:ElementDefinition.short [ fhir:value "True if procedure was not performed as scheduled" ];
@@ -845,7 +881,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".actionNegationInd" ]
        ]
      ], [
-       fhir:index 27;
+       fhir:index 29;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.notDoneReason" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.notDoneReason" ];
        fhir:ElementDefinition.short [ fhir:value "Reason procedure was not performed" ];
@@ -885,7 +921,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".reason.Observation.value" ]
        ]
      ], [
-       fhir:index 28;
+       fhir:index 30;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.category" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.category" ];
        fhir:ElementDefinition.short [ fhir:value "Classification of the procedure" ];
@@ -925,7 +961,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "class" ]
        ]
      ], [
-       fhir:index 29;
+       fhir:index 31;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.code" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.code" ];
        fhir:ElementDefinition.short [ fhir:value "SNOMED-CT | ICD-10 | CPT-4" ];
@@ -982,7 +1018,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "Procedure.code" ]
        ]
      ], [
-       fhir:index 30;
+       fhir:index 32;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.subject" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.subject" ];
        fhir:ElementDefinition.short [ fhir:value "Who the procedure was performed on" ];
@@ -1023,7 +1059,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "Procedure.subject" ]
        ]
      ], [
-       fhir:index 31;
+       fhir:index 33;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.context" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.context" ];
        fhir:ElementDefinition.short [ fhir:value "Encounter or episode associated with the procedure" ];
@@ -1043,10 +1079,6 @@
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
          fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter" ]
-       ], [
-         fhir:index 1;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare" ]
        ];
        fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ];
        fhir:ElementDefinition.mapping [
@@ -1063,7 +1095,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "context" ]
        ]
      ], [
-       fhir:index 32;
+       fhir:index 34;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.performed[x]" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.performed[x]" ];
        fhir:ElementDefinition.short [ fhir:value "Date/Period the procedure was performed" ];
@@ -1102,7 +1134,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "Procedure.performed[x]" ]
        ]
      ], [
-       fhir:index 33;
+       fhir:index 35;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.performer" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.performer" ];
        fhir:ElementDefinition.short [ fhir:value "The people who performed the procedure" ];
@@ -1134,7 +1166,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".participation[typeCode=PRF]" ]
        ]
      ], [
-       fhir:index 34;
+       fhir:index 36;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.performer.id" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.performer.id" ];
        fhir:ElementDefinition.representation [
@@ -1160,7 +1192,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 35;
+       fhir:index 37;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.performer.extension" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.performer.extension" ];
        fhir:ElementDefinition.short [ fhir:value "Additional Content defined by implementations" ];
@@ -1190,7 +1222,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 36;
+       fhir:index 38;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.performer.modifierExtension" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.performer.modifierExtension" ];
        fhir:ElementDefinition.short [ fhir:value "Extensions that cannot be ignored" ];
@@ -1225,7 +1257,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 37;
+       fhir:index 39;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.performer.role" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.performer.role" ];
        fhir:ElementDefinition.short [ fhir:value "The role the actor was in" ];
@@ -1265,7 +1297,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".functionCode" ]
        ]
      ], [
-       fhir:index 38;
+       fhir:index 40;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.performer.actor" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.performer.actor" ];
        fhir:ElementDefinition.short [ fhir:value "The reference to the practitioner" ];
@@ -1314,7 +1346,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "who.actor" ]
        ]
      ], [
-       fhir:index 39;
+       fhir:index 41;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.performer.onBehalfOf" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.performer.onBehalfOf" ];
        fhir:ElementDefinition.short [ fhir:value "Organization the device or practitioner was acting for" ];
@@ -1338,7 +1370,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".scoper" ]
        ]
      ], [
-       fhir:index 40;
+       fhir:index 42;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.location" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.location" ];
        fhir:ElementDefinition.short [ fhir:value "Where the procedure happened" ];
@@ -1367,7 +1399,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "where" ]
        ]
      ], [
-       fhir:index 41;
+       fhir:index 43;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.reasonCode" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.reasonCode" ];
        fhir:ElementDefinition.short [ fhir:value "Coded reason procedure performed" ];
@@ -1407,7 +1439,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "why" ]
        ]
      ], [
-       fhir:index 42;
+       fhir:index 44;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.reasonReference" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.reasonReference" ];
        fhir:ElementDefinition.short [ fhir:value "Condition that is the reason the procedure performed" ];
@@ -1440,7 +1472,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "why" ]
        ]
      ], [
-       fhir:index 43;
+       fhir:index 45;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.bodySite" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.bodySite" ];
        fhir:ElementDefinition.short [ fhir:value "Target body sites" ];
@@ -1474,7 +1506,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".targetSiteCode" ]
        ]
      ], [
-       fhir:index 44;
+       fhir:index 46;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.bodySite.id" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.bodySite.id" ];
        fhir:ElementDefinition.representation [
@@ -1500,7 +1532,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 45;
+       fhir:index 47;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.bodySite.extension" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.bodySite.extension" ];
        fhir:ElementDefinition.slicing [
@@ -1539,7 +1571,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 46;
+       fhir:index 48;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.bodySite.extension:laterality" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.bodySite.extension" ];
        fhir:ElementDefinition.sliceName [ fhir:value "laterality" ];
@@ -1557,7 +1589,7 @@
          fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension" ]
        ]
      ], [
-       fhir:index 47;
+       fhir:index 49;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.bodySite.extension:orientation" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.bodySite.extension" ];
        fhir:ElementDefinition.sliceName [ fhir:value "orientation" ];
@@ -1575,7 +1607,7 @@
          fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Orientation-extension" ]
        ]
      ], [
-       fhir:index 48;
+       fhir:index 50;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.bodySite.extension:relationtolandmark" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.bodySite.extension" ];
        fhir:ElementDefinition.sliceName [ fhir:value "relationtolandmark" ];
@@ -1593,7 +1625,7 @@
          fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelationToLandmark-extension" ]
        ]
      ], [
-       fhir:index 49;
+       fhir:index 51;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.bodySite.coding" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.bodySite.coding" ];
        fhir:ElementDefinition.short [ fhir:value "Code defined by a terminology system" ];
@@ -1621,7 +1653,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding" ]
        ]
      ], [
-       fhir:index 50;
+       fhir:index 52;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.bodySite.text" ];
        fhir:Element.extension [
          fhir:index 0;
@@ -1654,7 +1686,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText" ]
        ]
      ], [
-       fhir:index 51;
+       fhir:index 53;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.outcome" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.outcome" ];
        fhir:ElementDefinition.short [ fhir:value "The result of procedure" ];
@@ -1691,7 +1723,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".outboundRelationship[typeCode=OUT].target.text" ]
        ]
      ], [
-       fhir:index 52;
+       fhir:index 54;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.report" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.report" ];
        fhir:ElementDefinition.short [ fhir:value "Any report resulting from the procedure" ];
@@ -1715,7 +1747,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".inboundRelationship[typeCode=SUBJ].source[classCode=OBS, moodCode=EVN]" ]
        ]
      ], [
-       fhir:index 53;
+       fhir:index 55;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.complication" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.complication" ];
        fhir:ElementDefinition.short [ fhir:value "Complication following the procedure" ];
@@ -1751,7 +1783,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".outboundRelationship[typeCode=OUTC].target[classCode=OBS, code=\"complication\", moodCode=EVN].value" ]
        ]
      ], [
-       fhir:index 54;
+       fhir:index 56;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.complicationDetail" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.complicationDetail" ];
        fhir:ElementDefinition.short [ fhir:value "A condition that is a result of the procedure" ];
@@ -1767,7 +1799,7 @@
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/StructureDefinition/Condition" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition" ]
        ];
        fhir:ElementDefinition.mapping [
          fhir:index 0;
@@ -1775,7 +1807,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".outboundRelationship[typeCode=OUTC].target[classCode=OBS, code=\"complication\", moodCode=EVN].value" ]
        ]
      ], [
-       fhir:index 55;
+       fhir:index 57;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.followUp" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.followUp" ];
        fhir:ElementDefinition.short [ fhir:value "Instructions for follow up" ];
@@ -1810,7 +1842,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".outboundRelationship[typeCode=COMP].target[classCode=ACT, moodCode=INT].code" ]
        ]
      ], [
-       fhir:index 56;
+       fhir:index 58;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.note" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.note" ];
        fhir:ElementDefinition.short [ fhir:value "Additional information about the procedure" ];
@@ -1837,7 +1869,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".inboundRelationship[typeCode=SUBJ].source[classCode=OBS, moodCode=EVN, code=\"annotation\"].value" ]
        ]
      ], [
-       fhir:index 57;
+       fhir:index 59;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.focalDevice" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.focalDevice" ];
        fhir:ElementDefinition.short [ fhir:value "Device changed in procedure" ];
@@ -1868,7 +1900,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".participation[typeCode=DEV].role[classCode=MANU]" ]
        ]
      ], [
-       fhir:index 58;
+       fhir:index 60;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.focalDevice.id" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.focalDevice.id" ];
        fhir:ElementDefinition.representation [
@@ -1894,7 +1926,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 59;
+       fhir:index 61;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.focalDevice.extension" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.focalDevice.extension" ];
        fhir:ElementDefinition.short [ fhir:value "Additional Content defined by implementations" ];
@@ -1924,7 +1956,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
        ]
      ], [
-       fhir:index 60;
+       fhir:index 62;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.focalDevice.modifierExtension" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.focalDevice.modifierExtension" ];
        fhir:ElementDefinition.short [ fhir:value "Extensions that cannot be ignored" ];
@@ -1959,7 +1991,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 61;
+       fhir:index 63;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.focalDevice.action" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.focalDevice.action" ];
        fhir:ElementDefinition.short [ fhir:value "Kind of change to device" ];
@@ -1994,7 +2026,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".inboundRelationship[typeCode=SUBJ].source[classCode=OBS, moodCode=EVN, code=\"procedure device action\"].value=:procedure device action codes" ]
        ]
      ], [
-       fhir:index 62;
+       fhir:index 64;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.focalDevice.manipulated" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.focalDevice.manipulated" ];
        fhir:ElementDefinition.short [ fhir:value "Device that was changed" ];
@@ -2017,7 +2049,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".participation[typeCode=DEV].role[classCode=SDLOC]" ]
        ]
      ], [
-       fhir:index 63;
+       fhir:index 65;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.usedReference" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.usedReference" ];
        fhir:ElementDefinition.short [ fhir:value "Items used during procedure" ];
@@ -2050,7 +2082,7 @@
          fhir:ElementDefinition.mapping.map [ fhir:value ".participation[typeCode=DEV].role[classCode=MANU] or\n.participation[typeCode=CSM].role[classCode=ADMM] (for Medication or Substance)" ]
        ]
      ], [
-       fhir:index 64;
+       fhir:index 66;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.usedCode" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.usedCode" ];
        fhir:ElementDefinition.short [ fhir:value "Coded items used during the procedure" ];
@@ -2169,6 +2201,42 @@
        ]
      ], [
        fhir:index 6;
+       fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.extension:personauthor" ];
+       fhir:ElementDefinition.path [ fhir:value "Procedure.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "personauthor" ];
+       fhir:ElementDefinition.definition [ fhir:value "A human author, patient, practitioner, or related person, as opposed to an organization or device." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DomainResource.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PersonAuthor-extension" ]
+       ]
+     ], [
+       fhir:index 7;
+       fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.extension:personinformationsource" ];
+       fhir:ElementDefinition.path [ fhir:value "Procedure.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "personinformationsource" ];
+       fhir:ElementDefinition.definition [ fhir:value "The person who provided the information, not necessarily the patient." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "DomainResource.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PersonInformationSource-extension" ]
+       ]
+     ], [
+       fhir:index 8;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.extension:treatmentintent" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.extension" ];
        fhir:ElementDefinition.sliceName [ fhir:value "treatmentintent" ];
@@ -2186,7 +2254,7 @@
          fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TreatmentIntent-extension" ]
        ]
      ], [
-       fhir:index 7;
+       fhir:index 9;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.extension:imagingsubstance" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.extension" ];
        fhir:ElementDefinition.sliceName [ fhir:value "imagingsubstance" ];
@@ -2204,7 +2272,7 @@
          fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ImagingSubstance-extension" ]
        ]
      ], [
-       fhir:index 8;
+       fhir:index 10;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.basedOn" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.basedOn" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
@@ -2223,7 +2291,7 @@
          fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest" ]
        ]
      ], [
-       fhir:index 9;
+       fhir:index 11;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.partOf" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.partOf" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
@@ -2242,19 +2310,19 @@
          fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationAdministration" ]
        ]
      ], [
-       fhir:index 10;
+       fhir:index 12;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.notDone" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.notDone" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "0" ]
      ], [
-       fhir:index 11;
+       fhir:index 13;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.notDoneReason" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.notDoneReason" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "0" ]
      ], [
-       fhir:index 12;
+       fhir:index 14;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.subject" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.subject" ];
        fhir:ElementDefinition.type [
@@ -2263,24 +2331,20 @@
          fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient" ]
        ]
      ], [
-       fhir:index 13;
+       fhir:index 15;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.context" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.context" ];
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
          fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter" ]
-       ], [
-         fhir:index 1;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare" ]
        ]
      ], [
-       fhir:index 14;
+       fhir:index 16;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.performer" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.performer" ]
      ], [
-       fhir:index 15;
+       fhir:index 17;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.performer.actor" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.performer.actor" ];
        fhir:ElementDefinition.type [
@@ -2305,7 +2369,7 @@
          fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device" ]
        ]
      ], [
-       fhir:index 16;
+       fhir:index 18;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.performer.onBehalfOf" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.performer.onBehalfOf" ];
        fhir:ElementDefinition.type [
@@ -2314,7 +2378,7 @@
          fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization" ]
        ]
      ], [
-       fhir:index 17;
+       fhir:index 19;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.location" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.location" ];
        fhir:ElementDefinition.type [
@@ -2323,13 +2387,13 @@
          fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Location" ]
        ]
      ], [
-       fhir:index 18;
+       fhir:index 20;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.reasonCode" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.reasonCode" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "1" ]
      ], [
-       fhir:index 19;
+       fhir:index 21;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.reasonReference" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.reasonReference" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
@@ -2344,7 +2408,7 @@
          fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation" ]
        ]
      ], [
-       fhir:index 20;
+       fhir:index 22;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.bodySite" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.bodySite" ];
        fhir:ElementDefinition.binding [
@@ -2355,7 +2419,7 @@
          ]
        ]
      ], [
-       fhir:index 21;
+       fhir:index 23;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.bodySite.extension:laterality" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.bodySite.extension" ];
        fhir:ElementDefinition.sliceName [ fhir:value "laterality" ];
@@ -2373,7 +2437,7 @@
          fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension" ]
        ]
      ], [
-       fhir:index 22;
+       fhir:index 24;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.bodySite.extension:orientation" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.bodySite.extension" ];
        fhir:ElementDefinition.sliceName [ fhir:value "orientation" ];
@@ -2391,7 +2455,7 @@
          fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Orientation-extension" ]
        ]
      ], [
-       fhir:index 23;
+       fhir:index 25;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.bodySite.extension:relationtolandmark" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.bodySite.extension" ];
        fhir:ElementDefinition.sliceName [ fhir:value "relationtolandmark" ];
@@ -2409,7 +2473,7 @@
          fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelationToLandmark-extension" ]
        ]
      ], [
-       fhir:index 24;
+       fhir:index 26;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.report" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.report" ];
        fhir:ElementDefinition.type [
@@ -2418,7 +2482,16 @@
          fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DiagnosticReport" ]
        ]
      ], [
-       fhir:index 25;
+       fhir:index 27;
+       fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.complicationDetail" ];
+       fhir:ElementDefinition.path [ fhir:value "Procedure.complicationDetail" ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition" ]
+       ]
+     ], [
+       fhir:index 28;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.note" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.note" ];
        fhir:ElementDefinition.type [
@@ -2427,11 +2500,11 @@
          fhir:ElementDefinition.type.profile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation" ]
        ]
      ], [
-       fhir:index 26;
+       fhir:index 29;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.focalDevice" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.focalDevice" ]
      ], [
-       fhir:index 27;
+       fhir:index 30;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.focalDevice.action" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.focalDevice.action" ];
        fhir:ElementDefinition.binding [
@@ -2448,7 +2521,7 @@
          ]
        ]
      ], [
-       fhir:index 28;
+       fhir:index 31;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.focalDevice.manipulated" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.focalDevice.manipulated" ];
        fhir:ElementDefinition.type [
@@ -2457,7 +2530,7 @@
          fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device" ]
        ]
      ], [
-       fhir:index 29;
+       fhir:index 32;
        fhir:Element.id [ fhir:value "Procedure:shr-core-ImagingProcedure.usedReference" ];
        fhir:ElementDefinition.path [ fhir:value "Procedure.usedReference" ];
        fhir:ElementDefinition.type [
