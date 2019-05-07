@@ -16,11 +16,11 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
     <system value="http://hl7.org/fhir/us/shrcore"/>
     <value value="shr.core.MedicationAdministration"/>
   </identifier>
-  <version value="0.5.0"/>
+  <version value="0.6.0"/>
   <name value="MedicationAdministration"/>
   <title value="shr-core-MedicationAdministration"/>
   <status value="draft"/>
-  <date value="2019-05-01T00:00:00-04:00"/>
+  <date value="2019-05-07T00:00:00-04:00"/>
   <publisher value="The MITRE Corporation"/>
   <contact>
     <telecom>
@@ -145,6 +145,24 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
         </valueSetReference>
       </binding>
     </element>
+    <element id="shr-core-MedicationAdministration-model.statusReason">
+      <path value="shr-core-MedicationAdministration-model.statusReason"/>
+      <short value="Captures the reason for the current state of the procedure."/>
+      <definition value="Captures the reason for the current state of the procedure."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-MedicationAdministration-model.statusReason"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
     <element id="shr-core-MedicationAdministration-model.identifier">
       <path value="shr-core-MedicationAdministration-model.identifier"/>
       <short value="Business identifier or external id for this resource."/>
@@ -438,18 +456,14 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
     </element>
     <element id="shr-core-MedicationAdministration-model.participation.participationType">
       <path value="shr-core-MedicationAdministration-model.participation.participationType"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1553854"/>
-      </code>
       <short value="The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc."/>
       <definition value="The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc."/>
       <min value="0"/>
-      <max value="0"/>
+      <max value="1"/>
       <base>
         <path value="shr-core-MedicationAdministration-model.participation.participationType"/>
         <min value="0"/>
-        <max value="0"/>
+        <max value="1"/>
       </base>
       <type>
         <code value="Coding"/>
@@ -613,11 +627,11 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
       <short value="Dose number within series."/>
       <definition value="Dose number within series."/>
       <min value="0"/>
-      <max value="0"/>
+      <max value="1"/>
       <base>
         <path value="shr-core-MedicationAdministration-model.dosage.doseSequenceNumber"/>
         <min value="0"/>
-        <max value="0"/>
+        <max value="1"/>
       </base>
       <type>
         <code value="integer"/>
@@ -819,79 +833,6 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-MedicationAdministration-model.dosage.doseAndRate.type">
-      <path value="shr-core-MedicationAdministration-model.dosage.doseAndRate.type"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0332307"/>
-      </code>
-      <short value="A code describing the item at a greater level of detail."/>
-      <definition value="A code describing the item at a greater level of detail."/>
-      <min value="0"/>
-      <max value="0"/>
-      <base>
-        <path value="shr-core-MedicationAdministration-model.dosage.doseAndRate.type"/>
-        <min value="0"/>
-        <max value="0"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <binding>
-        <strength value="example"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/dose-rate-type"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="shr-core-MedicationAdministration-model.dosage.doseAndRate.doseAmount[x]">
-      <path value="shr-core-MedicationAdministration-model.dosage.doseAndRate.doseAmount[x]"/>
-      <short value="The amount of medication taken per dose, as a quantity or range. Relative dose (e.g., per kg body weight or surface area) are indicated by specifying appropriate units (e.g., mg/kg or mg/m2 etc)."/>
-      <definition value="The amount of medication taken per dose, as a quantity or range. Relative dose (e.g., per kg body weight or surface area) are indicated by specifying appropriate units (e.g., mg/kg or mg/m2 etc)."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-MedicationAdministration-model.dosage.doseAndRate.doseAmount[x]"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SimpleQuantity-model"/>
-      </type>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Range-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-MedicationAdministration-model.dosage.doseAndRate.doseRate[x]">
-      <path value="shr-core-MedicationAdministration-model.dosage.doseAndRate.doseRate[x]"/>
-      <short value="The speed with which the medication was or will be introduced into the patient. Typically the rate is used to describe an infusion, e.g,. 100 ml per 1 hour or 100 ml/hr."/>
-      <definition value="The speed with which the medication was or will be introduced into the patient. Typically the rate is used to describe an infusion, e.g,. 100 ml per 1 hour or 100 ml/hr."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-MedicationAdministration-model.dosage.doseAndRate.doseRate[x]"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Ratio-model"/>
-      </type>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Range-model"/>
-      </type>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SimpleQuantity-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
     <element id="shr-core-MedicationAdministration-model.dosage.maxDosePerPeriod">
       <path value="shr-core-MedicationAdministration-model.dosage.maxDosePerPeriod"/>
       <short value="The maximum amount of a medication to be taken in a given period of time (e.g., no more than x in any 24-hour period)"/>
@@ -946,6 +887,77 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
+    <element id="shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]">
+      <path value="shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="A larger event of which this particular event is a component or step."/>
+      <definition value="A larger event of which this particular event is a component or step."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationAdministration-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationAdministration-model.medicationAdministrationPartOfShr-core-MedicationAdministration-model:MedicationAdministration">
+      <path value="shr-core-MedicationAdministration-model.medicationAdministrationPartOfShr-core-MedicationAdministration-model"/>
+      <sliceName value="MedicationAdministration"/>
+      <short value="A record of the use of a medication. If the medication is given as part of a course of treatment, the PartOf attribute should refer to the CourseOfTreatment."/>
+      <definition value="A record of the use of a medication. If the medication is given as part of a course of treatment, the PartOf attribute should refer to the CourseOfTreatment.&#xA;Although FHIR MedicationAdministration supports date of administration, information source, performer, it lacks common provenance elements, statement creation date, author, and recorder. These are supported as optional extensions.&#xA;FHIR DSTU2 lacks a category attribute, which is provided as an extension in that version.&#xA;SHR does not allow the &#39;not given&#39; attributes from DSTU2 and STU3, since they are dropped in R4. The status element is used to document medications not given."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationAdministration-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationAdministration-model.medicationAdministrationPartOfShr-core-Procedure-model:Procedure">
+      <path value="shr-core-MedicationAdministration-model.medicationAdministrationPartOfShr-core-Procedure-model"/>
+      <sliceName value="Procedure"/>
+      <short value="An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy."/>
+      <definition value="An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
     <element id="shr-core-MedicationAdministration-model.category">
       <path value="shr-core-MedicationAdministration-model.category"/>
       <short value="The general type or class of this item."/>
@@ -969,6 +981,62 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
           <reference value="http://hl7.org/fhir/ValueSet/medication-admin-category"/>
         </valueSetReference>
       </binding>
+    </element>
+    <element id="shr-core-MedicationAdministration-model.supportingInformation">
+      <path value="shr-core-MedicationAdministration-model.supportingInformation"/>
+      <short value="Additional information to support this request."/>
+      <definition value="Additional information to support this request."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-MedicationAdministration-model.supportingInformation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationAdministration-model.device">
+      <path value="shr-core-MedicationAdministration-model.device"/>
+      <short value="A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients."/>
+      <definition value="A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients.&#xA;Device status cannot be reconciled between Argonaut and US-Core, each having different required value sets.&#xA;Device type has extensible mappings to different value sets in Argonaut and US-Core, however both value sets have identical SNOMED content (descendants of 49062001 (Device). We adopt the US-Core value set, which is allowable because the binding is extensible."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-MedicationAdministration-model.device"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationAdministration-model.annotation">
+      <path value="shr-core-MedicationAdministration-model.annotation"/>
+      <short value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <definition value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-MedicationAdministration-model.annotation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
     </element>
   </snapshot>
   <differential>
@@ -1082,6 +1150,24 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
         </valueSetReference>
       </binding>
     </element>
+    <element id="shr-core-MedicationAdministration-model.statusReason">
+      <path value="shr-core-MedicationAdministration-model.statusReason"/>
+      <short value="Captures the reason for the current state of the procedure."/>
+      <definition value="Captures the reason for the current state of the procedure."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-MedicationAdministration-model.statusReason"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
     <element id="shr-core-MedicationAdministration-model.identifier">
       <path value="shr-core-MedicationAdministration-model.identifier"/>
       <short value="Business identifier or external id for this resource."/>
@@ -1375,18 +1461,14 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
     </element>
     <element id="shr-core-MedicationAdministration-model.participation.participationType">
       <path value="shr-core-MedicationAdministration-model.participation.participationType"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1553854"/>
-      </code>
       <short value="The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc."/>
       <definition value="The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc."/>
       <min value="0"/>
-      <max value="0"/>
+      <max value="1"/>
       <base>
         <path value="shr-core-MedicationAdministration-model.participation.participationType"/>
         <min value="0"/>
-        <max value="0"/>
+        <max value="1"/>
       </base>
       <type>
         <code value="Coding"/>
@@ -1550,11 +1632,11 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
       <short value="Dose number within series."/>
       <definition value="Dose number within series."/>
       <min value="0"/>
-      <max value="0"/>
+      <max value="1"/>
       <base>
         <path value="shr-core-MedicationAdministration-model.dosage.doseSequenceNumber"/>
         <min value="0"/>
-        <max value="0"/>
+        <max value="1"/>
       </base>
       <type>
         <code value="integer"/>
@@ -1756,79 +1838,6 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-MedicationAdministration-model.dosage.doseAndRate.type">
-      <path value="shr-core-MedicationAdministration-model.dosage.doseAndRate.type"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0332307"/>
-      </code>
-      <short value="A code describing the item at a greater level of detail."/>
-      <definition value="A code describing the item at a greater level of detail."/>
-      <min value="0"/>
-      <max value="0"/>
-      <base>
-        <path value="shr-core-MedicationAdministration-model.dosage.doseAndRate.type"/>
-        <min value="0"/>
-        <max value="0"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <binding>
-        <strength value="example"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/dose-rate-type"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="shr-core-MedicationAdministration-model.dosage.doseAndRate.doseAmount[x]">
-      <path value="shr-core-MedicationAdministration-model.dosage.doseAndRate.doseAmount[x]"/>
-      <short value="The amount of medication taken per dose, as a quantity or range. Relative dose (e.g., per kg body weight or surface area) are indicated by specifying appropriate units (e.g., mg/kg or mg/m2 etc)."/>
-      <definition value="The amount of medication taken per dose, as a quantity or range. Relative dose (e.g., per kg body weight or surface area) are indicated by specifying appropriate units (e.g., mg/kg or mg/m2 etc)."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-MedicationAdministration-model.dosage.doseAndRate.doseAmount[x]"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SimpleQuantity-model"/>
-      </type>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Range-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-MedicationAdministration-model.dosage.doseAndRate.doseRate[x]">
-      <path value="shr-core-MedicationAdministration-model.dosage.doseAndRate.doseRate[x]"/>
-      <short value="The speed with which the medication was or will be introduced into the patient. Typically the rate is used to describe an infusion, e.g,. 100 ml per 1 hour or 100 ml/hr."/>
-      <definition value="The speed with which the medication was or will be introduced into the patient. Typically the rate is used to describe an infusion, e.g,. 100 ml per 1 hour or 100 ml/hr."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-MedicationAdministration-model.dosage.doseAndRate.doseRate[x]"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Ratio-model"/>
-      </type>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Range-model"/>
-      </type>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SimpleQuantity-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
     <element id="shr-core-MedicationAdministration-model.dosage.maxDosePerPeriod">
       <path value="shr-core-MedicationAdministration-model.dosage.maxDosePerPeriod"/>
       <short value="The maximum amount of a medication to be taken in a given period of time (e.g., no more than x in any 24-hour period)"/>
@@ -1883,6 +1892,77 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
+    <element id="shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]">
+      <path value="shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="A larger event of which this particular event is a component or step."/>
+      <definition value="A larger event of which this particular event is a component or step."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationAdministration-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationAdministration-model.medicationAdministrationPartOfShr-core-MedicationAdministration-model:MedicationAdministration">
+      <path value="shr-core-MedicationAdministration-model.medicationAdministrationPartOfShr-core-MedicationAdministration-model"/>
+      <sliceName value="MedicationAdministration"/>
+      <short value="A record of the use of a medication. If the medication is given as part of a course of treatment, the PartOf attribute should refer to the CourseOfTreatment."/>
+      <definition value="A record of the use of a medication. If the medication is given as part of a course of treatment, the PartOf attribute should refer to the CourseOfTreatment.&#xA;Although FHIR MedicationAdministration supports date of administration, information source, performer, it lacks common provenance elements, statement creation date, author, and recorder. These are supported as optional extensions.&#xA;FHIR DSTU2 lacks a category attribute, which is provided as an extension in that version.&#xA;SHR does not allow the &#39;not given&#39; attributes from DSTU2 and STU3, since they are dropped in R4. The status element is used to document medications not given."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationAdministration-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationAdministration-model.medicationAdministrationPartOfShr-core-Procedure-model:Procedure">
+      <path value="shr-core-MedicationAdministration-model.medicationAdministrationPartOfShr-core-Procedure-model"/>
+      <sliceName value="Procedure"/>
+      <short value="An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy."/>
+      <definition value="An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationAdministration-model.medicationAdministrationPartOf[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
     <element id="shr-core-MedicationAdministration-model.category">
       <path value="shr-core-MedicationAdministration-model.category"/>
       <short value="The general type or class of this item."/>
@@ -1906,6 +1986,62 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
           <reference value="http://hl7.org/fhir/ValueSet/medication-admin-category"/>
         </valueSetReference>
       </binding>
+    </element>
+    <element id="shr-core-MedicationAdministration-model.supportingInformation">
+      <path value="shr-core-MedicationAdministration-model.supportingInformation"/>
+      <short value="Additional information to support this request."/>
+      <definition value="Additional information to support this request."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-MedicationAdministration-model.supportingInformation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationAdministration-model.device">
+      <path value="shr-core-MedicationAdministration-model.device"/>
+      <short value="A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients."/>
+      <definition value="A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients.&#xA;Device status cannot be reconciled between Argonaut and US-Core, each having different required value sets.&#xA;Device type has extensible mappings to different value sets in Argonaut and US-Core, however both value sets have identical SNOMED content (descendants of 49062001 (Device). We adopt the US-Core value set, which is allowable because the binding is extensible."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-MedicationAdministration-model.device"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationAdministration-model.annotation">
+      <path value="shr-core-MedicationAdministration-model.annotation"/>
+      <short value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <definition value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-MedicationAdministration-model.annotation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
     </element>
   </differential>
 </StructureDefinition>

@@ -3,7 +3,7 @@
   "id": "shr-core-Media",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Media Profile</b></p>\n  <p>A photo, video, or audio recording acquired or used in healthcare. The actual content may be inline or provided by direct reference.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Media maps to Media:\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.extension\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  MediaBasedOn maps to basedOn\n  Type maps to type\n  Subtype maps to subtype\n  View maps to view\n  MediaSubjectOfRecord maps to subject\n  CareContext maps to context\n  RelevantTime maps to occurrence[x]\n  Practitioner maps to operator\n  ReasonCode maps to reasonCode\n  BodyLocation.Code maps to bodySite\n  BodyLocation.Laterality maps to bodySite.extension\n  BodyLocation.Orientation maps to bodySite.extension\n  BodyLocation.RelationToLandmark maps to bodySite.extension\n  Device maps to device\n  PixelHeight maps to height\n  PixelWidth maps to width\n  Frames maps to frames\n  NumberOfSecondsDuration maps to duration\n  Attachment maps to content\n  Annotation maps to note\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Media Profile</b></p>\n  <p>A photo, video, or audio recording acquired or used in healthcare. The actual content may be inline or provided by direct reference.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Media maps to Media:\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.extension\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  MediaBasedOn maps to basedOn\n  PartOf maps to extension\n  Status maps to extension\n  Type maps to type\n  Modality maps to subtype\n  View maps to view\n  MediaSubjectOfRecord maps to subject\n  CareContext maps to context\n  RelevantTime maps to occurrence[x]\n  StatementDateTime maps to extension\n  Performer maps to operator\n  ReasonCode maps to reasonCode\n  BodyLocation.Code maps to bodySite\n  BodyLocation.Laterality maps to bodySite.extension\n  BodyLocation.Orientation maps to bodySite.extension\n  BodyLocation.RelationToLandmark maps to bodySite.extension\n  DeviceName maps to extension\n  Device maps to device\n  PixelHeight maps to height\n  PixelWidth maps to width\n  Frames maps to frames\n  NumberOfSecondsDuration maps to duration\n  Attachment maps to content\n  Annotation maps to note\n</pre></p>\n</div>"
   },
   "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Media",
   "identifier": [
@@ -12,11 +12,11 @@
       "value": "shr.core.Media"
     }
   ],
-  "version": "0.5.0",
+  "version": "0.6.0",
   "name": "Media",
   "title": "shr-core-Media",
   "status": "draft",
-  "date": "2019-05-01T00:00:00-04:00",
+  "date": "2019-05-07T00:00:00-04:00",
   "publisher": "The MITRE Corporation",
   "contact": [
     {
@@ -530,7 +530,7 @@
           "extensions",
           "user content"
         ],
-        "min": 0,
+        "min": 1,
         "max": "*",
         "base": {
           "path": "DomainResource.extension",
@@ -550,25 +550,6 @@
         ]
       },
       {
-        "id": "Media:shr-core-Media.extension:status",
-        "path": "Media.extension",
-        "sliceName": "status",
-        "definition": "A state that relates to the workflow or interpretation of this resource. Certain status values can modify the meaning of the resource, for example, entered-in-error. When a boolean value is used, Status of true indicates the record is active, false means inactive.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "DomainResource.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Status-extension"
-          }
-        ]
-      },
-      {
         "id": "Media:shr-core-Media.extension:partof",
         "path": "Media.extension",
         "sliceName": "partof",
@@ -584,6 +565,166 @@
           {
             "code": "Extension",
             "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PartOf-extension"
+          }
+        ]
+      },
+      {
+        "id": "Media:shr-core-Media.extension:status",
+        "path": "Media.extension",
+        "sliceName": "status",
+        "definition": "A state that relates to the workflow or interpretation of this resource. Certain status values can modify the meaning of the resource, for example, entered-in-error. When a boolean value is used, Status of true indicates the record is active, false means inactive.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Status-extension"
+          }
+        ]
+      },
+      {
+        "id": "Media:shr-core-Media.extension:status.id",
+        "path": "Media.extension.id",
+        "representation": [
+          "xmlAttr"
+        ],
+        "short": "xml:id (or equivalent in JSON)",
+        "definition": "unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Element.id",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "id": "Media:shr-core-Media.extension:status.extension:extension",
+        "path": "Media.extension.extension",
+        "short": "Extension",
+        "definition": "An Extension",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "Element.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ]
+      },
+      {
+        "id": "Media:shr-core-Media.extension:status.url",
+        "path": "Media.extension.url",
+        "representation": [
+          "xmlAttr"
+        ],
+        "short": "identifies the meaning of the extension",
+        "definition": "Source of the definition for the extension code - a logical name or a URL.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Extension.url",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "fixedUri": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Status-extension",
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "id": "Media:shr-core-Media.extension:status.valueCodeableConcept",
+        "path": "Media.extension.valueCodeableConcept",
+        "short": "Value of extension",
+        "definition": "Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Extension.value[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "binding": {
+          "strength": "required",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/event-status"
+          }
+        },
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "id": "Media:shr-core-Media.extension:statementdatetime",
+        "path": "Media.extension",
+        "sliceName": "statementdatetime",
+        "definition": "The point in time when the statement was created.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatementDateTime-extension"
+          }
+        ]
+      },
+      {
+        "id": "Media:shr-core-Media.extension:devicename",
+        "path": "Media.extension",
+        "sliceName": "devicename",
+        "definition": "The name of the device.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DeviceName-extension"
           }
         ]
       },
@@ -847,10 +988,6 @@
           {
             "code": "Reference",
             "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare"
           }
         ],
         "isSummary": true,
@@ -1412,26 +1549,9 @@
           ],
           "ordered": false,
           "rules": "open"
-        }
-      },
-      {
-        "id": "Media:shr-core-Media.extension:status",
-        "path": "Media.extension",
-        "sliceName": "status",
-        "definition": "A state that relates to the workflow or interpretation of this resource. Certain status values can modify the meaning of the resource, for example, entered-in-error. When a boolean value is used, Status of true indicates the record is active, false means inactive.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "DomainResource.extension",
-          "min": 0,
-          "max": "*"
         },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Status-extension"
-          }
-        ]
+        "min": 1,
+        "max": "*"
       },
       {
         "id": "Media:shr-core-Media.extension:partof",
@@ -1449,6 +1569,73 @@
           {
             "code": "Extension",
             "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PartOf-extension"
+          }
+        ]
+      },
+      {
+        "id": "Media:shr-core-Media.extension:status",
+        "path": "Media.extension",
+        "sliceName": "status",
+        "definition": "A state that relates to the workflow or interpretation of this resource. Certain status values can modify the meaning of the resource, for example, entered-in-error. When a boolean value is used, Status of true indicates the record is active, false means inactive.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Status-extension"
+          }
+        ]
+      },
+      {
+        "id": "Media:shr-core-Media.extension:status.valueCodeableConcept",
+        "path": "Media.extension.valueCodeableConcept",
+        "binding": {
+          "strength": "required",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/event-status"
+          }
+        }
+      },
+      {
+        "id": "Media:shr-core-Media.extension:statementdatetime",
+        "path": "Media.extension",
+        "sliceName": "statementdatetime",
+        "definition": "The point in time when the statement was created.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatementDateTime-extension"
+          }
+        ]
+      },
+      {
+        "id": "Media:shr-core-Media.extension:devicename",
+        "path": "Media.extension",
+        "sliceName": "devicename",
+        "definition": "The name of the device.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DeviceName-extension"
           }
         ]
       },
@@ -1495,10 +1682,6 @@
           {
             "code": "Reference",
             "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare"
           }
         ]
       },

@@ -18,35 +18,39 @@
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
   Identifier maps to identifier
-  Code maps to code
-  SubjectOfRecord maps to subject
-  Category maps to category
+  ProcedureBasedOn maps to basedOn
+  ProcedurePartOf maps to partOf  // add Observation, MedicationAdministration
+  Status maps to status
+  StatusReason maps to extension
   constrain notDone to 0..0
   constrain notDoneReason to 0..0
-  BodyLocation.Code maps to bodySite
-  BodyLocation.Laterality maps to bodySite.extension
-  BodyLocation.Orientation maps to bodySite.extension
-  BodyLocation.RelationToLandmark maps to bodySite.extension
-  ProcedurePartOf maps to partOf
-  Annotation maps to note
+  Category maps to category
+  Code maps to code
+  SubjectOfRecord maps to subject
   CareContext maps to context
-  ReasonCode maps to reasonCode
-  ProcedureReasonReference maps to reasonReference
   OccurrenceTimeOrPeriod maps to performed[x]
   Participation maps to performer
   Participation.Participant maps to performer.actor
   Participation.ParticipationType maps to performer.role
   Participation.OnBehalfOf maps to performer.onBehalfOf
-  Status maps to status
-  StatusReason maps to extension
-  ProcedureBasedOn maps to basedOn
+  Location maps to location
+  ReasonCode maps to reasonCode
+  ProcedureReasonReference maps to reasonReference
+  BodyLocation.Code maps to bodySite
+  BodyLocation.Laterality maps to bodySite.extension
+  BodyLocation.Orientation maps to bodySite.extension
+  BodyLocation.RelationToLandmark maps to bodySite.extension
   Outcome maps to outcome
   DiagnosticReport maps to report
-  Location maps to location
-  MaterialUsed maps to usedReference
+  ComplicationCode maps to complication
+  ComplicationReference maps to complicationDetail
+  FollowUp maps to followUp
+  Annotation maps to note
   FocalDevice maps to focalDevice
   FocalDevice.Device maps to focalDevice.manipulated
   FocalDevice.FocalDeviceAction maps to focalDevice.action
+  MaterialUsedReference maps to usedReference
+  UsedCode maps to usedCode
 </pre></p>
 </div>
   </text>
@@ -55,11 +59,11 @@
     <system value="http://hl7.org/fhir/us/shrcore"/>
     <value value="shr.core.Procedure"/>
   </identifier>
-  <version value="0.5.0"/>
+  <version value="0.6.0"/>
   <name value="Procedure"/>
   <title value="shr-core-Procedure"/>
   <status value="draft"/>
-  <date value="2019-05-01T00:00:00-04:00"/>
+  <date value="2019-05-07T00:00:00-04:00"/>
   <publisher value="The MITRE Corporation"/>
   <contact>
     <telecom>
@@ -515,6 +519,38 @@
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatementDateTime-extension"/>
       </type>
     </element>
+    <element id="Procedure:shr-core-Procedure.extension:personauthor">
+      <path value="Procedure.extension"/>
+      <sliceName value="personauthor"/>
+      <definition value="A human author, patient, practitioner, or related person, as opposed to an organization or device."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PersonAuthor-extension"/>
+      </type>
+    </element>
+    <element id="Procedure:shr-core-Procedure.extension:personinformationsource">
+      <path value="Procedure.extension"/>
+      <sliceName value="personinformationsource"/>
+      <definition value="The person who provided the information, not necessarily the patient."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PersonInformationSource-extension"/>
+      </type>
+    </element>
     <element id="Procedure:shr-core-Procedure.extension:treatmentintent">
       <path value="Procedure.extension"/>
       <sliceName value="treatmentintent"/>
@@ -895,10 +931,6 @@
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare"/>
       </type>
       <isSummary value="true"/>
       <mapping>
@@ -1513,7 +1545,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"/>
       </type>
       <mapping>
         <identity value="rim"/>
@@ -1846,6 +1878,38 @@
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatementDateTime-extension"/>
       </type>
     </element>
+    <element id="Procedure:shr-core-Procedure.extension:personauthor">
+      <path value="Procedure.extension"/>
+      <sliceName value="personauthor"/>
+      <definition value="A human author, patient, practitioner, or related person, as opposed to an organization or device."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PersonAuthor-extension"/>
+      </type>
+    </element>
+    <element id="Procedure:shr-core-Procedure.extension:personinformationsource">
+      <path value="Procedure.extension"/>
+      <sliceName value="personinformationsource"/>
+      <definition value="The person who provided the information, not necessarily the patient."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PersonInformationSource-extension"/>
+      </type>
+    </element>
     <element id="Procedure:shr-core-Procedure.extension:treatmentintent">
       <path value="Procedure.extension"/>
       <sliceName value="treatmentintent"/>
@@ -1918,10 +1982,6 @@
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare"/>
       </type>
     </element>
     <element id="Procedure:shr-core-Procedure.performer">
@@ -2044,6 +2104,13 @@
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DiagnosticReport"/>
+      </type>
+    </element>
+    <element id="Procedure:shr-core-Procedure.complicationDetail">
+      <path value="Procedure.complicationDetail"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"/>
       </type>
     </element>
     <element id="Procedure:shr-core-Procedure.note">

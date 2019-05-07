@@ -40,7 +40,7 @@
   Annotation maps to note
   ServiceBasedOn maps to extension
   Replaces maps to extension
-  Requisition maps to extension
+  GroupIdentifier maps to extension
   DoNotPerform maps to extension
   ServiceDetails maps to extension
   RequestQuantity maps to extension
@@ -60,11 +60,11 @@
     <system value="http://hl7.org/fhir/us/shrcore"/>
     <value value="shr.core.ProcedureRequest"/>
   </identifier>
-  <version value="0.5.0"/>
+  <version value="0.6.0"/>
   <name value="ProcedureRequest"/>
   <title value="shr-core-ProcedureRequest"/>
   <status value="draft"/>
-  <date value="2019-05-01T00:00:00-04:00"/>
+  <date value="2019-05-07T00:00:00-04:00"/>
   <publisher value="The MITRE Corporation"/>
   <contact>
     <telecom>
@@ -509,9 +509,85 @@
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Replaces-extension"/>
       </type>
     </element>
-    <element id="ProcedureRequest:shr-core-ProcedureRequest.extension:requisition">
+    <element id="ProcedureRequest:shr-core-ProcedureRequest.extension:replaces.id">
+      <path value="ProcedureRequest.extension.id"/>
+      <representation value="xmlAttr"/>
+      <short value="xml:id (or equivalent in JSON)"/>
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.id"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="string"/>
+      </type>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="ProcedureRequest:shr-core-ProcedureRequest.extension:replaces.extension:extension">
+      <path value="ProcedureRequest.extension.extension"/>
+      <short value="Extension"/>
+      <definition value="An Extension"/>
+      <min value="0"/>
+      <max value="0"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+      </type>
+    </element>
+    <element id="ProcedureRequest:shr-core-ProcedureRequest.extension:replaces.url">
+      <path value="ProcedureRequest.extension.url"/>
+      <representation value="xmlAttr"/>
+      <short value="identifies the meaning of the extension"/>
+      <definition value="Source of the definition for the extension code - a logical name or a URL."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Extension.url"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="uri"/>
+      </type>
+      <fixedUri value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Replaces-extension"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="ProcedureRequest:shr-core-ProcedureRequest.extension:replaces.valueReference">
+      <path value="ProcedureRequest.extension.valueReference"/>
+      <short value="ServiceRequest"/>
+      <definition value="A record of a request for service such as diagnostic investigations, treatments, or operations to be performed."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Extension.value[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ServiceRequest"/>
+      </type>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="ProcedureRequest:shr-core-ProcedureRequest.extension:groupidentifier">
       <path value="ProcedureRequest.extension"/>
-      <sliceName value="requisition"/>
+      <sliceName value="groupidentifier"/>
       <definition value="A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier."/>
       <min value="0"/>
       <max value="1"/>
@@ -522,7 +598,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Requisition-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-GroupIdentifier-extension"/>
       </type>
     </element>
     <element id="ProcedureRequest:shr-core-ProcedureRequest.extension:donotperform">
@@ -2031,9 +2107,18 @@
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Replaces-extension"/>
       </type>
     </element>
-    <element id="ProcedureRequest:shr-core-ProcedureRequest.extension:requisition">
+    <element id="ProcedureRequest:shr-core-ProcedureRequest.extension:replaces.valueReference">
+      <path value="ProcedureRequest.extension.valueReference"/>
+      <short value="ServiceRequest"/>
+      <definition value="A record of a request for service such as diagnostic investigations, treatments, or operations to be performed."/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ServiceRequest"/>
+      </type>
+    </element>
+    <element id="ProcedureRequest:shr-core-ProcedureRequest.extension:groupidentifier">
       <path value="ProcedureRequest.extension"/>
-      <sliceName value="requisition"/>
+      <sliceName value="groupidentifier"/>
       <definition value="A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier."/>
       <min value="0"/>
       <max value="1"/>
@@ -2044,7 +2129,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Requisition-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-GroupIdentifier-extension"/>
       </type>
     </element>
     <element id="ProcedureRequest:shr-core-ProcedureRequest.extension:donotperform">

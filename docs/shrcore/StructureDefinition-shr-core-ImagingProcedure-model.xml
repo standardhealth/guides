@@ -13,11 +13,11 @@
     <system value="http://hl7.org/fhir/us/shrcore"/>
     <value value="shr.core.ImagingProcedure"/>
   </identifier>
-  <version value="0.5.0"/>
+  <version value="0.6.0"/>
   <name value="ImagingProcedure"/>
   <title value="shr-core-ImagingProcedure"/>
   <status value="draft"/>
-  <date value="2019-05-01T00:00:00-04:00"/>
+  <date value="2019-05-07T00:00:00-04:00"/>
   <publisher value="The MITRE Corporation"/>
   <contact>
     <telecom>
@@ -195,24 +195,20 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ImagingProcedure-model.careContext[x]">
-      <path value="shr-core-ImagingProcedure-model.careContext[x]"/>
+    <element id="shr-core-ImagingProcedure-model.careContext">
+      <path value="shr-core-ImagingProcedure-model.careContext"/>
       <short value="The encounter or episode of care"/>
       <definition value="The encounter or episode of care"/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-ImagingProcedure-model.careContext[x]"/>
+        <path value="shr-core-ImagingProcedure-model.careContext"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -579,10 +575,6 @@
     </element>
     <element id="shr-core-ImagingProcedure-model.participation.participationType">
       <path value="shr-core-ImagingProcedure-model.participation.participationType"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1553854"/>
-      </code>
       <short value="The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc."/>
       <definition value="The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc."/>
       <min value="0"/>
@@ -655,48 +647,6 @@
       </base>
       <type>
         <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-ImagingProcedure-model.code">
-      <path value="shr-core-ImagingProcedure-model.code"/>
-      <short value="The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary."/>
-      <definition value="The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary."/>
-      <min value="1"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-ImagingProcedure-model.code"/>
-        <min value="1"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <binding>
-        <strength value="extensible"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/core/ValueSet/us-core-procedure-code"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="shr-core-ImagingProcedure-model.bodyLocation">
-      <path value="shr-core-ImagingProcedure-model.bodyLocation"/>
-      <short value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases."/>
-      <definition value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;Note that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="shr-core-ImagingProcedure-model.bodyLocation"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BodyLocation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -815,38 +765,15 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ImagingProcedure-model.annotation">
-      <path value="shr-core-ImagingProcedure-model.annotation"/>
-      <short value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
-      <definition value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="shr-core-ImagingProcedure-model.annotation"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-ImagingProcedure-model.treatmentIntent">
-      <path value="shr-core-ImagingProcedure-model.treatmentIntent"/>
-      <code>
-        <system value="http://snomed.info/sct"/>
-        <code value="395077000"/>
-        <display value="Treatment intent (situation)"/>
-      </code>
-      <short value="The purpose of a treatment."/>
-      <definition value="The purpose of a treatment."/>
-      <min value="0"/>
+    <element id="shr-core-ImagingProcedure-model.code">
+      <path value="shr-core-ImagingProcedure-model.code"/>
+      <short value="The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary."/>
+      <definition value="The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary."/>
+      <min value="1"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-ImagingProcedure-model.treatmentIntent"/>
-        <min value="0"/>
+        <path value="shr-core-ImagingProcedure-model.code"/>
+        <min value="1"/>
         <max value="1"/>
       </base>
       <type>
@@ -856,11 +783,65 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
       <binding>
-        <strength value="required"/>
+        <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/shrcore/shr/core/vs/TreatmentIntentVS"/>
+          <reference value="http://hl7.org/fhir/us/core/ValueSet/us-core-procedure-code"/>
         </valueSetReference>
       </binding>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.personAuthor[x]">
+      <path value="shr-core-ImagingProcedure-model.personAuthor[x]"/>
+      <short value="A human author, patient, practitioner, or related person, as opposed to an organization or device."/>
+      <definition value="A human author, patient, practitioner, or related person, as opposed to an organization or device."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.personAuthor[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.personInformationSource[x]">
+      <path value="shr-core-ImagingProcedure-model.personInformationSource[x]"/>
+      <short value="The person who provided the information, not necessarily the patient."/>
+      <definition value="The person who provided the information, not necessarily the patient."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.personInformationSource[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
     </element>
     <element id="shr-core-ImagingProcedure-model.location">
       <path value="shr-core-ImagingProcedure-model.location"/>
@@ -876,6 +857,24 @@
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Location-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.bodyLocation">
+      <path value="shr-core-ImagingProcedure-model.bodyLocation"/>
+      <short value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases."/>
+      <definition value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;Note that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.bodyLocation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BodyLocation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -924,14 +923,142 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ImagingProcedure-model.materialUsed[x]">
-      <path value="shr-core-ImagingProcedure-model.materialUsed[x]"/>
-      <short value="Items used during procedure"/>
-      <definition value="Items used during procedure"/>
+    <element id="shr-core-ImagingProcedure-model.complicationCode">
+      <path value="shr-core-ImagingProcedure-model.complicationCode"/>
+      <short value="Complication following the procedure, as a code."/>
+      <definition value="Complication following the procedure, as a code."/>
       <min value="0"/>
       <max value="*"/>
       <base>
-        <path value="shr-core-ImagingProcedure-model.materialUsed[x]"/>
+        <path value="shr-core-ImagingProcedure-model.complicationCode"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.complicationReference">
+      <path value="shr-core-ImagingProcedure-model.complicationReference"/>
+      <short value="Complication following the procedure, as a reference to a Condition."/>
+      <definition value="Complication following the procedure, as a reference to a Condition."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.complicationReference"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.followUp">
+      <path value="shr-core-ImagingProcedure-model.followUp"/>
+      <short value="Instructions for follow up."/>
+      <definition value="Instructions for follow up."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.followUp"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.annotation">
+      <path value="shr-core-ImagingProcedure-model.annotation"/>
+      <short value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <definition value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.annotation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.focalDevice">
+      <path value="shr-core-ImagingProcedure-model.focalDevice"/>
+      <short value="Activity involving a device that is implanted, removed or otherwise manipulated (e.g., calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure."/>
+      <definition value="Activity involving a device that is implanted, removed or otherwise manipulated (e.g., calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.focalDevice"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-FocalDevice-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.treatmentIntent">
+      <path value="shr-core-ImagingProcedure-model.treatmentIntent"/>
+      <code>
+        <system value="http://snomed.info/sct"/>
+        <code value="395077000"/>
+        <display value="Treatment intent (situation)"/>
+      </code>
+      <short value="The purpose of a treatment."/>
+      <definition value="The purpose of a treatment."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.treatmentIntent"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="required"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/us/shrcore/shr/core/vs/TreatmentIntentVS"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.materialUsedReference[x]">
+      <path value="shr-core-ImagingProcedure-model.materialUsedReference[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="Identifies medications, devices and any other substance used as part of the procedure."/>
+      <definition value="Identifies medications, devices and any other substance used as part of the procedure."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.materialUsedReference[x]"/>
         <min value="0"/>
         <max value="*"/>
       </base>
@@ -951,19 +1078,79 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ImagingProcedure-model.focalDevice">
-      <path value="shr-core-ImagingProcedure-model.focalDevice"/>
-      <short value="A device that is implanted, removed or otherwise manipulated (e.g., calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure."/>
-      <definition value="A device that is implanted, removed or otherwise manipulated (e.g., calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure."/>
-      <min value="0"/>
-      <max value="*"/>
+    <element id="shr-core-ImagingProcedure-model.materialUsedReferenceShr-core-Device-model:Device">
+      <path value="shr-core-ImagingProcedure-model.materialUsedReferenceShr-core-Device-model"/>
+      <sliceName value="Device"/>
+      <short value="A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients."/>
+      <definition value="A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients.&#xA;Device status cannot be reconciled between Argonaut and US-Core, each having different required value sets.&#xA;Device type has extensible mappings to different value sets in Argonaut and US-Core, however both value sets have identical SNOMED content (descendants of 49062001 (Device). We adopt the US-Core value set, which is allowable because the binding is extensible."/>
+      <min value="1"/>
+      <max value="1"/>
       <base>
-        <path value="shr-core-ImagingProcedure-model.focalDevice"/>
+        <path value="shr-core-ImagingProcedure-model.materialUsedReference[x]"/>
         <min value="0"/>
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-FocalDevice-model"/>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.materialUsedReferenceShr-core-Medication-model:Medication">
+      <path value="shr-core-ImagingProcedure-model.materialUsedReferenceShr-core-Medication-model"/>
+      <sliceName value="Medication"/>
+      <short value="A type of prescription drug or over-the-counter drug that is used to prevent, treat, or relieve symptoms of a disease or abnormal condition, but excluding vaccines."/>
+      <definition value="A type of prescription drug or over-the-counter drug that is used to prevent, treat, or relieve symptoms of a disease or abnormal condition, but excluding vaccines.&#xA;In FHIR DSTU2 and STU3, Medication lacks the identifier attribute, which is included in SHR as an extension.&#xA;DSTU2 lacks the status attribute, which is required by US-Core.&#xA;Batch is 0..1 in FHIR R4, and accordingly is restricted here."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.materialUsedReference[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Medication-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.materialUsedReferenceShr-core-Substance-model:Substance">
+      <path value="shr-core-ImagingProcedure-model.materialUsedReferenceShr-core-Substance-model"/>
+      <sliceName value="Substance"/>
+      <short value="Any matter of defined composition that has discrete existence, whose origin may be biological, mineral or chemical."/>
+      <definition value="Any matter of defined composition that has discrete existence, whose origin may be biological, mineral or chemical."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.materialUsedReference[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Substance-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.usedCode">
+      <path value="shr-core-ImagingProcedure-model.usedCode"/>
+      <short value="Item used during an activity, represented as a code."/>
+      <definition value="Item used during an activity, represented as a code."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.usedCode"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1152,24 +1339,20 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ImagingProcedure-model.careContext[x]">
-      <path value="shr-core-ImagingProcedure-model.careContext[x]"/>
+    <element id="shr-core-ImagingProcedure-model.careContext">
+      <path value="shr-core-ImagingProcedure-model.careContext"/>
       <short value="The encounter or episode of care"/>
       <definition value="The encounter or episode of care"/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-ImagingProcedure-model.careContext[x]"/>
+        <path value="shr-core-ImagingProcedure-model.careContext"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1536,10 +1719,6 @@
     </element>
     <element id="shr-core-ImagingProcedure-model.participation.participationType">
       <path value="shr-core-ImagingProcedure-model.participation.participationType"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1553854"/>
-      </code>
       <short value="The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc."/>
       <definition value="The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc."/>
       <min value="0"/>
@@ -1612,48 +1791,6 @@
       </base>
       <type>
         <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-ImagingProcedure-model.code">
-      <path value="shr-core-ImagingProcedure-model.code"/>
-      <short value="The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary."/>
-      <definition value="The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary."/>
-      <min value="1"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-ImagingProcedure-model.code"/>
-        <min value="1"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <binding>
-        <strength value="extensible"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/core/ValueSet/us-core-procedure-code"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="shr-core-ImagingProcedure-model.bodyLocation">
-      <path value="shr-core-ImagingProcedure-model.bodyLocation"/>
-      <short value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases."/>
-      <definition value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;Note that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="shr-core-ImagingProcedure-model.bodyLocation"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BodyLocation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1772,38 +1909,15 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ImagingProcedure-model.annotation">
-      <path value="shr-core-ImagingProcedure-model.annotation"/>
-      <short value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
-      <definition value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="shr-core-ImagingProcedure-model.annotation"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-ImagingProcedure-model.treatmentIntent">
-      <path value="shr-core-ImagingProcedure-model.treatmentIntent"/>
-      <code>
-        <system value="http://snomed.info/sct"/>
-        <code value="395077000"/>
-        <display value="Treatment intent (situation)"/>
-      </code>
-      <short value="The purpose of a treatment."/>
-      <definition value="The purpose of a treatment."/>
-      <min value="0"/>
+    <element id="shr-core-ImagingProcedure-model.code">
+      <path value="shr-core-ImagingProcedure-model.code"/>
+      <short value="The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary."/>
+      <definition value="The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary."/>
+      <min value="1"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-ImagingProcedure-model.treatmentIntent"/>
-        <min value="0"/>
+        <path value="shr-core-ImagingProcedure-model.code"/>
+        <min value="1"/>
         <max value="1"/>
       </base>
       <type>
@@ -1813,11 +1927,65 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
       <binding>
-        <strength value="required"/>
+        <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/shrcore/shr/core/vs/TreatmentIntentVS"/>
+          <reference value="http://hl7.org/fhir/us/core/ValueSet/us-core-procedure-code"/>
         </valueSetReference>
       </binding>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.personAuthor[x]">
+      <path value="shr-core-ImagingProcedure-model.personAuthor[x]"/>
+      <short value="A human author, patient, practitioner, or related person, as opposed to an organization or device."/>
+      <definition value="A human author, patient, practitioner, or related person, as opposed to an organization or device."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.personAuthor[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.personInformationSource[x]">
+      <path value="shr-core-ImagingProcedure-model.personInformationSource[x]"/>
+      <short value="The person who provided the information, not necessarily the patient."/>
+      <definition value="The person who provided the information, not necessarily the patient."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.personInformationSource[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
     </element>
     <element id="shr-core-ImagingProcedure-model.location">
       <path value="shr-core-ImagingProcedure-model.location"/>
@@ -1833,6 +2001,24 @@
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Location-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.bodyLocation">
+      <path value="shr-core-ImagingProcedure-model.bodyLocation"/>
+      <short value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases."/>
+      <definition value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;Note that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.bodyLocation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BodyLocation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1881,14 +2067,142 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ImagingProcedure-model.materialUsed[x]">
-      <path value="shr-core-ImagingProcedure-model.materialUsed[x]"/>
-      <short value="Items used during procedure"/>
-      <definition value="Items used during procedure"/>
+    <element id="shr-core-ImagingProcedure-model.complicationCode">
+      <path value="shr-core-ImagingProcedure-model.complicationCode"/>
+      <short value="Complication following the procedure, as a code."/>
+      <definition value="Complication following the procedure, as a code."/>
       <min value="0"/>
       <max value="*"/>
       <base>
-        <path value="shr-core-ImagingProcedure-model.materialUsed[x]"/>
+        <path value="shr-core-ImagingProcedure-model.complicationCode"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.complicationReference">
+      <path value="shr-core-ImagingProcedure-model.complicationReference"/>
+      <short value="Complication following the procedure, as a reference to a Condition."/>
+      <definition value="Complication following the procedure, as a reference to a Condition."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.complicationReference"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.followUp">
+      <path value="shr-core-ImagingProcedure-model.followUp"/>
+      <short value="Instructions for follow up."/>
+      <definition value="Instructions for follow up."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.followUp"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.annotation">
+      <path value="shr-core-ImagingProcedure-model.annotation"/>
+      <short value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <definition value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.annotation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.focalDevice">
+      <path value="shr-core-ImagingProcedure-model.focalDevice"/>
+      <short value="Activity involving a device that is implanted, removed or otherwise manipulated (e.g., calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure."/>
+      <definition value="Activity involving a device that is implanted, removed or otherwise manipulated (e.g., calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.focalDevice"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-FocalDevice-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.treatmentIntent">
+      <path value="shr-core-ImagingProcedure-model.treatmentIntent"/>
+      <code>
+        <system value="http://snomed.info/sct"/>
+        <code value="395077000"/>
+        <display value="Treatment intent (situation)"/>
+      </code>
+      <short value="The purpose of a treatment."/>
+      <definition value="The purpose of a treatment."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.treatmentIntent"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="required"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/us/shrcore/shr/core/vs/TreatmentIntentVS"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.materialUsedReference[x]">
+      <path value="shr-core-ImagingProcedure-model.materialUsedReference[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="Identifies medications, devices and any other substance used as part of the procedure."/>
+      <definition value="Identifies medications, devices and any other substance used as part of the procedure."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.materialUsedReference[x]"/>
         <min value="0"/>
         <max value="*"/>
       </base>
@@ -1908,19 +2222,79 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ImagingProcedure-model.focalDevice">
-      <path value="shr-core-ImagingProcedure-model.focalDevice"/>
-      <short value="A device that is implanted, removed or otherwise manipulated (e.g., calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure."/>
-      <definition value="A device that is implanted, removed or otherwise manipulated (e.g., calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure."/>
-      <min value="0"/>
-      <max value="*"/>
+    <element id="shr-core-ImagingProcedure-model.materialUsedReferenceShr-core-Device-model:Device">
+      <path value="shr-core-ImagingProcedure-model.materialUsedReferenceShr-core-Device-model"/>
+      <sliceName value="Device"/>
+      <short value="A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients."/>
+      <definition value="A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients.&#xA;Device status cannot be reconciled between Argonaut and US-Core, each having different required value sets.&#xA;Device type has extensible mappings to different value sets in Argonaut and US-Core, however both value sets have identical SNOMED content (descendants of 49062001 (Device). We adopt the US-Core value set, which is allowable because the binding is extensible."/>
+      <min value="1"/>
+      <max value="1"/>
       <base>
-        <path value="shr-core-ImagingProcedure-model.focalDevice"/>
+        <path value="shr-core-ImagingProcedure-model.materialUsedReference[x]"/>
         <min value="0"/>
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-FocalDevice-model"/>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.materialUsedReferenceShr-core-Medication-model:Medication">
+      <path value="shr-core-ImagingProcedure-model.materialUsedReferenceShr-core-Medication-model"/>
+      <sliceName value="Medication"/>
+      <short value="A type of prescription drug or over-the-counter drug that is used to prevent, treat, or relieve symptoms of a disease or abnormal condition, but excluding vaccines."/>
+      <definition value="A type of prescription drug or over-the-counter drug that is used to prevent, treat, or relieve symptoms of a disease or abnormal condition, but excluding vaccines.&#xA;In FHIR DSTU2 and STU3, Medication lacks the identifier attribute, which is included in SHR as an extension.&#xA;DSTU2 lacks the status attribute, which is required by US-Core.&#xA;Batch is 0..1 in FHIR R4, and accordingly is restricted here."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.materialUsedReference[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Medication-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.materialUsedReferenceShr-core-Substance-model:Substance">
+      <path value="shr-core-ImagingProcedure-model.materialUsedReferenceShr-core-Substance-model"/>
+      <sliceName value="Substance"/>
+      <short value="Any matter of defined composition that has discrete existence, whose origin may be biological, mineral or chemical."/>
+      <definition value="Any matter of defined composition that has discrete existence, whose origin may be biological, mineral or chemical."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.materialUsedReference[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Substance-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ImagingProcedure-model.usedCode">
+      <path value="shr-core-ImagingProcedure-model.usedCode"/>
+      <short value="Item used during an activity, represented as a code."/>
+      <definition value="Item used during an activity, represented as a code."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ImagingProcedure-model.usedCode"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>

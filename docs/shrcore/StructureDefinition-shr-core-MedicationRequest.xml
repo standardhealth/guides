@@ -20,29 +20,44 @@ Intent was added in STU3 and is provided as an extension with required binding.<
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
+  Identifier maps to identifier
+  MedicationBasedOn maps to extension
+  GroupIdentifier maps to groupIdentifier
+  Status maps to status
+  StatusReason maps to extension
+  RequestIntent maps to intent
+  Category maps to category
+  PriorityCode maps to priority
+  DoNotPerform maps to modifierExtension
+  Reported maps to extension
+  MedicationCodeOrReference maps to medication[x]
   SubjectOfRecord maps to subject
   CareContext maps to context
+  SupportingInformation maps to supportingInformation
   StatementDateTime maps to authoredOn
-  Identifier maps to identifier
-  Requester maps to requester
-  RequestIntent maps to intent
-  MedicationCodeOrReference maps to medication[x]
-  NumberOfRefillsAllowed maps to dispenseRequest.numberOfRepeatsAllowed
-  QuantityPerDispense maps to dispenseRequest.quantity
-  SupplyDuration maps to dispenseRequest.expectedSupplyDuration
-  constrain dosageInstruction to 0..1
-  Dosage maps to dosageInstruction
+  Requester maps to requester.agent
+  ExpectedPerformer maps to extension
+  ExpectedPerformerType maps to extension
+  Author maps to recorder
   ReasonCode maps to reasonCode
   MedicationReasonReference maps to reasonReference
-  Status maps to status
-  ExpectedPerformanceTime maps to dispenseRequest.validityPeriod
-  PriorityCode maps to priority
+  CourseOfTherapyType maps to extension
+  Insurance maps to extension
   Annotation maps to note
-  ExpectedPerformer maps to dispenseRequest.performer
-  constrain note to 0..1
-  SubstitutionAllowed maps to substitution.allowed
-  SubstitutionReason maps to substitution.reason
-  Category maps to category
+  Dosage maps to dosageInstruction
+  DispenseRequest maps to dispenseRequest
+  DispenseRequest.InitialFill maps to dispenseRequest.extension
+  DispenseRequest.DispenseInterval maps to dispenseRequest.extension
+  DispenseRequest.ValidityPeriod maps to dispenseRequest.validityPeriod
+  constrain dispenseRequest.numberOfRepeatsAllowed to 0..0
+  DispenseRequest.NumberOfRefillsAllowed maps to dispenseRequest.extension
+  DispenseRequest.QuantityPerDispense maps to dispenseRequest.quantity
+  DispenseRequest.SupplyDuration maps to dispenseRequest.expectedSupplyDuration
+  DispenseRequest.ExpectedPerformer maps to dispenseRequest.performer
+  Substitution maps to substitution
+  Substitution.SubstitutionAllowed maps to substitution.allowed
+  Substitution.SubstitutionReason maps to substitution.reason
+  Replaces maps to priorPrescription
 </pre></p>
 </div>
   </text>
@@ -51,11 +66,11 @@ Intent was added in STU3 and is provided as an extension with required binding.<
     <system value="http://hl7.org/fhir/us/shrcore"/>
     <value value="shr.core.MedicationRequest"/>
   </identifier>
-  <version value="0.5.0"/>
+  <version value="0.6.0"/>
   <name value="MedicationRequest"/>
   <title value="shr-core-MedicationRequest"/>
   <status value="draft"/>
-  <date value="2019-05-01T00:00:00-04:00"/>
+  <date value="2019-05-07T00:00:00-04:00"/>
   <publisher value="The MITRE Corporation"/>
   <contact>
     <telecom>
@@ -491,10 +506,10 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="MedicationRequest:shr-core-MedicationRequest.extension:reasonreference">
+    <element id="MedicationRequest:shr-core-MedicationRequest.extension:medicationbasedon">
       <path value="MedicationRequest.extension"/>
-      <sliceName value="reasonreference"/>
-      <definition value="The justification, as reference to a condition or observation."/>
+      <sliceName value="medicationbasedon"/>
+      <definition value="MedicationBasedOn"/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -504,13 +519,93 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationBasedOn-extension"/>
       </type>
     </element>
-    <element id="MedicationRequest:shr-core-MedicationRequest.extension:basedon">
+    <element id="MedicationRequest:shr-core-MedicationRequest.extension:statusreason">
       <path value="MedicationRequest.extension"/>
-      <sliceName value="basedon"/>
-      <definition value="The proposal, order, or plan that is partly or wholly fulfilled by this item."/>
+      <sliceName value="statusreason"/>
+      <definition value="Captures the reason for the current state of the procedure."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatusReason-extension"/>
+      </type>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.extension:reported">
+      <path value="MedicationRequest.extension"/>
+      <sliceName value="reported"/>
+      <definition value="Indicates if this record was captured as a secondary &#39;reported&#39; record rather than as an original primary source-of-truth record. It may also indicate the source of the report."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Reported-extension"/>
+      </type>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.extension:expectedperformer">
+      <path value="MedicationRequest.extension"/>
+      <sliceName value="expectedperformer"/>
+      <definition value="Who this request is being addressed to."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ExpectedPerformer-extension"/>
+      </type>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.extension:expectedperformertype">
+      <path value="MedicationRequest.extension"/>
+      <sliceName value="expectedperformertype"/>
+      <definition value="What type of party should carry out the testing."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ExpectedPerformerType-extension"/>
+      </type>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.extension:courseoftherapytype">
+      <path value="MedicationRequest.extension"/>
+      <sliceName value="courseoftherapytype"/>
+      <definition value="The description of the overall pattern of the administration of the medication to the patient."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CourseOfTherapyType-extension"/>
+      </type>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.extension:insurance">
+      <path value="MedicationRequest.extension"/>
+      <sliceName value="insurance"/>
+      <definition value="Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -520,7 +615,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BasedOn-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Insurance-extension"/>
       </type>
     </element>
     <element id="MedicationRequest:shr-core-MedicationRequest.extension:code">
@@ -539,8 +634,32 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Code-extension"/>
       </type>
     </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.extension:expectedperformancetime">
+      <path value="MedicationRequest.extension"/>
+      <sliceName value="expectedperformancetime"/>
+      <definition value="When an action should be done. If the action is a series or recurs (e.g. daily blood sugar testing in the morning) then a Timing can be used to describe the periodicity."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ExpectedPerformanceTime-extension"/>
+      </type>
+    </element>
     <element id="MedicationRequest:shr-core-MedicationRequest.modifierExtension">
       <path value="MedicationRequest.modifierExtension"/>
+      <slicing id="4">
+        <discriminator>
+          <type value="value"/>
+          <path value="url"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the resource, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -561,6 +680,24 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <identity value="rim"/>
         <map value="N/A"/>
       </mapping>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.modifierExtension:donotperform">
+      <path value="MedicationRequest.modifierExtension"/>
+      <sliceName value="donotperform"/>
+      <definition value="A flag, when set to true, indicates that the service/procedure should NOT be performed."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.modifierExtension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DoNotPerform-extension"/>
+      </type>
+      <mustSupport value="true"/>
+      <isModifier value="true"/>
     </element>
     <element id="MedicationRequest:shr-core-MedicationRequest.identifier">
       <path value="MedicationRequest.identifier"/>
@@ -847,7 +984,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
     </element>
     <element id="MedicationRequest:shr-core-MedicationRequest.medication[x]">
       <path value="MedicationRequest.medication[x]"/>
-      <slicing id="1">
+      <slicing id="3">
         <discriminator>
           <type value="type"/>
           <path value="$this"/>
@@ -988,10 +1125,6 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"/>
       </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare"/>
-      </type>
       <mapping>
         <identity value="workflow"/>
         <map value="&#x2026;context"/>
@@ -1026,7 +1159,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource"/>
       </type>
       <mapping>
         <identity value="rim"/>
@@ -1208,7 +1341,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
       </type>
       <mustSupport value="true"/>
       <isSummary value="true"/>
@@ -1273,7 +1406,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
       </type>
       <mapping>
         <identity value="rim"/>
@@ -1401,7 +1534,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       <definition value="Indicates how the medication is to be used by the patient."/>
       <comment value="There are examples where a medication request may include the option of an oral dose or an Intravenous or Intramuscular dose.  For example, &quot;Ondansetron 8mg orally or IV twice a day as needed for nausea&quot; or &quot;Compazine&#xAE; (prochlorperazine) 5-10mg PO or 25mg PR bid prn nausea or vomiting&quot;.  In these cases, two medication requests would be created that could be grouped together.  The decision on which dose and route of administration to use is based on the patient&#39;s condition at the time the dose is needed."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="*"/>
       <base>
         <path value="MedicationRequest.dosageInstruction"/>
         <min value="0"/>
@@ -1473,6 +1606,14 @@ Intent was added in STU3 and is provided as an extension with required binding.<
     </element>
     <element id="MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension">
       <path value="MedicationRequest.dispenseRequest.extension"/>
+      <slicing id="1">
+        <discriminator>
+          <type value="value"/>
+          <path value="url"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1492,6 +1633,54 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <identity value="rim"/>
         <map value="n/a"/>
       </mapping>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension:initialfill">
+      <path value="MedicationRequest.dispenseRequest.extension"/>
+      <sliceName value="initialfill"/>
+      <definition value="Indicates the quantity or duration for the first dispense of the medication."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-InitialFill-extension"/>
+      </type>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension:dispenseinterval">
+      <path value="MedicationRequest.dispenseRequest.extension"/>
+      <sliceName value="dispenseinterval"/>
+      <definition value="The minimum period of time that must occur between dispenses of the medication."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DispenseInterval-extension"/>
+      </type>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension:numberofrefillsallowed">
+      <path value="MedicationRequest.dispenseRequest.extension"/>
+      <sliceName value="numberofrefillsallowed"/>
+      <definition value="The maximum number of times the dispense can be repeated. For medication dispense, this integer does NOT include the original order dispense. This means that if an order indicates dispense 30 tablets plus 3 repeats, then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-NumberOfRefillsAllowed-extension"/>
+      </type>
     </element>
     <element id="MedicationRequest:shr-core-MedicationRequest.dispenseRequest.modifierExtension">
       <path value="MedicationRequest.dispenseRequest.modifierExtension"/>
@@ -1549,7 +1738,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       <definition value="An integer indicating the number of times, in addition to the original dispense, (aka refills or repeats) that the patient can receive the prescribed medication. Usage Notes: This integer does not include the original order dispense. This means that if an order indicates dispense 30 tablets plus &quot;3 repeats&quot;, then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets."/>
       <comment value="If displaying &quot;number of authorized fills&quot;, add 1 to this number."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="0"/>
       <base>
         <path value="MedicationRequest.dispenseRequest.numberOfRepeatsAllowed"/>
         <min value="0"/>
@@ -1793,7 +1982,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="MedicationIntendedSubstitutionReason"/>
         </extension>
-        <strength value="required"/>
+        <strength value="example"/>
         <description value="A coded concept describing the reason that a different medication should (or should not) be substituted from what was prescribed."/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/v3-SubstanceAdminSubstitutionReason"/>
@@ -1825,7 +2014,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationRequest"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationRequest"/>
       </type>
       <mapping>
         <identity value="workflow"/>
@@ -1926,10 +2115,10 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <rules value="open"/>
       </slicing>
     </element>
-    <element id="MedicationRequest:shr-core-MedicationRequest.extension:reasonreference">
+    <element id="MedicationRequest:shr-core-MedicationRequest.extension:medicationbasedon">
       <path value="MedicationRequest.extension"/>
-      <sliceName value="reasonreference"/>
-      <definition value="The justification, as reference to a condition or observation."/>
+      <sliceName value="medicationbasedon"/>
+      <definition value="MedicationBasedOn"/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1939,13 +2128,93 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationBasedOn-extension"/>
       </type>
     </element>
-    <element id="MedicationRequest:shr-core-MedicationRequest.extension:basedon">
+    <element id="MedicationRequest:shr-core-MedicationRequest.extension:statusreason">
       <path value="MedicationRequest.extension"/>
-      <sliceName value="basedon"/>
-      <definition value="The proposal, order, or plan that is partly or wholly fulfilled by this item."/>
+      <sliceName value="statusreason"/>
+      <definition value="Captures the reason for the current state of the procedure."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatusReason-extension"/>
+      </type>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.extension:reported">
+      <path value="MedicationRequest.extension"/>
+      <sliceName value="reported"/>
+      <definition value="Indicates if this record was captured as a secondary &#39;reported&#39; record rather than as an original primary source-of-truth record. It may also indicate the source of the report."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Reported-extension"/>
+      </type>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.extension:expectedperformer">
+      <path value="MedicationRequest.extension"/>
+      <sliceName value="expectedperformer"/>
+      <definition value="Who this request is being addressed to."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ExpectedPerformer-extension"/>
+      </type>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.extension:expectedperformertype">
+      <path value="MedicationRequest.extension"/>
+      <sliceName value="expectedperformertype"/>
+      <definition value="What type of party should carry out the testing."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ExpectedPerformerType-extension"/>
+      </type>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.extension:courseoftherapytype">
+      <path value="MedicationRequest.extension"/>
+      <sliceName value="courseoftherapytype"/>
+      <definition value="The description of the overall pattern of the administration of the medication to the patient."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CourseOfTherapyType-extension"/>
+      </type>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.extension:insurance">
+      <path value="MedicationRequest.extension"/>
+      <sliceName value="insurance"/>
+      <definition value="Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1955,7 +2224,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BasedOn-extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Insurance-extension"/>
       </type>
     </element>
     <element id="MedicationRequest:shr-core-MedicationRequest.extension:code">
@@ -1974,6 +2243,51 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Code-extension"/>
       </type>
     </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.extension:expectedperformancetime">
+      <path value="MedicationRequest.extension"/>
+      <sliceName value="expectedperformancetime"/>
+      <definition value="When an action should be done. If the action is a series or recurs (e.g. daily blood sugar testing in the morning) then a Timing can be used to describe the periodicity."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ExpectedPerformanceTime-extension"/>
+      </type>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.modifierExtension">
+      <path value="MedicationRequest.modifierExtension"/>
+      <slicing id="4">
+        <discriminator>
+          <type value="value"/>
+          <path value="url"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.modifierExtension:donotperform">
+      <path value="MedicationRequest.modifierExtension"/>
+      <sliceName value="donotperform"/>
+      <definition value="A flag, when set to true, indicates that the service/procedure should NOT be performed."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.modifierExtension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DoNotPerform-extension"/>
+      </type>
+      <mustSupport value="true"/>
+      <isModifier value="true"/>
+    </element>
     <element id="MedicationRequest:shr-core-MedicationRequest.category">
       <path value="MedicationRequest.category"/>
       <binding>
@@ -1985,7 +2299,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
     </element>
     <element id="MedicationRequest:shr-core-MedicationRequest.medication[x]">
       <path value="MedicationRequest.medication[x]"/>
-      <slicing id="1">
+      <slicing id="3">
         <discriminator>
           <type value="type"/>
           <path value="$this"/>
@@ -2026,9 +2340,29 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"/>
       </type>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.supportingInformation">
+      <path value="MedicationRequest.supportingInformation"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource"/>
+      </type>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.requester">
+      <path value="MedicationRequest.requester"/>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.requester.agent">
+      <path value="MedicationRequest.requester.agent"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
+      </type>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.recorder">
+      <path value="MedicationRequest.recorder"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
       </type>
     </element>
     <element id="MedicationRequest:shr-core-MedicationRequest.reasonCode">
@@ -2060,8 +2394,6 @@ Intent was added in STU3 and is provided as an extension with required binding.<
     </element>
     <element id="MedicationRequest:shr-core-MedicationRequest.dosageInstruction">
       <path value="MedicationRequest.dosageInstruction"/>
-      <min value="0"/>
-      <max value="1"/>
       <type>
         <code value="Dosage"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Dosage"/>
@@ -2069,6 +2401,70 @@ Intent was added in STU3 and is provided as an extension with required binding.<
     </element>
     <element id="MedicationRequest:shr-core-MedicationRequest.dispenseRequest">
       <path value="MedicationRequest.dispenseRequest"/>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension">
+      <path value="MedicationRequest.dispenseRequest.extension"/>
+      <slicing id="1">
+        <discriminator>
+          <type value="value"/>
+          <path value="url"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension:initialfill">
+      <path value="MedicationRequest.dispenseRequest.extension"/>
+      <sliceName value="initialfill"/>
+      <definition value="Indicates the quantity or duration for the first dispense of the medication."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-InitialFill-extension"/>
+      </type>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension:dispenseinterval">
+      <path value="MedicationRequest.dispenseRequest.extension"/>
+      <sliceName value="dispenseinterval"/>
+      <definition value="The minimum period of time that must occur between dispenses of the medication."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DispenseInterval-extension"/>
+      </type>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension:numberofrefillsallowed">
+      <path value="MedicationRequest.dispenseRequest.extension"/>
+      <sliceName value="numberofrefillsallowed"/>
+      <definition value="The maximum number of times the dispense can be repeated. For medication dispense, this integer does NOT include the original order dispense. This means that if an order indicates dispense 30 tablets plus 3 repeats, then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-NumberOfRefillsAllowed-extension"/>
+      </type>
+    </element>
+    <element id="MedicationRequest:shr-core-MedicationRequest.dispenseRequest.numberOfRepeatsAllowed">
+      <path value="MedicationRequest.dispenseRequest.numberOfRepeatsAllowed"/>
+      <min value="0"/>
+      <max value="0"/>
     </element>
     <element id="MedicationRequest:shr-core-MedicationRequest.dispenseRequest.expectedSupplyDuration">
       <path value="MedicationRequest.dispenseRequest.expectedSupplyDuration"/>
@@ -2084,21 +2480,12 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
       </type>
     </element>
-    <element id="MedicationRequest:shr-core-MedicationRequest.substitution">
-      <path value="MedicationRequest.substitution"/>
-    </element>
-    <element id="MedicationRequest:shr-core-MedicationRequest.substitution.reason">
-      <path value="MedicationRequest.substitution.reason"/>
-      <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="MedicationIntendedSubstitutionReason"/>
-        </extension>
-        <strength value="required"/>
-        <description value="A coded concept describing the reason that a different medication should (or should not) be substituted from what was prescribed."/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/v3-SubstanceAdminSubstitutionReason"/>
-        </valueSetReference>
-      </binding>
+    <element id="MedicationRequest:shr-core-MedicationRequest.priorPrescription">
+      <path value="MedicationRequest.priorPrescription"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationRequest"/>
+      </type>
     </element>
   </differential>
 </StructureDefinition>

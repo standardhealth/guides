@@ -3,7 +3,7 @@
   "id": "shr-core-SurgicalProcedure",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>SurgicalProcedure Profile</b></p>\n  <p/>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.SurgicalProcedure maps to http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure:\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.extension\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Code maps to code\n  SubjectOfRecord maps to subject\n  Category maps to category\n  constrain notDone to 0..0\n  constrain notDoneReason to 0..0\n  SurgicalBodyLocation.Code maps to bodySite\n  SurgicalBodyLocation.Laterality maps to bodySite.extension\n  SurgicalBodyLocation.Orientation maps to bodySite.extension\n  SurgicalBodyLocation.RelationToLandmark maps to bodySite.extension\n  ProcedurePartOf maps to partOf\n  Annotation maps to note\n  CareContext maps to context\n  ReasonCode maps to reasonCode\n  ProcedureReasonReference maps to reasonReference\n  OccurrenceTimeOrPeriod maps to performed[x]\n  Participation maps to performer\n  Participation.Participant maps to performer.actor\n  Participation.ParticipationType maps to performer.role\n  Participation.OnBehalfOf maps to performer.onBehalfOf\n  Status maps to status\n  StatusReason maps to extension\n  ProcedureBasedOn maps to basedOn\n  Outcome maps to outcome\n  DiagnosticReport maps to report\n  Location maps to location\n  MaterialUsed maps to usedReference\n  FocalDevice maps to focalDevice\n  FocalDevice.Device maps to focalDevice.manipulated\n  FocalDevice.FocalDeviceAction maps to focalDevice.action\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>SurgicalProcedure Profile</b></p>\n  <p/>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.SurgicalProcedure maps to http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure:\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.extension\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  ProcedureBasedOn maps to basedOn\n  ProcedurePartOf maps to partOf  // add Observation, MedicationAdministration\n  Status maps to status\n  StatusReason maps to extension\n  constrain notDone to 0..0\n  constrain notDoneReason to 0..0\n  Category maps to category\n  Code maps to code\n  SubjectOfRecord maps to subject\n  CareContext maps to context\n  OccurrenceTimeOrPeriod maps to performed[x]\n  Participation maps to performer\n  Participation.Participant maps to performer.actor\n  Participation.ParticipationType maps to performer.role\n  Participation.OnBehalfOf maps to performer.onBehalfOf\n  Location maps to location\n  ReasonCode maps to reasonCode\n  ProcedureReasonReference maps to reasonReference\n  SurgicalBodyLocation.Code maps to bodySite\n  SurgicalBodyLocation.Laterality maps to bodySite.extension\n  SurgicalBodyLocation.Orientation maps to bodySite.extension\n  SurgicalBodyLocation.RelationToLandmark maps to bodySite.extension\n  Outcome maps to outcome\n  DiagnosticReport maps to report\n  ComplicationCode maps to complication\n  ComplicationReference maps to complicationDetail\n  FollowUp maps to followUp\n  Annotation maps to note\n  FocalDevice maps to focalDevice\n  FocalDevice.Device maps to focalDevice.manipulated\n  FocalDevice.FocalDeviceAction maps to focalDevice.action\n  MaterialUsedReference maps to usedReference\n  UsedCode maps to usedCode\n</pre></p>\n</div>"
   },
   "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SurgicalProcedure",
   "identifier": [
@@ -12,11 +12,11 @@
       "value": "shr.core.SurgicalProcedure"
     }
   ],
-  "version": "0.5.0",
+  "version": "0.6.0",
   "name": "SurgicalProcedure",
   "title": "shr-core-SurgicalProcedure",
   "status": "draft",
-  "date": "2019-05-01T00:00:00-04:00",
+  "date": "2019-05-07T00:00:00-04:00",
   "publisher": "The MITRE Corporation",
   "contact": [
     {
@@ -578,6 +578,44 @@
         ]
       },
       {
+        "id": "Procedure:shr-core-SurgicalProcedure.extension:personauthor",
+        "path": "Procedure.extension",
+        "sliceName": "personauthor",
+        "definition": "A human author, patient, practitioner, or related person, as opposed to an organization or device.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PersonAuthor-extension"
+          }
+        ]
+      },
+      {
+        "id": "Procedure:shr-core-SurgicalProcedure.extension:personinformationsource",
+        "path": "Procedure.extension",
+        "sliceName": "personinformationsource",
+        "definition": "The person who provided the information, not necessarily the patient.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PersonInformationSource-extension"
+          }
+        ]
+      },
+      {
         "id": "Procedure:shr-core-SurgicalProcedure.extension:treatmentintent",
         "path": "Procedure.extension",
         "sliceName": "treatmentintent",
@@ -1031,10 +1069,6 @@
           {
             "code": "Reference",
             "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare"
           }
         ],
         "isSummary": true,
@@ -1771,7 +1805,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/StructureDefinition/Condition"
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"
           }
         ],
         "mapping": [
@@ -2192,6 +2226,44 @@
         ]
       },
       {
+        "id": "Procedure:shr-core-SurgicalProcedure.extension:personauthor",
+        "path": "Procedure.extension",
+        "sliceName": "personauthor",
+        "definition": "A human author, patient, practitioner, or related person, as opposed to an organization or device.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PersonAuthor-extension"
+          }
+        ]
+      },
+      {
+        "id": "Procedure:shr-core-SurgicalProcedure.extension:personinformationsource",
+        "path": "Procedure.extension",
+        "sliceName": "personinformationsource",
+        "definition": "The person who provided the information, not necessarily the patient.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PersonInformationSource-extension"
+          }
+        ]
+      },
+      {
         "id": "Procedure:shr-core-SurgicalProcedure.extension:treatmentintent",
         "path": "Procedure.extension",
         "sliceName": "treatmentintent",
@@ -2289,10 +2361,6 @@
           {
             "code": "Reference",
             "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare"
           }
         ]
       },
@@ -2426,6 +2494,16 @@
           {
             "code": "Reference",
             "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DiagnosticReport"
+          }
+        ]
+      },
+      {
+        "id": "Procedure:shr-core-SurgicalProcedure.complicationDetail",
+        "path": "Procedure.complicationDetail",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"
           }
         ]
       },

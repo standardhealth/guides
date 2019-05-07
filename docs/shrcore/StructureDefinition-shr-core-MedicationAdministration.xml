@@ -21,21 +21,34 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
   Identifier maps to identifier
+  MedicationAdministrationPartOf maps to partOf
+  Status maps to status
+  StatusReason maps to extension
+  Category maps to category
+  MedicationReasonReference maps to reasonReference
   SubjectOfRecord maps to subject
   CareContext maps to context
-  MedicationAdministrationBasedOn maps to prescription
-  constrain notGiven to 0..0
-  constrain reasonNotGiven to 0..0
-  Dosage maps to dosage
-  MedicationCodeOrReference maps to medication[x]
-  Category maps to category
-  ReasonCode maps to reasonCode
-  MedicationReasonReference maps to reasonReference
+  SupportingInformation maps to supportingInformation
   OccurrenceTimeOrPeriod maps to effective[x]
-  Status maps to status
   Participation maps to performer
   Participation.Participant maps to performer.actor
+  Participation.ParticipationType maps to performer.extension
   Participation.OnBehalfOf maps to performer.onBehalfOf
+  constrain notGiven to 0..0
+  constrain reasonNotGiven to 0..0
+  ReasonCode maps to reasonCode
+  MedicationAdministrationBasedOn maps to prescription
+  Device maps to device
+  Annotation maps to note
+  Dosage maps to dosage
+  Dosage.InstructionText maps to dosage.text
+  Dosage.AdministrationSite maps to dosage.site
+  Dosage.RouteIntoBody maps to dosage.route
+  Dosage.Method maps to dosage.method
+  Dosage.DoseAndRate.DoseAmount maps to dosage.dose
+  Dosage.DoseAndRate.DoseRate maps to dosage.rate[x] // Ratio, Range, SimpleQuantity maps to Ratio, Quantity
+  Dosage.DoseSequenceNumber maps to dosage.extension
+  Dosage.InstructionCode maps to dosage.extension
 </pre></p>
 </div>
   </text>
@@ -44,11 +57,11 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
     <system value="http://hl7.org/fhir/us/shrcore"/>
     <value value="shr.core.MedicationAdministration"/>
   </identifier>
-  <version value="0.5.0"/>
+  <version value="0.6.0"/>
   <name value="MedicationAdministration"/>
   <title value="shr-core-MedicationAdministration"/>
   <status value="draft"/>
-  <date value="2019-05-01T00:00:00-04:00"/>
+  <date value="2019-05-07T00:00:00-04:00"/>
   <publisher value="The MITRE Corporation"/>
   <contact>
     <telecom>
@@ -456,7 +469,7 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
       <alias value="extensions"/>
       <alias value="user content"/>
-      <min value="0"/>
+      <min value="1"/>
       <max value="*"/>
       <base>
         <path value="DomainResource.extension"/>
@@ -470,6 +483,22 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
         <identity value="rim"/>
         <map value="N/A"/>
       </mapping>
+    </element>
+    <element id="MedicationAdministration:shr-core-MedicationAdministration.extension:statusreason">
+      <path value="MedicationAdministration.extension"/>
+      <sliceName value="statusreason"/>
+      <definition value="Captures the reason for the current state of the procedure."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatusReason-extension"/>
+      </type>
     </element>
     <element id="MedicationAdministration:shr-core-MedicationAdministration.extension:statementdatetime">
       <path value="MedicationAdministration.extension"/>
@@ -485,6 +514,22 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
       <type>
         <code value="Extension"/>
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatementDateTime-extension"/>
+      </type>
+    </element>
+    <element id="MedicationAdministration:shr-core-MedicationAdministration.extension:medicationcodeorreference">
+      <path value="MedicationAdministration.extension"/>
+      <sliceName value="medicationcodeorreference"/>
+      <definition value="A choice of a medication code or reference."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationCodeOrReference-extension"/>
       </type>
     </element>
     <element id="MedicationAdministration:shr-core-MedicationAdministration.modifierExtension">
@@ -564,11 +609,11 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
       <max value="*"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationAdministration"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationAdministration"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure"/>
       </type>
       <isSummary value="true"/>
       <mapping>
@@ -645,30 +690,17 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
     </element>
     <element id="MedicationAdministration:shr-core-MedicationAdministration.medication[x]">
       <path value="MedicationAdministration.medication[x]"/>
-      <slicing id="1">
-        <discriminator>
-          <type value="type"/>
-          <path value="$this"/>
-        </discriminator>
-        <ordered value="false"/>
-        <rules value="open"/>
-      </slicing>
       <short value="What was administered"/>
       <definition value="Identifies the medication that was administered. This is either a link to a resource representing the details of the medication or a simple attribute carrying a code that identifies the medication from a known list of medications."/>
       <comment value="If only a code is specified, then it needs to be a code for a specific product. If more information is required, then the use of the medication resource is recommended.&#xA0; For example if&#xA0;you require&#xA0;form or&#xA0;lot number, then you must&#xA0;reference the Medication resource.&#xA0;."/>
       <min value="1"/>
       <max value="1"/>
-      <base>
-        <path value="MedicationAdministration.medication[x]"/>
-        <min value="1"/>
-        <max value="1"/>
-      </base>
       <type>
         <code value="CodeableConcept"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Medication"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Medication"/>
       </type>
       <isSummary value="true"/>
       <binding>
@@ -697,29 +729,6 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
         <identity value="w5"/>
         <map value="what"/>
       </mapping>
-    </element>
-    <element id="MedicationAdministration:shr-core-MedicationAdministration.medicationCodeableConcept:CodeableConcept">
-      <path value="MedicationAdministration.medicationCodeableConcept"/>
-      <sliceName value="CodeableConcept"/>
-      <short value="What was administered"/>
-      <definition value="Identifies the medication that was administered. This is either a link to a resource representing the details of the medication or a simple attribute carrying a code that identifies the medication from a known list of medications."/>
-      <min value="1"/>
-      <max value="1"/>
-      <base>
-        <path value="MedicationAdministration.medication[x]"/>
-        <min value="1"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="CodeableConcept"/>
-      </type>
-      <isSummary value="true"/>
-      <binding>
-        <strength value="extensible"/>
-        <valueSetReference>
-          <reference value="http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes"/>
-        </valueSetReference>
-      </binding>
     </element>
     <element id="MedicationAdministration:shr-core-MedicationAdministration.subject">
       <path value="MedicationAdministration.subject"/>
@@ -793,7 +802,7 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
       <max value="*"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource"/>
       </type>
       <mapping>
         <identity value="rim"/>
@@ -901,6 +910,14 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
     </element>
     <element id="MedicationAdministration:shr-core-MedicationAdministration.performer.extension">
       <path value="MedicationAdministration.performer.extension"/>
+      <slicing id="3">
+        <discriminator>
+          <type value="value"/>
+          <path value="url"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -920,6 +937,22 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
         <identity value="rim"/>
         <map value="n/a"/>
       </mapping>
+    </element>
+    <element id="MedicationAdministration:shr-core-MedicationAdministration.performer.extension:participationtype">
+      <path value="MedicationAdministration.performer.extension"/>
+      <sliceName value="participationtype"/>
+      <definition value="The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ParticipationType-extension"/>
+      </type>
     </element>
     <element id="MedicationAdministration:shr-core-MedicationAdministration.performer.modifierExtension">
       <path value="MedicationAdministration.performer.modifierExtension"/>
@@ -1158,7 +1191,7 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
       <max value="*"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device"/>
       </type>
       <mapping>
         <identity value="v2"/>
@@ -1177,6 +1210,7 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
       <max value="*"/>
       <type>
         <code value="Annotation"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation"/>
       </type>
       <mapping>
         <identity value="workflow"/>
@@ -1238,6 +1272,14 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
     </element>
     <element id="MedicationAdministration:shr-core-MedicationAdministration.dosage.extension">
       <path value="MedicationAdministration.dosage.extension"/>
+      <slicing id="1">
+        <discriminator>
+          <type value="value"/>
+          <path value="url"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1257,6 +1299,22 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
         <identity value="rim"/>
         <map value="n/a"/>
       </mapping>
+    </element>
+    <element id="MedicationAdministration:shr-core-MedicationAdministration.dosage.extension:dosesequencenumber">
+      <path value="MedicationAdministration.dosage.extension"/>
+      <sliceName value="dosesequencenumber"/>
+      <definition value="Dose number within series."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DoseSequenceNumber-extension"/>
+      </type>
     </element>
     <element id="MedicationAdministration:shr-core-MedicationAdministration.dosage.modifierExtension">
       <path value="MedicationAdministration.dosage.modifierExtension"/>
@@ -1308,13 +1366,9 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
         <code value="CodeableConcept"/>
       </type>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="MedicationAdministrationSite"/>
-        </extension>
         <strength value="example"/>
-        <description value="A coded concept describing the site location the medicine enters into or onto the body."/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/approach-site-codes"/>
+          <reference value="http://hl7.org/fhir/us/shrcore/shr/core/vs/BodyLocationVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -1339,7 +1393,7 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="RouteOfAdministration"/>
         </extension>
-        <strength value="example"/>
+        <strength value="required"/>
         <description value="A coded concept describing the route or physiological path of administration of a therapeutic agent into or onto the body of a subject."/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/route-codes"/>
@@ -1368,7 +1422,7 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="MedicationAdministrationMethod"/>
         </extension>
-        <strength value="example"/>
+        <strength value="preferred"/>
         <description value="A coded concept describing the technique by which the medicine is administered."/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/administration-method-codes"/>
@@ -1478,6 +1532,24 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
         <ordered value="false"/>
         <rules value="open"/>
       </slicing>
+      <min value="1"/>
+      <max value="*"/>
+    </element>
+    <element id="MedicationAdministration:shr-core-MedicationAdministration.extension:statusreason">
+      <path value="MedicationAdministration.extension"/>
+      <sliceName value="statusreason"/>
+      <definition value="Captures the reason for the current state of the procedure."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatusReason-extension"/>
+      </type>
     </element>
     <element id="MedicationAdministration:shr-core-MedicationAdministration.extension:statementdatetime">
       <path value="MedicationAdministration.extension"/>
@@ -1495,40 +1567,32 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
         <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatementDateTime-extension"/>
       </type>
     </element>
-    <element id="MedicationAdministration:shr-core-MedicationAdministration.medication[x]">
-      <path value="MedicationAdministration.medication[x]"/>
-      <slicing id="1">
-        <discriminator>
-          <type value="type"/>
-          <path value="$this"/>
-        </discriminator>
-        <ordered value="false"/>
-        <rules value="open"/>
-      </slicing>
+    <element id="MedicationAdministration:shr-core-MedicationAdministration.extension:medicationcodeorreference">
+      <path value="MedicationAdministration.extension"/>
+      <sliceName value="medicationcodeorreference"/>
+      <definition value="A choice of a medication code or reference."/>
+      <min value="1"/>
+      <max value="1"/>
       <base>
-        <path value="MedicationAdministration.medication[x]"/>
-        <min value="1"/>
-        <max value="1"/>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
       </base>
       <type>
-        <code value="CodeableConcept"/>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationCodeOrReference-extension"/>
+      </type>
+    </element>
+    <element id="MedicationAdministration:shr-core-MedicationAdministration.partOf">
+      <path value="MedicationAdministration.partOf"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationAdministration"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Medication"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure"/>
       </type>
-    </element>
-    <element id="MedicationAdministration:shr-core-MedicationAdministration.medicationCodeableConcept:CodeableConcept">
-      <path value="MedicationAdministration.medicationCodeableConcept"/>
-      <type>
-        <code value="CodeableConcept"/>
-      </type>
-      <binding>
-        <strength value="extensible"/>
-        <valueSetReference>
-          <reference value="http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes"/>
-        </valueSetReference>
-      </binding>
     </element>
     <element id="MedicationAdministration:shr-core-MedicationAdministration.subject">
       <path value="MedicationAdministration.subject"/>
@@ -1553,6 +1617,13 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
         <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare"/>
       </type>
     </element>
+    <element id="MedicationAdministration:shr-core-MedicationAdministration.supportingInformation">
+      <path value="MedicationAdministration.supportingInformation"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource"/>
+      </type>
+    </element>
     <element id="MedicationAdministration:shr-core-MedicationAdministration.effective[x]">
       <path value="MedicationAdministration.effective[x]"/>
       <base>
@@ -1570,6 +1641,33 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
         <min value="0"/>
         <max value="*"/>
       </base>
+    </element>
+    <element id="MedicationAdministration:shr-core-MedicationAdministration.performer.extension">
+      <path value="MedicationAdministration.performer.extension"/>
+      <slicing id="3">
+        <discriminator>
+          <type value="value"/>
+          <path value="url"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+    </element>
+    <element id="MedicationAdministration:shr-core-MedicationAdministration.performer.extension:participationtype">
+      <path value="MedicationAdministration.performer.extension"/>
+      <sliceName value="participationtype"/>
+      <definition value="The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ParticipationType-extension"/>
+      </type>
     </element>
     <element id="MedicationAdministration:shr-core-MedicationAdministration.performer.actor">
       <path value="MedicationAdministration.performer.actor"/>
@@ -1630,6 +1728,85 @@ SHR does not allow the 'not given' attributes from DSTU2 and STU3, since they ar
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationRequest"/>
       </type>
+    </element>
+    <element id="MedicationAdministration:shr-core-MedicationAdministration.device">
+      <path value="MedicationAdministration.device"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device"/>
+      </type>
+    </element>
+    <element id="MedicationAdministration:shr-core-MedicationAdministration.note">
+      <path value="MedicationAdministration.note"/>
+      <type>
+        <code value="Annotation"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation"/>
+      </type>
+    </element>
+    <element id="MedicationAdministration:shr-core-MedicationAdministration.dosage">
+      <path value="MedicationAdministration.dosage"/>
+    </element>
+    <element id="MedicationAdministration:shr-core-MedicationAdministration.dosage.extension">
+      <path value="MedicationAdministration.dosage.extension"/>
+      <slicing id="1">
+        <discriminator>
+          <type value="value"/>
+          <path value="url"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+    </element>
+    <element id="MedicationAdministration:shr-core-MedicationAdministration.dosage.extension:dosesequencenumber">
+      <path value="MedicationAdministration.dosage.extension"/>
+      <sliceName value="dosesequencenumber"/>
+      <definition value="Dose number within series."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DoseSequenceNumber-extension"/>
+      </type>
+    </element>
+    <element id="MedicationAdministration:shr-core-MedicationAdministration.dosage.site">
+      <path value="MedicationAdministration.dosage.site"/>
+      <binding>
+        <strength value="example"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/us/shrcore/shr/core/vs/BodyLocationVS"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="MedicationAdministration:shr-core-MedicationAdministration.dosage.route">
+      <path value="MedicationAdministration.dosage.route"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="RouteOfAdministration"/>
+        </extension>
+        <strength value="required"/>
+        <description value="A coded concept describing the route or physiological path of administration of a therapeutic agent into or onto the body of a subject."/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/route-codes"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="MedicationAdministration:shr-core-MedicationAdministration.dosage.method">
+      <path value="MedicationAdministration.dosage.method"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="MedicationAdministrationMethod"/>
+        </extension>
+        <strength value="preferred"/>
+        <description value="A coded concept describing the technique by which the medicine is administered."/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/administration-method-codes"/>
+        </valueSetReference>
+      </binding>
     </element>
   </differential>
 </StructureDefinition>

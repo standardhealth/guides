@@ -3,7 +3,7 @@
   "id": "shr-core-MedicationRequest",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>MedicationRequest Profile</b></p>\n  <p>An order for a medication to be dispensed and instructions for use.\nValue sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.\nCategory does not exist in DSTU2 and is provided as an extension.\nIntent was added in STU3 and is provided as an extension with required binding.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.MedicationRequest maps to http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest:\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.extension\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  SubjectOfRecord maps to subject\n  CareContext maps to context\n  StatementDateTime maps to authoredOn\n  Identifier maps to identifier\n  Requester maps to requester\n  RequestIntent maps to intent\n  MedicationCodeOrReference maps to medication[x]\n  NumberOfRefillsAllowed maps to dispenseRequest.numberOfRepeatsAllowed\n  QuantityPerDispense maps to dispenseRequest.quantity\n  SupplyDuration maps to dispenseRequest.expectedSupplyDuration\n  constrain dosageInstruction to 0..1\n  Dosage maps to dosageInstruction\n  ReasonCode maps to reasonCode\n  MedicationReasonReference maps to reasonReference\n  Status maps to status\n  ExpectedPerformanceTime maps to dispenseRequest.validityPeriod\n  PriorityCode maps to priority\n  Annotation maps to note\n  ExpectedPerformer maps to dispenseRequest.performer\n  constrain note to 0..1\n  SubstitutionAllowed maps to substitution.allowed\n  SubstitutionReason maps to substitution.reason\n  Category maps to category\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>MedicationRequest Profile</b></p>\n  <p>An order for a medication to be dispensed and instructions for use.\nValue sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.\nCategory does not exist in DSTU2 and is provided as an extension.\nIntent was added in STU3 and is provided as an extension with required binding.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.MedicationRequest maps to http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest:\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.extension\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  MedicationBasedOn maps to extension\n  GroupIdentifier maps to groupIdentifier\n  Status maps to status\n  StatusReason maps to extension\n  RequestIntent maps to intent\n  Category maps to category\n  PriorityCode maps to priority\n  DoNotPerform maps to modifierExtension\n  Reported maps to extension\n  MedicationCodeOrReference maps to medication[x]\n  SubjectOfRecord maps to subject\n  CareContext maps to context\n  SupportingInformation maps to supportingInformation\n  StatementDateTime maps to authoredOn\n  Requester maps to requester.agent\n  ExpectedPerformer maps to extension\n  ExpectedPerformerType maps to extension\n  Author maps to recorder\n  ReasonCode maps to reasonCode\n  MedicationReasonReference maps to reasonReference\n  CourseOfTherapyType maps to extension\n  Insurance maps to extension\n  Annotation maps to note\n  Dosage maps to dosageInstruction\n  DispenseRequest maps to dispenseRequest\n  DispenseRequest.InitialFill maps to dispenseRequest.extension\n  DispenseRequest.DispenseInterval maps to dispenseRequest.extension\n  DispenseRequest.ValidityPeriod maps to dispenseRequest.validityPeriod\n  constrain dispenseRequest.numberOfRepeatsAllowed to 0..0\n  DispenseRequest.NumberOfRefillsAllowed maps to dispenseRequest.extension\n  DispenseRequest.QuantityPerDispense maps to dispenseRequest.quantity\n  DispenseRequest.SupplyDuration maps to dispenseRequest.expectedSupplyDuration\n  DispenseRequest.ExpectedPerformer maps to dispenseRequest.performer\n  Substitution maps to substitution\n  Substitution.SubstitutionAllowed maps to substitution.allowed\n  Substitution.SubstitutionReason maps to substitution.reason\n  Replaces maps to priorPrescription\n</pre></p>\n</div>"
   },
   "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationRequest",
   "identifier": [
@@ -12,11 +12,11 @@
       "value": "shr.core.MedicationRequest"
     }
   ],
-  "version": "0.5.0",
+  "version": "0.6.0",
   "name": "MedicationRequest",
   "title": "shr-core-MedicationRequest",
   "status": "draft",
-  "date": "2019-05-01T00:00:00-04:00",
+  "date": "2019-05-07T00:00:00-04:00",
   "publisher": "The MITRE Corporation",
   "contact": [
     {
@@ -555,10 +555,10 @@
         ]
       },
       {
-        "id": "MedicationRequest:shr-core-MedicationRequest.extension:reasonreference",
+        "id": "MedicationRequest:shr-core-MedicationRequest.extension:medicationbasedon",
         "path": "MedicationRequest.extension",
-        "sliceName": "reasonreference",
-        "definition": "The justification, as reference to a condition or observation.",
+        "sliceName": "medicationbasedon",
+        "definition": "MedicationBasedOn",
         "min": 0,
         "max": "*",
         "base": {
@@ -569,15 +569,110 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationBasedOn-extension"
           }
         ]
       },
       {
-        "id": "MedicationRequest:shr-core-MedicationRequest.extension:basedon",
+        "id": "MedicationRequest:shr-core-MedicationRequest.extension:statusreason",
         "path": "MedicationRequest.extension",
-        "sliceName": "basedon",
-        "definition": "The proposal, order, or plan that is partly or wholly fulfilled by this item.",
+        "sliceName": "statusreason",
+        "definition": "Captures the reason for the current state of the procedure.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatusReason-extension"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.extension:reported",
+        "path": "MedicationRequest.extension",
+        "sliceName": "reported",
+        "definition": "Indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth record. It may also indicate the source of the report.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Reported-extension"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.extension:expectedperformer",
+        "path": "MedicationRequest.extension",
+        "sliceName": "expectedperformer",
+        "definition": "Who this request is being addressed to.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ExpectedPerformer-extension"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.extension:expectedperformertype",
+        "path": "MedicationRequest.extension",
+        "sliceName": "expectedperformertype",
+        "definition": "What type of party should carry out the testing.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ExpectedPerformerType-extension"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.extension:courseoftherapytype",
+        "path": "MedicationRequest.extension",
+        "sliceName": "courseoftherapytype",
+        "definition": "The description of the overall pattern of the administration of the medication to the patient.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CourseOfTherapyType-extension"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.extension:insurance",
+        "path": "MedicationRequest.extension",
+        "sliceName": "insurance",
+        "definition": "Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service.",
         "min": 0,
         "max": "*",
         "base": {
@@ -588,7 +683,7 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BasedOn-extension"
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Insurance-extension"
           }
         ]
       },
@@ -612,8 +707,38 @@
         ]
       },
       {
+        "id": "MedicationRequest:shr-core-MedicationRequest.extension:expectedperformancetime",
+        "path": "MedicationRequest.extension",
+        "sliceName": "expectedperformancetime",
+        "definition": "When an action should be done. If the action is a series or recurs (e.g. daily blood sugar testing in the morning) then a Timing can be used to describe the periodicity.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ExpectedPerformanceTime-extension"
+          }
+        ]
+      },
+      {
         "id": "MedicationRequest:shr-core-MedicationRequest.modifierExtension",
         "path": "MedicationRequest.modifierExtension",
+        "slicing": {
+          "id": "4",
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
         "short": "Extensions that cannot be ignored",
         "definition": "May be used to represent additional information that is not part of the basic definition of the resource, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
         "comment": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -640,6 +765,27 @@
             "map": "N/A"
           }
         ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.modifierExtension:donotperform",
+        "path": "MedicationRequest.modifierExtension",
+        "sliceName": "donotperform",
+        "definition": "A flag, when set to true, indicates that the service/procedure should NOT be performed.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DoNotPerform-extension"
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": true
       },
       {
         "id": "MedicationRequest:shr-core-MedicationRequest.identifier",
@@ -974,7 +1120,7 @@
         "id": "MedicationRequest:shr-core-MedicationRequest.medication[x]",
         "path": "MedicationRequest.medication[x]",
         "slicing": {
-          "id": "1",
+          "id": "3",
           "discriminator": [
             {
               "type": "type",
@@ -1130,10 +1276,6 @@
           {
             "code": "Reference",
             "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare"
           }
         ],
         "mapping": [
@@ -1174,7 +1316,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/StructureDefinition/Resource"
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource"
           }
         ],
         "mapping": [
@@ -1394,7 +1536,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"
           }
         ],
         "mustSupport": true,
@@ -1471,7 +1613,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/StructureDefinition/Practitioner"
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"
           }
         ],
         "mapping": [
@@ -1621,7 +1763,7 @@
         "definition": "Indicates how the medication is to be used by the patient.",
         "comment": "There are examples where a medication request may include the option of an oral dose or an Intravenous or Intramuscular dose.  For example, \"Ondansetron 8mg orally or IV twice a day as needed for nausea\" or \"Compazine® (prochlorperazine) 5-10mg PO or 25mg PR bid prn nausea or vomiting\".  In these cases, two medication requests would be created that could be grouped together.  The decision on which dose and route of administration to use is based on the patient's condition at the time the dose is needed.",
         "min": 0,
-        "max": "1",
+        "max": "*",
         "base": {
           "path": "MedicationRequest.dosageInstruction",
           "min": 0,
@@ -1712,6 +1854,17 @@
       {
         "id": "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension",
         "path": "MedicationRequest.dispenseRequest.extension",
+        "slicing": {
+          "id": "1",
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
         "short": "Additional Content defined by implementations",
         "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
         "comment": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
@@ -1735,6 +1888,63 @@
           {
             "identity": "rim",
             "map": "n/a"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension:initialfill",
+        "path": "MedicationRequest.dispenseRequest.extension",
+        "sliceName": "initialfill",
+        "definition": "Indicates the quantity or duration for the first dispense of the medication.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Element.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-InitialFill-extension"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension:dispenseinterval",
+        "path": "MedicationRequest.dispenseRequest.extension",
+        "sliceName": "dispenseinterval",
+        "definition": "The minimum period of time that must occur between dispenses of the medication.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Element.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DispenseInterval-extension"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension:numberofrefillsallowed",
+        "path": "MedicationRequest.dispenseRequest.extension",
+        "sliceName": "numberofrefillsallowed",
+        "definition": "The maximum number of times the dispense can be repeated. For medication dispense, this integer does NOT include the original order dispense. This means that if an order indicates dispense 30 tablets plus 3 repeats, then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Element.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-NumberOfRefillsAllowed-extension"
           }
         ]
       },
@@ -1807,7 +2017,7 @@
         "definition": "An integer indicating the number of times, in addition to the original dispense, (aka refills or repeats) that the patient can receive the prescribed medication. Usage Notes: This integer does not include the original order dispense. This means that if an order indicates dispense 30 tablets plus \"3 repeats\", then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets.",
         "comment": "If displaying \"number of authorized fills\", add 1 to this number.",
         "min": 0,
-        "max": "1",
+        "max": "0",
         "base": {
           "path": "MedicationRequest.dispenseRequest.numberOfRepeatsAllowed",
           "min": 0,
@@ -2109,7 +2319,7 @@
               "valueString": "MedicationIntendedSubstitutionReason"
             }
           ],
-          "strength": "required",
+          "strength": "example",
           "description": "A coded concept describing the reason that a different medication should (or should not) be substituted from what was prescribed.",
           "valueSetReference": {
             "reference": "http://hl7.org/fhir/ValueSet/v3-SubstanceAdminSubstitutionReason"
@@ -2145,7 +2355,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/StructureDefinition/MedicationRequest"
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationRequest"
           }
         ],
         "mapping": [
@@ -2273,10 +2483,10 @@
         }
       },
       {
-        "id": "MedicationRequest:shr-core-MedicationRequest.extension:reasonreference",
+        "id": "MedicationRequest:shr-core-MedicationRequest.extension:medicationbasedon",
         "path": "MedicationRequest.extension",
-        "sliceName": "reasonreference",
-        "definition": "The justification, as reference to a condition or observation.",
+        "sliceName": "medicationbasedon",
+        "definition": "MedicationBasedOn",
         "min": 0,
         "max": "*",
         "base": {
@@ -2287,15 +2497,110 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationBasedOn-extension"
           }
         ]
       },
       {
-        "id": "MedicationRequest:shr-core-MedicationRequest.extension:basedon",
+        "id": "MedicationRequest:shr-core-MedicationRequest.extension:statusreason",
         "path": "MedicationRequest.extension",
-        "sliceName": "basedon",
-        "definition": "The proposal, order, or plan that is partly or wholly fulfilled by this item.",
+        "sliceName": "statusreason",
+        "definition": "Captures the reason for the current state of the procedure.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatusReason-extension"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.extension:reported",
+        "path": "MedicationRequest.extension",
+        "sliceName": "reported",
+        "definition": "Indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth record. It may also indicate the source of the report.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Reported-extension"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.extension:expectedperformer",
+        "path": "MedicationRequest.extension",
+        "sliceName": "expectedperformer",
+        "definition": "Who this request is being addressed to.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ExpectedPerformer-extension"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.extension:expectedperformertype",
+        "path": "MedicationRequest.extension",
+        "sliceName": "expectedperformertype",
+        "definition": "What type of party should carry out the testing.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ExpectedPerformerType-extension"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.extension:courseoftherapytype",
+        "path": "MedicationRequest.extension",
+        "sliceName": "courseoftherapytype",
+        "definition": "The description of the overall pattern of the administration of the medication to the patient.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CourseOfTherapyType-extension"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.extension:insurance",
+        "path": "MedicationRequest.extension",
+        "sliceName": "insurance",
+        "definition": "Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service.",
         "min": 0,
         "max": "*",
         "base": {
@@ -2306,7 +2611,7 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BasedOn-extension"
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Insurance-extension"
           }
         ]
       },
@@ -2330,6 +2635,61 @@
         ]
       },
       {
+        "id": "MedicationRequest:shr-core-MedicationRequest.extension:expectedperformancetime",
+        "path": "MedicationRequest.extension",
+        "sliceName": "expectedperformancetime",
+        "definition": "When an action should be done. If the action is a series or recurs (e.g. daily blood sugar testing in the morning) then a Timing can be used to describe the periodicity.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ExpectedPerformanceTime-extension"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.modifierExtension",
+        "path": "MedicationRequest.modifierExtension",
+        "slicing": {
+          "id": "4",
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        }
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.modifierExtension:donotperform",
+        "path": "MedicationRequest.modifierExtension",
+        "sliceName": "donotperform",
+        "definition": "A flag, when set to true, indicates that the service/procedure should NOT be performed.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DoNotPerform-extension"
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": true
+      },
+      {
         "id": "MedicationRequest:shr-core-MedicationRequest.category",
         "path": "MedicationRequest.category",
         "binding": {
@@ -2343,7 +2703,7 @@
         "id": "MedicationRequest:shr-core-MedicationRequest.medication[x]",
         "path": "MedicationRequest.medication[x]",
         "slicing": {
-          "id": "1",
+          "id": "3",
           "discriminator": [
             {
               "type": "type",
@@ -2395,10 +2755,40 @@
           {
             "code": "Reference",
             "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"
-          },
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.supportingInformation",
+        "path": "MedicationRequest.supportingInformation",
+        "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare"
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.requester",
+        "path": "MedicationRequest.requester"
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.requester.agent",
+        "path": "MedicationRequest.requester.agent",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.recorder",
+        "path": "MedicationRequest.recorder",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"
           }
         ]
       },
@@ -2439,8 +2829,6 @@
       {
         "id": "MedicationRequest:shr-core-MedicationRequest.dosageInstruction",
         "path": "MedicationRequest.dosageInstruction",
-        "min": 0,
-        "max": "1",
         "type": [
           {
             "code": "Dosage",
@@ -2451,6 +2839,84 @@
       {
         "id": "MedicationRequest:shr-core-MedicationRequest.dispenseRequest",
         "path": "MedicationRequest.dispenseRequest"
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension",
+        "path": "MedicationRequest.dispenseRequest.extension",
+        "slicing": {
+          "id": "1",
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        }
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension:initialfill",
+        "path": "MedicationRequest.dispenseRequest.extension",
+        "sliceName": "initialfill",
+        "definition": "Indicates the quantity or duration for the first dispense of the medication.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Element.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-InitialFill-extension"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension:dispenseinterval",
+        "path": "MedicationRequest.dispenseRequest.extension",
+        "sliceName": "dispenseinterval",
+        "definition": "The minimum period of time that must occur between dispenses of the medication.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Element.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DispenseInterval-extension"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.extension:numberofrefillsallowed",
+        "path": "MedicationRequest.dispenseRequest.extension",
+        "sliceName": "numberofrefillsallowed",
+        "definition": "The maximum number of times the dispense can be repeated. For medication dispense, this integer does NOT include the original order dispense. This means that if an order indicates dispense 30 tablets plus 3 repeats, then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Element.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-NumberOfRefillsAllowed-extension"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.numberOfRepeatsAllowed",
+        "path": "MedicationRequest.dispenseRequest.numberOfRepeatsAllowed",
+        "min": 0,
+        "max": "0"
       },
       {
         "id": "MedicationRequest:shr-core-MedicationRequest.dispenseRequest.expectedSupplyDuration",
@@ -2473,25 +2939,14 @@
         ]
       },
       {
-        "id": "MedicationRequest:shr-core-MedicationRequest.substitution",
-        "path": "MedicationRequest.substitution"
-      },
-      {
-        "id": "MedicationRequest:shr-core-MedicationRequest.substitution.reason",
-        "path": "MedicationRequest.substitution.reason",
-        "binding": {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-              "valueString": "MedicationIntendedSubstitutionReason"
-            }
-          ],
-          "strength": "required",
-          "description": "A coded concept describing the reason that a different medication should (or should not) be substituted from what was prescribed.",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/v3-SubstanceAdminSubstitutionReason"
+        "id": "MedicationRequest:shr-core-MedicationRequest.priorPrescription",
+        "path": "MedicationRequest.priorPrescription",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationRequest"
           }
-        }
+        ]
       }
     ]
   }

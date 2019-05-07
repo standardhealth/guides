@@ -3,7 +3,7 @@
   "id": "shr-core-ServiceRequest",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>ServiceRequest Profile</b></p>\n  <p>A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.ServiceRequest maps to ProcedureRequest:\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.extension\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  StatementDateTime maps to authoredOn\n  Requester maps to requester.agent\n  Code maps to code\n  Category maps to category\n  constrain doNotPerform to 0..0\n  RequestSubjectOfRecord maps to subject\n  BodyLocation.Code maps to bodySite\n  BodyLocation.Laterality maps to bodySite.extension\n  BodyLocation.Orientation maps to bodySite.extension\n  BodyLocation.RelationToLandmark maps to bodySite.extension\n  CareContext maps to context\n  ReasonCode maps to reasonCode\n  ServiceReasonReference maps to reasonReference\n  Status maps to status\n  RequestIntent maps to intent\n  ExpectedPerformanceTime maps to occurrence[x]\n  ExpectedPerformerType maps to performerType\n  ExpectedPerformer maps to performer\n  PriorityCode maps to priority\n  Annotation maps to note\n  ServiceBasedOn maps to extension\n  Replaces maps to extension\n  Requisition maps to extension\n  DoNotPerform maps to extension\n  ServiceDetails maps to extension\n  RequestQuantity maps to extension\n  AsNeeded maps to extension\n  LocationType maps to extension\n  Location maps to extension\n  Insurance maps to extension\n  SupportingInformation maps to extension\n  Specimen maps to extension\n  PatientInstruction maps to extension\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>ServiceRequest Profile</b></p>\n  <p>A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.ServiceRequest maps to ProcedureRequest:\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.extension\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  StatementDateTime maps to authoredOn\n  Requester maps to requester.agent\n  Code maps to code\n  Category maps to category\n  constrain doNotPerform to 0..0\n  RequestSubjectOfRecord maps to subject\n  BodyLocation.Code maps to bodySite\n  BodyLocation.Laterality maps to bodySite.extension\n  BodyLocation.Orientation maps to bodySite.extension\n  BodyLocation.RelationToLandmark maps to bodySite.extension\n  CareContext maps to context\n  ReasonCode maps to reasonCode\n  ServiceReasonReference maps to reasonReference\n  Status maps to status\n  RequestIntent maps to intent\n  ExpectedPerformanceTime maps to occurrence[x]\n  ExpectedPerformerType maps to performerType\n  ExpectedPerformer maps to performer\n  PriorityCode maps to priority\n  Annotation maps to note\n  ServiceBasedOn maps to extension\n  Replaces maps to extension\n  GroupIdentifier maps to extension\n  DoNotPerform maps to extension\n  ServiceDetails maps to extension\n  RequestQuantity maps to extension\n  AsNeeded maps to extension\n  LocationType maps to extension\n  Location maps to extension\n  Insurance maps to extension\n  SupportingInformation maps to extension\n  Specimen maps to extension\n  PatientInstruction maps to extension\n</pre></p>\n</div>"
   },
   "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ServiceRequest",
   "identifier": [
@@ -12,11 +12,11 @@
       "value": "shr.core.ServiceRequest"
     }
   ],
-  "version": "0.5.0",
+  "version": "0.6.0",
   "name": "ServiceRequest",
   "title": "shr-core-ServiceRequest",
   "status": "draft",
-  "date": "2019-05-01T00:00:00-04:00",
+  "date": "2019-05-07T00:00:00-04:00",
   "publisher": "The MITRE Corporation",
   "contact": [
     {
@@ -566,9 +566,107 @@
         ]
       },
       {
-        "id": "ProcedureRequest:shr-core-ServiceRequest.extension:requisition",
+        "id": "ProcedureRequest:shr-core-ServiceRequest.extension:replaces.id",
+        "path": "ProcedureRequest.extension.id",
+        "representation": [
+          "xmlAttr"
+        ],
+        "short": "xml:id (or equivalent in JSON)",
+        "definition": "unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Element.id",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "id": "ProcedureRequest:shr-core-ServiceRequest.extension:replaces.extension:extension",
+        "path": "ProcedureRequest.extension.extension",
+        "short": "Extension",
+        "definition": "An Extension",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "Element.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ]
+      },
+      {
+        "id": "ProcedureRequest:shr-core-ServiceRequest.extension:replaces.url",
+        "path": "ProcedureRequest.extension.url",
+        "representation": [
+          "xmlAttr"
+        ],
+        "short": "identifies the meaning of the extension",
+        "definition": "Source of the definition for the extension code - a logical name or a URL.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Extension.url",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "fixedUri": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Replaces-extension",
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "id": "ProcedureRequest:shr-core-ServiceRequest.extension:replaces.valueReference",
+        "path": "ProcedureRequest.extension.valueReference",
+        "short": "ServiceRequest",
+        "definition": "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Extension.value[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ServiceRequest"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "id": "ProcedureRequest:shr-core-ServiceRequest.extension:groupidentifier",
         "path": "ProcedureRequest.extension",
-        "sliceName": "requisition",
+        "sliceName": "groupidentifier",
         "definition": "A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier.",
         "min": 0,
         "max": "1",
@@ -580,7 +678,7 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Requisition-extension"
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-GroupIdentifier-extension"
           }
         ]
       },
@@ -2304,9 +2402,21 @@
         ]
       },
       {
-        "id": "ProcedureRequest:shr-core-ServiceRequest.extension:requisition",
+        "id": "ProcedureRequest:shr-core-ServiceRequest.extension:replaces.valueReference",
+        "path": "ProcedureRequest.extension.valueReference",
+        "short": "ServiceRequest",
+        "definition": "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ServiceRequest"
+          }
+        ]
+      },
+      {
+        "id": "ProcedureRequest:shr-core-ServiceRequest.extension:groupidentifier",
         "path": "ProcedureRequest.extension",
-        "sliceName": "requisition",
+        "sliceName": "groupidentifier",
         "definition": "A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier.",
         "min": 0,
         "max": "1",
@@ -2318,7 +2428,7 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Requisition-extension"
+            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-GroupIdentifier-extension"
           }
         ]
       },

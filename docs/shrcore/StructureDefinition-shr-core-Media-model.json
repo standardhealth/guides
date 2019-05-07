@@ -12,11 +12,11 @@
       "value": "shr.core.Media"
     }
   ],
-  "version": "0.5.0",
+  "version": "0.6.0",
   "name": "Media",
   "title": "shr-core-Media",
   "status": "draft",
-  "date": "2019-05-01T00:00:00-04:00",
+  "date": "2019-05-07T00:00:00-04:00",
   "publisher": "The MITRE Corporation",
   "contact": [
     {
@@ -140,11 +140,11 @@
         "path": "shr-core-Media-model.status",
         "short": "A state that relates to the workflow or interpretation of this resource. Certain status values can modify the meaning of the resource, for example, entered-in-error. When a boolean value is used, Status of true indicates the record is active, false means inactive.",
         "definition": "A state that relates to the workflow or interpretation of this resource. Certain status values can modify the meaning of the resource, for example, entered-in-error. When a boolean value is used, Status of true indicates the record is active, false means inactive.",
-        "min": 0,
+        "min": 1,
         "max": "1",
         "base": {
           "path": "shr-core-Media-model.status",
-          "min": 0,
+          "min": 1,
           "max": "1"
         },
         "type": [
@@ -154,7 +154,13 @@
         ],
         "mustSupport": false,
         "isModifier": false,
-        "isSummary": false
+        "isSummary": false,
+        "binding": {
+          "strength": "required",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/event-status"
+          }
+        }
       },
       {
         "id": "shr-core-Media-model.identifier",
@@ -255,14 +261,14 @@
         }
       },
       {
-        "id": "shr-core-Media-model.subtype",
-        "path": "shr-core-Media-model.subtype",
-        "short": "A further refinement of type.",
-        "definition": "A further refinement of type.",
+        "id": "shr-core-Media-model.modality",
+        "path": "shr-core-Media-model.modality",
+        "short": "Details of the type of the media - usually, how it was acquired (what type of device). If images sourced from a DICOM system, are wrapped in a Media resource, then this is the modality.",
+        "definition": "Details of the type of the media - usually, how it was acquired (what type of device). If images sourced from a DICOM system, are wrapped in a Media resource, then this is the modality.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-Media-model.subtype",
+          "path": "shr-core-Media-model.modality",
           "min": 0,
           "max": "1"
         },
@@ -341,14 +347,14 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Media-model.careContext[x]",
-        "path": "shr-core-Media-model.careContext[x]",
+        "id": "shr-core-Media-model.careContext",
+        "path": "shr-core-Media-model.careContext",
         "short": "The encounter or episode of care",
         "definition": "The encounter or episode of care",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-Media-model.careContext[x]",
+          "path": "shr-core-Media-model.careContext",
           "min": 0,
           "max": "1"
         },
@@ -356,10 +362,6 @@
           {
             "code": "Reference",
             "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare-model"
           }
         ],
         "mustSupport": false,
@@ -391,20 +393,41 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Media-model.practitioner",
-        "path": "shr-core-Media-model.practitioner",
+        "id": "shr-core-Media-model.statementDateTime",
+        "path": "shr-core-Media-model.statementDateTime",
         "code": [
           {
             "system": "http://ncimeta.nci.nih.gov",
-            "code": "C2220264"
+            "code": "C3669169"
           }
         ],
-        "short": "A person who practices a healing art.",
-        "definition": "A person who practices a healing art.\nHumanName is limited to one required value by US-Core. Gender is required by US-Core. US-Core required an identifier, either a NPI (preferred) or tax id.",
+        "short": "The point in time when the statement was created.",
+        "definition": "The point in time when the statement was created.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-Media-model.practitioner",
+          "path": "shr-core-Media-model.statementDateTime",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Media-model.performer[x]",
+        "path": "shr-core-Media-model.performer[x]",
+        "short": "The actor that carried out the observation or action.",
+        "definition": "The actor that carried out the observation or action.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Media-model.performer[x]",
           "min": 0,
           "max": "1"
         },
@@ -412,6 +435,18 @@
           {
             "code": "Reference",
             "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"
           }
         ],
         "mustSupport": false,
@@ -488,6 +523,27 @@
           {
             "code": "Reference",
             "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Media-model.deviceName",
+        "path": "shr-core-Media-model.deviceName",
+        "short": "The name of the device.",
+        "definition": "The name of the device.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Media-model.deviceName",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
           }
         ],
         "mustSupport": false,
@@ -728,11 +784,11 @@
         "path": "shr-core-Media-model.status",
         "short": "A state that relates to the workflow or interpretation of this resource. Certain status values can modify the meaning of the resource, for example, entered-in-error. When a boolean value is used, Status of true indicates the record is active, false means inactive.",
         "definition": "A state that relates to the workflow or interpretation of this resource. Certain status values can modify the meaning of the resource, for example, entered-in-error. When a boolean value is used, Status of true indicates the record is active, false means inactive.",
-        "min": 0,
+        "min": 1,
         "max": "1",
         "base": {
           "path": "shr-core-Media-model.status",
-          "min": 0,
+          "min": 1,
           "max": "1"
         },
         "type": [
@@ -742,7 +798,13 @@
         ],
         "mustSupport": false,
         "isModifier": false,
-        "isSummary": false
+        "isSummary": false,
+        "binding": {
+          "strength": "required",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/event-status"
+          }
+        }
       },
       {
         "id": "shr-core-Media-model.identifier",
@@ -843,14 +905,14 @@
         }
       },
       {
-        "id": "shr-core-Media-model.subtype",
-        "path": "shr-core-Media-model.subtype",
-        "short": "A further refinement of type.",
-        "definition": "A further refinement of type.",
+        "id": "shr-core-Media-model.modality",
+        "path": "shr-core-Media-model.modality",
+        "short": "Details of the type of the media - usually, how it was acquired (what type of device). If images sourced from a DICOM system, are wrapped in a Media resource, then this is the modality.",
+        "definition": "Details of the type of the media - usually, how it was acquired (what type of device). If images sourced from a DICOM system, are wrapped in a Media resource, then this is the modality.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-Media-model.subtype",
+          "path": "shr-core-Media-model.modality",
           "min": 0,
           "max": "1"
         },
@@ -929,14 +991,14 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Media-model.careContext[x]",
-        "path": "shr-core-Media-model.careContext[x]",
+        "id": "shr-core-Media-model.careContext",
+        "path": "shr-core-Media-model.careContext",
         "short": "The encounter or episode of care",
         "definition": "The encounter or episode of care",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-Media-model.careContext[x]",
+          "path": "shr-core-Media-model.careContext",
           "min": 0,
           "max": "1"
         },
@@ -944,10 +1006,6 @@
           {
             "code": "Reference",
             "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare-model"
           }
         ],
         "mustSupport": false,
@@ -979,20 +1037,41 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Media-model.practitioner",
-        "path": "shr-core-Media-model.practitioner",
+        "id": "shr-core-Media-model.statementDateTime",
+        "path": "shr-core-Media-model.statementDateTime",
         "code": [
           {
             "system": "http://ncimeta.nci.nih.gov",
-            "code": "C2220264"
+            "code": "C3669169"
           }
         ],
-        "short": "A person who practices a healing art.",
-        "definition": "A person who practices a healing art.\nHumanName is limited to one required value by US-Core. Gender is required by US-Core. US-Core required an identifier, either a NPI (preferred) or tax id.",
+        "short": "The point in time when the statement was created.",
+        "definition": "The point in time when the statement was created.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-Media-model.practitioner",
+          "path": "shr-core-Media-model.statementDateTime",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Media-model.performer[x]",
+        "path": "shr-core-Media-model.performer[x]",
+        "short": "The actor that carried out the observation or action.",
+        "definition": "The actor that carried out the observation or action.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Media-model.performer[x]",
           "min": 0,
           "max": "1"
         },
@@ -1000,6 +1079,18 @@
           {
             "code": "Reference",
             "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"
           }
         ],
         "mustSupport": false,
@@ -1076,6 +1167,27 @@
           {
             "code": "Reference",
             "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Media-model.deviceName",
+        "path": "shr-core-Media-model.deviceName",
+        "short": "The name of the device.",
+        "definition": "The name of the device.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Media-model.deviceName",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
           }
         ],
         "mustSupport": false,
