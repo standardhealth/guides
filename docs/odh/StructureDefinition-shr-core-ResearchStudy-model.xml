@@ -8,7 +8,7 @@
   <p>A clinical trial or similar research study. Reference: list of FDA data elements describing a research study: prsinfo.clinicaltrials.gov/definitions.html</p>
 </div>
   </text>
-  <url value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ResearchStudy-model"/>
+  <url value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ResearchStudy-model"/>
   <identifier>
     <system value="http://hl7.org/fhir/us/odh"/>
     <value value="shr.core.ResearchStudy"/>
@@ -17,7 +17,7 @@
   <name value="ResearchStudy"/>
   <title value="shr-core-ResearchStudy"/>
   <status value="draft"/>
-  <date value="2019-04-08T00:00:00-04:00"/>
+  <date value="2019-05-08T00:00:00-04:00"/>
   <publisher value="HL7"/>
   <contact>
     <telecom>
@@ -58,7 +58,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -66,10 +66,6 @@
     </element>
     <element id="shr-core-ResearchStudy-model.language">
       <path value="shr-core-ResearchStudy-model.language"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0023008"/>
-      </code>
       <short value="A human language, spoken or written."/>
       <definition value="A human language, spoken or written."/>
       <min value="0"/>
@@ -116,7 +112,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -158,7 +154,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -177,7 +173,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ResearchStudy-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ResearchStudy-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -201,23 +197,200 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ResearchStudy-model.commentOrDescription">
-      <path value="shr-core-ResearchStudy-model.commentOrDescription"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0947611"/>
-      </code>
-      <short value="A text note containing additional details, explanation, description, comment, or summarization."/>
-      <definition value="A text note containing additional details, explanation, description, comment, or summarization."/>
+    <element id="shr-core-ResearchStudy-model.purpose">
+      <path value="shr-core-ResearchStudy-model.purpose"/>
+      <short value="Description of the intent or use of the item."/>
+      <definition value="Description of the intent or use of the item."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-ResearchStudy-model.commentOrDescription"/>
+        <path value="shr-core-ResearchStudy-model.purpose"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
-        <code value="string"/>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="extensible"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/research-study-prim-purp-type"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="shr-core-ResearchStudy-model.researchStudyPhase">
+      <path value="shr-core-ResearchStudy-model.researchStudyPhase"/>
+      <short value="The stage in the progression of a therapy from initial experimental use in humans in clinical trials to post-market evaluation."/>
+      <definition value="The stage in the progression of a therapy from initial experimental use in humans in clinical trials to post-market evaluation."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.researchStudyPhase"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="example"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/research-study-phase"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="shr-core-ResearchStudy-model.category">
+      <path value="shr-core-ResearchStudy-model.category"/>
+      <short value="The general type or class of this item."/>
+      <definition value="The general type or class of this item."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.category"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ResearchStudy-model.focalSubject">
+      <path value="shr-core-ResearchStudy-model.focalSubject"/>
+      <short value="The person or entity that the information in this resource relates to, if different than the person of record. The subject of information can be a reference or a code, the latter when the subject is described generically, for example, in terms of a relationship to the subject of record (e.g., wife)."/>
+      <definition value="The person or entity that the information in this resource relates to, if different than the person of record. The subject of information can be a reference or a code, the latter when the subject is described generically, for example, in terms of a relationship to the subject of record (e.g., wife)."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.focalSubject"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ResearchStudy-model.conditionStudied">
+      <path value="shr-core-ResearchStudy-model.conditionStudied"/>
+      <short value="The condition that is the focus of the study. For example, In a study to examine risk factors for Lupus, might have as an inclusion criterion &#39;healthy volunteer&#39;, but the target condition code would be a Lupus SNOMED code."/>
+      <definition value="The condition that is the focus of the study. For example, In a study to examine risk factors for Lupus, might have as an inclusion criterion &#39;healthy volunteer&#39;, but the target condition code would be a Lupus SNOMED code."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.conditionStudied"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ResearchStudy-model.contactDetail">
+      <path value="shr-core-ResearchStudy-model.contactDetail"/>
+      <short value="Describes an individual and how to reach them."/>
+      <definition value="Describes an individual and how to reach them."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.contactDetail"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ContactDetail-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ResearchStudy-model.relatedArtifact">
+      <path value="shr-core-ResearchStudy-model.relatedArtifact"/>
+      <short value="Items such as additional documentation, justification, or bibliographic references, that provide background for the current item."/>
+      <definition value="Items such as additional documentation, justification, or bibliographic references, that provide background for the current item."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.relatedArtifact"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedArtifact-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ResearchStudy-model.keyword">
+      <path value="shr-core-ResearchStudy-model.keyword"/>
+      <short value="Key terms to aid in searching for or filtering the study."/>
+      <definition value="Key terms to aid in searching for or filtering the study."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.keyword"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ResearchStudy-model.jurisdiction">
+      <path value="shr-core-ResearchStudy-model.jurisdiction"/>
+      <short value="The country, state or other region taking legal responsibility."/>
+      <definition value="The country, state or other region taking legal responsibility."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.jurisdiction"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="extensible"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/jurisdiction"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="shr-core-ResearchStudy-model.descriptionMarkdown">
+      <path value="shr-core-ResearchStudy-model.descriptionMarkdown"/>
+      <short value="A description of the purpose of the item."/>
+      <definition value="A description of the purpose of the item."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.descriptionMarkdown"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="markdown"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -244,7 +417,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Group-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Group-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -266,7 +439,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EffectiveTimePeriod-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-EffectiveTimePeriod-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -274,10 +447,6 @@
     </element>
     <element id="shr-core-ResearchStudy-model.sponsor">
       <path value="shr-core-ResearchStudy-model.sponsor"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1561598"/>
-      </code>
       <short value="The organization responsible for the execution of the study."/>
       <definition value="The organization responsible for the execution of the study."/>
       <min value="0"/>
@@ -289,49 +458,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-ResearchStudy-model.jurisdiction">
-      <path value="shr-core-ResearchStudy-model.jurisdiction"/>
-      <short value="The country, state or other region taking legal responsibility for the conduct of the study."/>
-      <definition value="The country, state or other region taking legal responsibility for the conduct of the study."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-ResearchStudy-model.jurisdiction"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <binding>
-        <strength value="extensible"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/jurisdiction"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="shr-core-ResearchStudy-model.contactDetail">
-      <path value="shr-core-ResearchStudy-model.contactDetail"/>
-      <short value="Describes an individual and how to reach them."/>
-      <definition value="Describes an individual and how to reach them."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="shr-core-ResearchStudy-model.contactDetail"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ContactDetail-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -354,7 +481,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -362,10 +489,6 @@
     </element>
     <element id="shr-core-ResearchStudy-model.location">
       <path value="shr-core-ResearchStudy-model.location"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1547538"/>
-      </code>
       <short value="Services and space and equipment provided for a particular purpose; a building or place that provides a particular service or is used for a particular industry. Could be a clinical site, community site, or a mobile facility."/>
       <definition value="Services and space and equipment provided for a particular purpose; a building or place that provides a particular service or is used for a particular industry. Could be a clinical site, community site, or a mobile facility."/>
       <min value="0"/>
@@ -376,7 +499,7 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Location-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Location-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -412,7 +535,7 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -430,7 +553,25 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StudyArm-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-StudyArm-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ResearchStudy-model.studyObjective">
+      <path value="shr-core-ResearchStudy-model.studyObjective"/>
+      <short value="A goal that the study is aiming to achieve in terms of a scientific question to be answered by the analysis of data collected during the study."/>
+      <definition value="A goal that the study is aiming to achieve in terms of a scientific question to be answered by the analysis of data collected during the study."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.studyObjective"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-StudyObjective-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -464,7 +605,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -472,10 +613,6 @@
     </element>
     <element id="shr-core-ResearchStudy-model.language">
       <path value="shr-core-ResearchStudy-model.language"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0023008"/>
-      </code>
       <short value="A human language, spoken or written."/>
       <definition value="A human language, spoken or written."/>
       <min value="0"/>
@@ -522,7 +659,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -564,7 +701,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -583,7 +720,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ResearchStudy-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ResearchStudy-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -607,23 +744,200 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ResearchStudy-model.commentOrDescription">
-      <path value="shr-core-ResearchStudy-model.commentOrDescription"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0947611"/>
-      </code>
-      <short value="A text note containing additional details, explanation, description, comment, or summarization."/>
-      <definition value="A text note containing additional details, explanation, description, comment, or summarization."/>
+    <element id="shr-core-ResearchStudy-model.purpose">
+      <path value="shr-core-ResearchStudy-model.purpose"/>
+      <short value="Description of the intent or use of the item."/>
+      <definition value="Description of the intent or use of the item."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-ResearchStudy-model.commentOrDescription"/>
+        <path value="shr-core-ResearchStudy-model.purpose"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
-        <code value="string"/>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="extensible"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/research-study-prim-purp-type"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="shr-core-ResearchStudy-model.researchStudyPhase">
+      <path value="shr-core-ResearchStudy-model.researchStudyPhase"/>
+      <short value="The stage in the progression of a therapy from initial experimental use in humans in clinical trials to post-market evaluation."/>
+      <definition value="The stage in the progression of a therapy from initial experimental use in humans in clinical trials to post-market evaluation."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.researchStudyPhase"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="example"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/research-study-phase"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="shr-core-ResearchStudy-model.category">
+      <path value="shr-core-ResearchStudy-model.category"/>
+      <short value="The general type or class of this item."/>
+      <definition value="The general type or class of this item."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.category"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ResearchStudy-model.focalSubject">
+      <path value="shr-core-ResearchStudy-model.focalSubject"/>
+      <short value="The person or entity that the information in this resource relates to, if different than the person of record. The subject of information can be a reference or a code, the latter when the subject is described generically, for example, in terms of a relationship to the subject of record (e.g., wife)."/>
+      <definition value="The person or entity that the information in this resource relates to, if different than the person of record. The subject of information can be a reference or a code, the latter when the subject is described generically, for example, in terms of a relationship to the subject of record (e.g., wife)."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.focalSubject"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ResearchStudy-model.conditionStudied">
+      <path value="shr-core-ResearchStudy-model.conditionStudied"/>
+      <short value="The condition that is the focus of the study. For example, In a study to examine risk factors for Lupus, might have as an inclusion criterion &#39;healthy volunteer&#39;, but the target condition code would be a Lupus SNOMED code."/>
+      <definition value="The condition that is the focus of the study. For example, In a study to examine risk factors for Lupus, might have as an inclusion criterion &#39;healthy volunteer&#39;, but the target condition code would be a Lupus SNOMED code."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.conditionStudied"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ResearchStudy-model.contactDetail">
+      <path value="shr-core-ResearchStudy-model.contactDetail"/>
+      <short value="Describes an individual and how to reach them."/>
+      <definition value="Describes an individual and how to reach them."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.contactDetail"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ContactDetail-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ResearchStudy-model.relatedArtifact">
+      <path value="shr-core-ResearchStudy-model.relatedArtifact"/>
+      <short value="Items such as additional documentation, justification, or bibliographic references, that provide background for the current item."/>
+      <definition value="Items such as additional documentation, justification, or bibliographic references, that provide background for the current item."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.relatedArtifact"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedArtifact-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ResearchStudy-model.keyword">
+      <path value="shr-core-ResearchStudy-model.keyword"/>
+      <short value="Key terms to aid in searching for or filtering the study."/>
+      <definition value="Key terms to aid in searching for or filtering the study."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.keyword"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ResearchStudy-model.jurisdiction">
+      <path value="shr-core-ResearchStudy-model.jurisdiction"/>
+      <short value="The country, state or other region taking legal responsibility."/>
+      <definition value="The country, state or other region taking legal responsibility."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.jurisdiction"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="extensible"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/jurisdiction"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="shr-core-ResearchStudy-model.descriptionMarkdown">
+      <path value="shr-core-ResearchStudy-model.descriptionMarkdown"/>
+      <short value="A description of the purpose of the item."/>
+      <definition value="A description of the purpose of the item."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.descriptionMarkdown"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="markdown"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -650,7 +964,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Group-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Group-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -672,7 +986,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EffectiveTimePeriod-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-EffectiveTimePeriod-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -680,10 +994,6 @@
     </element>
     <element id="shr-core-ResearchStudy-model.sponsor">
       <path value="shr-core-ResearchStudy-model.sponsor"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1561598"/>
-      </code>
       <short value="The organization responsible for the execution of the study."/>
       <definition value="The organization responsible for the execution of the study."/>
       <min value="0"/>
@@ -695,49 +1005,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-ResearchStudy-model.jurisdiction">
-      <path value="shr-core-ResearchStudy-model.jurisdiction"/>
-      <short value="The country, state or other region taking legal responsibility for the conduct of the study."/>
-      <definition value="The country, state or other region taking legal responsibility for the conduct of the study."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-ResearchStudy-model.jurisdiction"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <binding>
-        <strength value="extensible"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/jurisdiction"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="shr-core-ResearchStudy-model.contactDetail">
-      <path value="shr-core-ResearchStudy-model.contactDetail"/>
-      <short value="Describes an individual and how to reach them."/>
-      <definition value="Describes an individual and how to reach them."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="shr-core-ResearchStudy-model.contactDetail"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ContactDetail-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -760,7 +1028,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -768,10 +1036,6 @@
     </element>
     <element id="shr-core-ResearchStudy-model.location">
       <path value="shr-core-ResearchStudy-model.location"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1547538"/>
-      </code>
       <short value="Services and space and equipment provided for a particular purpose; a building or place that provides a particular service or is used for a particular industry. Could be a clinical site, community site, or a mobile facility."/>
       <definition value="Services and space and equipment provided for a particular purpose; a building or place that provides a particular service or is used for a particular industry. Could be a clinical site, community site, or a mobile facility."/>
       <min value="0"/>
@@ -782,7 +1046,7 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Location-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Location-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -818,7 +1082,7 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -836,7 +1100,25 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StudyArm-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-StudyArm-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ResearchStudy-model.studyObjective">
+      <path value="shr-core-ResearchStudy-model.studyObjective"/>
+      <short value="A goal that the study is aiming to achieve in terms of a scientific question to be answered by the analysis of data collected during the study."/>
+      <definition value="A goal that the study is aiming to achieve in terms of a scientific question to be answered by the analysis of data collected during the study."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ResearchStudy-model.studyObjective"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-StudyObjective-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>

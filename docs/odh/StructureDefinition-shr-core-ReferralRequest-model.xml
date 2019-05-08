@@ -8,7 +8,7 @@
   <p>Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.</p>
 </div>
   </text>
-  <url value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model"/>
+  <url value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"/>
   <identifier>
     <system value="http://hl7.org/fhir/us/odh"/>
     <value value="shr.core.ReferralRequest"/>
@@ -17,7 +17,7 @@
   <name value="ReferralRequest"/>
   <title value="shr-core-ReferralRequest"/>
   <status value="draft"/>
-  <date value="2019-04-08T00:00:00-04:00"/>
+  <date value="2019-05-08T00:00:00-04:00"/>
   <publisher value="HL7"/>
   <contact>
     <telecom>
@@ -58,7 +58,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -66,10 +66,6 @@
     </element>
     <element id="shr-core-ReferralRequest-model.language">
       <path value="shr-core-ReferralRequest-model.language"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0023008"/>
-      </code>
       <short value="A human language, spoken or written."/>
       <definition value="A human language, spoken or written."/>
       <min value="0"/>
@@ -116,7 +112,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -152,53 +148,73 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ReferralRequest-model.referralSubjectOfRecord[x]">
-      <path value="shr-core-ReferralRequest-model.referralSubjectOfRecord[x]"/>
-      <short value="A choice of Patient or Group. These are the potential subjects for Procedure and ReferralRequest resources."/>
-      <definition value="A choice of Patient or Group. These are the potential subjects for Procedure and ReferralRequest resources."/>
+    <element id="shr-core-ReferralRequest-model.subjectOfRecord[x]">
+      <path value="shr-core-ReferralRequest-model.subjectOfRecord[x]"/>
+      <short value="The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe&#39;s patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord."/>
+      <definition value="The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe&#39;s patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord.&#xA;&#xA;Note that the word &#39;Subject&#39; is used here in the sense of a person or entity subjected to observations or actions, not subject as in a conceptual topic, like heart disease."/>
       <min value="1"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-ReferralRequest-model.referralSubjectOfRecord[x]"/>
+        <path value="shr-core-ReferralRequest-model.subjectOfRecord[x]"/>
         <min value="1"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Group-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Group-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Specimen-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Location-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Medication-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ResearchSubject-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ReferralRequest-model.careContext[x]">
-      <path value="shr-core-ReferralRequest-model.careContext[x]"/>
+    <element id="shr-core-ReferralRequest-model.careContext">
+      <path value="shr-core-ReferralRequest-model.careContext"/>
       <short value="The encounter or episode of care"/>
       <definition value="The encounter or episode of care"/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-ReferralRequest-model.careContext[x]"/>
+        <path value="shr-core-ReferralRequest-model.careContext"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -232,8 +248,8 @@
         <system value="http://ncimeta.nci.nih.gov"/>
         <code value="C0566251"/>
       </code>
-      <short value="The justification, as a code."/>
-      <definition value="The justification, as a code.&#xA;Reason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept, so we are not going to support a string."/>
+      <short value="The explanation or justification for the current item or action, as a code."/>
+      <definition value="The explanation or justification for the current item or action, as a code.&#xA;Reason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -248,42 +264,181 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ReferralRequest-model.reasonReference[x]">
-      <path value="shr-core-ReferralRequest-model.reasonReference[x]"/>
-      <short value="The justification, as reference to a condition or observation."/>
-      <definition value="The justification, as reference to a condition or observation."/>
+    <element id="shr-core-ReferralRequest-model.referralReasonReference[x]">
+      <path value="shr-core-ReferralRequest-model.referralReasonReference[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="Indicates another resource whose existence justifies this request."/>
+      <definition value="Indicates another resource whose existence justifies this request."/>
       <min value="0"/>
-      <max value="*"/>
+      <max value="1"/>
       <base>
-        <path value="shr-core-ReferralRequest-model.reasonReference[x]"/>
+        <path value="shr-core-ReferralRequest-model.referralReasonReference[x]"/>
         <min value="0"/>
-        <max value="*"/>
+        <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ReferralRequest-model.type">
-      <path value="shr-core-ReferralRequest-model.type"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0332307"/>
-      </code>
-      <short value="A code describing the item at a greater level of detail."/>
-      <definition value="A code describing the item at a greater level of detail."/>
-      <min value="0"/>
+    <element id="shr-core-ReferralRequest-model.referralReasonReferenceShr-core-Condition-model:Condition">
+      <path value="shr-core-ReferralRequest-model.referralReasonReferenceShr-core-Condition-model"/>
+      <sliceName value="Condition"/>
+      <short value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble."/>
+      <definition value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.&#xA;The Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.&#xA;SHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction."/>
+      <min value="1"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-ReferralRequest-model.type"/>
+        <path value="shr-core-ReferralRequest-model.referralReasonReference[x]"/>
         <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.referralReasonReferenceShr-core-Observation-model:Observation">
+      <path value="shr-core-ReferralRequest-model.referralReasonReferenceShr-core-Observation-model"/>
+      <sliceName value="Observation"/>
+      <short value="Represents the result of evaluations (measurements, tests, or questions) that have been performed."/>
+      <definition value="Represents the result of evaluations (measurements, tests, or questions) that have been performed.&#xA;Observation has a value representing the result (answer), or an DataAbsentReason indicating why the value is not present. Things observed about the subject can include social and behavioral factors, subjective and objective observations, and assessments.&#xA;For an Observation, the Code describes the aspect or property of the subject being observed or measured. The Code is the &#39;question code&#39; that pairs to the &#39;answer&#39; contained in the Value."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.referralReasonReference[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.serviceBasedOn[x]">
+      <path value="shr-core-ReferralRequest-model.serviceBasedOn[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="The original or initiating plan, proposal, or request."/>
+      <definition value="The original or initiating plan, proposal, or request."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.serviceBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.serviceBasedOnShr-core-ServiceRequest-model:ServiceRequest">
+      <path value="shr-core-ReferralRequest-model.serviceBasedOnShr-core-ServiceRequest-model"/>
+      <sliceName value="ServiceRequest"/>
+      <short value="A record of a request for service such as diagnostic investigations, treatments, or operations to be performed."/>
+      <definition value="A record of a request for service such as diagnostic investigations, treatments, or operations to be performed."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.serviceBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.serviceBasedOnShr-core-ReferralRequest-model:ReferralRequest">
+      <path value="shr-core-ReferralRequest-model.serviceBasedOnShr-core-ReferralRequest-model"/>
+      <sliceName value="ReferralRequest"/>
+      <short value="Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization."/>
+      <definition value="Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.serviceBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.serviceBasedOnShr-core-ProcedureRequest-model:ProcedureRequest">
+      <path value="shr-core-ReferralRequest-model.serviceBasedOnShr-core-ProcedureRequest-model"/>
+      <sliceName value="ProcedureRequest"/>
+      <short value="A request for a procedure to be performed. May be a proposal or an order."/>
+      <definition value="A request for a procedure to be performed. May be a proposal or an order."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.serviceBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.code">
+      <path value="shr-core-ReferralRequest-model.code"/>
+      <short value="The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary."/>
+      <definition value="The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.code"/>
+        <min value="1"/>
         <max value="1"/>
       </base>
       <type>
@@ -292,12 +447,59 @@
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
-      <binding>
-        <strength value="example"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/referral-type"/>
-        </valueSetReference>
-      </binding>
+    </element>
+    <element id="shr-core-ReferralRequest-model.category">
+      <path value="shr-core-ReferralRequest-model.category"/>
+      <short value="The general type or class of this item."/>
+      <definition value="The general type or class of this item."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.category"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.referralRequester[x]">
+      <path value="shr-core-ReferralRequest-model.referralRequester[x]"/>
+      <short value="The person or organization originating this referral"/>
+      <definition value="The person or organization originating this referral"/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.referralRequester[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
     </element>
     <element id="shr-core-ReferralRequest-model.requestIntent">
       <path value="shr-core-ReferralRequest-model.requestIntent"/>
@@ -338,10 +540,10 @@
         <code value="dateTime"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Timing-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Timing-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -365,36 +567,24 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ReferralRequest-model.recipient[x]">
-      <path value="shr-core-ReferralRequest-model.recipient[x]"/>
-      <short value="Who this request is being addressed to."/>
-      <definition value="Who this request is being addressed to."/>
+    <element id="shr-core-ReferralRequest-model.referralRecipient[x]">
+      <path value="shr-core-ReferralRequest-model.referralRecipient[x]"/>
+      <short value="The practitioner or organization receiving the referral."/>
+      <definition value="The practitioner or organization receiving the referral."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-ReferralRequest-model.recipient[x]"/>
+        <path value="shr-core-ReferralRequest-model.referralRecipient[x]"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -402,18 +592,6 @@
     </element>
     <element id="shr-core-ReferralRequest-model.priorityCode[x]">
       <path value="shr-core-ReferralRequest-model.priorityCode[x]"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0549179"/>
-      </code>
-      <slicing>
-        <discriminator>
-          <type value="type"/>
-          <path value="$this"/>
-        </discriminator>
-        <ordered value="false"/>
-        <rules value="open"/>
-      </slicing>
       <short value="An indication of the importance of an action relative to other actions."/>
       <definition value="An indication of the importance of an action relative to other actions."/>
       <min value="0"/>
@@ -433,31 +611,6 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ReferralRequest-model.priorityCodeCoding:codeableConcept">
-      <path value="shr-core-ReferralRequest-model.priorityCodeCoding"/>
-      <sliceName value="codeableConcept"/>
-      <short value="PositiveInt or code representing an indication of the importance of an action relative to other actions."/>
-      <definition value="PositiveInt or code representing an indication of the importance of an action relative to other actions."/>
-      <min value="1"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-ReferralRequest-model.priorityCodeCoding"/>
-        <min value="1"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <binding>
-        <strength value="required"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/request-priority"/>
-        </valueSetReference>
-      </binding>
-    </element>
     <element id="shr-core-ReferralRequest-model.annotation">
       <path value="shr-core-ReferralRequest-model.annotation"/>
       <short value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
@@ -470,60 +623,7 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-ReferralRequest-model.communicationMethod">
-      <path value="shr-core-ReferralRequest-model.communicationMethod"/>
-      <short value="This is the method the provider used to communicate. Examples include: Written, Telephoned, Verbal, Electronically Entered, Policy, Service Correction, Duplicate, etc. &#39;Code indicating the origin of the prescription.&#39; - NCPDP Telecommunication (Field 419-DJ, Data Dictionary 201104). Possible values include: Written; Telephone; Electronic; Facsimile; Pharmacy; Not Known."/>
-      <definition value="This is the method the provider used to communicate. Examples include: Written, Telephoned, Verbal, Electronically Entered, Policy, Service Correction, Duplicate, etc. &#39;Code indicating the origin of the prescription.&#39; - NCPDP Telecommunication (Field 419-DJ, Data Dictionary 201104). Possible values include: Written; Telephone; Electronic; Facsimile; Pharmacy; Not Known."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-ReferralRequest-model.communicationMethod"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-ReferralRequest-model.referralRequester[x]">
-      <path value="shr-core-ReferralRequest-model.referralRequester[x]"/>
-      <short value="The person or organization originating this referral"/>
-      <definition value="The person or organization originating this referral"/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-ReferralRequest-model.referralRequester[x]"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -542,43 +642,56 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ReferralRequest-model.referralRecipient[x]">
-      <path value="shr-core-ReferralRequest-model.referralRecipient[x]"/>
-      <short value="The practitioner or organization receiving the referral."/>
-      <definition value="The practitioner or organization receiving the referral."/>
+    <element id="shr-core-ReferralRequest-model.groupIdentifier">
+      <path value="shr-core-ReferralRequest-model.groupIdentifier"/>
+      <short value="A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier."/>
+      <definition value="A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier."/>
       <min value="0"/>
-      <max value="*"/>
+      <max value="1"/>
       <base>
-        <path value="shr-core-ReferralRequest-model.referralRecipient[x]"/>
+        <path value="shr-core-ReferralRequest-model.groupIdentifier"/>
         <min value="0"/>
-        <max value="*"/>
+        <max value="1"/>
       </base>
       <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ReferralRequest-model.serviceType">
-      <path value="shr-core-ReferralRequest-model.serviceType"/>
-      <short value="A service requested or to be performed during this appointment"/>
-      <definition value="A service requested or to be performed during this appointment"/>
+    <element id="shr-core-ReferralRequest-model.doNotPerform">
+      <path value="shr-core-ReferralRequest-model.doNotPerform"/>
+      <short value="A flag, when set to true, indicates that the service/procedure should NOT be performed."/>
+      <definition value="A flag, when set to true, indicates that the service/procedure should NOT be performed."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.doNotPerform"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="boolean"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.serviceDetails">
+      <path value="shr-core-ReferralRequest-model.serviceDetails"/>
+      <short value="A service requested or performed. Additional details and instructions about the service requested or performed. For example, and order for a urinary catheter may have an order detail for an external or indwelling catheter, or an order for a bandage may require additional instructions specifying how the bandage should be applied."/>
+      <definition value="A service requested or performed. Additional details and instructions about the service requested or performed. For example, and order for a urinary catheter may have an order detail for an external or indwelling catheter, or an order for a bandage may require additional instructions specifying how the bandage should be applied."/>
       <min value="0"/>
       <max value="*"/>
       <base>
-        <path value="shr-core-ReferralRequest-model.serviceType"/>
+        <path value="shr-core-ReferralRequest-model.serviceDetails"/>
         <min value="0"/>
         <max value="*"/>
       </base>
@@ -595,12 +708,211 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="shr-core-ReferralRequest-model.commentOrDescription">
-      <path value="shr-core-ReferralRequest-model.commentOrDescription"/>
+    <element id="shr-core-ReferralRequest-model.requestQuantity[x]">
+      <path value="shr-core-ReferralRequest-model.requestQuantity[x]"/>
+      <short value="An amount of service being requested which can be a quantity ( for example $1,500 home modification), a ratio ( for example, 20 half day visits per month), or a range (2.0 to 1.8 Gy per fraction)."/>
+      <definition value="An amount of service being requested which can be a quantity ( for example $1,500 home modification), a ratio ( for example, 20 half day visits per month), or a range (2.0 to 1.8 Gy per fraction)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.requestQuantity[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Quantity-model"/>
+      </type>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Ratio-model"/>
+      </type>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Range-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.referralRequestSubjectOfRecord[x]">
+      <path value="shr-core-ReferralRequest-model.referralRequestSubjectOfRecord[x]"/>
+      <short value="Subject of record types allowed for referrals"/>
+      <definition value="Subject of record types allowed for referrals"/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.referralRequestSubjectOfRecord[x]"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Group-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.asNeeded[x]">
+      <path value="shr-core-ReferralRequest-model.asNeeded[x]"/>
+      <short value="Preconditions for service, either &#39;true&#39; indicating to be performed if needed, or a code indicating the pre-condition for performing the service. For example &#39;pain&#39;, &#39;on flare-up&#39;, etc."/>
+      <definition value="Preconditions for service, either &#39;true&#39; indicating to be performed if needed, or a code indicating the pre-condition for performing the service. For example &#39;pain&#39;, &#39;on flare-up&#39;, etc."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.asNeeded[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="boolean"/>
+      </type>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.location">
+      <path value="shr-core-ReferralRequest-model.location"/>
+      <short value="Services and space and equipment provided for a particular purpose; a building or place that provides a particular service or is used for a particular industry. Could be a clinical site, community site, or a mobile facility."/>
+      <definition value="Services and space and equipment provided for a particular purpose; a building or place that provides a particular service or is used for a particular industry. Could be a clinical site, community site, or a mobile facility."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.location"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Location-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.locationType">
+      <path value="shr-core-ReferralRequest-model.locationType"/>
+      <short value="The preferred type of location(s) where the service should happen, in coded or free text form, e.g. at home or nursing day care center."/>
+      <definition value="The preferred type of location(s) where the service should happen, in coded or free text form, e.g. at home or nursing day care center."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.locationType"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.insurance">
+      <path value="shr-core-ReferralRequest-model.insurance"/>
       <code>
         <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0947611"/>
+        <code value="C0021682"/>
+        <display value="HealthInsurance"/>
       </code>
+      <short value="Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service."/>
+      <definition value="Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.insurance"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Coverage-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.supportingInformation">
+      <path value="shr-core-ReferralRequest-model.supportingInformation"/>
+      <short value="Additional information to support this request."/>
+      <definition value="Additional information to support this request."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.supportingInformation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.specimen">
+      <path value="shr-core-ReferralRequest-model.specimen"/>
+      <short value="A specimen is a substance, physical object, or collection of objects, that the laboratory considers a single discrete, uniquely identified unit that is the subject of one or more steps in the laboratory workflow. A specimen may include multiple physical pieces as long as they are considered a single unit within the laboratory workflow. A specimen results from one to many specimen collection procedures, and may be contained in multiple specimen containers. Specimen may have one or more processing activities."/>
+      <definition value="A specimen is a substance, physical object, or collection of objects, that the laboratory considers a single discrete, uniquely identified unit that is the subject of one or more steps in the laboratory workflow. A specimen may include multiple physical pieces as long as they are considered a single unit within the laboratory workflow. A specimen results from one to many specimen collection procedures, and may be contained in multiple specimen containers. Specimen may have one or more processing activities."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.specimen"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Specimen-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.bodyLocation">
+      <path value="shr-core-ReferralRequest-model.bodyLocation"/>
+      <short value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases."/>
+      <definition value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;Note that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.bodyLocation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-BodyLocation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.patientInstruction">
+      <path value="shr-core-ReferralRequest-model.patientInstruction"/>
+      <short value="Patient or consumer-oriented instructions."/>
+      <definition value="Patient or consumer-oriented instructions."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.patientInstruction"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="string"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.commentOrDescription">
+      <path value="shr-core-ReferralRequest-model.commentOrDescription"/>
       <short value="A text note containing additional details, explanation, description, comment, or summarization."/>
       <definition value="A text note containing additional details, explanation, description, comment, or summarization."/>
       <min value="0"/>
@@ -612,25 +924,6 @@
       </base>
       <type>
         <code value="string"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-ReferralRequest-model.relatedInformation">
-      <path value="shr-core-ReferralRequest-model.relatedInformation"/>
-      <short value="Additional information to support referral or transfer of care request"/>
-      <definition value="Additional information to support referral or transfer of care request"/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="shr-core-ReferralRequest-model.relatedInformation"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -664,7 +957,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -672,10 +965,6 @@
     </element>
     <element id="shr-core-ReferralRequest-model.language">
       <path value="shr-core-ReferralRequest-model.language"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0023008"/>
-      </code>
       <short value="A human language, spoken or written."/>
       <definition value="A human language, spoken or written."/>
       <min value="0"/>
@@ -722,7 +1011,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -758,53 +1047,73 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ReferralRequest-model.referralSubjectOfRecord[x]">
-      <path value="shr-core-ReferralRequest-model.referralSubjectOfRecord[x]"/>
-      <short value="A choice of Patient or Group. These are the potential subjects for Procedure and ReferralRequest resources."/>
-      <definition value="A choice of Patient or Group. These are the potential subjects for Procedure and ReferralRequest resources."/>
+    <element id="shr-core-ReferralRequest-model.subjectOfRecord[x]">
+      <path value="shr-core-ReferralRequest-model.subjectOfRecord[x]"/>
+      <short value="The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe&#39;s patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord."/>
+      <definition value="The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe&#39;s patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord.&#xA;&#xA;Note that the word &#39;Subject&#39; is used here in the sense of a person or entity subjected to observations or actions, not subject as in a conceptual topic, like heart disease."/>
       <min value="1"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-ReferralRequest-model.referralSubjectOfRecord[x]"/>
+        <path value="shr-core-ReferralRequest-model.subjectOfRecord[x]"/>
         <min value="1"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Group-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Group-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Specimen-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Location-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Medication-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ResearchSubject-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ReferralRequest-model.careContext[x]">
-      <path value="shr-core-ReferralRequest-model.careContext[x]"/>
+    <element id="shr-core-ReferralRequest-model.careContext">
+      <path value="shr-core-ReferralRequest-model.careContext"/>
       <short value="The encounter or episode of care"/>
       <definition value="The encounter or episode of care"/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-ReferralRequest-model.careContext[x]"/>
+        <path value="shr-core-ReferralRequest-model.careContext"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -838,8 +1147,8 @@
         <system value="http://ncimeta.nci.nih.gov"/>
         <code value="C0566251"/>
       </code>
-      <short value="The justification, as a code."/>
-      <definition value="The justification, as a code.&#xA;Reason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept, so we are not going to support a string."/>
+      <short value="The explanation or justification for the current item or action, as a code."/>
+      <definition value="The explanation or justification for the current item or action, as a code.&#xA;Reason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -854,42 +1163,181 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ReferralRequest-model.reasonReference[x]">
-      <path value="shr-core-ReferralRequest-model.reasonReference[x]"/>
-      <short value="The justification, as reference to a condition or observation."/>
-      <definition value="The justification, as reference to a condition or observation."/>
+    <element id="shr-core-ReferralRequest-model.referralReasonReference[x]">
+      <path value="shr-core-ReferralRequest-model.referralReasonReference[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="Indicates another resource whose existence justifies this request."/>
+      <definition value="Indicates another resource whose existence justifies this request."/>
       <min value="0"/>
-      <max value="*"/>
+      <max value="1"/>
       <base>
-        <path value="shr-core-ReferralRequest-model.reasonReference[x]"/>
+        <path value="shr-core-ReferralRequest-model.referralReasonReference[x]"/>
         <min value="0"/>
-        <max value="*"/>
+        <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ReferralRequest-model.type">
-      <path value="shr-core-ReferralRequest-model.type"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0332307"/>
-      </code>
-      <short value="A code describing the item at a greater level of detail."/>
-      <definition value="A code describing the item at a greater level of detail."/>
-      <min value="0"/>
+    <element id="shr-core-ReferralRequest-model.referralReasonReferenceShr-core-Condition-model:Condition">
+      <path value="shr-core-ReferralRequest-model.referralReasonReferenceShr-core-Condition-model"/>
+      <sliceName value="Condition"/>
+      <short value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble."/>
+      <definition value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.&#xA;The Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.&#xA;SHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction."/>
+      <min value="1"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-ReferralRequest-model.type"/>
+        <path value="shr-core-ReferralRequest-model.referralReasonReference[x]"/>
         <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.referralReasonReferenceShr-core-Observation-model:Observation">
+      <path value="shr-core-ReferralRequest-model.referralReasonReferenceShr-core-Observation-model"/>
+      <sliceName value="Observation"/>
+      <short value="Represents the result of evaluations (measurements, tests, or questions) that have been performed."/>
+      <definition value="Represents the result of evaluations (measurements, tests, or questions) that have been performed.&#xA;Observation has a value representing the result (answer), or an DataAbsentReason indicating why the value is not present. Things observed about the subject can include social and behavioral factors, subjective and objective observations, and assessments.&#xA;For an Observation, the Code describes the aspect or property of the subject being observed or measured. The Code is the &#39;question code&#39; that pairs to the &#39;answer&#39; contained in the Value."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.referralReasonReference[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.serviceBasedOn[x]">
+      <path value="shr-core-ReferralRequest-model.serviceBasedOn[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="The original or initiating plan, proposal, or request."/>
+      <definition value="The original or initiating plan, proposal, or request."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.serviceBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.serviceBasedOnShr-core-ServiceRequest-model:ServiceRequest">
+      <path value="shr-core-ReferralRequest-model.serviceBasedOnShr-core-ServiceRequest-model"/>
+      <sliceName value="ServiceRequest"/>
+      <short value="A record of a request for service such as diagnostic investigations, treatments, or operations to be performed."/>
+      <definition value="A record of a request for service such as diagnostic investigations, treatments, or operations to be performed."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.serviceBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.serviceBasedOnShr-core-ReferralRequest-model:ReferralRequest">
+      <path value="shr-core-ReferralRequest-model.serviceBasedOnShr-core-ReferralRequest-model"/>
+      <sliceName value="ReferralRequest"/>
+      <short value="Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization."/>
+      <definition value="Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.serviceBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.serviceBasedOnShr-core-ProcedureRequest-model:ProcedureRequest">
+      <path value="shr-core-ReferralRequest-model.serviceBasedOnShr-core-ProcedureRequest-model"/>
+      <sliceName value="ProcedureRequest"/>
+      <short value="A request for a procedure to be performed. May be a proposal or an order."/>
+      <definition value="A request for a procedure to be performed. May be a proposal or an order."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.serviceBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.code">
+      <path value="shr-core-ReferralRequest-model.code"/>
+      <short value="The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary."/>
+      <definition value="The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.code"/>
+        <min value="1"/>
         <max value="1"/>
       </base>
       <type>
@@ -898,12 +1346,59 @@
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
-      <binding>
-        <strength value="example"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/referral-type"/>
-        </valueSetReference>
-      </binding>
+    </element>
+    <element id="shr-core-ReferralRequest-model.category">
+      <path value="shr-core-ReferralRequest-model.category"/>
+      <short value="The general type or class of this item."/>
+      <definition value="The general type or class of this item."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.category"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.referralRequester[x]">
+      <path value="shr-core-ReferralRequest-model.referralRequester[x]"/>
+      <short value="The person or organization originating this referral"/>
+      <definition value="The person or organization originating this referral"/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.referralRequester[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
     </element>
     <element id="shr-core-ReferralRequest-model.requestIntent">
       <path value="shr-core-ReferralRequest-model.requestIntent"/>
@@ -944,10 +1439,10 @@
         <code value="dateTime"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Timing-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Timing-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -971,36 +1466,24 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ReferralRequest-model.recipient[x]">
-      <path value="shr-core-ReferralRequest-model.recipient[x]"/>
-      <short value="Who this request is being addressed to."/>
-      <definition value="Who this request is being addressed to."/>
+    <element id="shr-core-ReferralRequest-model.referralRecipient[x]">
+      <path value="shr-core-ReferralRequest-model.referralRecipient[x]"/>
+      <short value="The practitioner or organization receiving the referral."/>
+      <definition value="The practitioner or organization receiving the referral."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-ReferralRequest-model.recipient[x]"/>
+        <path value="shr-core-ReferralRequest-model.referralRecipient[x]"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1008,18 +1491,6 @@
     </element>
     <element id="shr-core-ReferralRequest-model.priorityCode[x]">
       <path value="shr-core-ReferralRequest-model.priorityCode[x]"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0549179"/>
-      </code>
-      <slicing>
-        <discriminator>
-          <type value="type"/>
-          <path value="$this"/>
-        </discriminator>
-        <ordered value="false"/>
-        <rules value="open"/>
-      </slicing>
       <short value="An indication of the importance of an action relative to other actions."/>
       <definition value="An indication of the importance of an action relative to other actions."/>
       <min value="0"/>
@@ -1039,31 +1510,6 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ReferralRequest-model.priorityCodeCoding:codeableConcept">
-      <path value="shr-core-ReferralRequest-model.priorityCodeCoding"/>
-      <sliceName value="codeableConcept"/>
-      <short value="PositiveInt or code representing an indication of the importance of an action relative to other actions."/>
-      <definition value="PositiveInt or code representing an indication of the importance of an action relative to other actions."/>
-      <min value="1"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-ReferralRequest-model.priorityCodeCoding"/>
-        <min value="1"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <binding>
-        <strength value="required"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/request-priority"/>
-        </valueSetReference>
-      </binding>
-    </element>
     <element id="shr-core-ReferralRequest-model.annotation">
       <path value="shr-core-ReferralRequest-model.annotation"/>
       <short value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
@@ -1076,60 +1522,7 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-ReferralRequest-model.communicationMethod">
-      <path value="shr-core-ReferralRequest-model.communicationMethod"/>
-      <short value="This is the method the provider used to communicate. Examples include: Written, Telephoned, Verbal, Electronically Entered, Policy, Service Correction, Duplicate, etc. &#39;Code indicating the origin of the prescription.&#39; - NCPDP Telecommunication (Field 419-DJ, Data Dictionary 201104). Possible values include: Written; Telephone; Electronic; Facsimile; Pharmacy; Not Known."/>
-      <definition value="This is the method the provider used to communicate. Examples include: Written, Telephoned, Verbal, Electronically Entered, Policy, Service Correction, Duplicate, etc. &#39;Code indicating the origin of the prescription.&#39; - NCPDP Telecommunication (Field 419-DJ, Data Dictionary 201104). Possible values include: Written; Telephone; Electronic; Facsimile; Pharmacy; Not Known."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-ReferralRequest-model.communicationMethod"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-ReferralRequest-model.referralRequester[x]">
-      <path value="shr-core-ReferralRequest-model.referralRequester[x]"/>
-      <short value="The person or organization originating this referral"/>
-      <definition value="The person or organization originating this referral"/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-ReferralRequest-model.referralRequester[x]"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1148,43 +1541,56 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ReferralRequest-model.referralRecipient[x]">
-      <path value="shr-core-ReferralRequest-model.referralRecipient[x]"/>
-      <short value="The practitioner or organization receiving the referral."/>
-      <definition value="The practitioner or organization receiving the referral."/>
+    <element id="shr-core-ReferralRequest-model.groupIdentifier">
+      <path value="shr-core-ReferralRequest-model.groupIdentifier"/>
+      <short value="A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier."/>
+      <definition value="A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier."/>
       <min value="0"/>
-      <max value="*"/>
+      <max value="1"/>
       <base>
-        <path value="shr-core-ReferralRequest-model.referralRecipient[x]"/>
+        <path value="shr-core-ReferralRequest-model.groupIdentifier"/>
         <min value="0"/>
-        <max value="*"/>
+        <max value="1"/>
       </base>
       <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-ReferralRequest-model.serviceType">
-      <path value="shr-core-ReferralRequest-model.serviceType"/>
-      <short value="A service requested or to be performed during this appointment"/>
-      <definition value="A service requested or to be performed during this appointment"/>
+    <element id="shr-core-ReferralRequest-model.doNotPerform">
+      <path value="shr-core-ReferralRequest-model.doNotPerform"/>
+      <short value="A flag, when set to true, indicates that the service/procedure should NOT be performed."/>
+      <definition value="A flag, when set to true, indicates that the service/procedure should NOT be performed."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.doNotPerform"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="boolean"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.serviceDetails">
+      <path value="shr-core-ReferralRequest-model.serviceDetails"/>
+      <short value="A service requested or performed. Additional details and instructions about the service requested or performed. For example, and order for a urinary catheter may have an order detail for an external or indwelling catheter, or an order for a bandage may require additional instructions specifying how the bandage should be applied."/>
+      <definition value="A service requested or performed. Additional details and instructions about the service requested or performed. For example, and order for a urinary catheter may have an order detail for an external or indwelling catheter, or an order for a bandage may require additional instructions specifying how the bandage should be applied."/>
       <min value="0"/>
       <max value="*"/>
       <base>
-        <path value="shr-core-ReferralRequest-model.serviceType"/>
+        <path value="shr-core-ReferralRequest-model.serviceDetails"/>
         <min value="0"/>
         <max value="*"/>
       </base>
@@ -1201,12 +1607,211 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="shr-core-ReferralRequest-model.commentOrDescription">
-      <path value="shr-core-ReferralRequest-model.commentOrDescription"/>
+    <element id="shr-core-ReferralRequest-model.requestQuantity[x]">
+      <path value="shr-core-ReferralRequest-model.requestQuantity[x]"/>
+      <short value="An amount of service being requested which can be a quantity ( for example $1,500 home modification), a ratio ( for example, 20 half day visits per month), or a range (2.0 to 1.8 Gy per fraction)."/>
+      <definition value="An amount of service being requested which can be a quantity ( for example $1,500 home modification), a ratio ( for example, 20 half day visits per month), or a range (2.0 to 1.8 Gy per fraction)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.requestQuantity[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Quantity-model"/>
+      </type>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Ratio-model"/>
+      </type>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Range-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.referralRequestSubjectOfRecord[x]">
+      <path value="shr-core-ReferralRequest-model.referralRequestSubjectOfRecord[x]"/>
+      <short value="Subject of record types allowed for referrals"/>
+      <definition value="Subject of record types allowed for referrals"/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.referralRequestSubjectOfRecord[x]"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Group-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.asNeeded[x]">
+      <path value="shr-core-ReferralRequest-model.asNeeded[x]"/>
+      <short value="Preconditions for service, either &#39;true&#39; indicating to be performed if needed, or a code indicating the pre-condition for performing the service. For example &#39;pain&#39;, &#39;on flare-up&#39;, etc."/>
+      <definition value="Preconditions for service, either &#39;true&#39; indicating to be performed if needed, or a code indicating the pre-condition for performing the service. For example &#39;pain&#39;, &#39;on flare-up&#39;, etc."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.asNeeded[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="boolean"/>
+      </type>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.location">
+      <path value="shr-core-ReferralRequest-model.location"/>
+      <short value="Services and space and equipment provided for a particular purpose; a building or place that provides a particular service or is used for a particular industry. Could be a clinical site, community site, or a mobile facility."/>
+      <definition value="Services and space and equipment provided for a particular purpose; a building or place that provides a particular service or is used for a particular industry. Could be a clinical site, community site, or a mobile facility."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.location"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Location-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.locationType">
+      <path value="shr-core-ReferralRequest-model.locationType"/>
+      <short value="The preferred type of location(s) where the service should happen, in coded or free text form, e.g. at home or nursing day care center."/>
+      <definition value="The preferred type of location(s) where the service should happen, in coded or free text form, e.g. at home or nursing day care center."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.locationType"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.insurance">
+      <path value="shr-core-ReferralRequest-model.insurance"/>
       <code>
         <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0947611"/>
+        <code value="C0021682"/>
+        <display value="HealthInsurance"/>
       </code>
+      <short value="Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service."/>
+      <definition value="Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.insurance"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Coverage-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.supportingInformation">
+      <path value="shr-core-ReferralRequest-model.supportingInformation"/>
+      <short value="Additional information to support this request."/>
+      <definition value="Additional information to support this request."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.supportingInformation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.specimen">
+      <path value="shr-core-ReferralRequest-model.specimen"/>
+      <short value="A specimen is a substance, physical object, or collection of objects, that the laboratory considers a single discrete, uniquely identified unit that is the subject of one or more steps in the laboratory workflow. A specimen may include multiple physical pieces as long as they are considered a single unit within the laboratory workflow. A specimen results from one to many specimen collection procedures, and may be contained in multiple specimen containers. Specimen may have one or more processing activities."/>
+      <definition value="A specimen is a substance, physical object, or collection of objects, that the laboratory considers a single discrete, uniquely identified unit that is the subject of one or more steps in the laboratory workflow. A specimen may include multiple physical pieces as long as they are considered a single unit within the laboratory workflow. A specimen results from one to many specimen collection procedures, and may be contained in multiple specimen containers. Specimen may have one or more processing activities."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.specimen"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Specimen-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.bodyLocation">
+      <path value="shr-core-ReferralRequest-model.bodyLocation"/>
+      <short value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases."/>
+      <definition value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;Note that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.bodyLocation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-BodyLocation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.patientInstruction">
+      <path value="shr-core-ReferralRequest-model.patientInstruction"/>
+      <short value="Patient or consumer-oriented instructions."/>
+      <definition value="Patient or consumer-oriented instructions."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-ReferralRequest-model.patientInstruction"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="string"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-ReferralRequest-model.commentOrDescription">
+      <path value="shr-core-ReferralRequest-model.commentOrDescription"/>
       <short value="A text note containing additional details, explanation, description, comment, or summarization."/>
       <definition value="A text note containing additional details, explanation, description, comment, or summarization."/>
       <min value="0"/>
@@ -1218,25 +1823,6 @@
       </base>
       <type>
         <code value="string"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-ReferralRequest-model.relatedInformation">
-      <path value="shr-core-ReferralRequest-model.relatedInformation"/>
-      <short value="Additional information to support referral or transfer of care request"/>
-      <definition value="Additional information to support referral or transfer of care request"/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="shr-core-ReferralRequest-model.relatedInformation"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>

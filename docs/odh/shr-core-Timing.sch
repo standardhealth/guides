@@ -10,21 +10,9 @@
     single schematron that validates contained resources (if you have any) 
   -->
   <sch:pattern>
-    <sch:title>f:Timing</sch:title>
-    <sch:rule context="f:Timing">
-      <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RecurrenceRange-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RecurrenceRange-extension': maximum cardinality of 'extension' is 1</sch:assert>
-    </sch:rule>
-  </sch:pattern>
-  <sch:pattern>
     <sch:title>Timing</sch:title>
     <sch:rule context="f:Timing">
       <sch:assert test="@value|f:*|h:div">All FHIR elements must have a @value or children</sch:assert>
-    </sch:rule>
-  </sch:pattern>
-  <sch:pattern>
-    <sch:title>f:Timing/f:repeat</sch:title>
-    <sch:rule context="f:Timing/f:repeat">
-      <sch:assert test="count(f:periodMax) &lt;= 0">periodMax: maximum cardinality of 'periodMax' is 0</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>

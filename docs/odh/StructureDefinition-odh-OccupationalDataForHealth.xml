@@ -5,14 +5,14 @@
   <text>
     <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">
   <p><b>OccupationalDataForHealth Profile</b></p>
-  <p>Current and past activities for profit, wages, salary, or as a service to others.
-The profile is based on FHIR Composition that contains a single section, OccupationalDataSection.</p>
+  <p>Information about a person's work and volunteer positions to support patient care, population health and public health activities.. The profile is based on FHIR Composition that contains a single section, OccupationalDataSection.</p>
   <p><b>Mapping Summary</b></p>
   <p><pre>odh.OccupationalDataForHealth maps to Composition:
   Language maps to language
   Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.SourceSystem maps to meta.extension
   Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
@@ -20,13 +20,37 @@ The profile is based on FHIR Composition that contains a single section, Occupat
   Identifier maps to identifier
   Status maps to status
   Type maps to type
+  Category maps to class
+  FocalSubject maps to subject
+  CareContext maps to encounter // this will probably not work and R4 not be able to have EpisodeOfCare
+  StatementDateTime maps to date
+  Author maps to author
+  Title maps to title
+  ConfidentialityCode maps to confidentiality
+  Attestation.AttestationMode maps to attester.mode
+  Attestation.CreationDateTime maps to attester.time
+  Attestation.Attester maps to attester.party
+  ManagingOrganization maps to custodian
+  RelatedDocument.Relationship maps to relatesTo.code
+  RelatedDocument.TargetDocument maps to relatesTo.target[x]
+  EventContext.Code maps to event.code
+  EventContext.TimePeriod maps to event.period
+  EventContext.SupportingInformation maps to event.detail
   OccupationalDataSection maps to section
+  OccupationalDataSection.Title maps to section.title
+  OccupationalDataSection.Code maps to section.code
+  OccupationalDataSection.Author maps to section.extension
+  OccupationalDataSection.FocalSubject maps to section.modifierExtension
+  OccupationalDataSection.Narrative maps to section.text
+  OccupationalDataSection.Type maps to section.mode
+  OccupationalDataSection.SortOrder maps to section.orderedBy // terrible FHIR name!
   OccupationalDataSection.DomainResource maps to section.entry  (slice on = reference.resolve(); slice on type = profile; slice strategy = includes)
+  OccupationalDataSection.EmptyReason maps to section.emptyReason
   OccupationalDataSection.Section maps to section.section
 </pre></p>
 </div>
   </text>
-  <url value="http://hl7.org/fhir/us/shr/StructureDefinition/odh-OccupationalDataForHealth"/>
+  <url value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-OccupationalDataForHealth"/>
   <identifier>
     <system value="http://hl7.org/fhir/us/odh"/>
     <value value="odh.OccupationalDataForHealth"/>
@@ -35,7 +59,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
   <name value="OccupationalDataForHealth"/>
   <title value="odh-OccupationalDataForHealth"/>
   <status value="draft"/>
-  <date value="2019-04-08T00:00:00-04:00"/>
+  <date value="2019-05-08T00:00:00-04:00"/>
   <publisher value="HL7"/>
   <contact>
     <telecom>
@@ -43,7 +67,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       <value value="http://standardhealthrecord.org"/>
     </telecom>
   </contact>
-  <description value="Current and past activities for profit, wages, salary, or as a service to others.&#xA;The profile is based on FHIR Composition that contains a single section, OccupationalDataSection."/>
+  <description value="Information about a person&#39;s work and volunteer positions to support patient care, population health and public health activities.. The profile is based on FHIR Composition that contains a single section, OccupationalDataSection."/>
   <purpose value="To support documents, and also to capture the EN13606 notion of an attested commit to the patient EHR, and to allow a set of disparate resources at the information/engineering level to be gathered into a clinical statement."/>
   <fhirVersion value="3.0.1"/>
   <mapping>
@@ -70,7 +94,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
     <element id="Composition:odh-OccupationalDataForHealth">
       <path value="Composition"/>
       <short value="odh-OccupationalDataForHealth"/>
-      <definition value="Current and past activities for profit, wages, salary, or as a service to others.&#xA;The profile is based on FHIR Composition that contains a single section, OccupationalDataSection."/>
+      <definition value="Information about a person&#39;s work and volunteer positions to support patient care, population health and public health activities.. The profile is based on FHIR Composition that contains a single section, OccupationalDataSection."/>
       <comment value="While the focus of this specification is on patient-specific clinical statements, this resource can also apply to other healthcare-related statements such as study protocol designs, healthcare invoices and other activities that are not necessarily patient-specific or clinical."/>
       <min value="0"/>
       <max value="*"/>
@@ -155,6 +179,155 @@ The profile is based on FHIR Composition that contains a single section, Occupat
         <code value="Meta"/>
       </type>
       <isSummary value="true"/>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.meta.id">
+      <path value="Composition.meta.id"/>
+      <representation value="xmlAttr"/>
+      <short value="xml:id (or equivalent in JSON)"/>
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.id"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="string"/>
+      </type>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.meta.extension">
+      <path value="Composition.meta.extension"/>
+      <slicing>
+        <discriminator>
+          <type value="value"/>
+          <path value="url"/>
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="Additional Content defined by implementations"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.meta.extension:sourcesystem">
+      <path value="Composition.meta.extension"/>
+      <sliceName value="sourcesystem"/>
+      <definition value="FHIR: This provides a minimal amount of Provenance information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.&#xA;FHIM: Identifies the computer system that created the medical record. This optional field may also be used to indicate that the medical record was originally created by a different organization from the one that is currently storing or utilizing the record in that the assigning authority of the Id could be set to that originating organization. This property is optional, as some systems will assume that all records that it contains originated in that system, however it is anticipated that it will become increasingly commonplace for records from multiple systems and organizations will be comingled in order to provide a complete picture of the patient&#39;s health record."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SourceSystem-extension"/>
+      </type>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.meta.versionId">
+      <path value="Composition.meta.versionId"/>
+      <short value="Version specific identifier"/>
+      <definition value="The version specific identifier, as it appears in the version portion of the URL. This values changes when the resource is created, updated, or deleted."/>
+      <comment value="The server assigns this value, and ignores what the client specifies, except in the case that the server is imposing version integrity on updates/deletes."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="id"/>
+      </type>
+      <isSummary value="true"/>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.meta.lastUpdated">
+      <path value="Composition.meta.lastUpdated"/>
+      <short value="When the resource version last changed"/>
+      <definition value="When the resource last changed - e.g. when the version changed."/>
+      <comment value="This value is always populated except when the resource is first being created. The server / resource manager sets this value; what a client provides is irrelevant."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="instant"/>
+      </type>
+      <isSummary value="true"/>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.meta.profile">
+      <path value="Composition.meta.profile"/>
+      <short value="Profiles this resource claims to conform to"/>
+      <definition value="A list of profiles (references to [StructureDefinition](structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url]()."/>
+      <comment value="It is up to the server and/or other infrastructure of policy to determine whether/how these claims are verified and/or updated over time.  The list of profile URLs is a set."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="uri"/>
+      </type>
+      <isSummary value="true"/>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.meta.security">
+      <path value="Composition.meta.security"/>
+      <short value="Security Labels applied to this resource"/>
+      <definition value="Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure."/>
+      <comment value="The security labels can be updated without changing the stated version of the resource  The list of security labels is a set. Uniqueness is based the system/code, and version and display are ignored."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <isSummary value="true"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="SecurityLabels"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
+          <valueBoolean value="true"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Security Labels from the Healthcare Privacy and Security Classification System."/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/security-labels"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.meta.tag">
+      <path value="Composition.meta.tag"/>
+      <short value="Tags applied to this resource"/>
+      <definition value="Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource."/>
+      <comment value="The tags can be updated without changing the stated version of the resource.  The list of tags is a set. Uniqueness is based the system/code, and version and display are ignored."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <isSummary value="true"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="Tags"/>
+        </extension>
+        <strength value="example"/>
+        <description value="Codes that represent various types of tags, commonly workflow-related; e.g. &quot;Needs review by Dr. Jones&quot;"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/common-tags"/>
+        </valueSetReference>
+      </binding>
     </element>
     <element id="Composition:odh-OccupationalDataForHealth.implicitRules">
       <path value="Composition.implicitRules"/>
@@ -448,7 +621,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
     </element>
     <element id="Composition:odh-OccupationalDataForHealth.type.coding">
       <path value="Composition.type.coding"/>
-      <slicing id="2">
+      <slicing id="4">
         <discriminator>
           <type value="value"/>
           <path value="code"/>
@@ -741,7 +914,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       <max value="1"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource"/>
       </type>
       <isSummary value="true"/>
       <mapping>
@@ -766,7 +939,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       <max value="1"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Encounter"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter"/>
       </type>
       <isSummary value="true"/>
       <mapping>
@@ -814,21 +987,26 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       <requirements value="Identifies who is responsible for the content."/>
       <min value="1"/>
       <max value="*"/>
+      <base>
+        <path value="Composition.author"/>
+        <min value="1"/>
+        <max value="*"/>
+      </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson"/>
       </type>
       <isSummary value="true"/>
       <mapping>
@@ -1051,15 +1229,15 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       <max value="1"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization"/>
       </type>
       <isSummary value="true"/>
       <mapping>
@@ -1085,7 +1263,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       <max value="1"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization"/>
       </type>
       <isSummary value="true"/>
       <mapping>
@@ -1233,7 +1411,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Composition"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Composition"/>
       </type>
       <isSummary value="true"/>
       <mapping>
@@ -1398,7 +1576,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       <max value="*"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource"/>
       </type>
       <isSummary value="true"/>
       <mapping>
@@ -1480,6 +1658,14 @@ The profile is based on FHIR Composition that contains a single section, Occupat
     </element>
     <element id="Composition:odh-OccupationalDataForHealth.section.extension">
       <path value="Composition.section.extension"/>
+      <slicing id="2">
+        <discriminator>
+          <type value="value"/>
+          <path value="url"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1500,8 +1686,32 @@ The profile is based on FHIR Composition that contains a single section, Occupat
         <map value="n/a"/>
       </mapping>
     </element>
+    <element id="Composition:odh-OccupationalDataForHealth.section.extension:author">
+      <path value="Composition.section.extension"/>
+      <sliceName value="author"/>
+      <definition value="The actor who created the item and it responsible for the content (regardless of the information source or who recorded it). If only the author is given, it is assumed the author is the information source and the recorder."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Author-extension"/>
+      </type>
+    </element>
     <element id="Composition:odh-OccupationalDataForHealth.section.modifierExtension">
       <path value="Composition.section.modifierExtension"/>
+      <slicing id="3">
+        <discriminator>
+          <type value="value"/>
+          <path value="url"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1520,6 +1730,101 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       </type>
       <isModifier value="true"/>
       <isSummary value="true"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.section.modifierExtension:focalsubject">
+      <path value="Composition.section.modifierExtension"/>
+      <sliceName value="focalsubject"/>
+      <definition value="The person or entity that the information in this resource relates to, if different than the person of record. The subject of information can be a reference or a code, the latter when the subject is described generically, for example, in terms of a relationship to the subject of record (e.g., wife)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="BackboneElement.modifierExtension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-FocalSubject-extension"/>
+      </type>
+      <mustSupport value="true"/>
+      <isModifier value="true"/>
+      <isSummary value="true"/>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.section.modifierExtension:focalsubject.id">
+      <path value="Composition.section.modifierExtension.id"/>
+      <representation value="xmlAttr"/>
+      <short value="xml:id (or equivalent in JSON)"/>
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.id"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="string"/>
+      </type>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.section.modifierExtension:focalsubject.extension:extension">
+      <path value="Composition.section.modifierExtension.extension"/>
+      <short value="Extension"/>
+      <definition value="An Extension"/>
+      <min value="0"/>
+      <max value="0"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+      </type>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.section.modifierExtension:focalsubject.url">
+      <path value="Composition.section.modifierExtension.url"/>
+      <representation value="xmlAttr"/>
+      <short value="identifies the meaning of the extension"/>
+      <definition value="Source of the definition for the extension code - a logical name or a URL."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Extension.url"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="uri"/>
+      </type>
+      <fixedUri value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-FocalSubject-extension"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.section.modifierExtension:focalsubject.valueReference">
+      <path value="Composition.section.modifierExtension.valueReference"/>
+      <short value="DomainResource"/>
+      <definition value="Parent class for any item in clinical or administrative health-related system. A DomainResource can belong to a single person&#39;s health record, or represent an entity that surfaces in multiple records, such as organizations, providers, payments, decision support artifacts, etc.&#xA;&#xA;Note to FHIR implementers: SHR includes Status and Identifier fields on DomainResource because these two attributes occur in almost every FHIR resource. The most significant exception are 3 or 4 resources that use an &#39;active&#39; flag instead of coded status value. There is no apparent pattern to this inconsistency. FHIR resources that use a coded status have active and inactive as status values. In the spirit of providing a consistent object-oriented logical model for FHIR, SHR uses status across all domain resources."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Extension.value[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource"/>
+      </type>
       <mapping>
         <identity value="rim"/>
         <map value="N/A"/>
@@ -1681,7 +1986,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       <max value="*"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource"/>
       </type>
       <condition value="cmp-2"/>
       <mapping>
@@ -1697,7 +2002,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       <path value="Composition.section.entry"/>
       <sliceName value="odh-EmploymentStatus"/>
       <short value="EmploymentStatus"/>
-      <definition value="The self-reported current and/or historical status about a person&#x2019;s economic relationship to work (e.g. having one or more jobs), including start and end dates.&#xA;A person&#39;s Employment Status could change over time, for example, a person could be employed following a period of choosing to not be in the labor force.&#xA;Outside of ODH, the employment arrangement between an employer and a person (one job) has sometimes been referred to as a person&#39;s &#39;employment status.&#39; However, in ODH Employment Status is used to characterize a person, Work Classification is used to characterize a job, and Retirement Date is used to characterize a person as retired."/>
+      <definition value="The self-reported current and/or historical status about a person&#x2019;s economic relationship to work (e.g. having one or more jobs), including start and end dates. A person&#x2019;s Employment Status could change over time, for example, a person could be employed following a period of choosing to not be in the labor force. Outside of ODH, the employment arrangement between an employer and a person (one job) has sometimes been referred to as a person&#x2019;s &#x2018;employment status.&#x2019; However, in ODH, Employment Status is used to characterize a person, Work Classification is used to characterize a job, and Retirement Date is used to characterize a person as retired."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1707,7 +2012,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/odh-EmploymentStatus"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-EmploymentStatus"/>
       </type>
       <condition value="cmp-2"/>
       <mapping>
@@ -1723,7 +2028,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       <path value="Composition.section.entry"/>
       <sliceName value="odh-RetirementDate"/>
       <short value="RetirementDate"/>
-      <definition value="A self-reported date that a person considers themselves to have &#x2018;retired&#x2019;.&#xA;A person can be both retired and employed (an Employment Status); most often, a person would be retired from one job and employed in another job. A person also can have more than one retirement date; for example, a person could retire from military service, then later retire from a civilian job. Multiple retirement dates should be recorded using multiple FHIR resources.&#xA;Outside of ODH, a characterization of the employment arrangement between an employer and a person (one job) has sometimes been referred to as a person&#39;s &#39;employment status&#39; and might include values such as &#39;retired.&#39; However, in ODH, Employment Status is used to characterize a person&#39;s relationship to working (e.g., employed, unemployed) and Retirement Date is used to characterize whether or not a person self-identifies as retired. For example, a person could be &#39;employed&#39; (Employment Status) and have retired from a previous job (recorded at the Person level as a Retirement Date)."/>
+      <definition value="A self-reported date that a person considers themselves to have &#x2018;retired&#x2019;. A person can be both retired and employed (an Employment Status); most often, a person would be retired from one job and employed in another job. A person also can have more than one retirement date; for example, a person could retire from military service, then later retire from a civilian job. Multiple retirement dates should be recorded using multiple instance of this profile. Outside of ODH, a characterization of the employment arrangement between an employer and a person (one job) has sometimes been referred to as a person&#x2019;s &#x2018;employment status&#x2019; and might include values such as &#x2018;retired.&#x2019; However, in ODH, Employment Status is used to characterize a person&#x2019;s relationship to working (e.g., employed, unemployed) and Retirement Date is used to characterize whether or not a person self-identifies as retired. For example, a person could be &#x2018;employed&#x2019; (Employment Status) and have retired from a previous job (recorded at the Person level as a Retirement Date)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1733,7 +2038,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/odh-RetirementDate"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-RetirementDate"/>
       </type>
       <condition value="cmp-2"/>
       <mapping>
@@ -1749,7 +2054,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       <path value="Composition.section.entry"/>
       <sliceName value="odh-CombatZonePeriod"/>
       <short value="CombatZonePeriod"/>
-      <definition value="Self-reported date range(s) when a person worked in what is considered a combat zone; sometimes called a hazardous duty work. Both civilian workers, such as Department of Defense contractors, and military service members could have worked in combat zones. Multiple periods in combat zone should be recorded using multiple FHIR resources."/>
+      <definition value="Self-reported date range(s) when a person worked in what is considered a combat zone; sometimes called a hazardous duty work. Both civilian workers, such as Department of Defense contractors, and military service members could have worked in combat zones. Multiple periods in combat zone should be recorded using multiple instances of this profile."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1759,7 +2064,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/odh-CombatZonePeriod"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-CombatZonePeriod"/>
       </type>
       <condition value="cmp-2"/>
       <mapping>
@@ -1775,7 +2080,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       <path value="Composition.section.entry"/>
       <sliceName value="odh-UsualWork"/>
       <short value="UsualWork"/>
-      <definition value="Related data elements about the work a person reports having performed for the longest amount of time during his or her life, regardless of the person&#39;s current job and regardless of whether or not the person performed this work for a continuous time.&#xA;Knowledge of person&#39;s Usual Work can potentially assist in diagnosis, treatment and/or prevention of chronic condition(s) or conditions with a long latency. The potential for exposure to Occupational Hazard(s) related to an Occupation and/or an Industry can change over time, and a person could have been in and out of their Usual Work over time, so additional data are helpful to fully evaluate the possible impact of the person&#39;s Usual Work on their health and guide appropriate use of screening tests to detect early disease.&#xA;Example: a person has worked for a total of 30 years as a building carpenter (Occupation), but in various industries, mostly hotel construction. Her Usual Occupation is &#39;building carpenter&#39; and her Usual Industry is &#39;hotel construction.&#39;&#xA;Usual Work does not include work that was unpaid or voluntary."/>
+      <definition value="Related data elements about the work a person reports having performed for the longest amount of time during his or her life, regardless of the person&#x2019;s current job and regardless of whether or not the person performed this work for a continuous time. Knowledge of person&#x2019;s Usual Work can potentially assist in diagnosis, treatment and/or prevention of chronic condition(s) or conditions with a long latency. The potential for exposure to Occupational Hazard(s) related to an Occupation and/or an Industry can change over time, and a person could have been in and out of their Usual Work over time, so additional data are helpful to fully evaluate the possible impact of the person&#x2019;s Usual Work on their health and guide appropriate use of screening tests to detect early disease. Example: a person has worked for a total of 30 years as a building carpenter (Occupation), but in various industries, mostly hotel construction. Her Usual Occupation is &#x2018;building carpenter&#x2019; and her Usual Industry is &#x2018;hotel construction.&#x2019; Usual Work does not include work that was unpaid or voluntary."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -1785,7 +2090,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/odh-UsualWork"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-UsualWork"/>
       </type>
       <condition value="cmp-2"/>
       <mapping>
@@ -1801,7 +2106,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       <path value="Composition.section.entry"/>
       <sliceName value="odh-PastOrPresentJob"/>
       <short value="PastOrPresentJob"/>
-      <definition value="Related data elements for a current or previous job, as reported by the person, i.e., a work situation or position held for a specified time period.&#xA;A person can have more than one job at the same time and multiple jobs over time, so the data related to each job must remain in the record in perpetuity. Each job should be recorded in a separate instance of PastOrPresentJob.&#xA;A person&#39;s job can be a social determinant of their health and information about a person&#39;s job can support patient care, population health, and public health. In patient care, knowledge of a person&#39;s past or present job(s) can impact recognition, diagnosis, management, and treatment of injuries and illnesses. These data also can be used for clinical decision support and to prompt discussion of preventive care measures. For example, a record of jobs that require prolonged time in the sun might prompt a health care provider to inquire if the person wears protective clothing or sunscreen while working.&#xA;At a minimum, it is important to have a record of a person&#39;s current job(s); i.e., the job(s) in which a person is engaged at the time that he or she presents to a health care provider, regardless of duration, and to retain that information over time. In the event a person recently stopped working (e.g. retired without another job, became unemployed or disabled and unable to work), the most recent job(s) is used instead of the current job(s)."/>
+      <definition value="Related data elements for a current or previous job, as reported by the person, i.e., a work situation or position held for a specified time period. A person can have more than one job at the same time and multiple jobs over time, so the data related to each job must remain in the record in perpetuity. Each job should be recorded in a separate instance of PastOrPresentJob. A person&#x2019;s job can be a social determinant of their health and information about a person&#x2019;s job can support patient care, population health, and public health. In patient care, knowledge of a person&#x2019;s past or present job(s) can impact recognition, diagnosis, management, and treatment of injuries and illnesses. These data also can be used for clinical decision support and to prompt discussion of preventive care measures. For example, a record of jobs that require prolonged time in the sun might prompt a health care provider to inquire if the person wears protective clothing or sunscreen while working. At a minimum, it is important to have a record of a person&#x2019;s current job(s); i.e., the job(s) in which a person is engaged at the time that he or she presents to a health care provider, regardless of duration, and to retain that information over time. In the event a person recently stopped working (e.g. retired without another job, became unemployed or disabled and unable to work), the most recent job(s) is used instead of the current job(s)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1811,7 +2116,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/odh-PastOrPresentJob"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-PastOrPresentJob"/>
       </type>
       <condition value="cmp-2"/>
       <mapping>
@@ -2155,14 +2460,33 @@ The profile is based on FHIR Composition that contains a single section, Occupat
     <element id="Composition:odh-OccupationalDataForHealth">
       <path value="Composition"/>
       <short value="odh-OccupationalDataForHealth"/>
-      <definition value="Current and past activities for profit, wages, salary, or as a service to others.&#xA;The profile is based on FHIR Composition that contains a single section, OccupationalDataSection."/>
+      <definition value="Information about a person&#39;s work and volunteer positions to support patient care, population health and public health activities.. The profile is based on FHIR Composition that contains a single section, OccupationalDataSection."/>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.meta">
+      <path value="Composition.meta"/>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.meta.extension:sourcesystem">
+      <path value="Composition.meta.extension"/>
+      <sliceName value="sourcesystem"/>
+      <definition value="FHIR: This provides a minimal amount of Provenance information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.&#xA;FHIM: Identifies the computer system that created the medical record. This optional field may also be used to indicate that the medical record was originally created by a different organization from the one that is currently storing or utilizing the record in that the assigning authority of the Id could be set to that originating organization. This property is optional, as some systems will assume that all records that it contains originated in that system, however it is anticipated that it will become increasingly commonplace for records from multiple systems and organizations will be comingled in order to provide a complete picture of the patient&#39;s health record."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SourceSystem-extension"/>
+      </type>
     </element>
     <element id="Composition:odh-OccupationalDataForHealth.type">
       <path value="Composition.type"/>
     </element>
     <element id="Composition:odh-OccupationalDataForHealth.type.coding">
       <path value="Composition.type.coding"/>
-      <slicing id="2">
+      <slicing id="4">
         <discriminator>
           <type value="value"/>
           <path value="code"/>
@@ -2193,6 +2517,92 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       <path value="Composition.type.coding.code"/>
       <fixedCode value="74166-0"/>
     </element>
+    <element id="Composition:odh-OccupationalDataForHealth.subject">
+      <path value="Composition.subject"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource"/>
+      </type>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.encounter">
+      <path value="Composition.encounter"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter"/>
+      </type>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.author">
+      <path value="Composition.author"/>
+      <base>
+        <path value="Composition.author"/>
+        <min value="1"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson"/>
+      </type>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.attester">
+      <path value="Composition.attester"/>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.attester.party">
+      <path value="Composition.attester.party"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization"/>
+      </type>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.custodian">
+      <path value="Composition.custodian"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization"/>
+      </type>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.relatesTo">
+      <path value="Composition.relatesTo"/>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.relatesTo.target[x]">
+      <path value="Composition.relatesTo.target[x]"/>
+      <type>
+        <code value="Identifier"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Composition"/>
+      </type>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.event">
+      <path value="Composition.event"/>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.event.detail">
+      <path value="Composition.event.detail"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource"/>
+      </type>
+    </element>
     <element id="Composition:odh-OccupationalDataForHealth.section">
       <path value="Composition.section"/>
       <min value="1"/>
@@ -2202,6 +2612,72 @@ The profile is based on FHIR Composition that contains a single section, Occupat
         <min value="0"/>
         <max value="*"/>
       </base>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.section.extension">
+      <path value="Composition.section.extension"/>
+      <slicing id="2">
+        <discriminator>
+          <type value="value"/>
+          <path value="url"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.section.extension:author">
+      <path value="Composition.section.extension"/>
+      <sliceName value="author"/>
+      <definition value="The actor who created the item and it responsible for the content (regardless of the information source or who recorded it). If only the author is given, it is assumed the author is the information source and the recorder."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Author-extension"/>
+      </type>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.section.modifierExtension">
+      <path value="Composition.section.modifierExtension"/>
+      <slicing id="3">
+        <discriminator>
+          <type value="value"/>
+          <path value="url"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.section.modifierExtension:focalsubject">
+      <path value="Composition.section.modifierExtension"/>
+      <sliceName value="focalsubject"/>
+      <definition value="The person or entity that the information in this resource relates to, if different than the person of record. The subject of information can be a reference or a code, the latter when the subject is described generically, for example, in terms of a relationship to the subject of record (e.g., wife)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="BackboneElement.modifierExtension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-FocalSubject-extension"/>
+      </type>
+      <mustSupport value="true"/>
+      <isModifier value="true"/>
+      <isSummary value="true"/>
+    </element>
+    <element id="Composition:odh-OccupationalDataForHealth.section.modifierExtension:focalsubject.valueReference">
+      <path value="Composition.section.modifierExtension.valueReference"/>
+      <short value="DomainResource"/>
+      <definition value="Parent class for any item in clinical or administrative health-related system. A DomainResource can belong to a single person&#39;s health record, or represent an entity that surfaces in multiple records, such as organizations, providers, payments, decision support artifacts, etc.&#xA;&#xA;Note to FHIR implementers: SHR includes Status and Identifier fields on DomainResource because these two attributes occur in almost every FHIR resource. The most significant exception are 3 or 4 resources that use an &#39;active&#39; flag instead of coded status value. There is no apparent pattern to this inconsistency. FHIR resources that use a coded status have active and inactive as status values. In the spirit of providing a consistent object-oriented logical model for FHIR, SHR uses status across all domain resources."/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource"/>
+      </type>
     </element>
     <element id="Composition:odh-OccupationalDataForHealth.section.entry">
       <path value="Composition.section.entry"/>
@@ -2215,14 +2691,14 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       </slicing>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource"/>
       </type>
     </element>
     <element id="Composition:odh-OccupationalDataForHealth.section.entry:odh-EmploymentStatus">
       <path value="Composition.section.entry"/>
       <sliceName value="odh-EmploymentStatus"/>
       <short value="EmploymentStatus"/>
-      <definition value="The self-reported current and/or historical status about a person&#x2019;s economic relationship to work (e.g. having one or more jobs), including start and end dates.&#xA;A person&#39;s Employment Status could change over time, for example, a person could be employed following a period of choosing to not be in the labor force.&#xA;Outside of ODH, the employment arrangement between an employer and a person (one job) has sometimes been referred to as a person&#39;s &#39;employment status.&#39; However, in ODH Employment Status is used to characterize a person, Work Classification is used to characterize a job, and Retirement Date is used to characterize a person as retired."/>
+      <definition value="The self-reported current and/or historical status about a person&#x2019;s economic relationship to work (e.g. having one or more jobs), including start and end dates. A person&#x2019;s Employment Status could change over time, for example, a person could be employed following a period of choosing to not be in the labor force. Outside of ODH, the employment arrangement between an employer and a person (one job) has sometimes been referred to as a person&#x2019;s &#x2018;employment status.&#x2019; However, in ODH, Employment Status is used to characterize a person, Work Classification is used to characterize a job, and Retirement Date is used to characterize a person as retired."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -2232,14 +2708,14 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/odh-EmploymentStatus"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-EmploymentStatus"/>
       </type>
     </element>
     <element id="Composition:odh-OccupationalDataForHealth.section.entry:odh-RetirementDate">
       <path value="Composition.section.entry"/>
       <sliceName value="odh-RetirementDate"/>
       <short value="RetirementDate"/>
-      <definition value="A self-reported date that a person considers themselves to have &#x2018;retired&#x2019;.&#xA;A person can be both retired and employed (an Employment Status); most often, a person would be retired from one job and employed in another job. A person also can have more than one retirement date; for example, a person could retire from military service, then later retire from a civilian job. Multiple retirement dates should be recorded using multiple FHIR resources.&#xA;Outside of ODH, a characterization of the employment arrangement between an employer and a person (one job) has sometimes been referred to as a person&#39;s &#39;employment status&#39; and might include values such as &#39;retired.&#39; However, in ODH, Employment Status is used to characterize a person&#39;s relationship to working (e.g., employed, unemployed) and Retirement Date is used to characterize whether or not a person self-identifies as retired. For example, a person could be &#39;employed&#39; (Employment Status) and have retired from a previous job (recorded at the Person level as a Retirement Date)."/>
+      <definition value="A self-reported date that a person considers themselves to have &#x2018;retired&#x2019;. A person can be both retired and employed (an Employment Status); most often, a person would be retired from one job and employed in another job. A person also can have more than one retirement date; for example, a person could retire from military service, then later retire from a civilian job. Multiple retirement dates should be recorded using multiple instance of this profile. Outside of ODH, a characterization of the employment arrangement between an employer and a person (one job) has sometimes been referred to as a person&#x2019;s &#x2018;employment status&#x2019; and might include values such as &#x2018;retired.&#x2019; However, in ODH, Employment Status is used to characterize a person&#x2019;s relationship to working (e.g., employed, unemployed) and Retirement Date is used to characterize whether or not a person self-identifies as retired. For example, a person could be &#x2018;employed&#x2019; (Employment Status) and have retired from a previous job (recorded at the Person level as a Retirement Date)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -2249,14 +2725,14 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/odh-RetirementDate"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-RetirementDate"/>
       </type>
     </element>
     <element id="Composition:odh-OccupationalDataForHealth.section.entry:odh-CombatZonePeriod">
       <path value="Composition.section.entry"/>
       <sliceName value="odh-CombatZonePeriod"/>
       <short value="CombatZonePeriod"/>
-      <definition value="Self-reported date range(s) when a person worked in what is considered a combat zone; sometimes called a hazardous duty work. Both civilian workers, such as Department of Defense contractors, and military service members could have worked in combat zones. Multiple periods in combat zone should be recorded using multiple FHIR resources."/>
+      <definition value="Self-reported date range(s) when a person worked in what is considered a combat zone; sometimes called a hazardous duty work. Both civilian workers, such as Department of Defense contractors, and military service members could have worked in combat zones. Multiple periods in combat zone should be recorded using multiple instances of this profile."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -2266,14 +2742,14 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/odh-CombatZonePeriod"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-CombatZonePeriod"/>
       </type>
     </element>
     <element id="Composition:odh-OccupationalDataForHealth.section.entry:odh-UsualWork">
       <path value="Composition.section.entry"/>
       <sliceName value="odh-UsualWork"/>
       <short value="UsualWork"/>
-      <definition value="Related data elements about the work a person reports having performed for the longest amount of time during his or her life, regardless of the person&#39;s current job and regardless of whether or not the person performed this work for a continuous time.&#xA;Knowledge of person&#39;s Usual Work can potentially assist in diagnosis, treatment and/or prevention of chronic condition(s) or conditions with a long latency. The potential for exposure to Occupational Hazard(s) related to an Occupation and/or an Industry can change over time, and a person could have been in and out of their Usual Work over time, so additional data are helpful to fully evaluate the possible impact of the person&#39;s Usual Work on their health and guide appropriate use of screening tests to detect early disease.&#xA;Example: a person has worked for a total of 30 years as a building carpenter (Occupation), but in various industries, mostly hotel construction. Her Usual Occupation is &#39;building carpenter&#39; and her Usual Industry is &#39;hotel construction.&#39;&#xA;Usual Work does not include work that was unpaid or voluntary."/>
+      <definition value="Related data elements about the work a person reports having performed for the longest amount of time during his or her life, regardless of the person&#x2019;s current job and regardless of whether or not the person performed this work for a continuous time. Knowledge of person&#x2019;s Usual Work can potentially assist in diagnosis, treatment and/or prevention of chronic condition(s) or conditions with a long latency. The potential for exposure to Occupational Hazard(s) related to an Occupation and/or an Industry can change over time, and a person could have been in and out of their Usual Work over time, so additional data are helpful to fully evaluate the possible impact of the person&#x2019;s Usual Work on their health and guide appropriate use of screening tests to detect early disease. Example: a person has worked for a total of 30 years as a building carpenter (Occupation), but in various industries, mostly hotel construction. Her Usual Occupation is &#x2018;building carpenter&#x2019; and her Usual Industry is &#x2018;hotel construction.&#x2019; Usual Work does not include work that was unpaid or voluntary."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -2283,14 +2759,14 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/odh-UsualWork"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-UsualWork"/>
       </type>
     </element>
     <element id="Composition:odh-OccupationalDataForHealth.section.entry:odh-PastOrPresentJob">
       <path value="Composition.section.entry"/>
       <sliceName value="odh-PastOrPresentJob"/>
       <short value="PastOrPresentJob"/>
-      <definition value="Related data elements for a current or previous job, as reported by the person, i.e., a work situation or position held for a specified time period.&#xA;A person can have more than one job at the same time and multiple jobs over time, so the data related to each job must remain in the record in perpetuity. Each job should be recorded in a separate instance of PastOrPresentJob.&#xA;A person&#39;s job can be a social determinant of their health and information about a person&#39;s job can support patient care, population health, and public health. In patient care, knowledge of a person&#39;s past or present job(s) can impact recognition, diagnosis, management, and treatment of injuries and illnesses. These data also can be used for clinical decision support and to prompt discussion of preventive care measures. For example, a record of jobs that require prolonged time in the sun might prompt a health care provider to inquire if the person wears protective clothing or sunscreen while working.&#xA;At a minimum, it is important to have a record of a person&#39;s current job(s); i.e., the job(s) in which a person is engaged at the time that he or she presents to a health care provider, regardless of duration, and to retain that information over time. In the event a person recently stopped working (e.g. retired without another job, became unemployed or disabled and unable to work), the most recent job(s) is used instead of the current job(s)."/>
+      <definition value="Related data elements for a current or previous job, as reported by the person, i.e., a work situation or position held for a specified time period. A person can have more than one job at the same time and multiple jobs over time, so the data related to each job must remain in the record in perpetuity. Each job should be recorded in a separate instance of PastOrPresentJob. A person&#x2019;s job can be a social determinant of their health and information about a person&#x2019;s job can support patient care, population health, and public health. In patient care, knowledge of a person&#x2019;s past or present job(s) can impact recognition, diagnosis, management, and treatment of injuries and illnesses. These data also can be used for clinical decision support and to prompt discussion of preventive care measures. For example, a record of jobs that require prolonged time in the sun might prompt a health care provider to inquire if the person wears protective clothing or sunscreen while working. At a minimum, it is important to have a record of a person&#x2019;s current job(s); i.e., the job(s) in which a person is engaged at the time that he or she presents to a health care provider, regardless of duration, and to retain that information over time. In the event a person recently stopped working (e.g. retired without another job, became unemployed or disabled and unable to work), the most recent job(s) is used instead of the current job(s)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -2300,7 +2776,7 @@ The profile is based on FHIR Composition that contains a single section, Occupat
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/odh-PastOrPresentJob"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-PastOrPresentJob"/>
       </type>
     </element>
   </differential>

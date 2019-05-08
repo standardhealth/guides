@@ -6,18 +6,18 @@
 
 # - resource -------------------------------------------------------------------
 
-<http://hl7.org/fhir/us/shr/Observation/mCODEGeneticVariantFoundExample01> a fhir:Observation;
+<http://hl7.org/fhir/us/odh/Observation/mCODEGeneticVariantFoundExample01> a fhir:Observation;
   fhir:nodeRole fhir:treeRoot;
   fhir:Resource.id [ fhir:value "mCODEGeneticVariantFoundExample01"];
   fhir:Resource.meta [
      fhir:Meta.profile [
-       fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/oncocore-GeneticVariantFound";
+       fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-GeneticVariantFound";
        fhir:index 0
      ]
   ];
   fhir:DomainResource.text [
      fhir:Narrative.status [ fhir:value "generated" ];
-     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n			<p>\n				<b>Genetic Variant Assessment</b>\n			</p>\n			<p>\n				<b>id</b>: example</p>\n			<p>\n				<b>Patient identifier</b>: m123</p>\n			<p><b>name</b>: John B. Anyperson </p>\n			<p>\n				<b>Test date</b>: April 1, 2019</p>\n			<p>\n				<b>Genomic source class [Type]</b>: Somatic</p>\n			<p>\n				<b>Complex genetic variant [ID]</b>: 372524 - NM_000455.4(STK11):c.921-1G>C</p>\n			<p>\n				<b>Complex variant HGVS name</b>: NM_000455.4:c.921-1G>C</p>\n			<p><b>Complex variant common name</b>: STK11 single nucleotide variant - translocation at c921-1 from G to C</p>\n			</div>"
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n			<p>\n				<b>*** mCODE Example: Genetic Variant Assessment ***</b>\n			</p>\n			<p>\n				<b>Patient identifier</b>: m123</p>\n			<p><b>Name</b>: John B. Anyperson </p>\n			<p>\n				<b>Test date</b>: April 1, 2019</p>\n			<p>\n				<b>Genomic source class [Type]</b>: Somatic</p>\n			<p>\n				<b>Variant HGVS name</b>: NM_000455.4:c.921-1G>C</p>\n			<p><b>Variant common name</b>: G242E</p>\n			</div>"
   ];
   fhir:Observation.status [ fhir:value "final"];
   fhir:Observation.category [
@@ -35,20 +35,22 @@
        fhir:Coding.system [ fhir:value "http://loinc.org" ];
        fhir:Coding.code [ fhir:value "69548-6" ];
        fhir:Coding.display [ fhir:value "Genetic variant assessment" ]
-     ], [
-       fhir:index 1;
-       a loinc:53795-1;
-       fhir:Coding.system [ fhir:value "http://loinc.org" ];
-       fhir:Coding.code [ fhir:value "53795-1" ];
-       fhir:Coding.display [ fhir:value "STK11 gene targeted mutation analysis in Blood or Tissue by Molecular genetics method Narrative" ]
      ]
   ];
   fhir:Observation.subject [
-     fhir:link <http://hl7.org/fhir/us/shr/Patient/m123>;
-     fhir:Reference.reference [ fhir:value "Patient/m123" ];
+     fhir:link <http://hl7.org/fhir/us/odh/Patient/mCODEPatientExample01>;
+     fhir:Reference.reference [ fhir:value "Patient/mCODEPatientExample01" ];
      fhir:Reference.display [ fhir:value "John B. Anyperson" ]
   ];
   fhir:Observation.effectiveDateTime [ fhir:value "2019-04-01"^^xsd:date];
+  fhir:Observation.method [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value "https://ncit.nci.nih.gov" ];
+       fhir:Coding.code [ fhir:value "C101293" ];
+       fhir:Coding.display [ fhir:value "Next Generation Sequencing" ]
+     ]
+  ];
   fhir:Observation.component [
      fhir:index 0;
      fhir:Observation.component.code [
@@ -63,7 +65,7 @@
      fhir:Observation.component.valueCodeableConcept [
        fhir:CodeableConcept.coding [
          fhir:index 0;
-         fhir:Coding.system [ fhir:value "http://hl7.org/fhir/us/mcode/oncocore/vs/GenomicSourceClassVS" ];
+         fhir:Coding.system [ fhir:value "http://hl7.org/fhir/us/mcode/onco-core/vs/GenomicSourceClassVS" ];
          fhir:Coding.code [ fhir:value "LA6684-0" ];
          fhir:Coding.display [ fhir:value "Somatic" ]
        ];
@@ -74,54 +76,62 @@
      fhir:Observation.component.code [
        fhir:CodeableConcept.coding [
          fhir:index 0;
-         a loinc:81260-2;
+         a loinc:48003-8;
          fhir:Coding.system [ fhir:value "http://loinc.org" ];
-         fhir:Coding.code [ fhir:value "81260-2" ];
-         fhir:Coding.display [ fhir:value "Complex genetic variant [ID]" ]
+         fhir:Coding.code [ fhir:value "48003-8" ];
+         fhir:Coding.display [ fhir:value "DNA sequence variation identifier" ]
        ]
      ];
      fhir:Observation.component.valueCodeableConcept [
        fhir:CodeableConcept.coding [
          fhir:index 0;
          fhir:Coding.system [ fhir:value "https://www.ncbi.nlm.nih.gov/clinvar" ];
-         fhir:Coding.version [ fhir:value "3.31.0" ];
-         fhir:Coding.code [ fhir:value "372524" ]
+         fhir:Coding.code [ fhir:value "619728" ];
+         fhir:Coding.display [ fhir:value "NM_000455.4(STK11):c.725G>A (p.Gly242Glu)" ]
        ];
-       fhir:CodeableConcept.text [ fhir:value "NM_000455.4(STK11):c.921-1G>C" ]
+       fhir:CodeableConcept.text [ fhir:value "NM_000455.4(STK11):c.725G>A (p.Gly242Glu)" ]
      ]
   ], [
      fhir:index 2;
      fhir:Observation.component.code [
        fhir:CodeableConcept.coding [
          fhir:index 0;
-         a loinc:81262-8;
+         a loinc:82154-6;
          fhir:Coding.system [ fhir:value "http://loinc.org" ];
-         fhir:Coding.code [ fhir:value "81262-8" ];
-         fhir:Coding.display [ fhir:value "Complex variant HGVS name" ]
+         fhir:Coding.code [ fhir:value "82154-6" ];
+         fhir:Coding.display [ fhir:value "Genomic structural variant name" ]
        ]
      ];
-     fhir:Observation.component.valueString [ fhir:value "NM_000455.4:c.921-1G>C" ]
+     fhir:Observation.component.valueCodeableConcept [
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value "http://varnomen.hgvs.org" ];
+         fhir:Coding.code [ fhir:value "NM_000455.4:c.725G>A" ];
+         fhir:Coding.display [ fhir:value "NM_000455.4:c.725G>A" ]
+       ];
+       fhir:CodeableConcept.text [ fhir:value "G242E" ]
+     ]
   ], [
      fhir:index 3;
      fhir:Observation.component.code [
        fhir:CodeableConcept.coding [
          fhir:index 0;
-         a loinc:81262-8;
+         a loinc:47998-0;
          fhir:Coding.system [ fhir:value "http://loinc.org" ];
-         fhir:Coding.code [ fhir:value "81262-8" ];
-         fhir:Coding.display [ fhir:value "Complex variant HGVS name" ]
+         fhir:Coding.code [ fhir:value "47998-0" ];
+         fhir:Coding.display [ fhir:value "DNA sequence variation display name" ]
        ]
      ];
-     fhir:Observation.component.valueString [ fhir:value "STK11 single nucleotide variant - translocation at c921-1 from G to C" ]
+     fhir:Observation.component.valueString [ fhir:value "G242E" ]
   ] .
 
-<http://hl7.org/fhir/us/shr/Patient/m123> a fhir:us .
+<http://hl7.org/fhir/us/odh/Patient/mCODEPatientExample01> a fhir:us .
 
 # - ontology header ------------------------------------------------------------
 
-<http://hl7.org/fhir/us/shr/Observation/mCODEGeneticVariantFoundExample01.ttl> a owl:Ontology;
+<http://hl7.org/fhir/us/odh/Observation/mCODEGeneticVariantFoundExample01.ttl> a owl:Ontology;
   owl:imports fhir:fhir.ttl;
-  owl:versionIRI <http://build.fhir.org/us/shr/Observation/mCODEGeneticVariantFoundExample01.ttl> .
+  owl:versionIRI <http://build.fhir.org/us/odh/Observation/mCODEGeneticVariantFoundExample01.ttl> .
 
 # -------------------------------------------------------------------------------------
 

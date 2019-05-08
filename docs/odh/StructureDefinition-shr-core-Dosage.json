@@ -3,9 +3,9 @@
   "id": "shr-core-Dosage",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Dosage Profile</b></p>\n  <p>The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Dosage maps to Dosage:\n  DoseAmount maps to dose[x]\n  TimingOfDoses maps to timing\n  AsNeededIndicator maps to asNeeded[x]\n  DosageInstructionsText maps to text\n  AdditionalDosageInstruction maps to additionalInstruction\n  RouteIntoBody maps to route\n  DosageMethod maps to method\n  DosageBodyLocation maps to site\n  MaximumDosePerTimePeriod maps to maxDosePerPeriod\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Dosage Profile</b></p>\n  <p>The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Dosage maps to Dosage:\n  DoseSequenceNumber maps to sequence\n  InstructionText maps to text\n  InstructionCode maps to additionalInstruction\n  PatientInstruction maps to patientInstruction\n  Timing maps to timing\n  AsNeeded maps to asNeeded[x]\n  AdministrationSite maps to site\n  RouteIntoBody maps to route\n  Method maps to method\n  DoseAndRate.DoseAmount maps to dose[x]\n  DoseAndRate.DoseRate maps to rate[x]\n  MaxDosePerPeriod maps to maxDosePerPeriod\n  MaxDosePerAdministration maps to maxDosePerAdministration\n  MaxDosePerLifetime maps to maxDosePerLifetime\n</pre></p>\n</div>"
   },
-  "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Dosage",
+  "url": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Dosage",
   "identifier": [
     {
       "system": "http://hl7.org/fhir/us/odh",
@@ -16,7 +16,7 @@
   "name": "Dosage",
   "title": "shr-core-Dosage",
   "status": "draft",
-  "date": "2019-04-08T00:00:00-04:00",
+  "date": "2019-05-08T00:00:00-04:00",
   "publisher": "HL7",
   "contact": [
     {
@@ -29,12 +29,6 @@
     }
   ],
   "description": "The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported.",
-  "keyword": [
-    {
-      "system": "http://ncimeta.nci.nih.gov",
-      "code": "C0178602"
-    }
-  ],
   "fhirVersion": "3.0.1",
   "mapping": [
     {
@@ -210,7 +204,7 @@
               "valueString": "AdditionalInstruction"
             }
           ],
-          "strength": "required",
+          "strength": "example",
           "description": "A coded concept identifying additional instructions such as \"take with water\" or \"avoid operating heavy machinery\".",
           "valueSetReference": {
             "reference": "http://hl7.org/fhir/ValueSet/additional-instruction-codes"
@@ -255,7 +249,7 @@
         "type": [
           {
             "code": "Timing",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Timing"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Timing"
           }
         ],
         "isSummary": true,
@@ -269,17 +263,6 @@
       {
         "id": "Dosage:shr-core-Dosage.asNeeded[x]",
         "path": "Dosage.asNeeded[x]",
-        "slicing": {
-          "id": "1",
-          "discriminator": [
-            {
-              "type": "type",
-              "path": "$this"
-            }
-          ],
-          "ordered": false,
-          "rules": "open"
-        },
         "short": "Take \"as needed\" (for x)",
         "definition": "Indicates whether the Medication is only taken when needed within a specific dosing schedule (Boolean option), or it indicates the precondition for taking the Medication (CodeableConcept).",
         "comment": "Can express \"as needed\" without a reason by setting the Boolean = True.  In this case the CodeableConcept is not populated.  Or you can express \"as needed\" with a reason by including the CodeableConcept.  In this case the Boolean is assumed to be True.  If you set the Boolean to False, then the dose is given according to the schedule and is not \"prn\" or \"as needed\".",
@@ -315,32 +298,6 @@
         ]
       },
       {
-        "id": "Dosage:shr-core-Dosage.asNeededCodeableConcept:CodeableConcept",
-        "path": "Dosage.asNeededCodeableConcept",
-        "sliceName": "CodeableConcept",
-        "short": "Take \"as needed\" (for x)",
-        "definition": "Indicates whether the Medication is only taken when needed within a specific dosing schedule (Boolean option), or it indicates the precondition for taking the Medication (CodeableConcept).",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Dosage.asNeeded[x]",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "CodeableConcept"
-          }
-        ],
-        "isSummary": true,
-        "binding": {
-          "strength": "example",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/medication-as-needed-reason"
-          }
-        }
-      },
-      {
         "id": "Dosage:shr-core-Dosage.site",
         "path": "Dosage.site",
         "short": "Body site to administer to",
@@ -356,9 +313,9 @@
         ],
         "isSummary": true,
         "binding": {
-          "strength": "preferred",
+          "strength": "example",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/odh/shr/core/vs/BodyLocationVS"
+            "reference": "http://hl7.org/fhir/us/odh/ValueSet/shr-core-BodyLocationVS"
           }
         },
         "mapping": [
@@ -424,7 +381,7 @@
               "valueString": "MedicationAdministrationMethod"
             }
           ],
-          "strength": "required",
+          "strength": "preferred",
           "description": "A coded concept describing the technique by which the medicine is administered.",
           "valueSetReference": {
             "reference": "http://hl7.org/fhir/ValueSet/administration-method-codes"
@@ -570,69 +527,22 @@
         "definition": "The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported."
       },
       {
-        "id": "Dosage:shr-core-Dosage.additionalInstruction",
-        "path": "Dosage.additionalInstruction",
-        "binding": {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-              "valueString": "AdditionalInstruction"
-            }
-          ],
-          "strength": "required",
-          "description": "A coded concept identifying additional instructions such as \"take with water\" or \"avoid operating heavy machinery\".",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/additional-instruction-codes"
-          }
-        }
-      },
-      {
         "id": "Dosage:shr-core-Dosage.timing",
         "path": "Dosage.timing",
         "type": [
           {
             "code": "Timing",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Timing"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Timing"
           }
         ]
-      },
-      {
-        "id": "Dosage:shr-core-Dosage.asNeeded[x]",
-        "path": "Dosage.asNeeded[x]",
-        "slicing": {
-          "id": "1",
-          "discriminator": [
-            {
-              "type": "type",
-              "path": "$this"
-            }
-          ],
-          "ordered": false,
-          "rules": "open"
-        }
-      },
-      {
-        "id": "Dosage:shr-core-Dosage.asNeededCodeableConcept:CodeableConcept",
-        "path": "Dosage.asNeededCodeableConcept",
-        "type": [
-          {
-            "code": "CodeableConcept"
-          }
-        ],
-        "binding": {
-          "strength": "example",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/medication-as-needed-reason"
-          }
-        }
       },
       {
         "id": "Dosage:shr-core-Dosage.site",
         "path": "Dosage.site",
         "binding": {
-          "strength": "preferred",
+          "strength": "example",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/odh/shr/core/vs/BodyLocationVS"
+            "reference": "http://hl7.org/fhir/us/odh/ValueSet/shr-core-BodyLocationVS"
           }
         }
       },
@@ -663,7 +573,7 @@
               "valueString": "MedicationAdministrationMethod"
             }
           ],
-          "strength": "required",
+          "strength": "preferred",
           "description": "A coded concept describing the technique by which the medicine is administered.",
           "valueSetReference": {
             "reference": "http://hl7.org/fhir/ValueSet/administration-method-codes"

@@ -10,7 +10,7 @@ Observation has a value representing the result (answer), or an DataAbsentReason
 For an Observation, the Code describes the aspect or property of the subject being observed or measured. The Code is the 'question code' that pairs to the 'answer' contained in the Value.</p>
 </div>
   </text>
-  <url value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation-model"/>
+  <url value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"/>
   <identifier>
     <system value="http://hl7.org/fhir/us/odh"/>
     <value value="shr.core.Observation"/>
@@ -19,7 +19,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
   <name value="Observation"/>
   <title value="shr-core-Observation"/>
   <status value="draft"/>
-  <date value="2019-04-08T00:00:00-04:00"/>
+  <date value="2019-05-08T00:00:00-04:00"/>
   <publisher value="HL7"/>
   <contact>
     <telecom>
@@ -60,7 +60,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -68,10 +68,6 @@ For an Observation, the Code describes the aspect or property of the subject bei
     </element>
     <element id="shr-core-Observation-model.language">
       <path value="shr-core-Observation-model.language"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0023008"/>
-      </code>
       <short value="A human language, spoken or written."/>
       <definition value="A human language, spoken or written."/>
       <min value="0"/>
@@ -118,7 +114,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -160,7 +156,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -179,19 +175,19 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Group-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Group-model"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Location-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Location-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -210,7 +206,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -256,6 +252,342 @@ For an Observation, the Code describes the aspect or property of the subject bei
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
+    <element id="shr-core-Observation-model.observationBasedOn[x]">
+      <path value="shr-core-Observation-model.observationBasedOn[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="A plan, proposal or order that is fulfilled in whole or in part by this event. For example, a MedicationRequest may require a patient to have laboratory test performed before it is dispensed."/>
+      <definition value="A plan, proposal or order that is fulfilled in whole or in part by this event. For example, a MedicationRequest may require a patient to have laboratory test performed before it is dispensed."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Observation-model.observationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationBasedOnShr-core-MedicationRequest-model:MedicationRequest">
+      <path value="shr-core-Observation-model.observationBasedOnShr-core-MedicationRequest-model"/>
+      <sliceName value="MedicationRequest"/>
+      <short value="An order for a medication to be dispensed and instructions for use."/>
+      <definition value="An order for a medication to be dispensed and instructions for use.&#xA;Value sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.&#xA;Category does not exist in DSTU2 and is provided as an extension.&#xA;Intent was added in STU3 and is provided as an extension with required binding."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationBasedOnShr-core-ServiceRequest-model:ServiceRequest">
+      <path value="shr-core-Observation-model.observationBasedOnShr-core-ServiceRequest-model"/>
+      <sliceName value="ServiceRequest"/>
+      <short value="A record of a request for service such as diagnostic investigations, treatments, or operations to be performed."/>
+      <definition value="A record of a request for service such as diagnostic investigations, treatments, or operations to be performed."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationBasedOnShr-core-ProcedureRequest-model:ProcedureRequest">
+      <path value="shr-core-Observation-model.observationBasedOnShr-core-ProcedureRequest-model"/>
+      <sliceName value="ProcedureRequest"/>
+      <short value="A request for a procedure to be performed. May be a proposal or an order."/>
+      <definition value="A request for a procedure to be performed. May be a proposal or an order."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationBasedOnShr-core-ReferralRequest-model:ReferralRequest">
+      <path value="shr-core-Observation-model.observationBasedOnShr-core-ReferralRequest-model"/>
+      <sliceName value="ReferralRequest"/>
+      <short value="Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization."/>
+      <definition value="Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationPartOf[x]">
+      <path value="shr-core-Observation-model.observationPartOf[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="A larger event of which this particular Observation is a component or step. For example, an observation as part of a procedure."/>
+      <definition value="A larger event of which this particular Observation is a component or step. For example, an observation as part of a procedure."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Observation-model.observationPartOf[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationAdministration-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationDispense-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationStatement-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationPartOfShr-core-MedicationAdministration-model:MedicationAdministration">
+      <path value="shr-core-Observation-model.observationPartOfShr-core-MedicationAdministration-model"/>
+      <sliceName value="MedicationAdministration"/>
+      <short value="A record of the use of a medication. If the medication is given as part of a course of treatment, the PartOf attribute should refer to the CourseOfTreatment."/>
+      <definition value="A record of the use of a medication. If the medication is given as part of a course of treatment, the PartOf attribute should refer to the CourseOfTreatment.&#xA;Although FHIR MedicationAdministration supports date of administration, information source, performer, it lacks common provenance elements, statement creation date, author, and recorder. These are supported as optional extensions.&#xA;FHIR DSTU2 lacks a category attribute, which is provided as an extension in that version.&#xA;SHR does not allow the &#39;not given&#39; attributes from DSTU2 and STU3, since they are dropped in R4. The status element is used to document medications not given."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationPartOf[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationAdministration-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationPartOfShr-core-MedicationDispense-model:MedicationDispense">
+      <path value="shr-core-Observation-model.observationPartOfShr-core-MedicationDispense-model"/>
+      <sliceName value="MedicationDispense"/>
+      <short value="Indicates that a medication product has been dispensed for a named person/patient. This includes a description of the medication product (supply) provided and the instructions for administering the medication. The medication dispense is the result of a pharmacy system responding to a medication order."/>
+      <definition value="Indicates that a medication product has been dispensed for a named person/patient. This includes a description of the medication product (supply) provided and the instructions for administering the medication. The medication dispense is the result of a pharmacy system responding to a medication order."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationPartOf[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationDispense-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationPartOfShr-core-MedicationStatement-model:MedicationStatement">
+      <path value="shr-core-Observation-model.observationPartOfShr-core-MedicationStatement-model"/>
+      <sliceName value="MedicationStatement"/>
+      <short value="A record of the use of a medication. The use may be reported by the patient or clinician and adminstration does not have to be directly observed."/>
+      <definition value="A record of the use of a medication. The use may be reported by the patient or clinician and adminstration does not have to be directly observed.&#xA;&#xA;FHIR Notes:&#xA;&#xA;Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement). Extensions are provided.&#xA;&#xA;The treatment of &#39;not taken&#39; has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the &#39;not taken&#39; attributes are profiled out.&#xA;ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick a type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.&#xA;&#xA;Preference is given to using the National Library of Medicine (NLM) RxNorm terminology for medications. RxNorm is a coding standard established by the Office of the National Coordinator (ONC). However, RxNorm is restricted to FDA-approved drugs and does not include clinical trial drugs. MedicationStatement allows for the inclusion of other coding systems like the NCI Thesaurus (NCIT) to represent clinical trial oncology drugs."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationPartOf[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationStatement-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationPartOfShr-core-Procedure-model:Procedure">
+      <path value="shr-core-Observation-model.observationPartOfShr-core-Procedure-model"/>
+      <sliceName value="Procedure"/>
+      <short value="An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy."/>
+      <definition value="An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationPartOf[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.category">
+      <path value="shr-core-Observation-model.category"/>
+      <short value="The general type or class of this item."/>
+      <definition value="The general type or class of this item."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.category"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="extensible"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/observation-category"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="shr-core-Observation-model.focalSubject[x]">
+      <path value="shr-core-Observation-model.focalSubject[x]"/>
+      <short value="The person or entity that the information in this resource relates to, if different than the person of record. The subject of information can be a reference or a code, the latter when the subject is described generically, for example, in terms of a relationship to the subject of record (e.g., wife)."/>
+      <definition value="The person or entity that the information in this resource relates to, if different than the person of record. The subject of information can be a reference or a code, the latter when the subject is described generically, for example, in terms of a relationship to the subject of record (e.g., wife)."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Observation-model.focalSubject[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.relevantTime[x]">
+      <path value="shr-core-Observation-model.relevantTime[x]"/>
+      <short value="The time or time period that the statement addresses."/>
+      <definition value="The time or time period that the statement addresses.&#xA;The clinically relevant time is not necessarily when the information is gathered or when a test is carried out, but for example, when a specimen was collected, or the time period referred to by the question. Use a TimePeriod for a measurement or specimen collection continued over a significant period of time (e.g. 24 hour Urine Sodium)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.relevantTime[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="dateTime"/>
+      </type>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.performer[x]">
+      <path value="shr-core-Observation-model.performer[x]"/>
+      <short value="The actor that carried out the observation or action."/>
+      <definition value="The actor that carried out the observation or action."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Observation-model.performer[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
     <element id="shr-core-Observation-model.dataValue[x]">
       <path value="shr-core-Observation-model.dataValue[x]"/>
       <short value="The value or result of a test, evaluation, or judgment, for example, a systolic blood pressure, or if a condition or body structure is present or absent."/>
@@ -271,16 +603,16 @@ For an Observation, the Code describes the aspect or property of the subject bei
         <code value="Coding"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Quantity-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Quantity-model"/>
       </type>
       <type>
         <code value="string"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Range-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Range-model"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Ratio-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Ratio-model"/>
       </type>
       <type>
         <code value="time"/>
@@ -289,7 +621,10 @@ For an Observation, the Code describes the aspect or property of the subject bei
         <code value="dateTime"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"/>
+      </type>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SampledData-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -319,146 +654,8 @@ For an Observation, the Code describes the aspect or property of the subject bei
         </valueSetReference>
       </binding>
     </element>
-    <element id="shr-core-Observation-model.method">
-      <path value="shr-core-Observation-model.method"/>
-      <short value="The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle."/>
-      <definition value="The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Observation-model.method"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-Observation-model.relevantTime[x]">
-      <path value="shr-core-Observation-model.relevantTime[x]"/>
-      <short value="The time or time period that the statement addresses."/>
-      <definition value="The time or time period that the statement addresses.&#xA;The clinically relevant time is not necessarily when the information is gathered or when a test is carried out, but for example, when a specimen was collected, or the time period referred to by the question. Use a TimePeriod for a measurement or specimen collection continued over a significant period of time (e.g. 24 hour Urine Sodium)."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Observation-model.relevantTime[x]"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="dateTime"/>
-      </type>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-Observation-model.category">
-      <path value="shr-core-Observation-model.category"/>
-      <short value="The type, kind, or class of this item."/>
-      <definition value="The type, kind, or class of this item."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Observation-model.category"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <binding>
-        <strength value="extensible"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/observation-category"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="shr-core-Observation-model.performer[x]">
-      <path value="shr-core-Observation-model.performer[x]"/>
-      <short value="The actor that carried out the observation or action."/>
-      <definition value="The actor that carried out the observation or action."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="shr-core-Observation-model.performer[x]"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-Observation-model.bodyLocation">
-      <path value="shr-core-Observation-model.bodyLocation"/>
-      <short value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart."/>
-      <definition value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart.&#xA;The BodyLocation includes code and optional qualifiers of anatomical side or direction. The body location can also be determined from one or more body landmarks.&#xA;If the code for the body location includes laterality and/or anatomical direction, the corresponding attributes might be unnecessary.&#xA;Note that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how an address structure can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Observation-model.bodyLocation"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BodyLocation-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-Observation-model.commentOrDescription">
-      <path value="shr-core-Observation-model.commentOrDescription"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0947611"/>
-      </code>
-      <short value="A text note containing additional details, explanation, description, comment, or summarization."/>
-      <definition value="A text note containing additional details, explanation, description, comment, or summarization."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Observation-model.commentOrDescription"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="string"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
     <element id="shr-core-Observation-model.interpretation">
       <path value="shr-core-Observation-model.interpretation"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0420833"/>
-      </code>
       <short value="A clinical interpretation of a finding (applies to both assertions and observation)."/>
       <definition value="A clinical interpretation of a finding (applies to both assertions and observation)."/>
       <min value="0"/>
@@ -481,6 +678,60 @@ For an Observation, the Code describes the aspect or property of the subject bei
         </valueSetReference>
       </binding>
     </element>
+    <element id="shr-core-Observation-model.annotation">
+      <path value="shr-core-Observation-model.annotation"/>
+      <short value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <definition value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Observation-model.annotation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.bodyLocation">
+      <path value="shr-core-Observation-model.bodyLocation"/>
+      <short value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases."/>
+      <definition value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;Note that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.bodyLocation"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-BodyLocation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.method">
+      <path value="shr-core-Observation-model.method"/>
+      <short value="The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle."/>
+      <definition value="The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.method"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
     <element id="shr-core-Observation-model.device">
       <path value="shr-core-Observation-model.device"/>
       <short value="A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients."/>
@@ -493,7 +744,8 @@ For an Observation, the Code describes the aspect or property of the subject bei
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"/>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -515,25 +767,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferenceRange-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-Observation-model.components">
-      <path value="shr-core-Observation-model.components"/>
-      <short value="Sub-observations that are part of this observation. A sub-observation contributs to the parent observation and are always treated a part of a single observation (they are not separable). However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation."/>
-      <definition value="Sub-observations that are part of this observation. A sub-observation contributs to the parent observation and are always treated a part of a single observation (they are not separable). However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Observation-model.components"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Components-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferenceRange-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -551,7 +785,144 @@ For an Observation, the Code describes the aspect or property of the subject bei
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PanelMembers-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-PanelMembers-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationDerivedFrom[x]">
+      <path value="shr-core-Observation-model.observationDerivedFrom[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="The target resource that represents a measurement from which this observation value is derived. For example, a calculated anion gap or a fetal measurement based on an ultrasound image."/>
+      <definition value="The target resource that represents a measurement from which this observation value is derived. For example, a calculated anion gap or a fetal measurement based on an ultrasound image."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Observation-model.observationDerivedFrom[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DocumentReference-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Media-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-QuestionnaireResponse-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationDerivedFromShr-core-DocumentReference-model:DocumentReference">
+      <path value="shr-core-Observation-model.observationDerivedFromShr-core-DocumentReference-model"/>
+      <sliceName value="DocumentReference"/>
+      <short value="A reference to a document, used to describe a document that is made available to a healthcare system. A document is some sequence of bytes that is identifiable, establishes its own context (e.g., what subject, author, etc. can be displayed to the user), and has defined update management. The DocumentReference resource can be used with any document format that has a recognized mime type and that conforms to this definition."/>
+      <definition value="A reference to a document, used to describe a document that is made available to a healthcare system. A document is some sequence of bytes that is identifiable, establishes its own context (e.g., what subject, author, etc. can be displayed to the user), and has defined update management. The DocumentReference resource can be used with any document format that has a recognized mime type and that conforms to this definition."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationDerivedFrom[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DocumentReference-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationDerivedFromShr-core-Media-model:Media">
+      <path value="shr-core-Observation-model.observationDerivedFromShr-core-Media-model"/>
+      <sliceName value="Media"/>
+      <short value="A photo, video, or audio recording acquired or used in healthcare. The actual content may be inline or provided by direct reference."/>
+      <definition value="A photo, video, or audio recording acquired or used in healthcare. The actual content may be inline or provided by direct reference."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationDerivedFrom[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Media-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationDerivedFromShr-core-QuestionnaireResponse-model:QuestionnaireResponse">
+      <path value="shr-core-Observation-model.observationDerivedFromShr-core-QuestionnaireResponse-model"/>
+      <sliceName value="QuestionnaireResponse"/>
+      <short value="A structured set of questions and their answers. The questions are ordered and grouped into coherent subsets, corresponding to the structure of the grouping of the questionnaire being responded to."/>
+      <definition value="A structured set of questions and their answers. The questions are ordered and grouped into coherent subsets, corresponding to the structure of the grouping of the questionnaire being responded to."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationDerivedFrom[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-QuestionnaireResponse-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationDerivedFromShr-core-Observation-model:Observation">
+      <path value="shr-core-Observation-model.observationDerivedFromShr-core-Observation-model"/>
+      <sliceName value="Observation"/>
+      <short value="Represents the result of evaluations (measurements, tests, or questions) that have been performed."/>
+      <definition value="Represents the result of evaluations (measurements, tests, or questions) that have been performed.&#xA;Observation has a value representing the result (answer), or an DataAbsentReason indicating why the value is not present. Things observed about the subject can include social and behavioral factors, subjective and objective observations, and assessments.&#xA;For an Observation, the Code describes the aspect or property of the subject being observed or measured. The Code is the &#39;question code&#39; that pairs to the &#39;answer&#39; contained in the Value."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationDerivedFrom[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.components">
+      <path value="shr-core-Observation-model.components"/>
+      <short value="Sub-observations that are part of this observation. A sub-observation contributs to the parent observation and are always treated a part of a single observation (they are not separable). However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation."/>
+      <definition value="Sub-observations that are part of this observation. A sub-observation contributs to the parent observation and are always treated a part of a single observation (they are not separable). However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.components"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Components-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -585,7 +956,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -593,10 +964,6 @@ For an Observation, the Code describes the aspect or property of the subject bei
     </element>
     <element id="shr-core-Observation-model.language">
       <path value="shr-core-Observation-model.language"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0023008"/>
-      </code>
       <short value="A human language, spoken or written."/>
       <definition value="A human language, spoken or written."/>
       <min value="0"/>
@@ -643,7 +1010,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -685,7 +1052,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -704,19 +1071,19 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Group-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Group-model"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Location-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Location-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -735,7 +1102,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -781,6 +1148,342 @@ For an Observation, the Code describes the aspect or property of the subject bei
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
+    <element id="shr-core-Observation-model.observationBasedOn[x]">
+      <path value="shr-core-Observation-model.observationBasedOn[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="A plan, proposal or order that is fulfilled in whole or in part by this event. For example, a MedicationRequest may require a patient to have laboratory test performed before it is dispensed."/>
+      <definition value="A plan, proposal or order that is fulfilled in whole or in part by this event. For example, a MedicationRequest may require a patient to have laboratory test performed before it is dispensed."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Observation-model.observationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationBasedOnShr-core-MedicationRequest-model:MedicationRequest">
+      <path value="shr-core-Observation-model.observationBasedOnShr-core-MedicationRequest-model"/>
+      <sliceName value="MedicationRequest"/>
+      <short value="An order for a medication to be dispensed and instructions for use."/>
+      <definition value="An order for a medication to be dispensed and instructions for use.&#xA;Value sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.&#xA;Category does not exist in DSTU2 and is provided as an extension.&#xA;Intent was added in STU3 and is provided as an extension with required binding."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationBasedOnShr-core-ServiceRequest-model:ServiceRequest">
+      <path value="shr-core-Observation-model.observationBasedOnShr-core-ServiceRequest-model"/>
+      <sliceName value="ServiceRequest"/>
+      <short value="A record of a request for service such as diagnostic investigations, treatments, or operations to be performed."/>
+      <definition value="A record of a request for service such as diagnostic investigations, treatments, or operations to be performed."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationBasedOnShr-core-ProcedureRequest-model:ProcedureRequest">
+      <path value="shr-core-Observation-model.observationBasedOnShr-core-ProcedureRequest-model"/>
+      <sliceName value="ProcedureRequest"/>
+      <short value="A request for a procedure to be performed. May be a proposal or an order."/>
+      <definition value="A request for a procedure to be performed. May be a proposal or an order."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationBasedOnShr-core-ReferralRequest-model:ReferralRequest">
+      <path value="shr-core-Observation-model.observationBasedOnShr-core-ReferralRequest-model"/>
+      <sliceName value="ReferralRequest"/>
+      <short value="Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization."/>
+      <definition value="Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationPartOf[x]">
+      <path value="shr-core-Observation-model.observationPartOf[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="A larger event of which this particular Observation is a component or step. For example, an observation as part of a procedure."/>
+      <definition value="A larger event of which this particular Observation is a component or step. For example, an observation as part of a procedure."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Observation-model.observationPartOf[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationAdministration-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationDispense-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationStatement-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationPartOfShr-core-MedicationAdministration-model:MedicationAdministration">
+      <path value="shr-core-Observation-model.observationPartOfShr-core-MedicationAdministration-model"/>
+      <sliceName value="MedicationAdministration"/>
+      <short value="A record of the use of a medication. If the medication is given as part of a course of treatment, the PartOf attribute should refer to the CourseOfTreatment."/>
+      <definition value="A record of the use of a medication. If the medication is given as part of a course of treatment, the PartOf attribute should refer to the CourseOfTreatment.&#xA;Although FHIR MedicationAdministration supports date of administration, information source, performer, it lacks common provenance elements, statement creation date, author, and recorder. These are supported as optional extensions.&#xA;FHIR DSTU2 lacks a category attribute, which is provided as an extension in that version.&#xA;SHR does not allow the &#39;not given&#39; attributes from DSTU2 and STU3, since they are dropped in R4. The status element is used to document medications not given."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationPartOf[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationAdministration-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationPartOfShr-core-MedicationDispense-model:MedicationDispense">
+      <path value="shr-core-Observation-model.observationPartOfShr-core-MedicationDispense-model"/>
+      <sliceName value="MedicationDispense"/>
+      <short value="Indicates that a medication product has been dispensed for a named person/patient. This includes a description of the medication product (supply) provided and the instructions for administering the medication. The medication dispense is the result of a pharmacy system responding to a medication order."/>
+      <definition value="Indicates that a medication product has been dispensed for a named person/patient. This includes a description of the medication product (supply) provided and the instructions for administering the medication. The medication dispense is the result of a pharmacy system responding to a medication order."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationPartOf[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationDispense-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationPartOfShr-core-MedicationStatement-model:MedicationStatement">
+      <path value="shr-core-Observation-model.observationPartOfShr-core-MedicationStatement-model"/>
+      <sliceName value="MedicationStatement"/>
+      <short value="A record of the use of a medication. The use may be reported by the patient or clinician and adminstration does not have to be directly observed."/>
+      <definition value="A record of the use of a medication. The use may be reported by the patient or clinician and adminstration does not have to be directly observed.&#xA;&#xA;FHIR Notes:&#xA;&#xA;Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement). Extensions are provided.&#xA;&#xA;The treatment of &#39;not taken&#39; has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the &#39;not taken&#39; attributes are profiled out.&#xA;ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick a type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.&#xA;&#xA;Preference is given to using the National Library of Medicine (NLM) RxNorm terminology for medications. RxNorm is a coding standard established by the Office of the National Coordinator (ONC). However, RxNorm is restricted to FDA-approved drugs and does not include clinical trial drugs. MedicationStatement allows for the inclusion of other coding systems like the NCI Thesaurus (NCIT) to represent clinical trial oncology drugs."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationPartOf[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationStatement-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationPartOfShr-core-Procedure-model:Procedure">
+      <path value="shr-core-Observation-model.observationPartOfShr-core-Procedure-model"/>
+      <sliceName value="Procedure"/>
+      <short value="An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy."/>
+      <definition value="An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationPartOf[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.category">
+      <path value="shr-core-Observation-model.category"/>
+      <short value="The general type or class of this item."/>
+      <definition value="The general type or class of this item."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.category"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="extensible"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/observation-category"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="shr-core-Observation-model.focalSubject[x]">
+      <path value="shr-core-Observation-model.focalSubject[x]"/>
+      <short value="The person or entity that the information in this resource relates to, if different than the person of record. The subject of information can be a reference or a code, the latter when the subject is described generically, for example, in terms of a relationship to the subject of record (e.g., wife)."/>
+      <definition value="The person or entity that the information in this resource relates to, if different than the person of record. The subject of information can be a reference or a code, the latter when the subject is described generically, for example, in terms of a relationship to the subject of record (e.g., wife)."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Observation-model.focalSubject[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.relevantTime[x]">
+      <path value="shr-core-Observation-model.relevantTime[x]"/>
+      <short value="The time or time period that the statement addresses."/>
+      <definition value="The time or time period that the statement addresses.&#xA;The clinically relevant time is not necessarily when the information is gathered or when a test is carried out, but for example, when a specimen was collected, or the time period referred to by the question. Use a TimePeriod for a measurement or specimen collection continued over a significant period of time (e.g. 24 hour Urine Sodium)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.relevantTime[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="dateTime"/>
+      </type>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.performer[x]">
+      <path value="shr-core-Observation-model.performer[x]"/>
+      <short value="The actor that carried out the observation or action."/>
+      <definition value="The actor that carried out the observation or action."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Observation-model.performer[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
     <element id="shr-core-Observation-model.dataValue[x]">
       <path value="shr-core-Observation-model.dataValue[x]"/>
       <short value="The value or result of a test, evaluation, or judgment, for example, a systolic blood pressure, or if a condition or body structure is present or absent."/>
@@ -796,16 +1499,16 @@ For an Observation, the Code describes the aspect or property of the subject bei
         <code value="Coding"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Quantity-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Quantity-model"/>
       </type>
       <type>
         <code value="string"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Range-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Range-model"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Ratio-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Ratio-model"/>
       </type>
       <type>
         <code value="time"/>
@@ -814,7 +1517,10 @@ For an Observation, the Code describes the aspect or property of the subject bei
         <code value="dateTime"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"/>
+      </type>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SampledData-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -844,146 +1550,8 @@ For an Observation, the Code describes the aspect or property of the subject bei
         </valueSetReference>
       </binding>
     </element>
-    <element id="shr-core-Observation-model.method">
-      <path value="shr-core-Observation-model.method"/>
-      <short value="The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle."/>
-      <definition value="The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Observation-model.method"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-Observation-model.relevantTime[x]">
-      <path value="shr-core-Observation-model.relevantTime[x]"/>
-      <short value="The time or time period that the statement addresses."/>
-      <definition value="The time or time period that the statement addresses.&#xA;The clinically relevant time is not necessarily when the information is gathered or when a test is carried out, but for example, when a specimen was collected, or the time period referred to by the question. Use a TimePeriod for a measurement or specimen collection continued over a significant period of time (e.g. 24 hour Urine Sodium)."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Observation-model.relevantTime[x]"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="dateTime"/>
-      </type>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-Observation-model.category">
-      <path value="shr-core-Observation-model.category"/>
-      <short value="The type, kind, or class of this item."/>
-      <definition value="The type, kind, or class of this item."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Observation-model.category"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <binding>
-        <strength value="extensible"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/observation-category"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="shr-core-Observation-model.performer[x]">
-      <path value="shr-core-Observation-model.performer[x]"/>
-      <short value="The actor that carried out the observation or action."/>
-      <definition value="The actor that carried out the observation or action."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="shr-core-Observation-model.performer[x]"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-Observation-model.bodyLocation">
-      <path value="shr-core-Observation-model.bodyLocation"/>
-      <short value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart."/>
-      <definition value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart.&#xA;The BodyLocation includes code and optional qualifiers of anatomical side or direction. The body location can also be determined from one or more body landmarks.&#xA;If the code for the body location includes laterality and/or anatomical direction, the corresponding attributes might be unnecessary.&#xA;Note that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how an address structure can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Observation-model.bodyLocation"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BodyLocation-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-Observation-model.commentOrDescription">
-      <path value="shr-core-Observation-model.commentOrDescription"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0947611"/>
-      </code>
-      <short value="A text note containing additional details, explanation, description, comment, or summarization."/>
-      <definition value="A text note containing additional details, explanation, description, comment, or summarization."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Observation-model.commentOrDescription"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="string"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
     <element id="shr-core-Observation-model.interpretation">
       <path value="shr-core-Observation-model.interpretation"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0420833"/>
-      </code>
       <short value="A clinical interpretation of a finding (applies to both assertions and observation)."/>
       <definition value="A clinical interpretation of a finding (applies to both assertions and observation)."/>
       <min value="0"/>
@@ -1006,6 +1574,60 @@ For an Observation, the Code describes the aspect or property of the subject bei
         </valueSetReference>
       </binding>
     </element>
+    <element id="shr-core-Observation-model.annotation">
+      <path value="shr-core-Observation-model.annotation"/>
+      <short value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <definition value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Observation-model.annotation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.bodyLocation">
+      <path value="shr-core-Observation-model.bodyLocation"/>
+      <short value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases."/>
+      <definition value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;Note that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.bodyLocation"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-BodyLocation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.method">
+      <path value="shr-core-Observation-model.method"/>
+      <short value="The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle."/>
+      <definition value="The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.method"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
     <element id="shr-core-Observation-model.device">
       <path value="shr-core-Observation-model.device"/>
       <short value="A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients."/>
@@ -1018,7 +1640,8 @@ For an Observation, the Code describes the aspect or property of the subject bei
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"/>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1040,25 +1663,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferenceRange-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-Observation-model.components">
-      <path value="shr-core-Observation-model.components"/>
-      <short value="Sub-observations that are part of this observation. A sub-observation contributs to the parent observation and are always treated a part of a single observation (they are not separable). However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation."/>
-      <definition value="Sub-observations that are part of this observation. A sub-observation contributs to the parent observation and are always treated a part of a single observation (they are not separable). However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Observation-model.components"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Components-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferenceRange-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1076,7 +1681,144 @@ For an Observation, the Code describes the aspect or property of the subject bei
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PanelMembers-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-PanelMembers-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationDerivedFrom[x]">
+      <path value="shr-core-Observation-model.observationDerivedFrom[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="The target resource that represents a measurement from which this observation value is derived. For example, a calculated anion gap or a fetal measurement based on an ultrasound image."/>
+      <definition value="The target resource that represents a measurement from which this observation value is derived. For example, a calculated anion gap or a fetal measurement based on an ultrasound image."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Observation-model.observationDerivedFrom[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DocumentReference-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Media-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-QuestionnaireResponse-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationDerivedFromShr-core-DocumentReference-model:DocumentReference">
+      <path value="shr-core-Observation-model.observationDerivedFromShr-core-DocumentReference-model"/>
+      <sliceName value="DocumentReference"/>
+      <short value="A reference to a document, used to describe a document that is made available to a healthcare system. A document is some sequence of bytes that is identifiable, establishes its own context (e.g., what subject, author, etc. can be displayed to the user), and has defined update management. The DocumentReference resource can be used with any document format that has a recognized mime type and that conforms to this definition."/>
+      <definition value="A reference to a document, used to describe a document that is made available to a healthcare system. A document is some sequence of bytes that is identifiable, establishes its own context (e.g., what subject, author, etc. can be displayed to the user), and has defined update management. The DocumentReference resource can be used with any document format that has a recognized mime type and that conforms to this definition."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationDerivedFrom[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DocumentReference-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationDerivedFromShr-core-Media-model:Media">
+      <path value="shr-core-Observation-model.observationDerivedFromShr-core-Media-model"/>
+      <sliceName value="Media"/>
+      <short value="A photo, video, or audio recording acquired or used in healthcare. The actual content may be inline or provided by direct reference."/>
+      <definition value="A photo, video, or audio recording acquired or used in healthcare. The actual content may be inline or provided by direct reference."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationDerivedFrom[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Media-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationDerivedFromShr-core-QuestionnaireResponse-model:QuestionnaireResponse">
+      <path value="shr-core-Observation-model.observationDerivedFromShr-core-QuestionnaireResponse-model"/>
+      <sliceName value="QuestionnaireResponse"/>
+      <short value="A structured set of questions and their answers. The questions are ordered and grouped into coherent subsets, corresponding to the structure of the grouping of the questionnaire being responded to."/>
+      <definition value="A structured set of questions and their answers. The questions are ordered and grouped into coherent subsets, corresponding to the structure of the grouping of the questionnaire being responded to."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationDerivedFrom[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-QuestionnaireResponse-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.observationDerivedFromShr-core-Observation-model:Observation">
+      <path value="shr-core-Observation-model.observationDerivedFromShr-core-Observation-model"/>
+      <sliceName value="Observation"/>
+      <short value="Represents the result of evaluations (measurements, tests, or questions) that have been performed."/>
+      <definition value="Represents the result of evaluations (measurements, tests, or questions) that have been performed.&#xA;Observation has a value representing the result (answer), or an DataAbsentReason indicating why the value is not present. Things observed about the subject can include social and behavioral factors, subjective and objective observations, and assessments.&#xA;For an Observation, the Code describes the aspect or property of the subject being observed or measured. The Code is the &#39;question code&#39; that pairs to the &#39;answer&#39; contained in the Value."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.observationDerivedFrom[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Observation-model.components">
+      <path value="shr-core-Observation-model.components"/>
+      <short value="Sub-observations that are part of this observation. A sub-observation contributs to the parent observation and are always treated a part of a single observation (they are not separable). However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation."/>
+      <definition value="Sub-observations that are part of this observation. A sub-observation contributs to the parent observation and are always treated a part of a single observation (they are not separable). However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Observation-model.components"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Components-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>

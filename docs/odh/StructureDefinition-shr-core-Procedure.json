@@ -3,9 +3,9 @@
   "id": "shr-core-Procedure",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Procedure Profile</b></p>\n  <p>A procedure that has been performed.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Procedure maps to http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure:\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Code maps to code\n  PatientSubjectOfRecord maps to subject\n  Category maps to category\n  constrain notDone to 0..0\n  constrain notDoneReason to 0..0\n  BodyLocation.LocationCode maps to bodySite\n  BodyLocation.Laterality maps to bodySite.extension\n  BodyLocation.Orientation maps to bodySite.extension\n  BodyLocation.RelationToLandmark maps to bodySite.extension\n  PartOf maps to partOf\n  Annotation maps to note\n  CareContext maps to context\n  ReasonCode maps to reasonCode\n  ReasonReference maps to reasonReference\n  OccurrenceTimeOrPeriod maps to performed[x]\n  Participation maps to performer\n  Participation.Participant maps to performer.actor\n  Participation.ParticipationType maps to performer.role\n  Participation.OnBehalfOf maps to performer.onBehalfOf\n  Status maps to status\n  RelatedRequest.MedicationRequest maps to basedOn\n  RelatedRequest.ProcedureRequest maps to basedOn\n  RelatedRequest.ReferralRequest maps to basedOn\n  Outcome maps to outcome\n  Location maps to location\n  MaterialUsed maps to usedReference\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Procedure Profile</b></p>\n  <p>An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.Procedure maps to http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure:\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.extension\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  ProcedureBasedOn maps to basedOn\n  ProcedurePartOf maps to partOf  // add Observation, MedicationAdministration\n  Status maps to status\n  StatusReason maps to extension\n  constrain notDone to 0..0\n  constrain notDoneReason to 0..0\n  Category maps to category\n  Code maps to code\n  SubjectOfRecord maps to subject\n  CareContext maps to context\n  OccurrenceTimeOrPeriod maps to performed[x]\n  Participation maps to performer\n  Participation.Participant maps to performer.actor\n  Participation.ParticipationType maps to performer.role\n  Participation.OnBehalfOf maps to performer.onBehalfOf\n  Location maps to location\n  ReasonCode maps to reasonCode\n  ProcedureReasonReference maps to reasonReference\n  BodyLocation.Code maps to bodySite\n  BodyLocation.Laterality maps to bodySite.extension\n  BodyLocation.Orientation maps to bodySite.extension\n  BodyLocation.RelationToLandmark maps to bodySite.extension\n  Outcome maps to outcome\n  DiagnosticReport maps to report\n  ComplicationCode maps to complication\n  ComplicationReference maps to complicationDetail\n  FollowUp maps to followUp\n  Annotation maps to note\n  FocalDevice maps to focalDevice\n  FocalDevice.Device maps to focalDevice.manipulated\n  FocalDevice.FocalDeviceAction maps to focalDevice.action\n  MaterialUsedReference maps to usedReference\n  UsedCode maps to usedCode\n</pre></p>\n</div>"
   },
-  "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure",
+  "url": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure",
   "identifier": [
     {
       "system": "http://hl7.org/fhir/us/odh",
@@ -16,7 +16,7 @@
   "name": "Procedure",
   "title": "shr-core-Procedure",
   "status": "draft",
-  "date": "2019-04-08T00:00:00-04:00",
+  "date": "2019-05-08T00:00:00-04:00",
   "publisher": "HL7",
   "contact": [
     {
@@ -28,7 +28,7 @@
       ]
     }
   ],
-  "description": "A procedure that has been performed.",
+  "description": "An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy.",
   "jurisdiction": [
     {
       "coding": [
@@ -74,7 +74,7 @@
         "id": "Procedure:shr-core-Procedure",
         "path": "Procedure",
         "short": "shr-core-Procedure",
-        "definition": "A procedure that has been performed.",
+        "definition": "An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy.",
         "min": 0,
         "max": "*",
         "base": {
@@ -182,6 +182,196 @@
           }
         ],
         "isSummary": true
+      },
+      {
+        "id": "Procedure:shr-core-Procedure.meta.id",
+        "path": "Procedure.meta.id",
+        "representation": [
+          "xmlAttr"
+        ],
+        "short": "xml:id (or equivalent in JSON)",
+        "definition": "unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Element.id",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "n/a"
+          }
+        ]
+      },
+      {
+        "id": "Procedure:shr-core-Procedure.meta.extension",
+        "path": "Procedure.meta.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "description": "Extensions are always sliced by (at least) url",
+          "rules": "open"
+        },
+        "short": "Additional Content defined by implementations",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+        "comment": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content"
+        ],
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "Element.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "n/a"
+          }
+        ]
+      },
+      {
+        "id": "Procedure:shr-core-Procedure.meta.extension:sourcesystem",
+        "path": "Procedure.meta.extension",
+        "sliceName": "sourcesystem",
+        "definition": "FHIR: This provides a minimal amount of Provenance information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.\nFHIM: Identifies the computer system that created the medical record. This optional field may also be used to indicate that the medical record was originally created by a different organization from the one that is currently storing or utilizing the record in that the assigning authority of the Id could be set to that originating organization. This property is optional, as some systems will assume that all records that it contains originated in that system, however it is anticipated that it will become increasingly commonplace for records from multiple systems and organizations will be comingled in order to provide a complete picture of the patient's health record.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Element.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SourceSystem-extension"
+          }
+        ]
+      },
+      {
+        "id": "Procedure:shr-core-Procedure.meta.versionId",
+        "path": "Procedure.meta.versionId",
+        "short": "Version specific identifier",
+        "definition": "The version specific identifier, as it appears in the version portion of the URL. This values changes when the resource is created, updated, or deleted.",
+        "comment": "The server assigns this value, and ignores what the client specifies, except in the case that the server is imposing version integrity on updates/deletes.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "id"
+          }
+        ],
+        "isSummary": true
+      },
+      {
+        "id": "Procedure:shr-core-Procedure.meta.lastUpdated",
+        "path": "Procedure.meta.lastUpdated",
+        "short": "When the resource version last changed",
+        "definition": "When the resource last changed - e.g. when the version changed.",
+        "comment": "This value is always populated except when the resource is first being created. The server / resource manager sets this value; what a client provides is irrelevant.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "instant"
+          }
+        ],
+        "isSummary": true
+      },
+      {
+        "id": "Procedure:shr-core-Procedure.meta.profile",
+        "path": "Procedure.meta.profile",
+        "short": "Profiles this resource claims to conform to",
+        "definition": "A list of profiles (references to [StructureDefinition](structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url]().",
+        "comment": "It is up to the server and/or other infrastructure of policy to determine whether/how these claims are verified and/or updated over time.  The list of profile URLs is a set.",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "isSummary": true
+      },
+      {
+        "id": "Procedure:shr-core-Procedure.meta.security",
+        "path": "Procedure.meta.security",
+        "short": "Security Labels applied to this resource",
+        "definition": "Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure.",
+        "comment": "The security labels can be updated without changing the stated version of the resource  The list of security labels is a set. Uniqueness is based the system/code, and version and display are ignored.",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "isSummary": true,
+        "binding": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
+              "valueString": "SecurityLabels"
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding",
+              "valueBoolean": true
+            }
+          ],
+          "strength": "extensible",
+          "description": "Security Labels from the Healthcare Privacy and Security Classification System.",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/security-labels"
+          }
+        }
+      },
+      {
+        "id": "Procedure:shr-core-Procedure.meta.tag",
+        "path": "Procedure.meta.tag",
+        "short": "Tags applied to this resource",
+        "definition": "Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource.",
+        "comment": "The tags can be updated without changing the stated version of the resource.  The list of tags is a set. Uniqueness is based the system/code, and version and display are ignored.",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "isSummary": true,
+        "binding": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
+              "valueString": "Tags"
+            }
+          ],
+          "strength": "example",
+          "description": "Codes that represent various types of tags, commonly workflow-related; e.g. \"Needs review by Dr. Jones\"",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/common-tags"
+          }
+        }
       },
       {
         "id": "Procedure:shr-core-Procedure.implicitRules",
@@ -351,6 +541,25 @@
         ]
       },
       {
+        "id": "Procedure:shr-core-Procedure.extension:statusreason",
+        "path": "Procedure.extension",
+        "sliceName": "statusreason",
+        "definition": "Captures the reason for the current state of the procedure.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-StatusReason-extension"
+          }
+        ]
+      },
+      {
         "id": "Procedure:shr-core-Procedure.extension:statementdatetime",
         "path": "Procedure.extension",
         "sliceName": "statementdatetime",
@@ -365,17 +574,17 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatementDateTime-extension"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-StatementDateTime-extension"
           }
         ]
       },
       {
-        "id": "Procedure:shr-core-Procedure.extension:treatmentintent",
+        "id": "Procedure:shr-core-Procedure.extension:personauthor",
         "path": "Procedure.extension",
-        "sliceName": "treatmentintent",
-        "definition": "The intended result from a given treatment.  Examples include curative, palliative, and supportive.",
+        "sliceName": "personauthor",
+        "definition": "A human author, patient, practitioner, or related person, as opposed to an organization or device.",
         "min": 0,
-        "max": "*",
+        "max": "1",
         "base": {
           "path": "DomainResource.extension",
           "min": 0,
@@ -384,7 +593,45 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TreatmentIntent-extension"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-PersonAuthor-extension"
+          }
+        ]
+      },
+      {
+        "id": "Procedure:shr-core-Procedure.extension:personinformationsource",
+        "path": "Procedure.extension",
+        "sliceName": "personinformationsource",
+        "definition": "The person who provided the information, not necessarily the patient.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-PersonInformationSource-extension"
+          }
+        ]
+      },
+      {
+        "id": "Procedure:shr-core-Procedure.extension:treatmentintent",
+        "path": "Procedure.extension",
+        "sliceName": "treatmentintent",
+        "definition": "The purpose of a treatment.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TreatmentIntent-extension"
           }
         ]
       },
@@ -504,7 +751,15 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest"
           }
         ],
         "isSummary": true,
@@ -534,7 +789,15 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationAdministration"
           }
         ],
         "isSummary": true,
@@ -773,7 +1036,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient"
           }
         ],
         "mustSupport": true,
@@ -815,11 +1078,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter"
           }
         ],
         "isSummary": true,
@@ -1060,23 +1319,23 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device"
           }
         ],
         "isSummary": true,
@@ -1111,7 +1370,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization"
           }
         ],
         "mapping": [
@@ -1137,7 +1396,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Location"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Location"
           }
         ],
         "isSummary": true,
@@ -1158,7 +1417,7 @@
         "short": "Coded reason procedure performed",
         "definition": "The coded reason why the procedure was performed. This may be coded entity of some type, or may simply be present as text.",
         "min": 0,
-        "max": "*",
+        "max": "1",
         "base": {
           "path": "Procedure.reasonCode",
           "min": 0,
@@ -1201,7 +1460,7 @@
         "definition": "The condition that is the reason why the procedure was performed.",
         "comment": "e.g. endoscopy for dilatation and biopsy, combination diagnosis and therapeutic.",
         "min": 0,
-        "max": "*",
+        "max": "1",
         "base": {
           "path": "Procedure.reasonReference",
           "min": 0,
@@ -1210,11 +1469,11 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation"
           }
         ],
         "isSummary": true,
@@ -1250,7 +1509,7 @@
         "binding": {
           "strength": "preferred",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/odh/shr/core/vs/BodyLocationVS"
+            "reference": "http://hl7.org/fhir/us/odh/ValueSet/shr-core-BodyLocationVS"
           }
         },
         "mapping": [
@@ -1334,7 +1593,7 @@
         "id": "Procedure:shr-core-Procedure.bodySite.extension:laterality",
         "path": "Procedure.bodySite.extension",
         "sliceName": "laterality",
-        "definition": "Body side of the body location, if needed to distinguish from a similar location on the other side of the body.",
+        "definition": "Body side of the body location, if needed to distinguish from a similar location on the other side of the body.\n\nThe laterality element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
         "min": 0,
         "max": "*",
         "base": {
@@ -1345,7 +1604,7 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Laterality-extension"
           }
         ]
       },
@@ -1353,7 +1612,7 @@
         "id": "Procedure:shr-core-Procedure.bodySite.extension:orientation",
         "path": "Procedure.bodySite.extension",
         "sliceName": "orientation",
-        "definition": "Orientation of the body location, if needed to distinguish from a similar location in another orientation.",
+        "definition": "Orientation of the body location, if needed to distinguish from a similar location in another orientation.\nThe orientation element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
         "min": 0,
         "max": "*",
         "base": {
@@ -1364,7 +1623,7 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Orientation-extension"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Orientation-extension"
           }
         ]
       },
@@ -1372,7 +1631,7 @@
         "id": "Procedure:shr-core-Procedure.bodySite.extension:relationtolandmark",
         "path": "Procedure.bodySite.extension",
         "sliceName": "relationtolandmark",
-        "definition": "An anatomical landmark that helps determine a body location.",
+        "definition": "The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:\n* Specifying the location and type of landmark using a body site code and optional laterality/orientation,\n* Specifying the direction from the landmark to the body location, and\n* Specifying the distance from the landmark to the body location.\n\nThe RelationToLandmark element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
         "min": 0,
         "max": "*",
         "base": {
@@ -1383,7 +1642,7 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelationToLandmark-extension"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelationToLandmark-extension"
           }
         ]
       },
@@ -1508,7 +1767,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/StructureDefinition/DiagnosticReport"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DiagnosticReport"
           }
         ],
         "mapping": [
@@ -1572,7 +1831,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/StructureDefinition/Condition"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition"
           }
         ],
         "mapping": [
@@ -1634,7 +1893,7 @@
         "type": [
           {
             "code": "Annotation",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation"
           }
         ],
         "mapping": [
@@ -1794,7 +2053,7 @@
               "valueString": "DeviceActionKind"
             }
           ],
-          "strength": "preferred",
+          "strength": "required",
           "description": "A kind of change that happened to the device during the procedure.",
           "valueSetReference": {
             "reference": "http://hl7.org/fhir/ValueSet/device-action"
@@ -1822,7 +2081,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/StructureDefinition/Device"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device"
           }
         ],
         "mapping": [
@@ -1849,15 +2108,15 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Medication"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Medication"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Substance"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Substance"
           }
         ],
         "mapping": [
@@ -1913,8 +2172,31 @@
         "id": "Procedure:shr-core-Procedure",
         "path": "Procedure",
         "short": "shr-core-Procedure",
-        "definition": "A procedure that has been performed.",
+        "definition": "An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy.",
         "mustSupport": false
+      },
+      {
+        "id": "Procedure:shr-core-Procedure.meta",
+        "path": "Procedure.meta"
+      },
+      {
+        "id": "Procedure:shr-core-Procedure.meta.extension:sourcesystem",
+        "path": "Procedure.meta.extension",
+        "sliceName": "sourcesystem",
+        "definition": "FHIR: This provides a minimal amount of Provenance information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.\nFHIM: Identifies the computer system that created the medical record. This optional field may also be used to indicate that the medical record was originally created by a different organization from the one that is currently storing or utilizing the record in that the assigning authority of the Id could be set to that originating organization. This property is optional, as some systems will assume that all records that it contains originated in that system, however it is anticipated that it will become increasingly commonplace for records from multiple systems and organizations will be comingled in order to provide a complete picture of the patient's health record.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Element.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SourceSystem-extension"
+          }
+        ]
       },
       {
         "id": "Procedure:shr-core-Procedure.extension",
@@ -1932,6 +2214,25 @@
         }
       },
       {
+        "id": "Procedure:shr-core-Procedure.extension:statusreason",
+        "path": "Procedure.extension",
+        "sliceName": "statusreason",
+        "definition": "Captures the reason for the current state of the procedure.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-StatusReason-extension"
+          }
+        ]
+      },
+      {
         "id": "Procedure:shr-core-Procedure.extension:statementdatetime",
         "path": "Procedure.extension",
         "sliceName": "statementdatetime",
@@ -1946,17 +2247,17 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatementDateTime-extension"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-StatementDateTime-extension"
           }
         ]
       },
       {
-        "id": "Procedure:shr-core-Procedure.extension:treatmentintent",
+        "id": "Procedure:shr-core-Procedure.extension:personauthor",
         "path": "Procedure.extension",
-        "sliceName": "treatmentintent",
-        "definition": "The intended result from a given treatment.  Examples include curative, palliative, and supportive.",
+        "sliceName": "personauthor",
+        "definition": "A human author, patient, practitioner, or related person, as opposed to an organization or device.",
         "min": 0,
-        "max": "*",
+        "max": "1",
         "base": {
           "path": "DomainResource.extension",
           "min": 0,
@@ -1965,7 +2266,45 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TreatmentIntent-extension"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-PersonAuthor-extension"
+          }
+        ]
+      },
+      {
+        "id": "Procedure:shr-core-Procedure.extension:personinformationsource",
+        "path": "Procedure.extension",
+        "sliceName": "personinformationsource",
+        "definition": "The person who provided the information, not necessarily the patient.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-PersonInformationSource-extension"
+          }
+        ]
+      },
+      {
+        "id": "Procedure:shr-core-Procedure.extension:treatmentintent",
+        "path": "Procedure.extension",
+        "sliceName": "treatmentintent",
+        "definition": "The purpose of a treatment.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TreatmentIntent-extension"
           }
         ]
       },
@@ -1977,7 +2316,15 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ProcedureRequest"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest"
           }
         ]
       },
@@ -1989,7 +2336,15 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationAdministration"
           }
         ]
       },
@@ -2011,7 +2366,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient"
           }
         ]
       },
@@ -2021,11 +2376,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter"
           }
         ]
       },
@@ -2039,23 +2390,23 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device"
           }
         ]
       },
@@ -2065,7 +2416,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization"
           }
         ]
       },
@@ -2075,21 +2426,29 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Location"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Location"
           }
         ]
       },
       {
+        "id": "Procedure:shr-core-Procedure.reasonCode",
+        "path": "Procedure.reasonCode",
+        "min": 0,
+        "max": "1"
+      },
+      {
         "id": "Procedure:shr-core-Procedure.reasonReference",
         "path": "Procedure.reasonReference",
+        "min": 0,
+        "max": "1",
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation"
           }
         ]
       },
@@ -2099,7 +2458,7 @@
         "binding": {
           "strength": "preferred",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/odh/shr/core/vs/BodyLocationVS"
+            "reference": "http://hl7.org/fhir/us/odh/ValueSet/shr-core-BodyLocationVS"
           }
         }
       },
@@ -2107,7 +2466,7 @@
         "id": "Procedure:shr-core-Procedure.bodySite.extension:laterality",
         "path": "Procedure.bodySite.extension",
         "sliceName": "laterality",
-        "definition": "Body side of the body location, if needed to distinguish from a similar location on the other side of the body.",
+        "definition": "Body side of the body location, if needed to distinguish from a similar location on the other side of the body.\n\nThe laterality element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
         "min": 0,
         "max": "*",
         "base": {
@@ -2118,7 +2477,7 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Laterality-extension"
           }
         ]
       },
@@ -2126,7 +2485,7 @@
         "id": "Procedure:shr-core-Procedure.bodySite.extension:orientation",
         "path": "Procedure.bodySite.extension",
         "sliceName": "orientation",
-        "definition": "Orientation of the body location, if needed to distinguish from a similar location in another orientation.",
+        "definition": "Orientation of the body location, if needed to distinguish from a similar location in another orientation.\nThe orientation element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
         "min": 0,
         "max": "*",
         "base": {
@@ -2137,7 +2496,7 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Orientation-extension"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Orientation-extension"
           }
         ]
       },
@@ -2145,7 +2504,7 @@
         "id": "Procedure:shr-core-Procedure.bodySite.extension:relationtolandmark",
         "path": "Procedure.bodySite.extension",
         "sliceName": "relationtolandmark",
-        "definition": "An anatomical landmark that helps determine a body location.",
+        "definition": "The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:\n* Specifying the location and type of landmark using a body site code and optional laterality/orientation,\n* Specifying the direction from the landmark to the body location, and\n* Specifying the distance from the landmark to the body location.\n\nThe RelationToLandmark element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
         "min": 0,
         "max": "*",
         "base": {
@@ -2156,7 +2515,27 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelationToLandmark-extension"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelationToLandmark-extension"
+          }
+        ]
+      },
+      {
+        "id": "Procedure:shr-core-Procedure.report",
+        "path": "Procedure.report",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DiagnosticReport"
+          }
+        ]
+      },
+      {
+        "id": "Procedure:shr-core-Procedure.complicationDetail",
+        "path": "Procedure.complicationDetail",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition"
           }
         ]
       },
@@ -2166,7 +2545,38 @@
         "type": [
           {
             "code": "Annotation",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation"
+          }
+        ]
+      },
+      {
+        "id": "Procedure:shr-core-Procedure.focalDevice",
+        "path": "Procedure.focalDevice"
+      },
+      {
+        "id": "Procedure:shr-core-Procedure.focalDevice.action",
+        "path": "Procedure.focalDevice.action",
+        "binding": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
+              "valueString": "DeviceActionKind"
+            }
+          ],
+          "strength": "required",
+          "description": "A kind of change that happened to the device during the procedure.",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/device-action"
+          }
+        }
+      },
+      {
+        "id": "Procedure:shr-core-Procedure.focalDevice.manipulated",
+        "path": "Procedure.focalDevice.manipulated",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device"
           }
         ]
       },
@@ -2176,15 +2586,15 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Medication"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Medication"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Substance"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Substance"
           }
         ]
       }

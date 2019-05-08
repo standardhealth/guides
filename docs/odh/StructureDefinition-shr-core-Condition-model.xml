@@ -10,7 +10,7 @@ The Observation-based class, ConditionAbsent, should be used to describe conditi
 SHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction.</p>
 </div>
   </text>
-  <url value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition-model"/>
+  <url value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"/>
   <identifier>
     <system value="http://hl7.org/fhir/us/odh"/>
     <value value="shr.core.Condition"/>
@@ -19,7 +19,7 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
   <name value="Condition"/>
   <title value="shr-core-Condition"/>
   <status value="draft"/>
-  <date value="2019-04-08T00:00:00-04:00"/>
+  <date value="2019-05-08T00:00:00-04:00"/>
   <publisher value="HL7"/>
   <contact>
     <telecom>
@@ -60,7 +60,7 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -68,10 +68,6 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
     </element>
     <element id="shr-core-Condition-model.language">
       <path value="shr-core-Condition-model.language"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0023008"/>
-      </code>
       <short value="A human language, spoken or written."/>
       <definition value="A human language, spoken or written."/>
       <min value="0"/>
@@ -118,7 +114,7 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -160,53 +156,49 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-Condition-model.patientSubjectOfRecord">
-      <path value="shr-core-Condition-model.patientSubjectOfRecord"/>
+    <element id="shr-core-Condition-model.subjectOfRecord">
+      <path value="shr-core-Condition-model.subjectOfRecord"/>
       <code>
         <system value="http://ncimeta.nci.nih.gov"/>
         <code value="C1299487"/>
       </code>
-      <short value="The SubjectOfRecord when restricted to being a Patient resource."/>
-      <definition value="The SubjectOfRecord when restricted to being a Patient resource."/>
+      <short value="The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe&#39;s patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord."/>
+      <definition value="The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe&#39;s patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord.&#xA;&#xA;Note that the word &#39;Subject&#39; is used here in the sense of a person or entity subjected to observations or actions, not subject as in a conceptual topic, like heart disease."/>
       <min value="1"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-Condition-model.patientSubjectOfRecord"/>
+        <path value="shr-core-Condition-model.subjectOfRecord"/>
         <min value="1"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-Condition-model.careContext[x]">
-      <path value="shr-core-Condition-model.careContext[x]"/>
+    <element id="shr-core-Condition-model.careContext">
+      <path value="shr-core-Condition-model.careContext"/>
       <short value="The encounter or episode of care"/>
       <definition value="The encounter or episode of care"/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-Condition-model.careContext[x]"/>
+        <path value="shr-core-Condition-model.careContext"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -258,75 +250,6 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         </valueSetReference>
       </binding>
     </element>
-    <element id="shr-core-Condition-model.personInformationSource[x]">
-      <path value="shr-core-Condition-model.personInformationSource[x]"/>
-      <short value="The person who provided the information, not necessarily the patient."/>
-      <definition value="The person who provided the information, not necessarily the patient."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Condition-model.personInformationSource[x]"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-Condition-model.category">
-      <path value="shr-core-Condition-model.category"/>
-      <short value="The type, kind, or class of this item."/>
-      <definition value="The type, kind, or class of this item."/>
-      <min value="1"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Condition-model.category"/>
-        <min value="1"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <binding>
-        <strength value="preferred"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/odh/shr/core/vs/ConditionCategoryVS"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="shr-core-Condition-model.bodyLocation">
-      <path value="shr-core-Condition-model.bodyLocation"/>
-      <short value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart."/>
-      <definition value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart.&#xA;The BodyLocation includes code and optional qualifiers of anatomical side or direction. The body location can also be determined from one or more body landmarks.&#xA;If the code for the body location includes laterality and/or anatomical direction, the corresponding attributes might be unnecessary.&#xA;Note that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how an address structure can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="shr-core-Condition-model.bodyLocation"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BodyLocation-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
     <element id="shr-core-Condition-model.clinicalStatus">
       <path value="shr-core-Condition-model.clinicalStatus"/>
       <short value="A flag indicating whether the condition is active or inactive, recurring, in remission, or resolved (as of the last update of the Condition)."/>
@@ -351,12 +274,32 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         </valueSetReference>
       </binding>
     </element>
+    <element id="shr-core-Condition-model.category">
+      <path value="shr-core-Condition-model.category"/>
+      <short value="The general type or class of this item."/>
+      <definition value="The general type or class of this item."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Condition-model.category"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="extensible"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/us/odh/ValueSet/shr-core-ConditionCategoryVS"/>
+        </valueSetReference>
+      </binding>
+    </element>
     <element id="shr-core-Condition-model.severity">
       <path value="shr-core-Condition-model.severity"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0392364"/>
-      </code>
       <short value="Degree of harshness or extent of a symptom, disorder, or condition."/>
       <definition value="Degree of harshness or extent of a symptom, disorder, or condition."/>
       <min value="0"/>
@@ -373,29 +316,25 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       <isModifier value="false"/>
       <isSummary value="false"/>
       <binding>
-        <strength value="required"/>
+        <strength value="preferred"/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/condition-severity"/>
         </valueSetReference>
       </binding>
     </element>
-    <element id="shr-core-Condition-model.stageInformation">
-      <path value="shr-core-Condition-model.stageInformation"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0699749"/>
-      </code>
-      <short value="The relative advancement in the course of a disease. The StageCode is the summary stage or stage group. StageDetail optionally contains the full staging information."/>
-      <definition value="The relative advancement in the course of a disease. The StageCode is the summary stage or stage group. StageDetail optionally contains the full staging information."/>
+    <element id="shr-core-Condition-model.bodyLocation">
+      <path value="shr-core-Condition-model.bodyLocation"/>
+      <short value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases."/>
+      <definition value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;Note that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="*"/>
       <base>
-        <path value="shr-core-Condition-model.stageInformation"/>
+        <path value="shr-core-Condition-model.bodyLocation"/>
         <min value="0"/>
-        <max value="1"/>
+        <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StageInformation-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-BodyLocation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -403,10 +342,6 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
     </element>
     <element id="shr-core-Condition-model.onset[x]">
       <path value="shr-core-Condition-model.onset[x]"/>
-      <code>
-        <system value="http://loinc.org"/>
-        <code value="85585-8"/>
-      </code>
       <short value="The beginning or first appearance of a mental or physical disorder."/>
       <definition value="The beginning or first appearance of a mental or physical disorder."/>
       <min value="0"/>
@@ -420,13 +355,13 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         <code value="dateTime"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Age-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Age-model"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Range-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Range-model"/>
       </type>
       <type>
         <code value="string"/>
@@ -437,10 +372,6 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
     </element>
     <element id="shr-core-Condition-model.abatement[x]">
       <path value="shr-core-Condition-model.abatement[x]"/>
-      <code>
-        <system value="http://loinc.org"/>
-        <code value="88878-4"/>
-      </code>
       <short value="The end, remission or resolution."/>
       <definition value="The end, remission or resolution."/>
       <min value="0"/>
@@ -454,19 +385,99 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         <code value="dateTime"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Age-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Age-model"/>
       </type>
       <type>
         <code value="boolean"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Range-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Range-model"/>
       </type>
       <type>
         <code value="string"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Condition-model.author[x]">
+      <path value="shr-core-Condition-model.author[x]"/>
+      <short value="The actor who created the item and it responsible for the content (regardless of the information source or who recorded it). If only the author is given, it is assumed the author is the information source and the recorder."/>
+      <definition value="The actor who created the item and it responsible for the content (regardless of the information source or who recorded it). If only the author is given, it is assumed the author is the information source and the recorder."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Condition-model.author[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Condition-model.personInformationSource[x]">
+      <path value="shr-core-Condition-model.personInformationSource[x]"/>
+      <short value="The person who provided the information, not necessarily the patient."/>
+      <definition value="The person who provided the information, not necessarily the patient."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Condition-model.personInformationSource[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Condition-model.stageInformation">
+      <path value="shr-core-Condition-model.stageInformation"/>
+      <short value="The relative advancement in the course of a disease. The StageCode is the summary stage or stage group. StageDetail optionally contains the full staging information."/>
+      <definition value="The relative advancement in the course of a disease. The StageCode is the summary stage or stage group. StageDetail optionally contains the full staging information."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Condition-model.stageInformation"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-StageInformation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -484,7 +495,25 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Evidence-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Evidence-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Condition-model.annotation">
+      <path value="shr-core-Condition-model.annotation"/>
+      <short value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <definition value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Condition-model.annotation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -536,7 +565,7 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -544,10 +573,6 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
     </element>
     <element id="shr-core-Condition-model.language">
       <path value="shr-core-Condition-model.language"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0023008"/>
-      </code>
       <short value="A human language, spoken or written."/>
       <definition value="A human language, spoken or written."/>
       <min value="0"/>
@@ -594,7 +619,7 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -636,53 +661,49 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-Condition-model.patientSubjectOfRecord">
-      <path value="shr-core-Condition-model.patientSubjectOfRecord"/>
+    <element id="shr-core-Condition-model.subjectOfRecord">
+      <path value="shr-core-Condition-model.subjectOfRecord"/>
       <code>
         <system value="http://ncimeta.nci.nih.gov"/>
         <code value="C1299487"/>
       </code>
-      <short value="The SubjectOfRecord when restricted to being a Patient resource."/>
-      <definition value="The SubjectOfRecord when restricted to being a Patient resource."/>
+      <short value="The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe&#39;s patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord."/>
+      <definition value="The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe&#39;s patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord.&#xA;&#xA;Note that the word &#39;Subject&#39; is used here in the sense of a person or entity subjected to observations or actions, not subject as in a conceptual topic, like heart disease."/>
       <min value="1"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-Condition-model.patientSubjectOfRecord"/>
+        <path value="shr-core-Condition-model.subjectOfRecord"/>
         <min value="1"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-Condition-model.careContext[x]">
-      <path value="shr-core-Condition-model.careContext[x]"/>
+    <element id="shr-core-Condition-model.careContext">
+      <path value="shr-core-Condition-model.careContext"/>
       <short value="The encounter or episode of care"/>
       <definition value="The encounter or episode of care"/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-Condition-model.careContext[x]"/>
+        <path value="shr-core-Condition-model.careContext"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -734,75 +755,6 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         </valueSetReference>
       </binding>
     </element>
-    <element id="shr-core-Condition-model.personInformationSource[x]">
-      <path value="shr-core-Condition-model.personInformationSource[x]"/>
-      <short value="The person who provided the information, not necessarily the patient."/>
-      <definition value="The person who provided the information, not necessarily the patient."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Condition-model.personInformationSource[x]"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-Condition-model.category">
-      <path value="shr-core-Condition-model.category"/>
-      <short value="The type, kind, or class of this item."/>
-      <definition value="The type, kind, or class of this item."/>
-      <min value="1"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Condition-model.category"/>
-        <min value="1"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <binding>
-        <strength value="preferred"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/odh/shr/core/vs/ConditionCategoryVS"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="shr-core-Condition-model.bodyLocation">
-      <path value="shr-core-Condition-model.bodyLocation"/>
-      <short value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart."/>
-      <definition value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart.&#xA;The BodyLocation includes code and optional qualifiers of anatomical side or direction. The body location can also be determined from one or more body landmarks.&#xA;If the code for the body location includes laterality and/or anatomical direction, the corresponding attributes might be unnecessary.&#xA;Note that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how an address structure can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="shr-core-Condition-model.bodyLocation"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BodyLocation-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
     <element id="shr-core-Condition-model.clinicalStatus">
       <path value="shr-core-Condition-model.clinicalStatus"/>
       <short value="A flag indicating whether the condition is active or inactive, recurring, in remission, or resolved (as of the last update of the Condition)."/>
@@ -827,12 +779,32 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         </valueSetReference>
       </binding>
     </element>
+    <element id="shr-core-Condition-model.category">
+      <path value="shr-core-Condition-model.category"/>
+      <short value="The general type or class of this item."/>
+      <definition value="The general type or class of this item."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Condition-model.category"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="extensible"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/us/odh/ValueSet/shr-core-ConditionCategoryVS"/>
+        </valueSetReference>
+      </binding>
+    </element>
     <element id="shr-core-Condition-model.severity">
       <path value="shr-core-Condition-model.severity"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0392364"/>
-      </code>
       <short value="Degree of harshness or extent of a symptom, disorder, or condition."/>
       <definition value="Degree of harshness or extent of a symptom, disorder, or condition."/>
       <min value="0"/>
@@ -849,29 +821,25 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       <isModifier value="false"/>
       <isSummary value="false"/>
       <binding>
-        <strength value="required"/>
+        <strength value="preferred"/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/condition-severity"/>
         </valueSetReference>
       </binding>
     </element>
-    <element id="shr-core-Condition-model.stageInformation">
-      <path value="shr-core-Condition-model.stageInformation"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0699749"/>
-      </code>
-      <short value="The relative advancement in the course of a disease. The StageCode is the summary stage or stage group. StageDetail optionally contains the full staging information."/>
-      <definition value="The relative advancement in the course of a disease. The StageCode is the summary stage or stage group. StageDetail optionally contains the full staging information."/>
+    <element id="shr-core-Condition-model.bodyLocation">
+      <path value="shr-core-Condition-model.bodyLocation"/>
+      <short value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases."/>
+      <definition value="A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;Note that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="*"/>
       <base>
-        <path value="shr-core-Condition-model.stageInformation"/>
+        <path value="shr-core-Condition-model.bodyLocation"/>
         <min value="0"/>
-        <max value="1"/>
+        <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StageInformation-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-BodyLocation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -879,10 +847,6 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
     </element>
     <element id="shr-core-Condition-model.onset[x]">
       <path value="shr-core-Condition-model.onset[x]"/>
-      <code>
-        <system value="http://loinc.org"/>
-        <code value="85585-8"/>
-      </code>
       <short value="The beginning or first appearance of a mental or physical disorder."/>
       <definition value="The beginning or first appearance of a mental or physical disorder."/>
       <min value="0"/>
@@ -896,13 +860,13 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         <code value="dateTime"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Age-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Age-model"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Range-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Range-model"/>
       </type>
       <type>
         <code value="string"/>
@@ -913,10 +877,6 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
     </element>
     <element id="shr-core-Condition-model.abatement[x]">
       <path value="shr-core-Condition-model.abatement[x]"/>
-      <code>
-        <system value="http://loinc.org"/>
-        <code value="88878-4"/>
-      </code>
       <short value="The end, remission or resolution."/>
       <definition value="The end, remission or resolution."/>
       <min value="0"/>
@@ -930,19 +890,99 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         <code value="dateTime"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Age-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Age-model"/>
       </type>
       <type>
         <code value="boolean"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"/>
       </type>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Range-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Range-model"/>
       </type>
       <type>
         <code value="string"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Condition-model.author[x]">
+      <path value="shr-core-Condition-model.author[x]"/>
+      <short value="The actor who created the item and it responsible for the content (regardless of the information source or who recorded it). If only the author is given, it is assumed the author is the information source and the recorder."/>
+      <definition value="The actor who created the item and it responsible for the content (regardless of the information source or who recorded it). If only the author is given, it is assumed the author is the information source and the recorder."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Condition-model.author[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Condition-model.personInformationSource[x]">
+      <path value="shr-core-Condition-model.personInformationSource[x]"/>
+      <short value="The person who provided the information, not necessarily the patient."/>
+      <definition value="The person who provided the information, not necessarily the patient."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Condition-model.personInformationSource[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Condition-model.stageInformation">
+      <path value="shr-core-Condition-model.stageInformation"/>
+      <short value="The relative advancement in the course of a disease. The StageCode is the summary stage or stage group. StageDetail optionally contains the full staging information."/>
+      <definition value="The relative advancement in the course of a disease. The StageCode is the summary stage or stage group. StageDetail optionally contains the full staging information."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Condition-model.stageInformation"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-StageInformation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -960,7 +1000,25 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Evidence-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Evidence-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Condition-model.annotation">
+      <path value="shr-core-Condition-model.annotation"/>
+      <short value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <definition value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Condition-model.annotation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>

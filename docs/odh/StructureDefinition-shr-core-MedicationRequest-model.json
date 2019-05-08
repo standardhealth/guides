@@ -5,7 +5,7 @@
     "status": "generated",
     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>MedicationRequest Logical Model</b></p>\n  <p>An order for a medication to be dispensed and instructions for use.\nValue sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.\nCategory does not exist in DSTU2 and is provided as an extension.\nIntent was added in STU3 and is provided as an extension with required binding.</p>\n</div>"
   },
-  "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationRequest-model",
+  "url": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model",
   "identifier": [
     {
       "system": "http://hl7.org/fhir/us/odh",
@@ -16,7 +16,7 @@
   "name": "MedicationRequest",
   "title": "shr-core-MedicationRequest",
   "status": "draft",
-  "date": "2019-04-08T00:00:00-04:00",
+  "date": "2019-05-08T00:00:00-04:00",
   "publisher": "HL7",
   "contact": [
     {
@@ -65,7 +65,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"
           }
         ],
         "mustSupport": false,
@@ -75,12 +75,6 @@
       {
         "id": "shr-core-MedicationRequest-model.language",
         "path": "shr-core-MedicationRequest-model.language",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0023008"
-          }
-        ],
         "short": "A human language, spoken or written.",
         "definition": "A human language, spoken or written.",
         "min": 0,
@@ -134,7 +128,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"
           }
         ],
         "mustSupport": false,
@@ -163,6 +157,27 @@
         "isSummary": false
       },
       {
+        "id": "shr-core-MedicationRequest-model.statusReason",
+        "path": "shr-core-MedicationRequest-model.statusReason",
+        "short": "Captures the reason for the current state of the procedure.",
+        "definition": "Captures the reason for the current state of the procedure.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.statusReason",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
         "id": "shr-core-MedicationRequest-model.identifier",
         "path": "shr-core-MedicationRequest-model.identifier",
         "short": "Business identifier or external id for this resource.",
@@ -176,7 +191,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"
           }
         ],
         "mustSupport": false,
@@ -184,27 +199,27 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-MedicationRequest-model.patientSubjectOfRecord",
-        "path": "shr-core-MedicationRequest-model.patientSubjectOfRecord",
+        "id": "shr-core-MedicationRequest-model.subjectOfRecord",
+        "path": "shr-core-MedicationRequest-model.subjectOfRecord",
         "code": [
           {
             "system": "http://ncimeta.nci.nih.gov",
             "code": "C1299487"
           }
         ],
-        "short": "The SubjectOfRecord when restricted to being a Patient resource.",
-        "definition": "The SubjectOfRecord when restricted to being a Patient resource.",
+        "short": "The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe's patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord.",
+        "definition": "The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe's patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord.\n\nNote that the word 'Subject' is used here in the sense of a person or entity subjected to observations or actions, not subject as in a conceptual topic, like heart disease.",
         "min": 1,
         "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.patientSubjectOfRecord",
+          "path": "shr-core-MedicationRequest-model.subjectOfRecord",
           "min": 1,
           "max": "1"
         },
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"
           }
         ],
         "mustSupport": false,
@@ -212,25 +227,21 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-MedicationRequest-model.careContext[x]",
-        "path": "shr-core-MedicationRequest-model.careContext[x]",
+        "id": "shr-core-MedicationRequest-model.careContext",
+        "path": "shr-core-MedicationRequest-model.careContext",
         "short": "The encounter or episode of care",
         "definition": "The encounter or episode of care",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.careContext[x]",
+          "path": "shr-core-MedicationRequest-model.careContext",
           "min": 0,
           "max": "1"
         },
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter-model"
           }
         ],
         "mustSupport": false,
@@ -273,8 +284,8 @@
             "code": "C0566251"
           }
         ],
-        "short": "The justification, as a code.",
-        "definition": "The justification, as a code.\nReason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept, so we are not going to support a string.",
+        "short": "The explanation or justification for the current item or action, as a code.",
+        "definition": "The explanation or justification for the current item or action, as a code.\nReason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept.",
         "min": 0,
         "max": "1",
         "base": {
@@ -298,21 +309,39 @@
         }
       },
       {
-        "id": "shr-core-MedicationRequest-model.reasonReference",
-        "path": "shr-core-MedicationRequest-model.reasonReference",
-        "short": "The justification, as reference to a condition or observation.",
-        "definition": "The justification, as reference to a condition or observation.",
+        "id": "shr-core-MedicationRequest-model.medicationReasonReference[x]",
+        "path": "shr-core-MedicationRequest-model.medicationReasonReference[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Condition or observation that supports why the medication is being/was taken",
+        "definition": "Condition or observation that supports why the medication is being/was taken",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.reasonReference",
+          "path": "shr-core-MedicationRequest-model.medicationReasonReference[x]",
           "min": 0,
           "max": "1"
         },
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DiagnosticReport-model"
           }
         ],
         "mustSupport": false,
@@ -320,20 +349,240 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-MedicationRequest-model.type",
-        "path": "shr-core-MedicationRequest-model.type",
-        "code": [
+        "id": "shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-Condition-model:Condition",
+        "path": "shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-Condition-model",
+        "sliceName": "Condition",
+        "short": "A condition that is or may be present in a subject. 'Condition' is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.",
+        "definition": "A condition that is or may be present in a subject. 'Condition' is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.\nThe Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.\nSHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.medicationReasonReference[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
           {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0332307"
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"
           }
         ],
-        "short": "A code describing the item at a greater level of detail.",
-        "definition": "A code describing the item at a greater level of detail.",
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-Observation-model:Observation",
+        "path": "shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-Observation-model",
+        "sliceName": "Observation",
+        "short": "Represents the result of evaluations (measurements, tests, or questions) that have been performed.",
+        "definition": "Represents the result of evaluations (measurements, tests, or questions) that have been performed.\nObservation has a value representing the result (answer), or an DataAbsentReason indicating why the value is not present. Things observed about the subject can include social and behavioral factors, subjective and objective observations, and assessments.\nFor an Observation, the Code describes the aspect or property of the subject being observed or measured. The Code is the 'question code' that pairs to the 'answer' contained in the Value.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.medicationReasonReference[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-DiagnosticReport-model:DiagnosticReport",
+        "path": "shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-DiagnosticReport-model",
+        "sliceName": "DiagnosticReport",
+        "short": "DiagnosticReport",
+        "definition": "DiagnosticReport",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.medicationReasonReference[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DiagnosticReport-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.medicationBasedOn[x]",
+        "path": "shr-core-MedicationRequest-model.medicationBasedOn[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "MedicationBasedOn",
+        "definition": "MedicationBasedOn",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.medicationBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.medicationBasedOnShr-core-ServiceRequest-model:ServiceRequest",
+        "path": "shr-core-MedicationRequest-model.medicationBasedOnShr-core-ServiceRequest-model",
+        "sliceName": "ServiceRequest",
+        "short": "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.",
+        "definition": "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.medicationBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.medicationBasedOnShr-core-MedicationRequest-model:MedicationRequest",
+        "path": "shr-core-MedicationRequest-model.medicationBasedOnShr-core-MedicationRequest-model",
+        "sliceName": "MedicationRequest",
+        "short": "An order for a medication to be dispensed and instructions for use.",
+        "definition": "An order for a medication to be dispensed and instructions for use.\nValue sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.\nCategory does not exist in DSTU2 and is provided as an extension.\nIntent was added in STU3 and is provided as an extension with required binding.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.medicationBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.medicationBasedOnShr-core-ReferralRequest-model:ReferralRequest",
+        "path": "shr-core-MedicationRequest-model.medicationBasedOnShr-core-ReferralRequest-model",
+        "sliceName": "ReferralRequest",
+        "short": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
+        "definition": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.medicationBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.medicationBasedOnShr-core-ProcedureRequest-model:ProcedureRequest",
+        "path": "shr-core-MedicationRequest-model.medicationBasedOnShr-core-ProcedureRequest-model",
+        "sliceName": "ProcedureRequest",
+        "short": "A request for a procedure to be performed. May be a proposal or an order.",
+        "definition": "A request for a procedure to be performed. May be a proposal or an order.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.medicationBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.code",
+        "path": "shr-core-MedicationRequest-model.code",
+        "short": "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary.",
+        "definition": "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.type",
+          "path": "shr-core-MedicationRequest-model.code",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.category",
+        "path": "shr-core-MedicationRequest-model.category",
+        "short": "The general type or class of this item.",
+        "definition": "The general type or class of this item.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.category",
           "min": 0,
           "max": "1"
         },
@@ -351,6 +600,44 @@
             "reference": "http://hl7.org/fhir/ValueSet/medication-admin-category"
           }
         }
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.requester[x]",
+        "path": "shr-core-MedicationRequest-model.requester[x]",
+        "short": "The person or organization originating this referral",
+        "definition": "The person or organization originating this referral",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.requester[x]",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
       },
       {
         "id": "shr-core-MedicationRequest-model.requestIntent",
@@ -380,26 +667,26 @@
         }
       },
       {
-        "id": "shr-core-MedicationRequest-model.expectedPerformanceTime",
-        "path": "shr-core-MedicationRequest-model.expectedPerformanceTime",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C1948053"
-          }
-        ],
+        "id": "shr-core-MedicationRequest-model.expectedPerformanceTime[x]",
+        "path": "shr-core-MedicationRequest-model.expectedPerformanceTime[x]",
         "short": "When an action should be done. If the action is a series or recurs (e.g. daily blood sugar testing in the morning) then a Timing can be used to describe the periodicity.",
         "definition": "When an action should be done. If the action is a series or recurs (e.g. daily blood sugar testing in the morning) then a Timing can be used to describe the periodicity.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.expectedPerformanceTime",
+          "path": "shr-core-MedicationRequest-model.expectedPerformanceTime[x]",
           "min": 0,
           "max": "1"
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"
+            "code": "dateTime"
+          },
+          {
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"
+          },
+          {
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Timing-model"
           }
         ],
         "mustSupport": false,
@@ -412,11 +699,11 @@
         "short": "What type of party should carry out the testing.",
         "definition": "What type of party should carry out the testing.",
         "min": 0,
-        "max": "0",
+        "max": "1",
         "base": {
           "path": "shr-core-MedicationRequest-model.expectedPerformerType",
           "min": 0,
-          "max": "0"
+          "max": "1"
         },
         "type": [
           {
@@ -428,27 +715,37 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-MedicationRequest-model.recipient",
-        "path": "shr-core-MedicationRequest-model.recipient",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C1561598"
-          }
-        ],
+        "id": "shr-core-MedicationRequest-model.expectedPerformer[x]",
+        "path": "shr-core-MedicationRequest-model.expectedPerformer[x]",
         "short": "Who this request is being addressed to.",
         "definition": "Who this request is being addressed to.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.recipient",
+          "path": "shr-core-MedicationRequest-model.expectedPerformer[x]",
           "min": 0,
           "max": "1"
         },
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"
           }
         ],
         "mustSupport": false,
@@ -458,12 +755,6 @@
       {
         "id": "shr-core-MedicationRequest-model.priorityCode[x]",
         "path": "shr-core-MedicationRequest-model.priorityCode[x]",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0549179"
-          }
-        ],
         "slicing": {
           "discriminator": [
             {
@@ -537,7 +828,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation-model"
           }
         ],
         "mustSupport": false,
@@ -545,20 +836,99 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-MedicationRequest-model.communicationMethod",
-        "path": "shr-core-MedicationRequest-model.communicationMethod",
-        "short": "This is the method the provider used to communicate. Examples include: Written, Telephoned, Verbal, Electronically Entered, Policy, Service Correction, Duplicate, etc. 'Code indicating the origin of the prescription.' - NCPDP Telecommunication (Field 419-DJ, Data Dictionary 201104). Possible values include: Written; Telephone; Electronic; Facsimile; Pharmacy; Not Known.",
-        "definition": "This is the method the provider used to communicate. Examples include: Written, Telephoned, Verbal, Electronically Entered, Policy, Service Correction, Duplicate, etc. 'Code indicating the origin of the prescription.' - NCPDP Telecommunication (Field 419-DJ, Data Dictionary 201104). Possible values include: Written; Telephone; Electronic; Facsimile; Pharmacy; Not Known.",
+        "id": "shr-core-MedicationRequest-model.doNotPerform",
+        "path": "shr-core-MedicationRequest-model.doNotPerform",
+        "short": "A flag, when set to true, indicates that the service/procedure should NOT be performed.",
+        "definition": "A flag, when set to true, indicates that the service/procedure should NOT be performed.",
         "min": 0,
-        "max": "0",
+        "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.communicationMethod",
+          "path": "shr-core-MedicationRequest-model.doNotPerform",
           "min": 0,
-          "max": "0"
+          "max": "1"
         },
         "type": [
           {
-            "code": "Coding"
+            "code": "boolean"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.reported",
+        "path": "shr-core-MedicationRequest-model.reported",
+        "short": "Indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth record. It may also indicate the source of the report.",
+        "definition": "Indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth record. It may also indicate the source of the report.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.reported",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.reported.value[x]",
+        "path": "shr-core-MedicationRequest-model.reported.value[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Boolean or InformationSource representing indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth record. It may also indicate the source of the report.",
+        "definition": "Boolean or InformationSource representing indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth record. It may also indicate the source of the report.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.reported.value[x]",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-InformationSource-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.reported.medicationInformationSource:informationSource",
+        "path": "shr-core-MedicationRequest-model.reported.medicationInformationSource",
+        "sliceName": "informationSource",
+        "short": "The informant for this medication statement.",
+        "definition": "The informant for this medication statement.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.reported.medicationInformationSource",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationInformationSource-model"
           }
         ],
         "mustSupport": false,
@@ -593,7 +963,7 @@
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Medication-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Medication-model"
           }
         ],
         "mustSupport": false,
@@ -622,33 +992,56 @@
         "isModifier": false,
         "isSummary": false,
         "binding": {
-          "strength": "required",
+          "strength": "extensible",
           "valueSetReference": {
             "reference": "http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes"
           }
         }
       },
       {
-        "id": "shr-core-MedicationRequest-model.dosage",
-        "path": "shr-core-MedicationRequest-model.dosage",
+        "id": "shr-core-MedicationRequest-model.supportingInformation",
+        "path": "shr-core-MedicationRequest-model.supportingInformation",
+        "short": "Additional information to support this request.",
+        "definition": "Additional information to support this request.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.supportingInformation",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.author",
+        "path": "shr-core-MedicationRequest-model.author",
         "code": [
           {
             "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0178602"
+            "code": "C2220264"
           }
         ],
-        "short": "The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported.",
-        "definition": "The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported.",
+        "short": "The actor who created the item and it responsible for the content (regardless of the information source or who recorded it). If only the author is given, it is assumed the author is the information source and the recorder.",
+        "definition": "The actor who created the item and it responsible for the content (regardless of the information source or who recorded it). If only the author is given, it is assumed the author is the information source and the recorder.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.dosage",
+          "path": "shr-core-MedicationRequest-model.author",
           "min": 0,
           "max": "1"
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Dosage-model"
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"
           }
         ],
         "mustSupport": false,
@@ -656,58 +1049,20 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-MedicationRequest-model.medicationRequester[x]",
-        "path": "shr-core-MedicationRequest-model.medicationRequester[x]",
-        "short": "The individual, organization or device that initiated the request and has responsibility for its activation.",
-        "definition": "The individual, organization or device that initiated the request and has responsibility for its activation.",
-        "min": 1,
-        "max": "1",
-        "base": {
-          "path": "shr-core-MedicationRequest-model.medicationRequester[x]",
-          "min": 1,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-MedicationRequest-model.numberOfRefillsAllowed",
-        "path": "shr-core-MedicationRequest-model.numberOfRefillsAllowed",
-        "short": "The maximum number of times the dispense can be repeated. For medication dispense, this integer does NOT include the original order dispense. This means that if an order indicates dispense 30 tablets plus 3 repeats, then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets.",
-        "definition": "The maximum number of times the dispense can be repeated. For medication dispense, this integer does NOT include the original order dispense. This means that if an order indicates dispense 30 tablets plus 3 repeats, then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets.",
+        "id": "shr-core-MedicationRequest-model.groupIdentifier",
+        "path": "shr-core-MedicationRequest-model.groupIdentifier",
+        "short": "A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier.",
+        "definition": "A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.numberOfRefillsAllowed",
+          "path": "shr-core-MedicationRequest-model.groupIdentifier",
           "min": 0,
           "max": "1"
         },
         "type": [
           {
-            "code": "positiveInt"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"
           }
         ],
         "mustSupport": false,
@@ -715,83 +1070,14 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-MedicationRequest-model.quantityPerDispense",
-        "path": "shr-core-MedicationRequest-model.quantityPerDispense",
-        "short": "The amount that is to be dispensed for one fill.",
-        "definition": "The amount that is to be dispensed for one fill.",
+        "id": "shr-core-MedicationRequest-model.courseOfTherapyType",
+        "path": "shr-core-MedicationRequest-model.courseOfTherapyType",
+        "short": "The description of the overall pattern of the administration of the medication to the patient.",
+        "definition": "The description of the overall pattern of the administration of the medication to the patient.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.quantityPerDispense",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SimpleQuantity-model"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-MedicationRequest-model.supplyDuration",
-        "path": "shr-core-MedicationRequest-model.supplyDuration",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0449238"
-          }
-        ],
-        "short": "Identifies the period time over which the supplied product is expected to be used, or the length of time the dispense is expected to last.",
-        "definition": "Identifies the period time over which the supplied product is expected to be used, or the length of time the dispense is expected to last.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "shr-core-MedicationRequest-model.supplyDuration",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Duration-model"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-MedicationRequest-model.substitutionAllowed",
-        "path": "shr-core-MedicationRequest-model.substitutionAllowed",
-        "short": "Whether substitution is allowed or not.",
-        "definition": "Whether substitution is allowed or not.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "shr-core-MedicationRequest-model.substitutionAllowed",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "boolean"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-MedicationRequest-model.substitutionReason",
-        "path": "shr-core-MedicationRequest-model.substitutionReason",
-        "short": "Why should (not) substitution be made.",
-        "definition": "Why should (not) substitution be made.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "shr-core-MedicationRequest-model.substitutionReason",
+          "path": "shr-core-MedicationRequest-model.courseOfTherapyType",
           "min": 0,
           "max": "1"
         },
@@ -802,13 +1088,121 @@
         ],
         "mustSupport": false,
         "isModifier": false,
-        "isSummary": false,
-        "binding": {
-          "strength": "required",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/v3-SubstanceAdminSubstitutionReason"
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.insurance",
+        "path": "shr-core-MedicationRequest-model.insurance",
+        "code": [
+          {
+            "system": "http://ncimeta.nci.nih.gov",
+            "code": "C0021682",
+            "display": "HealthInsurance"
           }
-        }
+        ],
+        "short": "Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service.",
+        "definition": "Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.insurance",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Coverage-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.dosage",
+        "path": "shr-core-MedicationRequest-model.dosage",
+        "short": "The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported.",
+        "definition": "The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.dosage",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Dosage-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.dispenseRequest",
+        "path": "shr-core-MedicationRequest-model.dispenseRequest",
+        "short": "Indicates the specific details for the dispense or medication supply part of a medication request (also known as a Medication Prescription or Medication Order). Note that this information is not always sent with the order. There may be in some settings (e.g. hospitals) institutional or system support for completing the dispense details in the pharmacy department.",
+        "definition": "Indicates the specific details for the dispense or medication supply part of a medication request (also known as a Medication Prescription or Medication Order). Note that this information is not always sent with the order. There may be in some settings (e.g. hospitals) institutional or system support for completing the dispense details in the pharmacy department.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.dispenseRequest",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DispenseRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.substitution",
+        "path": "shr-core-MedicationRequest-model.substitution",
+        "short": "Indicates whether or not substitution can or should be part of the dispense. In some cases, substitution must happen, in other cases substitution must not happen. This block explains the prescriber's intent. If nothing is specified substitution may be done.",
+        "definition": "Indicates whether or not substitution can or should be part of the dispense. In some cases, substitution must happen, in other cases substitution must not happen. This block explains the prescriber's intent. If nothing is specified substitution may be done.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.substitution",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Substitution-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.replaces",
+        "path": "shr-core-MedicationRequest-model.replaces",
+        "short": "Request(s) replaced by this request",
+        "definition": "Request(s) replaced by this request",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.replaces",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
       }
     ]
   },
@@ -843,7 +1237,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"
           }
         ],
         "mustSupport": false,
@@ -853,12 +1247,6 @@
       {
         "id": "shr-core-MedicationRequest-model.language",
         "path": "shr-core-MedicationRequest-model.language",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0023008"
-          }
-        ],
         "short": "A human language, spoken or written.",
         "definition": "A human language, spoken or written.",
         "min": 0,
@@ -912,7 +1300,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"
           }
         ],
         "mustSupport": false,
@@ -941,6 +1329,27 @@
         "isSummary": false
       },
       {
+        "id": "shr-core-MedicationRequest-model.statusReason",
+        "path": "shr-core-MedicationRequest-model.statusReason",
+        "short": "Captures the reason for the current state of the procedure.",
+        "definition": "Captures the reason for the current state of the procedure.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.statusReason",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
         "id": "shr-core-MedicationRequest-model.identifier",
         "path": "shr-core-MedicationRequest-model.identifier",
         "short": "Business identifier or external id for this resource.",
@@ -954,7 +1363,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"
           }
         ],
         "mustSupport": false,
@@ -962,27 +1371,27 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-MedicationRequest-model.patientSubjectOfRecord",
-        "path": "shr-core-MedicationRequest-model.patientSubjectOfRecord",
+        "id": "shr-core-MedicationRequest-model.subjectOfRecord",
+        "path": "shr-core-MedicationRequest-model.subjectOfRecord",
         "code": [
           {
             "system": "http://ncimeta.nci.nih.gov",
             "code": "C1299487"
           }
         ],
-        "short": "The SubjectOfRecord when restricted to being a Patient resource.",
-        "definition": "The SubjectOfRecord when restricted to being a Patient resource.",
+        "short": "The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe's patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord.",
+        "definition": "The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe's patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord.\n\nNote that the word 'Subject' is used here in the sense of a person or entity subjected to observations or actions, not subject as in a conceptual topic, like heart disease.",
         "min": 1,
         "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.patientSubjectOfRecord",
+          "path": "shr-core-MedicationRequest-model.subjectOfRecord",
           "min": 1,
           "max": "1"
         },
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"
           }
         ],
         "mustSupport": false,
@@ -990,25 +1399,21 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-MedicationRequest-model.careContext[x]",
-        "path": "shr-core-MedicationRequest-model.careContext[x]",
+        "id": "shr-core-MedicationRequest-model.careContext",
+        "path": "shr-core-MedicationRequest-model.careContext",
         "short": "The encounter or episode of care",
         "definition": "The encounter or episode of care",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.careContext[x]",
+          "path": "shr-core-MedicationRequest-model.careContext",
           "min": 0,
           "max": "1"
         },
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter-model"
           }
         ],
         "mustSupport": false,
@@ -1051,8 +1456,8 @@
             "code": "C0566251"
           }
         ],
-        "short": "The justification, as a code.",
-        "definition": "The justification, as a code.\nReason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept, so we are not going to support a string.",
+        "short": "The explanation or justification for the current item or action, as a code.",
+        "definition": "The explanation or justification for the current item or action, as a code.\nReason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept.",
         "min": 0,
         "max": "1",
         "base": {
@@ -1076,21 +1481,39 @@
         }
       },
       {
-        "id": "shr-core-MedicationRequest-model.reasonReference",
-        "path": "shr-core-MedicationRequest-model.reasonReference",
-        "short": "The justification, as reference to a condition or observation.",
-        "definition": "The justification, as reference to a condition or observation.",
+        "id": "shr-core-MedicationRequest-model.medicationReasonReference[x]",
+        "path": "shr-core-MedicationRequest-model.medicationReasonReference[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Condition or observation that supports why the medication is being/was taken",
+        "definition": "Condition or observation that supports why the medication is being/was taken",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.reasonReference",
+          "path": "shr-core-MedicationRequest-model.medicationReasonReference[x]",
           "min": 0,
           "max": "1"
         },
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DiagnosticReport-model"
           }
         ],
         "mustSupport": false,
@@ -1098,20 +1521,240 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-MedicationRequest-model.type",
-        "path": "shr-core-MedicationRequest-model.type",
-        "code": [
+        "id": "shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-Condition-model:Condition",
+        "path": "shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-Condition-model",
+        "sliceName": "Condition",
+        "short": "A condition that is or may be present in a subject. 'Condition' is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.",
+        "definition": "A condition that is or may be present in a subject. 'Condition' is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.\nThe Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.\nSHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.medicationReasonReference[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
           {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0332307"
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"
           }
         ],
-        "short": "A code describing the item at a greater level of detail.",
-        "definition": "A code describing the item at a greater level of detail.",
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-Observation-model:Observation",
+        "path": "shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-Observation-model",
+        "sliceName": "Observation",
+        "short": "Represents the result of evaluations (measurements, tests, or questions) that have been performed.",
+        "definition": "Represents the result of evaluations (measurements, tests, or questions) that have been performed.\nObservation has a value representing the result (answer), or an DataAbsentReason indicating why the value is not present. Things observed about the subject can include social and behavioral factors, subjective and objective observations, and assessments.\nFor an Observation, the Code describes the aspect or property of the subject being observed or measured. The Code is the 'question code' that pairs to the 'answer' contained in the Value.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.medicationReasonReference[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-DiagnosticReport-model:DiagnosticReport",
+        "path": "shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-DiagnosticReport-model",
+        "sliceName": "DiagnosticReport",
+        "short": "DiagnosticReport",
+        "definition": "DiagnosticReport",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.medicationReasonReference[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DiagnosticReport-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.medicationBasedOn[x]",
+        "path": "shr-core-MedicationRequest-model.medicationBasedOn[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "MedicationBasedOn",
+        "definition": "MedicationBasedOn",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.medicationBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.medicationBasedOnShr-core-ServiceRequest-model:ServiceRequest",
+        "path": "shr-core-MedicationRequest-model.medicationBasedOnShr-core-ServiceRequest-model",
+        "sliceName": "ServiceRequest",
+        "short": "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.",
+        "definition": "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.medicationBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.medicationBasedOnShr-core-MedicationRequest-model:MedicationRequest",
+        "path": "shr-core-MedicationRequest-model.medicationBasedOnShr-core-MedicationRequest-model",
+        "sliceName": "MedicationRequest",
+        "short": "An order for a medication to be dispensed and instructions for use.",
+        "definition": "An order for a medication to be dispensed and instructions for use.\nValue sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.\nCategory does not exist in DSTU2 and is provided as an extension.\nIntent was added in STU3 and is provided as an extension with required binding.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.medicationBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.medicationBasedOnShr-core-ReferralRequest-model:ReferralRequest",
+        "path": "shr-core-MedicationRequest-model.medicationBasedOnShr-core-ReferralRequest-model",
+        "sliceName": "ReferralRequest",
+        "short": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
+        "definition": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.medicationBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.medicationBasedOnShr-core-ProcedureRequest-model:ProcedureRequest",
+        "path": "shr-core-MedicationRequest-model.medicationBasedOnShr-core-ProcedureRequest-model",
+        "sliceName": "ProcedureRequest",
+        "short": "A request for a procedure to be performed. May be a proposal or an order.",
+        "definition": "A request for a procedure to be performed. May be a proposal or an order.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.medicationBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.code",
+        "path": "shr-core-MedicationRequest-model.code",
+        "short": "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary.",
+        "definition": "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.type",
+          "path": "shr-core-MedicationRequest-model.code",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.category",
+        "path": "shr-core-MedicationRequest-model.category",
+        "short": "The general type or class of this item.",
+        "definition": "The general type or class of this item.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.category",
           "min": 0,
           "max": "1"
         },
@@ -1129,6 +1772,44 @@
             "reference": "http://hl7.org/fhir/ValueSet/medication-admin-category"
           }
         }
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.requester[x]",
+        "path": "shr-core-MedicationRequest-model.requester[x]",
+        "short": "The person or organization originating this referral",
+        "definition": "The person or organization originating this referral",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.requester[x]",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
       },
       {
         "id": "shr-core-MedicationRequest-model.requestIntent",
@@ -1158,26 +1839,26 @@
         }
       },
       {
-        "id": "shr-core-MedicationRequest-model.expectedPerformanceTime",
-        "path": "shr-core-MedicationRequest-model.expectedPerformanceTime",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C1948053"
-          }
-        ],
+        "id": "shr-core-MedicationRequest-model.expectedPerformanceTime[x]",
+        "path": "shr-core-MedicationRequest-model.expectedPerformanceTime[x]",
         "short": "When an action should be done. If the action is a series or recurs (e.g. daily blood sugar testing in the morning) then a Timing can be used to describe the periodicity.",
         "definition": "When an action should be done. If the action is a series or recurs (e.g. daily blood sugar testing in the morning) then a Timing can be used to describe the periodicity.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.expectedPerformanceTime",
+          "path": "shr-core-MedicationRequest-model.expectedPerformanceTime[x]",
           "min": 0,
           "max": "1"
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"
+            "code": "dateTime"
+          },
+          {
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"
+          },
+          {
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Timing-model"
           }
         ],
         "mustSupport": false,
@@ -1190,11 +1871,11 @@
         "short": "What type of party should carry out the testing.",
         "definition": "What type of party should carry out the testing.",
         "min": 0,
-        "max": "0",
+        "max": "1",
         "base": {
           "path": "shr-core-MedicationRequest-model.expectedPerformerType",
           "min": 0,
-          "max": "0"
+          "max": "1"
         },
         "type": [
           {
@@ -1206,27 +1887,37 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-MedicationRequest-model.recipient",
-        "path": "shr-core-MedicationRequest-model.recipient",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C1561598"
-          }
-        ],
+        "id": "shr-core-MedicationRequest-model.expectedPerformer[x]",
+        "path": "shr-core-MedicationRequest-model.expectedPerformer[x]",
         "short": "Who this request is being addressed to.",
         "definition": "Who this request is being addressed to.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.recipient",
+          "path": "shr-core-MedicationRequest-model.expectedPerformer[x]",
           "min": 0,
           "max": "1"
         },
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"
           }
         ],
         "mustSupport": false,
@@ -1236,12 +1927,6 @@
       {
         "id": "shr-core-MedicationRequest-model.priorityCode[x]",
         "path": "shr-core-MedicationRequest-model.priorityCode[x]",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0549179"
-          }
-        ],
         "slicing": {
           "discriminator": [
             {
@@ -1315,7 +2000,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation-model"
           }
         ],
         "mustSupport": false,
@@ -1323,20 +2008,99 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-MedicationRequest-model.communicationMethod",
-        "path": "shr-core-MedicationRequest-model.communicationMethod",
-        "short": "This is the method the provider used to communicate. Examples include: Written, Telephoned, Verbal, Electronically Entered, Policy, Service Correction, Duplicate, etc. 'Code indicating the origin of the prescription.' - NCPDP Telecommunication (Field 419-DJ, Data Dictionary 201104). Possible values include: Written; Telephone; Electronic; Facsimile; Pharmacy; Not Known.",
-        "definition": "This is the method the provider used to communicate. Examples include: Written, Telephoned, Verbal, Electronically Entered, Policy, Service Correction, Duplicate, etc. 'Code indicating the origin of the prescription.' - NCPDP Telecommunication (Field 419-DJ, Data Dictionary 201104). Possible values include: Written; Telephone; Electronic; Facsimile; Pharmacy; Not Known.",
+        "id": "shr-core-MedicationRequest-model.doNotPerform",
+        "path": "shr-core-MedicationRequest-model.doNotPerform",
+        "short": "A flag, when set to true, indicates that the service/procedure should NOT be performed.",
+        "definition": "A flag, when set to true, indicates that the service/procedure should NOT be performed.",
         "min": 0,
-        "max": "0",
+        "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.communicationMethod",
+          "path": "shr-core-MedicationRequest-model.doNotPerform",
           "min": 0,
-          "max": "0"
+          "max": "1"
         },
         "type": [
           {
-            "code": "Coding"
+            "code": "boolean"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.reported",
+        "path": "shr-core-MedicationRequest-model.reported",
+        "short": "Indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth record. It may also indicate the source of the report.",
+        "definition": "Indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth record. It may also indicate the source of the report.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.reported",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.reported.value[x]",
+        "path": "shr-core-MedicationRequest-model.reported.value[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Boolean or InformationSource representing indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth record. It may also indicate the source of the report.",
+        "definition": "Boolean or InformationSource representing indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth record. It may also indicate the source of the report.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.reported.value[x]",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-InformationSource-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.reported.medicationInformationSource:informationSource",
+        "path": "shr-core-MedicationRequest-model.reported.medicationInformationSource",
+        "sliceName": "informationSource",
+        "short": "The informant for this medication statement.",
+        "definition": "The informant for this medication statement.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.reported.medicationInformationSource",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationInformationSource-model"
           }
         ],
         "mustSupport": false,
@@ -1371,7 +2135,7 @@
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Medication-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Medication-model"
           }
         ],
         "mustSupport": false,
@@ -1400,33 +2164,56 @@
         "isModifier": false,
         "isSummary": false,
         "binding": {
-          "strength": "required",
+          "strength": "extensible",
           "valueSetReference": {
             "reference": "http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes"
           }
         }
       },
       {
-        "id": "shr-core-MedicationRequest-model.dosage",
-        "path": "shr-core-MedicationRequest-model.dosage",
+        "id": "shr-core-MedicationRequest-model.supportingInformation",
+        "path": "shr-core-MedicationRequest-model.supportingInformation",
+        "short": "Additional information to support this request.",
+        "definition": "Additional information to support this request.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.supportingInformation",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.author",
+        "path": "shr-core-MedicationRequest-model.author",
         "code": [
           {
             "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0178602"
+            "code": "C2220264"
           }
         ],
-        "short": "The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported.",
-        "definition": "The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported.",
+        "short": "The actor who created the item and it responsible for the content (regardless of the information source or who recorded it). If only the author is given, it is assumed the author is the information source and the recorder.",
+        "definition": "The actor who created the item and it responsible for the content (regardless of the information source or who recorded it). If only the author is given, it is assumed the author is the information source and the recorder.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.dosage",
+          "path": "shr-core-MedicationRequest-model.author",
           "min": 0,
           "max": "1"
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Dosage-model"
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"
           }
         ],
         "mustSupport": false,
@@ -1434,58 +2221,20 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-MedicationRequest-model.medicationRequester[x]",
-        "path": "shr-core-MedicationRequest-model.medicationRequester[x]",
-        "short": "The individual, organization or device that initiated the request and has responsibility for its activation.",
-        "definition": "The individual, organization or device that initiated the request and has responsibility for its activation.",
-        "min": 1,
-        "max": "1",
-        "base": {
-          "path": "shr-core-MedicationRequest-model.medicationRequester[x]",
-          "min": 1,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-MedicationRequest-model.numberOfRefillsAllowed",
-        "path": "shr-core-MedicationRequest-model.numberOfRefillsAllowed",
-        "short": "The maximum number of times the dispense can be repeated. For medication dispense, this integer does NOT include the original order dispense. This means that if an order indicates dispense 30 tablets plus 3 repeats, then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets.",
-        "definition": "The maximum number of times the dispense can be repeated. For medication dispense, this integer does NOT include the original order dispense. This means that if an order indicates dispense 30 tablets plus 3 repeats, then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets.",
+        "id": "shr-core-MedicationRequest-model.groupIdentifier",
+        "path": "shr-core-MedicationRequest-model.groupIdentifier",
+        "short": "A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier.",
+        "definition": "A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.numberOfRefillsAllowed",
+          "path": "shr-core-MedicationRequest-model.groupIdentifier",
           "min": 0,
           "max": "1"
         },
         "type": [
           {
-            "code": "positiveInt"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"
           }
         ],
         "mustSupport": false,
@@ -1493,83 +2242,14 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-MedicationRequest-model.quantityPerDispense",
-        "path": "shr-core-MedicationRequest-model.quantityPerDispense",
-        "short": "The amount that is to be dispensed for one fill.",
-        "definition": "The amount that is to be dispensed for one fill.",
+        "id": "shr-core-MedicationRequest-model.courseOfTherapyType",
+        "path": "shr-core-MedicationRequest-model.courseOfTherapyType",
+        "short": "The description of the overall pattern of the administration of the medication to the patient.",
+        "definition": "The description of the overall pattern of the administration of the medication to the patient.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-MedicationRequest-model.quantityPerDispense",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SimpleQuantity-model"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-MedicationRequest-model.supplyDuration",
-        "path": "shr-core-MedicationRequest-model.supplyDuration",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0449238"
-          }
-        ],
-        "short": "Identifies the period time over which the supplied product is expected to be used, or the length of time the dispense is expected to last.",
-        "definition": "Identifies the period time over which the supplied product is expected to be used, or the length of time the dispense is expected to last.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "shr-core-MedicationRequest-model.supplyDuration",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Duration-model"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-MedicationRequest-model.substitutionAllowed",
-        "path": "shr-core-MedicationRequest-model.substitutionAllowed",
-        "short": "Whether substitution is allowed or not.",
-        "definition": "Whether substitution is allowed or not.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "shr-core-MedicationRequest-model.substitutionAllowed",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "boolean"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-MedicationRequest-model.substitutionReason",
-        "path": "shr-core-MedicationRequest-model.substitutionReason",
-        "short": "Why should (not) substitution be made.",
-        "definition": "Why should (not) substitution be made.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "shr-core-MedicationRequest-model.substitutionReason",
+          "path": "shr-core-MedicationRequest-model.courseOfTherapyType",
           "min": 0,
           "max": "1"
         },
@@ -1580,13 +2260,121 @@
         ],
         "mustSupport": false,
         "isModifier": false,
-        "isSummary": false,
-        "binding": {
-          "strength": "required",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/v3-SubstanceAdminSubstitutionReason"
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.insurance",
+        "path": "shr-core-MedicationRequest-model.insurance",
+        "code": [
+          {
+            "system": "http://ncimeta.nci.nih.gov",
+            "code": "C0021682",
+            "display": "HealthInsurance"
           }
-        }
+        ],
+        "short": "Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service.",
+        "definition": "Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.insurance",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Coverage-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.dosage",
+        "path": "shr-core-MedicationRequest-model.dosage",
+        "short": "The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported.",
+        "definition": "The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.dosage",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Dosage-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.dispenseRequest",
+        "path": "shr-core-MedicationRequest-model.dispenseRequest",
+        "short": "Indicates the specific details for the dispense or medication supply part of a medication request (also known as a Medication Prescription or Medication Order). Note that this information is not always sent with the order. There may be in some settings (e.g. hospitals) institutional or system support for completing the dispense details in the pharmacy department.",
+        "definition": "Indicates the specific details for the dispense or medication supply part of a medication request (also known as a Medication Prescription or Medication Order). Note that this information is not always sent with the order. There may be in some settings (e.g. hospitals) institutional or system support for completing the dispense details in the pharmacy department.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.dispenseRequest",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DispenseRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.substitution",
+        "path": "shr-core-MedicationRequest-model.substitution",
+        "short": "Indicates whether or not substitution can or should be part of the dispense. In some cases, substitution must happen, in other cases substitution must not happen. This block explains the prescriber's intent. If nothing is specified substitution may be done.",
+        "definition": "Indicates whether or not substitution can or should be part of the dispense. In some cases, substitution must happen, in other cases substitution must not happen. This block explains the prescriber's intent. If nothing is specified substitution may be done.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.substitution",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Substitution-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-MedicationRequest-model.replaces",
+        "path": "shr-core-MedicationRequest-model.replaces",
+        "short": "Request(s) replaced by this request",
+        "definition": "Request(s) replaced by this request",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-MedicationRequest-model.replaces",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
       }
     ]
   }

@@ -1,0 +1,347 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "shr-core-DiagnosticReportBasedOn-model",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>DiagnosticReportBasedOn Logical Model</b></p>\n  <p>The request or order that initiated this report.</p>\n</div>"
+  },
+  "url": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DiagnosticReportBasedOn-model",
+  "identifier": [
+    {
+      "system": "http://hl7.org/fhir/us/odh",
+      "value": "shr.core.DiagnosticReportBasedOn"
+    }
+  ],
+  "version": "1.0.0",
+  "name": "DiagnosticReportBasedOn",
+  "title": "shr-core-DiagnosticReportBasedOn",
+  "status": "draft",
+  "date": "2019-05-08T00:00:00-04:00",
+  "publisher": "HL7",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "url",
+          "value": "http://standardhealthrecord.org"
+        }
+      ]
+    }
+  ],
+  "description": "The request or order that initiated this report.",
+  "kind": "logical",
+  "abstract": false,
+  "type": "shr-core-DiagnosticReportBasedOn-model",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      {
+        "id": "shr-core-DiagnosticReportBasedOn-model",
+        "path": "shr-core-DiagnosticReportBasedOn-model",
+        "definition": "The request or order that initiated this report.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-DiagnosticReportBasedOn-model",
+          "min": 0,
+          "max": "*"
+        },
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-DiagnosticReportBasedOn-model.value[x]",
+        "path": "shr-core-DiagnosticReportBasedOn-model.value[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Choice of types representing the request or order that initiated this report.",
+        "definition": "Choice of types representing the request or order that initiated this report.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-DiagnosticReportBasedOn-model.value[x]",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-DiagnosticReportBasedOn-model.valueShr-core-MedicationRequest-model:MedicationRequest",
+        "path": "shr-core-DiagnosticReportBasedOn-model.valueShr-core-MedicationRequest-model",
+        "sliceName": "MedicationRequest",
+        "short": "An order for a medication to be dispensed and instructions for use.",
+        "definition": "An order for a medication to be dispensed and instructions for use.\nValue sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.\nCategory does not exist in DSTU2 and is provided as an extension.\nIntent was added in STU3 and is provided as an extension with required binding.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-DiagnosticReportBasedOn-model.value[x]",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-DiagnosticReportBasedOn-model.valueShr-core-ReferralRequest-model:ReferralRequest",
+        "path": "shr-core-DiagnosticReportBasedOn-model.valueShr-core-ReferralRequest-model",
+        "sliceName": "ReferralRequest",
+        "short": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
+        "definition": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-DiagnosticReportBasedOn-model.value[x]",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-DiagnosticReportBasedOn-model.valueShr-core-ProcedureRequest-model:ProcedureRequest",
+        "path": "shr-core-DiagnosticReportBasedOn-model.valueShr-core-ProcedureRequest-model",
+        "sliceName": "ProcedureRequest",
+        "short": "A request for a procedure to be performed. May be a proposal or an order.",
+        "definition": "A request for a procedure to be performed. May be a proposal or an order.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-DiagnosticReportBasedOn-model.value[x]",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-DiagnosticReportBasedOn-model.valueShr-core-ServiceRequest-model:ServiceRequest",
+        "path": "shr-core-DiagnosticReportBasedOn-model.valueShr-core-ServiceRequest-model",
+        "sliceName": "ServiceRequest",
+        "short": "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.",
+        "definition": "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-DiagnosticReportBasedOn-model.value[x]",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      }
+    ]
+  },
+  "differential": {
+    "element": [
+      {
+        "id": "shr-core-DiagnosticReportBasedOn-model",
+        "path": "shr-core-DiagnosticReportBasedOn-model",
+        "definition": "The request or order that initiated this report.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-DiagnosticReportBasedOn-model",
+          "min": 0,
+          "max": "*"
+        },
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-DiagnosticReportBasedOn-model.value[x]",
+        "path": "shr-core-DiagnosticReportBasedOn-model.value[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Choice of types representing the request or order that initiated this report.",
+        "definition": "Choice of types representing the request or order that initiated this report.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-DiagnosticReportBasedOn-model.value[x]",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-DiagnosticReportBasedOn-model.valueShr-core-MedicationRequest-model:MedicationRequest",
+        "path": "shr-core-DiagnosticReportBasedOn-model.valueShr-core-MedicationRequest-model",
+        "sliceName": "MedicationRequest",
+        "short": "An order for a medication to be dispensed and instructions for use.",
+        "definition": "An order for a medication to be dispensed and instructions for use.\nValue sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.\nCategory does not exist in DSTU2 and is provided as an extension.\nIntent was added in STU3 and is provided as an extension with required binding.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-DiagnosticReportBasedOn-model.value[x]",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-DiagnosticReportBasedOn-model.valueShr-core-ReferralRequest-model:ReferralRequest",
+        "path": "shr-core-DiagnosticReportBasedOn-model.valueShr-core-ReferralRequest-model",
+        "sliceName": "ReferralRequest",
+        "short": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
+        "definition": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-DiagnosticReportBasedOn-model.value[x]",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-DiagnosticReportBasedOn-model.valueShr-core-ProcedureRequest-model:ProcedureRequest",
+        "path": "shr-core-DiagnosticReportBasedOn-model.valueShr-core-ProcedureRequest-model",
+        "sliceName": "ProcedureRequest",
+        "short": "A request for a procedure to be performed. May be a proposal or an order.",
+        "definition": "A request for a procedure to be performed. May be a proposal or an order.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-DiagnosticReportBasedOn-model.value[x]",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-DiagnosticReportBasedOn-model.valueShr-core-ServiceRequest-model:ServiceRequest",
+        "path": "shr-core-DiagnosticReportBasedOn-model.valueShr-core-ServiceRequest-model",
+        "sliceName": "ServiceRequest",
+        "short": "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.",
+        "definition": "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-DiagnosticReportBasedOn-model.value[x]",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      }
+    ]
+  }
+}

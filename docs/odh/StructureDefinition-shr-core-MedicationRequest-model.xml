@@ -11,7 +11,7 @@ Category does not exist in DSTU2 and is provided as an extension.
 Intent was added in STU3 and is provided as an extension with required binding.</p>
 </div>
   </text>
-  <url value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MedicationRequest-model"/>
+  <url value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"/>
   <identifier>
     <system value="http://hl7.org/fhir/us/odh"/>
     <value value="shr.core.MedicationRequest"/>
@@ -20,7 +20,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
   <name value="MedicationRequest"/>
   <title value="shr-core-MedicationRequest"/>
   <status value="draft"/>
-  <date value="2019-04-08T00:00:00-04:00"/>
+  <date value="2019-05-08T00:00:00-04:00"/>
   <publisher value="HL7"/>
   <contact>
     <telecom>
@@ -61,7 +61,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -69,10 +69,6 @@ Intent was added in STU3 and is provided as an extension with required binding.<
     </element>
     <element id="shr-core-MedicationRequest-model.language">
       <path value="shr-core-MedicationRequest-model.language"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0023008"/>
-      </code>
       <short value="A human language, spoken or written."/>
       <definition value="A human language, spoken or written."/>
       <min value="0"/>
@@ -119,7 +115,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -143,6 +139,24 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
+    <element id="shr-core-MedicationRequest-model.statusReason">
+      <path value="shr-core-MedicationRequest-model.statusReason"/>
+      <short value="Captures the reason for the current state of the procedure."/>
+      <definition value="Captures the reason for the current state of the procedure."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.statusReason"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
     <element id="shr-core-MedicationRequest-model.identifier">
       <path value="shr-core-MedicationRequest-model.identifier"/>
       <short value="Business identifier or external id for this resource."/>
@@ -155,53 +169,49 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-MedicationRequest-model.patientSubjectOfRecord">
-      <path value="shr-core-MedicationRequest-model.patientSubjectOfRecord"/>
+    <element id="shr-core-MedicationRequest-model.subjectOfRecord">
+      <path value="shr-core-MedicationRequest-model.subjectOfRecord"/>
       <code>
         <system value="http://ncimeta.nci.nih.gov"/>
         <code value="C1299487"/>
       </code>
-      <short value="The SubjectOfRecord when restricted to being a Patient resource."/>
-      <definition value="The SubjectOfRecord when restricted to being a Patient resource."/>
+      <short value="The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe&#39;s patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord."/>
+      <definition value="The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe&#39;s patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord.&#xA;&#xA;Note that the word &#39;Subject&#39; is used here in the sense of a person or entity subjected to observations or actions, not subject as in a conceptual topic, like heart disease."/>
       <min value="1"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.patientSubjectOfRecord"/>
+        <path value="shr-core-MedicationRequest-model.subjectOfRecord"/>
         <min value="1"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-MedicationRequest-model.careContext[x]">
-      <path value="shr-core-MedicationRequest-model.careContext[x]"/>
+    <element id="shr-core-MedicationRequest-model.careContext">
+      <path value="shr-core-MedicationRequest-model.careContext"/>
       <short value="The encounter or episode of care"/>
       <definition value="The encounter or episode of care"/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.careContext[x]"/>
+        <path value="shr-core-MedicationRequest-model.careContext"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -235,8 +245,8 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <system value="http://ncimeta.nci.nih.gov"/>
         <code value="C0566251"/>
       </code>
-      <short value="The justification, as a code."/>
-      <definition value="The justification, as a code.&#xA;Reason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept, so we are not going to support a string."/>
+      <short value="The explanation or justification for the current item or action, as a code."/>
+      <definition value="The explanation or justification for the current item or action, as a code.&#xA;Reason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -257,37 +267,246 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         </valueSetReference>
       </binding>
     </element>
-    <element id="shr-core-MedicationRequest-model.reasonReference">
-      <path value="shr-core-MedicationRequest-model.reasonReference"/>
-      <short value="The justification, as reference to a condition or observation."/>
-      <definition value="The justification, as reference to a condition or observation."/>
+    <element id="shr-core-MedicationRequest-model.medicationReasonReference[x]">
+      <path value="shr-core-MedicationRequest-model.medicationReasonReference[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="Condition or observation that supports why the medication is being/was taken"/>
+      <definition value="Condition or observation that supports why the medication is being/was taken"/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.reasonReference"/>
+        <path value="shr-core-MedicationRequest-model.medicationReasonReference[x]"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DiagnosticReport-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-MedicationRequest-model.type">
-      <path value="shr-core-MedicationRequest-model.type"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0332307"/>
-      </code>
-      <short value="A code describing the item at a greater level of detail."/>
-      <definition value="A code describing the item at a greater level of detail."/>
+    <element id="shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-Condition-model:Condition">
+      <path value="shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-Condition-model"/>
+      <sliceName value="Condition"/>
+      <short value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble."/>
+      <definition value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.&#xA;The Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.&#xA;SHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.medicationReasonReference[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-Observation-model:Observation">
+      <path value="shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-Observation-model"/>
+      <sliceName value="Observation"/>
+      <short value="Represents the result of evaluations (measurements, tests, or questions) that have been performed."/>
+      <definition value="Represents the result of evaluations (measurements, tests, or questions) that have been performed.&#xA;Observation has a value representing the result (answer), or an DataAbsentReason indicating why the value is not present. Things observed about the subject can include social and behavioral factors, subjective and objective observations, and assessments.&#xA;For an Observation, the Code describes the aspect or property of the subject being observed or measured. The Code is the &#39;question code&#39; that pairs to the &#39;answer&#39; contained in the Value."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.medicationReasonReference[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-DiagnosticReport-model:DiagnosticReport">
+      <path value="shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-DiagnosticReport-model"/>
+      <sliceName value="DiagnosticReport"/>
+      <short value="DiagnosticReport"/>
+      <definition value="DiagnosticReport"/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.medicationReasonReference[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DiagnosticReport-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.medicationBasedOn[x]">
+      <path value="shr-core-MedicationRequest-model.medicationBasedOn[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="MedicationBasedOn"/>
+      <definition value="MedicationBasedOn"/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.medicationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.medicationBasedOnShr-core-ServiceRequest-model:ServiceRequest">
+      <path value="shr-core-MedicationRequest-model.medicationBasedOnShr-core-ServiceRequest-model"/>
+      <sliceName value="ServiceRequest"/>
+      <short value="A record of a request for service such as diagnostic investigations, treatments, or operations to be performed."/>
+      <definition value="A record of a request for service such as diagnostic investigations, treatments, or operations to be performed."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.medicationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.medicationBasedOnShr-core-MedicationRequest-model:MedicationRequest">
+      <path value="shr-core-MedicationRequest-model.medicationBasedOnShr-core-MedicationRequest-model"/>
+      <sliceName value="MedicationRequest"/>
+      <short value="An order for a medication to be dispensed and instructions for use."/>
+      <definition value="An order for a medication to be dispensed and instructions for use.&#xA;Value sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.&#xA;Category does not exist in DSTU2 and is provided as an extension.&#xA;Intent was added in STU3 and is provided as an extension with required binding."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.medicationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.medicationBasedOnShr-core-ReferralRequest-model:ReferralRequest">
+      <path value="shr-core-MedicationRequest-model.medicationBasedOnShr-core-ReferralRequest-model"/>
+      <sliceName value="ReferralRequest"/>
+      <short value="Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization."/>
+      <definition value="Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.medicationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.medicationBasedOnShr-core-ProcedureRequest-model:ProcedureRequest">
+      <path value="shr-core-MedicationRequest-model.medicationBasedOnShr-core-ProcedureRequest-model"/>
+      <sliceName value="ProcedureRequest"/>
+      <short value="A request for a procedure to be performed. May be a proposal or an order."/>
+      <definition value="A request for a procedure to be performed. May be a proposal or an order."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.medicationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.code">
+      <path value="shr-core-MedicationRequest-model.code"/>
+      <short value="The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary."/>
+      <definition value="The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.type"/>
+        <path value="shr-core-MedicationRequest-model.code"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.category">
+      <path value="shr-core-MedicationRequest-model.category"/>
+      <short value="The general type or class of this item."/>
+      <definition value="The general type or class of this item."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.category"/>
         <min value="0"/>
         <max value="1"/>
       </base>
@@ -303,6 +522,41 @@ Intent was added in STU3 and is provided as an extension with required binding.<
           <reference value="http://hl7.org/fhir/ValueSet/medication-admin-category"/>
         </valueSetReference>
       </binding>
+    </element>
+    <element id="shr-core-MedicationRequest-model.requester[x]">
+      <path value="shr-core-MedicationRequest-model.requester[x]"/>
+      <short value="The person or organization originating this referral"/>
+      <definition value="The person or organization originating this referral"/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.requester[x]"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
     </element>
     <element id="shr-core-MedicationRequest-model.requestIntent">
       <path value="shr-core-MedicationRequest-model.requestIntent"/>
@@ -328,23 +582,25 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         </valueSetReference>
       </binding>
     </element>
-    <element id="shr-core-MedicationRequest-model.expectedPerformanceTime">
-      <path value="shr-core-MedicationRequest-model.expectedPerformanceTime"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1948053"/>
-      </code>
+    <element id="shr-core-MedicationRequest-model.expectedPerformanceTime[x]">
+      <path value="shr-core-MedicationRequest-model.expectedPerformanceTime[x]"/>
       <short value="When an action should be done. If the action is a series or recurs (e.g. daily blood sugar testing in the morning) then a Timing can be used to describe the periodicity."/>
       <definition value="When an action should be done. If the action is a series or recurs (e.g. daily blood sugar testing in the morning) then a Timing can be used to describe the periodicity."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.expectedPerformanceTime"/>
+        <path value="shr-core-MedicationRequest-model.expectedPerformanceTime[x]"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"/>
+        <code value="dateTime"/>
+      </type>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"/>
+      </type>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Timing-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -355,11 +611,11 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       <short value="What type of party should carry out the testing."/>
       <definition value="What type of party should carry out the testing."/>
       <min value="0"/>
-      <max value="0"/>
+      <max value="1"/>
       <base>
         <path value="shr-core-MedicationRequest-model.expectedPerformerType"/>
         <min value="0"/>
-        <max value="0"/>
+        <max value="1"/>
       </base>
       <type>
         <code value="Coding"/>
@@ -368,24 +624,36 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-MedicationRequest-model.recipient">
-      <path value="shr-core-MedicationRequest-model.recipient"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1561598"/>
-      </code>
+    <element id="shr-core-MedicationRequest-model.expectedPerformer[x]">
+      <path value="shr-core-MedicationRequest-model.expectedPerformer[x]"/>
       <short value="Who this request is being addressed to."/>
       <definition value="Who this request is being addressed to."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.recipient"/>
+        <path value="shr-core-MedicationRequest-model.expectedPerformer[x]"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -393,10 +661,6 @@ Intent was added in STU3 and is provided as an extension with required binding.<
     </element>
     <element id="shr-core-MedicationRequest-model.priorityCode[x]">
       <path value="shr-core-MedicationRequest-model.priorityCode[x]"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0549179"/>
-      </code>
       <slicing>
         <discriminator>
           <type value="type"/>
@@ -461,25 +725,93 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-MedicationRequest-model.communicationMethod">
-      <path value="shr-core-MedicationRequest-model.communicationMethod"/>
-      <short value="This is the method the provider used to communicate. Examples include: Written, Telephoned, Verbal, Electronically Entered, Policy, Service Correction, Duplicate, etc. &#39;Code indicating the origin of the prescription.&#39; - NCPDP Telecommunication (Field 419-DJ, Data Dictionary 201104). Possible values include: Written; Telephone; Electronic; Facsimile; Pharmacy; Not Known."/>
-      <definition value="This is the method the provider used to communicate. Examples include: Written, Telephoned, Verbal, Electronically Entered, Policy, Service Correction, Duplicate, etc. &#39;Code indicating the origin of the prescription.&#39; - NCPDP Telecommunication (Field 419-DJ, Data Dictionary 201104). Possible values include: Written; Telephone; Electronic; Facsimile; Pharmacy; Not Known."/>
+    <element id="shr-core-MedicationRequest-model.doNotPerform">
+      <path value="shr-core-MedicationRequest-model.doNotPerform"/>
+      <short value="A flag, when set to true, indicates that the service/procedure should NOT be performed."/>
+      <definition value="A flag, when set to true, indicates that the service/procedure should NOT be performed."/>
       <min value="0"/>
-      <max value="0"/>
+      <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.communicationMethod"/>
+        <path value="shr-core-MedicationRequest-model.doNotPerform"/>
         <min value="0"/>
-        <max value="0"/>
+        <max value="1"/>
       </base>
       <type>
-        <code value="Coding"/>
+        <code value="boolean"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.reported">
+      <path value="shr-core-MedicationRequest-model.reported"/>
+      <short value="Indicates if this record was captured as a secondary &#39;reported&#39; record rather than as an original primary source-of-truth record. It may also indicate the source of the report."/>
+      <definition value="Indicates if this record was captured as a secondary &#39;reported&#39; record rather than as an original primary source-of-truth record. It may also indicate the source of the report."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.reported"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="BackboneElement"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.reported.value[x]">
+      <path value="shr-core-MedicationRequest-model.reported.value[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="Boolean or InformationSource representing indicates if this record was captured as a secondary &#39;reported&#39; record rather than as an original primary source-of-truth record. It may also indicate the source of the report."/>
+      <definition value="Boolean or InformationSource representing indicates if this record was captured as a secondary &#39;reported&#39; record rather than as an original primary source-of-truth record. It may also indicate the source of the report."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.reported.value[x]"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="boolean"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-InformationSource-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.reported.medicationInformationSource:informationSource">
+      <path value="shr-core-MedicationRequest-model.reported.medicationInformationSource"/>
+      <sliceName value="informationSource"/>
+      <short value="The informant for this medication statement."/>
+      <definition value="The informant for this medication statement."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.reported.medicationInformationSource"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationInformationSource-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -509,7 +841,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Medication-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Medication-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -534,153 +866,80 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       <isModifier value="false"/>
       <isSummary value="false"/>
       <binding>
-        <strength value="required"/>
+        <strength value="extensible"/>
         <valueSetReference>
           <reference value="http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes"/>
         </valueSetReference>
       </binding>
     </element>
-    <element id="shr-core-MedicationRequest-model.dosage">
-      <path value="shr-core-MedicationRequest-model.dosage"/>
+    <element id="shr-core-MedicationRequest-model.supportingInformation">
+      <path value="shr-core-MedicationRequest-model.supportingInformation"/>
+      <short value="Additional information to support this request."/>
+      <definition value="Additional information to support this request."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.supportingInformation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.author">
+      <path value="shr-core-MedicationRequest-model.author"/>
       <code>
         <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0178602"/>
+        <code value="C2220264"/>
       </code>
-      <short value="The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported."/>
-      <definition value="The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported."/>
+      <short value="The actor who created the item and it responsible for the content (regardless of the information source or who recorded it). If only the author is given, it is assumed the author is the information source and the recorder."/>
+      <definition value="The actor who created the item and it responsible for the content (regardless of the information source or who recorded it). If only the author is given, it is assumed the author is the information source and the recorder."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.dosage"/>
+        <path value="shr-core-MedicationRequest-model.author"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Dosage-model"/>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-MedicationRequest-model.medicationRequester[x]">
-      <path value="shr-core-MedicationRequest-model.medicationRequester[x]"/>
-      <short value="The individual, organization or device that initiated the request and has responsibility for its activation."/>
-      <definition value="The individual, organization or device that initiated the request and has responsibility for its activation."/>
-      <min value="1"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-MedicationRequest-model.medicationRequester[x]"/>
-        <min value="1"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-MedicationRequest-model.numberOfRefillsAllowed">
-      <path value="shr-core-MedicationRequest-model.numberOfRefillsAllowed"/>
-      <short value="The maximum number of times the dispense can be repeated. For medication dispense, this integer does NOT include the original order dispense. This means that if an order indicates dispense 30 tablets plus 3 repeats, then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets."/>
-      <definition value="The maximum number of times the dispense can be repeated. For medication dispense, this integer does NOT include the original order dispense. This means that if an order indicates dispense 30 tablets plus 3 repeats, then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets."/>
+    <element id="shr-core-MedicationRequest-model.groupIdentifier">
+      <path value="shr-core-MedicationRequest-model.groupIdentifier"/>
+      <short value="A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier."/>
+      <definition value="A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.numberOfRefillsAllowed"/>
+        <path value="shr-core-MedicationRequest-model.groupIdentifier"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
-        <code value="positiveInt"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-MedicationRequest-model.quantityPerDispense">
-      <path value="shr-core-MedicationRequest-model.quantityPerDispense"/>
-      <short value="The amount that is to be dispensed for one fill."/>
-      <definition value="The amount that is to be dispensed for one fill."/>
+    <element id="shr-core-MedicationRequest-model.courseOfTherapyType">
+      <path value="shr-core-MedicationRequest-model.courseOfTherapyType"/>
+      <short value="The description of the overall pattern of the administration of the medication to the patient."/>
+      <definition value="The description of the overall pattern of the administration of the medication to the patient."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.quantityPerDispense"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SimpleQuantity-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-MedicationRequest-model.supplyDuration">
-      <path value="shr-core-MedicationRequest-model.supplyDuration"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0449238"/>
-      </code>
-      <short value="Identifies the period time over which the supplied product is expected to be used, or the length of time the dispense is expected to last."/>
-      <definition value="Identifies the period time over which the supplied product is expected to be used, or the length of time the dispense is expected to last."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-MedicationRequest-model.supplyDuration"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Duration-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-MedicationRequest-model.substitutionAllowed">
-      <path value="shr-core-MedicationRequest-model.substitutionAllowed"/>
-      <short value="Whether substitution is allowed or not."/>
-      <definition value="Whether substitution is allowed or not."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-MedicationRequest-model.substitutionAllowed"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="boolean"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-MedicationRequest-model.substitutionReason">
-      <path value="shr-core-MedicationRequest-model.substitutionReason"/>
-      <short value="Why should (not) substitution be made."/>
-      <definition value="Why should (not) substitution be made."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-MedicationRequest-model.substitutionReason"/>
+        <path value="shr-core-MedicationRequest-model.courseOfTherapyType"/>
         <min value="0"/>
         <max value="1"/>
       </base>
@@ -690,12 +949,103 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
-      <binding>
-        <strength value="required"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/v3-SubstanceAdminSubstitutionReason"/>
-        </valueSetReference>
-      </binding>
+    </element>
+    <element id="shr-core-MedicationRequest-model.insurance">
+      <path value="shr-core-MedicationRequest-model.insurance"/>
+      <code>
+        <system value="http://ncimeta.nci.nih.gov"/>
+        <code value="C0021682"/>
+        <display value="HealthInsurance"/>
+      </code>
+      <short value="Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service."/>
+      <definition value="Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.insurance"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Coverage-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.dosage">
+      <path value="shr-core-MedicationRequest-model.dosage"/>
+      <short value="The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported."/>
+      <definition value="The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.dosage"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Dosage-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.dispenseRequest">
+      <path value="shr-core-MedicationRequest-model.dispenseRequest"/>
+      <short value="Indicates the specific details for the dispense or medication supply part of a medication request (also known as a Medication Prescription or Medication Order). Note that this information is not always sent with the order. There may be in some settings (e.g. hospitals) institutional or system support for completing the dispense details in the pharmacy department."/>
+      <definition value="Indicates the specific details for the dispense or medication supply part of a medication request (also known as a Medication Prescription or Medication Order). Note that this information is not always sent with the order. There may be in some settings (e.g. hospitals) institutional or system support for completing the dispense details in the pharmacy department."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.dispenseRequest"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DispenseRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.substitution">
+      <path value="shr-core-MedicationRequest-model.substitution"/>
+      <short value="Indicates whether or not substitution can or should be part of the dispense. In some cases, substitution must happen, in other cases substitution must not happen. This block explains the prescriber&#39;s intent. If nothing is specified substitution may be done."/>
+      <definition value="Indicates whether or not substitution can or should be part of the dispense. In some cases, substitution must happen, in other cases substitution must not happen. This block explains the prescriber&#39;s intent. If nothing is specified substitution may be done."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.substitution"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Substitution-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.replaces">
+      <path value="shr-core-MedicationRequest-model.replaces"/>
+      <short value="Request(s) replaced by this request"/>
+      <definition value="Request(s) replaced by this request"/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.replaces"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
     </element>
   </snapshot>
   <differential>
@@ -725,7 +1075,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -733,10 +1083,6 @@ Intent was added in STU3 and is provided as an extension with required binding.<
     </element>
     <element id="shr-core-MedicationRequest-model.language">
       <path value="shr-core-MedicationRequest-model.language"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0023008"/>
-      </code>
       <short value="A human language, spoken or written."/>
       <definition value="A human language, spoken or written."/>
       <min value="0"/>
@@ -783,7 +1129,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -807,6 +1153,24 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
+    <element id="shr-core-MedicationRequest-model.statusReason">
+      <path value="shr-core-MedicationRequest-model.statusReason"/>
+      <short value="Captures the reason for the current state of the procedure."/>
+      <definition value="Captures the reason for the current state of the procedure."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.statusReason"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
     <element id="shr-core-MedicationRequest-model.identifier">
       <path value="shr-core-MedicationRequest-model.identifier"/>
       <short value="Business identifier or external id for this resource."/>
@@ -819,53 +1183,49 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-MedicationRequest-model.patientSubjectOfRecord">
-      <path value="shr-core-MedicationRequest-model.patientSubjectOfRecord"/>
+    <element id="shr-core-MedicationRequest-model.subjectOfRecord">
+      <path value="shr-core-MedicationRequest-model.subjectOfRecord"/>
       <code>
         <system value="http://ncimeta.nci.nih.gov"/>
         <code value="C1299487"/>
       </code>
-      <short value="The SubjectOfRecord when restricted to being a Patient resource."/>
-      <definition value="The SubjectOfRecord when restricted to being a Patient resource."/>
+      <short value="The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe&#39;s patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord."/>
+      <definition value="The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe&#39;s patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord.&#xA;&#xA;Note that the word &#39;Subject&#39; is used here in the sense of a person or entity subjected to observations or actions, not subject as in a conceptual topic, like heart disease."/>
       <min value="1"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.patientSubjectOfRecord"/>
+        <path value="shr-core-MedicationRequest-model.subjectOfRecord"/>
         <min value="1"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-MedicationRequest-model.careContext[x]">
-      <path value="shr-core-MedicationRequest-model.careContext[x]"/>
+    <element id="shr-core-MedicationRequest-model.careContext">
+      <path value="shr-core-MedicationRequest-model.careContext"/>
       <short value="The encounter or episode of care"/>
       <definition value="The encounter or episode of care"/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.careContext[x]"/>
+        <path value="shr-core-MedicationRequest-model.careContext"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -899,8 +1259,8 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <system value="http://ncimeta.nci.nih.gov"/>
         <code value="C0566251"/>
       </code>
-      <short value="The justification, as a code."/>
-      <definition value="The justification, as a code.&#xA;Reason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept, so we are not going to support a string."/>
+      <short value="The explanation or justification for the current item or action, as a code."/>
+      <definition value="The explanation or justification for the current item or action, as a code.&#xA;Reason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -921,37 +1281,246 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         </valueSetReference>
       </binding>
     </element>
-    <element id="shr-core-MedicationRequest-model.reasonReference">
-      <path value="shr-core-MedicationRequest-model.reasonReference"/>
-      <short value="The justification, as reference to a condition or observation."/>
-      <definition value="The justification, as reference to a condition or observation."/>
+    <element id="shr-core-MedicationRequest-model.medicationReasonReference[x]">
+      <path value="shr-core-MedicationRequest-model.medicationReasonReference[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="Condition or observation that supports why the medication is being/was taken"/>
+      <definition value="Condition or observation that supports why the medication is being/was taken"/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.reasonReference"/>
+        <path value="shr-core-MedicationRequest-model.medicationReasonReference[x]"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DiagnosticReport-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-MedicationRequest-model.type">
-      <path value="shr-core-MedicationRequest-model.type"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0332307"/>
-      </code>
-      <short value="A code describing the item at a greater level of detail."/>
-      <definition value="A code describing the item at a greater level of detail."/>
+    <element id="shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-Condition-model:Condition">
+      <path value="shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-Condition-model"/>
+      <sliceName value="Condition"/>
+      <short value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble."/>
+      <definition value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.&#xA;The Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.&#xA;SHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.medicationReasonReference[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-Observation-model:Observation">
+      <path value="shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-Observation-model"/>
+      <sliceName value="Observation"/>
+      <short value="Represents the result of evaluations (measurements, tests, or questions) that have been performed."/>
+      <definition value="Represents the result of evaluations (measurements, tests, or questions) that have been performed.&#xA;Observation has a value representing the result (answer), or an DataAbsentReason indicating why the value is not present. Things observed about the subject can include social and behavioral factors, subjective and objective observations, and assessments.&#xA;For an Observation, the Code describes the aspect or property of the subject being observed or measured. The Code is the &#39;question code&#39; that pairs to the &#39;answer&#39; contained in the Value."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.medicationReasonReference[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-DiagnosticReport-model:DiagnosticReport">
+      <path value="shr-core-MedicationRequest-model.medicationReasonReferenceShr-core-DiagnosticReport-model"/>
+      <sliceName value="DiagnosticReport"/>
+      <short value="DiagnosticReport"/>
+      <definition value="DiagnosticReport"/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.medicationReasonReference[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DiagnosticReport-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.medicationBasedOn[x]">
+      <path value="shr-core-MedicationRequest-model.medicationBasedOn[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="MedicationBasedOn"/>
+      <definition value="MedicationBasedOn"/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.medicationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.medicationBasedOnShr-core-ServiceRequest-model:ServiceRequest">
+      <path value="shr-core-MedicationRequest-model.medicationBasedOnShr-core-ServiceRequest-model"/>
+      <sliceName value="ServiceRequest"/>
+      <short value="A record of a request for service such as diagnostic investigations, treatments, or operations to be performed."/>
+      <definition value="A record of a request for service such as diagnostic investigations, treatments, or operations to be performed."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.medicationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.medicationBasedOnShr-core-MedicationRequest-model:MedicationRequest">
+      <path value="shr-core-MedicationRequest-model.medicationBasedOnShr-core-MedicationRequest-model"/>
+      <sliceName value="MedicationRequest"/>
+      <short value="An order for a medication to be dispensed and instructions for use."/>
+      <definition value="An order for a medication to be dispensed and instructions for use.&#xA;Value sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.&#xA;Category does not exist in DSTU2 and is provided as an extension.&#xA;Intent was added in STU3 and is provided as an extension with required binding."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.medicationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.medicationBasedOnShr-core-ReferralRequest-model:ReferralRequest">
+      <path value="shr-core-MedicationRequest-model.medicationBasedOnShr-core-ReferralRequest-model"/>
+      <sliceName value="ReferralRequest"/>
+      <short value="Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization."/>
+      <definition value="Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.medicationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.medicationBasedOnShr-core-ProcedureRequest-model:ProcedureRequest">
+      <path value="shr-core-MedicationRequest-model.medicationBasedOnShr-core-ProcedureRequest-model"/>
+      <sliceName value="ProcedureRequest"/>
+      <short value="A request for a procedure to be performed. May be a proposal or an order."/>
+      <definition value="A request for a procedure to be performed. May be a proposal or an order."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.medicationBasedOn[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.code">
+      <path value="shr-core-MedicationRequest-model.code"/>
+      <short value="The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary."/>
+      <definition value="The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.type"/>
+        <path value="shr-core-MedicationRequest-model.code"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.category">
+      <path value="shr-core-MedicationRequest-model.category"/>
+      <short value="The general type or class of this item."/>
+      <definition value="The general type or class of this item."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.category"/>
         <min value="0"/>
         <max value="1"/>
       </base>
@@ -967,6 +1536,41 @@ Intent was added in STU3 and is provided as an extension with required binding.<
           <reference value="http://hl7.org/fhir/ValueSet/medication-admin-category"/>
         </valueSetReference>
       </binding>
+    </element>
+    <element id="shr-core-MedicationRequest-model.requester[x]">
+      <path value="shr-core-MedicationRequest-model.requester[x]"/>
+      <short value="The person or organization originating this referral"/>
+      <definition value="The person or organization originating this referral"/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.requester[x]"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
     </element>
     <element id="shr-core-MedicationRequest-model.requestIntent">
       <path value="shr-core-MedicationRequest-model.requestIntent"/>
@@ -992,23 +1596,25 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         </valueSetReference>
       </binding>
     </element>
-    <element id="shr-core-MedicationRequest-model.expectedPerformanceTime">
-      <path value="shr-core-MedicationRequest-model.expectedPerformanceTime"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1948053"/>
-      </code>
+    <element id="shr-core-MedicationRequest-model.expectedPerformanceTime[x]">
+      <path value="shr-core-MedicationRequest-model.expectedPerformanceTime[x]"/>
       <short value="When an action should be done. If the action is a series or recurs (e.g. daily blood sugar testing in the morning) then a Timing can be used to describe the periodicity."/>
       <definition value="When an action should be done. If the action is a series or recurs (e.g. daily blood sugar testing in the morning) then a Timing can be used to describe the periodicity."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.expectedPerformanceTime"/>
+        <path value="shr-core-MedicationRequest-model.expectedPerformanceTime[x]"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"/>
+        <code value="dateTime"/>
+      </type>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"/>
+      </type>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Timing-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1019,11 +1625,11 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       <short value="What type of party should carry out the testing."/>
       <definition value="What type of party should carry out the testing."/>
       <min value="0"/>
-      <max value="0"/>
+      <max value="1"/>
       <base>
         <path value="shr-core-MedicationRequest-model.expectedPerformerType"/>
         <min value="0"/>
-        <max value="0"/>
+        <max value="1"/>
       </base>
       <type>
         <code value="Coding"/>
@@ -1032,24 +1638,36 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-MedicationRequest-model.recipient">
-      <path value="shr-core-MedicationRequest-model.recipient"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1561598"/>
-      </code>
+    <element id="shr-core-MedicationRequest-model.expectedPerformer[x]">
+      <path value="shr-core-MedicationRequest-model.expectedPerformer[x]"/>
       <short value="Who this request is being addressed to."/>
       <definition value="Who this request is being addressed to."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.recipient"/>
+        <path value="shr-core-MedicationRequest-model.expectedPerformer[x]"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1057,10 +1675,6 @@ Intent was added in STU3 and is provided as an extension with required binding.<
     </element>
     <element id="shr-core-MedicationRequest-model.priorityCode[x]">
       <path value="shr-core-MedicationRequest-model.priorityCode[x]"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0549179"/>
-      </code>
       <slicing>
         <discriminator>
           <type value="type"/>
@@ -1125,25 +1739,93 @@ Intent was added in STU3 and is provided as an extension with required binding.<
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-MedicationRequest-model.communicationMethod">
-      <path value="shr-core-MedicationRequest-model.communicationMethod"/>
-      <short value="This is the method the provider used to communicate. Examples include: Written, Telephoned, Verbal, Electronically Entered, Policy, Service Correction, Duplicate, etc. &#39;Code indicating the origin of the prescription.&#39; - NCPDP Telecommunication (Field 419-DJ, Data Dictionary 201104). Possible values include: Written; Telephone; Electronic; Facsimile; Pharmacy; Not Known."/>
-      <definition value="This is the method the provider used to communicate. Examples include: Written, Telephoned, Verbal, Electronically Entered, Policy, Service Correction, Duplicate, etc. &#39;Code indicating the origin of the prescription.&#39; - NCPDP Telecommunication (Field 419-DJ, Data Dictionary 201104). Possible values include: Written; Telephone; Electronic; Facsimile; Pharmacy; Not Known."/>
+    <element id="shr-core-MedicationRequest-model.doNotPerform">
+      <path value="shr-core-MedicationRequest-model.doNotPerform"/>
+      <short value="A flag, when set to true, indicates that the service/procedure should NOT be performed."/>
+      <definition value="A flag, when set to true, indicates that the service/procedure should NOT be performed."/>
       <min value="0"/>
-      <max value="0"/>
+      <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.communicationMethod"/>
+        <path value="shr-core-MedicationRequest-model.doNotPerform"/>
         <min value="0"/>
-        <max value="0"/>
+        <max value="1"/>
       </base>
       <type>
-        <code value="Coding"/>
+        <code value="boolean"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.reported">
+      <path value="shr-core-MedicationRequest-model.reported"/>
+      <short value="Indicates if this record was captured as a secondary &#39;reported&#39; record rather than as an original primary source-of-truth record. It may also indicate the source of the report."/>
+      <definition value="Indicates if this record was captured as a secondary &#39;reported&#39; record rather than as an original primary source-of-truth record. It may also indicate the source of the report."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.reported"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="BackboneElement"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.reported.value[x]">
+      <path value="shr-core-MedicationRequest-model.reported.value[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="Boolean or InformationSource representing indicates if this record was captured as a secondary &#39;reported&#39; record rather than as an original primary source-of-truth record. It may also indicate the source of the report."/>
+      <definition value="Boolean or InformationSource representing indicates if this record was captured as a secondary &#39;reported&#39; record rather than as an original primary source-of-truth record. It may also indicate the source of the report."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.reported.value[x]"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="boolean"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-InformationSource-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.reported.medicationInformationSource:informationSource">
+      <path value="shr-core-MedicationRequest-model.reported.medicationInformationSource"/>
+      <sliceName value="informationSource"/>
+      <short value="The informant for this medication statement."/>
+      <definition value="The informant for this medication statement."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.reported.medicationInformationSource"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationInformationSource-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1173,7 +1855,7 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Medication-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Medication-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1198,153 +1880,80 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       <isModifier value="false"/>
       <isSummary value="false"/>
       <binding>
-        <strength value="required"/>
+        <strength value="extensible"/>
         <valueSetReference>
           <reference value="http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes"/>
         </valueSetReference>
       </binding>
     </element>
-    <element id="shr-core-MedicationRequest-model.dosage">
-      <path value="shr-core-MedicationRequest-model.dosage"/>
+    <element id="shr-core-MedicationRequest-model.supportingInformation">
+      <path value="shr-core-MedicationRequest-model.supportingInformation"/>
+      <short value="Additional information to support this request."/>
+      <definition value="Additional information to support this request."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.supportingInformation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.author">
+      <path value="shr-core-MedicationRequest-model.author"/>
       <code>
         <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0178602"/>
+        <code value="C2220264"/>
       </code>
-      <short value="The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported."/>
-      <definition value="The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported."/>
+      <short value="The actor who created the item and it responsible for the content (regardless of the information source or who recorded it). If only the author is given, it is assumed the author is the information source and the recorder."/>
+      <definition value="The actor who created the item and it responsible for the content (regardless of the information source or who recorded it). If only the author is given, it is assumed the author is the information source and the recorder."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.dosage"/>
+        <path value="shr-core-MedicationRequest-model.author"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Dosage-model"/>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-MedicationRequest-model.medicationRequester[x]">
-      <path value="shr-core-MedicationRequest-model.medicationRequester[x]"/>
-      <short value="The individual, organization or device that initiated the request and has responsibility for its activation."/>
-      <definition value="The individual, organization or device that initiated the request and has responsibility for its activation."/>
-      <min value="1"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-MedicationRequest-model.medicationRequester[x]"/>
-        <min value="1"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-MedicationRequest-model.numberOfRefillsAllowed">
-      <path value="shr-core-MedicationRequest-model.numberOfRefillsAllowed"/>
-      <short value="The maximum number of times the dispense can be repeated. For medication dispense, this integer does NOT include the original order dispense. This means that if an order indicates dispense 30 tablets plus 3 repeats, then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets."/>
-      <definition value="The maximum number of times the dispense can be repeated. For medication dispense, this integer does NOT include the original order dispense. This means that if an order indicates dispense 30 tablets plus 3 repeats, then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets."/>
+    <element id="shr-core-MedicationRequest-model.groupIdentifier">
+      <path value="shr-core-MedicationRequest-model.groupIdentifier"/>
+      <short value="A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier."/>
+      <definition value="A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.numberOfRefillsAllowed"/>
+        <path value="shr-core-MedicationRequest-model.groupIdentifier"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
-        <code value="positiveInt"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-MedicationRequest-model.quantityPerDispense">
-      <path value="shr-core-MedicationRequest-model.quantityPerDispense"/>
-      <short value="The amount that is to be dispensed for one fill."/>
-      <definition value="The amount that is to be dispensed for one fill."/>
+    <element id="shr-core-MedicationRequest-model.courseOfTherapyType">
+      <path value="shr-core-MedicationRequest-model.courseOfTherapyType"/>
+      <short value="The description of the overall pattern of the administration of the medication to the patient."/>
+      <definition value="The description of the overall pattern of the administration of the medication to the patient."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-MedicationRequest-model.quantityPerDispense"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SimpleQuantity-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-MedicationRequest-model.supplyDuration">
-      <path value="shr-core-MedicationRequest-model.supplyDuration"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0449238"/>
-      </code>
-      <short value="Identifies the period time over which the supplied product is expected to be used, or the length of time the dispense is expected to last."/>
-      <definition value="Identifies the period time over which the supplied product is expected to be used, or the length of time the dispense is expected to last."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-MedicationRequest-model.supplyDuration"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Duration-model"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-MedicationRequest-model.substitutionAllowed">
-      <path value="shr-core-MedicationRequest-model.substitutionAllowed"/>
-      <short value="Whether substitution is allowed or not."/>
-      <definition value="Whether substitution is allowed or not."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-MedicationRequest-model.substitutionAllowed"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="boolean"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-MedicationRequest-model.substitutionReason">
-      <path value="shr-core-MedicationRequest-model.substitutionReason"/>
-      <short value="Why should (not) substitution be made."/>
-      <definition value="Why should (not) substitution be made."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-MedicationRequest-model.substitutionReason"/>
+        <path value="shr-core-MedicationRequest-model.courseOfTherapyType"/>
         <min value="0"/>
         <max value="1"/>
       </base>
@@ -1354,12 +1963,103 @@ Intent was added in STU3 and is provided as an extension with required binding.<
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
-      <binding>
-        <strength value="required"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/v3-SubstanceAdminSubstitutionReason"/>
-        </valueSetReference>
-      </binding>
+    </element>
+    <element id="shr-core-MedicationRequest-model.insurance">
+      <path value="shr-core-MedicationRequest-model.insurance"/>
+      <code>
+        <system value="http://ncimeta.nci.nih.gov"/>
+        <code value="C0021682"/>
+        <display value="HealthInsurance"/>
+      </code>
+      <short value="Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service."/>
+      <definition value="Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.insurance"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Coverage-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.dosage">
+      <path value="shr-core-MedicationRequest-model.dosage"/>
+      <short value="The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported."/>
+      <definition value="The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.dosage"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Dosage-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.dispenseRequest">
+      <path value="shr-core-MedicationRequest-model.dispenseRequest"/>
+      <short value="Indicates the specific details for the dispense or medication supply part of a medication request (also known as a Medication Prescription or Medication Order). Note that this information is not always sent with the order. There may be in some settings (e.g. hospitals) institutional or system support for completing the dispense details in the pharmacy department."/>
+      <definition value="Indicates the specific details for the dispense or medication supply part of a medication request (also known as a Medication Prescription or Medication Order). Note that this information is not always sent with the order. There may be in some settings (e.g. hospitals) institutional or system support for completing the dispense details in the pharmacy department."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.dispenseRequest"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DispenseRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.substitution">
+      <path value="shr-core-MedicationRequest-model.substitution"/>
+      <short value="Indicates whether or not substitution can or should be part of the dispense. In some cases, substitution must happen, in other cases substitution must not happen. This block explains the prescriber&#39;s intent. If nothing is specified substitution may be done."/>
+      <definition value="Indicates whether or not substitution can or should be part of the dispense. In some cases, substitution must happen, in other cases substitution must not happen. This block explains the prescriber&#39;s intent. If nothing is specified substitution may be done."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.substitution"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Substitution-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-MedicationRequest-model.replaces">
+      <path value="shr-core-MedicationRequest-model.replaces"/>
+      <short value="Request(s) replaced by this request"/>
+      <definition value="Request(s) replaced by this request"/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-MedicationRequest-model.replaces"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
     </element>
   </differential>
 </StructureDefinition>

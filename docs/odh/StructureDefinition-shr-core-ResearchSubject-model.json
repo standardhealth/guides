@@ -5,7 +5,7 @@
     "status": "generated",
     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>ResearchSubject Logical Model</b></p>\n  <p>Record of a subject's enrollment and participation in a research study.</p>\n</div>"
   },
-  "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ResearchSubject-model",
+  "url": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ResearchSubject-model",
   "identifier": [
     {
       "system": "http://hl7.org/fhir/us/odh",
@@ -16,7 +16,7 @@
   "name": "ResearchSubject",
   "title": "shr-core-ResearchSubject",
   "status": "draft",
-  "date": "2019-04-08T00:00:00-04:00",
+  "date": "2019-05-08T00:00:00-04:00",
   "publisher": "HL7",
   "contact": [
     {
@@ -65,7 +65,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"
           }
         ],
         "mustSupport": false,
@@ -75,12 +75,6 @@
       {
         "id": "shr-core-ResearchSubject-model.language",
         "path": "shr-core-ResearchSubject-model.language",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0023008"
-          }
-        ],
         "short": "A human language, spoken or written.",
         "definition": "A human language, spoken or written.",
         "min": 0,
@@ -134,7 +128,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"
           }
         ],
         "mustSupport": false,
@@ -182,7 +176,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"
           }
         ],
         "mustSupport": false,
@@ -190,27 +184,20 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-ResearchSubject-model.patient",
-        "path": "shr-core-ResearchSubject-model.patient",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C1299487"
-          }
-        ],
-        "short": "A person in the role of a patient. Sometimes, the patient is not the subject of information in a clinical statement where the Patient is the SubjectOfRecord.",
-        "definition": "A person in the role of a patient. Sometimes, the patient is not the subject of information in a clinical statement where the Patient is the SubjectOfRecord.\n\nSHR follows Argonaut and makes the value set binding on marital status required. SHR also adds optional extensions on communication ability to more fully characterize language skills.\nMaritalStatus has a required binding in Argonaut, but an extensible binding in US-Core. To be feasible under both DSTU2 Argonaut and STU3 US-Core, the required binding strength is adopted.",
+        "id": "shr-core-ResearchSubject-model.participationPeriod",
+        "path": "shr-core-ResearchSubject-model.participationPeriod",
+        "short": "The point in time or span of time the participant is involved.",
+        "definition": "The point in time or span of time the participant is involved.",
         "min": 1,
         "max": "1",
         "base": {
-          "path": "shr-core-ResearchSubject-model.patient",
+          "path": "shr-core-ResearchSubject-model.participationPeriod",
           "min": 1,
           "max": "1"
         },
         "type": [
           {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"
           }
         ],
         "mustSupport": false,
@@ -232,7 +219,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ResearchStudy-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ResearchStudy-model"
           }
         ],
         "mustSupport": false,
@@ -240,26 +227,69 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-ResearchSubject-model.participationPeriod",
-        "path": "shr-core-ResearchSubject-model.participationPeriod",
+        "id": "shr-core-ResearchSubject-model.patient",
+        "path": "shr-core-ResearchSubject-model.patient",
         "code": [
           {
             "system": "http://ncimeta.nci.nih.gov",
-            "code": "C1948053"
+            "code": "C1299487"
           }
         ],
-        "short": "The point in time or span of time the participant is involved.",
-        "definition": "The point in time or span of time the participant is involved.",
+        "short": "A person in the role of a patient. Sometimes, the patient is not the subject of information in a clinical statement where the Patient is the SubjectOfRecord.",
+        "definition": "A person in the role of a patient. Sometimes, the patient is not the subject of information in a clinical statement where the Patient is the SubjectOfRecord.\n\nSHR follows Argonaut and makes the value set binding on marital status required. MaritalStatus has a required binding in Argonaut, but an extensible binding in US-Core. To be feasible under both DSTU2 Argonaut and STU3 US-Core, the required binding strength is adopted.",
         "min": 1,
         "max": "1",
         "base": {
-          "path": "shr-core-ResearchSubject-model.participationPeriod",
+          "path": "shr-core-ResearchSubject-model.patient",
           "min": 1,
           "max": "1"
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-ResearchSubject-model.assignedArm",
+        "path": "shr-core-ResearchSubject-model.assignedArm",
+        "short": "The name of the arm in the study the subject is expected to follow as part of this study.",
+        "definition": "The name of the arm in the study the subject is expected to follow as part of this study.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-ResearchSubject-model.assignedArm",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-ResearchSubject-model.actualArm",
+        "path": "shr-core-ResearchSubject-model.actualArm",
+        "short": "The name of the arm in the study the subject actually followed as part of this study.",
+        "definition": "The name of the arm in the study the subject actually followed as part of this study.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-ResearchSubject-model.actualArm",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
           }
         ],
         "mustSupport": false,
@@ -289,7 +319,7 @@
         "binding": {
           "strength": "required",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/odh/shr/core/vs/ResearchSubjectTerminationReasonVS"
+            "reference": "http://hl7.org/fhir/us/odh/ValueSet/shr-core-ResearchSubjectTerminationReasonVS"
           }
         }
       }
@@ -326,7 +356,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"
           }
         ],
         "mustSupport": false,
@@ -336,12 +366,6 @@
       {
         "id": "shr-core-ResearchSubject-model.language",
         "path": "shr-core-ResearchSubject-model.language",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0023008"
-          }
-        ],
         "short": "A human language, spoken or written.",
         "definition": "A human language, spoken or written.",
         "min": 0,
@@ -395,7 +419,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"
           }
         ],
         "mustSupport": false,
@@ -443,7 +467,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"
           }
         ],
         "mustSupport": false,
@@ -451,27 +475,20 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-ResearchSubject-model.patient",
-        "path": "shr-core-ResearchSubject-model.patient",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C1299487"
-          }
-        ],
-        "short": "A person in the role of a patient. Sometimes, the patient is not the subject of information in a clinical statement where the Patient is the SubjectOfRecord.",
-        "definition": "A person in the role of a patient. Sometimes, the patient is not the subject of information in a clinical statement where the Patient is the SubjectOfRecord.\n\nSHR follows Argonaut and makes the value set binding on marital status required. SHR also adds optional extensions on communication ability to more fully characterize language skills.\nMaritalStatus has a required binding in Argonaut, but an extensible binding in US-Core. To be feasible under both DSTU2 Argonaut and STU3 US-Core, the required binding strength is adopted.",
+        "id": "shr-core-ResearchSubject-model.participationPeriod",
+        "path": "shr-core-ResearchSubject-model.participationPeriod",
+        "short": "The point in time or span of time the participant is involved.",
+        "definition": "The point in time or span of time the participant is involved.",
         "min": 1,
         "max": "1",
         "base": {
-          "path": "shr-core-ResearchSubject-model.patient",
+          "path": "shr-core-ResearchSubject-model.participationPeriod",
           "min": 1,
           "max": "1"
         },
         "type": [
           {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"
           }
         ],
         "mustSupport": false,
@@ -493,7 +510,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ResearchStudy-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ResearchStudy-model"
           }
         ],
         "mustSupport": false,
@@ -501,26 +518,69 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-ResearchSubject-model.participationPeriod",
-        "path": "shr-core-ResearchSubject-model.participationPeriod",
+        "id": "shr-core-ResearchSubject-model.patient",
+        "path": "shr-core-ResearchSubject-model.patient",
         "code": [
           {
             "system": "http://ncimeta.nci.nih.gov",
-            "code": "C1948053"
+            "code": "C1299487"
           }
         ],
-        "short": "The point in time or span of time the participant is involved.",
-        "definition": "The point in time or span of time the participant is involved.",
+        "short": "A person in the role of a patient. Sometimes, the patient is not the subject of information in a clinical statement where the Patient is the SubjectOfRecord.",
+        "definition": "A person in the role of a patient. Sometimes, the patient is not the subject of information in a clinical statement where the Patient is the SubjectOfRecord.\n\nSHR follows Argonaut and makes the value set binding on marital status required. MaritalStatus has a required binding in Argonaut, but an extensible binding in US-Core. To be feasible under both DSTU2 Argonaut and STU3 US-Core, the required binding strength is adopted.",
         "min": 1,
         "max": "1",
         "base": {
-          "path": "shr-core-ResearchSubject-model.participationPeriod",
+          "path": "shr-core-ResearchSubject-model.patient",
           "min": 1,
           "max": "1"
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-ResearchSubject-model.assignedArm",
+        "path": "shr-core-ResearchSubject-model.assignedArm",
+        "short": "The name of the arm in the study the subject is expected to follow as part of this study.",
+        "definition": "The name of the arm in the study the subject is expected to follow as part of this study.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-ResearchSubject-model.assignedArm",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-ResearchSubject-model.actualArm",
+        "path": "shr-core-ResearchSubject-model.actualArm",
+        "short": "The name of the arm in the study the subject actually followed as part of this study.",
+        "definition": "The name of the arm in the study the subject actually followed as part of this study.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-ResearchSubject-model.actualArm",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
           }
         ],
         "mustSupport": false,
@@ -550,7 +610,7 @@
         "binding": {
           "strength": "required",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/odh/shr/core/vs/ResearchSubjectTerminationReasonVS"
+            "reference": "http://hl7.org/fhir/us/odh/ValueSet/shr-core-ResearchSubjectTerminationReasonVS"
           }
         }
       }
