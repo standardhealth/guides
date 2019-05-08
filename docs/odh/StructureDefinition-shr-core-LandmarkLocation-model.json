@@ -3,9 +3,9 @@
   "id": "shr-core-LandmarkLocation-model",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>LandmarkLocation Logical Model</b></p>\n  <p>The body location of the landmark.</p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>LandmarkLocation Logical Model</b></p>\n  <p>The body location of the landmark, specified by a location code and optional laterality and orientation.</p>\n</div>"
   },
-  "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LandmarkLocation-model",
+  "url": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-LandmarkLocation-model",
   "identifier": [
     {
       "system": "http://hl7.org/fhir/us/odh",
@@ -16,7 +16,7 @@
   "name": "LandmarkLocation",
   "title": "shr-core-LandmarkLocation",
   "status": "draft",
-  "date": "2019-04-08T00:00:00-04:00",
+  "date": "2019-05-08T00:00:00-04:00",
   "publisher": "HL7",
   "contact": [
     {
@@ -28,7 +28,7 @@
       ]
     }
   ],
-  "description": "The body location of the landmark.",
+  "description": "The body location of the landmark, specified by a location code and optional laterality and orientation.",
   "kind": "logical",
   "abstract": false,
   "type": "shr-core-LandmarkLocation-model",
@@ -39,7 +39,7 @@
       {
         "id": "shr-core-LandmarkLocation-model",
         "path": "shr-core-LandmarkLocation-model",
-        "definition": "The body location of the landmark.",
+        "definition": "The body location of the landmark, specified by a location code and optional laterality and orientation.",
         "min": 0,
         "max": "*",
         "base": {
@@ -52,14 +52,14 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-LandmarkLocation-model.locationCode",
-        "path": "shr-core-LandmarkLocation-model.locationCode",
-        "short": "Code for the body location, optionally pre-coordinating laterality or direction.",
-        "definition": "Code for the body location, optionally pre-coordinating laterality or direction.",
+        "id": "shr-core-LandmarkLocation-model.code",
+        "path": "shr-core-LandmarkLocation-model.code",
+        "short": "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary.",
+        "definition": "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-LandmarkLocation-model.locationCode",
+          "path": "shr-core-LandmarkLocation-model.code",
           "min": 0,
           "max": "1"
         },
@@ -70,19 +70,13 @@
         ],
         "mustSupport": false,
         "isModifier": false,
-        "isSummary": false,
-        "binding": {
-          "strength": "preferred",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/odh/shr/core/vs/BodyLocationVS"
-          }
-        }
+        "isSummary": false
       },
       {
         "id": "shr-core-LandmarkLocation-model.laterality",
         "path": "shr-core-LandmarkLocation-model.laterality",
         "short": "Body side of the body location, if needed to distinguish from a similar location on the other side of the body.",
-        "definition": "Body side of the body location, if needed to distinguish from a similar location on the other side of the body.",
+        "definition": "Body side of the body location, if needed to distinguish from a similar location on the other side of the body.\n\nThe laterality element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
         "min": 0,
         "max": "1",
         "base": {
@@ -101,7 +95,7 @@
         "binding": {
           "strength": "extensible",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/odh/shr/core/vs/LateralityVS"
+            "reference": "http://hl7.org/fhir/us/odh/ValueSet/shr-core-LateralityVS"
           }
         }
       },
@@ -109,7 +103,7 @@
         "id": "shr-core-LandmarkLocation-model.orientation",
         "path": "shr-core-LandmarkLocation-model.orientation",
         "short": "Orientation of the body location, if needed to distinguish from a similar location in another orientation.",
-        "definition": "Orientation of the body location, if needed to distinguish from a similar location in another orientation.",
+        "definition": "Orientation of the body location, if needed to distinguish from a similar location in another orientation.\nThe orientation element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
         "min": 0,
         "max": "1",
         "base": {
@@ -128,7 +122,7 @@
         "binding": {
           "strength": "extensible",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/odh/shr/core/vs/OrientationVS"
+            "reference": "http://hl7.org/fhir/us/odh/ValueSet/shr-core-OrientationVS"
           }
         }
       }
@@ -139,7 +133,7 @@
       {
         "id": "shr-core-LandmarkLocation-model",
         "path": "shr-core-LandmarkLocation-model",
-        "definition": "The body location of the landmark.",
+        "definition": "The body location of the landmark, specified by a location code and optional laterality and orientation.",
         "min": 0,
         "max": "*",
         "base": {
@@ -152,14 +146,14 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-LandmarkLocation-model.locationCode",
-        "path": "shr-core-LandmarkLocation-model.locationCode",
-        "short": "Code for the body location, optionally pre-coordinating laterality or direction.",
-        "definition": "Code for the body location, optionally pre-coordinating laterality or direction.",
+        "id": "shr-core-LandmarkLocation-model.code",
+        "path": "shr-core-LandmarkLocation-model.code",
+        "short": "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary.",
+        "definition": "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-LandmarkLocation-model.locationCode",
+          "path": "shr-core-LandmarkLocation-model.code",
           "min": 0,
           "max": "1"
         },
@@ -170,19 +164,13 @@
         ],
         "mustSupport": false,
         "isModifier": false,
-        "isSummary": false,
-        "binding": {
-          "strength": "preferred",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/odh/shr/core/vs/BodyLocationVS"
-          }
-        }
+        "isSummary": false
       },
       {
         "id": "shr-core-LandmarkLocation-model.laterality",
         "path": "shr-core-LandmarkLocation-model.laterality",
         "short": "Body side of the body location, if needed to distinguish from a similar location on the other side of the body.",
-        "definition": "Body side of the body location, if needed to distinguish from a similar location on the other side of the body.",
+        "definition": "Body side of the body location, if needed to distinguish from a similar location on the other side of the body.\n\nThe laterality element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
         "min": 0,
         "max": "1",
         "base": {
@@ -201,7 +189,7 @@
         "binding": {
           "strength": "extensible",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/odh/shr/core/vs/LateralityVS"
+            "reference": "http://hl7.org/fhir/us/odh/ValueSet/shr-core-LateralityVS"
           }
         }
       },
@@ -209,7 +197,7 @@
         "id": "shr-core-LandmarkLocation-model.orientation",
         "path": "shr-core-LandmarkLocation-model.orientation",
         "short": "Orientation of the body location, if needed to distinguish from a similar location in another orientation.",
-        "definition": "Orientation of the body location, if needed to distinguish from a similar location in another orientation.",
+        "definition": "Orientation of the body location, if needed to distinguish from a similar location in another orientation.\nThe orientation element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
         "min": 0,
         "max": "1",
         "base": {
@@ -228,7 +216,7 @@
         "binding": {
           "strength": "extensible",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/odh/shr/core/vs/OrientationVS"
+            "reference": "http://hl7.org/fhir/us/odh/ValueSet/shr-core-OrientationVS"
           }
         }
       }

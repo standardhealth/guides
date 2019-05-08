@@ -8,7 +8,7 @@
   <p>The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported.</p>
 </div>
   </text>
-  <url value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Dosage-model"/>
+  <url value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Dosage-model"/>
   <identifier>
     <system value="http://hl7.org/fhir/us/odh"/>
     <value value="shr.core.Dosage"/>
@@ -17,7 +17,7 @@
   <name value="Dosage"/>
   <title value="shr-core-Dosage"/>
   <status value="draft"/>
-  <date value="2019-04-08T00:00:00-04:00"/>
+  <date value="2019-05-08T00:00:00-04:00"/>
   <publisher value="HL7"/>
   <contact>
     <telecom>
@@ -26,10 +26,6 @@
     </telecom>
   </contact>
   <description value="The dosage of the medication. The data structure is flexible and can describe a dosage prescribed, administered, or reported."/>
-  <keyword>
-    <system value="http://ncimeta.nci.nih.gov"/>
-    <code value="C0178602"/>
-  </keyword>
   <kind value="logical"/>
   <abstract value="false"/>
   <type value="shr-core-Dosage-model"/>
@@ -50,65 +46,110 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-Dosage-model.doseAmount[x]">
-      <path value="shr-core-Dosage-model.doseAmount[x]"/>
-      <short value="The amount of medication taken per dose, as a quantity or range. Relative dose (e.g., per kg body weight or surface area) are indicated by specifying appropriate units (e.g., mg/kg or mg/m2 etc)."/>
-      <definition value="The amount of medication taken per dose, as a quantity or range. Relative dose (e.g., per kg body weight or surface area) are indicated by specifying appropriate units (e.g., mg/kg or mg/m2 etc)."/>
+    <element id="shr-core-Dosage-model.doseSequenceNumber">
+      <path value="shr-core-Dosage-model.doseSequenceNumber"/>
+      <short value="Dose number within series."/>
+      <definition value="Dose number within series."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-Dosage-model.doseAmount[x]"/>
+        <path value="shr-core-Dosage-model.doseSequenceNumber"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SimpleQuantity-model"/>
-      </type>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Range-model"/>
+        <code value="integer"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-Dosage-model.timingOfDoses">
-      <path value="shr-core-Dosage-model.timingOfDoses"/>
-      <short value="When doses of medication should be administered."/>
-      <definition value="When doses of medication should be administered."/>
+    <element id="shr-core-Dosage-model.instructionText">
+      <path value="shr-core-Dosage-model.instructionText"/>
+      <short value="The directions (signetur) on the drug prescription or dispensing record."/>
+      <definition value="The directions (signetur) on the drug prescription or dispensing record."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-Dosage-model.timingOfDoses"/>
+        <path value="shr-core-Dosage-model.instructionText"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Timing-model"/>
+        <code value="string"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-Dosage-model.asNeededIndicator[x]">
-      <path value="shr-core-Dosage-model.asNeededIndicator[x]"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1883728"/>
-      </code>
-      <slicing>
-        <discriminator>
-          <type value="type"/>
-          <path value="$this"/>
-        </discriminator>
-        <ordered value="false"/>
-        <rules value="open"/>
-      </slicing>
-      <short value="Indicates the pre-condition under which the drug or intervention should be used."/>
-      <definition value="Indicates the pre-condition under which the drug or intervention should be used."/>
+    <element id="shr-core-Dosage-model.instructionCode">
+      <path value="shr-core-Dosage-model.instructionCode"/>
+      <short value="Coded instructions, e.g., &#39;with meals&#39;."/>
+      <definition value="Coded instructions, e.g., &#39;with meals&#39;."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Dosage-model.instructionCode"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="example"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/additional-instruction-codes"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="shr-core-Dosage-model.patientInstruction">
+      <path value="shr-core-Dosage-model.patientInstruction"/>
+      <short value="Patient or consumer-oriented instructions."/>
+      <definition value="Patient or consumer-oriented instructions."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-Dosage-model.asNeededIndicator[x]"/>
+        <path value="shr-core-Dosage-model.patientInstruction"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="string"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Dosage-model.timing">
+      <path value="shr-core-Dosage-model.timing"/>
+      <short value="A timing schedule that specifies an event that may occur multiple times."/>
+      <definition value="A timing schedule that specifies an event that may occur multiple times.&#xA;Timing offers a choice of multiple OccurrenceTime (used is used to specify specific times), or recurrence patterns."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Dosage-model.timing"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Timing-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Dosage-model.asNeeded[x]">
+      <path value="shr-core-Dosage-model.asNeeded[x]"/>
+      <short value="Preconditions for service, either &#39;true&#39; indicating to be performed if needed, or a code indicating the pre-condition for performing the service. For example &#39;pain&#39;, &#39;on flare-up&#39;, etc."/>
+      <definition value="Preconditions for service, either &#39;true&#39; indicating to be performed if needed, or a code indicating the pre-condition for performing the service. For example &#39;pain&#39;, &#39;on flare-up&#39;, etc."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Dosage-model.asNeeded[x]"/>
         <min value="0"/>
         <max value="1"/>
       </base>
@@ -122,15 +163,14 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-Dosage-model.asNeededIndicatorCoding:CodeableConcept">
-      <path value="shr-core-Dosage-model.asNeededIndicatorCoding"/>
-      <sliceName value="CodeableConcept"/>
-      <short value="A set of codes drawn from different coding systems, representing the same concept."/>
-      <definition value="A set of codes drawn from different coding systems, representing the same concept."/>
-      <min value="1"/>
+    <element id="shr-core-Dosage-model.administrationSite">
+      <path value="shr-core-Dosage-model.administrationSite"/>
+      <short value="The anatomic site at which the medication applied."/>
+      <definition value="The anatomic site at which the medication applied."/>
+      <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-Dosage-model.asNeededIndicator[x]"/>
+        <path value="shr-core-Dosage-model.administrationSite"/>
         <min value="0"/>
         <max value="1"/>
       </base>
@@ -143,53 +183,7 @@
       <binding>
         <strength value="example"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/medication-as-needed-reason"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="shr-core-Dosage-model.dosageInstructionsText">
-      <path value="shr-core-Dosage-model.dosageInstructionsText"/>
-      <short value="The directions (signetur) on the drug prescription or dispensing record."/>
-      <definition value="The directions (signetur) on the drug prescription or dispensing record."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Dosage-model.dosageInstructionsText"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="string"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-Dosage-model.additionalDosageInstruction">
-      <path value="shr-core-Dosage-model.additionalDosageInstruction"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1644714"/>
-      </code>
-      <short value="Supplemental instructions - e.g. &#39;with meals&#39;."/>
-      <definition value="Supplemental instructions - e.g. &#39;with meals&#39;."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="shr-core-Dosage-model.additionalDosageInstruction"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <binding>
-        <strength value="required"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/additional-instruction-codes"/>
+          <reference value="http://hl7.org/fhir/us/odh/ValueSet/shr-core-BodyLocationVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -221,46 +215,14 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="shr-core-Dosage-model.dosageMethod">
-      <path value="shr-core-Dosage-model.dosageMethod"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1547585"/>
-      </code>
-      <short value="Technique for administering medication."/>
-      <definition value="Technique for administering medication."/>
+    <element id="shr-core-Dosage-model.method">
+      <path value="shr-core-Dosage-model.method"/>
+      <short value="The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle."/>
+      <definition value="The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-Dosage-model.dosageMethod"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <binding>
-        <strength value="required"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/administration-method-codes"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="shr-core-Dosage-model.dosageBodyLocation">
-      <path value="shr-core-Dosage-model.dosageBodyLocation"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0229986"/>
-      </code>
-      <short value="The anatomic site at which medical intervention is applied."/>
-      <definition value="The anatomic site at which medical intervention is applied."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Dosage-model.dosageBodyLocation"/>
+        <path value="shr-core-Dosage-model.method"/>
         <min value="0"/>
         <max value="1"/>
       </base>
@@ -273,27 +235,77 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/odh/shr/core/vs/BodyLocationVS"/>
+          <reference value="http://hl7.org/fhir/ValueSet/administration-method-codes"/>
         </valueSetReference>
       </binding>
     </element>
-    <element id="shr-core-Dosage-model.maximumDosePerTimePeriod">
-      <path value="shr-core-Dosage-model.maximumDosePerTimePeriod"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0456603"/>
-      </code>
+    <element id="shr-core-Dosage-model.doseAndRate">
+      <path value="shr-core-Dosage-model.doseAndRate"/>
+      <short value="The amount of medication administered."/>
+      <definition value="The amount of medication administered."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Dosage-model.doseAndRate"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DoseAndRate-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Dosage-model.maxDosePerPeriod">
+      <path value="shr-core-Dosage-model.maxDosePerPeriod"/>
       <short value="The maximum amount of a medication to be taken in a given period of time (e.g., no more than x in any 24-hour period)"/>
       <definition value="The maximum amount of a medication to be taken in a given period of time (e.g., no more than x in any 24-hour period)"/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-Dosage-model.maximumDosePerTimePeriod"/>
+        <path value="shr-core-Dosage-model.maxDosePerPeriod"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Ratio-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Ratio-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Dosage-model.maxDosePerAdministration">
+      <path value="shr-core-Dosage-model.maxDosePerAdministration"/>
+      <short value="Upper limit on medication per administration."/>
+      <definition value="Upper limit on medication per administration."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Dosage-model.maxDosePerAdministration"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SimpleQuantity-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Dosage-model.maxDosePerLifetime">
+      <path value="shr-core-Dosage-model.maxDosePerLifetime"/>
+      <short value="Upper limit on medication per lifetime of the patient."/>
+      <definition value="Upper limit on medication per lifetime of the patient."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Dosage-model.maxDosePerLifetime"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SimpleQuantity-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -315,65 +327,110 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-Dosage-model.doseAmount[x]">
-      <path value="shr-core-Dosage-model.doseAmount[x]"/>
-      <short value="The amount of medication taken per dose, as a quantity or range. Relative dose (e.g., per kg body weight or surface area) are indicated by specifying appropriate units (e.g., mg/kg or mg/m2 etc)."/>
-      <definition value="The amount of medication taken per dose, as a quantity or range. Relative dose (e.g., per kg body weight or surface area) are indicated by specifying appropriate units (e.g., mg/kg or mg/m2 etc)."/>
+    <element id="shr-core-Dosage-model.doseSequenceNumber">
+      <path value="shr-core-Dosage-model.doseSequenceNumber"/>
+      <short value="Dose number within series."/>
+      <definition value="Dose number within series."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-Dosage-model.doseAmount[x]"/>
+        <path value="shr-core-Dosage-model.doseSequenceNumber"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SimpleQuantity-model"/>
-      </type>
-      <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Range-model"/>
+        <code value="integer"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-Dosage-model.timingOfDoses">
-      <path value="shr-core-Dosage-model.timingOfDoses"/>
-      <short value="When doses of medication should be administered."/>
-      <definition value="When doses of medication should be administered."/>
+    <element id="shr-core-Dosage-model.instructionText">
+      <path value="shr-core-Dosage-model.instructionText"/>
+      <short value="The directions (signetur) on the drug prescription or dispensing record."/>
+      <definition value="The directions (signetur) on the drug prescription or dispensing record."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-Dosage-model.timingOfDoses"/>
+        <path value="shr-core-Dosage-model.instructionText"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Timing-model"/>
+        <code value="string"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-Dosage-model.asNeededIndicator[x]">
-      <path value="shr-core-Dosage-model.asNeededIndicator[x]"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1883728"/>
-      </code>
-      <slicing>
-        <discriminator>
-          <type value="type"/>
-          <path value="$this"/>
-        </discriminator>
-        <ordered value="false"/>
-        <rules value="open"/>
-      </slicing>
-      <short value="Indicates the pre-condition under which the drug or intervention should be used."/>
-      <definition value="Indicates the pre-condition under which the drug or intervention should be used."/>
+    <element id="shr-core-Dosage-model.instructionCode">
+      <path value="shr-core-Dosage-model.instructionCode"/>
+      <short value="Coded instructions, e.g., &#39;with meals&#39;."/>
+      <definition value="Coded instructions, e.g., &#39;with meals&#39;."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Dosage-model.instructionCode"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="example"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/additional-instruction-codes"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="shr-core-Dosage-model.patientInstruction">
+      <path value="shr-core-Dosage-model.patientInstruction"/>
+      <short value="Patient or consumer-oriented instructions."/>
+      <definition value="Patient or consumer-oriented instructions."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-Dosage-model.asNeededIndicator[x]"/>
+        <path value="shr-core-Dosage-model.patientInstruction"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="string"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Dosage-model.timing">
+      <path value="shr-core-Dosage-model.timing"/>
+      <short value="A timing schedule that specifies an event that may occur multiple times."/>
+      <definition value="A timing schedule that specifies an event that may occur multiple times.&#xA;Timing offers a choice of multiple OccurrenceTime (used is used to specify specific times), or recurrence patterns."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Dosage-model.timing"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Timing-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Dosage-model.asNeeded[x]">
+      <path value="shr-core-Dosage-model.asNeeded[x]"/>
+      <short value="Preconditions for service, either &#39;true&#39; indicating to be performed if needed, or a code indicating the pre-condition for performing the service. For example &#39;pain&#39;, &#39;on flare-up&#39;, etc."/>
+      <definition value="Preconditions for service, either &#39;true&#39; indicating to be performed if needed, or a code indicating the pre-condition for performing the service. For example &#39;pain&#39;, &#39;on flare-up&#39;, etc."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Dosage-model.asNeeded[x]"/>
         <min value="0"/>
         <max value="1"/>
       </base>
@@ -387,15 +444,14 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-Dosage-model.asNeededIndicatorCoding:CodeableConcept">
-      <path value="shr-core-Dosage-model.asNeededIndicatorCoding"/>
-      <sliceName value="CodeableConcept"/>
-      <short value="A set of codes drawn from different coding systems, representing the same concept."/>
-      <definition value="A set of codes drawn from different coding systems, representing the same concept."/>
-      <min value="1"/>
+    <element id="shr-core-Dosage-model.administrationSite">
+      <path value="shr-core-Dosage-model.administrationSite"/>
+      <short value="The anatomic site at which the medication applied."/>
+      <definition value="The anatomic site at which the medication applied."/>
+      <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-Dosage-model.asNeededIndicator[x]"/>
+        <path value="shr-core-Dosage-model.administrationSite"/>
         <min value="0"/>
         <max value="1"/>
       </base>
@@ -408,53 +464,7 @@
       <binding>
         <strength value="example"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/medication-as-needed-reason"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="shr-core-Dosage-model.dosageInstructionsText">
-      <path value="shr-core-Dosage-model.dosageInstructionsText"/>
-      <short value="The directions (signetur) on the drug prescription or dispensing record."/>
-      <definition value="The directions (signetur) on the drug prescription or dispensing record."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Dosage-model.dosageInstructionsText"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="string"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="shr-core-Dosage-model.additionalDosageInstruction">
-      <path value="shr-core-Dosage-model.additionalDosageInstruction"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1644714"/>
-      </code>
-      <short value="Supplemental instructions - e.g. &#39;with meals&#39;."/>
-      <definition value="Supplemental instructions - e.g. &#39;with meals&#39;."/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="shr-core-Dosage-model.additionalDosageInstruction"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <binding>
-        <strength value="required"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/additional-instruction-codes"/>
+          <reference value="http://hl7.org/fhir/us/odh/ValueSet/shr-core-BodyLocationVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -486,46 +496,14 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="shr-core-Dosage-model.dosageMethod">
-      <path value="shr-core-Dosage-model.dosageMethod"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1547585"/>
-      </code>
-      <short value="Technique for administering medication."/>
-      <definition value="Technique for administering medication."/>
+    <element id="shr-core-Dosage-model.method">
+      <path value="shr-core-Dosage-model.method"/>
+      <short value="The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle."/>
+      <definition value="The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-Dosage-model.dosageMethod"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <binding>
-        <strength value="required"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/administration-method-codes"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="shr-core-Dosage-model.dosageBodyLocation">
-      <path value="shr-core-Dosage-model.dosageBodyLocation"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0229986"/>
-      </code>
-      <short value="The anatomic site at which medical intervention is applied."/>
-      <definition value="The anatomic site at which medical intervention is applied."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="shr-core-Dosage-model.dosageBodyLocation"/>
+        <path value="shr-core-Dosage-model.method"/>
         <min value="0"/>
         <max value="1"/>
       </base>
@@ -538,27 +516,77 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/odh/shr/core/vs/BodyLocationVS"/>
+          <reference value="http://hl7.org/fhir/ValueSet/administration-method-codes"/>
         </valueSetReference>
       </binding>
     </element>
-    <element id="shr-core-Dosage-model.maximumDosePerTimePeriod">
-      <path value="shr-core-Dosage-model.maximumDosePerTimePeriod"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0456603"/>
-      </code>
+    <element id="shr-core-Dosage-model.doseAndRate">
+      <path value="shr-core-Dosage-model.doseAndRate"/>
+      <short value="The amount of medication administered."/>
+      <definition value="The amount of medication administered."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Dosage-model.doseAndRate"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DoseAndRate-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Dosage-model.maxDosePerPeriod">
+      <path value="shr-core-Dosage-model.maxDosePerPeriod"/>
       <short value="The maximum amount of a medication to be taken in a given period of time (e.g., no more than x in any 24-hour period)"/>
       <definition value="The maximum amount of a medication to be taken in a given period of time (e.g., no more than x in any 24-hour period)"/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-Dosage-model.maximumDosePerTimePeriod"/>
+        <path value="shr-core-Dosage-model.maxDosePerPeriod"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Ratio-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Ratio-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Dosage-model.maxDosePerAdministration">
+      <path value="shr-core-Dosage-model.maxDosePerAdministration"/>
+      <short value="Upper limit on medication per administration."/>
+      <definition value="Upper limit on medication per administration."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Dosage-model.maxDosePerAdministration"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SimpleQuantity-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Dosage-model.maxDosePerLifetime">
+      <path value="shr-core-Dosage-model.maxDosePerLifetime"/>
+      <short value="Upper limit on medication per lifetime of the patient."/>
+      <definition value="Upper limit on medication per lifetime of the patient."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Dosage-model.maxDosePerLifetime"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SimpleQuantity-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>

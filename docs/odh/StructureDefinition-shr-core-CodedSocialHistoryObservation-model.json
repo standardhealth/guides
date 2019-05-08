@@ -5,7 +5,7 @@
     "status": "generated",
     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>CodedSocialHistoryObservation Logical Model</b></p>\n  <p>The result of social history questions, whose answer is expressed as a code.</p>\n</div>"
   },
-  "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CodedSocialHistoryObservation-model",
+  "url": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-CodedSocialHistoryObservation-model",
   "identifier": [
     {
       "system": "http://hl7.org/fhir/us/odh",
@@ -16,7 +16,7 @@
   "name": "CodedSocialHistoryObservation",
   "title": "shr-core-CodedSocialHistoryObservation",
   "status": "draft",
-  "date": "2019-04-08T00:00:00-04:00",
+  "date": "2019-05-08T00:00:00-04:00",
   "publisher": "HL7",
   "contact": [
     {
@@ -65,7 +65,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"
           }
         ],
         "mustSupport": false,
@@ -75,12 +75,6 @@
       {
         "id": "shr-core-CodedSocialHistoryObservation-model.language",
         "path": "shr-core-CodedSocialHistoryObservation-model.language",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0023008"
-          }
-        ],
         "short": "A human language, spoken or written.",
         "definition": "A human language, spoken or written.",
         "min": 0,
@@ -134,7 +128,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"
           }
         ],
         "mustSupport": false,
@@ -182,7 +176,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"
           }
         ],
         "mustSupport": false,
@@ -190,27 +184,27 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-CodedSocialHistoryObservation-model.patientSubjectOfRecord",
-        "path": "shr-core-CodedSocialHistoryObservation-model.patientSubjectOfRecord",
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationSubjectOfRecord",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationSubjectOfRecord",
         "code": [
           {
             "system": "http://ncimeta.nci.nih.gov",
             "code": "C1299487"
           }
         ],
-        "short": "The SubjectOfRecord when restricted to being a Patient resource.",
-        "definition": "The SubjectOfRecord when restricted to being a Patient resource.",
+        "short": "A choice of Patient, Group, Device, or Location. These are the potential subjects for an Observation.",
+        "definition": "A choice of Patient, Group, Device, or Location. These are the potential subjects for an Observation.",
         "min": 1,
         "max": "1",
         "base": {
-          "path": "shr-core-CodedSocialHistoryObservation-model.patientSubjectOfRecord",
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationSubjectOfRecord",
           "min": 1,
           "max": "1"
         },
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"
           }
         ],
         "mustSupport": false,
@@ -232,7 +226,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter-model"
           }
         ],
         "mustSupport": false,
@@ -288,92 +282,271 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-CodedSocialHistoryObservation-model.dataValue",
-        "path": "shr-core-CodedSocialHistoryObservation-model.dataValue",
-        "short": "The value or result of a test, evaluation, or judgment, for example, a systolic blood pressure, or if a condition or body structure is present or absent.",
-        "definition": "The value or result of a test, evaluation, or judgment, for example, a systolic blood pressure, or if a condition or body structure is present or absent.",
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationBasedOn[x]",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOn[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "A plan, proposal or order that is fulfilled in whole or in part by this event. For example, a MedicationRequest may require a patient to have laboratory test performed before it is dispensed.",
+        "definition": "A plan, proposal or order that is fulfilled in whole or in part by this event. For example, a MedicationRequest may require a patient to have laboratory test performed before it is dispensed.",
         "min": 0,
-        "max": "1",
+        "max": "*",
         "base": {
-          "path": "shr-core-CodedSocialHistoryObservation-model.dataValue",
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOn[x]",
           "min": 0,
-          "max": "1"
+          "max": "*"
         },
         "type": [
           {
-            "code": "Coding"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-CodedSocialHistoryObservation-model.dataAbsentReason",
-        "path": "shr-core-CodedSocialHistoryObservation-model.dataAbsentReason",
-        "short": "Reason that a value associated with a test or other finding is missing.",
-        "definition": "Reason that a value associated with a test or other finding is missing.",
-        "min": 0,
-        "max": "0",
-        "base": {
-          "path": "shr-core-CodedSocialHistoryObservation-model.dataAbsentReason",
-          "min": 0,
-          "max": "0"
-        },
-        "type": [
-          {
-            "code": "Coding"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "binding": {
-          "strength": "extensible",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/data-absent-reason"
-          }
-        }
-      },
-      {
-        "id": "shr-core-CodedSocialHistoryObservation-model.method",
-        "path": "shr-core-CodedSocialHistoryObservation-model.method",
-        "short": "The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle.",
-        "definition": "The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle.",
-        "min": 0,
-        "max": "0",
-        "base": {
-          "path": "shr-core-CodedSocialHistoryObservation-model.method",
-          "min": 0,
-          "max": "0"
-        },
-        "type": [
-          {
-            "code": "Coding"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-CodedSocialHistoryObservation-model.relevantTime[x]",
-        "path": "shr-core-CodedSocialHistoryObservation-model.relevantTime[x]",
-        "short": "The time or time period that the statement addresses.",
-        "definition": "The time or time period that the statement addresses.\nThe clinically relevant time is not necessarily when the information is gathered or when a test is carried out, but for example, when a specimen was collected, or the time period referred to by the question. Use a TimePeriod for a measurement or specimen collection continued over a significant period of time (e.g. 24 hour Urine Sodium).",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "shr-core-CodedSocialHistoryObservation-model.relevantTime[x]",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "dateTime"
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"
           },
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationBasedOnShr-core-MedicationRequest-model:MedicationRequest",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOnShr-core-MedicationRequest-model",
+        "sliceName": "MedicationRequest",
+        "short": "An order for a medication to be dispensed and instructions for use.",
+        "definition": "An order for a medication to be dispensed and instructions for use.\nValue sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.\nCategory does not exist in DSTU2 and is provided as an extension.\nIntent was added in STU3 and is provided as an extension with required binding.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationBasedOnShr-core-ServiceRequest-model:ServiceRequest",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOnShr-core-ServiceRequest-model",
+        "sliceName": "ServiceRequest",
+        "short": "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.",
+        "definition": "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationBasedOnShr-core-ProcedureRequest-model:ProcedureRequest",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOnShr-core-ProcedureRequest-model",
+        "sliceName": "ProcedureRequest",
+        "short": "A request for a procedure to be performed. May be a proposal or an order.",
+        "definition": "A request for a procedure to be performed. May be a proposal or an order.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationBasedOnShr-core-ReferralRequest-model:ReferralRequest",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOnShr-core-ReferralRequest-model",
+        "sliceName": "ReferralRequest",
+        "short": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
+        "definition": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationPartOf[x]",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOf[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "A larger event of which this particular Observation is a component or step. For example, an observation as part of a procedure.",
+        "definition": "A larger event of which this particular Observation is a component or step. For example, an observation as part of a procedure.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOf[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationAdministration-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationDispense-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationStatement-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationPartOfShr-core-MedicationAdministration-model:MedicationAdministration",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOfShr-core-MedicationAdministration-model",
+        "sliceName": "MedicationAdministration",
+        "short": "A record of the use of a medication. If the medication is given as part of a course of treatment, the PartOf attribute should refer to the CourseOfTreatment.",
+        "definition": "A record of the use of a medication. If the medication is given as part of a course of treatment, the PartOf attribute should refer to the CourseOfTreatment.\nAlthough FHIR MedicationAdministration supports date of administration, information source, performer, it lacks common provenance elements, statement creation date, author, and recorder. These are supported as optional extensions.\nFHIR DSTU2 lacks a category attribute, which is provided as an extension in that version.\nSHR does not allow the 'not given' attributes from DSTU2 and STU3, since they are dropped in R4. The status element is used to document medications not given.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOf[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationAdministration-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationPartOfShr-core-MedicationDispense-model:MedicationDispense",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOfShr-core-MedicationDispense-model",
+        "sliceName": "MedicationDispense",
+        "short": "Indicates that a medication product has been dispensed for a named person/patient. This includes a description of the medication product (supply) provided and the instructions for administering the medication. The medication dispense is the result of a pharmacy system responding to a medication order.",
+        "definition": "Indicates that a medication product has been dispensed for a named person/patient. This includes a description of the medication product (supply) provided and the instructions for administering the medication. The medication dispense is the result of a pharmacy system responding to a medication order.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOf[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationDispense-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationPartOfShr-core-MedicationStatement-model:MedicationStatement",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOfShr-core-MedicationStatement-model",
+        "sliceName": "MedicationStatement",
+        "short": "A record of the use of a medication. The use may be reported by the patient or clinician and adminstration does not have to be directly observed.",
+        "definition": "A record of the use of a medication. The use may be reported by the patient or clinician and adminstration does not have to be directly observed.\n\nFHIR Notes:\n\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement). Extensions are provided.\n\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick a type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.\n\nPreference is given to using the National Library of Medicine (NLM) RxNorm terminology for medications. RxNorm is a coding standard established by the Office of the National Coordinator (ONC). However, RxNorm is restricted to FDA-approved drugs and does not include clinical trial drugs. MedicationStatement allows for the inclusion of other coding systems like the NCI Thesaurus (NCIT) to represent clinical trial oncology drugs.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOf[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationStatement-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationPartOfShr-core-Procedure-model:Procedure",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOfShr-core-Procedure-model",
+        "sliceName": "Procedure",
+        "short": "An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy.",
+        "definition": "An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOf[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure-model"
           }
         ],
         "mustSupport": false,
@@ -383,8 +556,8 @@
       {
         "id": "shr-core-CodedSocialHistoryObservation-model.category",
         "path": "shr-core-CodedSocialHistoryObservation-model.category",
-        "short": "The type, kind, or class of this item.",
-        "definition": "The type, kind, or class of this item.",
+        "short": "The general type or class of this item.",
+        "definition": "The general type or class of this item.",
         "min": 0,
         "max": "1",
         "base": {
@@ -644,6 +817,51 @@
         ]
       },
       {
+        "id": "shr-core-CodedSocialHistoryObservation-model.focalSubject",
+        "path": "shr-core-CodedSocialHistoryObservation-model.focalSubject",
+        "short": "The person or entity that the information in this resource relates to, if different than the person of record. The subject of information can be a reference or a code, the latter when the subject is described generically, for example, in terms of a relationship to the subject of record (e.g., wife).",
+        "definition": "The person or entity that the information in this resource relates to, if different than the person of record. The subject of information can be a reference or a code, the latter when the subject is described generically, for example, in terms of a relationship to the subject of record (e.g., wife).",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.focalSubject",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.relevantTime[x]",
+        "path": "shr-core-CodedSocialHistoryObservation-model.relevantTime[x]",
+        "short": "The time or time period that the statement addresses.",
+        "definition": "The time or time period that the statement addresses.\nThe clinically relevant time is not necessarily when the information is gathered or when a test is carried out, but for example, when a specimen was collected, or the time period referred to by the question. Use a TimePeriod for a measurement or specimen collection continued over a significant period of time (e.g. 24 hour Urine Sodium).",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.relevantTime[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "dateTime"
+          },
+          {
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
         "id": "shr-core-CodedSocialHistoryObservation-model.performer[x]",
         "path": "shr-core-CodedSocialHistoryObservation-model.performer[x]",
         "short": "The actor that carried out the observation or action.",
@@ -658,19 +876,19 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"
           }
         ],
         "mustSupport": false,
@@ -678,47 +896,20 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-CodedSocialHistoryObservation-model.bodyLocation",
-        "path": "shr-core-CodedSocialHistoryObservation-model.bodyLocation",
-        "short": "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart.",
-        "definition": "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart.\nThe BodyLocation includes code and optional qualifiers of anatomical side or direction. The body location can also be determined from one or more body landmarks.\nIf the code for the body location includes laterality and/or anatomical direction, the corresponding attributes might be unnecessary.\nNote that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how an address structure can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
-        "min": 0,
-        "max": "0",
-        "base": {
-          "path": "shr-core-CodedSocialHistoryObservation-model.bodyLocation",
-          "min": 0,
-          "max": "0"
-        },
-        "type": [
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BodyLocation-model"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-CodedSocialHistoryObservation-model.commentOrDescription",
-        "path": "shr-core-CodedSocialHistoryObservation-model.commentOrDescription",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0947611"
-          }
-        ],
-        "short": "A text note containing additional details, explanation, description, comment, or summarization.",
-        "definition": "A text note containing additional details, explanation, description, comment, or summarization.",
+        "id": "shr-core-CodedSocialHistoryObservation-model.dataValue",
+        "path": "shr-core-CodedSocialHistoryObservation-model.dataValue",
+        "short": "The value or result of a test, evaluation, or judgment, for example, a systolic blood pressure, or if a condition or body structure is present or absent.",
+        "definition": "The value or result of a test, evaluation, or judgment, for example, a systolic blood pressure, or if a condition or body structure is present or absent.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-CodedSocialHistoryObservation-model.commentOrDescription",
+          "path": "shr-core-CodedSocialHistoryObservation-model.dataValue",
           "min": 0,
           "max": "1"
         },
         "type": [
           {
-            "code": "string"
+            "code": "Coding"
           }
         ],
         "mustSupport": false,
@@ -726,14 +917,35 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-CodedSocialHistoryObservation-model.interpretation",
-        "path": "shr-core-CodedSocialHistoryObservation-model.interpretation",
-        "code": [
+        "id": "shr-core-CodedSocialHistoryObservation-model.dataAbsentReason",
+        "path": "shr-core-CodedSocialHistoryObservation-model.dataAbsentReason",
+        "short": "Reason that a value associated with a test or other finding is missing.",
+        "definition": "Reason that a value associated with a test or other finding is missing.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.dataAbsentReason",
+          "min": 0,
+          "max": "0"
+        },
+        "type": [
           {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0420833"
+            "code": "Coding"
           }
         ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "extensible",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/data-absent-reason"
+          }
+        }
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.interpretation",
+        "path": "shr-core-CodedSocialHistoryObservation-model.interpretation",
         "short": "A clinical interpretation of a finding (applies to both assertions and observation).",
         "definition": "A clinical interpretation of a finding (applies to both assertions and observation).",
         "min": 0,
@@ -759,6 +971,69 @@
         }
       },
       {
+        "id": "shr-core-CodedSocialHistoryObservation-model.annotation",
+        "path": "shr-core-CodedSocialHistoryObservation-model.annotation",
+        "short": "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.",
+        "definition": "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.annotation",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.bodyLocation",
+        "path": "shr-core-CodedSocialHistoryObservation-model.bodyLocation",
+        "short": "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.",
+        "definition": "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\nNote that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.bodyLocation",
+          "min": 0,
+          "max": "0"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-BodyLocation-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.method",
+        "path": "shr-core-CodedSocialHistoryObservation-model.method",
+        "short": "The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle.",
+        "definition": "The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.method",
+          "min": 0,
+          "max": "0"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
         "id": "shr-core-CodedSocialHistoryObservation-model.device",
         "path": "shr-core-CodedSocialHistoryObservation-model.device",
         "short": "A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients.",
@@ -772,7 +1047,8 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"
           }
         ],
         "mustSupport": false,
@@ -799,28 +1075,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferenceRange-model"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-CodedSocialHistoryObservation-model.components",
-        "path": "shr-core-CodedSocialHistoryObservation-model.components",
-        "short": "Sub-observations that are part of this observation. A sub-observation contributs to the parent observation and are always treated a part of a single observation (they are not separable). However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation.",
-        "definition": "Sub-observations that are part of this observation. A sub-observation contributs to the parent observation and are always treated a part of a single observation (they are not separable). However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "shr-core-CodedSocialHistoryObservation-model.components",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Components-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferenceRange-model"
           }
         ],
         "mustSupport": false,
@@ -841,7 +1096,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PanelMembers-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-PanelMembers-model"
           }
         ],
         "mustSupport": false,
@@ -849,20 +1104,156 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-CodedSocialHistoryObservation-model.subjectOfInformationCode",
-        "path": "shr-core-CodedSocialHistoryObservation-model.subjectOfInformationCode",
-        "short": "The person that the information in this resource relates to, if different than the person of record. The subject of information is described not by name but in terms of their relationship to the subject of record (e.g., wife).",
-        "definition": "The person that the information in this resource relates to, if different than the person of record. The subject of information is described not by name but in terms of their relationship to the subject of record (e.g., wife).",
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFrom[x]",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFrom[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "The target resource that represents a measurement from which this observation value is derived. For example, a calculated anion gap or a fetal measurement based on an ultrasound image.",
+        "definition": "The target resource that represents a measurement from which this observation value is derived. For example, a calculated anion gap or a fetal measurement based on an ultrasound image.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFrom[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DocumentReference-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Media-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-QuestionnaireResponse-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFromShr-core-DocumentReference-model:DocumentReference",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFromShr-core-DocumentReference-model",
+        "sliceName": "DocumentReference",
+        "short": "A reference to a document, used to describe a document that is made available to a healthcare system. A document is some sequence of bytes that is identifiable, establishes its own context (e.g., what subject, author, etc. can be displayed to the user), and has defined update management. The DocumentReference resource can be used with any document format that has a recognized mime type and that conforms to this definition.",
+        "definition": "A reference to a document, used to describe a document that is made available to a healthcare system. A document is some sequence of bytes that is identifiable, establishes its own context (e.g., what subject, author, etc. can be displayed to the user), and has defined update management. The DocumentReference resource can be used with any document format that has a recognized mime type and that conforms to this definition.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFrom[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DocumentReference-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFromShr-core-Media-model:Media",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFromShr-core-Media-model",
+        "sliceName": "Media",
+        "short": "A photo, video, or audio recording acquired or used in healthcare. The actual content may be inline or provided by direct reference.",
+        "definition": "A photo, video, or audio recording acquired or used in healthcare. The actual content may be inline or provided by direct reference.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFrom[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Media-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFromShr-core-QuestionnaireResponse-model:QuestionnaireResponse",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFromShr-core-QuestionnaireResponse-model",
+        "sliceName": "QuestionnaireResponse",
+        "short": "A structured set of questions and their answers. The questions are ordered and grouped into coherent subsets, corresponding to the structure of the grouping of the questionnaire being responded to.",
+        "definition": "A structured set of questions and their answers. The questions are ordered and grouped into coherent subsets, corresponding to the structure of the grouping of the questionnaire being responded to.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFrom[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-QuestionnaireResponse-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFromShr-core-Observation-model:Observation",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFromShr-core-Observation-model",
+        "sliceName": "Observation",
+        "short": "Represents the result of evaluations (measurements, tests, or questions) that have been performed.",
+        "definition": "Represents the result of evaluations (measurements, tests, or questions) that have been performed.\nObservation has a value representing the result (answer), or an DataAbsentReason indicating why the value is not present. Things observed about the subject can include social and behavioral factors, subjective and objective observations, and assessments.\nFor an Observation, the Code describes the aspect or property of the subject being observed or measured. The Code is the 'question code' that pairs to the 'answer' contained in the Value.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFrom[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.components",
+        "path": "shr-core-CodedSocialHistoryObservation-model.components",
+        "short": "Sub-observations that are part of this observation. A sub-observation contributs to the parent observation and are always treated a part of a single observation (they are not separable). However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation.",
+        "definition": "Sub-observations that are part of this observation. A sub-observation contributs to the parent observation and are always treated a part of a single observation (they are not separable). However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-CodedSocialHistoryObservation-model.subjectOfInformationCode",
+          "path": "shr-core-CodedSocialHistoryObservation-model.components",
           "min": 0,
           "max": "1"
         },
         "type": [
           {
-            "code": "Coding"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Components-model"
           }
         ],
         "mustSupport": false,
@@ -902,7 +1293,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"
           }
         ],
         "mustSupport": false,
@@ -912,12 +1303,6 @@
       {
         "id": "shr-core-CodedSocialHistoryObservation-model.language",
         "path": "shr-core-CodedSocialHistoryObservation-model.language",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0023008"
-          }
-        ],
         "short": "A human language, spoken or written.",
         "definition": "A human language, spoken or written.",
         "min": 0,
@@ -971,7 +1356,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"
           }
         ],
         "mustSupport": false,
@@ -1019,7 +1404,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"
           }
         ],
         "mustSupport": false,
@@ -1027,27 +1412,27 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-CodedSocialHistoryObservation-model.patientSubjectOfRecord",
-        "path": "shr-core-CodedSocialHistoryObservation-model.patientSubjectOfRecord",
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationSubjectOfRecord",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationSubjectOfRecord",
         "code": [
           {
             "system": "http://ncimeta.nci.nih.gov",
             "code": "C1299487"
           }
         ],
-        "short": "The SubjectOfRecord when restricted to being a Patient resource.",
-        "definition": "The SubjectOfRecord when restricted to being a Patient resource.",
+        "short": "A choice of Patient, Group, Device, or Location. These are the potential subjects for an Observation.",
+        "definition": "A choice of Patient, Group, Device, or Location. These are the potential subjects for an Observation.",
         "min": 1,
         "max": "1",
         "base": {
-          "path": "shr-core-CodedSocialHistoryObservation-model.patientSubjectOfRecord",
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationSubjectOfRecord",
           "min": 1,
           "max": "1"
         },
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"
           }
         ],
         "mustSupport": false,
@@ -1069,7 +1454,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter-model"
           }
         ],
         "mustSupport": false,
@@ -1125,92 +1510,271 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-CodedSocialHistoryObservation-model.dataValue",
-        "path": "shr-core-CodedSocialHistoryObservation-model.dataValue",
-        "short": "The value or result of a test, evaluation, or judgment, for example, a systolic blood pressure, or if a condition or body structure is present or absent.",
-        "definition": "The value or result of a test, evaluation, or judgment, for example, a systolic blood pressure, or if a condition or body structure is present or absent.",
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationBasedOn[x]",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOn[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "A plan, proposal or order that is fulfilled in whole or in part by this event. For example, a MedicationRequest may require a patient to have laboratory test performed before it is dispensed.",
+        "definition": "A plan, proposal or order that is fulfilled in whole or in part by this event. For example, a MedicationRequest may require a patient to have laboratory test performed before it is dispensed.",
         "min": 0,
-        "max": "1",
+        "max": "*",
         "base": {
-          "path": "shr-core-CodedSocialHistoryObservation-model.dataValue",
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOn[x]",
           "min": 0,
-          "max": "1"
+          "max": "*"
         },
         "type": [
           {
-            "code": "Coding"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-CodedSocialHistoryObservation-model.dataAbsentReason",
-        "path": "shr-core-CodedSocialHistoryObservation-model.dataAbsentReason",
-        "short": "Reason that a value associated with a test or other finding is missing.",
-        "definition": "Reason that a value associated with a test or other finding is missing.",
-        "min": 0,
-        "max": "0",
-        "base": {
-          "path": "shr-core-CodedSocialHistoryObservation-model.dataAbsentReason",
-          "min": 0,
-          "max": "0"
-        },
-        "type": [
-          {
-            "code": "Coding"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false,
-        "binding": {
-          "strength": "extensible",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/data-absent-reason"
-          }
-        }
-      },
-      {
-        "id": "shr-core-CodedSocialHistoryObservation-model.method",
-        "path": "shr-core-CodedSocialHistoryObservation-model.method",
-        "short": "The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle.",
-        "definition": "The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle.",
-        "min": 0,
-        "max": "0",
-        "base": {
-          "path": "shr-core-CodedSocialHistoryObservation-model.method",
-          "min": 0,
-          "max": "0"
-        },
-        "type": [
-          {
-            "code": "Coding"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-CodedSocialHistoryObservation-model.relevantTime[x]",
-        "path": "shr-core-CodedSocialHistoryObservation-model.relevantTime[x]",
-        "short": "The time or time period that the statement addresses.",
-        "definition": "The time or time period that the statement addresses.\nThe clinically relevant time is not necessarily when the information is gathered or when a test is carried out, but for example, when a specimen was collected, or the time period referred to by the question. Use a TimePeriod for a measurement or specimen collection continued over a significant period of time (e.g. 24 hour Urine Sodium).",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "shr-core-CodedSocialHistoryObservation-model.relevantTime[x]",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "dateTime"
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"
           },
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationBasedOnShr-core-MedicationRequest-model:MedicationRequest",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOnShr-core-MedicationRequest-model",
+        "sliceName": "MedicationRequest",
+        "short": "An order for a medication to be dispensed and instructions for use.",
+        "definition": "An order for a medication to be dispensed and instructions for use.\nValue sets for status are in direct conflict between DSTU2 Argonaut and STU3 US-Core.\nCategory does not exist in DSTU2 and is provided as an extension.\nIntent was added in STU3 and is provided as an extension with required binding.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationBasedOnShr-core-ServiceRequest-model:ServiceRequest",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOnShr-core-ServiceRequest-model",
+        "sliceName": "ServiceRequest",
+        "short": "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.",
+        "definition": "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationBasedOnShr-core-ProcedureRequest-model:ProcedureRequest",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOnShr-core-ProcedureRequest-model",
+        "sliceName": "ProcedureRequest",
+        "short": "A request for a procedure to be performed. May be a proposal or an order.",
+        "definition": "A request for a procedure to be performed. May be a proposal or an order.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationBasedOnShr-core-ReferralRequest-model:ReferralRequest",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOnShr-core-ReferralRequest-model",
+        "sliceName": "ReferralRequest",
+        "short": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
+        "definition": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationBasedOn[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationPartOf[x]",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOf[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "A larger event of which this particular Observation is a component or step. For example, an observation as part of a procedure.",
+        "definition": "A larger event of which this particular Observation is a component or step. For example, an observation as part of a procedure.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOf[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationAdministration-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationDispense-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationStatement-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationPartOfShr-core-MedicationAdministration-model:MedicationAdministration",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOfShr-core-MedicationAdministration-model",
+        "sliceName": "MedicationAdministration",
+        "short": "A record of the use of a medication. If the medication is given as part of a course of treatment, the PartOf attribute should refer to the CourseOfTreatment.",
+        "definition": "A record of the use of a medication. If the medication is given as part of a course of treatment, the PartOf attribute should refer to the CourseOfTreatment.\nAlthough FHIR MedicationAdministration supports date of administration, information source, performer, it lacks common provenance elements, statement creation date, author, and recorder. These are supported as optional extensions.\nFHIR DSTU2 lacks a category attribute, which is provided as an extension in that version.\nSHR does not allow the 'not given' attributes from DSTU2 and STU3, since they are dropped in R4. The status element is used to document medications not given.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOf[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationAdministration-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationPartOfShr-core-MedicationDispense-model:MedicationDispense",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOfShr-core-MedicationDispense-model",
+        "sliceName": "MedicationDispense",
+        "short": "Indicates that a medication product has been dispensed for a named person/patient. This includes a description of the medication product (supply) provided and the instructions for administering the medication. The medication dispense is the result of a pharmacy system responding to a medication order.",
+        "definition": "Indicates that a medication product has been dispensed for a named person/patient. This includes a description of the medication product (supply) provided and the instructions for administering the medication. The medication dispense is the result of a pharmacy system responding to a medication order.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOf[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationDispense-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationPartOfShr-core-MedicationStatement-model:MedicationStatement",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOfShr-core-MedicationStatement-model",
+        "sliceName": "MedicationStatement",
+        "short": "A record of the use of a medication. The use may be reported by the patient or clinician and adminstration does not have to be directly observed.",
+        "definition": "A record of the use of a medication. The use may be reported by the patient or clinician and adminstration does not have to be directly observed.\n\nFHIR Notes:\n\nAlthough FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement). Extensions are provided.\n\nThe treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.\nReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick a type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.\n\nPreference is given to using the National Library of Medicine (NLM) RxNorm terminology for medications. RxNorm is a coding standard established by the Office of the National Coordinator (ONC). However, RxNorm is restricted to FDA-approved drugs and does not include clinical trial drugs. MedicationStatement allows for the inclusion of other coding systems like the NCI Thesaurus (NCIT) to represent clinical trial oncology drugs.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOf[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationStatement-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationPartOfShr-core-Procedure-model:Procedure",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOfShr-core-Procedure-model",
+        "sliceName": "Procedure",
+        "short": "An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy.",
+        "definition": "An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationPartOf[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure-model"
           }
         ],
         "mustSupport": false,
@@ -1220,8 +1784,8 @@
       {
         "id": "shr-core-CodedSocialHistoryObservation-model.category",
         "path": "shr-core-CodedSocialHistoryObservation-model.category",
-        "short": "The type, kind, or class of this item.",
-        "definition": "The type, kind, or class of this item.",
+        "short": "The general type or class of this item.",
+        "definition": "The general type or class of this item.",
         "min": 0,
         "max": "1",
         "base": {
@@ -1481,6 +2045,51 @@
         ]
       },
       {
+        "id": "shr-core-CodedSocialHistoryObservation-model.focalSubject",
+        "path": "shr-core-CodedSocialHistoryObservation-model.focalSubject",
+        "short": "The person or entity that the information in this resource relates to, if different than the person of record. The subject of information can be a reference or a code, the latter when the subject is described generically, for example, in terms of a relationship to the subject of record (e.g., wife).",
+        "definition": "The person or entity that the information in this resource relates to, if different than the person of record. The subject of information can be a reference or a code, the latter when the subject is described generically, for example, in terms of a relationship to the subject of record (e.g., wife).",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.focalSubject",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.relevantTime[x]",
+        "path": "shr-core-CodedSocialHistoryObservation-model.relevantTime[x]",
+        "short": "The time or time period that the statement addresses.",
+        "definition": "The time or time period that the statement addresses.\nThe clinically relevant time is not necessarily when the information is gathered or when a test is carried out, but for example, when a specimen was collected, or the time period referred to by the question. Use a TimePeriod for a measurement or specimen collection continued over a significant period of time (e.g. 24 hour Urine Sodium).",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.relevantTime[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "dateTime"
+          },
+          {
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
         "id": "shr-core-CodedSocialHistoryObservation-model.performer[x]",
         "path": "shr-core-CodedSocialHistoryObservation-model.performer[x]",
         "short": "The actor that carried out the observation or action.",
@@ -1495,19 +2104,19 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"
           }
         ],
         "mustSupport": false,
@@ -1515,47 +2124,20 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-CodedSocialHistoryObservation-model.bodyLocation",
-        "path": "shr-core-CodedSocialHistoryObservation-model.bodyLocation",
-        "short": "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart.",
-        "definition": "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart.\nThe BodyLocation includes code and optional qualifiers of anatomical side or direction. The body location can also be determined from one or more body landmarks.\nIf the code for the body location includes laterality and/or anatomical direction, the corresponding attributes might be unnecessary.\nNote that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how an address structure can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
-        "min": 0,
-        "max": "0",
-        "base": {
-          "path": "shr-core-CodedSocialHistoryObservation-model.bodyLocation",
-          "min": 0,
-          "max": "0"
-        },
-        "type": [
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-BodyLocation-model"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-CodedSocialHistoryObservation-model.commentOrDescription",
-        "path": "shr-core-CodedSocialHistoryObservation-model.commentOrDescription",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0947611"
-          }
-        ],
-        "short": "A text note containing additional details, explanation, description, comment, or summarization.",
-        "definition": "A text note containing additional details, explanation, description, comment, or summarization.",
+        "id": "shr-core-CodedSocialHistoryObservation-model.dataValue",
+        "path": "shr-core-CodedSocialHistoryObservation-model.dataValue",
+        "short": "The value or result of a test, evaluation, or judgment, for example, a systolic blood pressure, or if a condition or body structure is present or absent.",
+        "definition": "The value or result of a test, evaluation, or judgment, for example, a systolic blood pressure, or if a condition or body structure is present or absent.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-CodedSocialHistoryObservation-model.commentOrDescription",
+          "path": "shr-core-CodedSocialHistoryObservation-model.dataValue",
           "min": 0,
           "max": "1"
         },
         "type": [
           {
-            "code": "string"
+            "code": "Coding"
           }
         ],
         "mustSupport": false,
@@ -1563,14 +2145,35 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-CodedSocialHistoryObservation-model.interpretation",
-        "path": "shr-core-CodedSocialHistoryObservation-model.interpretation",
-        "code": [
+        "id": "shr-core-CodedSocialHistoryObservation-model.dataAbsentReason",
+        "path": "shr-core-CodedSocialHistoryObservation-model.dataAbsentReason",
+        "short": "Reason that a value associated with a test or other finding is missing.",
+        "definition": "Reason that a value associated with a test or other finding is missing.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.dataAbsentReason",
+          "min": 0,
+          "max": "0"
+        },
+        "type": [
           {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0420833"
+            "code": "Coding"
           }
         ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "binding": {
+          "strength": "extensible",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/data-absent-reason"
+          }
+        }
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.interpretation",
+        "path": "shr-core-CodedSocialHistoryObservation-model.interpretation",
         "short": "A clinical interpretation of a finding (applies to both assertions and observation).",
         "definition": "A clinical interpretation of a finding (applies to both assertions and observation).",
         "min": 0,
@@ -1596,6 +2199,69 @@
         }
       },
       {
+        "id": "shr-core-CodedSocialHistoryObservation-model.annotation",
+        "path": "shr-core-CodedSocialHistoryObservation-model.annotation",
+        "short": "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.",
+        "definition": "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.annotation",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.bodyLocation",
+        "path": "shr-core-CodedSocialHistoryObservation-model.bodyLocation",
+        "short": "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.",
+        "definition": "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\nNote that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.bodyLocation",
+          "min": 0,
+          "max": "0"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-BodyLocation-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.method",
+        "path": "shr-core-CodedSocialHistoryObservation-model.method",
+        "short": "The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle.",
+        "definition": "The technique used to carry out an action, for example, the specific imaging technical or assessment vehicle.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.method",
+          "min": 0,
+          "max": "0"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
         "id": "shr-core-CodedSocialHistoryObservation-model.device",
         "path": "shr-core-CodedSocialHistoryObservation-model.device",
         "short": "A specific durable physical device used in diagnosis or treatment. The value is the coding for a type of device, for example, a CPAP machine. The same device might be used on multiple patients.",
@@ -1609,7 +2275,8 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"
           }
         ],
         "mustSupport": false,
@@ -1636,28 +2303,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferenceRange-model"
-          }
-        ],
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "shr-core-CodedSocialHistoryObservation-model.components",
-        "path": "shr-core-CodedSocialHistoryObservation-model.components",
-        "short": "Sub-observations that are part of this observation. A sub-observation contributs to the parent observation and are always treated a part of a single observation (they are not separable). However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation.",
-        "definition": "Sub-observations that are part of this observation. A sub-observation contributs to the parent observation and are always treated a part of a single observation (they are not separable). However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "shr-core-CodedSocialHistoryObservation-model.components",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Components-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferenceRange-model"
           }
         ],
         "mustSupport": false,
@@ -1678,7 +2324,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-PanelMembers-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-PanelMembers-model"
           }
         ],
         "mustSupport": false,
@@ -1686,20 +2332,156 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-CodedSocialHistoryObservation-model.subjectOfInformationCode",
-        "path": "shr-core-CodedSocialHistoryObservation-model.subjectOfInformationCode",
-        "short": "The person that the information in this resource relates to, if different than the person of record. The subject of information is described not by name but in terms of their relationship to the subject of record (e.g., wife).",
-        "definition": "The person that the information in this resource relates to, if different than the person of record. The subject of information is described not by name but in terms of their relationship to the subject of record (e.g., wife).",
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFrom[x]",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFrom[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "The target resource that represents a measurement from which this observation value is derived. For example, a calculated anion gap or a fetal measurement based on an ultrasound image.",
+        "definition": "The target resource that represents a measurement from which this observation value is derived. For example, a calculated anion gap or a fetal measurement based on an ultrasound image.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFrom[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DocumentReference-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Media-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-QuestionnaireResponse-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFromShr-core-DocumentReference-model:DocumentReference",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFromShr-core-DocumentReference-model",
+        "sliceName": "DocumentReference",
+        "short": "A reference to a document, used to describe a document that is made available to a healthcare system. A document is some sequence of bytes that is identifiable, establishes its own context (e.g., what subject, author, etc. can be displayed to the user), and has defined update management. The DocumentReference resource can be used with any document format that has a recognized mime type and that conforms to this definition.",
+        "definition": "A reference to a document, used to describe a document that is made available to a healthcare system. A document is some sequence of bytes that is identifiable, establishes its own context (e.g., what subject, author, etc. can be displayed to the user), and has defined update management. The DocumentReference resource can be used with any document format that has a recognized mime type and that conforms to this definition.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFrom[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DocumentReference-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFromShr-core-Media-model:Media",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFromShr-core-Media-model",
+        "sliceName": "Media",
+        "short": "A photo, video, or audio recording acquired or used in healthcare. The actual content may be inline or provided by direct reference.",
+        "definition": "A photo, video, or audio recording acquired or used in healthcare. The actual content may be inline or provided by direct reference.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFrom[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Media-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFromShr-core-QuestionnaireResponse-model:QuestionnaireResponse",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFromShr-core-QuestionnaireResponse-model",
+        "sliceName": "QuestionnaireResponse",
+        "short": "A structured set of questions and their answers. The questions are ordered and grouped into coherent subsets, corresponding to the structure of the grouping of the questionnaire being responded to.",
+        "definition": "A structured set of questions and their answers. The questions are ordered and grouped into coherent subsets, corresponding to the structure of the grouping of the questionnaire being responded to.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFrom[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-QuestionnaireResponse-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFromShr-core-Observation-model:Observation",
+        "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFromShr-core-Observation-model",
+        "sliceName": "Observation",
+        "short": "Represents the result of evaluations (measurements, tests, or questions) that have been performed.",
+        "definition": "Represents the result of evaluations (measurements, tests, or questions) that have been performed.\nObservation has a value representing the result (answer), or an DataAbsentReason indicating why the value is not present. Things observed about the subject can include social and behavioral factors, subjective and objective observations, and assessments.\nFor an Observation, the Code describes the aspect or property of the subject being observed or measured. The Code is the 'question code' that pairs to the 'answer' contained in the Value.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-CodedSocialHistoryObservation-model.observationDerivedFrom[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-CodedSocialHistoryObservation-model.components",
+        "path": "shr-core-CodedSocialHistoryObservation-model.components",
+        "short": "Sub-observations that are part of this observation. A sub-observation contributs to the parent observation and are always treated a part of a single observation (they are not separable). However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation.",
+        "definition": "Sub-observations that are part of this observation. A sub-observation contributs to the parent observation and are always treated a part of a single observation (they are not separable). However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-CodedSocialHistoryObservation-model.subjectOfInformationCode",
+          "path": "shr-core-CodedSocialHistoryObservation-model.components",
           "min": 0,
           "max": "1"
         },
         "type": [
           {
-            "code": "Coding"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Components-model"
           }
         ],
         "mustSupport": false,

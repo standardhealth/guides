@@ -9,8 +9,6 @@ Timing offers a choice of multiple OccurrenceTime (used is used to specify speci
 user content","",0,*,"","","","Extension {[]} {[]}
 ","Additional Content defined by implementations","May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.","There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.","","","","","","","","",,,,,"","value:url}
 ","Extensions are always sliced by (at least) url",,"open","Element.extension",0,*,"","","n/a"
-"Timing.extension","recurrencerange","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RecurrenceRange-extension]]} {[]}
-","","The start and end of the overall recurrence pattern in terms of dates/times or in terms of number of repeats. Could also be an event, such as when all doses are taken.","","","","","","","","","",,,,,"",,,,"Element.extension",0,*,"",""
 "Timing.event","","","",0,*,"","","Y","dateTime {[]} {[]}
 ","When the event occurs","Identifies specific times when the event occurs.","","In an MAR, for instance, you need to take a general specification, and turn it into a precise specification.","","","","","","","",,,,,"",,,,"",0,null,"","","QLIST<TS>"
 "Timing.repeat","","","",0,1,"","","Y","Element {[]} {[]}
@@ -22,7 +20,7 @@ tim-9:If there's an offset, there must be a when (and not C, CM, CD, CV) {offset
 user content","",0,*,"","","","Extension {[]} {[]}
 ","Additional Content defined by implementations","May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.","There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.","","","","","","","","",,,,,"","value:url}
 ","Extensions are always sliced by (at least) url",,"open","Element.extension",0,*,"","","n/a"
-"Timing.repeat.bounds[x]","","","",0,1,"","","Y","Duration {[]} {[]}
+"Timing.repeat.bounds[x]","","","",0,1,"","","Y","Duration {[CanonicalType[http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Duration]]} {[]}
 Range {[]} {[]}Period {[]} {[]}","Length/Range of lengths, or (Start and/or end) limits","Either a duration for the length of the timing schedule, a range of possible length, or outer bounds for start and/or end limits of the timing schedule.","","","","","","","","","",,,,,"",,,,"",0,null,"","","IVL(TS) used in a QSI"
 "Timing.repeat.count","","","",0,1,"","","Y","integer {[]} {[]}
 ","Number of times to repeat","A total count of the desired number of repetitions.","If you have both bounds and count, then this should be understood as within the bounds period, until count times happens.","Repetitions may be limited by end time or total occurrences.","","","","","","","",,,,,"",,,,"",0,null,"","","PIVL.count"
@@ -40,8 +38,8 @@ Range {[]} {[]}Period {[]} {[]}","Length/Range of lengths, or (Start and/or end)
 ","Event occurs up to frequencyMax times per period","If present, indicates that the frequency is a range - so to repeat between [frequency] and [frequencyMax] times within the period or period range.","","","","","","","","","",,,,,"",,,,"",0,null,"","","PIVL.phase"
 "Timing.repeat.period","","","",0,1,"","","Y","decimal {[]} {[]}
 ","Event occurs frequency times per period","Indicates the duration of time over which repetitions are to occur; e.g. to express ""3 times per day"", 3 would be the frequency and ""1 day"" would be the period.","","","","","","","","","",,,,,"",,,,"",0,null,"","","PIVL.phase"
-"Timing.repeat.periodMax","","","",0,0,"","","Y","decimal {[]} {[]}
-","Upper limit of period (3-4 hours)","If present, indicates that the period is a range from [period] to [periodMax], allowing expressing concepts such as ""do this once every 3-5 days.","","","","","","","","","",,,,,"",,,,"Timing.repeat.periodMax",0,1,"","","PIVL.phase"
+"Timing.repeat.periodMax","","","",0,1,"","","Y","decimal {[]} {[]}
+","Upper limit of period (3-4 hours)","If present, indicates that the period is a range from [period] to [periodMax], allowing expressing concepts such as ""do this once every 3-5 days.","","","","","","","","","",,,,,"",,,,"",0,null,"","","PIVL.phase"
 "Timing.repeat.periodUnit","","","",0,1,"","","Y","code {[]} {[]}
 ","s | min | h | d | wk | mo | a - unit of time (UCUM)","The units of time for the period in UCUM units.","","","","","","","","","",,"required","A unit of time (units from UCUM).","http://hl7.org/fhir/ValueSet/units-of-time","",,,,"",0,null,"","","PIVL.phase.unit"
 "Timing.repeat.dayOfWeek","","","",0,*,"","","Y","code {[]} {[]}

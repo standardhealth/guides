@@ -5,14 +5,14 @@
 
 # - resource -------------------------------------------------------------------
 
-<http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model> a fhir:StructureDefinition;
+<http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model> a fhir:StructureDefinition;
   fhir:nodeRole fhir:treeRoot;
   fhir:Resource.id [ fhir:value "shr-core-ReferralRequest-model"];
   fhir:DomainResource.text [
      fhir:Narrative.status [ fhir:value "generated" ];
      fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>ReferralRequest Logical Model</b></p>\n  <p>Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.</p>\n</div>"
   ];
-  fhir:StructureDefinition.url [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model"];
+  fhir:StructureDefinition.url [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"];
   fhir:StructureDefinition.identifier [
      fhir:index 0;
      fhir:Identifier.system [ fhir:value "http://hl7.org/fhir/us/odh" ];
@@ -22,7 +22,7 @@
   fhir:StructureDefinition.name [ fhir:value "ReferralRequest"];
   fhir:StructureDefinition.title [ fhir:value "shr-core-ReferralRequest"];
   fhir:StructureDefinition.status [ fhir:value "draft"];
-  fhir:StructureDefinition.date [ fhir:value "2019-04-08T00:00:00-04:00"^^xsd:dateTime];
+  fhir:StructureDefinition.date [ fhir:value "2019-05-08T00:00:00-04:00"^^xsd:dateTime];
   fhir:StructureDefinition.publisher [ fhir:value "HL7"];
   fhir:StructureDefinition.contact [
      fhir:index 0;
@@ -69,7 +69,7 @@
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model" ]
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
@@ -78,11 +78,6 @@
        fhir:index 2;
        fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.language" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.language" ];
-       fhir:ElementDefinition.code [
-         fhir:index 0;
-         fhir:Coding.system [ fhir:value "http://ncimeta.nci.nih.gov" ];
-         fhir:Coding.code [ fhir:value "C0023008" ]
-       ];
        fhir:ElementDefinition.short [ fhir:value "A human language, spoken or written." ];
        fhir:ElementDefinition.definition [ fhir:value "A human language, spoken or written." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
@@ -134,7 +129,7 @@
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model" ]
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
@@ -174,57 +169,77 @@
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model" ]
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 7;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.referralSubjectOfRecord[x]" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.referralSubjectOfRecord[x]" ];
-       fhir:ElementDefinition.short [ fhir:value "A choice of Patient or Group. These are the potential subjects for Procedure and ReferralRequest resources." ];
-       fhir:ElementDefinition.definition [ fhir:value "A choice of Patient or Group. These are the potential subjects for Procedure and ReferralRequest resources." ];
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.subjectOfRecord[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.subjectOfRecord[x]" ];
+       fhir:ElementDefinition.short [ fhir:value "The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe's patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord." ];
+       fhir:ElementDefinition.definition [ fhir:value "The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe's patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord.\n\nNote that the word 'Subject' is used here in the sense of a person or entity subjected to observations or actions, not subject as in a conceptual topic, like heart disease." ];
        fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.referralSubjectOfRecord[x]" ];
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.subjectOfRecord[x]" ];
          fhir:ElementDefinition.base.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
          fhir:ElementDefinition.base.max [ fhir:value "1" ]
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model" ]
        ], [
          fhir:index 1;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Group-model" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model" ]
+       ], [
+         fhir:index 2;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Group-model" ]
+       ], [
+         fhir:index 3;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model" ]
+       ], [
+         fhir:index 4;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Specimen-model" ]
+       ], [
+         fhir:index 5;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Location-model" ]
+       ], [
+         fhir:index 6;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Medication-model" ]
+       ], [
+         fhir:index 7;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ResearchSubject-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 8;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.careContext[x]" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.careContext[x]" ];
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.careContext" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.careContext" ];
        fhir:ElementDefinition.short [ fhir:value "The encounter or episode of care" ];
        fhir:ElementDefinition.definition [ fhir:value "The encounter or episode of care" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.careContext[x]" ];
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.careContext" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
          fhir:ElementDefinition.base.max [ fhir:value "1" ]
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model" ]
-       ], [
-         fhir:index 1;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare-model" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
@@ -263,8 +278,8 @@
          fhir:Coding.system [ fhir:value "http://ncimeta.nci.nih.gov" ];
          fhir:Coding.code [ fhir:value "C0566251" ]
        ];
-       fhir:ElementDefinition.short [ fhir:value "The justification, as a code." ];
-       fhir:ElementDefinition.definition [ fhir:value "The justification, as a code.\nReason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept, so we are not going to support a string." ];
+       fhir:ElementDefinition.short [ fhir:value "The explanation or justification for the current item or action, as a code." ];
+       fhir:ElementDefinition.definition [ fhir:value "The explanation or justification for the current item or action, as a code.\nReason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
@@ -281,45 +296,197 @@
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 11;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.reasonReference[x]" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.reasonReference[x]" ];
-       fhir:ElementDefinition.short [ fhir:value "The justification, as reference to a condition or observation." ];
-       fhir:ElementDefinition.definition [ fhir:value "The justification, as reference to a condition or observation." ];
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.referralReasonReference[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.referralReasonReference[x]" ];
+       fhir:ElementDefinition.slicing [
+         fhir:ElementDefinition.slicing.discriminator [
+           fhir:index 0;
+           fhir:ElementDefinition.slicing.discriminator.type [ fhir:value "type" ];
+           fhir:ElementDefinition.slicing.discriminator.path [ fhir:value "$this" ]
+         ];
+         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
+         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
+       ];
+       fhir:ElementDefinition.short [ fhir:value "Indicates another resource whose existence justifies this request." ];
+       fhir:ElementDefinition.definition [ fhir:value "Indicates another resource whose existence justifies this request." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.reasonReference[x]" ];
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.referralReasonReference[x]" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition-model" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model" ]
        ], [
          fhir:index 1;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation-model" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 12;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.type" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.type" ];
-       fhir:ElementDefinition.code [
-         fhir:index 0;
-         fhir:Coding.system [ fhir:value "http://ncimeta.nci.nih.gov" ];
-         fhir:Coding.code [ fhir:value "C0332307" ]
-       ];
-       fhir:ElementDefinition.short [ fhir:value "A code describing the item at a greater level of detail." ];
-       fhir:ElementDefinition.definition [ fhir:value "A code describing the item at a greater level of detail." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.referralReasonReferenceShr-core-Condition-model:Condition" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.referralReasonReferenceShr-core-Condition-model" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "Condition" ];
+       fhir:ElementDefinition.short [ fhir:value "A condition that is or may be present in a subject. 'Condition' is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble." ];
+       fhir:ElementDefinition.definition [ fhir:value "A condition that is or may be present in a subject. 'Condition' is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.\nThe Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.\nSHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.type" ];
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.referralReasonReference[x]" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 13;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.referralReasonReferenceShr-core-Observation-model:Observation" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.referralReasonReferenceShr-core-Observation-model" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "Observation" ];
+       fhir:ElementDefinition.short [ fhir:value "Represents the result of evaluations (measurements, tests, or questions) that have been performed." ];
+       fhir:ElementDefinition.definition [ fhir:value "Represents the result of evaluations (measurements, tests, or questions) that have been performed.\nObservation has a value representing the result (answer), or an DataAbsentReason indicating why the value is not present. Things observed about the subject can include social and behavioral factors, subjective and objective observations, and assessments.\nFor an Observation, the Code describes the aspect or property of the subject being observed or measured. The Code is the 'question code' that pairs to the 'answer' contained in the Value." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.referralReasonReference[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 14;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOn[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOn[x]" ];
+       fhir:ElementDefinition.slicing [
+         fhir:ElementDefinition.slicing.discriminator [
+           fhir:index 0;
+           fhir:ElementDefinition.slicing.discriminator.type [ fhir:value "type" ];
+           fhir:ElementDefinition.slicing.discriminator.path [ fhir:value "$this" ]
+         ];
+         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
+         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
+       ];
+       fhir:ElementDefinition.short [ fhir:value "The original or initiating plan, proposal, or request." ];
+       fhir:ElementDefinition.definition [ fhir:value "The original or initiating plan, proposal, or request." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOn[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model" ]
+       ], [
+         fhir:index 2;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 15;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOnShr-core-ServiceRequest-model:ServiceRequest" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOnShr-core-ServiceRequest-model" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "ServiceRequest" ];
+       fhir:ElementDefinition.short [ fhir:value "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed." ];
+       fhir:ElementDefinition.definition [ fhir:value "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOn[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 16;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOnShr-core-ReferralRequest-model:ReferralRequest" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOnShr-core-ReferralRequest-model" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "ReferralRequest" ];
+       fhir:ElementDefinition.short [ fhir:value "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization." ];
+       fhir:ElementDefinition.definition [ fhir:value "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOn[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 17;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOnShr-core-ProcedureRequest-model:ProcedureRequest" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOnShr-core-ProcedureRequest-model" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "ProcedureRequest" ];
+       fhir:ElementDefinition.short [ fhir:value "A request for a procedure to be performed. May be a proposal or an order." ];
+       fhir:ElementDefinition.definition [ fhir:value "A request for a procedure to be performed. May be a proposal or an order." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOn[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 18;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.code" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.code" ];
+       fhir:ElementDefinition.short [ fhir:value "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary." ];
+       fhir:ElementDefinition.definition [ fhir:value "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.code" ];
+         fhir:ElementDefinition.base.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
          fhir:ElementDefinition.base.max [ fhir:value "1" ]
        ];
        fhir:ElementDefinition.type [
@@ -328,16 +495,66 @@
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.binding [
-         fhir:ElementDefinition.binding.strength [ fhir:value "example" ];
-         fhir:ElementDefinition.binding.valueSetReference [
-           fhir:link <http://hl7.org/fhir/ValueSet/referral-type>;
-           fhir:Reference.reference [ fhir:value "http://hl7.org/fhir/ValueSet/referral-type" ]
-         ]
-       ]
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 13;
+       fhir:index 19;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.category" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.category" ];
+       fhir:ElementDefinition.short [ fhir:value "The general type or class of this item." ];
+       fhir:ElementDefinition.definition [ fhir:value "The general type or class of this item." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.category" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Coding" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 20;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.referralRequester[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.referralRequester[x]" ];
+       fhir:ElementDefinition.short [ fhir:value "The person or organization originating this referral" ];
+       fhir:ElementDefinition.definition [ fhir:value "The person or organization originating this referral" ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.referralRequester[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model" ]
+       ], [
+         fhir:index 2;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model" ]
+       ], [
+         fhir:index 3;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model" ]
+       ], [
+         fhir:index 4;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 21;
        fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.requestIntent" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.requestIntent" ];
        fhir:ElementDefinition.short [ fhir:value "Indicates the level of authority/intentionality associated with the request and where the request fits into the workflow chain." ];
@@ -364,7 +581,7 @@
          ]
        ]
      ], [
-       fhir:index 14;
+       fhir:index 22;
        fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.expectedPerformanceTime[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.expectedPerformanceTime[x]" ];
        fhir:ElementDefinition.short [ fhir:value "When an action should be done. If the action is a series or recurs (e.g. daily blood sugar testing in the morning) then a Timing can be used to describe the periodicity." ];
@@ -381,16 +598,16 @@
          fhir:ElementDefinition.type.code [ fhir:value "dateTime" ]
        ], [
          fhir:index 1;
-         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model" ]
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model" ]
        ], [
          fhir:index 2;
-         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Timing-model" ]
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Timing-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 15;
+       fhir:index 23;
        fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.expectedPerformerType" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.expectedPerformerType" ];
        fhir:ElementDefinition.short [ fhir:value "What type of party should carry out the testing." ];
@@ -410,60 +627,34 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 16;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.recipient[x]" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.recipient[x]" ];
-       fhir:ElementDefinition.short [ fhir:value "Who this request is being addressed to." ];
-       fhir:ElementDefinition.definition [ fhir:value "Who this request is being addressed to." ];
+       fhir:index 24;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.referralRecipient[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.referralRecipient[x]" ];
+       fhir:ElementDefinition.short [ fhir:value "The practitioner or organization receiving the referral." ];
+       fhir:ElementDefinition.definition [ fhir:value "The practitioner or organization receiving the referral." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.recipient[x]" ];
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.referralRecipient[x]" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
          fhir:ElementDefinition.base.max [ fhir:value "1" ]
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model" ]
        ], [
          fhir:index 1;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model" ]
-       ], [
-         fhir:index 2;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model" ]
-       ], [
-         fhir:index 3;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model" ]
-       ], [
-         fhir:index 4;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 17;
+       fhir:index 25;
        fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.priorityCode[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.priorityCode[x]" ];
-       fhir:ElementDefinition.code [
-         fhir:index 0;
-         fhir:Coding.system [ fhir:value "http://ncimeta.nci.nih.gov" ];
-         fhir:Coding.code [ fhir:value "C0549179" ]
-       ];
-       fhir:ElementDefinition.slicing [
-         fhir:ElementDefinition.slicing.discriminator [
-           fhir:index 0;
-           fhir:ElementDefinition.slicing.discriminator.type [ fhir:value "type" ];
-           fhir:ElementDefinition.slicing.discriminator.path [ fhir:value "$this" ]
-         ];
-         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
-         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
-       ];
        fhir:ElementDefinition.short [ fhir:value "An indication of the importance of an action relative to other actions." ];
        fhir:ElementDefinition.definition [ fhir:value "An indication of the importance of an action relative to other actions." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
@@ -484,35 +675,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 18;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.priorityCodeCoding:codeableConcept" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.priorityCodeCoding" ];
-       fhir:ElementDefinition.sliceName [ fhir:value "codeableConcept" ];
-       fhir:ElementDefinition.short [ fhir:value "PositiveInt or code representing an indication of the importance of an action relative to other actions." ];
-       fhir:ElementDefinition.definition [ fhir:value "PositiveInt or code representing an indication of the importance of an action relative to other actions." ];
-       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.priorityCodeCoding" ];
-         fhir:ElementDefinition.base.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
-         fhir:ElementDefinition.base.max [ fhir:value "1" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Coding" ]
-       ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.binding [
-         fhir:ElementDefinition.binding.strength [ fhir:value "required" ];
-         fhir:ElementDefinition.binding.valueSetReference [
-           fhir:link <http://hl7.org/fhir/ValueSet/request-priority>;
-           fhir:Reference.reference [ fhir:value "http://hl7.org/fhir/ValueSet/request-priority" ]
-         ]
-       ]
-     ], [
-       fhir:index 19;
+       fhir:index 26;
        fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.annotation" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.annotation" ];
        fhir:ElementDefinition.short [ fhir:value "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when." ];
@@ -526,70 +689,13 @@
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model" ]
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 20;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.communicationMethod" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.communicationMethod" ];
-       fhir:ElementDefinition.short [ fhir:value "This is the method the provider used to communicate. Examples include: Written, Telephoned, Verbal, Electronically Entered, Policy, Service Correction, Duplicate, etc. 'Code indicating the origin of the prescription.' - NCPDP Telecommunication (Field 419-DJ, Data Dictionary 201104). Possible values include: Written; Telephone; Electronic; Facsimile; Pharmacy; Not Known." ];
-       fhir:ElementDefinition.definition [ fhir:value "This is the method the provider used to communicate. Examples include: Written, Telephoned, Verbal, Electronically Entered, Policy, Service Correction, Duplicate, etc. 'Code indicating the origin of the prescription.' - NCPDP Telecommunication (Field 419-DJ, Data Dictionary 201104). Possible values include: Written; Telephone; Electronic; Facsimile; Pharmacy; Not Known." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.communicationMethod" ];
-         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-         fhir:ElementDefinition.base.max [ fhir:value "1" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Coding" ]
-       ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
-     ], [
-       fhir:index 21;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.referralRequester[x]" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.referralRequester[x]" ];
-       fhir:ElementDefinition.short [ fhir:value "The person or organization originating this referral" ];
-       fhir:ElementDefinition.definition [ fhir:value "The person or organization originating this referral" ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.referralRequester[x]" ];
-         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-         fhir:ElementDefinition.base.max [ fhir:value "1" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model" ]
-       ], [
-         fhir:index 1;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model" ]
-       ], [
-         fhir:index 2;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model" ]
-       ], [
-         fhir:index 3;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model" ]
-       ], [
-         fhir:index 4;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model" ]
-       ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
-     ], [
-       fhir:index 22;
+       fhir:index 27;
        fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.replaces" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.replaces" ];
        fhir:ElementDefinition.short [ fhir:value "Request(s) replaced by this request" ];
@@ -604,46 +710,61 @@
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 23;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.referralRecipient[x]" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.referralRecipient[x]" ];
-       fhir:ElementDefinition.short [ fhir:value "The practitioner or organization receiving the referral." ];
-       fhir:ElementDefinition.definition [ fhir:value "The practitioner or organization receiving the referral." ];
+       fhir:index 28;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.groupIdentifier" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.groupIdentifier" ];
+       fhir:ElementDefinition.short [ fhir:value "A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier." ];
+       fhir:ElementDefinition.definition [ fhir:value "A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.referralRecipient[x]" ];
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.groupIdentifier" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model" ]
-       ], [
-         fhir:index 1;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model" ]
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 24;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.serviceType" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.serviceType" ];
-       fhir:ElementDefinition.short [ fhir:value "A service requested or to be performed during this appointment" ];
-       fhir:ElementDefinition.definition [ fhir:value "A service requested or to be performed during this appointment" ];
+       fhir:index 29;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.doNotPerform" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.doNotPerform" ];
+       fhir:ElementDefinition.short [ fhir:value "A flag, when set to true, indicates that the service/procedure should NOT be performed." ];
+       fhir:ElementDefinition.definition [ fhir:value "A flag, when set to true, indicates that the service/procedure should NOT be performed." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.doNotPerform" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "boolean" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 30;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.serviceDetails" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.serviceDetails" ];
+       fhir:ElementDefinition.short [ fhir:value "A service requested or performed. Additional details and instructions about the service requested or performed. For example, and order for a urinary catheter may have an order detail for an external or indwelling catheter, or an order for a bandage may require additional instructions specifying how the bandage should be applied." ];
+       fhir:ElementDefinition.definition [ fhir:value "A service requested or performed. Additional details and instructions about the service requested or performed. For example, and order for a urinary catheter may have an order detail for an external or indwelling catheter, or an order for a bandage may require additional instructions specifying how the bandage should be applied." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "*" ];
        fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.serviceType" ];
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.serviceDetails" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
          fhir:ElementDefinition.base.max [ fhir:value "*" ]
        ];
@@ -662,14 +783,233 @@
          ]
        ]
      ], [
-       fhir:index 25;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.commentOrDescription" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.commentOrDescription" ];
+       fhir:index 31;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.requestQuantity[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.requestQuantity[x]" ];
+       fhir:ElementDefinition.short [ fhir:value "An amount of service being requested which can be a quantity ( for example $1,500 home modification), a ratio ( for example, 20 half day visits per month), or a range (2.0 to 1.8 Gy per fraction)." ];
+       fhir:ElementDefinition.definition [ fhir:value "An amount of service being requested which can be a quantity ( for example $1,500 home modification), a ratio ( for example, 20 half day visits per month), or a range (2.0 to 1.8 Gy per fraction)." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.requestQuantity[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Quantity-model" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Ratio-model" ]
+       ], [
+         fhir:index 2;
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Range-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 32;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.referralRequestSubjectOfRecord[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.referralRequestSubjectOfRecord[x]" ];
+       fhir:ElementDefinition.short [ fhir:value "Subject of record types allowed for referrals" ];
+       fhir:ElementDefinition.definition [ fhir:value "Subject of record types allowed for referrals" ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.referralRequestSubjectOfRecord[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Group-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 33;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.asNeeded[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.asNeeded[x]" ];
+       fhir:ElementDefinition.short [ fhir:value "Preconditions for service, either 'true' indicating to be performed if needed, or a code indicating the pre-condition for performing the service. For example 'pain', 'on flare-up', etc." ];
+       fhir:ElementDefinition.definition [ fhir:value "Preconditions for service, either 'true' indicating to be performed if needed, or a code indicating the pre-condition for performing the service. For example 'pain', 'on flare-up', etc." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.asNeeded[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "boolean" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.type.code [ fhir:value "Coding" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 34;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.location" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.location" ];
+       fhir:ElementDefinition.short [ fhir:value "Services and space and equipment provided for a particular purpose; a building or place that provides a particular service or is used for a particular industry. Could be a clinical site, community site, or a mobile facility." ];
+       fhir:ElementDefinition.definition [ fhir:value "Services and space and equipment provided for a particular purpose; a building or place that provides a particular service or is used for a particular industry. Could be a clinical site, community site, or a mobile facility." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.location" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Location-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 35;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.locationType" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.locationType" ];
+       fhir:ElementDefinition.short [ fhir:value "The preferred type of location(s) where the service should happen, in coded or free text form, e.g. at home or nursing day care center." ];
+       fhir:ElementDefinition.definition [ fhir:value "The preferred type of location(s) where the service should happen, in coded or free text form, e.g. at home or nursing day care center." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.locationType" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Coding" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 36;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.insurance" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.insurance" ];
        fhir:ElementDefinition.code [
          fhir:index 0;
          fhir:Coding.system [ fhir:value "http://ncimeta.nci.nih.gov" ];
-         fhir:Coding.code [ fhir:value "C0947611" ]
+         fhir:Coding.code [ fhir:value "C0021682" ];
+         fhir:Coding.display [ fhir:value "HealthInsurance" ]
        ];
+       fhir:ElementDefinition.short [ fhir:value "Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service." ];
+       fhir:ElementDefinition.definition [ fhir:value "Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.insurance" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Coverage-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 37;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.supportingInformation" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.supportingInformation" ];
+       fhir:ElementDefinition.short [ fhir:value "Additional information to support this request." ];
+       fhir:ElementDefinition.definition [ fhir:value "Additional information to support this request." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.supportingInformation" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 38;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.specimen" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.specimen" ];
+       fhir:ElementDefinition.short [ fhir:value "A specimen is a substance, physical object, or collection of objects, that the laboratory considers a single discrete, uniquely identified unit that is the subject of one or more steps in the laboratory workflow. A specimen may include multiple physical pieces as long as they are considered a single unit within the laboratory workflow. A specimen results from one to many specimen collection procedures, and may be contained in multiple specimen containers. Specimen may have one or more processing activities." ];
+       fhir:ElementDefinition.definition [ fhir:value "A specimen is a substance, physical object, or collection of objects, that the laboratory considers a single discrete, uniquely identified unit that is the subject of one or more steps in the laboratory workflow. A specimen may include multiple physical pieces as long as they are considered a single unit within the laboratory workflow. A specimen results from one to many specimen collection procedures, and may be contained in multiple specimen containers. Specimen may have one or more processing activities." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.specimen" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Specimen-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 39;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.bodyLocation" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.bodyLocation" ];
+       fhir:ElementDefinition.short [ fhir:value "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases." ];
+       fhir:ElementDefinition.definition [ fhir:value "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\nNote that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5)." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.bodyLocation" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-BodyLocation-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 40;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.patientInstruction" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.patientInstruction" ];
+       fhir:ElementDefinition.short [ fhir:value "Patient or consumer-oriented instructions." ];
+       fhir:ElementDefinition.definition [ fhir:value "Patient or consumer-oriented instructions." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.patientInstruction" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "string" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 41;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.commentOrDescription" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.commentOrDescription" ];
        fhir:ElementDefinition.short [ fhir:value "A text note containing additional details, explanation, description, comment, or summarization." ];
        fhir:ElementDefinition.definition [ fhir:value "A text note containing additional details, explanation, description, comment, or summarization." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
@@ -682,27 +1022,6 @@
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "string" ]
-       ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
-     ], [
-       fhir:index 26;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.relatedInformation" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.relatedInformation" ];
-       fhir:ElementDefinition.short [ fhir:value "Additional information to support referral or transfer of care request" ];
-       fhir:ElementDefinition.definition [ fhir:value "Additional information to support referral or transfer of care request" ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "*" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.relatedInformation" ];
-         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-         fhir:ElementDefinition.base.max [ fhir:value "*" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
@@ -740,7 +1059,7 @@
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model" ]
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
@@ -749,11 +1068,6 @@
        fhir:index 2;
        fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.language" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.language" ];
-       fhir:ElementDefinition.code [
-         fhir:index 0;
-         fhir:Coding.system [ fhir:value "http://ncimeta.nci.nih.gov" ];
-         fhir:Coding.code [ fhir:value "C0023008" ]
-       ];
        fhir:ElementDefinition.short [ fhir:value "A human language, spoken or written." ];
        fhir:ElementDefinition.definition [ fhir:value "A human language, spoken or written." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
@@ -805,7 +1119,7 @@
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model" ]
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
@@ -845,57 +1159,77 @@
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model" ]
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 7;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.referralSubjectOfRecord[x]" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.referralSubjectOfRecord[x]" ];
-       fhir:ElementDefinition.short [ fhir:value "A choice of Patient or Group. These are the potential subjects for Procedure and ReferralRequest resources." ];
-       fhir:ElementDefinition.definition [ fhir:value "A choice of Patient or Group. These are the potential subjects for Procedure and ReferralRequest resources." ];
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.subjectOfRecord[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.subjectOfRecord[x]" ];
+       fhir:ElementDefinition.short [ fhir:value "The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe's patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord." ];
+       fhir:ElementDefinition.definition [ fhir:value "The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe's patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord.\n\nNote that the word 'Subject' is used here in the sense of a person or entity subjected to observations or actions, not subject as in a conceptual topic, like heart disease." ];
        fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.referralSubjectOfRecord[x]" ];
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.subjectOfRecord[x]" ];
          fhir:ElementDefinition.base.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
          fhir:ElementDefinition.base.max [ fhir:value "1" ]
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model" ]
        ], [
          fhir:index 1;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Group-model" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model" ]
+       ], [
+         fhir:index 2;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Group-model" ]
+       ], [
+         fhir:index 3;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model" ]
+       ], [
+         fhir:index 4;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Specimen-model" ]
+       ], [
+         fhir:index 5;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Location-model" ]
+       ], [
+         fhir:index 6;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Medication-model" ]
+       ], [
+         fhir:index 7;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ResearchSubject-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 8;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.careContext[x]" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.careContext[x]" ];
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.careContext" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.careContext" ];
        fhir:ElementDefinition.short [ fhir:value "The encounter or episode of care" ];
        fhir:ElementDefinition.definition [ fhir:value "The encounter or episode of care" ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.careContext[x]" ];
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.careContext" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
          fhir:ElementDefinition.base.max [ fhir:value "1" ]
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model" ]
-       ], [
-         fhir:index 1;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare-model" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
@@ -934,8 +1268,8 @@
          fhir:Coding.system [ fhir:value "http://ncimeta.nci.nih.gov" ];
          fhir:Coding.code [ fhir:value "C0566251" ]
        ];
-       fhir:ElementDefinition.short [ fhir:value "The justification, as a code." ];
-       fhir:ElementDefinition.definition [ fhir:value "The justification, as a code.\nReason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept, so we are not going to support a string." ];
+       fhir:ElementDefinition.short [ fhir:value "The explanation or justification for the current item or action, as a code." ];
+       fhir:ElementDefinition.definition [ fhir:value "The explanation or justification for the current item or action, as a code.\nReason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
@@ -952,45 +1286,197 @@
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 11;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.reasonReference[x]" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.reasonReference[x]" ];
-       fhir:ElementDefinition.short [ fhir:value "The justification, as reference to a condition or observation." ];
-       fhir:ElementDefinition.definition [ fhir:value "The justification, as reference to a condition or observation." ];
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.referralReasonReference[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.referralReasonReference[x]" ];
+       fhir:ElementDefinition.slicing [
+         fhir:ElementDefinition.slicing.discriminator [
+           fhir:index 0;
+           fhir:ElementDefinition.slicing.discriminator.type [ fhir:value "type" ];
+           fhir:ElementDefinition.slicing.discriminator.path [ fhir:value "$this" ]
+         ];
+         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
+         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
+       ];
+       fhir:ElementDefinition.short [ fhir:value "Indicates another resource whose existence justifies this request." ];
+       fhir:ElementDefinition.definition [ fhir:value "Indicates another resource whose existence justifies this request." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.reasonReference[x]" ];
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.referralReasonReference[x]" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition-model" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model" ]
        ], [
          fhir:index 1;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation-model" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 12;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.type" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.type" ];
-       fhir:ElementDefinition.code [
-         fhir:index 0;
-         fhir:Coding.system [ fhir:value "http://ncimeta.nci.nih.gov" ];
-         fhir:Coding.code [ fhir:value "C0332307" ]
-       ];
-       fhir:ElementDefinition.short [ fhir:value "A code describing the item at a greater level of detail." ];
-       fhir:ElementDefinition.definition [ fhir:value "A code describing the item at a greater level of detail." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.referralReasonReferenceShr-core-Condition-model:Condition" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.referralReasonReferenceShr-core-Condition-model" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "Condition" ];
+       fhir:ElementDefinition.short [ fhir:value "A condition that is or may be present in a subject. 'Condition' is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble." ];
+       fhir:ElementDefinition.definition [ fhir:value "A condition that is or may be present in a subject. 'Condition' is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.\nThe Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.\nSHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.type" ];
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.referralReasonReference[x]" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 13;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.referralReasonReferenceShr-core-Observation-model:Observation" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.referralReasonReferenceShr-core-Observation-model" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "Observation" ];
+       fhir:ElementDefinition.short [ fhir:value "Represents the result of evaluations (measurements, tests, or questions) that have been performed." ];
+       fhir:ElementDefinition.definition [ fhir:value "Represents the result of evaluations (measurements, tests, or questions) that have been performed.\nObservation has a value representing the result (answer), or an DataAbsentReason indicating why the value is not present. Things observed about the subject can include social and behavioral factors, subjective and objective observations, and assessments.\nFor an Observation, the Code describes the aspect or property of the subject being observed or measured. The Code is the 'question code' that pairs to the 'answer' contained in the Value." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.referralReasonReference[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 14;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOn[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOn[x]" ];
+       fhir:ElementDefinition.slicing [
+         fhir:ElementDefinition.slicing.discriminator [
+           fhir:index 0;
+           fhir:ElementDefinition.slicing.discriminator.type [ fhir:value "type" ];
+           fhir:ElementDefinition.slicing.discriminator.path [ fhir:value "$this" ]
+         ];
+         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
+         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
+       ];
+       fhir:ElementDefinition.short [ fhir:value "The original or initiating plan, proposal, or request." ];
+       fhir:ElementDefinition.definition [ fhir:value "The original or initiating plan, proposal, or request." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOn[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model" ]
+       ], [
+         fhir:index 2;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 15;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOnShr-core-ServiceRequest-model:ServiceRequest" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOnShr-core-ServiceRequest-model" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "ServiceRequest" ];
+       fhir:ElementDefinition.short [ fhir:value "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed." ];
+       fhir:ElementDefinition.definition [ fhir:value "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOn[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 16;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOnShr-core-ReferralRequest-model:ReferralRequest" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOnShr-core-ReferralRequest-model" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "ReferralRequest" ];
+       fhir:ElementDefinition.short [ fhir:value "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization." ];
+       fhir:ElementDefinition.definition [ fhir:value "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOn[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 17;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOnShr-core-ProcedureRequest-model:ProcedureRequest" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOnShr-core-ProcedureRequest-model" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "ProcedureRequest" ];
+       fhir:ElementDefinition.short [ fhir:value "A request for a procedure to be performed. May be a proposal or an order." ];
+       fhir:ElementDefinition.definition [ fhir:value "A request for a procedure to be performed. May be a proposal or an order." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.serviceBasedOn[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 18;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.code" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.code" ];
+       fhir:ElementDefinition.short [ fhir:value "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary." ];
+       fhir:ElementDefinition.definition [ fhir:value "The main type identifier for a lab, procedure, condition, etc., usually drawn from a controlled vocabulary." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.code" ];
+         fhir:ElementDefinition.base.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
          fhir:ElementDefinition.base.max [ fhir:value "1" ]
        ];
        fhir:ElementDefinition.type [
@@ -999,16 +1485,66 @@
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.binding [
-         fhir:ElementDefinition.binding.strength [ fhir:value "example" ];
-         fhir:ElementDefinition.binding.valueSetReference [
-           fhir:link <http://hl7.org/fhir/ValueSet/referral-type>;
-           fhir:Reference.reference [ fhir:value "http://hl7.org/fhir/ValueSet/referral-type" ]
-         ]
-       ]
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 13;
+       fhir:index 19;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.category" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.category" ];
+       fhir:ElementDefinition.short [ fhir:value "The general type or class of this item." ];
+       fhir:ElementDefinition.definition [ fhir:value "The general type or class of this item." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.category" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Coding" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 20;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.referralRequester[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.referralRequester[x]" ];
+       fhir:ElementDefinition.short [ fhir:value "The person or organization originating this referral" ];
+       fhir:ElementDefinition.definition [ fhir:value "The person or organization originating this referral" ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.referralRequester[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model" ]
+       ], [
+         fhir:index 2;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model" ]
+       ], [
+         fhir:index 3;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model" ]
+       ], [
+         fhir:index 4;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 21;
        fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.requestIntent" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.requestIntent" ];
        fhir:ElementDefinition.short [ fhir:value "Indicates the level of authority/intentionality associated with the request and where the request fits into the workflow chain." ];
@@ -1035,7 +1571,7 @@
          ]
        ]
      ], [
-       fhir:index 14;
+       fhir:index 22;
        fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.expectedPerformanceTime[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.expectedPerformanceTime[x]" ];
        fhir:ElementDefinition.short [ fhir:value "When an action should be done. If the action is a series or recurs (e.g. daily blood sugar testing in the morning) then a Timing can be used to describe the periodicity." ];
@@ -1052,16 +1588,16 @@
          fhir:ElementDefinition.type.code [ fhir:value "dateTime" ]
        ], [
          fhir:index 1;
-         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model" ]
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model" ]
        ], [
          fhir:index 2;
-         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Timing-model" ]
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Timing-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 15;
+       fhir:index 23;
        fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.expectedPerformerType" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.expectedPerformerType" ];
        fhir:ElementDefinition.short [ fhir:value "What type of party should carry out the testing." ];
@@ -1081,60 +1617,34 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 16;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.recipient[x]" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.recipient[x]" ];
-       fhir:ElementDefinition.short [ fhir:value "Who this request is being addressed to." ];
-       fhir:ElementDefinition.definition [ fhir:value "Who this request is being addressed to." ];
+       fhir:index 24;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.referralRecipient[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.referralRecipient[x]" ];
+       fhir:ElementDefinition.short [ fhir:value "The practitioner or organization receiving the referral." ];
+       fhir:ElementDefinition.definition [ fhir:value "The practitioner or organization receiving the referral." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.recipient[x]" ];
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.referralRecipient[x]" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
          fhir:ElementDefinition.base.max [ fhir:value "1" ]
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model" ]
        ], [
          fhir:index 1;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model" ]
-       ], [
-         fhir:index 2;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model" ]
-       ], [
-         fhir:index 3;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model" ]
-       ], [
-         fhir:index 4;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 17;
+       fhir:index 25;
        fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.priorityCode[x]" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.priorityCode[x]" ];
-       fhir:ElementDefinition.code [
-         fhir:index 0;
-         fhir:Coding.system [ fhir:value "http://ncimeta.nci.nih.gov" ];
-         fhir:Coding.code [ fhir:value "C0549179" ]
-       ];
-       fhir:ElementDefinition.slicing [
-         fhir:ElementDefinition.slicing.discriminator [
-           fhir:index 0;
-           fhir:ElementDefinition.slicing.discriminator.type [ fhir:value "type" ];
-           fhir:ElementDefinition.slicing.discriminator.path [ fhir:value "$this" ]
-         ];
-         fhir:ElementDefinition.slicing.ordered [ fhir:value "false"^^xsd:boolean ];
-         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
-       ];
        fhir:ElementDefinition.short [ fhir:value "An indication of the importance of an action relative to other actions." ];
        fhir:ElementDefinition.definition [ fhir:value "An indication of the importance of an action relative to other actions." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
@@ -1155,35 +1665,7 @@
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 18;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.priorityCodeCoding:codeableConcept" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.priorityCodeCoding" ];
-       fhir:ElementDefinition.sliceName [ fhir:value "codeableConcept" ];
-       fhir:ElementDefinition.short [ fhir:value "PositiveInt or code representing an indication of the importance of an action relative to other actions." ];
-       fhir:ElementDefinition.definition [ fhir:value "PositiveInt or code representing an indication of the importance of an action relative to other actions." ];
-       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.priorityCodeCoding" ];
-         fhir:ElementDefinition.base.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
-         fhir:ElementDefinition.base.max [ fhir:value "1" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Coding" ]
-       ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.binding [
-         fhir:ElementDefinition.binding.strength [ fhir:value "required" ];
-         fhir:ElementDefinition.binding.valueSetReference [
-           fhir:link <http://hl7.org/fhir/ValueSet/request-priority>;
-           fhir:Reference.reference [ fhir:value "http://hl7.org/fhir/ValueSet/request-priority" ]
-         ]
-       ]
-     ], [
-       fhir:index 19;
+       fhir:index 26;
        fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.annotation" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.annotation" ];
        fhir:ElementDefinition.short [ fhir:value "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when." ];
@@ -1197,70 +1679,13 @@
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation-model" ]
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 20;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.communicationMethod" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.communicationMethod" ];
-       fhir:ElementDefinition.short [ fhir:value "This is the method the provider used to communicate. Examples include: Written, Telephoned, Verbal, Electronically Entered, Policy, Service Correction, Duplicate, etc. 'Code indicating the origin of the prescription.' - NCPDP Telecommunication (Field 419-DJ, Data Dictionary 201104). Possible values include: Written; Telephone; Electronic; Facsimile; Pharmacy; Not Known." ];
-       fhir:ElementDefinition.definition [ fhir:value "This is the method the provider used to communicate. Examples include: Written, Telephoned, Verbal, Electronically Entered, Policy, Service Correction, Duplicate, etc. 'Code indicating the origin of the prescription.' - NCPDP Telecommunication (Field 419-DJ, Data Dictionary 201104). Possible values include: Written; Telephone; Electronic; Facsimile; Pharmacy; Not Known." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.communicationMethod" ];
-         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-         fhir:ElementDefinition.base.max [ fhir:value "1" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Coding" ]
-       ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
-     ], [
-       fhir:index 21;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.referralRequester[x]" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.referralRequester[x]" ];
-       fhir:ElementDefinition.short [ fhir:value "The person or organization originating this referral" ];
-       fhir:ElementDefinition.definition [ fhir:value "The person or organization originating this referral" ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.referralRequester[x]" ];
-         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-         fhir:ElementDefinition.base.max [ fhir:value "1" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model" ]
-       ], [
-         fhir:index 1;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model" ]
-       ], [
-         fhir:index 2;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model" ]
-       ], [
-         fhir:index 3;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model" ]
-       ], [
-         fhir:index 4;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model" ]
-       ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
-     ], [
-       fhir:index 22;
+       fhir:index 27;
        fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.replaces" ];
        fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.replaces" ];
        fhir:ElementDefinition.short [ fhir:value "Request(s) replaced by this request" ];
@@ -1275,46 +1700,61 @@
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model" ]
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 23;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.referralRecipient[x]" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.referralRecipient[x]" ];
-       fhir:ElementDefinition.short [ fhir:value "The practitioner or organization receiving the referral." ];
-       fhir:ElementDefinition.definition [ fhir:value "The practitioner or organization receiving the referral." ];
+       fhir:index 28;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.groupIdentifier" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.groupIdentifier" ];
+       fhir:ElementDefinition.short [ fhir:value "A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier." ];
+       fhir:ElementDefinition.definition [ fhir:value "A shared identifier common to all service requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.referralRecipient[x]" ];
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.groupIdentifier" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model" ]
-       ], [
-         fhir:index 1;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model" ]
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model" ]
        ];
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
-       fhir:index 24;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.serviceType" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.serviceType" ];
-       fhir:ElementDefinition.short [ fhir:value "A service requested or to be performed during this appointment" ];
-       fhir:ElementDefinition.definition [ fhir:value "A service requested or to be performed during this appointment" ];
+       fhir:index 29;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.doNotPerform" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.doNotPerform" ];
+       fhir:ElementDefinition.short [ fhir:value "A flag, when set to true, indicates that the service/procedure should NOT be performed." ];
+       fhir:ElementDefinition.definition [ fhir:value "A flag, when set to true, indicates that the service/procedure should NOT be performed." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.doNotPerform" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "boolean" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 30;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.serviceDetails" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.serviceDetails" ];
+       fhir:ElementDefinition.short [ fhir:value "A service requested or performed. Additional details and instructions about the service requested or performed. For example, and order for a urinary catheter may have an order detail for an external or indwelling catheter, or an order for a bandage may require additional instructions specifying how the bandage should be applied." ];
+       fhir:ElementDefinition.definition [ fhir:value "A service requested or performed. Additional details and instructions about the service requested or performed. For example, and order for a urinary catheter may have an order detail for an external or indwelling catheter, or an order for a bandage may require additional instructions specifying how the bandage should be applied." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
        fhir:ElementDefinition.max [ fhir:value "*" ];
        fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.serviceType" ];
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.serviceDetails" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
          fhir:ElementDefinition.base.max [ fhir:value "*" ]
        ];
@@ -1333,14 +1773,233 @@
          ]
        ]
      ], [
-       fhir:index 25;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.commentOrDescription" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.commentOrDescription" ];
+       fhir:index 31;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.requestQuantity[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.requestQuantity[x]" ];
+       fhir:ElementDefinition.short [ fhir:value "An amount of service being requested which can be a quantity ( for example $1,500 home modification), a ratio ( for example, 20 half day visits per month), or a range (2.0 to 1.8 Gy per fraction)." ];
+       fhir:ElementDefinition.definition [ fhir:value "An amount of service being requested which can be a quantity ( for example $1,500 home modification), a ratio ( for example, 20 half day visits per month), or a range (2.0 to 1.8 Gy per fraction)." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.requestQuantity[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Quantity-model" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Ratio-model" ]
+       ], [
+         fhir:index 2;
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Range-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 32;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.referralRequestSubjectOfRecord[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.referralRequestSubjectOfRecord[x]" ];
+       fhir:ElementDefinition.short [ fhir:value "Subject of record types allowed for referrals" ];
+       fhir:ElementDefinition.definition [ fhir:value "Subject of record types allowed for referrals" ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.referralRequestSubjectOfRecord[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Group-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 33;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.asNeeded[x]" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.asNeeded[x]" ];
+       fhir:ElementDefinition.short [ fhir:value "Preconditions for service, either 'true' indicating to be performed if needed, or a code indicating the pre-condition for performing the service. For example 'pain', 'on flare-up', etc." ];
+       fhir:ElementDefinition.definition [ fhir:value "Preconditions for service, either 'true' indicating to be performed if needed, or a code indicating the pre-condition for performing the service. For example 'pain', 'on flare-up', etc." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.asNeeded[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "boolean" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.type.code [ fhir:value "Coding" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 34;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.location" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.location" ];
+       fhir:ElementDefinition.short [ fhir:value "Services and space and equipment provided for a particular purpose; a building or place that provides a particular service or is used for a particular industry. Could be a clinical site, community site, or a mobile facility." ];
+       fhir:ElementDefinition.definition [ fhir:value "Services and space and equipment provided for a particular purpose; a building or place that provides a particular service or is used for a particular industry. Could be a clinical site, community site, or a mobile facility." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.location" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Location-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 35;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.locationType" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.locationType" ];
+       fhir:ElementDefinition.short [ fhir:value "The preferred type of location(s) where the service should happen, in coded or free text form, e.g. at home or nursing day care center." ];
+       fhir:ElementDefinition.definition [ fhir:value "The preferred type of location(s) where the service should happen, in coded or free text form, e.g. at home or nursing day care center." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.locationType" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Coding" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 36;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.insurance" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.insurance" ];
        fhir:ElementDefinition.code [
          fhir:index 0;
          fhir:Coding.system [ fhir:value "http://ncimeta.nci.nih.gov" ];
-         fhir:Coding.code [ fhir:value "C0947611" ]
+         fhir:Coding.code [ fhir:value "C0021682" ];
+         fhir:Coding.display [ fhir:value "HealthInsurance" ]
        ];
+       fhir:ElementDefinition.short [ fhir:value "Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service." ];
+       fhir:ElementDefinition.definition [ fhir:value "Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.insurance" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Coverage-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 37;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.supportingInformation" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.supportingInformation" ];
+       fhir:ElementDefinition.short [ fhir:value "Additional information to support this request." ];
+       fhir:ElementDefinition.definition [ fhir:value "Additional information to support this request." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.supportingInformation" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 38;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.specimen" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.specimen" ];
+       fhir:ElementDefinition.short [ fhir:value "A specimen is a substance, physical object, or collection of objects, that the laboratory considers a single discrete, uniquely identified unit that is the subject of one or more steps in the laboratory workflow. A specimen may include multiple physical pieces as long as they are considered a single unit within the laboratory workflow. A specimen results from one to many specimen collection procedures, and may be contained in multiple specimen containers. Specimen may have one or more processing activities." ];
+       fhir:ElementDefinition.definition [ fhir:value "A specimen is a substance, physical object, or collection of objects, that the laboratory considers a single discrete, uniquely identified unit that is the subject of one or more steps in the laboratory workflow. A specimen may include multiple physical pieces as long as they are considered a single unit within the laboratory workflow. A specimen results from one to many specimen collection procedures, and may be contained in multiple specimen containers. Specimen may have one or more processing activities." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.specimen" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Specimen-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 39;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.bodyLocation" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.bodyLocation" ];
+       fhir:ElementDefinition.short [ fhir:value "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases." ];
+       fhir:ElementDefinition.definition [ fhir:value "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\nNote that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5)." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.bodyLocation" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-BodyLocation-model" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 40;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.patientInstruction" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.patientInstruction" ];
+       fhir:ElementDefinition.short [ fhir:value "Patient or consumer-oriented instructions." ];
+       fhir:ElementDefinition.definition [ fhir:value "Patient or consumer-oriented instructions." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.patientInstruction" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "string" ]
+       ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 41;
+       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.commentOrDescription" ];
+       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.commentOrDescription" ];
        fhir:ElementDefinition.short [ fhir:value "A text note containing additional details, explanation, description, comment, or summarization." ];
        fhir:ElementDefinition.definition [ fhir:value "A text note containing additional details, explanation, description, comment, or summarization." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
@@ -1357,43 +2016,18 @@
        fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
-     ], [
-       fhir:index 26;
-       fhir:Element.id [ fhir:value "shr-core-ReferralRequest-model.relatedInformation" ];
-       fhir:ElementDefinition.path [ fhir:value "shr-core-ReferralRequest-model.relatedInformation" ];
-       fhir:ElementDefinition.short [ fhir:value "Additional information to support referral or transfer of care request" ];
-       fhir:ElementDefinition.definition [ fhir:value "Additional information to support referral or transfer of care request" ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "*" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "shr-core-ReferralRequest-model.relatedInformation" ];
-         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-         fhir:ElementDefinition.base.max [ fhir:value "*" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
-         fhir:ElementDefinition.type.targetProfile [ fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource-model" ]
-       ];
-       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ]
   ] .
 
-<http://hl7.org/fhir/ValueSet/referral-type> a fhir:ValueSet .
-
 <http://hl7.org/fhir/ValueSet/request-intent> a fhir:ValueSet .
-
-<http://hl7.org/fhir/ValueSet/request-priority> a fhir:ValueSet .
 
 <http://hl7.org/fhir/ValueSet/service-type> a fhir:ValueSet .
 
 # - ontology header ------------------------------------------------------------
 
-<http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model.ttl> a owl:Ontology;
+<http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model.ttl> a owl:Ontology;
   owl:imports fhir:fhir.ttl;
-  owl:versionIRI <http://build.fhir.org/us/shr/StructureDefinition/shr-core-ReferralRequest-model.ttl> .
+  owl:versionIRI <http://build.fhir.org/us/odh/StructureDefinition/shr-core-ReferralRequest-model.ttl> .
 
 # -------------------------------------------------------------------------------------
 

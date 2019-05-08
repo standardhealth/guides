@@ -61,10 +61,12 @@ if (location.href.indexOf('is-external=true') == -1) {
       <dl>
         <dt>Documentation:</dt>
         <dd>
-          <div class="block"><p>A record of the use of a medication.
-Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement).
-The treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.
-ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick one type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.</p></div>
+          <div class="block"><p>A record of the use of a medication. The use may be reported by the patient or clinician and adminstration does not have to be directly observed.</p>
+<p>FHIR Notes:</p>
+<p>Although FHIR supports the asserter (information source) and date asserted, it does not have a place for the author (who created and is responsible for the statement) and recorder (who entered the statement). Extensions are provided.</p>
+<p>The treatment of 'not taken' has changed from DSTU2 and STU3 to R4. In R4, status and statusReason are used to indicate medications not taken. For upward compatibility, the 'not taken' attributes are profiled out.
+ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limited to one reason (pick a type). In STU3 and R4, there can be multiple reason codes, and multiple reason references, simultaneously.</p>
+<p>Preference is given to using the National Library of Medicine (NLM) RxNorm terminology for medications. RxNorm is a coding standard established by the Office of the National Coordinator (ONC). However, RxNorm is restricted to FDA-approved drugs and does not include clinical trial drugs. MedicationStatement allows for the inclusion of other coding systems like the NCI Thesaurus (NCIT) to represent clinical trial oncology drugs.</p></div>
         </dd>
       </dl>
       <dl>
@@ -137,7 +139,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         <li>
     <ul>
           <li class="last">
-    <a href="../shr-core/MedicationExposure.html">MedicationExposure</a>
+    <a href="../shr-core/MedicationAction.html">MedicationAction</a>
   </li>
       </ul>
   </li>
@@ -207,10 +209,10 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
   <td class="colFirst">
     <div class="block">
     
-      <code><strong><a href="../shr-core/MedicationStatementInformationSource.html">MedicationStatementInformationSource</a></strong></code>
+      <code><strong><a href="../shr-core/MedicationStatementPartOf.html">MedicationStatementPartOf</a></strong></code>
     
     </div>
-    <div class="block"><p>The informant for this medication statement.</p></div>
+    <div class="block"><p>A larger event of which this particular event is a component or step.</p></div>
   </td>
   <td class="colMiddle">
           <div class="block"><code><strong>DataType</strong></code></div>
@@ -220,10 +222,10 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
   <td class="colLast">
                   <div class="block">
           
-                      <a href="../shr-core/MedicationStatementInformationSource.html">MedicationStatementInformationSource</a>
+                      <a href="../shr-core/MedicationStatementPartOf.html">MedicationStatementPartOf</a>
                     
         </div>
-                        <div class="block">0..1</div>
+                        <div class="block">0..*</div>
             </td>
 </tr>                        
   <tr class="altColor">
@@ -231,10 +233,34 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
   <td class="colFirst">
     <div class="block">
     
+      <code><strong><a href="../shr-core/StatusReason.html">StatusReason</a></strong></code>
+    
+    </div>
+    <div class="block"><p>Captures the reason for the current state of the procedure.</p></div>
+  </td>
+  <td class="colMiddle">
+          <div class="block"><code><strong>DataType</strong></code></div>
+          <div class="block"><code><strong>Cardinality</strong></code></div>
+    
+  </td>
+  <td class="colLast">
+                  <div class="block">
+          
+                      <a href="../shr-core/StatusReason.html">StatusReason</a>
+                    
+        </div>
+                        <div class="block">0..*</div>
+            </td>
+</tr>                        
+  <tr class="rowColor">
+
+  <td class="colFirst">
+    <div class="block">
+    
       <code><strong><a href="../shr-core/Category.html">Category</a></strong></code>
     
     </div>
-    <div class="block"><p>The type, kind, or class of this item.</p></div>
+    <div class="block"><p>The general type or class of this item.</p></div>
   </td>
   <td class="colMiddle">
           <div class="block"><code><strong>DataType</strong></code></div>
@@ -252,6 +278,78 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
                         <div class="block">http://hl7.org/fhir/ValueSet/medication-statement-category (PREFERRED)</div>
             </td>
 </tr>                        
+  <tr class="altColor">
+
+  <td class="colFirst">
+    <div class="block">
+    
+      <code><strong><a href="../shr-core/MedicationInformationSource.html">MedicationInformationSource</a></strong></code>
+    
+    </div>
+    <div class="block"><p>The informant for this medication statement.</p></div>
+  </td>
+  <td class="colMiddle">
+          <div class="block"><code><strong>DataType</strong></code></div>
+          <div class="block"><code><strong>Cardinality</strong></code></div>
+    
+  </td>
+  <td class="colLast">
+                  <div class="block">
+          
+                      <a href="../shr-core/MedicationInformationSource.html">MedicationInformationSource</a>
+                    
+        </div>
+                        <div class="block">0..1</div>
+            </td>
+</tr>                        
+  <tr class="rowColor">
+
+  <td class="colFirst">
+    <div class="block">
+    
+      <code><strong><a href="../shr-core/DerivedFrom.html">DerivedFrom</a></strong></code>
+    
+    </div>
+    <div class="block"><p>Indicates the source of information in the case the Entry has been created by logical extension or modification of one or more source entries.</p></div>
+  </td>
+  <td class="colMiddle">
+          <div class="block"><code><strong>DataType</strong></code></div>
+          <div class="block"><code><strong>Cardinality</strong></code></div>
+    
+  </td>
+  <td class="colLast">
+                  <div class="block">
+          
+                      <a href="../shr-core/DomainResource.html">DomainResource</a>
+                    
+        </div>
+                        <div class="block">0..*</div>
+            </td>
+</tr>                        
+  <tr class="altColor">
+
+  <td class="colFirst">
+    <div class="block">
+    
+      <code><strong><a href="../shr-core/Annotation.html">Annotation</a></strong></code>
+    
+    </div>
+    <div class="block"><p>An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.</p></div>
+  </td>
+  <td class="colMiddle">
+          <div class="block"><code><strong>DataType</strong></code></div>
+          <div class="block"><code><strong>Cardinality</strong></code></div>
+    
+  </td>
+  <td class="colLast">
+                  <div class="block">
+          
+                      <a href="../shr-core/Annotation.html">Annotation</a>
+                    
+        </div>
+                        <div class="block">0..*</div>
+            </td>
+</tr>                        
   <tr class="rowColor">
 
   <td class="colFirst">
@@ -260,7 +358,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <code><strong><a href="../shr-core/TreatmentIntent.html">TreatmentIntent</a></strong></code>
     
     </div>
-    <div class="block"><p>The intended result from a given treatment.  Examples include curative, palliative, and supportive.</p></div>
+    <div class="block"><p>The purpose of a treatment.</p></div>
   </td>
   <td class="colMiddle">
           <div class="block"><code><strong>DataType</strong></code></div>
@@ -273,7 +371,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
                       <a href="../shr-core/TreatmentIntent.html">TreatmentIntent</a>
                     
         </div>
-                        <div class="block">0..*</div>
+                        <div class="block">0..1</div>
             </td>
 </tr>                        
   <tr class="altColor">
@@ -348,7 +446,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <td class="colLast">
                   <div class="block">
             
-                          <a href="../shr-core/PatientSubjectOfRecord.html">PatientSubjectOfRecord</a>
+                          <a href="../shr-core/Patient.html">Patient</a>
                         
           </div>
               </td>
@@ -440,7 +538,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
       <td class="colLast">
                   <div class="block">
             
-                          <a href="../shr-core/Condition.html">Condition</a>
+                          <a href="../shr-core/MedicationReasonReference.html">MedicationReasonReference</a>
                         
           </div>
               </td>
@@ -450,6 +548,32 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
     </tr>
       
       <tr class="rowColor">
+    
+      <td class="colFirst">
+        <code><strong>BasedOn</strong></code>
+        
+          <div class="block">Defined in <a href="../shr-core/ActionStatement.html">ActionStatement</a></div>
+        
+      </td>
+      <td class="colMiddle">
+        <code><strong>DataType</strong></code>
+        
+          <div class="block">Constrained in <a href="../shr-core/MedicationStatement.html">MedicationStatement</a></div>
+        
+      </td>
+      <td class="colLast">
+                  <div class="block">
+            
+                          <a href="../shr-core/MedicationBasedOn.html">MedicationBasedOn</a>
+                        
+          </div>
+              </td>
+      <!-- <td class="colLast">
+        <div class="block">MedicationStatement</div>
+      </td> -->
+    </tr>
+      
+      <tr class="altColor">
     
       <td class="colFirst">
         <code><strong>Participation</strong></code>
@@ -470,37 +594,11 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
         <div class="block">MedicationStatement</div>
       </td> -->
     </tr>
-      
-      <tr class="altColor">
-    
-      <td class="colFirst">
-        <code><strong>RelatedRequest</strong></code>
-        
-          <div class="block">Defined in <a href="../shr-core/ActionPerformed.html">ActionPerformed</a></div>
-        
-      </td>
-      <td class="colMiddle">
-        <code><strong>DataType</strong></code>
-        
-          <div class="block">Constrained in <a href="../shr-core/MedicationStatement.html">MedicationStatement</a></div>
-        
-      </td>
-      <td class="colLast">
-                  <div class="block">
-            
-                          <a href="../shr-core/MedicationStatementRelatedRequest.html">MedicationStatementRelatedRequest</a>
-                        
-          </div>
-              </td>
-      <!-- <td class="colLast">
-        <div class="block">MedicationStatement</div>
-      </td> -->
-    </tr>
   </table>                                            <ul class="blockList">
                                       <li class="blockList">
                       <a name="properties_inherited_from_class_java.lang.Object"></a>
                       <h3>Properties inherited from&nbsp;
-                        <a href="../shr-core/MedicationExposure.html">MedicationExposure</a>
+                        <a href="../shr-core/MedicationAction.html">MedicationAction</a>
                       </h3>
                                                                         <code><a href="../shr-core/MedicationCodeOrReference.html">MedicationCodeOrReference</a></code>,&nbsp;&nbsp;&nbsp;
                                                   <code><a href="../shr-core/Dosage.html">Dosage</a></code>
@@ -513,8 +611,7 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
                       </h3>
                                                                         <code><a href="../shr-core/OccurrenceTimeOrPeriod.html">OccurrenceTimeOrPeriod</a></code>,&nbsp;&nbsp;&nbsp;
                                                   <code><a href="../shr-core/Participation.html">Participation</a></code>,&nbsp;&nbsp;&nbsp;
-                                                  <code><a href="../shr-core/Method.html">Method</a></code>,&nbsp;&nbsp;&nbsp;
-                                                  <code><a href="../shr-core/RelatedRequest.html">RelatedRequest</a></code>
+                                                  <code><a href="../shr-core/Method.html">Method</a></code>
                         
                                           </li>
                                       <li class="blockList">
@@ -523,7 +620,8 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
                         <a href="../shr-core/ActionStatement.html">ActionStatement</a>
                       </h3>
                                                                         <code><a href="../shr-core/ReasonCode.html">ReasonCode</a></code>,&nbsp;&nbsp;&nbsp;
-                                                  <code><a href="../shr-core/ReasonReference.html">ReasonReference</a></code>
+                                                  <code><a href="../shr-core/ReasonReference.html">ReasonReference</a></code>,&nbsp;&nbsp;&nbsp;
+                                                  <code><a href="../shr-core/BasedOn.html">BasedOn</a></code>
                         
                                           </li>
                                       <li class="blockList">

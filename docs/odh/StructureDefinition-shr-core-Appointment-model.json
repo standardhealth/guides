@@ -5,7 +5,7 @@
     "status": "generated",
     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Appointment Logical Model</b></p>\n  <p>A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time.</p>\n</div>"
   },
-  "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Appointment-model",
+  "url": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Appointment-model",
   "identifier": [
     {
       "system": "http://hl7.org/fhir/us/odh",
@@ -16,7 +16,7 @@
   "name": "Appointment",
   "title": "shr-core-Appointment",
   "status": "draft",
-  "date": "2019-04-08T00:00:00-04:00",
+  "date": "2019-05-08T00:00:00-04:00",
   "publisher": "HL7",
   "contact": [
     {
@@ -65,7 +65,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"
           }
         ],
         "mustSupport": false,
@@ -75,12 +75,6 @@
       {
         "id": "shr-core-Appointment-model.language",
         "path": "shr-core-Appointment-model.language",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0023008"
-          }
-        ],
         "short": "A human language, spoken or written.",
         "definition": "A human language, spoken or written.",
         "min": 0,
@@ -134,7 +128,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"
           }
         ],
         "mustSupport": false,
@@ -182,7 +176,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"
           }
         ],
         "mustSupport": false,
@@ -217,14 +211,14 @@
         }
       },
       {
-        "id": "shr-core-Appointment-model.serviceType",
-        "path": "shr-core-Appointment-model.serviceType",
-        "short": "A service requested or to be performed during this appointment",
-        "definition": "A service requested or to be performed during this appointment",
+        "id": "shr-core-Appointment-model.serviceDetails",
+        "path": "shr-core-Appointment-model.serviceDetails",
+        "short": "A service requested or performed. Additional details and instructions about the service requested or performed. For example, and order for a urinary catheter may have an order detail for an external or indwelling catheter, or an order for a bandage may require additional instructions specifying how the bandage should be applied.",
+        "definition": "A service requested or performed. Additional details and instructions about the service requested or performed. For example, and order for a urinary catheter may have an order detail for an external or indwelling catheter, or an order for a bandage may require additional instructions specifying how the bandage should be applied.",
         "min": 0,
         "max": "*",
         "base": {
-          "path": "shr-core-Appointment-model.serviceType",
+          "path": "shr-core-Appointment-model.serviceDetails",
           "min": 0,
           "max": "*"
         },
@@ -312,8 +306,8 @@
             "code": "C0566251"
           }
         ],
-        "short": "The justification, as a code.",
-        "definition": "The justification, as a code.\nReason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept, so we are not going to support a string.",
+        "short": "The explanation or justification for the current item or action, as a code.",
+        "definition": "The explanation or justification for the current item or action, as a code.\nReason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept.",
         "min": 0,
         "max": "1",
         "base": {
@@ -331,25 +325,108 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Appointment-model.reasonReference[x]",
-        "path": "shr-core-Appointment-model.reasonReference[x]",
-        "short": "The justification, as reference to a condition or observation.",
-        "definition": "The justification, as reference to a condition or observation.",
+        "id": "shr-core-Appointment-model.appointmentReasonReference[x]",
+        "path": "shr-core-Appointment-model.appointmentReasonReference[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Reason the appointment is to take place (resource)",
+        "definition": "Reason the appointment is to take place (resource)",
         "min": 0,
         "max": "*",
         "base": {
-          "path": "shr-core-Appointment-model.reasonReference[x]",
+          "path": "shr-core-Appointment-model.appointmentReasonReference[x]",
           "min": 0,
           "max": "*"
         },
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Appointment-model.appointmentReasonReferenceShr-core-Condition-model:Condition",
+        "path": "shr-core-Appointment-model.appointmentReasonReferenceShr-core-Condition-model",
+        "sliceName": "Condition",
+        "short": "A condition that is or may be present in a subject. 'Condition' is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.",
+        "definition": "A condition that is or may be present in a subject. 'Condition' is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.\nThe Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.\nSHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Appointment-model.appointmentReasonReference[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Appointment-model.appointmentReasonReferenceShr-core-Procedure-model:Procedure",
+        "path": "shr-core-Appointment-model.appointmentReasonReferenceShr-core-Procedure-model",
+        "sliceName": "Procedure",
+        "short": "An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy.",
+        "definition": "An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Appointment-model.appointmentReasonReference[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Appointment-model.appointmentReasonReferenceShr-core-Observation-model:Observation",
+        "path": "shr-core-Appointment-model.appointmentReasonReferenceShr-core-Observation-model",
+        "sliceName": "Observation",
+        "short": "Represents the result of evaluations (measurements, tests, or questions) that have been performed.",
+        "definition": "Represents the result of evaluations (measurements, tests, or questions) that have been performed.\nObservation has a value representing the result (answer), or an DataAbsentReason indicating why the value is not present. Things observed about the subject can include social and behavioral factors, subjective and objective observations, and assessments.\nFor an Observation, the Code describes the aspect or property of the subject being observed or measured. The Code is the 'question code' that pairs to the 'answer' contained in the Value.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Appointment-model.appointmentReasonReference[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"
           }
         ],
         "mustSupport": false,
@@ -371,11 +448,11 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure-model"
           }
         ],
         "mustSupport": false,
@@ -383,20 +460,20 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Appointment-model.priorityRankUnsignedInt",
-        "path": "shr-core-Appointment-model.priorityRankUnsignedInt",
+        "id": "shr-core-Appointment-model.priorityRank",
+        "path": "shr-core-Appointment-model.priorityRank",
         "short": "The priority of the procedure, as a number (1 being the highest priority)",
         "definition": "The priority of the procedure, as a number (1 being the highest priority)",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-Appointment-model.priorityRankUnsignedInt",
+          "path": "shr-core-Appointment-model.priorityRank",
           "min": 0,
           "max": "1"
         },
         "type": [
           {
-            "code": "unsignedInt"
+            "code": "positiveInt"
           }
         ],
         "mustSupport": false,
@@ -406,12 +483,6 @@
       {
         "id": "shr-core-Appointment-model.commentOrDescription",
         "path": "shr-core-Appointment-model.commentOrDescription",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0947611"
-          }
-        ],
         "short": "A text note containing additional details, explanation, description, comment, or summarization.",
         "definition": "A text note containing additional details, explanation, description, comment, or summarization.",
         "min": 0,
@@ -431,21 +502,20 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Appointment-model.relatedInformation",
-        "path": "shr-core-Appointment-model.relatedInformation",
-        "short": "Additional information to support referral or transfer of care request",
-        "definition": "Additional information to support referral or transfer of care request",
+        "id": "shr-core-Appointment-model.patientInstruction",
+        "path": "shr-core-Appointment-model.patientInstruction",
+        "short": "Patient or consumer-oriented instructions.",
+        "definition": "Patient or consumer-oriented instructions.",
         "min": 0,
-        "max": "*",
+        "max": "1",
         "base": {
-          "path": "shr-core-Appointment-model.relatedInformation",
+          "path": "shr-core-Appointment-model.patientInstruction",
           "min": 0,
-          "max": "*"
+          "max": "1"
         },
         "type": [
           {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource-model"
+            "code": "string"
           }
         ],
         "mustSupport": false,
@@ -453,21 +523,43 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Appointment-model.referralRequest",
-        "path": "shr-core-Appointment-model.referralRequest",
-        "short": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
-        "definition": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
+        "id": "shr-core-Appointment-model.supportingInformation",
+        "path": "shr-core-Appointment-model.supportingInformation",
+        "short": "Additional information to support this request.",
+        "definition": "Additional information to support this request.",
         "min": 0,
         "max": "*",
         "base": {
-          "path": "shr-core-Appointment-model.referralRequest",
+          "path": "shr-core-Appointment-model.supportingInformation",
           "min": 0,
           "max": "*"
         },
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Appointment-model.referralBasedOn",
+        "path": "shr-core-Appointment-model.referralBasedOn",
+        "short": "Indicates any plans, proposals or orders that this request is intended to satisfy - in whole or in part.",
+        "definition": "Indicates any plans, proposals or orders that this request is intended to satisfy - in whole or in part.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Appointment-model.referralBasedOn",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"
           }
         ],
         "mustSupport": false,
@@ -488,7 +580,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AppointmentParticipation-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-AppointmentParticipation-model"
           }
         ],
         "mustSupport": false,
@@ -498,14 +590,8 @@
       {
         "id": "shr-core-Appointment-model.timePeriod",
         "path": "shr-core-Appointment-model.timePeriod",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C1948053"
-          }
-        ],
         "short": "A period of time defined by a start and end time, date, or year.",
-        "definition": "A period of time defined by a start and end time, date, or year.\nIf the start element is missing, the start of the period is not known. If the end element is missing, it means that the period is ongoing, or the start may be in the past, and the end date in the future, which means that period is expected/planned to end at the specified time. The end value includes any matching date/time. For example, the period 2011-05-23 to 2011-05-27 includes all the times from the start of the 23rd May through to the end of the 27th of May.",
+        "definition": "A period of time defined by a start and end time, date, or year.\nIf the start date/time is missing, the start of the period is not known. If the end date/time is missing, it means that the period is ongoing.",
         "min": 0,
         "max": "1",
         "base": {
@@ -515,7 +601,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"
           }
         ],
         "mustSupport": false,
@@ -539,10 +625,10 @@
             "code": "dateTime"
           },
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"
           },
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Timing-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Timing-model"
           }
         ],
         "mustSupport": false,
@@ -609,7 +695,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"
           }
         ],
         "mustSupport": false,
@@ -619,12 +705,6 @@
       {
         "id": "shr-core-Appointment-model.language",
         "path": "shr-core-Appointment-model.language",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0023008"
-          }
-        ],
         "short": "A human language, spoken or written.",
         "definition": "A human language, spoken or written.",
         "min": 0,
@@ -678,7 +758,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"
           }
         ],
         "mustSupport": false,
@@ -726,7 +806,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"
           }
         ],
         "mustSupport": false,
@@ -761,14 +841,14 @@
         }
       },
       {
-        "id": "shr-core-Appointment-model.serviceType",
-        "path": "shr-core-Appointment-model.serviceType",
-        "short": "A service requested or to be performed during this appointment",
-        "definition": "A service requested or to be performed during this appointment",
+        "id": "shr-core-Appointment-model.serviceDetails",
+        "path": "shr-core-Appointment-model.serviceDetails",
+        "short": "A service requested or performed. Additional details and instructions about the service requested or performed. For example, and order for a urinary catheter may have an order detail for an external or indwelling catheter, or an order for a bandage may require additional instructions specifying how the bandage should be applied.",
+        "definition": "A service requested or performed. Additional details and instructions about the service requested or performed. For example, and order for a urinary catheter may have an order detail for an external or indwelling catheter, or an order for a bandage may require additional instructions specifying how the bandage should be applied.",
         "min": 0,
         "max": "*",
         "base": {
-          "path": "shr-core-Appointment-model.serviceType",
+          "path": "shr-core-Appointment-model.serviceDetails",
           "min": 0,
           "max": "*"
         },
@@ -856,8 +936,8 @@
             "code": "C0566251"
           }
         ],
-        "short": "The justification, as a code.",
-        "definition": "The justification, as a code.\nReason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept, so we are not going to support a string.",
+        "short": "The explanation or justification for the current item or action, as a code.",
+        "definition": "The explanation or justification for the current item or action, as a code.\nReason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept.",
         "min": 0,
         "max": "1",
         "base": {
@@ -875,25 +955,108 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Appointment-model.reasonReference[x]",
-        "path": "shr-core-Appointment-model.reasonReference[x]",
-        "short": "The justification, as reference to a condition or observation.",
-        "definition": "The justification, as reference to a condition or observation.",
+        "id": "shr-core-Appointment-model.appointmentReasonReference[x]",
+        "path": "shr-core-Appointment-model.appointmentReasonReference[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Reason the appointment is to take place (resource)",
+        "definition": "Reason the appointment is to take place (resource)",
         "min": 0,
         "max": "*",
         "base": {
-          "path": "shr-core-Appointment-model.reasonReference[x]",
+          "path": "shr-core-Appointment-model.appointmentReasonReference[x]",
           "min": 0,
           "max": "*"
         },
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Appointment-model.appointmentReasonReferenceShr-core-Condition-model:Condition",
+        "path": "shr-core-Appointment-model.appointmentReasonReferenceShr-core-Condition-model",
+        "sliceName": "Condition",
+        "short": "A condition that is or may be present in a subject. 'Condition' is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.",
+        "definition": "A condition that is or may be present in a subject. 'Condition' is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.\nThe Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.\nSHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Appointment-model.appointmentReasonReference[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Appointment-model.appointmentReasonReferenceShr-core-Procedure-model:Procedure",
+        "path": "shr-core-Appointment-model.appointmentReasonReferenceShr-core-Procedure-model",
+        "sliceName": "Procedure",
+        "short": "An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy.",
+        "definition": "An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Appointment-model.appointmentReasonReference[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Appointment-model.appointmentReasonReferenceShr-core-Observation-model:Observation",
+        "path": "shr-core-Appointment-model.appointmentReasonReferenceShr-core-Observation-model",
+        "sliceName": "Observation",
+        "short": "Represents the result of evaluations (measurements, tests, or questions) that have been performed.",
+        "definition": "Represents the result of evaluations (measurements, tests, or questions) that have been performed.\nObservation has a value representing the result (answer), or an DataAbsentReason indicating why the value is not present. Things observed about the subject can include social and behavioral factors, subjective and objective observations, and assessments.\nFor an Observation, the Code describes the aspect or property of the subject being observed or measured. The Code is the 'question code' that pairs to the 'answer' contained in the Value.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "shr-core-Appointment-model.appointmentReasonReference[x]",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"
           }
         ],
         "mustSupport": false,
@@ -915,11 +1078,11 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Condition-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Procedure-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure-model"
           }
         ],
         "mustSupport": false,
@@ -927,20 +1090,20 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Appointment-model.priorityRankUnsignedInt",
-        "path": "shr-core-Appointment-model.priorityRankUnsignedInt",
+        "id": "shr-core-Appointment-model.priorityRank",
+        "path": "shr-core-Appointment-model.priorityRank",
         "short": "The priority of the procedure, as a number (1 being the highest priority)",
         "definition": "The priority of the procedure, as a number (1 being the highest priority)",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "shr-core-Appointment-model.priorityRankUnsignedInt",
+          "path": "shr-core-Appointment-model.priorityRank",
           "min": 0,
           "max": "1"
         },
         "type": [
           {
-            "code": "unsignedInt"
+            "code": "positiveInt"
           }
         ],
         "mustSupport": false,
@@ -950,12 +1113,6 @@
       {
         "id": "shr-core-Appointment-model.commentOrDescription",
         "path": "shr-core-Appointment-model.commentOrDescription",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C0947611"
-          }
-        ],
         "short": "A text note containing additional details, explanation, description, comment, or summarization.",
         "definition": "A text note containing additional details, explanation, description, comment, or summarization.",
         "min": 0,
@@ -975,21 +1132,20 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Appointment-model.relatedInformation",
-        "path": "shr-core-Appointment-model.relatedInformation",
-        "short": "Additional information to support referral or transfer of care request",
-        "definition": "Additional information to support referral or transfer of care request",
+        "id": "shr-core-Appointment-model.patientInstruction",
+        "path": "shr-core-Appointment-model.patientInstruction",
+        "short": "Patient or consumer-oriented instructions.",
+        "definition": "Patient or consumer-oriented instructions.",
         "min": 0,
-        "max": "*",
+        "max": "1",
         "base": {
-          "path": "shr-core-Appointment-model.relatedInformation",
+          "path": "shr-core-Appointment-model.patientInstruction",
           "min": 0,
-          "max": "*"
+          "max": "1"
         },
         "type": [
           {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource-model"
+            "code": "string"
           }
         ],
         "mustSupport": false,
@@ -997,21 +1153,43 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-Appointment-model.referralRequest",
-        "path": "shr-core-Appointment-model.referralRequest",
-        "short": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
-        "definition": "Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.",
+        "id": "shr-core-Appointment-model.supportingInformation",
+        "path": "shr-core-Appointment-model.supportingInformation",
+        "short": "Additional information to support this request.",
+        "definition": "Additional information to support this request.",
         "min": 0,
         "max": "*",
         "base": {
-          "path": "shr-core-Appointment-model.referralRequest",
+          "path": "shr-core-Appointment-model.supportingInformation",
           "min": 0,
           "max": "*"
         },
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-Appointment-model.referralBasedOn",
+        "path": "shr-core-Appointment-model.referralBasedOn",
+        "short": "Indicates any plans, proposals or orders that this request is intended to satisfy - in whole or in part.",
+        "definition": "Indicates any plans, proposals or orders that this request is intended to satisfy - in whole or in part.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "shr-core-Appointment-model.referralBasedOn",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"
           }
         ],
         "mustSupport": false,
@@ -1032,7 +1210,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AppointmentParticipation-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-AppointmentParticipation-model"
           }
         ],
         "mustSupport": false,
@@ -1042,14 +1220,8 @@
       {
         "id": "shr-core-Appointment-model.timePeriod",
         "path": "shr-core-Appointment-model.timePeriod",
-        "code": [
-          {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C1948053"
-          }
-        ],
         "short": "A period of time defined by a start and end time, date, or year.",
-        "definition": "A period of time defined by a start and end time, date, or year.\nIf the start element is missing, the start of the period is not known. If the end element is missing, it means that the period is ongoing, or the start may be in the past, and the end date in the future, which means that period is expected/planned to end at the specified time. The end value includes any matching date/time. For example, the period 2011-05-23 to 2011-05-27 includes all the times from the start of the 23rd May through to the end of the 27th of May.",
+        "definition": "A period of time defined by a start and end time, date, or year.\nIf the start date/time is missing, the start of the period is not known. If the end date/time is missing, it means that the period is ongoing.",
         "min": 0,
         "max": "1",
         "base": {
@@ -1059,7 +1231,7 @@
         },
         "type": [
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"
           }
         ],
         "mustSupport": false,
@@ -1083,10 +1255,10 @@
             "code": "dateTime"
           },
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"
           },
           {
-            "code": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Timing-model"
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Timing-model"
           }
         ],
         "mustSupport": false,

@@ -3,9 +3,9 @@
   "id": "shr-core-ReferralRequest",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>ReferralRequest Profile</b></p>\n  <p>Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.ReferralRequest maps to ReferralRequest:\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Replaces maps to replaces\n  Status maps to status\n  RequestIntent maps to intent\n  Type maps to type\n  PriorityCode maps to priority\n  ServiceType maps to serviceRequested\n  ReferralSubjectOfRecord maps to subject\n  CareContext maps to context\n  ExpectedPerformanceTime maps to occurrence[x]\n  StatementDateTime maps to authoredOn\n  ReferralRequester maps to requester.agent\n  ExpectedPerformerType maps to specialty\n  Recipient maps to recipient\n  ReasonCode maps to reasonCode\n  CommentOrDescription maps to description\n  RelatedInformation maps to supportingInfo\n  Annotation maps to note\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>ReferralRequest Profile</b></p>\n  <p>Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>shr.core.ReferralRequest maps to ReferralRequest:\n  Identifier maps to identifier\n  ServiceBasedOn maps to basedOn\n  Replaces maps to replaces\n  GroupIdentifier maps to groupIdentifier\n  Status maps to status\n  RequestIntent maps to intent\n  Code maps to type\n  PriorityCode maps to priority\n  ServiceDetails maps to serviceRequested\n  ReferralRequestSubjectOfRecord maps to subject\n  CareContext maps to context\n  ExpectedPerformanceTime maps to occurrence[x]\n  StatementDateTime maps to authoredOn\n  ReferralRequester maps to requester.agent\n  ExpectedPerformerType maps to specialty\n  ReferralRecipient maps to recipient\n  ReasonCode maps to reasonCode\n  ReferralReasonReference maps to reasonReference\n  SupportingInformation maps to supportingInfo\n  Annotation maps to note\n</pre></p>\n</div>"
   },
-  "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest",
+  "url": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest",
   "identifier": [
     {
       "system": "http://hl7.org/fhir/us/odh",
@@ -16,7 +16,7 @@
   "name": "ReferralRequest",
   "title": "shr-core-ReferralRequest",
   "status": "draft",
-  "date": "2019-04-08T00:00:00-04:00",
+  "date": "2019-05-08T00:00:00-04:00",
   "publisher": "HL7",
   "contact": [
     {
@@ -296,7 +296,7 @@
           "extensions",
           "user content"
         ],
-        "min": 0,
+        "min": 1,
         "max": "*",
         "base": {
           "path": "DomainResource.extension",
@@ -316,29 +316,10 @@
         ]
       },
       {
-        "id": "ReferralRequest:shr-core-ReferralRequest.extension:reasonreference",
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:metadata",
         "path": "ReferralRequest.extension",
-        "sliceName": "reasonreference",
-        "definition": "The justification, as reference to a condition or observation.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "DomainResource.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"
-          }
-        ]
-      },
-      {
-        "id": "ReferralRequest:shr-core-ReferralRequest.extension:communicationmethod",
-        "path": "ReferralRequest.extension",
-        "sliceName": "communicationmethod",
-        "definition": "This is the method the provider used to communicate. Examples include: Written, Telephoned, Verbal, Electronically Entered, Policy, Service Correction, Duplicate, etc. 'Code indicating the origin of the prescription.' - NCPDP Telecommunication (Field 419-DJ, Data Dictionary 201104). Possible values include: Written; Telephone; Electronic; Facsimile; Pharmacy; Not Known.",
+        "sliceName": "metadata",
+        "definition": "Elements that belong to all information items.",
         "min": 0,
         "max": "1",
         "base": {
@@ -349,15 +330,91 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommunicationMethod-extension"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-extension"
           }
         ]
       },
       {
-        "id": "ReferralRequest:shr-core-ReferralRequest.extension:referralrecipient",
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:language",
         "path": "ReferralRequest.extension",
-        "sliceName": "referralrecipient",
-        "definition": "The practitioner or organization receiving the referral.",
+        "sliceName": "language",
+        "definition": "A human language, spoken or written.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Language-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:implicitrules",
+        "path": "ReferralRequest.extension",
+        "sliceName": "implicitrules",
+        "definition": "A set of rules under which this content was created",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ImplicitRules-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:narrative",
+        "path": "ReferralRequest.extension",
+        "sliceName": "narrative",
+        "definition": "A human-readable narrative, potentially including images, that contains a summary of the resource, and may be used to represent the content of the resource to a human.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:subjectofrecord",
+        "path": "ReferralRequest.extension",
+        "sliceName": "subjectofrecord",
+        "definition": "The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe's patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord.\n\nNote that the word 'Subject' is used here in the sense of a person or entity subjected to observations or actions, not subject as in a conceptual topic, like heart disease.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SubjectOfRecord-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:category",
+        "path": "ReferralRequest.extension",
+        "sliceName": "category",
+        "definition": "The general type or class of this item.",
         "min": 0,
         "max": "*",
         "base": {
@@ -368,7 +425,197 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRecipient-extension"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Category-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:donotperform",
+        "path": "ReferralRequest.extension",
+        "sliceName": "donotperform",
+        "definition": "A flag, when set to true, indicates that the service/procedure should NOT be performed.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DoNotPerform-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:requestquantity",
+        "path": "ReferralRequest.extension",
+        "sliceName": "requestquantity",
+        "definition": "An amount of service being requested which can be a quantity ( for example $1,500 home modification), a ratio ( for example, 20 half day visits per month), or a range (2.0 to 1.8 Gy per fraction).",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RequestQuantity-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:asneeded",
+        "path": "ReferralRequest.extension",
+        "sliceName": "asneeded",
+        "definition": "Preconditions for service, either 'true' indicating to be performed if needed, or a code indicating the pre-condition for performing the service. For example 'pain', 'on flare-up', etc.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-AsNeeded-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:locationtype",
+        "path": "ReferralRequest.extension",
+        "sliceName": "locationtype",
+        "definition": "The preferred type of location(s) where the service should happen, in coded or free text form, e.g. at home or nursing day care center.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-LocationType-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:location",
+        "path": "ReferralRequest.extension",
+        "sliceName": "location",
+        "definition": "Services and space and equipment provided for a particular purpose; a building or place that provides a particular service or is used for a particular industry. Could be a clinical site, community site, or a mobile facility.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Location-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:insurance",
+        "path": "ReferralRequest.extension",
+        "sliceName": "insurance",
+        "definition": "Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Insurance-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:specimen",
+        "path": "ReferralRequest.extension",
+        "sliceName": "specimen",
+        "definition": "A specimen is a substance, physical object, or collection of objects, that the laboratory considers a single discrete, uniquely identified unit that is the subject of one or more steps in the laboratory workflow. A specimen may include multiple physical pieces as long as they are considered a single unit within the laboratory workflow. A specimen results from one to many specimen collection procedures, and may be contained in multiple specimen containers. Specimen may have one or more processing activities.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Specimen-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:bodylocation",
+        "path": "ReferralRequest.extension",
+        "sliceName": "bodylocation",
+        "definition": "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\nNote that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-BodyLocation-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:patientinstruction",
+        "path": "ReferralRequest.extension",
+        "sliceName": "patientinstruction",
+        "definition": "Patient or consumer-oriented instructions.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-PatientInstruction-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:commentordescription",
+        "path": "ReferralRequest.extension",
+        "sliceName": "commentordescription",
+        "definition": "A text note containing additional details, explanation, description, comment, or summarization.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-CommentOrDescription-extension"
           }
         ]
       },
@@ -465,15 +712,15 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/StructureDefinition/ReferralRequest"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/StructureDefinition/CarePlan"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/StructureDefinition/ProcedureRequest"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest"
           }
         ],
         "isModifier": false,
@@ -496,7 +743,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest"
           }
         ],
         "isSummary": true,
@@ -610,8 +857,13 @@
         "path": "ReferralRequest.type",
         "short": "Referral/Transition of care request type",
         "definition": "An indication of the type of referral (or where applicable the type of transfer of care) request.",
-        "min": 0,
+        "min": 1,
         "max": "1",
+        "base": {
+          "path": "ReferralRequest.type",
+          "min": 0,
+          "max": "1"
+        },
         "type": [
           {
             "code": "CodeableConcept"
@@ -728,11 +980,11 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Group"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Group"
           }
         ],
         "isModifier": false,
@@ -761,11 +1013,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter"
           }
         ],
         "isModifier": false,
@@ -980,23 +1228,23 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device"
           }
         ],
         "isSummary": true,
@@ -1085,11 +1333,11 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization"
           }
         ],
         "isModifier": false,
@@ -1154,15 +1402,20 @@
         "short": "Why is service needed?",
         "definition": "Indicates another resource whose existence justifies this request.",
         "min": 0,
-        "max": "*",
+        "max": "1",
+        "base": {
+          "path": "ReferralRequest.reasonReference",
+          "min": 0,
+          "max": "*"
+        },
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/StructureDefinition/Condition"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/StructureDefinition/Observation"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation"
           }
         ],
         "isSummary": true,
@@ -1201,7 +1454,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource"
           }
         ],
         "isModifier": false
@@ -1216,7 +1469,7 @@
         "type": [
           {
             "code": "Annotation",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation"
           }
         ]
       },
@@ -1267,32 +1520,15 @@
           ],
           "ordered": false,
           "rules": "open"
-        }
-      },
-      {
-        "id": "ReferralRequest:shr-core-ReferralRequest.extension:reasonreference",
-        "path": "ReferralRequest.extension",
-        "sliceName": "reasonreference",
-        "definition": "The justification, as reference to a condition or observation.",
-        "min": 0,
-        "max": "*",
-        "base": {
-          "path": "DomainResource.extension",
-          "min": 0,
-          "max": "*"
         },
-        "type": [
-          {
-            "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReasonReference-extension"
-          }
-        ]
+        "min": 1,
+        "max": "*"
       },
       {
-        "id": "ReferralRequest:shr-core-ReferralRequest.extension:communicationmethod",
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:metadata",
         "path": "ReferralRequest.extension",
-        "sliceName": "communicationmethod",
-        "definition": "This is the method the provider used to communicate. Examples include: Written, Telephoned, Verbal, Electronically Entered, Policy, Service Correction, Duplicate, etc. 'Code indicating the origin of the prescription.' - NCPDP Telecommunication (Field 419-DJ, Data Dictionary 201104). Possible values include: Written; Telephone; Electronic; Facsimile; Pharmacy; Not Known.",
+        "sliceName": "metadata",
+        "definition": "Elements that belong to all information items.",
         "min": 0,
         "max": "1",
         "base": {
@@ -1303,15 +1539,91 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-CommunicationMethod-extension"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-extension"
           }
         ]
       },
       {
-        "id": "ReferralRequest:shr-core-ReferralRequest.extension:referralrecipient",
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:language",
         "path": "ReferralRequest.extension",
-        "sliceName": "referralrecipient",
-        "definition": "The practitioner or organization receiving the referral.",
+        "sliceName": "language",
+        "definition": "A human language, spoken or written.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Language-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:implicitrules",
+        "path": "ReferralRequest.extension",
+        "sliceName": "implicitrules",
+        "definition": "A set of rules under which this content was created",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ImplicitRules-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:narrative",
+        "path": "ReferralRequest.extension",
+        "sliceName": "narrative",
+        "definition": "A human-readable narrative, potentially including images, that contains a summary of the resource, and may be used to represent the content of the resource to a human.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:subjectofrecord",
+        "path": "ReferralRequest.extension",
+        "sliceName": "subjectofrecord",
+        "definition": "The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe's patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord.\n\nNote that the word 'Subject' is used here in the sense of a person or entity subjected to observations or actions, not subject as in a conceptual topic, like heart disease.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SubjectOfRecord-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:category",
+        "path": "ReferralRequest.extension",
+        "sliceName": "category",
+        "definition": "The general type or class of this item.",
         "min": 0,
         "max": "*",
         "base": {
@@ -1322,7 +1634,215 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRecipient-extension"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Category-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:donotperform",
+        "path": "ReferralRequest.extension",
+        "sliceName": "donotperform",
+        "definition": "A flag, when set to true, indicates that the service/procedure should NOT be performed.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DoNotPerform-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:requestquantity",
+        "path": "ReferralRequest.extension",
+        "sliceName": "requestquantity",
+        "definition": "An amount of service being requested which can be a quantity ( for example $1,500 home modification), a ratio ( for example, 20 half day visits per month), or a range (2.0 to 1.8 Gy per fraction).",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RequestQuantity-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:asneeded",
+        "path": "ReferralRequest.extension",
+        "sliceName": "asneeded",
+        "definition": "Preconditions for service, either 'true' indicating to be performed if needed, or a code indicating the pre-condition for performing the service. For example 'pain', 'on flare-up', etc.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-AsNeeded-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:locationtype",
+        "path": "ReferralRequest.extension",
+        "sliceName": "locationtype",
+        "definition": "The preferred type of location(s) where the service should happen, in coded or free text form, e.g. at home or nursing day care center.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-LocationType-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:location",
+        "path": "ReferralRequest.extension",
+        "sliceName": "location",
+        "definition": "Services and space and equipment provided for a particular purpose; a building or place that provides a particular service or is used for a particular industry. Could be a clinical site, community site, or a mobile facility.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Location-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:insurance",
+        "path": "ReferralRequest.extension",
+        "sliceName": "insurance",
+        "definition": "Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be needed for delivering the requested service.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Insurance-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:specimen",
+        "path": "ReferralRequest.extension",
+        "sliceName": "specimen",
+        "definition": "A specimen is a substance, physical object, or collection of objects, that the laboratory considers a single discrete, uniquely identified unit that is the subject of one or more steps in the laboratory workflow. A specimen may include multiple physical pieces as long as they are considered a single unit within the laboratory workflow. A specimen results from one to many specimen collection procedures, and may be contained in multiple specimen containers. Specimen may have one or more processing activities.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Specimen-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:bodylocation",
+        "path": "ReferralRequest.extension",
+        "sliceName": "bodylocation",
+        "definition": "A location or structure in the body, including tissues, regions, cavities, and spaces; for example, right elbow, or left ventricle of the heart. Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\nNote that BodyLocation is a data type, a reusable structure, not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-BodyLocation-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:patientinstruction",
+        "path": "ReferralRequest.extension",
+        "sliceName": "patientinstruction",
+        "definition": "Patient or consumer-oriented instructions.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-PatientInstruction-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.extension:commentordescription",
+        "path": "ReferralRequest.extension",
+        "sliceName": "commentordescription",
+        "definition": "A text note containing additional details, explanation, description, comment, or summarization.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-CommentOrDescription-extension"
+          }
+        ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.basedOn",
+        "path": "ReferralRequest.basedOn",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest"
           }
         ]
       },
@@ -1332,9 +1852,20 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest"
           }
         ]
+      },
+      {
+        "id": "ReferralRequest:shr-core-ReferralRequest.type",
+        "path": "ReferralRequest.type",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ReferralRequest.type",
+          "min": 0,
+          "max": "1"
+        }
       },
       {
         "id": "ReferralRequest:shr-core-ReferralRequest.serviceRequested",
@@ -1357,11 +1888,11 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Group"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Group"
           }
         ]
       },
@@ -1371,11 +1902,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"
-          },
-          {
-            "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter"
           }
         ]
       },
@@ -1389,23 +1916,23 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device"
           }
         ]
       },
@@ -1422,11 +1949,11 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization"
           }
         ]
       },
@@ -1442,12 +1969,33 @@
         }
       },
       {
+        "id": "ReferralRequest:shr-core-ReferralRequest.reasonReference",
+        "path": "ReferralRequest.reasonReference",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ReferralRequest.reasonReference",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation"
+          }
+        ]
+      },
+      {
         "id": "ReferralRequest:shr-core-ReferralRequest.supportingInfo",
         "path": "ReferralRequest.supportingInfo",
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-DomainResource"
           }
         ]
       },
@@ -1457,7 +2005,7 @@
         "type": [
           {
             "code": "Annotation",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Annotation"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation"
           }
         ]
       }

@@ -3,9 +3,9 @@
   "id": "odh-EmployerPerson",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>EmployerPerson Profile</b></p>\n  <p>A related person who is an employer</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>odh.EmployerPerson maps to RelatedPerson:\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  constrain active to 0..0\n  Status maps to extension\n  Person.HumanName maps to name\n  Person.DateOfBirth maps to birthDate\n  Person.AdministrativeGender maps to gender\n  Person.Address maps to address\n  Person.PhotographicImage maps to photo\n  Person.ContactPoint maps to telecom\n  RelationshipToPatient maps to relationship\n  EffectiveTimePeriod maps to period\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>EmployerPerson Profile</b></p>\n  <p>A related person who is an employer</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>odh.EmployerPerson maps to RelatedPerson:\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.extension\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Active maps to active\n  Patient maps to patient\n  Relationship maps to relationship\n  HumanName maps to name\n  ContactPoint maps to telecom\n  AdministrativeGender maps to gender\n  BirthDate maps to birthDate\n  Address maps to address\n  PhotographicImage maps to photo\n  EffectiveTimePeriod maps to period\n  Communication maps to extension\n</pre></p>\n</div>"
   },
-  "url": "http://hl7.org/fhir/us/shr/StructureDefinition/odh-EmployerPerson",
+  "url": "http://hl7.org/fhir/us/odh/StructureDefinition/odh-EmployerPerson",
   "identifier": [
     {
       "system": "http://hl7.org/fhir/us/odh",
@@ -16,7 +16,7 @@
   "name": "EmployerPerson",
   "title": "odh-EmployerPerson",
   "status": "draft",
-  "date": "2019-04-08T00:00:00-04:00",
+  "date": "2019-05-08T00:00:00-04:00",
   "publisher": "HL7",
   "contact": [
     {
@@ -149,6 +149,196 @@
           }
         ],
         "isSummary": true
+      },
+      {
+        "id": "RelatedPerson:odh-EmployerPerson.meta.id",
+        "path": "RelatedPerson.meta.id",
+        "representation": [
+          "xmlAttr"
+        ],
+        "short": "xml:id (or equivalent in JSON)",
+        "definition": "unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Element.id",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "n/a"
+          }
+        ]
+      },
+      {
+        "id": "RelatedPerson:odh-EmployerPerson.meta.extension",
+        "path": "RelatedPerson.meta.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "description": "Extensions are always sliced by (at least) url",
+          "rules": "open"
+        },
+        "short": "Additional Content defined by implementations",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+        "comment": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content"
+        ],
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "Element.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "n/a"
+          }
+        ]
+      },
+      {
+        "id": "RelatedPerson:odh-EmployerPerson.meta.extension:sourcesystem",
+        "path": "RelatedPerson.meta.extension",
+        "sliceName": "sourcesystem",
+        "definition": "FHIR: This provides a minimal amount of Provenance information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.\nFHIM: Identifies the computer system that created the medical record. This optional field may also be used to indicate that the medical record was originally created by a different organization from the one that is currently storing or utilizing the record in that the assigning authority of the Id could be set to that originating organization. This property is optional, as some systems will assume that all records that it contains originated in that system, however it is anticipated that it will become increasingly commonplace for records from multiple systems and organizations will be comingled in order to provide a complete picture of the patient's health record.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Element.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SourceSystem-extension"
+          }
+        ]
+      },
+      {
+        "id": "RelatedPerson:odh-EmployerPerson.meta.versionId",
+        "path": "RelatedPerson.meta.versionId",
+        "short": "Version specific identifier",
+        "definition": "The version specific identifier, as it appears in the version portion of the URL. This values changes when the resource is created, updated, or deleted.",
+        "comment": "The server assigns this value, and ignores what the client specifies, except in the case that the server is imposing version integrity on updates/deletes.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "id"
+          }
+        ],
+        "isSummary": true
+      },
+      {
+        "id": "RelatedPerson:odh-EmployerPerson.meta.lastUpdated",
+        "path": "RelatedPerson.meta.lastUpdated",
+        "short": "When the resource version last changed",
+        "definition": "When the resource last changed - e.g. when the version changed.",
+        "comment": "This value is always populated except when the resource is first being created. The server / resource manager sets this value; what a client provides is irrelevant.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "instant"
+          }
+        ],
+        "isSummary": true
+      },
+      {
+        "id": "RelatedPerson:odh-EmployerPerson.meta.profile",
+        "path": "RelatedPerson.meta.profile",
+        "short": "Profiles this resource claims to conform to",
+        "definition": "A list of profiles (references to [StructureDefinition](structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url]().",
+        "comment": "It is up to the server and/or other infrastructure of policy to determine whether/how these claims are verified and/or updated over time.  The list of profile URLs is a set.",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "isSummary": true
+      },
+      {
+        "id": "RelatedPerson:odh-EmployerPerson.meta.security",
+        "path": "RelatedPerson.meta.security",
+        "short": "Security Labels applied to this resource",
+        "definition": "Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure.",
+        "comment": "The security labels can be updated without changing the stated version of the resource  The list of security labels is a set. Uniqueness is based the system/code, and version and display are ignored.",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "isSummary": true,
+        "binding": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
+              "valueString": "SecurityLabels"
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding",
+              "valueBoolean": true
+            }
+          ],
+          "strength": "extensible",
+          "description": "Security Labels from the Healthcare Privacy and Security Classification System.",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/security-labels"
+          }
+        }
+      },
+      {
+        "id": "RelatedPerson:odh-EmployerPerson.meta.tag",
+        "path": "RelatedPerson.meta.tag",
+        "short": "Tags applied to this resource",
+        "definition": "Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource.",
+        "comment": "The tags can be updated without changing the stated version of the resource.  The list of tags is a set. Uniqueness is based the system/code, and version and display are ignored.",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "isSummary": true,
+        "binding": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
+              "valueString": "Tags"
+            }
+          ],
+          "strength": "example",
+          "description": "Codes that represent various types of tags, commonly workflow-related; e.g. \"Needs review by Dr. Jones\"",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/common-tags"
+          }
+        }
       },
       {
         "id": "RelatedPerson:odh-EmployerPerson.implicitRules",
@@ -318,12 +508,12 @@
         ]
       },
       {
-        "id": "RelatedPerson:odh-EmployerPerson.extension:status",
+        "id": "RelatedPerson:odh-EmployerPerson.extension:communication",
         "path": "RelatedPerson.extension",
-        "sliceName": "status",
-        "definition": "A state that relates to the workflow or interpretation of this resource. Certain status values can modify the meaning of the resource, for example, entered-in-error. When a boolean value is used, Status of true indicates the record is active, false means inactive.",
+        "sliceName": "communication",
+        "definition": "Language used for communication by a human, either the subject of record, parent, or other involved person.",
         "min": 0,
-        "max": "1",
+        "max": "*",
         "base": {
           "path": "DomainResource.extension",
           "min": 0,
@@ -332,110 +522,7 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Status-extension"
-          }
-        ]
-      },
-      {
-        "id": "RelatedPerson:odh-EmployerPerson.extension:status.id",
-        "path": "RelatedPerson.extension.id",
-        "representation": [
-          "xmlAttr"
-        ],
-        "short": "xml:id (or equivalent in JSON)",
-        "definition": "unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Element.id",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "string"
-          }
-        ],
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "N/A"
-          }
-        ]
-      },
-      {
-        "id": "RelatedPerson:odh-EmployerPerson.extension:status.extension:extension",
-        "path": "RelatedPerson.extension.extension",
-        "short": "Extension",
-        "definition": "An Extension",
-        "min": 0,
-        "max": "0",
-        "base": {
-          "path": "Element.extension",
-          "min": 0,
-          "max": "*"
-        },
-        "type": [
-          {
-            "code": "Extension"
-          }
-        ]
-      },
-      {
-        "id": "RelatedPerson:odh-EmployerPerson.extension:status.url",
-        "path": "RelatedPerson.extension.url",
-        "representation": [
-          "xmlAttr"
-        ],
-        "short": "identifies the meaning of the extension",
-        "definition": "Source of the definition for the extension code - a logical name or a URL.",
-        "min": 1,
-        "max": "1",
-        "base": {
-          "path": "Extension.url",
-          "min": 1,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "uri"
-          }
-        ],
-        "fixedUri": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Status-extension",
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "N/A"
-          }
-        ]
-      },
-      {
-        "id": "RelatedPerson:odh-EmployerPerson.extension:status.valueCodeableConcept",
-        "path": "RelatedPerson.extension.valueCodeableConcept",
-        "short": "Value of extension",
-        "definition": "Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).",
-        "min": 1,
-        "max": "1",
-        "base": {
-          "path": "Extension.value[x]",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "CodeableConcept"
-          }
-        ],
-        "binding": {
-          "strength": "required",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/odh/shr/core/vs/ActiveOrInactiveVS"
-          }
-        },
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "N/A"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Communication-extension"
           }
         ]
       },
@@ -506,12 +593,7 @@
         "comment": "This element is labeled as a modifier because it may be used to mark that the resource was created in error.",
         "requirements": "Need to be able to mark a related person record as not to be used, such as if it was created in error.",
         "min": 0,
-        "max": "0",
-        "base": {
-          "path": "RelatedPerson.active",
-          "min": 0,
-          "max": "1"
-        },
+        "max": "1",
         "type": [
           {
             "code": "boolean"
@@ -542,7 +624,7 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/StructureDefinition/Patient"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient"
           }
         ],
         "isSummary": true,
@@ -583,7 +665,7 @@
               "valueString": "PatientRelationshipType"
             }
           ],
-          "strength": "required",
+          "strength": "preferred",
           "description": "The nature of the relationship between a patient and the related person",
           "valueSetReference": {
             "reference": "http://hl7.org/fhir/ValueSet/relatedperson-relationshiptype"
@@ -1183,6 +1265,29 @@
         "definition": "A related person who is an employer"
       },
       {
+        "id": "RelatedPerson:odh-EmployerPerson.meta",
+        "path": "RelatedPerson.meta"
+      },
+      {
+        "id": "RelatedPerson:odh-EmployerPerson.meta.extension:sourcesystem",
+        "path": "RelatedPerson.meta.extension",
+        "sliceName": "sourcesystem",
+        "definition": "FHIR: This provides a minimal amount of Provenance information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.\nFHIM: Identifies the computer system that created the medical record. This optional field may also be used to indicate that the medical record was originally created by a different organization from the one that is currently storing or utilizing the record in that the assigning authority of the Id could be set to that originating organization. This property is optional, as some systems will assume that all records that it contains originated in that system, however it is anticipated that it will become increasingly commonplace for records from multiple systems and organizations will be comingled in order to provide a complete picture of the patient's health record.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Element.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SourceSystem-extension"
+          }
+        ]
+      },
+      {
         "id": "RelatedPerson:odh-EmployerPerson.extension",
         "path": "RelatedPerson.extension",
         "slicing": {
@@ -1198,12 +1303,12 @@
         }
       },
       {
-        "id": "RelatedPerson:odh-EmployerPerson.extension:status",
+        "id": "RelatedPerson:odh-EmployerPerson.extension:communication",
         "path": "RelatedPerson.extension",
-        "sliceName": "status",
-        "definition": "A state that relates to the workflow or interpretation of this resource. Certain status values can modify the meaning of the resource, for example, entered-in-error. When a boolean value is used, Status of true indicates the record is active, false means inactive.",
+        "sliceName": "communication",
+        "definition": "Language used for communication by a human, either the subject of record, parent, or other involved person.",
         "min": 0,
-        "max": "1",
+        "max": "*",
         "base": {
           "path": "DomainResource.extension",
           "min": 0,
@@ -1212,30 +1317,19 @@
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Status-extension"
+            "profile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Communication-extension"
           }
         ]
       },
       {
-        "id": "RelatedPerson:odh-EmployerPerson.extension:status.valueCodeableConcept",
-        "path": "RelatedPerson.extension.valueCodeableConcept",
-        "binding": {
-          "strength": "required",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/us/odh/shr/core/vs/ActiveOrInactiveVS"
+        "id": "RelatedPerson:odh-EmployerPerson.patient",
+        "path": "RelatedPerson.patient",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient"
           }
-        }
-      },
-      {
-        "id": "RelatedPerson:odh-EmployerPerson.active",
-        "path": "RelatedPerson.active",
-        "min": 0,
-        "max": "0",
-        "base": {
-          "path": "RelatedPerson.active",
-          "min": 0,
-          "max": "1"
-        }
+        ]
       },
       {
         "id": "RelatedPerson:odh-EmployerPerson.relationship",
@@ -1246,19 +1340,6 @@
           "path": "RelatedPerson.relationship",
           "min": 0,
           "max": "1"
-        },
-        "binding": {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-              "valueString": "PatientRelationshipType"
-            }
-          ],
-          "strength": "required",
-          "description": "The nature of the relationship between a patient and the related person",
-          "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/relatedperson-relationshiptype"
-          }
         }
       },
       {

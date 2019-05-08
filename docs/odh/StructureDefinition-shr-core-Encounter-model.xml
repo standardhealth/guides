@@ -8,7 +8,7 @@
   <p>A description of an interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or assessing the health status of a patient.</p>
 </div>
   </text>
-  <url value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"/>
+  <url value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter-model"/>
   <identifier>
     <system value="http://hl7.org/fhir/us/odh"/>
     <value value="shr.core.Encounter"/>
@@ -17,7 +17,7 @@
   <name value="Encounter"/>
   <title value="shr-core-Encounter"/>
   <status value="draft"/>
-  <date value="2019-04-08T00:00:00-04:00"/>
+  <date value="2019-05-08T00:00:00-04:00"/>
   <publisher value="HL7"/>
   <contact>
     <telecom>
@@ -58,7 +58,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -66,10 +66,6 @@
     </element>
     <element id="shr-core-Encounter-model.language">
       <path value="shr-core-Encounter-model.language"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0023008"/>
-      </code>
       <short value="A human language, spoken or written."/>
       <definition value="A human language, spoken or written."/>
       <min value="0"/>
@@ -116,7 +112,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -134,7 +130,7 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatusHistory-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-StatusHistory-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -170,7 +166,7 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -178,12 +174,8 @@
     </element>
     <element id="shr-core-Encounter-model.timePeriod">
       <path value="shr-core-Encounter-model.timePeriod"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1948053"/>
-      </code>
       <short value="A period of time defined by a start and end time, date, or year."/>
-      <definition value="A period of time defined by a start and end time, date, or year.&#xA;If the start element is missing, the start of the period is not known. If the end element is missing, it means that the period is ongoing, or the start may be in the past, and the end date in the future, which means that period is expected/planned to end at the specified time. The end value includes any matching date/time. For example, the period 2011-05-23 to 2011-05-27 includes all the times from the start of the 23rd May through to the end of the 27th of May."/>
+      <definition value="A period of time defined by a start and end time, date, or year.&#xA;If the start date/time is missing, the start of the period is not known. If the end date/time is missing, it means that the period is ongoing."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -192,7 +184,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -210,30 +202,30 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EncounterDiagnosis-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-EncounterDiagnosis-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-Encounter-model.patientSubjectOfRecord">
-      <path value="shr-core-Encounter-model.patientSubjectOfRecord"/>
+    <element id="shr-core-Encounter-model.subjectOfRecord">
+      <path value="shr-core-Encounter-model.subjectOfRecord"/>
       <code>
         <system value="http://ncimeta.nci.nih.gov"/>
         <code value="C1299487"/>
       </code>
-      <short value="The SubjectOfRecord when restricted to being a Patient resource."/>
-      <definition value="The SubjectOfRecord when restricted to being a Patient resource."/>
+      <short value="The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe&#39;s patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord."/>
+      <definition value="The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe&#39;s patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord.&#xA;&#xA;Note that the word &#39;Subject&#39; is used here in the sense of a person or entity subjected to observations or actions, not subject as in a conceptual topic, like heart disease."/>
       <min value="1"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-Encounter-model.patientSubjectOfRecord"/>
+        <path value="shr-core-Encounter-model.subjectOfRecord"/>
         <min value="1"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -269,12 +261,8 @@
     </element>
     <element id="shr-core-Encounter-model.organization">
       <path value="shr-core-Encounter-model.organization"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1561598"/>
-      </code>
-      <short value="A social or legal structure formed by human beings."/>
-      <definition value="A social or legal structure formed by human beings.&#xA;&#xA;Organization type is restricted to 0..1 in FHIR DSTU2, similarly restricted here."/>
+      <short value="A formally or informally recognized grouping of people or organizations formed for the purpose of achieving some form of collective action. Includes companies, institutions, corporations, departments, community groups, healthcare practice groups, payer/insurer, etc."/>
+      <definition value="A formally or informally recognized grouping of people or organizations formed for the purpose of achieving some form of collective action. Includes companies, institutions, corporations, departments, community groups, healthcare practice groups, payer/insurer, etc.&#xA;&#xA;Organization type is restricted to 0..1 in FHIR DSTU2, similarly restricted here. Other required attributes come from STU 3 mapping to us-core-organization."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -284,26 +272,26 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-Encounter-model.referralRequest">
-      <path value="shr-core-Encounter-model.referralRequest"/>
-      <short value="Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization."/>
-      <definition value="Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization."/>
+    <element id="shr-core-Encounter-model.referralBasedOn">
+      <path value="shr-core-Encounter-model.referralBasedOn"/>
+      <short value="Indicates any plans, proposals or orders that this request is intended to satisfy - in whole or in part."/>
+      <definition value="Indicates any plans, proposals or orders that this request is intended to satisfy - in whole or in part."/>
       <min value="0"/>
       <max value="*"/>
       <base>
-        <path value="shr-core-Encounter-model.referralRequest"/>
+        <path value="shr-core-Encounter-model.referralBasedOn"/>
         <min value="0"/>
         <max value="*"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -313,11 +301,11 @@
       <path value="shr-core-Encounter-model.encounterClass"/>
       <short value="Concepts representing classification of patient encounter such as ambulatory (outpatient), inpatient, emergency, home health or others due to local variations."/>
       <definition value="Concepts representing classification of patient encounter such as ambulatory (outpatient), inpatient, emergency, home health or others due to local variations."/>
-      <min value="0"/>
+      <min value="1"/>
       <max value="1"/>
       <base>
         <path value="shr-core-Encounter-model.encounterClass"/>
-        <min value="0"/>
+        <min value="1"/>
         <max value="1"/>
       </base>
       <type>
@@ -339,7 +327,7 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClassHistory-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ClassHistory-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -347,10 +335,6 @@
     </element>
     <element id="shr-core-Encounter-model.priorityCode[x]">
       <path value="shr-core-Encounter-model.priorityCode[x]"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0549179"/>
-      </code>
       <slicing>
         <discriminator>
           <type value="type"/>
@@ -416,7 +400,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-EpisodeOfCare-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -453,11 +437,11 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -465,10 +449,6 @@
     </element>
     <element id="shr-core-Encounter-model.participation.participationType">
       <path value="shr-core-Encounter-model.participation.participationType"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1553854"/>
-      </code>
       <short value="The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc."/>
       <definition value="The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc."/>
       <min value="0"/>
@@ -493,10 +473,6 @@
     </element>
     <element id="shr-core-Encounter-model.participation.participationPeriod">
       <path value="shr-core-Encounter-model.participation.participationPeriod"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1948053"/>
-      </code>
       <short value="The point in time or span of time the participant is involved."/>
       <definition value="The point in time or span of time the participant is involved."/>
       <min value="0"/>
@@ -507,7 +483,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -525,11 +501,24 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="uri"/>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -548,7 +537,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Appointment-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Appointment-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -570,7 +559,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Duration-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Duration-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -582,8 +571,8 @@
         <system value="http://ncimeta.nci.nih.gov"/>
         <code value="C0566251"/>
       </code>
-      <short value="The justification, as a code."/>
-      <definition value="The justification, as a code.&#xA;Reason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept, so we are not going to support a string."/>
+      <short value="The explanation or justification for the current item or action, as a code."/>
+      <definition value="The explanation or justification for the current item or action, as a code.&#xA;Reason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -604,6 +593,101 @@
         </valueSetReference>
       </binding>
     </element>
+    <element id="shr-core-Encounter-model.encounterReasonReference[x]">
+      <path value="shr-core-Encounter-model.encounterReasonReference[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="Reason the encounter is taking place."/>
+      <definition value="Reason the encounter is taking place."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Encounter-model.encounterReasonReference[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Encounter-model.encounterReasonReferenceShr-core-Condition-model:Condition">
+      <path value="shr-core-Encounter-model.encounterReasonReferenceShr-core-Condition-model"/>
+      <sliceName value="Condition"/>
+      <short value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble."/>
+      <definition value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.&#xA;The Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.&#xA;SHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Encounter-model.encounterReasonReference[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Encounter-model.encounterReasonReferenceShr-core-Procedure-model:Procedure">
+      <path value="shr-core-Encounter-model.encounterReasonReferenceShr-core-Procedure-model"/>
+      <sliceName value="Procedure"/>
+      <short value="An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy."/>
+      <definition value="An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Encounter-model.encounterReasonReference[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Encounter-model.encounterReasonReferenceShr-core-Observation-model:Observation">
+      <path value="shr-core-Encounter-model.encounterReasonReferenceShr-core-Observation-model"/>
+      <sliceName value="Observation"/>
+      <short value="Represents the result of evaluations (measurements, tests, or questions) that have been performed."/>
+      <definition value="Represents the result of evaluations (measurements, tests, or questions) that have been performed.&#xA;Observation has a value representing the result (answer), or an DataAbsentReason indicating why the value is not present. Things observed about the subject can include social and behavioral factors, subjective and objective observations, and assessments.&#xA;For an Observation, the Code describes the aspect or property of the subject being observed or measured. The Code is the &#39;question code&#39; that pairs to the &#39;answer&#39; contained in the Value."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Encounter-model.encounterReasonReference[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
     <element id="shr-core-Encounter-model.encounterLocation">
       <path value="shr-core-Encounter-model.encounterLocation"/>
       <short value="Locations where the patient has been."/>
@@ -616,7 +700,7 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EncounterLocation-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-EncounterLocation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -635,7 +719,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -669,7 +753,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Metadata-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Metadata-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -677,10 +761,6 @@
     </element>
     <element id="shr-core-Encounter-model.language">
       <path value="shr-core-Encounter-model.language"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0023008"/>
-      </code>
       <short value="A human language, spoken or written."/>
       <definition value="A human language, spoken or written."/>
       <min value="0"/>
@@ -727,7 +807,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Narrative-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Narrative-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -745,7 +825,7 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-StatusHistory-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-StatusHistory-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -781,7 +861,7 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Identifier-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Identifier-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -789,12 +869,8 @@
     </element>
     <element id="shr-core-Encounter-model.timePeriod">
       <path value="shr-core-Encounter-model.timePeriod"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1948053"/>
-      </code>
       <short value="A period of time defined by a start and end time, date, or year."/>
-      <definition value="A period of time defined by a start and end time, date, or year.&#xA;If the start element is missing, the start of the period is not known. If the end element is missing, it means that the period is ongoing, or the start may be in the past, and the end date in the future, which means that period is expected/planned to end at the specified time. The end value includes any matching date/time. For example, the period 2011-05-23 to 2011-05-27 includes all the times from the start of the 23rd May through to the end of the 27th of May."/>
+      <definition value="A period of time defined by a start and end time, date, or year.&#xA;If the start date/time is missing, the start of the period is not known. If the end date/time is missing, it means that the period is ongoing."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -803,7 +879,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -821,30 +897,30 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EncounterDiagnosis-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-EncounterDiagnosis-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-Encounter-model.patientSubjectOfRecord">
-      <path value="shr-core-Encounter-model.patientSubjectOfRecord"/>
+    <element id="shr-core-Encounter-model.subjectOfRecord">
+      <path value="shr-core-Encounter-model.subjectOfRecord"/>
       <code>
         <system value="http://ncimeta.nci.nih.gov"/>
         <code value="C1299487"/>
       </code>
-      <short value="The SubjectOfRecord when restricted to being a Patient resource."/>
-      <definition value="The SubjectOfRecord when restricted to being a Patient resource."/>
+      <short value="The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe&#39;s patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord."/>
+      <definition value="The subject of a clinical statement, often called the Patient or the Subject. The SubjectOfRecord typically identifies the clinical record in which this statement is contained. If the statement should be in John Doe&#39;s patient record, then John Doe is the subject of record. When there is no patient, the SubjectOfRecord can also be a location, group, or other entity that statement pertains to. For example, observations concerning a hospital ward would have a Location as the SubjectOfRecord.&#xA;&#xA;Note that the word &#39;Subject&#39; is used here in the sense of a person or entity subjected to observations or actions, not subject as in a conceptual topic, like heart disease."/>
       <min value="1"/>
       <max value="1"/>
       <base>
-        <path value="shr-core-Encounter-model.patientSubjectOfRecord"/>
+        <path value="shr-core-Encounter-model.subjectOfRecord"/>
         <min value="1"/>
         <max value="1"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -880,12 +956,8 @@
     </element>
     <element id="shr-core-Encounter-model.organization">
       <path value="shr-core-Encounter-model.organization"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1561598"/>
-      </code>
-      <short value="A social or legal structure formed by human beings."/>
-      <definition value="A social or legal structure formed by human beings.&#xA;&#xA;Organization type is restricted to 0..1 in FHIR DSTU2, similarly restricted here."/>
+      <short value="A formally or informally recognized grouping of people or organizations formed for the purpose of achieving some form of collective action. Includes companies, institutions, corporations, departments, community groups, healthcare practice groups, payer/insurer, etc."/>
+      <definition value="A formally or informally recognized grouping of people or organizations formed for the purpose of achieving some form of collective action. Includes companies, institutions, corporations, departments, community groups, healthcare practice groups, payer/insurer, etc.&#xA;&#xA;Organization type is restricted to 0..1 in FHIR DSTU2, similarly restricted here. Other required attributes come from STU 3 mapping to us-core-organization."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -895,26 +967,26 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="shr-core-Encounter-model.referralRequest">
-      <path value="shr-core-Encounter-model.referralRequest"/>
-      <short value="Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization."/>
-      <definition value="Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization."/>
+    <element id="shr-core-Encounter-model.referralBasedOn">
+      <path value="shr-core-Encounter-model.referralBasedOn"/>
+      <short value="Indicates any plans, proposals or orders that this request is intended to satisfy - in whole or in part."/>
+      <definition value="Indicates any plans, proposals or orders that this request is intended to satisfy - in whole or in part."/>
       <min value="0"/>
       <max value="*"/>
       <base>
-        <path value="shr-core-Encounter-model.referralRequest"/>
+        <path value="shr-core-Encounter-model.referralBasedOn"/>
         <min value="0"/>
         <max value="*"/>
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ReferralRequest-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -924,11 +996,11 @@
       <path value="shr-core-Encounter-model.encounterClass"/>
       <short value="Concepts representing classification of patient encounter such as ambulatory (outpatient), inpatient, emergency, home health or others due to local variations."/>
       <definition value="Concepts representing classification of patient encounter such as ambulatory (outpatient), inpatient, emergency, home health or others due to local variations."/>
-      <min value="0"/>
+      <min value="1"/>
       <max value="1"/>
       <base>
         <path value="shr-core-Encounter-model.encounterClass"/>
-        <min value="0"/>
+        <min value="1"/>
         <max value="1"/>
       </base>
       <type>
@@ -950,7 +1022,7 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-ClassHistory-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ClassHistory-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -958,10 +1030,6 @@
     </element>
     <element id="shr-core-Encounter-model.priorityCode[x]">
       <path value="shr-core-Encounter-model.priorityCode[x]"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C0549179"/>
-      </code>
       <slicing>
         <discriminator>
           <type value="type"/>
@@ -1027,7 +1095,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EpisodeOfCare-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-EpisodeOfCare-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1064,11 +1132,11 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1076,10 +1144,6 @@
     </element>
     <element id="shr-core-Encounter-model.participation.participationType">
       <path value="shr-core-Encounter-model.participation.participationType"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1553854"/>
-      </code>
       <short value="The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc."/>
       <definition value="The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc."/>
       <min value="0"/>
@@ -1104,10 +1168,6 @@
     </element>
     <element id="shr-core-Encounter-model.participation.participationPeriod">
       <path value="shr-core-Encounter-model.participation.participationPeriod"/>
-      <code>
-        <system value="http://ncimeta.nci.nih.gov"/>
-        <code value="C1948053"/>
-      </code>
       <short value="The point in time or span of time the participant is involved."/>
       <definition value="The point in time or span of time the participant is involved."/>
       <min value="0"/>
@@ -1118,7 +1178,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-TimePeriod-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1136,11 +1196,24 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="uri"/>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1159,7 +1232,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Appointment-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Appointment-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1181,7 +1254,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Duration-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Duration-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1193,8 +1266,8 @@
         <system value="http://ncimeta.nci.nih.gov"/>
         <code value="C0566251"/>
       </code>
-      <short value="The justification, as a code."/>
-      <definition value="The justification, as a code.&#xA;Reason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept, so we are not going to support a string."/>
+      <short value="The explanation or justification for the current item or action, as a code."/>
+      <definition value="The explanation or justification for the current item or action, as a code.&#xA;Reason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1215,6 +1288,101 @@
         </valueSetReference>
       </binding>
     </element>
+    <element id="shr-core-Encounter-model.encounterReasonReference[x]">
+      <path value="shr-core-Encounter-model.encounterReasonReference[x]"/>
+      <slicing>
+        <discriminator>
+          <type value="type"/>
+          <path value="$this"/>
+        </discriminator>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="Reason the encounter is taking place."/>
+      <definition value="Reason the encounter is taking place."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="shr-core-Encounter-model.encounterReasonReference[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure-model"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Encounter-model.encounterReasonReferenceShr-core-Condition-model:Condition">
+      <path value="shr-core-Encounter-model.encounterReasonReferenceShr-core-Condition-model"/>
+      <sliceName value="Condition"/>
+      <short value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble."/>
+      <definition value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.&#xA;The Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.&#xA;SHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Encounter-model.encounterReasonReference[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Condition-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Encounter-model.encounterReasonReferenceShr-core-Procedure-model:Procedure">
+      <path value="shr-core-Encounter-model.encounterReasonReferenceShr-core-Procedure-model"/>
+      <sliceName value="Procedure"/>
+      <short value="An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy."/>
+      <definition value="An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Encounter-model.encounterReasonReference[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Procedure-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="shr-core-Encounter-model.encounterReasonReferenceShr-core-Observation-model:Observation">
+      <path value="shr-core-Encounter-model.encounterReasonReferenceShr-core-Observation-model"/>
+      <sliceName value="Observation"/>
+      <short value="Represents the result of evaluations (measurements, tests, or questions) that have been performed."/>
+      <definition value="Represents the result of evaluations (measurements, tests, or questions) that have been performed.&#xA;Observation has a value representing the result (answer), or an DataAbsentReason indicating why the value is not present. Things observed about the subject can include social and behavioral factors, subjective and objective observations, and assessments.&#xA;For an Observation, the Code describes the aspect or property of the subject being observed or measured. The Code is the &#39;question code&#39; that pairs to the &#39;answer&#39; contained in the Value."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="shr-core-Encounter-model.encounterReasonReference[x]"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation-model"/>
+      </type>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
     <element id="shr-core-Encounter-model.encounterLocation">
       <path value="shr-core-Encounter-model.encounterLocation"/>
       <short value="Locations where the patient has been."/>
@@ -1227,7 +1395,7 @@
         <max value="*"/>
       </base>
       <type>
-        <code value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-EncounterLocation-model"/>
+        <code value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-EncounterLocation-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1246,7 +1414,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter-model"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter-model"/>
       </type>
       <mustSupport value="false"/>
       <isModifier value="false"/>

@@ -5,7 +5,7 @@
     "status": "generated",
     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>AppointmentParticipation Logical Model</b></p>\n  <p>Participants involved in appointment</p>\n</div>"
   },
-  "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-AppointmentParticipation-model",
+  "url": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-AppointmentParticipation-model",
   "identifier": [
     {
       "system": "http://hl7.org/fhir/us/odh",
@@ -16,7 +16,7 @@
   "name": "AppointmentParticipation",
   "title": "shr-core-AppointmentParticipation",
   "status": "draft",
-  "date": "2019-04-08T00:00:00-04:00",
+  "date": "2019-05-08T00:00:00-04:00",
   "publisher": "HL7",
   "contact": [
     {
@@ -52,22 +52,54 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-AppointmentParticipation-model.participationType",
-        "path": "shr-core-AppointmentParticipation-model.participationType",
-        "code": [
+        "id": "shr-core-AppointmentParticipation-model.appointmentParticipant[x]",
+        "path": "shr-core-AppointmentParticipation-model.appointmentParticipant[x]",
+        "short": "A choice of Person (in any role) or Organization, Device or Location as participants.",
+        "definition": "A choice of Person (in any role) or Organization, Device or Location as participants.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-AppointmentParticipation-model.appointmentParticipant[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
           {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C1553854"
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Location-model"
           }
         ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-AppointmentParticipation-model.participationType",
+        "path": "shr-core-AppointmentParticipation-model.participationType",
         "short": "The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc.",
         "definition": "The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc.",
         "min": 1,
-        "max": "*",
+        "max": "1",
         "base": {
           "path": "shr-core-AppointmentParticipation-model.participationType",
           "min": 1,
-          "max": "*"
+          "max": "1"
         },
         "type": [
           {
@@ -85,37 +117,58 @@
         }
       },
       {
-        "id": "shr-core-AppointmentParticipation-model.appointmentParticipant[x]",
-        "path": "shr-core-AppointmentParticipation-model.appointmentParticipant[x]",
-        "short": "A choice of Person (in any role) or Organization, Device or Location as participants.",
-        "definition": "A choice of Person (in any role) or Organization, Device or Location as participants.",
+        "id": "shr-core-AppointmentParticipation-model.participationPeriod",
+        "path": "shr-core-AppointmentParticipation-model.participationPeriod",
+        "short": "The point in time or span of time the participant is involved.",
+        "definition": "The point in time or span of time the participant is involved.",
         "min": 0,
-        "max": "1",
+        "max": "0",
         "base": {
-          "path": "shr-core-AppointmentParticipation-model.appointmentParticipant[x]",
+          "path": "shr-core-AppointmentParticipation-model.participationPeriod",
           "min": 0,
-          "max": "1"
+          "max": "0"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-AppointmentParticipation-model.onBehalfOf[x]",
+        "path": "shr-core-AppointmentParticipation-model.onBehalfOf[x]",
+        "short": "The party represented by the actual participant.",
+        "definition": "The party represented by the actual participant.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "shr-core-AppointmentParticipation-model.onBehalfOf[x]",
+          "min": 0,
+          "max": "0"
         },
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Location-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"
           }
         ],
         "mustSupport": false,
@@ -196,22 +249,54 @@
         "isSummary": false
       },
       {
-        "id": "shr-core-AppointmentParticipation-model.participationType",
-        "path": "shr-core-AppointmentParticipation-model.participationType",
-        "code": [
+        "id": "shr-core-AppointmentParticipation-model.appointmentParticipant[x]",
+        "path": "shr-core-AppointmentParticipation-model.appointmentParticipant[x]",
+        "short": "A choice of Person (in any role) or Organization, Device or Location as participants.",
+        "definition": "A choice of Person (in any role) or Organization, Device or Location as participants.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "shr-core-AppointmentParticipation-model.appointmentParticipant[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
           {
-            "system": "http://ncimeta.nci.nih.gov",
-            "code": "C1553854"
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Location-model"
           }
         ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-AppointmentParticipation-model.participationType",
+        "path": "shr-core-AppointmentParticipation-model.participationType",
         "short": "The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc.",
         "definition": "The role played by the participant engaged in the action, for example, as the attending physician, surgical assistant, etc.",
         "min": 1,
-        "max": "*",
+        "max": "1",
         "base": {
           "path": "shr-core-AppointmentParticipation-model.participationType",
           "min": 1,
-          "max": "*"
+          "max": "1"
         },
         "type": [
           {
@@ -229,37 +314,58 @@
         }
       },
       {
-        "id": "shr-core-AppointmentParticipation-model.appointmentParticipant[x]",
-        "path": "shr-core-AppointmentParticipation-model.appointmentParticipant[x]",
-        "short": "A choice of Person (in any role) or Organization, Device or Location as participants.",
-        "definition": "A choice of Person (in any role) or Organization, Device or Location as participants.",
+        "id": "shr-core-AppointmentParticipation-model.participationPeriod",
+        "path": "shr-core-AppointmentParticipation-model.participationPeriod",
+        "short": "The point in time or span of time the participant is involved.",
+        "definition": "The point in time or span of time the participant is involved.",
         "min": 0,
-        "max": "1",
+        "max": "0",
         "base": {
-          "path": "shr-core-AppointmentParticipation-model.appointmentParticipant[x]",
+          "path": "shr-core-AppointmentParticipation-model.participationPeriod",
           "min": 0,
-          "max": "1"
+          "max": "0"
+        },
+        "type": [
+          {
+            "code": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-TimePeriod-model"
+          }
+        ],
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "shr-core-AppointmentParticipation-model.onBehalfOf[x]",
+        "path": "shr-core-AppointmentParticipation-model.onBehalfOf[x]",
+        "short": "The party represented by the actual participant.",
+        "definition": "The party represented by the actual participant.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "shr-core-AppointmentParticipation-model.onBehalfOf[x]",
+          "min": 0,
+          "max": "0"
         },
         "type": [
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner-model"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson-model"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient-model"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device-model"
           },
           {
             "code": "Reference",
-            "targetProfile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Location-model"
+            "targetProfile": "http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization-model"
           }
         ],
         "mustSupport": false,

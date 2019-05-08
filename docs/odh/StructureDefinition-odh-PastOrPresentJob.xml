@@ -5,59 +5,67 @@
   <text>
     <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">
   <p><b>PastOrPresentJob Profile</b></p>
-  <p>Related data elements for a current or previous job, as reported by the person, i.e., a work situation or position held for a specified time period.
-A person can have more than one job at the same time and multiple jobs over time, so the data related to each job must remain in the record in perpetuity. Each job should be recorded in a separate instance of PastOrPresentJob.
-A person's job can be a social determinant of their health and information about a person's job can support patient care, population health, and public health. In patient care, knowledge of a person's past or present job(s) can impact recognition, diagnosis, management, and treatment of injuries and illnesses. These data also can be used for clinical decision support and to prompt discussion of preventive care measures. For example, a record of jobs that require prolonged time in the sun might prompt a health care provider to inquire if the person wears protective clothing or sunscreen while working.
-At a minimum, it is important to have a record of a person's current job(s); i.e., the job(s) in which a person is engaged at the time that he or she presents to a health care provider, regardless of duration, and to retain that information over time. In the event a person recently stopped working (e.g. retired without another job, became unemployed or disabled and unable to work), the most recent job(s) is used instead of the current job(s).</p>
+  <p>Related data elements for a current or previous job, as reported by the person, i.e., a work situation or position held for a specified time period. A person can have more than one job at the same time and multiple jobs over time, so the data related to each job must remain in the record in perpetuity. Each job should be recorded in a separate instance of PastOrPresentJob. A person’s job can be a social determinant of their health and information about a person’s job can support patient care, population health, and public health. In patient care, knowledge of a person’s past or present job(s) can impact recognition, diagnosis, management, and treatment of injuries and illnesses. These data also can be used for clinical decision support and to prompt discussion of preventive care measures. For example, a record of jobs that require prolonged time in the sun might prompt a health care provider to inquire if the person wears protective clothing or sunscreen while working. At a minimum, it is important to have a record of a person’s current job(s); i.e., the job(s) in which a person is engaged at the time that he or she presents to a health care provider, regardless of duration, and to retain that information over time. In the event a person recently stopped working (e.g. retired without another job, became unemployed or disabled and unable to work), the most recent job(s) is used instead of the current job(s).</p>
   <p><b>Mapping Summary</b></p>
   <p><pre>odh.PastOrPresentJob maps to Observation:
   Language maps to language
   Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.SourceSystem maps to meta.extension
   Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
   Identifier maps to identifier
-  PatientSubjectOfRecord maps to subject
-  Performer maps to performer
-  Code maps to code
-  Method maps to method
-  CommentOrDescription maps to comment
+  ObservationBasedOn maps to basedOn
+  ObservationPartOf maps to extension
+  Status maps to status
   Category maps to category
-  BodyLocation.LocationCode maps to bodySite
+  Code maps to code
+  ObservationSubjectOfRecord maps to subject
+  FocalSubject maps to modifierExtension
+  CareContext maps to context
+  RelevantTime maps to effective[x]
+  StatementDateTime maps to issued
+  Performer maps to performer
+  DataValue maps to value[x]
+  DataAbsentReason maps to dataAbsentReason
+  Interpretation maps to interpretation
+  Annotation maps to extension
+  BodyLocation.Code maps to bodySite
   BodyLocation.Laterality maps to bodySite.extension
   BodyLocation.Orientation maps to bodySite.extension
   BodyLocation.RelationToLandmark maps to bodySite.extension
+  Method maps to method
   Device maps to device
-  StatementDateTime maps to issued
   ReferenceRange maps to referenceRange
-  ReferenceRange.Range.LowerBound maps to referenceRange.low
-  ReferenceRange.Range.UpperBound maps to referenceRange.high
+  ReferenceRange.LowerBound maps to referenceRange.low
+  ReferenceRange.UpperBound maps to referenceRange.high
   ReferenceRange.Type maps to referenceRange.type
   ReferenceRange.ApplicableSubpopulation maps to referenceRange.appliesTo
   ReferenceRange.ApplicableAgeRange maps to referenceRange.age
+  ReferenceRange.Text maps to referenceRange.text
+  fix related.type to #has-member
+  PanelMembers maps to related
+  PanelMembers.Observation maps to related.target (slice at = related; slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)
+  ObservationDerivedFrom maps to extension
   Components.ObservationComponent maps to component (slice on = code.coding.code; slice strategy = includes)
   Components.ObservationComponent.Code maps to component.code
   Components.ObservationComponent.DataValue maps to component.value[x]
   Components.ObservationComponent.DataAbsentReason maps to component.dataAbsentReason
+  Components.ObservationComponent.Interpretation maps to component.interpretation
   Components.ObservationComponent.ReferenceRange maps to component.referenceRange
-  fix related.type to #has-member
-  PanelMembers maps to related
-  PanelMembers.Observation maps to related.target (slice at = related; slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)
-  DataValue maps to value[x]
-  DataAbsentReason maps to dataAbsentReason
-  Interpretation maps to interpretation
-  Status maps to status
-  RelevantTime maps to effective[x]
-  CareContext maps to context
-  constrain specimen to 0..0
-  SubjectOfInformationCode maps to modifierExtension
+  Components.ObservationComponent.ReferenceRange.LowerBound maps to component.referenceRange.low
+  Components.ObservationComponent.ReferenceRange.UpperBound maps to component.referenceRange.high
+  Components.ObservationComponent.ReferenceRange.Type maps to component.referenceRange.type
+  Components.ObservationComponent.ReferenceRange.ApplicableSubpopulation maps to component.referenceRange.appliesTo
+  Components.ObservationComponent.ReferenceRange.ApplicableAgeRange maps to component.referenceRange.age
+  Components.ObservationComponent.ReferenceRange.Text maps to component.referenceRange.text
 </pre></p>
 </div>
   </text>
-  <url value="http://hl7.org/fhir/us/shr/StructureDefinition/odh-PastOrPresentJob"/>
+  <url value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-PastOrPresentJob"/>
   <identifier>
     <system value="http://hl7.org/fhir/us/odh"/>
     <value value="odh.PastOrPresentJob"/>
@@ -66,7 +74,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
   <name value="PastOrPresentJob"/>
   <title value="odh-PastOrPresentJob"/>
   <status value="draft"/>
-  <date value="2019-04-08T00:00:00-04:00"/>
+  <date value="2019-05-08T00:00:00-04:00"/>
   <publisher value="HL7"/>
   <contact>
     <telecom>
@@ -74,7 +82,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       <value value="http://standardhealthrecord.org"/>
     </telecom>
   </contact>
-  <description value="Related data elements for a current or previous job, as reported by the person, i.e., a work situation or position held for a specified time period.&#xA;A person can have more than one job at the same time and multiple jobs over time, so the data related to each job must remain in the record in perpetuity. Each job should be recorded in a separate instance of PastOrPresentJob.&#xA;A person&#39;s job can be a social determinant of their health and information about a person&#39;s job can support patient care, population health, and public health. In patient care, knowledge of a person&#39;s past or present job(s) can impact recognition, diagnosis, management, and treatment of injuries and illnesses. These data also can be used for clinical decision support and to prompt discussion of preventive care measures. For example, a record of jobs that require prolonged time in the sun might prompt a health care provider to inquire if the person wears protective clothing or sunscreen while working.&#xA;At a minimum, it is important to have a record of a person&#39;s current job(s); i.e., the job(s) in which a person is engaged at the time that he or she presents to a health care provider, regardless of duration, and to retain that information over time. In the event a person recently stopped working (e.g. retired without another job, became unemployed or disabled and unable to work), the most recent job(s) is used instead of the current job(s)."/>
+  <description value="Related data elements for a current or previous job, as reported by the person, i.e., a work situation or position held for a specified time period. A person can have more than one job at the same time and multiple jobs over time, so the data related to each job must remain in the record in perpetuity. Each job should be recorded in a separate instance of PastOrPresentJob. A person&#x2019;s job can be a social determinant of their health and information about a person&#x2019;s job can support patient care, population health, and public health. In patient care, knowledge of a person&#x2019;s past or present job(s) can impact recognition, diagnosis, management, and treatment of injuries and illnesses. These data also can be used for clinical decision support and to prompt discussion of preventive care measures. For example, a record of jobs that require prolonged time in the sun might prompt a health care provider to inquire if the person wears protective clothing or sunscreen while working. At a minimum, it is important to have a record of a person&#x2019;s current job(s); i.e., the job(s) in which a person is engaged at the time that he or she presents to a health care provider, regardless of duration, and to retain that information over time. In the event a person recently stopped working (e.g. retired without another job, became unemployed or disabled and unable to work), the most recent job(s) is used instead of the current job(s)."/>
   <purpose value="Observations are a key aspect of healthcare.  This resource is used to capture those that do not require more sophisticated mechanisms."/>
   <fhirVersion value="3.0.1"/>
   <mapping>
@@ -116,7 +124,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
     <element id="Observation:odh-PastOrPresentJob">
       <path value="Observation"/>
       <short value="odh-PastOrPresentJob"/>
-      <definition value="Related data elements for a current or previous job, as reported by the person, i.e., a work situation or position held for a specified time period.&#xA;A person can have more than one job at the same time and multiple jobs over time, so the data related to each job must remain in the record in perpetuity. Each job should be recorded in a separate instance of PastOrPresentJob.&#xA;A person&#39;s job can be a social determinant of their health and information about a person&#39;s job can support patient care, population health, and public health. In patient care, knowledge of a person&#39;s past or present job(s) can impact recognition, diagnosis, management, and treatment of injuries and illnesses. These data also can be used for clinical decision support and to prompt discussion of preventive care measures. For example, a record of jobs that require prolonged time in the sun might prompt a health care provider to inquire if the person wears protective clothing or sunscreen while working.&#xA;At a minimum, it is important to have a record of a person&#39;s current job(s); i.e., the job(s) in which a person is engaged at the time that he or she presents to a health care provider, regardless of duration, and to retain that information over time. In the event a person recently stopped working (e.g. retired without another job, became unemployed or disabled and unable to work), the most recent job(s) is used instead of the current job(s)."/>
+      <definition value="Related data elements for a current or previous job, as reported by the person, i.e., a work situation or position held for a specified time period. A person can have more than one job at the same time and multiple jobs over time, so the data related to each job must remain in the record in perpetuity. Each job should be recorded in a separate instance of PastOrPresentJob. A person&#x2019;s job can be a social determinant of their health and information about a person&#x2019;s job can support patient care, population health, and public health. In patient care, knowledge of a person&#x2019;s past or present job(s) can impact recognition, diagnosis, management, and treatment of injuries and illnesses. These data also can be used for clinical decision support and to prompt discussion of preventive care measures. For example, a record of jobs that require prolonged time in the sun might prompt a health care provider to inquire if the person wears protective clothing or sunscreen while working. At a minimum, it is important to have a record of a person&#x2019;s current job(s); i.e., the job(s) in which a person is engaged at the time that he or she presents to a health care provider, regardless of duration, and to retain that information over time. In the event a person recently stopped working (e.g. retired without another job, became unemployed or disabled and unable to work), the most recent job(s) is used instead of the current job(s)."/>
       <comment value="Used for simple observations such as device measurements, laboratory atomic results, vital signs, height, weight, smoking status, comments, etc.  Other resources are used to provide context for observations such as lab reports, etc."/>
       <alias value="Vital Signs"/>
       <alias value="Measurement"/>
@@ -228,6 +236,155 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       </type>
       <isSummary value="true"/>
     </element>
+    <element id="Observation:odh-PastOrPresentJob.meta.id">
+      <path value="Observation.meta.id"/>
+      <representation value="xmlAttr"/>
+      <short value="xml:id (or equivalent in JSON)"/>
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.id"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="string"/>
+      </type>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Observation:odh-PastOrPresentJob.meta.extension">
+      <path value="Observation.meta.extension"/>
+      <slicing>
+        <discriminator>
+          <type value="value"/>
+          <path value="url"/>
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="Additional Content defined by implementations"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Observation:odh-PastOrPresentJob.meta.extension:sourcesystem">
+      <path value="Observation.meta.extension"/>
+      <sliceName value="sourcesystem"/>
+      <definition value="FHIR: This provides a minimal amount of Provenance information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.&#xA;FHIM: Identifies the computer system that created the medical record. This optional field may also be used to indicate that the medical record was originally created by a different organization from the one that is currently storing or utilizing the record in that the assigning authority of the Id could be set to that originating organization. This property is optional, as some systems will assume that all records that it contains originated in that system, however it is anticipated that it will become increasingly commonplace for records from multiple systems and organizations will be comingled in order to provide a complete picture of the patient&#39;s health record."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SourceSystem-extension"/>
+      </type>
+    </element>
+    <element id="Observation:odh-PastOrPresentJob.meta.versionId">
+      <path value="Observation.meta.versionId"/>
+      <short value="Version specific identifier"/>
+      <definition value="The version specific identifier, as it appears in the version portion of the URL. This values changes when the resource is created, updated, or deleted."/>
+      <comment value="The server assigns this value, and ignores what the client specifies, except in the case that the server is imposing version integrity on updates/deletes."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="id"/>
+      </type>
+      <isSummary value="true"/>
+    </element>
+    <element id="Observation:odh-PastOrPresentJob.meta.lastUpdated">
+      <path value="Observation.meta.lastUpdated"/>
+      <short value="When the resource version last changed"/>
+      <definition value="When the resource last changed - e.g. when the version changed."/>
+      <comment value="This value is always populated except when the resource is first being created. The server / resource manager sets this value; what a client provides is irrelevant."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="instant"/>
+      </type>
+      <isSummary value="true"/>
+    </element>
+    <element id="Observation:odh-PastOrPresentJob.meta.profile">
+      <path value="Observation.meta.profile"/>
+      <short value="Profiles this resource claims to conform to"/>
+      <definition value="A list of profiles (references to [StructureDefinition](structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url]()."/>
+      <comment value="It is up to the server and/or other infrastructure of policy to determine whether/how these claims are verified and/or updated over time.  The list of profile URLs is a set."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="uri"/>
+      </type>
+      <isSummary value="true"/>
+    </element>
+    <element id="Observation:odh-PastOrPresentJob.meta.security">
+      <path value="Observation.meta.security"/>
+      <short value="Security Labels applied to this resource"/>
+      <definition value="Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure."/>
+      <comment value="The security labels can be updated without changing the stated version of the resource  The list of security labels is a set. Uniqueness is based the system/code, and version and display are ignored."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <isSummary value="true"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="SecurityLabels"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
+          <valueBoolean value="true"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Security Labels from the Healthcare Privacy and Security Classification System."/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/security-labels"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="Observation:odh-PastOrPresentJob.meta.tag">
+      <path value="Observation.meta.tag"/>
+      <short value="Tags applied to this resource"/>
+      <definition value="Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource."/>
+      <comment value="The tags can be updated without changing the stated version of the resource.  The list of tags is a set. Uniqueness is based the system/code, and version and display are ignored."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <isSummary value="true"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="Tags"/>
+        </extension>
+        <strength value="example"/>
+        <description value="Codes that represent various types of tags, commonly workflow-related; e.g. &quot;Needs review by Dr. Jones&quot;"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/common-tags"/>
+        </valueSetReference>
+      </binding>
+    </element>
     <element id="Observation:odh-PastOrPresentJob.implicitRules">
       <path value="Observation.implicitRules"/>
       <short value="A set of rules under which this content was created"/>
@@ -330,7 +487,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
     </element>
     <element id="Observation:odh-PastOrPresentJob.extension">
       <path value="Observation.extension"/>
-      <slicing id="22">
+      <slicing id="19">
         <discriminator>
           <type value="value"/>
           <path value="url"/>
@@ -358,6 +515,54 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <map value="N/A"/>
       </mapping>
     </element>
+    <element id="Observation:odh-PastOrPresentJob.extension:observationpartof">
+      <path value="Observation.extension"/>
+      <sliceName value="observationpartof"/>
+      <definition value="A larger event of which this particular Observation is a component or step. For example, an observation as part of a procedure."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ObservationPartOf-extension"/>
+      </type>
+    </element>
+    <element id="Observation:odh-PastOrPresentJob.extension:annotation">
+      <path value="Observation.extension"/>
+      <sliceName value="annotation"/>
+      <definition value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation-extension"/>
+      </type>
+    </element>
+    <element id="Observation:odh-PastOrPresentJob.extension:observationderivedfrom">
+      <path value="Observation.extension"/>
+      <sliceName value="observationderivedfrom"/>
+      <definition value="The target resource that represents a measurement from which this observation value is derived. For example, a calculated anion gap or a fetal measurement based on an ultrasound image."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ObservationDerivedFrom-extension"/>
+      </type>
+    </element>
     <element id="Observation:odh-PastOrPresentJob.extension:employer">
       <path value="Observation.extension"/>
       <sliceName value="employer"/>
@@ -371,12 +576,12 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/odh-Employer-extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-Employer-extension"/>
       </type>
     </element>
     <element id="Observation:odh-PastOrPresentJob.modifierExtension">
       <path value="Observation.modifierExtension"/>
-      <slicing id="21">
+      <slicing id="20">
         <discriminator>
           <type value="value"/>
           <path value="url"/>
@@ -405,10 +610,10 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation:odh-PastOrPresentJob.modifierExtension:subjectofinformationcode">
+    <element id="Observation:odh-PastOrPresentJob.modifierExtension:focalsubject">
       <path value="Observation.modifierExtension"/>
-      <sliceName value="subjectofinformationcode"/>
-      <definition value="The person that the information in this resource relates to, if different than the person of record. The subject of information is described not by name but in terms of their relationship to the subject of record (e.g., wife)."/>
+      <sliceName value="focalsubject"/>
+      <definition value="The person or entity that the information in this resource relates to, if different than the person of record. The subject of information can be a reference or a code, the latter when the subject is described generically, for example, in terms of a relationship to the subject of record (e.g., wife)."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -418,12 +623,12 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SubjectOfInformationCode-extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-FocalSubject-extension"/>
       </type>
       <mustSupport value="true"/>
       <isModifier value="true"/>
     </element>
-    <element id="Observation:odh-PastOrPresentJob.modifierExtension:subjectofinformationcode.id">
+    <element id="Observation:odh-PastOrPresentJob.modifierExtension:focalsubject.id">
       <path value="Observation.modifierExtension.id"/>
       <representation value="xmlAttr"/>
       <short value="xml:id (or equivalent in JSON)"/>
@@ -443,7 +648,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation:odh-PastOrPresentJob.modifierExtension:subjectofinformationcode.extension:extension">
+    <element id="Observation:odh-PastOrPresentJob.modifierExtension:focalsubject.extension:extension">
       <path value="Observation.modifierExtension.extension"/>
       <short value="Extension"/>
       <definition value="An Extension"/>
@@ -458,7 +663,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <code value="Extension"/>
       </type>
     </element>
-    <element id="Observation:odh-PastOrPresentJob.modifierExtension:subjectofinformationcode.url">
+    <element id="Observation:odh-PastOrPresentJob.modifierExtension:focalsubject.url">
       <path value="Observation.modifierExtension.url"/>
       <representation value="xmlAttr"/>
       <short value="identifies the meaning of the extension"/>
@@ -473,16 +678,16 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       <type>
         <code value="uri"/>
       </type>
-      <fixedUri value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SubjectOfInformationCode-extension"/>
+      <fixedUri value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-FocalSubject-extension"/>
       <mapping>
         <identity value="rim"/>
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation:odh-PastOrPresentJob.modifierExtension:subjectofinformationcode.valueCodeableConcept">
+    <element id="Observation:odh-PastOrPresentJob.modifierExtension:focalsubject.valueCodeableConcept">
       <path value="Observation.modifierExtension.valueCodeableConcept"/>
-      <short value="Value of extension"/>
-      <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
+      <short value="CodeableConcept"/>
+      <definition value="A set of codes drawn from different coding systems, representing the same concept."/>
       <min value="1"/>
       <max value="1"/>
       <base>
@@ -542,31 +747,19 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       <max value="*"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/CarePlan"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DeviceRequest"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationRequest"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/NutritionOrder"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ProcedureRequest"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ReferralRequest"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest"/>
       </type>
       <isSummary value="true"/>
       <mapping>
@@ -1326,7 +1519,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient"/>
       </type>
       <isSummary value="true"/>
       <mapping>
@@ -1357,7 +1550,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       <max value="1"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter"/>
       </type>
       <mapping>
         <identity value="workflow"/>
@@ -1444,19 +1637,19 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       <max value="*"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson"/>
       </type>
       <isSummary value="true"/>
       <mapping>
@@ -1630,7 +1823,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/odh/shr/core/vs/BodyLocationVS"/>
+          <reference value="http://hl7.org/fhir/us/odh/ValueSet/shr-core-BodyLocationVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -1691,12 +1884,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       <definition value="The specimen that was used when this observation was made."/>
       <comment value="Should only be used if not implicit in code found in `Observation.code`.  Observations are not made on specimens themselves; they are made on a subject, but in many cases by the means of a specimen. Note that although specimens are often involved, they are not always tracked and reported explicitly. Also note that observation resources may be used in contexts that track the specimen explicitly (e.g. Diagnostic Report)."/>
       <min value="0"/>
-      <max value="0"/>
-      <base>
-        <path value="Observation.specimen"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
+      <max value="1"/>
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Specimen"/>
@@ -1732,7 +1920,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device"/>
       </type>
       <mapping>
         <identity value="sct-concept"/>
@@ -2139,7 +2327,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       <max value="1"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation"/>
       </type>
       <mapping>
         <identity value="rim"/>
@@ -2183,770 +2371,11 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <map value="outBoundRelationship[typeCode=COMP]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation">
-      <path value="Observation.component"/>
-      <sliceName value="odh-Occupation"/>
-      <short value="Occupation"/>
-      <definition value="Occupation CDC Census code"/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.component"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="BackboneElement"/>
-      </type>
-      <constraint>
-        <key value="ele-1"/>
-        <severity value="error"/>
-        <human value="All FHIR elements must have a @value or children"/>
-        <expression value="hasValue() | (children().count() &gt; id.count())"/>
-        <xpath value="@value|f:*|h:div"/>
-        <source value="Element"/>
-      </constraint>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="v2"/>
-        <map value="containment by OBX-4?"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="outBoundRelationship[typeCode=COMP]"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.id">
-      <path value="Observation.component.id"/>
-      <representation value="xmlAttr"/>
-      <short value="xml:id (or equivalent in JSON)"/>
-      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Element.id"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="string"/>
-      </type>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.extension">
-      <path value="Observation.component.extension"/>
-      <short value="Additional Content defined by implementations"/>
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-      <alias value="extensions"/>
-      <alias value="user content"/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Element.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-      </type>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.modifierExtension">
-      <path value="Observation.component.modifierExtension"/>
-      <short value="Extensions that cannot be ignored"/>
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-      <alias value="extensions"/>
-      <alias value="user content"/>
-      <alias value="modifiers"/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="BackboneElement.modifierExtension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-      </type>
-      <isModifier value="true"/>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="N/A"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.code">
-      <path value="Observation.component.code"/>
-      <short value="Type of component observation (code / type)"/>
-      <definition value="Describes what was observed. Sometimes this is called the observation &quot;code&quot;."/>
-      <requirements value="Knowing what kind of observation is being made is essential to understanding the observation."/>
-      <min value="1"/>
-      <max value="1"/>
-      <type>
-        <code value="CodeableConcept"/>
-      </type>
-      <isSummary value="true"/>
-      <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="ObservationCode"/>
-        </extension>
-        <strength value="example"/>
-        <description value="Codes identifying names of simple observations."/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/observation-codes"/>
-        </valueSetReference>
-      </binding>
-      <mapping>
-        <identity value="sct-concept"/>
-        <map value="&lt; 363787002 |Observable entity| OR &#xD;&lt; 386053000 |Evaluation procedure|"/>
-      </mapping>
-      <mapping>
-        <identity value="v2"/>
-        <map value="OBX-3"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="code"/>
-      </mapping>
-      <mapping>
-        <identity value="w5"/>
-        <map value="what"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.code.id">
-      <path value="Observation.component.code.id"/>
-      <representation value="xmlAttr"/>
-      <short value="xml:id (or equivalent in JSON)"/>
-      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Element.id"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="string"/>
-      </type>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.code.extension">
-      <path value="Observation.component.code.extension"/>
-      <slicing>
-        <discriminator>
-          <type value="value"/>
-          <path value="url"/>
-        </discriminator>
-        <description value="Extensions are always sliced by (at least) url"/>
-        <rules value="open"/>
-      </slicing>
-      <short value="Additional Content defined by implementations"/>
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-      <alias value="extensions"/>
-      <alias value="user content"/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Element.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-      </type>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.code.coding">
-      <path value="Observation.component.code.coding"/>
-      <slicing id="4">
-        <discriminator>
-          <type value="value"/>
-          <path value="code"/>
-        </discriminator>
-        <ordered value="false"/>
-        <rules value="open"/>
-      </slicing>
-      <short value="Code defined by a terminology system"/>
-      <definition value="A reference to a code defined by a terminology system."/>
-      <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true."/>
-      <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings."/>
-      <min value="1"/>
-      <max value="*"/>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="v2"/>
-        <map value="C*E.1-8, C*E.10-22"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="union(., ./translation)"/>
-      </mapping>
-      <mapping>
-        <identity value="orim"/>
-        <map value="fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.code.coding:Fixed_85659-1">
-      <path value="Observation.component.code.coding"/>
-      <sliceName value="Fixed_85659-1"/>
-      <short value="Occupation CDC Census code"/>
-      <definition value="Occupation CDC Census code"/>
-      <min value="1"/>
-      <max value="1"/>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <isSummary value="true"/>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.code.coding:Fixed_85659-1.id">
-      <path value="Observation.component.code.coding.id"/>
-      <representation value="xmlAttr"/>
-      <short value="xml:id (or equivalent in JSON)"/>
-      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Element.id"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="string"/>
-      </type>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.code.coding:Fixed_85659-1.extension">
-      <path value="Observation.component.code.coding.extension"/>
-      <slicing>
-        <discriminator>
-          <type value="value"/>
-          <path value="url"/>
-        </discriminator>
-        <description value="Extensions are always sliced by (at least) url"/>
-        <rules value="open"/>
-      </slicing>
-      <short value="Additional Content defined by implementations"/>
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-      <alias value="extensions"/>
-      <alias value="user content"/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Element.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-      </type>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.code.coding:Fixed_85659-1.system">
-      <path value="Observation.component.code.coding.system"/>
-      <short value="Identity of the terminology system"/>
-      <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
-      <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7&#39;s list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously."/>
-      <requirements value="Need to be unambiguous about the source of the definition of the symbol."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="uri"/>
-      </type>
-      <fixedUri value="http://loinc.org"/>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="v2"/>
-        <map value="C*E.3"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="./codeSystem"/>
-      </mapping>
-      <mapping>
-        <identity value="orim"/>
-        <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.code.coding:Fixed_85659-1.version">
-      <path value="Observation.component.code.coding.version"/>
-      <short value="Version of the system - if relevant"/>
-      <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged."/>
-      <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="string"/>
-      </type>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="v2"/>
-        <map value="C*E.7"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="./codeSystemVersion"/>
-      </mapping>
-      <mapping>
-        <identity value="orim"/>
-        <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.code.coding:Fixed_85659-1.code">
-      <path value="Observation.component.code.coding.code"/>
-      <short value="Symbol in syntax defined by the system"/>
-      <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)."/>
-      <requirements value="Need to refer to a particular code in the system."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="code"/>
-      </type>
-      <fixedCode value="85659-1"/>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="v2"/>
-        <map value="C*E.1"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="./code"/>
-      </mapping>
-      <mapping>
-        <identity value="orim"/>
-        <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.code.coding:Fixed_85659-1.display">
-      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
-        <valueBoolean value="true"/>
-      </extension>
-      <path value="Observation.component.code.coding.display"/>
-      <short value="Representation defined by the system"/>
-      <definition value="A representation of the meaning of the code in the system, following the rules of the system."/>
-      <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="string"/>
-      </type>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="v2"/>
-        <map value="C*E.2 - but note this is not well followed"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="CV.displayName"/>
-      </mapping>
-      <mapping>
-        <identity value="orim"/>
-        <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.code.coding:Fixed_85659-1.userSelected">
-      <path value="Observation.component.code.coding.userSelected"/>
-      <short value="If this coding was chosen directly by the user"/>
-      <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)."/>
-      <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly &#39;directly chosen&#39; implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely."/>
-      <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="boolean"/>
-      </type>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="v2"/>
-        <map value="Sometimes implied by being first"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="CD.codingRationale"/>
-      </mapping>
-      <mapping>
-        <identity value="orim"/>
-        <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.code.text">
-      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
-        <valueBoolean value="true"/>
-      </extension>
-      <path value="Observation.component.code.text"/>
-      <short value="Plain text representation of the concept"/>
-      <definition value="A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user."/>
-      <comment value="Very often the text is the same as a displayName of one of the codings."/>
-      <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="string"/>
-      </type>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="v2"/>
-        <map value="C*E.9. But note many systems use C*E.2 for this"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="./originalText[mediaType/code=&quot;text/plain&quot;]/data"/>
-      </mapping>
-      <mapping>
-        <identity value="orim"/>
-        <map value="fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.valueCodeableConcept">
-      <path value="Observation.component.valueCodeableConcept"/>
-      <short value="Actual component result"/>
-      <definition value="The information determined as a result of making the observation, if the information has a simple value."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.component.value[x]"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="CodeableConcept"/>
-      </type>
-      <isSummary value="true"/>
-      <binding>
-        <strength value="required"/>
-        <valueSetReference>
-          <reference value="https://phinvads.cdc.gov/vads/ViewValueSet.action?oid=2.16.840.1.114222.4.11.7186"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.dataAbsentReason">
-      <path value="Observation.component.dataAbsentReason"/>
-      <short value="Why the component result is missing"/>
-      <definition value="Provides a reason why the expected value in the element Observation.value[x] is missing."/>
-      <comment value="&quot;Null&quot; or exceptional values can be represented two ways in FHIR Observations.  One way is to simply include them in the value set and represent the exceptions in the value.  For example, measurement values for a serology test could be  &quot;detected&quot;, &quot;not detected&quot;, &quot;inconclusive&quot;, or  &quot;test not done&quot;.   The alternate way is to use the value element for actual observations and use the explicit dataAbsentReason element to record exceptional values.  For example, the dataAbsentReason code &quot;error&quot; could be used when the measurement was not completed.  Because of these options, use-case agreements are required to interpret general observations for exceptional values."/>
-      <requirements value="For many results it is necessary to handle exceptional values in measurements."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="CodeableConcept"/>
-      </type>
-      <condition value="obs-6"/>
-      <binding>
-        <strength value="extensible"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/data-absent-reason"/>
-        </valueSetReference>
-      </binding>
-      <mapping>
-        <identity value="v2"/>
-        <map value="N/A"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="value.nullFlavor"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.interpretation">
-      <path value="Observation.component.interpretation"/>
-      <short value="High, low, normal, etc."/>
-      <definition value="The assessment made based on the result of the observation.  Intended as a simple compact code often placed adjacent to the result value in reports and flow sheets to signal the meaning/normalcy status of the result. Otherwise known as abnormal flag."/>
-      <comment value="The component interpretation applies only to the individual component value.  For an overall interpretation all components together use thes Observation.interpretation element."/>
-      <requirements value="For some results, particularly numeric results, an interpretation is necessary to fully understand the significance of a result."/>
-      <alias value="Abnormal Flag"/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="CodeableConcept"/>
-      </type>
-      <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="ObservationInterpretation"/>
-        </extension>
-        <strength value="extensible"/>
-        <description value="Codes identifying interpretations of observations."/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/observation-interpretation"/>
-        </valueSetReference>
-      </binding>
-      <mapping>
-        <identity value="sct-concept"/>
-        <map value="&lt; 260245000 |Findings values|"/>
-      </mapping>
-      <mapping>
-        <identity value="v2"/>
-        <map value="OBX-8"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="interpretationCode"/>
-      </mapping>
-      <mapping>
-        <identity value="sct-attr"/>
-        <map value="363713009 |Has interpretation|"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.referenceRange">
-      <path value="Observation.component.referenceRange"/>
-      <short value="Provides guide for interpretation of component result"/>
-      <definition value="Guidance on how to interpret the value by comparison to a normal or recommended range."/>
-      <comment value="Most observations only have one generic reference range. Systems MAY choose to restrict to only supplying the relevant reference range based on knowledge about the patient (e.g., specific to the patient&#39;s age, gender, weight and other factors), but this may not be possible or appropriate. Whenever more than one reference range is supplied, the differences between them SHOULD be provided in the reference range and/or age properties."/>
-      <requirements value="Knowing what values are considered &quot;normal&quot; can help evaluate the significance of a particular result. Need to be able to provide multiple reference ranges for different contexts."/>
-      <min value="0"/>
-      <max value="0"/>
-      <base>
-        <path value="Observation.component.referenceRange"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="BackboneElement"/>
-      </type>
-      <mapping>
-        <identity value="v2"/>
-        <map value="OBX.7"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="outboundRelationship[typeCode=REFV]/target[classCode=OBS, moodCode=EVN]"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.referenceRange.id">
-      <path value="Observation.component.referenceRange.id"/>
-      <representation value="xmlAttr"/>
-      <short value="xml:id (or equivalent in JSON)"/>
-      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Element.id"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-      <type>
-        <code value="string"/>
-      </type>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.referenceRange.extension">
-      <path value="Observation.component.referenceRange.extension"/>
-      <short value="Additional Content defined by implementations"/>
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-      <alias value="extensions"/>
-      <alias value="user content"/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="Element.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-      </type>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.referenceRange.modifierExtension">
-      <path value="Observation.component.referenceRange.modifierExtension"/>
-      <short value="Extensions that cannot be ignored"/>
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-      <alias value="extensions"/>
-      <alias value="user content"/>
-      <alias value="modifiers"/>
-      <min value="0"/>
-      <max value="*"/>
-      <base>
-        <path value="BackboneElement.modifierExtension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-      </type>
-      <isModifier value="true"/>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="N/A"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.referenceRange.low">
-      <path value="Observation.component.referenceRange.low"/>
-      <short value="Low Range, if relevant"/>
-      <definition value="The value of the low bound of the reference range.  The low bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9).   If the low bound is omitted,  it is assumed to be meaningless (e.g. reference range is &lt;=2.3)."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="Quantity"/>
-        <profile value="http://hl7.org/fhir/StructureDefinition/SimpleQuantity"/>
-      </type>
-      <condition value="obs-3"/>
-      <mapping>
-        <identity value="v2"/>
-        <map value="OBX-7"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="value:IVL_PQ.low"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.referenceRange.high">
-      <path value="Observation.component.referenceRange.high"/>
-      <short value="High Range, if relevant"/>
-      <definition value="The value of the high bound of the reference range.  The high bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9).   If the high bound is omitted,  it is assumed to be meaningless (e.g. reference range is &gt;= 2.3)."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="Quantity"/>
-        <profile value="http://hl7.org/fhir/StructureDefinition/SimpleQuantity"/>
-      </type>
-      <condition value="obs-3"/>
-      <mapping>
-        <identity value="v2"/>
-        <map value="OBX-7"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="value:IVL_PQ.high"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.referenceRange.type">
-      <path value="Observation.component.referenceRange.type"/>
-      <short value="Reference range qualifier"/>
-      <definition value="Codes to indicate the what part of the targeted reference population it applies to. For example, the normal or therapeutic range."/>
-      <comment value="This SHOULD be populated if there is more than one range.  If this element is not present then the normal range is assumed."/>
-      <requirements value="Need to be able to say what kind of reference range this is - normal, recommended, therapeutic, etc,  - for proper interpretation."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="CodeableConcept"/>
-      </type>
-      <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="ObservationRangeMeaning"/>
-        </extension>
-        <strength value="extensible"/>
-        <description value="Code for the meaning of a reference range."/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/referencerange-meaning"/>
-        </valueSetReference>
-      </binding>
-      <mapping>
-        <identity value="sct-concept"/>
-        <map value="&lt; 260245000 |Findings values| OR  &#xD;&lt; 365860008 |General clinical state finding| &#xD;OR &#xD;&lt; 250171008 |Clinical history or observation findings| OR  &#xD;&lt; 415229000 |Racial group| OR &#xD;&lt; 365400002 |Finding of puberty stage| OR&#xD;&lt; 443938003 |Procedure carried out on subject|"/>
-      </mapping>
-      <mapping>
-        <identity value="v2"/>
-        <map value="OBX-10"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="interpretationCode"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.referenceRange.appliesTo">
-      <path value="Observation.component.referenceRange.appliesTo"/>
-      <short value="Reference range population"/>
-      <definition value="Codes to indicate the target population this reference range applies to.  For example, a reference range may be based on the normal population or a particular sex or race."/>
-      <comment value="This SHOULD be populated if there is more than one range.  If this element is not present then the normal population is assumed."/>
-      <requirements value="Need to be able to identify the target population for proper interpretation."/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="CodeableConcept"/>
-      </type>
-      <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="ObservationRangeType"/>
-        </extension>
-        <strength value="example"/>
-        <description value="Codes identifying the population the reference range applies to."/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
-        </valueSetReference>
-      </binding>
-      <mapping>
-        <identity value="sct-concept"/>
-        <map value="&lt; 260245000 |Findings values| OR  &#xD;&lt; 365860008 |General clinical state finding| &#xD;OR &#xD;&lt; 250171008 |Clinical history or observation findings| OR  &#xD;&lt; 415229000 |Racial group| OR &#xD;&lt; 365400002 |Finding of puberty stage| OR&#xD;&lt; 443938003 |Procedure carried out on subject|"/>
-      </mapping>
-      <mapping>
-        <identity value="v2"/>
-        <map value="OBX-10"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="interpretationCode"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.referenceRange.age">
-      <path value="Observation.component.referenceRange.age"/>
-      <short value="Applicable age range, if relevant"/>
-      <definition value="The age at which this reference range is applicable. This is a neonatal age (e.g. number of weeks at term) if the meaning says so."/>
-      <requirements value="Some analytes vary greatly over age."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="Range"/>
-      </type>
-      <mapping>
-        <identity value="rim"/>
-        <map value="outboundRelationship[typeCode=PRCN].targetObservationCriterion[code=&quot;age&quot;].value"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.referenceRange.text">
-      <path value="Observation.component.referenceRange.text"/>
-      <short value="Text based reference range in an observation"/>
-      <definition value="Text based reference range in an observation which may be used when a quantitative range is not appropriate for an observation.  An example would be a reference value of &quot;Negative&quot; or a list or table of &#39;normals&#39;."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="string"/>
-      </type>
-      <mapping>
-        <identity value="v2"/>
-        <map value="OBX-7"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="value:ST"/>
-      </mapping>
-    </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-PastOrPresentIndustry">
       <path value="Observation.component"/>
       <sliceName value="odh-PastOrPresentIndustry"/>
       <short value="PastOrPresentIndustry"/>
-      <definition value="The type of business (industry) in which the subject currently holds or has held a job in the past."/>
+      <definition value="The type(s) of business (industry) associated with the patient&#39;s past and present occupation(s)."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -3132,7 +2561,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
     </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-PastOrPresentIndustry.code.coding">
       <path value="Observation.component.code.coding"/>
-      <slicing id="5">
+      <slicing id="4">
         <discriminator>
           <type value="value"/>
           <path value="code"/>
@@ -3649,7 +3078,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ObservationRangeType"/>
         </extension>
-        <strength value="example"/>
+        <strength value="extensible"/>
         <description value="Codes identifying the population the reference range applies to."/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
@@ -3891,7 +3320,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
     </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-WorkClassification.code.coding">
       <path value="Observation.component.code.coding"/>
-      <slicing id="6">
+      <slicing id="5">
         <discriminator>
           <type value="value"/>
           <path value="code"/>
@@ -4157,7 +3586,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       <binding>
         <strength value="required"/>
         <valueSetReference>
-          <reference value="https://phinvads.cdc.gov/vads/ViewValueSet.action?oid=2.16.840.1.114222.4.11.7597"/>
+          <reference value="http://terminology.hl7.org/CodeSystem/v3-WorkClassificationODH"/>
         </valueSetReference>
       </binding>
     </element>
@@ -4408,7 +3837,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ObservationRangeType"/>
         </extension>
-        <strength value="example"/>
+        <strength value="extensible"/>
         <description value="Codes identifying the population the reference range applies to."/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
@@ -4650,7 +4079,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
     </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-SupervisoryLevel.code.coding">
       <path value="Observation.component.code.coding"/>
-      <slicing id="7">
+      <slicing id="6">
         <discriminator>
           <type value="value"/>
           <path value="code"/>
@@ -5167,7 +4596,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ObservationRangeType"/>
         </extension>
-        <strength value="example"/>
+        <strength value="extensible"/>
         <description value="Codes identifying the population the reference range applies to."/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
@@ -5409,7 +4838,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
     </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-JobDuty.code.coding">
       <path value="Observation.component.code.coding"/>
-      <slicing id="8">
+      <slicing id="7">
         <discriminator>
           <type value="value"/>
           <path value="code"/>
@@ -5933,7 +5362,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ObservationRangeType"/>
         </extension>
-        <strength value="example"/>
+        <strength value="extensible"/>
         <description value="Codes identifying the population the reference range applies to."/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
@@ -6175,7 +5604,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
     </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-OccupationalHazard.code.coding">
       <path value="Observation.component.code.coding"/>
-      <slicing id="9">
+      <slicing id="8">
         <discriminator>
           <type value="value"/>
           <path value="code"/>
@@ -6699,7 +6128,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ObservationRangeType"/>
         </extension>
-        <strength value="example"/>
+        <strength value="extensible"/>
         <description value="Codes identifying the population the reference range applies to."/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
@@ -6941,7 +6370,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
     </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-WorkSchedule.code.coding">
       <path value="Observation.component.code.coding"/>
-      <slicing id="10">
+      <slicing id="9">
         <discriminator>
           <type value="value"/>
           <path value="code"/>
@@ -7207,7 +6636,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       <binding>
         <strength value="required"/>
         <valueSetReference>
-          <reference value="https://phinvads.cdc.gov/vads/ViewValueSet.action?oid=2.16.840.1.114222.4.11.7130"/>
+          <reference value="http://terminology.hl7.org/ValueSet/v3-WorkScheduleODH"/>
         </valueSetReference>
       </binding>
     </element>
@@ -7458,7 +6887,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ObservationRangeType"/>
         </extension>
-        <strength value="example"/>
+        <strength value="extensible"/>
         <description value="Codes identifying the population the reference range applies to."/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
@@ -7700,7 +7129,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
     </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-WeeklyWorkDays.code.coding">
       <path value="Observation.component.code.coding"/>
-      <slicing id="11">
+      <slicing id="10">
         <discriminator>
           <type value="value"/>
           <path value="code"/>
@@ -8374,7 +7803,12 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       <comment value="This SHOULD be populated if there is more than one range.  If this element is not present then the normal population is assumed."/>
       <requirements value="Need to be able to identify the target population for proper interpretation."/>
       <min value="0"/>
-      <max value="*"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.component.referenceRange.appliesTo"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
       <type>
         <code value="CodeableConcept"/>
       </type>
@@ -8382,7 +7816,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ObservationRangeType"/>
         </extension>
-        <strength value="example"/>
+        <strength value="extensible"/>
         <description value="Codes identifying the population the reference range applies to."/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
@@ -8624,7 +8058,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
     </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-DailyWorkHours.code.coding">
       <path value="Observation.component.code.coding"/>
-      <slicing id="12">
+      <slicing id="11">
         <discriminator>
           <type value="value"/>
           <path value="code"/>
@@ -9306,7 +8740,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ObservationRangeType"/>
         </extension>
-        <strength value="example"/>
+        <strength value="extensible"/>
         <description value="Codes identifying the population the reference range applies to."/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
@@ -9514,7 +8948,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       <binding>
         <strength value="required"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/odh/shr/core/vs/YesNoVS"/>
+          <reference value="http://hl7.org/fhir/us/odh/ValueSet/shr-core-YesNoVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -9765,7 +9199,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ObservationRangeType"/>
         </extension>
-        <strength value="example"/>
+        <strength value="extensible"/>
         <description value="Codes identifying the population the reference range applies to."/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
@@ -9822,11 +9256,30 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
     <element id="Observation:odh-PastOrPresentJob">
       <path value="Observation"/>
       <short value="odh-PastOrPresentJob"/>
-      <definition value="Related data elements for a current or previous job, as reported by the person, i.e., a work situation or position held for a specified time period.&#xA;A person can have more than one job at the same time and multiple jobs over time, so the data related to each job must remain in the record in perpetuity. Each job should be recorded in a separate instance of PastOrPresentJob.&#xA;A person&#39;s job can be a social determinant of their health and information about a person&#39;s job can support patient care, population health, and public health. In patient care, knowledge of a person&#39;s past or present job(s) can impact recognition, diagnosis, management, and treatment of injuries and illnesses. These data also can be used for clinical decision support and to prompt discussion of preventive care measures. For example, a record of jobs that require prolonged time in the sun might prompt a health care provider to inquire if the person wears protective clothing or sunscreen while working.&#xA;At a minimum, it is important to have a record of a person&#39;s current job(s); i.e., the job(s) in which a person is engaged at the time that he or she presents to a health care provider, regardless of duration, and to retain that information over time. In the event a person recently stopped working (e.g. retired without another job, became unemployed or disabled and unable to work), the most recent job(s) is used instead of the current job(s)."/>
+      <definition value="Related data elements for a current or previous job, as reported by the person, i.e., a work situation or position held for a specified time period. A person can have more than one job at the same time and multiple jobs over time, so the data related to each job must remain in the record in perpetuity. Each job should be recorded in a separate instance of PastOrPresentJob. A person&#x2019;s job can be a social determinant of their health and information about a person&#x2019;s job can support patient care, population health, and public health. In patient care, knowledge of a person&#x2019;s past or present job(s) can impact recognition, diagnosis, management, and treatment of injuries and illnesses. These data also can be used for clinical decision support and to prompt discussion of preventive care measures. For example, a record of jobs that require prolonged time in the sun might prompt a health care provider to inquire if the person wears protective clothing or sunscreen while working. At a minimum, it is important to have a record of a person&#x2019;s current job(s); i.e., the job(s) in which a person is engaged at the time that he or she presents to a health care provider, regardless of duration, and to retain that information over time. In the event a person recently stopped working (e.g. retired without another job, became unemployed or disabled and unable to work), the most recent job(s) is used instead of the current job(s)."/>
+    </element>
+    <element id="Observation:odh-PastOrPresentJob.meta">
+      <path value="Observation.meta"/>
+    </element>
+    <element id="Observation:odh-PastOrPresentJob.meta.extension:sourcesystem">
+      <path value="Observation.meta.extension"/>
+      <sliceName value="sourcesystem"/>
+      <definition value="FHIR: This provides a minimal amount of Provenance information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.&#xA;FHIM: Identifies the computer system that created the medical record. This optional field may also be used to indicate that the medical record was originally created by a different organization from the one that is currently storing or utilizing the record in that the assigning authority of the Id could be set to that originating organization. This property is optional, as some systems will assume that all records that it contains originated in that system, however it is anticipated that it will become increasingly commonplace for records from multiple systems and organizations will be comingled in order to provide a complete picture of the patient&#39;s health record."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SourceSystem-extension"/>
+      </type>
     </element>
     <element id="Observation:odh-PastOrPresentJob.extension">
       <path value="Observation.extension"/>
-      <slicing id="22">
+      <slicing id="19">
         <discriminator>
           <type value="value"/>
           <path value="url"/>
@@ -9834,6 +9287,54 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <ordered value="false"/>
         <rules value="open"/>
       </slicing>
+    </element>
+    <element id="Observation:odh-PastOrPresentJob.extension:observationpartof">
+      <path value="Observation.extension"/>
+      <sliceName value="observationpartof"/>
+      <definition value="A larger event of which this particular Observation is a component or step. For example, an observation as part of a procedure."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ObservationPartOf-extension"/>
+      </type>
+    </element>
+    <element id="Observation:odh-PastOrPresentJob.extension:annotation">
+      <path value="Observation.extension"/>
+      <sliceName value="annotation"/>
+      <definition value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Annotation-extension"/>
+      </type>
+    </element>
+    <element id="Observation:odh-PastOrPresentJob.extension:observationderivedfrom">
+      <path value="Observation.extension"/>
+      <sliceName value="observationderivedfrom"/>
+      <definition value="The target resource that represents a measurement from which this observation value is derived. For example, a calculated anion gap or a fetal measurement based on an ultrasound image."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ObservationDerivedFrom-extension"/>
+      </type>
     </element>
     <element id="Observation:odh-PastOrPresentJob.extension:employer">
       <path value="Observation.extension"/>
@@ -9848,12 +9349,12 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/odh-Employer-extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-Employer-extension"/>
       </type>
     </element>
     <element id="Observation:odh-PastOrPresentJob.modifierExtension">
       <path value="Observation.modifierExtension"/>
-      <slicing id="21">
+      <slicing id="20">
         <discriminator>
           <type value="value"/>
           <path value="url"/>
@@ -9862,10 +9363,10 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <rules value="open"/>
       </slicing>
     </element>
-    <element id="Observation:odh-PastOrPresentJob.modifierExtension:subjectofinformationcode">
+    <element id="Observation:odh-PastOrPresentJob.modifierExtension:focalsubject">
       <path value="Observation.modifierExtension"/>
-      <sliceName value="subjectofinformationcode"/>
-      <definition value="The person that the information in this resource relates to, if different than the person of record. The subject of information is described not by name but in terms of their relationship to the subject of record (e.g., wife)."/>
+      <sliceName value="focalsubject"/>
+      <definition value="The person or entity that the information in this resource relates to, if different than the person of record. The subject of information can be a reference or a code, the latter when the subject is described generically, for example, in terms of a relationship to the subject of record (e.g., wife)."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -9875,19 +9376,43 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-SubjectOfInformationCode-extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-FocalSubject-extension"/>
       </type>
       <mustSupport value="true"/>
       <isModifier value="true"/>
     </element>
-    <element id="Observation:odh-PastOrPresentJob.modifierExtension:subjectofinformationcode.valueCodeableConcept">
+    <element id="Observation:odh-PastOrPresentJob.modifierExtension:focalsubject.valueCodeableConcept">
       <path value="Observation.modifierExtension.valueCodeableConcept"/>
+      <short value="CodeableConcept"/>
+      <definition value="A set of codes drawn from different coding systems, representing the same concept."/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
       <binding>
         <strength value="required"/>
         <valueSetReference>
           <reference value="https://vsac.nlm.nih.gov/valueset/2.16.840.1.113883.1.11.19579/expansion"/>
         </valueSetReference>
       </binding>
+    </element>
+    <element id="Observation:odh-PastOrPresentJob.basedOn">
+      <path value="Observation.basedOn"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-MedicationRequest"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ServiceRequest"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ProcedureRequest"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-ReferralRequest"/>
+      </type>
     </element>
     <element id="Observation:odh-PastOrPresentJob.category">
       <path value="Observation.category"/>
@@ -9979,14 +9504,14 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient"/>
       </type>
     </element>
     <element id="Observation:odh-PastOrPresentJob.context">
       <path value="Observation.context"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Encounter"/>
       </type>
     </element>
     <element id="Observation:odh-PastOrPresentJob.effectivePeriod">
@@ -10006,19 +9531,19 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       <path value="Observation.performer"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Practitioner"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Organization"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Organization"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Patient"/>
       </type>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelatedPerson"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelatedPerson"/>
       </type>
     </element>
     <element id="Observation:odh-PastOrPresentJob.valueCodeableConcept">
@@ -10062,7 +9587,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/odh/shr/core/vs/BodyLocationVS"/>
+          <reference value="http://hl7.org/fhir/us/odh/ValueSet/shr-core-BodyLocationVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -10072,16 +9597,6 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       <max value="0"/>
       <base>
         <path value="Observation.method"/>
-        <min value="0"/>
-        <max value="1"/>
-      </base>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.specimen">
-      <path value="Observation.specimen"/>
-      <min value="0"/>
-      <max value="0"/>
-      <base>
-        <path value="Observation.specimen"/>
         <min value="0"/>
         <max value="1"/>
       </base>
@@ -10097,7 +9612,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Device"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Device"/>
       </type>
     </element>
     <element id="Observation:odh-PastOrPresentJob.referenceRange">
@@ -10141,7 +9656,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       <path value="Observation.related.target"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Observation"/>
+        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Observation"/>
       </type>
     </element>
     <element id="Observation:odh-PastOrPresentJob.component">
@@ -10155,91 +9670,11 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <rules value="open"/>
       </slicing>
     </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation">
-      <path value="Observation.component"/>
-      <sliceName value="odh-Occupation"/>
-      <short value="Occupation"/>
-      <definition value="Occupation CDC Census code"/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.component"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.code">
-      <path value="Observation.component.code"/>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.code.coding">
-      <path value="Observation.component.code.coding"/>
-      <slicing id="4">
-        <discriminator>
-          <type value="value"/>
-          <path value="code"/>
-        </discriminator>
-        <ordered value="false"/>
-        <rules value="open"/>
-      </slicing>
-      <min value="1"/>
-      <max value="*"/>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.code.coding:Fixed_85659-1">
-      <path value="Observation.component.code.coding"/>
-      <sliceName value="Fixed_85659-1"/>
-      <short value="Occupation CDC Census code"/>
-      <definition value="Occupation CDC Census code"/>
-      <min value="1"/>
-      <max value="1"/>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <isSummary value="true"/>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.code.coding:Fixed_85659-1.system">
-      <path value="Observation.component.code.coding.system"/>
-      <fixedUri value="http://loinc.org"/>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.code.coding:Fixed_85659-1.code">
-      <path value="Observation.component.code.coding.code"/>
-      <fixedCode value="85659-1"/>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.valueCodeableConcept">
-      <path value="Observation.component.valueCodeableConcept"/>
-      <type>
-        <code value="CodeableConcept"/>
-      </type>
-      <binding>
-        <strength value="required"/>
-        <valueSetReference>
-          <reference value="https://phinvads.cdc.gov/vads/ViewValueSet.action?oid=2.16.840.1.114222.4.11.7186"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.dataAbsentReason">
-      <path value="Observation.component.dataAbsentReason"/>
-      <binding>
-        <strength value="extensible"/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/data-absent-reason"/>
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="Observation:odh-PastOrPresentJob.component:odh-Occupation.referenceRange">
-      <path value="Observation.component.referenceRange"/>
-      <min value="0"/>
-      <max value="0"/>
-      <base>
-        <path value="Observation.component.referenceRange"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-    </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-PastOrPresentIndustry">
       <path value="Observation.component"/>
       <sliceName value="odh-PastOrPresentIndustry"/>
       <short value="PastOrPresentIndustry"/>
-      <definition value="The type of business (industry) in which the subject currently holds or has held a job in the past."/>
+      <definition value="The type(s) of business (industry) associated with the patient&#39;s past and present occupation(s)."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -10253,7 +9688,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
     </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-PastOrPresentIndustry.code.coding">
       <path value="Observation.component.code.coding"/>
-      <slicing id="5">
+      <slicing id="4">
         <discriminator>
           <type value="value"/>
           <path value="code"/>
@@ -10315,6 +9750,19 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <max value="*"/>
       </base>
     </element>
+    <element id="Observation:odh-PastOrPresentJob.component:odh-PastOrPresentIndustry.referenceRange.appliesTo">
+      <path value="Observation.component.referenceRange.appliesTo"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ObservationRangeType"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Codes identifying the population the reference range applies to."/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
+        </valueSetReference>
+      </binding>
+    </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-WorkClassification">
       <path value="Observation.component"/>
       <sliceName value="odh-WorkClassification"/>
@@ -10333,7 +9781,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
     </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-WorkClassification.code.coding">
       <path value="Observation.component.code.coding"/>
-      <slicing id="6">
+      <slicing id="5">
         <discriminator>
           <type value="value"/>
           <path value="code"/>
@@ -10372,7 +9820,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       <binding>
         <strength value="required"/>
         <valueSetReference>
-          <reference value="https://phinvads.cdc.gov/vads/ViewValueSet.action?oid=2.16.840.1.114222.4.11.7597"/>
+          <reference value="http://terminology.hl7.org/CodeSystem/v3-WorkClassificationODH"/>
         </valueSetReference>
       </binding>
     </element>
@@ -10395,6 +9843,19 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <max value="*"/>
       </base>
     </element>
+    <element id="Observation:odh-PastOrPresentJob.component:odh-WorkClassification.referenceRange.appliesTo">
+      <path value="Observation.component.referenceRange.appliesTo"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ObservationRangeType"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Codes identifying the population the reference range applies to."/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
+        </valueSetReference>
+      </binding>
+    </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-SupervisoryLevel">
       <path value="Observation.component"/>
       <sliceName value="odh-SupervisoryLevel"/>
@@ -10413,7 +9874,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
     </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-SupervisoryLevel.code.coding">
       <path value="Observation.component.code.coding"/>
-      <slicing id="7">
+      <slicing id="6">
         <discriminator>
           <type value="value"/>
           <path value="code"/>
@@ -10475,6 +9936,19 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <max value="*"/>
       </base>
     </element>
+    <element id="Observation:odh-PastOrPresentJob.component:odh-SupervisoryLevel.referenceRange.appliesTo">
+      <path value="Observation.component.referenceRange.appliesTo"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ObservationRangeType"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Codes identifying the population the reference range applies to."/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
+        </valueSetReference>
+      </binding>
+    </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-JobDuty">
       <path value="Observation.component"/>
       <sliceName value="odh-JobDuty"/>
@@ -10493,7 +9967,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
     </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-JobDuty.code.coding">
       <path value="Observation.component.code.coding"/>
-      <slicing id="8">
+      <slicing id="7">
         <discriminator>
           <type value="value"/>
           <path value="code"/>
@@ -10549,6 +10023,19 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <max value="*"/>
       </base>
     </element>
+    <element id="Observation:odh-PastOrPresentJob.component:odh-JobDuty.referenceRange.appliesTo">
+      <path value="Observation.component.referenceRange.appliesTo"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ObservationRangeType"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Codes identifying the population the reference range applies to."/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
+        </valueSetReference>
+      </binding>
+    </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-OccupationalHazard">
       <path value="Observation.component"/>
       <sliceName value="odh-OccupationalHazard"/>
@@ -10567,7 +10054,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
     </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-OccupationalHazard.code.coding">
       <path value="Observation.component.code.coding"/>
-      <slicing id="9">
+      <slicing id="8">
         <discriminator>
           <type value="value"/>
           <path value="code"/>
@@ -10623,6 +10110,19 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <max value="*"/>
       </base>
     </element>
+    <element id="Observation:odh-PastOrPresentJob.component:odh-OccupationalHazard.referenceRange.appliesTo">
+      <path value="Observation.component.referenceRange.appliesTo"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ObservationRangeType"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Codes identifying the population the reference range applies to."/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
+        </valueSetReference>
+      </binding>
+    </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-WorkSchedule">
       <path value="Observation.component"/>
       <sliceName value="odh-WorkSchedule"/>
@@ -10641,7 +10141,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
     </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-WorkSchedule.code.coding">
       <path value="Observation.component.code.coding"/>
-      <slicing id="10">
+      <slicing id="9">
         <discriminator>
           <type value="value"/>
           <path value="code"/>
@@ -10680,7 +10180,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       <binding>
         <strength value="required"/>
         <valueSetReference>
-          <reference value="https://phinvads.cdc.gov/vads/ViewValueSet.action?oid=2.16.840.1.114222.4.11.7130"/>
+          <reference value="http://terminology.hl7.org/ValueSet/v3-WorkScheduleODH"/>
         </valueSetReference>
       </binding>
     </element>
@@ -10703,6 +10203,19 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <max value="*"/>
       </base>
     </element>
+    <element id="Observation:odh-PastOrPresentJob.component:odh-WorkSchedule.referenceRange.appliesTo">
+      <path value="Observation.component.referenceRange.appliesTo"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ObservationRangeType"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Codes identifying the population the reference range applies to."/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
+        </valueSetReference>
+      </binding>
+    </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-WeeklyWorkDays">
       <path value="Observation.component"/>
       <sliceName value="odh-WeeklyWorkDays"/>
@@ -10721,7 +10234,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
     </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-WeeklyWorkDays.code.coding">
       <path value="Observation.component.code.coding"/>
-      <slicing id="11">
+      <slicing id="10">
         <discriminator>
           <type value="value"/>
           <path value="code"/>
@@ -10785,6 +10298,26 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <max value="*"/>
       </base>
     </element>
+    <element id="Observation:odh-PastOrPresentJob.component:odh-WeeklyWorkDays.referenceRange.appliesTo">
+      <path value="Observation.component.referenceRange.appliesTo"/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.component.referenceRange.appliesTo"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ObservationRangeType"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Codes identifying the population the reference range applies to."/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
+        </valueSetReference>
+      </binding>
+    </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-DailyWorkHours">
       <path value="Observation.component"/>
       <sliceName value="odh-DailyWorkHours"/>
@@ -10803,7 +10336,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
     </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-DailyWorkHours.code.coding">
       <path value="Observation.component.code.coding"/>
-      <slicing id="12">
+      <slicing id="11">
         <discriminator>
           <type value="value"/>
           <path value="code"/>
@@ -10867,6 +10400,19 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <max value="*"/>
       </base>
     </element>
+    <element id="Observation:odh-PastOrPresentJob.component:odh-DailyWorkHours.referenceRange.appliesTo">
+      <path value="Observation.component.referenceRange.appliesTo"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ObservationRangeType"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Codes identifying the population the reference range applies to."/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
+        </valueSetReference>
+      </binding>
+    </element>
     <element id="Observation:odh-PastOrPresentJob.component:odh-IsCurrentJob">
       <path value="Observation.component"/>
       <sliceName value="odh-IsCurrentJob"/>
@@ -10888,7 +10434,7 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
       <binding>
         <strength value="required"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/odh/shr/core/vs/YesNoVS"/>
+          <reference value="http://hl7.org/fhir/us/odh/ValueSet/shr-core-YesNoVS"/>
         </valueSetReference>
       </binding>
     </element>
@@ -10910,6 +10456,19 @@ At a minimum, it is important to have a record of a person's current job(s); i.e
         <min value="0"/>
         <max value="*"/>
       </base>
+    </element>
+    <element id="Observation:odh-PastOrPresentJob.component:odh-IsCurrentJob.referenceRange.appliesTo">
+      <path value="Observation.component.referenceRange.appliesTo"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ObservationRangeType"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Codes identifying the population the reference range applies to."/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
+        </valueSetReference>
+      </binding>
     </element>
   </differential>
 </StructureDefinition>
