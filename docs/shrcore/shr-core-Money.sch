@@ -12,15 +12,15 @@
   <sch:pattern>
     <sch:title>f:Money</sch:title>
     <sch:rule context="f:Money">
-      <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MoneyAmount-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-MoneyAmount-extension': maximum cardinality of 'extension' is 1</sch:assert>
-      <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Currency-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Currency-extension': maximum cardinality of 'extension' is 1</sch:assert>
+      <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-Number-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-Number-extension': maximum cardinality of 'extension' is 1</sch:assert>
+      <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-Comparator-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-Comparator-extension': maximum cardinality of 'extension' is 1</sch:assert>
+      <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-Units-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-Units-extension': maximum cardinality of 'extension' is 1</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
     <sch:title>Money</sch:title>
     <sch:rule context="f:Money">
-      <sch:assert test="not(exists(f:code)) or exists(f:system)">If a code for the unit is present, the system SHALL also be present</sch:assert>
-      <sch:assert test="(f:code or not(f:value)) and (not(exists(f:system)) or f:system/@value='urn:iso:std:iso:4217')">There SHALL be a code if there is a value and it SHALL be an expression of currency.  If system is present, it SHALL be ISO 4217 (system = &quot;urn:iso:std:iso:4217&quot; - currency).</sch:assert>
+      <sch:assert test="@value|f:*|h:div">All FHIR elements must have a @value or children</sch:assert>
     </sch:rule>
   </sch:pattern>
 </sch:schema>
