@@ -5,18 +5,18 @@
     "status": "generated",
     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>RelationToLandmark Extension</b></p>\n  <p>The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:\n* Specifying the location and type of landmark using a body site code and optional laterality/orientation,\n* Specifying the direction from the landmark to the body location, and\n* Specifying the distance from the landmark to the body location.\n\nThe RelationToLandmark element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).</p>\n</div>"
   },
-  "url": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelationToLandmark-extension",
+  "url": "http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-RelationToLandmark-extension",
   "identifier": [
     {
-      "system": "http://hl7.org/fhir/us/shrcore",
+      "system": "http://hl7.org/fhir/us/obf",
       "value": "shr.core.RelationToLandmark"
     }
   ],
-  "version": "0.6.0",
+  "version": "0.8.0",
   "name": "RelationToLandmark",
   "title": "shr-core-RelationToLandmark",
   "status": "draft",
-  "date": "2019-05-07T00:00:00-04:00",
+  "date": "2019-06-10T00:00:00-04:00",
   "publisher": "The MITRE Corporation",
   "contact": [
     {
@@ -29,12 +29,14 @@
     }
   ],
   "description": "The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:\n* Specifying the location and type of landmark using a body site code and optional laterality/orientation,\n* Specifying the direction from the landmark to the body location, and\n* Specifying the distance from the landmark to the body location.\n\nThe RelationToLandmark element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.\n\n+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.\n+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.\n+ Relation to landmark: The location relative to a landmark is specified by:\n- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and\n- Specifying the direction and distance from the landmark to the body location.\n\nNote that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).",
-  "fhirVersion": "3.0.1",
+  "fhirVersion": "4.0.0",
   "kind": "complex-type",
   "abstract": false,
-  "contextType": "resource",
   "context": [
-    "*"
+    {
+      "type": "element",
+      "expression": "*"
+    }
   ],
   "type": "Extension",
   "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
@@ -51,7 +53,7 @@
         "base": {
           "path": "Extension",
           "min": 0,
-          "max": "1"
+          "max": "*"
         },
         "condition": [
           "ele-1"
@@ -61,7 +63,7 @@
             "key": "ele-1",
             "severity": "error",
             "human": "All FHIR elements must have a @value or children",
-            "expression": "children().count() > id.count()",
+            "expression": "hasValue() or (children().count() > id.count())",
             "xpath": "@value|f:*|h:div",
             "source": "Element"
           },
@@ -70,8 +72,18 @@
             "severity": "error",
             "human": "Must have either extensions or value[x], not both",
             "expression": "extension.exists() != value.exists()",
-            "xpath": "exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])",
-            "source": "Extension"
+            "xpath": "exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])"
+          }
+        ],
+        "isModifier": false,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "n/a"
+          },
+          {
+            "identity": "rim",
+            "map": "N/A"
           }
         ]
       },
@@ -81,8 +93,8 @@
         "representation": [
           "xmlAttr"
         ],
-        "short": "xml:id (or equivalent in JSON)",
-        "definition": "unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+        "short": "Unique id for inter-element referencing",
+        "definition": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
         "min": 0,
         "max": "1",
         "base": {
@@ -95,10 +107,12 @@
             "code": "string"
           }
         ],
+        "isModifier": false,
+        "isSummary": false,
         "mapping": [
           {
             "identity": "rim",
-            "map": "N/A"
+            "map": "n/a"
           }
         ]
       },
@@ -106,18 +120,22 @@
         "id": "Extension:relationtolandmark.extension",
         "path": "Extension.extension",
         "slicing": {
-          "id": "1",
           "discriminator": [
             {
               "type": "value",
               "path": "url"
             }
           ],
-          "ordered": false,
+          "description": "Extensions are always sliced by (at least) url",
           "rules": "open"
         },
-        "short": "Extension",
-        "definition": "An Extension",
+        "short": "Additional content defined by implementations",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+        "comment": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content"
+        ],
         "min": 0,
         "max": "*",
         "base": {
@@ -129,6 +147,14 @@
           {
             "code": "Extension"
           }
+        ],
+        "isModifier": false,
+        "isSummary": false,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "n/a"
+          }
         ]
       },
       {
@@ -139,21 +165,24 @@
         "min": 0,
         "max": "1",
         "base": {
-          "path": "Extension.extension",
+          "path": "Element.extension",
           "min": 0,
-          "max": "1"
+          "max": "*"
         },
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LandmarkType-extension"
+            "profile": [
+              "http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-LandmarkType-extension"
+            ]
           }
         ],
         "isModifier": false,
+        "isSummary": false,
         "mapping": [
           {
             "identity": "rim",
-            "map": "N/A"
+            "map": "n/a"
           }
         ]
       },
@@ -165,21 +194,24 @@
         "min": 0,
         "max": "1",
         "base": {
-          "path": "Extension.extension",
+          "path": "Element.extension",
           "min": 0,
-          "max": "1"
+          "max": "*"
         },
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LandmarkLocation-extension"
+            "profile": [
+              "http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-LandmarkLocation-extension"
+            ]
           }
         ],
         "isModifier": false,
+        "isSummary": false,
         "mapping": [
           {
             "identity": "rim",
-            "map": "N/A"
+            "map": "n/a"
           }
         ]
       },
@@ -191,21 +223,24 @@
         "min": 0,
         "max": "1",
         "base": {
-          "path": "Extension.extension",
+          "path": "Element.extension",
           "min": 0,
-          "max": "1"
+          "max": "*"
         },
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LandmarkToBodyLocationDirection-extension"
+            "profile": [
+              "http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-LandmarkToBodyLocationDirection-extension"
+            ]
           }
         ],
         "isModifier": false,
+        "isSummary": false,
         "mapping": [
           {
             "identity": "rim",
-            "map": "N/A"
+            "map": "n/a"
           }
         ]
       },
@@ -217,21 +252,24 @@
         "min": 0,
         "max": "1",
         "base": {
-          "path": "Extension.extension",
+          "path": "Element.extension",
           "min": 0,
-          "max": "1"
+          "max": "*"
         },
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LandmarkToBodyLocationDistance-extension"
+            "profile": [
+              "http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-LandmarkToBodyLocationDistance-extension"
+            ]
           }
         ],
         "isModifier": false,
+        "isSummary": false,
         "mapping": [
           {
             "identity": "rim",
-            "map": "N/A"
+            "map": "n/a"
           }
         ]
       },
@@ -243,6 +281,7 @@
         ],
         "short": "identifies the meaning of the extension",
         "definition": "Source of the definition for the extension code - a logical name or a URL.",
+        "comment": "The definition may point directly to a computable or human-readable definition of the extensibility codes, or it may be a logical URI as declared in some other specification. The definition SHALL be a URI for the Structure Definition defining the extension.",
         "min": 1,
         "max": "1",
         "base": {
@@ -255,7 +294,9 @@
             "code": "uri"
           }
         ],
-        "fixedUri": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelationToLandmark-extension",
+        "fixedUri": "http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-RelationToLandmark-extension",
+        "isModifier": false,
+        "isSummary": false,
         "mapping": [
           {
             "identity": "rim",
@@ -267,7 +308,7 @@
         "id": "Extension:relationtolandmark.value[x]",
         "path": "Extension.value[x]",
         "short": "Value of extension",
-        "definition": "Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).",
+        "definition": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
         "min": 0,
         "max": "0",
         "base": {
@@ -281,6 +322,9 @@
           },
           {
             "code": "boolean"
+          },
+          {
+            "code": "canonical"
           },
           {
             "code": "code"
@@ -323,6 +367,12 @@
           },
           {
             "code": "uri"
+          },
+          {
+            "code": "url"
+          },
+          {
+            "code": "uuid"
           },
           {
             "code": "Address"
@@ -388,9 +438,35 @@
             "code": "Timing"
           },
           {
-            "code": "Meta"
+            "code": "ContactDetail"
+          },
+          {
+            "code": "Contributor"
+          },
+          {
+            "code": "DataRequirement"
+          },
+          {
+            "code": "Expression"
+          },
+          {
+            "code": "ParameterDefinition"
+          },
+          {
+            "code": "RelatedArtifact"
+          },
+          {
+            "code": "TriggerDefinition"
+          },
+          {
+            "code": "UsageContext"
+          },
+          {
+            "code": "Dosage"
           }
         ],
+        "isModifier": false,
+        "isSummary": false,
         "mapping": [
           {
             "identity": "rim",
@@ -417,10 +493,25 @@
         "definition": "The type of feature that constitutes the landmark, particularly if the landmark is an acquired body structure or physical object.",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Element.extension",
+          "min": 0,
+          "max": "*"
+        },
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LandmarkType-extension"
+            "profile": [
+              "http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-LandmarkType-extension"
+            ]
+          }
+        ],
+        "isModifier": false,
+        "isSummary": false,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "n/a"
           }
         ]
       },
@@ -431,10 +522,25 @@
         "definition": "The body location of the landmark, specified by a location code and optional laterality and orientation.",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Element.extension",
+          "min": 0,
+          "max": "*"
+        },
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LandmarkLocation-extension"
+            "profile": [
+              "http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-LandmarkLocation-extension"
+            ]
+          }
+        ],
+        "isModifier": false,
+        "isSummary": false,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "n/a"
           }
         ]
       },
@@ -445,10 +551,25 @@
         "definition": "The direction from the landmark to the body location of interest, given as a clockface direction or anatomical direction.",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Element.extension",
+          "min": 0,
+          "max": "*"
+        },
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LandmarkToBodyLocationDirection-extension"
+            "profile": [
+              "http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-LandmarkToBodyLocationDirection-extension"
+            ]
+          }
+        ],
+        "isModifier": false,
+        "isSummary": false,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "n/a"
           }
         ]
       },
@@ -459,10 +580,25 @@
         "definition": "How far the body location of interest is from the given landmark.",
         "min": 0,
         "max": "1",
+        "base": {
+          "path": "Element.extension",
+          "min": 0,
+          "max": "*"
+        },
         "type": [
           {
             "code": "Extension",
-            "profile": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-LandmarkToBodyLocationDistance-extension"
+            "profile": [
+              "http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-LandmarkToBodyLocationDistance-extension"
+            ]
+          }
+        ],
+        "isModifier": false,
+        "isSummary": false,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "n/a"
           }
         ]
       },
@@ -474,7 +610,7 @@
             "code": "uri"
           }
         ],
-        "fixedUri": "http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelationToLandmark-extension"
+        "fixedUri": "http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-RelationToLandmark-extension"
       },
       {
         "id": "Extension:relationtolandmark.value[x]",

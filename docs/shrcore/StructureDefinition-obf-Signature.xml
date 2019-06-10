@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="obf-Signature"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">
+  <p><b>Signature Profile</b></p>
+  <p>A Signature holds an electronic representation of a signature and its supporting context in a FHIR accessible form. The signature may either be a cryptographic type (XML DigSig or a JWS), which is able to provide non-repudiation proof, or it may be a graphical image that represents a signature or a signature process.</p>
+  <p><b>Mapping Summary</b></p>
+  <p><pre>obf.Signature maps to Signature:
+  SignatureType maps to type
+  CreationDateTime maps to when
+  Signer maps to who
+  OnBehalfOf maps to onBehalfOf
+  SignatureFormat maps to sigFormat
+  TargetFormat maps to targetFormat
+  BinaryData maps to data
+</pre></p>
+</div>
+  </text>
+  <url value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-Signature"/>
+  <identifier>
+    <system value="http://hl7.org/fhir/us/obf"/>
+    <value value="obf.Signature"/>
+  </identifier>
+  <version value="0.8.0"/>
+  <name value="Signature"/>
+  <title value="obf-Signature"/>
+  <status value="draft"/>
+  <date value="2019-06-10T00:00:00-04:00"/>
+  <publisher value="The MITRE Corporation"/>
+  <contact>
+    <telecom>
+      <system value="url"/>
+      <value value="http://www.standardhealthrecord.org"/>
+    </telecom>
+  </contact>
+  <description value="A Signature holds an electronic representation of a signature and its supporting context in a FHIR accessible form. The signature may either be a cryptographic type (XML DigSig or a JWS), which is able to provide non-repudiation proof, or it may be a graphical image that represents a signature or a signature process."/>
+  <purpose value="There are a number of places where content must be signed in healthcare."/>
+  <fhirVersion value="4.0.0"/>
+  <mapping>
+    <identity value="rim"/>
+    <uri value="http://hl7.org/v3"/>
+    <name value="RIM Mapping"/>
+  </mapping>
+  <kind value="complex-type"/>
+  <abstract value="false"/>
+  <type value="Signature"/>
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Signature"/>
+  <derivation value="constraint"/>
+  <snapshot>
+    <element id="Signature:obf-Signature">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+        <valueCode value="trial-use"/>
+      </extension>
+      <path value="Signature"/>
+      <short value="obf-Signature"/>
+      <definition value="A Signature holds an electronic representation of a signature and its supporting context in a FHIR accessible form. The signature may either be a cryptographic type (XML DigSig or a JWS), which is able to provide non-repudiation proof, or it may be a graphical image that represents a signature or a signature process."/>
+      <comment value="The elements of the Signature Resource are for ease of access of these elements. For digital signatures (Xml DigSig, JWS), the non-repudiation proof comes from the Signature  validation, which includes validation of the referenced objects (e.g. Resources) (a.k.a., Content) in the XML-Signature Detached form."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Signature"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <condition value="ele-1"/>
+      <constraint>
+        <key value="ele-1"/>
+        <severity value="error"/>
+        <human value="All FHIR elements must have a @value or children"/>
+        <expression value="hasValue() or (children().count() &gt; id.count())"/>
+        <xpath value="@value|f:*|h:div"/>
+        <source value="Element"/>
+      </constraint>
+      <isModifier value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="Signature:obf-Signature.id">
+      <path value="Signature.id"/>
+      <representation value="xmlAttr"/>
+      <short value="Unique id for inter-element referencing"/>
+      <definition value="Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.id"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="string"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Signature:obf-Signature.extension">
+      <path value="Signature.extension"/>
+      <slicing>
+        <discriminator>
+          <type value="value"/>
+          <path value="url"/>
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="Additional content defined by implementations"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Signature:obf-Signature.type">
+      <path value="Signature.type"/>
+      <short value="Indication of the reason the entity signed the object(s)"/>
+      <definition value="An indication of the reason that the entity signed this document. This may be explicitly included as part of the signature information and can be used when determining accountability for various actions concerning the document."/>
+      <comment value="Examples include attesting to: authorship, correct transcription, and witness of specific event. Also known as a &amp;quot;Commitment Type Indication&amp;quot;."/>
+      <min value="1"/>
+      <max value="*"/>
+      <base>
+        <path value="Signature.type"/>
+        <min value="1"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="SignatureType"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="An indication of the reason that an entity signed the object."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/signature-type"/>
+      </binding>
+    </element>
+    <element id="Signature:obf-Signature.when">
+      <path value="Signature.when"/>
+      <short value="When the signature was created"/>
+      <definition value="When the digital signature was signed."/>
+      <comment value="This should agree with the information in the signature."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Signature.when"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="instant"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+    </element>
+    <element id="Signature:obf-Signature.who">
+      <path value="Signature.who"/>
+      <short value="Who signed"/>
+      <definition value="A reference to an application-usable description of the identity that signed  (e.g. the signature used their private key)."/>
+      <comment value="This should agree with the information in the signature."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Signature.who"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-Practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-RelatedPerson"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-Patient"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-Device"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-Organization"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+    </element>
+    <element id="Signature:obf-Signature.onBehalfOf">
+      <path value="Signature.onBehalfOf"/>
+      <short value="The party represented"/>
+      <definition value="A reference to an application-usable description of the identity that is represented by the signature."/>
+      <comment value="The party that can&#39;t sign. For example a child."/>
+      <requirements value="used when the signature is on behalf of a non-signer."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Signature.onBehalfOf"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-Practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-RelatedPerson"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-Patient"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-Device"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-Organization"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+    </element>
+    <element id="Signature:obf-Signature.targetFormat">
+      <path value="Signature.targetFormat"/>
+      <short value="The technical format of the signed resources"/>
+      <definition value="A mime type that indicates the technical format of the target resources signed by the signature."/>
+      <comment value="&quot;xml&quot;, &quot;json&quot; and &quot;ttl&quot; are allowed, which describe the simple encodings described in the specification (and imply appropriate bundle support). Otherwise, mime types are legal here."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Signature.targetFormat"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="code"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="MimeType"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
+          <valueBoolean value="true"/>
+        </extension>
+        <strength value="required"/>
+        <description value="The mime type of an attachment. Any valid mime type is allowed."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/mimetypes|4.0.0"/>
+      </binding>
+    </element>
+    <element id="Signature:obf-Signature.sigFormat">
+      <path value="Signature.sigFormat"/>
+      <short value="The technical format of the signature"/>
+      <definition value="A mime type that indicates the technical format of the signature. Important mime types are application/signature+xml for X ML DigSig, application/jose for JWS, and image/* for a graphical image of a signature, etc."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Signature.sigFormat"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="code"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="MimeType"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
+          <valueBoolean value="true"/>
+        </extension>
+        <strength value="required"/>
+        <description value="The mime type of an attachment. Any valid mime type is allowed."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/mimetypes|4.0.0"/>
+      </binding>
+    </element>
+    <element id="Signature:obf-Signature.data">
+      <path value="Signature.data"/>
+      <short value="The actual signature content (XML DigSig. JWS, picture, etc.)"/>
+      <definition value="The base64 encoding of the Signature content. When signature is not recorded electronically this element would be empty."/>
+      <comment value="Where the signature type is an XML DigSig, the signed content is a FHIR Resource(s), the signature is of the XML form of the Resource(s) using  XML-Signature (XMLDIG) &quot;Detached Signature&quot; form."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Signature.data"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="base64Binary"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+  </snapshot>
+  <differential>
+    <element id="Signature:obf-Signature">
+      <path value="Signature"/>
+      <short value="obf-Signature"/>
+      <definition value="A Signature holds an electronic representation of a signature and its supporting context in a FHIR accessible form. The signature may either be a cryptographic type (XML DigSig or a JWS), which is able to provide non-repudiation proof, or it may be a graphical image that represents a signature or a signature process."/>
+      <isModifier value="false"/>
+    </element>
+    <element id="Signature:obf-Signature.type">
+      <path value="Signature.type"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="SignatureType"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="An indication of the reason that an entity signed the object."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/signature-type"/>
+      </binding>
+    </element>
+    <element id="Signature:obf-Signature.who">
+      <path value="Signature.who"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-Practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-RelatedPerson"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-Patient"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-Device"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-Organization"/>
+      </type>
+    </element>
+    <element id="Signature:obf-Signature.onBehalfOf">
+      <path value="Signature.onBehalfOf"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-Practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-RelatedPerson"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-Patient"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-Device"/>
+        <targetProfile value="http://hl7.org/fhir/us/obf/StructureDefinition/obf-Organization"/>
+      </type>
+    </element>
+    <element id="Signature:obf-Signature.sigFormat">
+      <path value="Signature.sigFormat"/>
+      <min value="1"/>
+      <max value="1"/>
+    </element>
+    <element id="Signature:obf-Signature.data">
+      <path value="Signature.data"/>
+      <min value="1"/>
+      <max value="1"/>
+    </element>
+  </differential>
+</StructureDefinition>

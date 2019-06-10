@@ -1,0 +1,371 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/us/obf/StructureDefinition/obf-Annotation> a fhir:StructureDefinition;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "obf-Annotation"];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Annotation Profile</b></p>\n  <p>An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>obf.Annotation maps to Annotation:\n  PersonAuthor maps to author[x]\n  OccurrenceTime maps to time\n</pre></p>\n</div>"
+  ];
+  fhir:StructureDefinition.url [ fhir:value "http://hl7.org/fhir/us/obf/StructureDefinition/obf-Annotation"];
+  fhir:StructureDefinition.identifier [
+     fhir:index 0;
+     fhir:Identifier.system [ fhir:value "http://hl7.org/fhir/us/obf" ];
+     fhir:Identifier.value [ fhir:value "obf.Annotation" ]
+  ];
+  fhir:StructureDefinition.version [ fhir:value "0.8.0"];
+  fhir:StructureDefinition.name [ fhir:value "Annotation"];
+  fhir:StructureDefinition.title [ fhir:value "obf-Annotation"];
+  fhir:StructureDefinition.status [ fhir:value "active"];
+  fhir:StructureDefinition.date [ fhir:value "2019-06-10T00:00:00-04:00"^^xsd:dateTime];
+  fhir:StructureDefinition.publisher [ fhir:value "The MITRE Corporation"];
+  fhir:StructureDefinition.contact [
+     fhir:index 0;
+     fhir:ContactDetail.telecom [
+       fhir:index 0;
+       fhir:ContactPoint.system [ fhir:value "url" ];
+       fhir:ContactPoint.value [ fhir:value "http://www.standardhealthrecord.org" ]
+     ]
+  ];
+  fhir:StructureDefinition.description [ fhir:value "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."];
+  fhir:StructureDefinition.fhirVersion [ fhir:value "4.0.0"];
+  fhir:StructureDefinition.mapping [
+     fhir:index 0;
+     fhir:StructureDefinition.mapping.identity [ fhir:value "v2" ];
+     fhir:StructureDefinition.mapping.uri [ fhir:value "http://hl7.org/v2" ];
+     fhir:StructureDefinition.mapping.name [ fhir:value "HL7 v2 Mapping" ]
+  ], [
+     fhir:index 1;
+     fhir:StructureDefinition.mapping.identity [ fhir:value "rim" ];
+     fhir:StructureDefinition.mapping.uri [ fhir:value "http://hl7.org/v3" ];
+     fhir:StructureDefinition.mapping.name [ fhir:value "RIM Mapping" ]
+  ];
+  fhir:StructureDefinition.kind [ fhir:value "complex-type"];
+  fhir:StructureDefinition.abstract [ fhir:value "false"^^xsd:boolean];
+  fhir:StructureDefinition.type [ fhir:value "Annotation"];
+  fhir:StructureDefinition.baseDefinition [
+     fhir:value "http://hl7.org/fhir/StructureDefinition/Annotation";
+     fhir:link <http://hl7.org/fhir/StructureDefinition/Annotation>
+  ];
+  fhir:StructureDefinition.derivation [ fhir:value "constraint"];
+  fhir:StructureDefinition.snapshot [
+     fhir:StructureDefinition.snapshot.element [
+       fhir:index 0;
+       fhir:Element.id [ fhir:value "Annotation:obf-Annotation" ];
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ];
+         fhir:Extension.valueCode [ fhir:value "normative" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version" ];
+         fhir:Extension.valueCode [ fhir:value "4.0.0" ]
+       ];
+       fhir:ElementDefinition.path [ fhir:value "Annotation" ];
+       fhir:ElementDefinition.short [ fhir:value "obf-Annotation" ];
+       fhir:ElementDefinition.definition [ fhir:value "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when." ];
+       fhir:ElementDefinition.comment [ fhir:value "For systems that do not have structured annotations, they can simply communicate a single annotation with no author or time.  This element may need to be included in narrative because of the potential for modifying information.  *Annotations SHOULD NOT* be used to communicate \"modifying\" information that could be computable. (This is a SHOULD because enforcing user behavior is nearly impossible)." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Annotation" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.condition [
+         fhir:value "ele-1";
+         fhir:index 0
+       ];
+       fhir:ElementDefinition.constraint [
+         fhir:index 0;
+         fhir:ElementDefinition.constraint.key [ fhir:value "ele-1" ];
+         fhir:ElementDefinition.constraint.severity [ fhir:value "error" ];
+         fhir:ElementDefinition.constraint.human [ fhir:value "All FHIR elements must have a @value or children" ];
+         fhir:ElementDefinition.constraint.expression [ fhir:value "hasValue() or (children().count() > id.count())" ];
+         fhir:ElementDefinition.constraint.xpath [ fhir:value "@value|f:*|h:div" ];
+         fhir:ElementDefinition.constraint.source [ fhir:value "Element" ]
+       ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.mapping [
+         fhir:index 0;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "v2" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
+       ], [
+         fhir:index 2;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "Act" ]
+       ]
+     ], [
+       fhir:index 1;
+       fhir:Element.id [ fhir:value "Annotation:obf-Annotation.id" ];
+       fhir:ElementDefinition.path [ fhir:value "Annotation.id" ];
+       fhir:ElementDefinition.representation [
+         fhir:value "xmlAttr";
+         fhir:index 0
+       ];
+       fhir:ElementDefinition.short [ fhir:value "Unique id for inter-element referencing" ];
+       fhir:ElementDefinition.definition [ fhir:value "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Element.id" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "string" ]
+       ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.mapping [
+         fhir:index 0;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
+       ]
+     ], [
+       fhir:index 2;
+       fhir:Element.id [ fhir:value "Annotation:obf-Annotation.extension" ];
+       fhir:ElementDefinition.path [ fhir:value "Annotation.extension" ];
+       fhir:ElementDefinition.slicing [
+         fhir:ElementDefinition.slicing.discriminator [
+           fhir:index 0;
+           fhir:ElementDefinition.slicing.discriminator.type [ fhir:value "value" ];
+           fhir:ElementDefinition.slicing.discriminator.path [ fhir:value "url" ]
+         ];
+         fhir:ElementDefinition.slicing.description [ fhir:value "Extensions are always sliced by (at least) url" ];
+         fhir:ElementDefinition.slicing.rules [ fhir:value "open" ]
+       ];
+       fhir:ElementDefinition.short [ fhir:value "Additional content defined by implementations" ];
+       fhir:ElementDefinition.definition [ fhir:value "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." ];
+       fhir:ElementDefinition.comment [ fhir:value "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." ];
+       fhir:ElementDefinition.alias [
+         fhir:value "extensions";
+         fhir:index 0
+       ], [
+         fhir:value "user content";
+         fhir:index 1
+       ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Element.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ]
+       ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.mapping [
+         fhir:index 0;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
+       ]
+     ], [
+       fhir:index 3;
+       fhir:Element.id [ fhir:value "Annotation:obf-Annotation.extension:text" ];
+       fhir:ElementDefinition.path [ fhir:value "Annotation.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "text" ];
+       fhir:ElementDefinition.definition [ fhir:value "A simple string." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Element.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [
+           fhir:value "http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-Text-extension";
+           fhir:index 0;
+           fhir:link <http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-Text-extension>
+         ]
+       ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 4;
+       fhir:Element.id [ fhir:value "Annotation:obf-Annotation.authorReference" ];
+       fhir:ElementDefinition.path [ fhir:value "Annotation.authorReference" ];
+       fhir:ElementDefinition.short [ fhir:value "Individual responsible for the annotation" ];
+       fhir:ElementDefinition.definition [ fhir:value "The individual responsible for making the annotation." ];
+       fhir:ElementDefinition.comment [ fhir:value "Organization is used when there's no need for specific attribution as to who made the comment." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Annotation.author[x]" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [
+           fhir:value "http://hl7.org/fhir/us/obf/StructureDefinition/obf-Patient";
+           fhir:index 0;
+           fhir:link <http://hl7.org/fhir/us/obf/StructureDefinition/obf-Patient>
+         ], [
+           fhir:value "http://hl7.org/fhir/us/obf/StructureDefinition/obf-Practitioner";
+           fhir:index 1;
+           fhir:link <http://hl7.org/fhir/us/obf/StructureDefinition/obf-Practitioner>
+         ], [
+           fhir:value "http://hl7.org/fhir/us/obf/StructureDefinition/obf-RelatedPerson";
+           fhir:index 2;
+           fhir:link <http://hl7.org/fhir/us/obf/StructureDefinition/obf-RelatedPerson>
+         ]
+       ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ];
+       fhir:ElementDefinition.mapping [
+         fhir:index 0;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "v2" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "Act.participant[typeCode=AUT].role" ]
+       ]
+     ], [
+       fhir:index 5;
+       fhir:Element.id [ fhir:value "Annotation:obf-Annotation.time" ];
+       fhir:ElementDefinition.path [ fhir:value "Annotation.time" ];
+       fhir:ElementDefinition.short [ fhir:value "When the annotation was made" ];
+       fhir:ElementDefinition.definition [ fhir:value "Indicates when this particular annotation was made." ];
+       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Annotation.time" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "dateTime" ]
+       ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ];
+       fhir:ElementDefinition.mapping [
+         fhir:index 0;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "v2" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "Act.effectiveTime" ]
+       ]
+     ], [
+       fhir:index 6;
+       fhir:Element.id [ fhir:value "Annotation:obf-Annotation.text" ];
+       fhir:ElementDefinition.path [ fhir:value "Annotation.text" ];
+       fhir:ElementDefinition.short [ fhir:value "The annotation  - text content (as markdown)" ];
+       fhir:ElementDefinition.definition [ fhir:value "The text of the annotation in markdown format." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Annotation.text" ];
+         fhir:ElementDefinition.base.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "1" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "markdown" ]
+       ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ];
+       fhir:ElementDefinition.mapping [
+         fhir:index 0;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "v2" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
+       ], [
+         fhir:index 1;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "Act.text" ]
+       ]
+     ]
+  ];
+  fhir:StructureDefinition.differential [
+     fhir:StructureDefinition.differential.element [
+       fhir:index 0;
+       fhir:Element.id [ fhir:value "Annotation:obf-Annotation" ];
+       fhir:ElementDefinition.path [ fhir:value "Annotation" ];
+       fhir:ElementDefinition.short [ fhir:value "obf-Annotation" ];
+       fhir:ElementDefinition.definition [ fhir:value "An added or follow-up note, often after the fact, that contains metadata about who made the statement and when." ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 1;
+       fhir:Element.id [ fhir:value "Annotation:obf-Annotation.extension" ];
+       fhir:ElementDefinition.path [ fhir:value "Annotation.extension" ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "*" ]
+     ], [
+       fhir:index 2;
+       fhir:Element.id [ fhir:value "Annotation:obf-Annotation.extension:text" ];
+       fhir:ElementDefinition.path [ fhir:value "Annotation.extension" ];
+       fhir:ElementDefinition.sliceName [ fhir:value "text" ];
+       fhir:ElementDefinition.definition [ fhir:value "A simple string." ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.base [
+         fhir:ElementDefinition.base.path [ fhir:value "Element.extension" ];
+         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
+         fhir:ElementDefinition.base.max [ fhir:value "*" ]
+       ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
+         fhir:ElementDefinition.type.profile [
+           fhir:value "http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-Text-extension";
+           fhir:index 0;
+           fhir:link <http://hl7.org/fhir/us/obf/StructureDefinition/shr-core-Text-extension>
+         ]
+       ];
+       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 3;
+       fhir:Element.id [ fhir:value "Annotation:obf-Annotation.authorReference" ];
+       fhir:ElementDefinition.path [ fhir:value "Annotation.authorReference" ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
+         fhir:ElementDefinition.type.targetProfile [
+           fhir:value "http://hl7.org/fhir/us/obf/StructureDefinition/obf-Patient";
+           fhir:index 0;
+           fhir:link <http://hl7.org/fhir/us/obf/StructureDefinition/obf-Patient>
+         ], [
+           fhir:value "http://hl7.org/fhir/us/obf/StructureDefinition/obf-Practitioner";
+           fhir:index 1;
+           fhir:link <http://hl7.org/fhir/us/obf/StructureDefinition/obf-Practitioner>
+         ], [
+           fhir:value "http://hl7.org/fhir/us/obf/StructureDefinition/obf-RelatedPerson";
+           fhir:index 2;
+           fhir:link <http://hl7.org/fhir/us/obf/StructureDefinition/obf-RelatedPerson>
+         ]
+       ]
+     ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<http://hl7.org/fhir/us/obf/StructureDefinition/obf-Annotation.ttl> a owl:Ontology;
+  owl:imports fhir:fhir.ttl;
+  owl:versionIRI <http://build.fhir.org/us/obf/StructureDefinition/obf-Annotation.ttl> .
+
+# -------------------------------------------------------------------------------------
+

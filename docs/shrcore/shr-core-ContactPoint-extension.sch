@@ -12,7 +12,6 @@
   <sch:pattern>
     <sch:title>f:Extension</sch:title>
     <sch:rule context="f:Extension">
-      <sch:assert test="count(f:extension) &lt;= 0">extension: maximum cardinality of 'extension' is 0</sch:assert>
       <sch:assert test="count(f:valueContactPoint) &gt;= 1">valueContactPoint: minimum cardinality of 'valueContactPoint' is 1</sch:assert>
     </sch:rule>
   </sch:pattern>
