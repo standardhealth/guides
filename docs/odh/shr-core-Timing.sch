@@ -10,12 +10,6 @@
     single schematron that validates contained resources (if you have any) 
   -->
   <sch:pattern>
-    <sch:title>Timing</sch:title>
-    <sch:rule context="f:Timing">
-      <sch:assert test="@value|f:*|h:div">All FHIR elements must have a @value or children</sch:assert>
-    </sch:rule>
-  </sch:pattern>
-  <sch:pattern>
     <sch:title>Timing.repeat</sch:title>
     <sch:rule context="f:Timing/f:repeat">
       <sch:assert test="@value|f:*|h:div">All FHIR elements must have a @value or children</sch:assert>
@@ -25,7 +19,7 @@
       <sch:assert test="not(exists(f:durationMax)) or exists(f:duration)">If there's a durationMax, there must be a duration</sch:assert>
       <sch:assert test="not(exists(f:countMax)) or exists(f:count)">If there's a countMax, there must be a count</sch:assert>
       <sch:assert test="not(exists(f:duration)) or exists(f:durationUnit)">if there's a duration, there needs to be duration units</sch:assert>
-      <sch:assert test="not(exists(f:timeOfDay)) or not(exists(f:when))">If there's a timeOfDay, there cannot be be a when, or vice versa</sch:assert>
+      <sch:assert test="not(exists(f:timeOfDay)) or not(exists(f:when))">If there's a timeOfDay, there cannot be a when, or vice versa</sch:assert>
       <sch:assert test="not(exists(f:period)) or exists(f:periodUnit)">if there's a period, there needs to be period units</sch:assert>
       <sch:assert test="f:duration/@value &gt;= 0 or not(f:duration/@value)">duration SHALL be a non-negative value</sch:assert>
     </sch:rule>
