@@ -3,7 +3,7 @@
   "id": "obf-Composition",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Composition Profile</b></p>\n  <p>A composition represents a set of Entries sharing common provenance, a document such as an extract from a patient record, a knowledge artifact, or a catalog definition.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>obf.Composition maps to Composition:\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.source\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier\n  Status maps to status\n  Type maps to type\n  Category maps to category\n  FocalSubject maps to subject\n  CareContext maps to encounter\n  StatementDateTime maps to date\n  Author maps to author\n  Title maps to title\n  ConfidentialityCode maps to confidentiality\n  Attestation.AttestationMode maps to attester.mode\n  Attestation.CreationDateTime maps to attester.time\n  Attestation.Attester maps to attester.party\n  ManagingOrganization maps to custodian\n  RelatedDocument.Relationship maps to relatesTo.code\n  RelatedDocument.TargetDocument maps to relatesTo.target[x]\n  EventContext.Code maps to event.code\n  EventContext.TimePeriod maps to event.period\n  EventContext.SupportingInformation maps to event.detail\n  Section maps to section\n  Section.Title maps to section.title\n  Section.Code maps to section.code\n  Section.Author maps to section.author\n  Section.FocalSubject maps to section.focus\n  Section.Narrative maps to section.text\n  Section.Type maps to section.mode\n  Section.SortOrder maps to section.orderedBy // terrible FHIR name!\n  Section.DomainResource maps to section.entry  (slice on = reference.resolve(); slice on type = profile; slice strategy = includes)\n  Section.EmptyReason maps to section.emptyReason\n  Section.Section maps to section.section\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Composition Profile</b></p>\n  <p>A composition represents a set of Entries sharing common provenance, a document such as an extract from a patient record, a knowledge artifact, or a catalog definition.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>obf.Composition maps to Composition:\n  Language maps to language\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.source\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Narrative maps to text\n  Identifier maps to identifier\n  Status maps to status\n  Type maps to type\n  Category maps to category\n  FocalSubject maps to subject\n  CareContext maps to encounter\n  StatementDateTime maps to date\n  Author maps to author\n  Title maps to title\n  ConfidentialityCode maps to confidentiality\n  Attestation.AttestationMode maps to attester.mode\n  Attestation.CreationDateTime maps to attester.time\n  Attestation.Attester maps to attester.party\n  ManagingOrganization maps to custodian\n  RelatedDocument.Relationship maps to relatesTo.code\n  RelatedDocument.TargetDocument maps to relatesTo.target[x]\n  EventContext.Code maps to event.code\n  EventContext.TimePeriod maps to event.period\n  EventContext.SupportingInformation maps to event.detail\n  Section maps to section (slice on = code; slice strategy = includes)\n  Section.Title maps to section.title\n  Section.Code maps to section.code\n  Section.Author maps to section.author\n  Section.FocalSubject maps to section.focus\n  Section.Narrative maps to section.text\n  Section.Type maps to section.mode\n  Section.SortOrder maps to section.orderedBy // terrible FHIR name!\n  Section.Resource maps to section.entry  (slice on = reference.resolve(); slice on type = profile; slice strategy = includes)\n  Section.EmptyReason maps to section.emptyReason\n  Section.Section maps to section.section\n</pre></p>\n</div>"
   },
   "url": "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Composition",
   "identifier": [
@@ -16,7 +16,7 @@
   "name": "Composition",
   "title": "obf-Composition",
   "status": "draft",
-  "date": "2019-06-21T00:00:00-04:00",
+  "date": "2019-07-03T00:00:00-04:00",
   "publisher": "HL7",
   "contact": [
     {
@@ -614,7 +614,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-DomainResource"
+              "http://hl7.org/fhir/StructureDefinition/Resource"
             ]
           }
         ],
@@ -660,7 +660,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Encounter"
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter"
             ]
           }
         ],
@@ -750,11 +750,12 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Patient",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Practitioner",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-RelatedPerson",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Organization",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Device"
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-device",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient",
+              "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"
             ]
           }
         ],
@@ -1094,10 +1095,11 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Patient",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Practitioner",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-RelatedPerson",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Organization"
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner",
+              "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole"
             ]
           }
         ],
@@ -1136,7 +1138,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Organization"
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"
             ]
           }
         ],
@@ -1618,7 +1620,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-DomainResource"
+              "http://hl7.org/fhir/StructureDefinition/Resource"
             ]
           }
         ],
@@ -1886,11 +1888,12 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Patient",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Practitioner",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-RelatedPerson",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Organization",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Device"
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-device",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient",
+              "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"
             ]
           }
         ],
@@ -1928,7 +1931,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-DomainResource"
+              "http://hl7.org/fhir/StructureDefinition/Resource"
             ]
           }
         ],
@@ -2082,7 +2085,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-DomainResource"
+              "http://hl7.org/fhir/StructureDefinition/Resource"
             ]
           }
         ],
@@ -2688,15 +2691,7 @@
         "id": "Composition:obf-Composition.subject",
         "path": "Composition.subject",
         "min": 1,
-        "max": "1",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-DomainResource"
-            ]
-          }
-        ]
+        "max": "1"
       },
       {
         "id": "Composition:obf-Composition.encounter",
@@ -2705,7 +2700,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Encounter"
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter"
             ]
           }
         ]
@@ -2717,11 +2712,12 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Patient",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Practitioner",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-RelatedPerson",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Organization",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Device"
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-device",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient",
+              "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"
             ]
           }
         ]
@@ -2737,10 +2733,11 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Patient",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Practitioner",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-RelatedPerson",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Organization"
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner",
+              "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole"
             ]
           }
         ]
@@ -2752,7 +2749,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Organization"
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"
             ]
           }
         ]
@@ -2777,22 +2774,6 @@
         ]
       },
       {
-        "id": "Composition:obf-Composition.event",
-        "path": "Composition.event"
-      },
-      {
-        "id": "Composition:obf-Composition.event.detail",
-        "path": "Composition.event.detail",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-DomainResource"
-            ]
-          }
-        ]
-      },
-      {
         "id": "Composition:obf-Composition.section",
         "path": "Composition.section"
       },
@@ -2803,35 +2784,12 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Patient",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Practitioner",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-RelatedPerson",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Organization",
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Device"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "Composition:obf-Composition.section.focus",
-        "path": "Composition.section.focus",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-DomainResource"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "Composition:obf-Composition.section.entry",
-        "path": "Composition.section.entry",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "http://hl7.org/fhir/us/odh/StructureDefinition/obf-DomainResource"
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-device",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient",
+              "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"
             ]
           }
         ]
