@@ -11,7 +11,6 @@ For an Observation, the Code describes the aspect or property of the subject bei
   <p><b>Mapping Summary</b></p>
   <p><pre>obf.Observation maps to Observation:
   Language maps to language
-  Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
   Metadata.SourceSystem maps to meta.source
@@ -19,6 +18,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
+  Narrative maps to text
   Identifier maps to identifier
   ObservationBasedOn maps to basedOn
   ObservationPartOf maps to partOf
@@ -40,6 +40,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
   BodyLocation.Orientation maps to bodySite.extension
   BodyLocation.RelationToLandmark maps to bodySite.extension
   Method maps to method
+  Specimen maps to specimen
   Device maps to device
   ReferenceRange maps to referenceRange
   ReferenceRange.LowerBound maps to referenceRange.low
@@ -65,17 +66,17 @@ For an Observation, the Code describes the aspect or property of the subject bei
 </pre></p>
 </div>
   </text>
-  <url value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Observation"/>
+  <url value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Observation"/>
   <identifier>
-    <system value="http://hl7.org/fhir/us/odh"/>
+    <system value="http://hl7.org/fhir/us/mcode"/>
     <value value="obf.Observation"/>
   </identifier>
-  <version value="1.1.0"/>
+  <version value="0.9.1"/>
   <name value="Observation"/>
   <title value="obf-Observation"/>
   <status value="active"/>
-  <date value="2019-06-18T00:00:00-04:00"/>
-  <publisher value="HL7"/>
+  <date value="2019-07-03T00:00:00-04:00"/>
+  <publisher value="The MITRE Corporation"/>
   <contact>
     <telecom>
       <system value="url"/>
@@ -456,10 +457,10 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-MedicationRequest"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-ServiceRequest"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-ProcedureRequest"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-ReferralRequest"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-ServiceRequest"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-ProcedureRequest"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-ReferralRequest"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="true"/>
@@ -478,8 +479,8 @@ For an Observation, the Code describes the aspect or property of the subject bei
     </element>
     <element id="Observation:obf-Observation.partOf">
       <path value="Observation.partOf"/>
-      <short value="Part of referenced event"/>
-      <definition value="A larger event of which this particular Observation is a component or step.  For example,  an observation as part of a procedure."/>
+      <short value="A larger event of which this particular Observation is a component or step. For example, an observation as part of a procedure."/>
+      <definition value="A larger event of which this particular Observation is a component or step. For example, an observation as part of a procedure."/>
       <comment value="To link an Observation to an Encounter use `encounter`.  See the  [Notes](observation.html#obsgrouping) below for guidance on referencing another Observation."/>
       <alias value="Container"/>
       <min value="0"/>
@@ -491,9 +492,9 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-MedicationAdministration"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-MedicationStatement"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Procedure"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationAdministration"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-MedicationStatement"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Procedure"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="true"/>
@@ -650,8 +651,8 @@ For an Observation, the Code describes the aspect or property of the subject bei
     </element>
     <element id="Observation:obf-Observation.subject">
       <path value="Observation.subject"/>
-      <short value="Who and/or what the observation is about"/>
-      <definition value="The patient, or group of patients, location, or device this observation is about and into whose record the observation is placed. If the actual focus of the observation is different from the subject (or a sample of, part, or region of the subject), the `focus` element or the `code` itself specifies the actual focus of the observation."/>
+      <short value="The subject of an observation"/>
+      <definition value="The subject of an observation."/>
       <comment value="One would expect this element to be a cardinality of 1..1. The only circumstance in which the subject can be missing is when the observation is made by a device that does not know the patient. In this case, the observation SHALL be matched to a patient through some context/channel matching technique, and at this point, the observation should be updated."/>
       <requirements value="Observations have no value if you don&#39;t know who or what they&#39;re about."/>
       <min value="1"/>
@@ -663,10 +664,10 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Patient"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Group"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Device"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Location"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Patient"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-device"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-location"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="true"/>
@@ -708,7 +709,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-DomainResource"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="true"/>
@@ -745,7 +746,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Encounter"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Encounter"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="true"/>
@@ -849,10 +850,10 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Practitioner"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Organization"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Patient"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-RelatedPerson"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Patient"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="true"/>
@@ -903,7 +904,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </type>
       <type>
         <code value="SampledData"/>
-        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SampledData"/>
+        <profile value="http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-SampledData"/>
       </type>
       <type>
         <code value="time"/>
@@ -1029,7 +1030,6 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Annotation"/>
-        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Annotation"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="false"/>
@@ -1061,7 +1061,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
       <isSummary value="false"/>
       <binding>
         <strength value="preferred"/>
-        <valueSet value="http://hl7.org/fhir/us/odh/ValueSet/shr-core-BodyLocationVS"/>
+        <valueSet value="http://hl7.org/fhir/us/mcode/ValueSet/shr-core-BodyLocationVS"/>
       </binding>
       <mapping>
         <identity value="sct-concept"/>
@@ -1147,7 +1147,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Laterality-extension"/>
+        <profile value="http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-Laterality-extension"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="false"/>
@@ -1165,7 +1165,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Orientation-extension"/>
+        <profile value="http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-Orientation-extension"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="false"/>
@@ -1183,7 +1183,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelationToLandmark-extension"/>
+        <profile value="http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-RelationToLandmark-extension"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="false"/>
@@ -1337,7 +1337,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Device"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-device"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="false"/>
@@ -1666,7 +1666,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Observation"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Observation"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="true"/>
@@ -1693,10 +1693,10 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-DocumentReference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Media"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-QuestionnaireResponse"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Observation"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Observation"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="true"/>
@@ -1890,7 +1890,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </type>
       <type>
         <code value="SampledData"/>
-        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SampledData"/>
+        <profile value="http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-SampledData"/>
       </type>
       <type>
         <code value="time"/>
@@ -2292,19 +2292,21 @@ For an Observation, the Code describes the aspect or property of the subject bei
       <path value="Observation.basedOn"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-MedicationRequest"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-ServiceRequest"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-ProcedureRequest"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-ReferralRequest"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-ServiceRequest"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-ProcedureRequest"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-ReferralRequest"/>
       </type>
     </element>
     <element id="Observation:obf-Observation.partOf">
       <path value="Observation.partOf"/>
+      <short value="A larger event of which this particular Observation is a component or step. For example, an observation as part of a procedure."/>
+      <definition value="A larger event of which this particular Observation is a component or step. For example, an observation as part of a procedure."/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-MedicationAdministration"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-MedicationStatement"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Procedure"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationAdministration"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-MedicationStatement"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Procedure"/>
       </type>
     </element>
     <element id="Observation:obf-Observation.category">
@@ -2322,28 +2324,23 @@ For an Observation, the Code describes the aspect or property of the subject bei
     </element>
     <element id="Observation:obf-Observation.subject">
       <path value="Observation.subject"/>
+      <short value="The subject of an observation"/>
+      <definition value="The subject of an observation."/>
       <min value="1"/>
       <max value="1"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Patient"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Group"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Device"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Location"/>
-      </type>
-    </element>
-    <element id="Observation:obf-Observation.focus">
-      <path value="Observation.focus"/>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-DomainResource"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Patient"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-device"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-location"/>
       </type>
     </element>
     <element id="Observation:obf-Observation.encounter">
       <path value="Observation.encounter"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Encounter"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Encounter"/>
       </type>
     </element>
     <element id="Observation:obf-Observation.effective[x]">
@@ -2359,10 +2356,10 @@ For an Observation, the Code describes the aspect or property of the subject bei
       <path value="Observation.performer"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Practitioner"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Organization"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Patient"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-RelatedPerson"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Patient"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson"/>
       </type>
     </element>
     <element id="Observation:obf-Observation.value[x]">
@@ -2384,7 +2381,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </type>
       <type>
         <code value="SampledData"/>
-        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SampledData"/>
+        <profile value="http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-SampledData"/>
       </type>
       <type>
         <code value="time"/>
@@ -2401,18 +2398,11 @@ For an Observation, the Code describes the aspect or property of the subject bei
       <min value="0"/>
       <max value="1"/>
     </element>
-    <element id="Observation:obf-Observation.note">
-      <path value="Observation.note"/>
-      <type>
-        <code value="Annotation"/>
-        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Annotation"/>
-      </type>
-    </element>
     <element id="Observation:obf-Observation.bodySite">
       <path value="Observation.bodySite"/>
       <binding>
         <strength value="preferred"/>
-        <valueSet value="http://hl7.org/fhir/us/odh/ValueSet/shr-core-BodyLocationVS"/>
+        <valueSet value="http://hl7.org/fhir/us/mcode/ValueSet/shr-core-BodyLocationVS"/>
       </binding>
     </element>
     <element id="Observation:obf-Observation.bodySite.extension:laterality">
@@ -2428,7 +2418,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Laterality-extension"/>
+        <profile value="http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-Laterality-extension"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="false"/>
@@ -2446,7 +2436,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-Orientation-extension"/>
+        <profile value="http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-Orientation-extension"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="false"/>
@@ -2464,7 +2454,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-RelationToLandmark-extension"/>
+        <profile value="http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-RelationToLandmark-extension"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="false"/>
@@ -2473,7 +2463,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
       <path value="Observation.device"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Device"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-device"/>
       </type>
     </element>
     <element id="Observation:obf-Observation.referenceRange">
@@ -2509,17 +2499,17 @@ For an Observation, the Code describes the aspect or property of the subject bei
       <path value="Observation.hasMember"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Observation"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Observation"/>
       </type>
     </element>
     <element id="Observation:obf-Observation.derivedFrom">
       <path value="Observation.derivedFrom"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-DocumentReference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Media"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-QuestionnaireResponse"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Observation"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Observation"/>
       </type>
     </element>
     <element id="Observation:obf-Observation.component">
@@ -2544,7 +2534,7 @@ For an Observation, the Code describes the aspect or property of the subject bei
       </type>
       <type>
         <code value="SampledData"/>
-        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/shr-core-SampledData"/>
+        <profile value="http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-SampledData"/>
       </type>
       <type>
         <code value="time"/>

@@ -5,11 +5,10 @@
   <text>
     <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">
   <p><b>DiagnosticReport Profile</b></p>
-  <p/>
+  <p>The findings and interpretation of diagnostic tests performed on patients, groups of patients, devices, and locations, and/or specimens derived from these. The report includes clinical context such as requesting and provider information, and some mix of atomic results, images, textual and coded interpretations, and formatted representation of diagnostic reports.</p>
   <p><b>Mapping Summary</b></p>
-  <p><pre>obf.DiagnosticReport maps to DiagnosticReport:
+  <p><pre>obf.DiagnosticReport maps to http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note:
   Language maps to language
-  Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
   Metadata.SourceSystem maps to meta.source
@@ -17,6 +16,7 @@
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
+  Narrative maps to text
   Identifier maps to identifier
   BasedOn maps to basedOn
   Status maps to status
@@ -38,24 +38,31 @@
 </pre></p>
 </div>
   </text>
-  <url value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-DiagnosticReport"/>
+  <url value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-DiagnosticReport"/>
   <identifier>
-    <system value="http://hl7.org/fhir/us/odh"/>
+    <system value="http://hl7.org/fhir/us/mcode"/>
     <value value="obf.DiagnosticReport"/>
   </identifier>
-  <version value="1.1.0"/>
+  <version value="0.9.1"/>
   <name value="DiagnosticReport"/>
   <title value="obf-DiagnosticReport"/>
-  <status value="draft"/>
-  <date value="2019-06-18T00:00:00-04:00"/>
-  <publisher value="HL7"/>
+  <status value="active"/>
+  <date value="2019-07-03T00:00:00-04:00"/>
+  <publisher value="The MITRE Corporation"/>
   <contact>
     <telecom>
       <system value="url"/>
       <value value="http://standardhealthrecord.org"/>
     </telecom>
   </contact>
-  <purpose value="To support reporting for any diagnostic report into a clinical data repository."/>
+  <description value="The findings and interpretation of diagnostic tests performed on patients, groups of patients, devices, and locations, and/or specimens derived from these. The report includes clinical context such as requesting and provider information, and some mix of atomic results, images, textual and coded interpretations, and formatted representation of diagnostic reports."/>
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166"/>
+      <code value="US"/>
+      <display value="United States of America"/>
+    </coding>
+  </jurisdiction>
   <fhirVersion value="4.0.0"/>
   <mapping>
     <identity value="workflow"/>
@@ -80,13 +87,13 @@
   <kind value="resource"/>
   <abstract value="false"/>
   <type value="DiagnosticReport"/>
-  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport"/>
+  <baseDefinition value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note"/>
   <derivation value="constraint"/>
   <snapshot>
     <element id="DiagnosticReport:obf-DiagnosticReport">
       <path value="DiagnosticReport"/>
       <short value="obf-DiagnosticReport"/>
-      <definition value="The findings and interpretation of diagnostic  tests performed on patients, groups of patients, devices, and locations, and/or specimens derived from these. The report includes clinical context such as requesting and provider information, and some mix of atomic results, images, textual and coded interpretations, and formatted representation of diagnostic reports."/>
+      <definition value="The findings and interpretation of diagnostic tests performed on patients, groups of patients, devices, and locations, and/or specimens derived from these. The report includes clinical context such as requesting and provider information, and some mix of atomic results, images, textual and coded interpretations, and formatted representation of diagnostic reports."/>
       <comment value="This is intended to capture a single report and is not suitable for use in displaying summary information that covers multiple reports.  For example, this resource has not been designed for laboratory cumulative reporting formats nor detailed structured reports for sequencing."/>
       <alias value="Report"/>
       <alias value="Test"/>
@@ -94,6 +101,8 @@
       <alias value="Results"/>
       <alias value="Labs"/>
       <alias value="Laboratory"/>
+      <alias value="Imaging Report"/>
+      <alias value="Radiology Report"/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -147,6 +156,7 @@
         <xpath value="not(exists(f:contained/*/f:meta/f:security))"/>
         <source value="DomainResource"/>
       </constraint>
+      <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
       <mapping>
@@ -332,7 +342,7 @@
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-      <requirements value="Modifier extensions allow for extensions that *cannot* be safely ignored to be clearly distinguished from the vast majority of extensions which can be safely ignored.  This promotes interoperability by eliminating the need for implementers to prohibit the presence of extensions. For further information, see the [definition of modifier extensions](extensibility.html#modifierExtension)."/>
+      <requirements value="Modifier extensions allow for extensions that *cannot* be safely ignored to be clearly distinguished from the vast majority of extensions which can be safely ignored.  This promotes interoperability by eliminating the need for implementers to prohibit the presence of extensions. For further information, see the [definition of modifier extensions](http://hl7.org/fhir/R4/extensibility.html#modifierExtension)."/>
       <alias value="extensions"/>
       <alias value="user content"/>
       <min value="0"/>
@@ -407,10 +417,10 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-ServiceRequest"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-ReferralRequest"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-ProcedureRequest"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-MedicationRequest"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-ServiceRequest"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-ReferralRequest"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-ProcedureRequest"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-MedicationRequest"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="false"/>
@@ -442,16 +452,13 @@
       <type>
         <code value="code"/>
       </type>
+      <mustSupport value="true"/>
       <isModifier value="true"/>
       <isModifierReason value="This element is labeled as a modifier because it is a status element that contains status entered-in-error which means that the resource should not be treated as valid"/>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="DiagnosticReportStatus"/>
-        </extension>
         <strength value="required"/>
-        <description value="The status of the diagnostic report."/>
-        <valueSet value="http://hl7.org/fhir/ValueSet/diagnostic-report-status|4.0.0"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/diagnostic-report-status"/>
       </binding>
       <mapping>
         <identity value="workflow"/>
@@ -479,7 +486,9 @@
       <alias value="Sub-department"/>
       <alias value="Service"/>
       <alias value="Discipline"/>
-      <min value="0"/>
+      <alias value="service"/>
+      <alias value="discipline"/>
+      <min value="1"/>
       <max value="1"/>
       <base>
         <path value="DiagnosticReport.category"/>
@@ -489,15 +498,12 @@
       <type>
         <code value="CodeableConcept"/>
       </type>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="DiagnosticServiceSection"/>
-        </extension>
-        <strength value="example"/>
-        <description value="Codes for diagnostic service sections."/>
-        <valueSet value="http://hl7.org/fhir/ValueSet/diagnostic-service-sections"/>
+        <strength value="extensible"/>
+        <valueSet value="http://hl7.org/fhir/us/core/ValueSet/us-core-diagnosticreport-category"/>
       </binding>
       <mapping>
         <identity value="w5"/>
@@ -514,8 +520,9 @@
     </element>
     <element id="DiagnosticReport:obf-DiagnosticReport.code">
       <path value="DiagnosticReport.code"/>
-      <short value="Name/Code for this diagnostic report"/>
-      <definition value="A code or name that describes this diagnostic report."/>
+      <short value="US Core Report Code"/>
+      <definition value="The test, panel, report, or note that was ordered."/>
+      <comment value="UsageNote= The typical patterns for codes are:  1)  a LOINC code either as a  translation from a &quot;local&quot; code or as a primary code, or 2)  a local code only if no suitable LOINC exists,  or 3)  both the local and the LOINC translation.   Systems SHALL be capable of sending the local code if one exists."/>
       <alias value="Type"/>
       <min value="1"/>
       <max value="1"/>
@@ -527,14 +534,11 @@
       <type>
         <code value="CodeableConcept"/>
       </type>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="DiagnosticReportCodes"/>
-        </extension>
-        <strength value="preferred"/>
-        <description value="Codes that describe Diagnostic Reports."/>
+        <strength value="extensible"/>
         <valueSet value="http://hl7.org/fhir/ValueSet/report-codes"/>
       </binding>
       <mapping>
@@ -556,11 +560,11 @@
     </element>
     <element id="DiagnosticReport:obf-DiagnosticReport.subject">
       <path value="DiagnosticReport.subject"/>
-      <short value="The subject of the report - usually, but not always, the patient"/>
-      <definition value="The subject of the report. Usually, but not always, this is a patient. However, diagnostic services also perform analyses on specimens collected from a variety of other sources."/>
+      <short value="The subject of an observation"/>
+      <definition value="The subject of an observation."/>
       <requirements value="SHALL know the subject context."/>
       <alias value="Patient"/>
-      <min value="0"/>
+      <min value="1"/>
       <max value="1"/>
       <base>
         <path value="DiagnosticReport.subject"/>
@@ -569,11 +573,9 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Patient"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Group"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Device"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Location"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Patient"/>
       </type>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -613,8 +615,9 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Encounter"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Encounter"/>
       </type>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -636,14 +639,14 @@
     </element>
     <element id="DiagnosticReport:obf-DiagnosticReport.effective[x]">
       <path value="DiagnosticReport.effective[x]"/>
-      <short value="Clinically relevant time/time-period for report"/>
-      <definition value="The time or time-period the observed values are related to. When the subject of the report is a patient, this is usually either the time of the procedure or of specimen collection(s), but very often the source of the date/time is not known, only the date/time itself."/>
+      <short value="Time of the report or note"/>
+      <definition value="This is the Datetime or Period when the report or note was written."/>
       <comment value="If the diagnostic procedure was performed on the patient, this is the time it was performed. If there are specimens, the diagnostically relevant time can be derived from the specimen collection times, but the specimen information is not always available, and the exact relationship between the specimens and the diagnostically relevant time is not always automatic."/>
       <requirements value="Need to know where in the patient history to file/present this report."/>
       <alias value="Observation time"/>
       <alias value="Effective Time"/>
       <alias value="Occurrence"/>
-      <min value="0"/>
+      <min value="1"/>
       <max value="1"/>
       <base>
         <path value="DiagnosticReport.effective[x]"/>
@@ -656,6 +659,7 @@
       <type>
         <code value="Period"/>
       </type>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -694,6 +698,7 @@
       <type>
         <code value="instant"/>
       </type>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -731,9 +736,10 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Practitioner"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Organization"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"/>
       </type>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -770,8 +776,8 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Practitioner"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Organization"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="true"/>
@@ -807,7 +813,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Specimen"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Specimen"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="false"/>
@@ -823,7 +829,7 @@
     <element id="DiagnosticReport:obf-DiagnosticReport.result">
       <path value="DiagnosticReport.result"/>
       <short value="Observations"/>
-      <definition value="[Observations](observation.html)  that are part of this diagnostic report."/>
+      <definition value="[Observations](http://hl7.org/fhir/R4/observation.html)  that are part of this diagnostic report."/>
       <comment value="Observations can contain observations."/>
       <requirements value="Need to support individual results, or  groups of results, where the result grouping is arbitrary, but meaningful."/>
       <alias value="Data"/>
@@ -844,7 +850,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Observation"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Observation"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="false"/>
@@ -906,6 +912,7 @@
         <xpath value="@value|f:*|h:div"/>
         <source value="Element"/>
       </constraint>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -968,7 +975,7 @@
       <short value="Extensions that cannot be ignored even if unrecognized"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-      <requirements value="Modifier extensions allow for extensions that *cannot* be safely ignored to be clearly distinguished from the vast majority of extensions which can be safely ignored.  This promotes interoperability by eliminating the need for implementers to prohibit the presence of extensions. For further information, see the [definition of modifier extensions](extensibility.html#modifierExtension)."/>
+      <requirements value="Modifier extensions allow for extensions that *cannot* be safely ignored to be clearly distinguished from the vast majority of extensions which can be safely ignored.  This promotes interoperability by eliminating the need for implementers to prohibit the presence of extensions. For further information, see the [definition of modifier extensions](http://hl7.org/fhir/R4/extensibility.html#modifierExtension)."/>
       <alias value="extensions"/>
       <alias value="user content"/>
       <alias value="modifiers"/>
@@ -1026,7 +1033,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Media"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="true"/>
@@ -1111,6 +1118,7 @@
       <type>
         <code value="Attachment"/>
       </type>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
       <mapping>
@@ -1127,7 +1135,8 @@
     <element id="DiagnosticReport:obf-DiagnosticReport">
       <path value="DiagnosticReport"/>
       <short value="obf-DiagnosticReport"/>
-      <definition value="The findings and interpretation of diagnostic  tests performed on patients, groups of patients, devices, and locations, and/or specimens derived from these. The report includes clinical context such as requesting and provider information, and some mix of atomic results, images, textual and coded interpretations, and formatted representation of diagnostic reports."/>
+      <definition value="The findings and interpretation of diagnostic tests performed on patients, groups of patients, devices, and locations, and/or specimens derived from these. The report includes clinical context such as requesting and provider information, and some mix of atomic results, images, textual and coded interpretations, and formatted representation of diagnostic reports."/>
+      <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -1135,32 +1144,38 @@
       <path value="DiagnosticReport.basedOn"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-ServiceRequest"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-ReferralRequest"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-ProcedureRequest"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-MedicationRequest"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-ServiceRequest"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-ReferralRequest"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-ProcedureRequest"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-MedicationRequest"/>
       </type>
     </element>
     <element id="DiagnosticReport:obf-DiagnosticReport.category">
       <path value="DiagnosticReport.category"/>
-      <min value="0"/>
+      <min value="1"/>
       <max value="1"/>
+    </element>
+    <element id="DiagnosticReport:obf-DiagnosticReport.code">
+      <path value="DiagnosticReport.code"/>
+      <binding>
+        <strength value="extensible"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/report-codes"/>
+      </binding>
     </element>
     <element id="DiagnosticReport:obf-DiagnosticReport.subject">
       <path value="DiagnosticReport.subject"/>
+      <short value="The subject of an observation"/>
+      <definition value="The subject of an observation."/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Patient"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Group"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Device"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Location"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Patient"/>
       </type>
     </element>
     <element id="DiagnosticReport:obf-DiagnosticReport.encounter">
       <path value="DiagnosticReport.encounter"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Encounter"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Encounter"/>
       </type>
     </element>
     <element id="DiagnosticReport:obf-DiagnosticReport.issued">
@@ -1174,8 +1189,8 @@
       <max value="1"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Practitioner"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Organization"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"/>
       </type>
     </element>
     <element id="DiagnosticReport:obf-DiagnosticReport.resultsInterpreter">
@@ -1184,32 +1199,15 @@
       <max value="1"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Practitioner"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Organization"/>
-      </type>
-    </element>
-    <element id="DiagnosticReport:obf-DiagnosticReport.specimen">
-      <path value="DiagnosticReport.specimen"/>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Specimen"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"/>
       </type>
     </element>
     <element id="DiagnosticReport:obf-DiagnosticReport.result">
       <path value="DiagnosticReport.result"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Observation"/>
-      </type>
-    </element>
-    <element id="DiagnosticReport:obf-DiagnosticReport.media">
-      <path value="DiagnosticReport.media"/>
-    </element>
-    <element id="DiagnosticReport:obf-DiagnosticReport.media.link">
-      <path value="DiagnosticReport.media.link"/>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Media"/>
+        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Observation"/>
       </type>
     </element>
   </differential>
