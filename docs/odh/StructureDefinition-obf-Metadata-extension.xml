@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="obf-Metadata-extension"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">
+  <p><b>Metadata Extension</b></p>
+  <p>Elements that belong to all information items.</p>
+</div>
+  </text>
+  <url value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Metadata-extension"/>
+  <identifier>
+    <system value="http://hl7.org/fhir/us/odh"/>
+    <value value="obf.Metadata"/>
+  </identifier>
+  <version value="1.1.0"/>
+  <name value="Metadata"/>
+  <title value="obf-Metadata"/>
+  <status value="draft"/>
+  <date value="2019-07-03T00:00:00-04:00"/>
+  <publisher value="HL7"/>
+  <contact>
+    <telecom>
+      <system value="url"/>
+      <value value="http://standardhealthrecord.org"/>
+    </telecom>
+  </contact>
+  <description value="Elements that belong to all information items."/>
+  <fhirVersion value="4.0.0"/>
+  <kind value="complex-type"/>
+  <abstract value="false"/>
+  <context>
+    <type value="element"/>
+    <expression value="*"/>
+  </context>
+  <type value="Extension"/>
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension"/>
+  <derivation value="constraint"/>
+  <snapshot>
+    <element id="Extension:metadata">
+      <path value="Extension"/>
+      <short value="Metadata"/>
+      <definition value="Elements that belong to all information items."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <condition value="ele-1"/>
+      <constraint>
+        <key value="ele-1"/>
+        <severity value="error"/>
+        <human value="All FHIR elements must have a @value or children"/>
+        <expression value="hasValue() or (children().count() &gt; id.count())"/>
+        <xpath value="@value|f:*|h:div"/>
+        <source value="Element"/>
+      </constraint>
+      <constraint>
+        <key value="ext-1"/>
+        <severity value="error"/>
+        <human value="Must have either extensions or value[x], not both"/>
+        <expression value="extension.exists() != value.exists()"/>
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), &#39;value&#39;)])"/>
+      </constraint>
+      <isModifier value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="Extension:metadata.id">
+      <path value="Extension.id"/>
+      <representation value="xmlAttr"/>
+      <short value="Unique id for inter-element referencing"/>
+      <definition value="Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.id"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="string"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Extension:metadata.extension">
+      <path value="Extension.extension"/>
+      <slicing>
+        <discriminator>
+          <type value="value"/>
+          <path value="url"/>
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="Additional content defined by implementations"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Extension:metadata.extension:versionid">
+      <path value="Extension.extension"/>
+      <sliceName value="versionid"/>
+      <definition value="An identifier associated with the product that denotes a particular release iteration."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-VersionId-extension"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Extension:metadata.extension:lastupdated">
+      <path value="Extension.extension"/>
+      <sliceName value="lastupdated"/>
+      <definition value="The most recent date the information item was changed."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-LastUpdated-extension"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Extension:metadata.extension:profile">
+      <path value="Extension.extension"/>
+      <sliceName value="profile"/>
+      <definition value="The name of the FHIR profile this resource claims to conform to."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Profile-extension"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Extension:metadata.extension:sourcesystem">
+      <path value="Extension.extension"/>
+      <sliceName value="sourcesystem"/>
+      <definition value="FHIR: This provides a minimal amount of Provenance information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.&#xA;FHIM: Identifies the computer system that created the medical record. This optional field may also be used to indicate that the medical record was originally created by a different organization from the one that is currently storing or utilizing the record in that the assigning authority of the Id could be set to that originating organization. This property is optional, as some systems will assume that all records that it contains originated in that system, however it is anticipated that it will become increasingly commonplace for records from multiple systems and organizations will be comingled in order to provide a complete picture of the patient&#39;s health record."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-SourceSystem-extension"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Extension:metadata.extension:securitylabel">
+      <path value="Extension.extension"/>
+      <sliceName value="securitylabel"/>
+      <definition value="A code that connects the entry to a security policy. Security labels can be updated when the resource changes, or whenever the security sub-system chooses to."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-SecurityLabel-extension"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Extension:metadata.extension:tag">
+      <path value="Extension.extension"/>
+      <sliceName value="tag"/>
+      <definition value="A code used to relate entries to categories or workflows. Applications are not required to consider the tags when interpreting the meaning of an entry."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Tag-extension"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Extension:metadata.url">
+      <path value="Extension.url"/>
+      <representation value="xmlAttr"/>
+      <short value="identifies the meaning of the extension"/>
+      <definition value="Source of the definition for the extension code - a logical name or a URL."/>
+      <comment value="The definition may point directly to a computable or human-readable definition of the extensibility codes, or it may be a logical URI as declared in some other specification. The definition SHALL be a URI for the Structure Definition defining the extension."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Extension.url"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="uri"/>
+      </type>
+      <fixedUri value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Metadata-extension"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="Extension:metadata.value[x]">
+      <path value="Extension.value[x]"/>
+      <short value="Value of extension"/>
+      <definition value="Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list)."/>
+      <min value="0"/>
+      <max value="0"/>
+      <base>
+        <path value="Extension.value[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="base64Binary"/>
+      </type>
+      <type>
+        <code value="boolean"/>
+      </type>
+      <type>
+        <code value="canonical"/>
+      </type>
+      <type>
+        <code value="code"/>
+      </type>
+      <type>
+        <code value="date"/>
+      </type>
+      <type>
+        <code value="dateTime"/>
+      </type>
+      <type>
+        <code value="decimal"/>
+      </type>
+      <type>
+        <code value="id"/>
+      </type>
+      <type>
+        <code value="instant"/>
+      </type>
+      <type>
+        <code value="integer"/>
+      </type>
+      <type>
+        <code value="markdown"/>
+      </type>
+      <type>
+        <code value="oid"/>
+      </type>
+      <type>
+        <code value="positiveInt"/>
+      </type>
+      <type>
+        <code value="string"/>
+      </type>
+      <type>
+        <code value="time"/>
+      </type>
+      <type>
+        <code value="unsignedInt"/>
+      </type>
+      <type>
+        <code value="uri"/>
+      </type>
+      <type>
+        <code value="url"/>
+      </type>
+      <type>
+        <code value="uuid"/>
+      </type>
+      <type>
+        <code value="Address"/>
+      </type>
+      <type>
+        <code value="Age"/>
+      </type>
+      <type>
+        <code value="Annotation"/>
+      </type>
+      <type>
+        <code value="Attachment"/>
+      </type>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <type>
+        <code value="ContactPoint"/>
+      </type>
+      <type>
+        <code value="Count"/>
+      </type>
+      <type>
+        <code value="Distance"/>
+      </type>
+      <type>
+        <code value="Duration"/>
+      </type>
+      <type>
+        <code value="HumanName"/>
+      </type>
+      <type>
+        <code value="Identifier"/>
+      </type>
+      <type>
+        <code value="Money"/>
+      </type>
+      <type>
+        <code value="Period"/>
+      </type>
+      <type>
+        <code value="Quantity"/>
+      </type>
+      <type>
+        <code value="Range"/>
+      </type>
+      <type>
+        <code value="Ratio"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+      </type>
+      <type>
+        <code value="SampledData"/>
+      </type>
+      <type>
+        <code value="Signature"/>
+      </type>
+      <type>
+        <code value="Timing"/>
+      </type>
+      <type>
+        <code value="ContactDetail"/>
+      </type>
+      <type>
+        <code value="Contributor"/>
+      </type>
+      <type>
+        <code value="DataRequirement"/>
+      </type>
+      <type>
+        <code value="Expression"/>
+      </type>
+      <type>
+        <code value="ParameterDefinition"/>
+      </type>
+      <type>
+        <code value="RelatedArtifact"/>
+      </type>
+      <type>
+        <code value="TriggerDefinition"/>
+      </type>
+      <type>
+        <code value="UsageContext"/>
+      </type>
+      <type>
+        <code value="Dosage"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+  </snapshot>
+  <differential>
+    <element id="Extension:metadata">
+      <path value="Extension"/>
+      <short value="Metadata"/>
+      <definition value="Elements that belong to all information items."/>
+      <min value="0"/>
+      <max value="*"/>
+    </element>
+    <element id="Extension:metadata.extension:versionid">
+      <path value="Extension.extension"/>
+      <sliceName value="versionid"/>
+      <definition value="An identifier associated with the product that denotes a particular release iteration."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-VersionId-extension"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Extension:metadata.extension:lastupdated">
+      <path value="Extension.extension"/>
+      <sliceName value="lastupdated"/>
+      <definition value="The most recent date the information item was changed."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-LastUpdated-extension"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Extension:metadata.extension:profile">
+      <path value="Extension.extension"/>
+      <sliceName value="profile"/>
+      <definition value="The name of the FHIR profile this resource claims to conform to."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Profile-extension"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Extension:metadata.extension:sourcesystem">
+      <path value="Extension.extension"/>
+      <sliceName value="sourcesystem"/>
+      <definition value="FHIR: This provides a minimal amount of Provenance information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.&#xA;FHIM: Identifies the computer system that created the medical record. This optional field may also be used to indicate that the medical record was originally created by a different organization from the one that is currently storing or utilizing the record in that the assigning authority of the Id could be set to that originating organization. This property is optional, as some systems will assume that all records that it contains originated in that system, however it is anticipated that it will become increasingly commonplace for records from multiple systems and organizations will be comingled in order to provide a complete picture of the patient&#39;s health record."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-SourceSystem-extension"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Extension:metadata.extension:securitylabel">
+      <path value="Extension.extension"/>
+      <sliceName value="securitylabel"/>
+      <definition value="A code that connects the entry to a security policy. Security labels can be updated when the resource changes, or whenever the security sub-system chooses to."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-SecurityLabel-extension"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Extension:metadata.extension:tag">
+      <path value="Extension.extension"/>
+      <sliceName value="tag"/>
+      <definition value="A code used to relate entries to categories or workflows. Applications are not required to consider the tags when interpreting the meaning of an entry."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Tag-extension"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Extension:metadata.url">
+      <path value="Extension.url"/>
+      <type>
+        <code value="uri"/>
+      </type>
+      <fixedUri value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Metadata-extension"/>
+    </element>
+    <element id="Extension:metadata.value[x]">
+      <path value="Extension.value[x]"/>
+      <min value="0"/>
+      <max value="0"/>
+    </element>
+  </differential>
+</StructureDefinition>

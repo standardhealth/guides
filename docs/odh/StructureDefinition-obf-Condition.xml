@@ -9,9 +9,8 @@
 The Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.
 SHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction.</p>
   <p><b>Mapping Summary</b></p>
-  <p><pre>obf.Condition maps to Condition:
+  <p><pre>obf.Condition maps to http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition:
   Language maps to language
-  Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
   Metadata.SourceSystem maps to meta.source
@@ -19,6 +18,7 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
+  Narrative maps to text
   Identifier maps to identifier
   ClinicalStatus maps to clinicalStatus
   Status maps to verificationStatus
@@ -41,7 +41,7 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
   StageInformation.StageDetail maps to stage.assessment
   StageInformation.Type maps to stage.type
   Evidence.Manifestation maps to evidence.code
-  Evidence.DomainResource maps to evidence.detail
+  Evidence.Resource maps to evidence.detail
   Annotation maps to note
   DateOfDiagnosis maps to extension
 </pre></p>
@@ -55,8 +55,9 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
   <version value="1.1.0"/>
   <name value="Condition"/>
   <title value="obf-Condition"/>
-  <status value="draft"/>
-  <date value="2019-06-21T00:00:00-04:00"/>
+  <status value="active"/>
+  <experimental value="false"/>
+  <date value="2019-07-03T00:00:00-04:00"/>
   <publisher value="HL7"/>
   <contact>
     <telecom>
@@ -65,7 +66,19 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
     </telecom>
   </contact>
   <description value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.&#xA;The Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.&#xA;SHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction."/>
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166"/>
+      <code value="US"/>
+      <display value="United States of America"/>
+    </coding>
+  </jurisdiction>
   <fhirVersion value="4.0.0"/>
+  <mapping>
+    <identity value="argonaut-dq-dstu2"/>
+    <uri value="http://unknown.org/Argonaut-DQ-DSTU2"/>
+    <name value="Argonaut-DQ-DSTU2"/>
+  </mapping>
   <mapping>
     <identity value="workflow"/>
     <uri value="http://hl7.org/fhir/workflow"/>
@@ -99,7 +112,7 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
   <kind value="resource"/>
   <abstract value="false"/>
   <type value="Condition"/>
-  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Condition"/>
+  <baseDefinition value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"/>
   <derivation value="constraint"/>
   <snapshot>
     <element id="Condition:obf-Condition">
@@ -165,6 +178,7 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         <human value="Condition.clinicalStatus SHALL NOT be present if verification Status is entered-in-error"/>
         <expression value="verificationStatus.coding.where(system=&#39;http://terminology.hl7.org/CodeSystem/condition-ver-status&#39; and code=&#39;entered-in-error&#39;).empty() or clinicalStatus.empty()"/>
         <xpath value="not(exists(f:verificationStatus/f:coding[f:system/@value=&#39;http://terminology.hl7.org/CodeSystem/condition-ver-status&#39; and f:code/@value=&#39;entered-in-error&#39;])) or not(exists(f:clinicalStatus))"/>
+        <source value="Condition"/>
       </constraint>
       <constraint>
         <key value="con-4"/>
@@ -172,6 +186,7 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         <human value="If condition is abated, then clinicalStatus must be either inactive, resolved, or remission"/>
         <expression value="abatement.empty() or clinicalStatus.coding.where(system=&#39;http://terminology.hl7.org/CodeSystem/condition-clinical&#39; and (code=&#39;resolved&#39; or code=&#39;remission&#39; or code=&#39;inactive&#39;)).exists()"/>
         <xpath value="not(exists(*[starts-with(local-name(.), &#39;abatement&#39;)])) or exists(f:clinicalStatus/f:coding[f:system/@value=&#39;http://terminology.hl7.org/CodeSystem/condition-clinical&#39; and f:code/@value=(&#39;resolved&#39;, &#39;remission&#39;, &#39;inactive&#39;)])"/>
+        <source value="Condition"/>
       </constraint>
       <constraint>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bestpractice">
@@ -185,7 +200,19 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         <human value="Condition.clinicalStatus SHALL be present if verificationStatus is not entered-in-error and category is problem-list-item"/>
         <expression value="clinicalStatus.exists() or verificationStatus=&#39;entered-in-error&#39; or category.select($this=&#39;problem-list-item&#39;).empty()"/>
         <xpath value="exists(f:clinicalStatus) or f:verificationStatus/@value=&#39;entered-in-error&#39; or not(exists(category[@value=&#39;problem-list-item&#39;]))"/>
+        <source value="Condition"/>
       </constraint>
+      <constraint>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bestpractice">
+          <valueBoolean value="true"/>
+        </extension>
+        <key value="us-core-1"/>
+        <severity value="warning"/>
+        <human value="A code in Condition.category SHOULD be from US Core Condition Category Codes value set."/>
+        <expression value="where(category in &#39;http://hl7.org/fhir/us/core/ValueSet/us-core-condition-category&#39;).exists()"/>
+        <xpath value="(no xpath equivalent)"/>
+      </constraint>
+      <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
       <mapping>
@@ -207,6 +234,10 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       <mapping>
         <identity value="rim"/>
         <map value="Observation[classCode=OBS, moodCode=EVN, code=ASSERTION, value&lt;Diagnosis]"/>
+      </mapping>
+      <mapping>
+        <identity value="argonaut-dq-dstu2"/>
+        <map value="Condition"/>
       </mapping>
     </element>
     <element id="Condition:obf-Condition.id">
@@ -401,7 +432,7 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-      <requirements value="Modifier extensions allow for extensions that *cannot* be safely ignored to be clearly distinguished from the vast majority of extensions which can be safely ignored.  This promotes interoperability by eliminating the need for implementers to prohibit the presence of extensions. For further information, see the [definition of modifier extensions](extensibility.html#modifierExtension)."/>
+      <requirements value="Modifier extensions allow for extensions that *cannot* be safely ignored to be clearly distinguished from the vast majority of extensions which can be safely ignored.  This promotes interoperability by eliminating the need for implementers to prohibit the presence of extensions. For further information, see the [definition of modifier extensions](http://hl7.org/fhir/R4/extensibility.html#modifierExtension)."/>
       <alias value="extensions"/>
       <alias value="user content"/>
       <min value="0"/>
@@ -426,7 +457,7 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       <path value="Condition.identifier"/>
       <short value="External Ids for this condition"/>
       <definition value="Business identifiers assigned to this condition by the performer or other systems which remain constant as the resource is updated and propagates from server to server."/>
-      <comment value="This is a business identifier, not a resource identifier (see [discussion](resource.html#identifiers)).  It is best practice for the identifier to only appear on a single resource instance, however business practices may occasionally dictate that multiple resource instances with the same identifier can exist - possibly even with different resource types.  For example, multiple Patient and a Person resource instance might share the same social insurance number."/>
+      <comment value="This is a business identifier, not a resource identifier (see [discussion](http://hl7.org/fhir/R4/resource.html#identifiers)).  It is best practice for the identifier to only appear on a single resource instance, however business practices may occasionally dictate that multiple resource instances with the same identifier can exist - possibly even with different resource types.  For example, multiple Patient and a Person resource instance might share the same social insurance number."/>
       <requirements value="Allows identification of the condition as it is known by various participating systems and in a way that remains consistent across servers."/>
       <min value="0"/>
       <max value="*"/>
@@ -471,16 +502,13 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       <condition value="con-3"/>
       <condition value="con-4"/>
       <condition value="con-5"/>
+      <mustSupport value="true"/>
       <isModifier value="true"/>
       <isModifierReason value="This element is labeled as a modifier because the status contains codes that mark the condition as no longer active."/>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="ConditionClinicalStatus"/>
-        </extension>
         <strength value="required"/>
-        <description value="The clinical status of the condition or diagnosis."/>
-        <valueSet value="http://hl7.org/fhir/ValueSet/condition-clinical|4.0.0"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/condition-clinical"/>
       </binding>
       <mapping>
         <identity value="workflow"/>
@@ -502,6 +530,10 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         <identity value="rim"/>
         <map value="Observation ACT&#xA;.inboundRelationship[typeCode=COMP].source[classCode=OBS, code=&quot;clinicalStatus&quot;, moodCode=EVN].value"/>
       </mapping>
+      <mapping>
+        <identity value="argonaut-dq-dstu2"/>
+        <map value="Condition.clinicalStatus"/>
+      </mapping>
     </element>
     <element id="Condition:obf-Condition.verificationStatus">
       <path value="Condition.verificationStatus"/>
@@ -520,16 +552,13 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       </type>
       <condition value="con-3"/>
       <condition value="con-5"/>
+      <mustSupport value="true"/>
       <isModifier value="true"/>
       <isModifierReason value="This element is labeled as a modifier because the status contains the code refuted and entered-in-error that mark the Condition as not currently valid."/>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="ConditionVerificationStatus"/>
-        </extension>
         <strength value="required"/>
-        <description value="The verification status to support or decline the clinical status of the condition or diagnosis."/>
-        <valueSet value="http://hl7.org/fhir/ValueSet/condition-ver-status|4.0.0"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/condition-ver-status"/>
       </binding>
       <mapping>
         <identity value="workflow"/>
@@ -555,6 +584,10 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         <identity value="sct-attr"/>
         <map value="408729009"/>
       </mapping>
+      <mapping>
+        <identity value="argonaut-dq-dstu2"/>
+        <map value="Condition.verificationStatus"/>
+      </mapping>
     </element>
     <element id="Condition:obf-Condition.category">
       <path value="Condition.category"/>
@@ -571,6 +604,7 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       <type>
         <code value="CodeableConcept"/>
       </type>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
       <binding>
@@ -592,6 +626,10 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       <mapping>
         <identity value="rim"/>
         <map value=".code"/>
+      </mapping>
+      <mapping>
+        <identity value="argonaut-dq-dstu2"/>
+        <map value="Condition.category"/>
       </mapping>
     </element>
     <element id="Condition:obf-Condition.severity">
@@ -656,10 +694,12 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       <type>
         <code value="CodeableConcept"/>
       </type>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <binding>
         <strength value="extensible"/>
+        <description value="Valueset to describe the actual problem experienced by the patient"/>
         <valueSet value="http://hl7.org/fhir/us/core/ValueSet/us-core-problem"/>
       </binding>
       <mapping>
@@ -686,12 +726,16 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         <identity value="sct-attr"/>
         <map value="246090004"/>
       </mapping>
+      <mapping>
+        <identity value="argonaut-dq-dstu2"/>
+        <map value="Condition.code"/>
+      </mapping>
     </element>
     <element id="Condition:obf-Condition.bodySite">
       <path value="Condition.bodySite"/>
       <short value="Anatomical location, if relevant"/>
       <definition value="The anatomical location where this condition manifests itself."/>
-      <comment value="Only used if not implicit in code found in Condition.code. If the use case requires attributes from the BodySite resource (e.g. to identify and track separately) then use the standard extension [bodySite](extension-bodysite.html).  May be a summary code, or a reference to a very precise definition of the location, or both."/>
+      <comment value="Only used if not implicit in code found in Condition.code. If the use case requires attributes from the BodySite resource (e.g. to identify and track separately) then use the standard extension [bodySite](http://hl7.org/fhir/R4/extension-bodysite.html).  May be a summary code, or a reference to a very precise definition of the location, or both."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -909,8 +953,9 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Patient"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"/>
       </type>
+      <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -932,6 +977,10 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       <mapping>
         <identity value="w5"/>
         <map value="FiveWs.subject"/>
+      </mapping>
+      <mapping>
+        <identity value="argonaut-dq-dstu2"/>
+        <map value="Condition.patient"/>
       </mapping>
     </element>
     <element id="Condition:obf-Condition.encounter">
@@ -1096,9 +1145,10 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Patient"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Practitioner"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-RelatedPerson"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="true"/>
@@ -1124,9 +1174,9 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Patient"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Practitioner"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-RelatedPerson"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="true"/>
@@ -1230,7 +1280,7 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       <short value="Extensions that cannot be ignored even if unrecognized"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-      <requirements value="Modifier extensions allow for extensions that *cannot* be safely ignored to be clearly distinguished from the vast majority of extensions which can be safely ignored.  This promotes interoperability by eliminating the need for implementers to prohibit the presence of extensions. For further information, see the [definition of modifier extensions](extensibility.html#modifierExtension)."/>
+      <requirements value="Modifier extensions allow for extensions that *cannot* be safely ignored to be clearly distinguished from the vast majority of extensions which can be safely ignored.  This promotes interoperability by eliminating the need for implementers to prohibit the presence of extensions. For further information, see the [definition of modifier extensions](http://hl7.org/fhir/R4/extensibility.html#modifierExtension)."/>
       <alias value="extensions"/>
       <alias value="user content"/>
       <alias value="modifiers"/>
@@ -1431,7 +1481,7 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       <short value="Extensions that cannot be ignored even if unrecognized"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-      <requirements value="Modifier extensions allow for extensions that *cannot* be safely ignored to be clearly distinguished from the vast majority of extensions which can be safely ignored.  This promotes interoperability by eliminating the need for implementers to prohibit the presence of extensions. For further information, see the [definition of modifier extensions](extensibility.html#modifierExtension)."/>
+      <requirements value="Modifier extensions allow for extensions that *cannot* be safely ignored to be clearly distinguished from the vast majority of extensions which can be safely ignored.  This promotes interoperability by eliminating the need for implementers to prohibit the presence of extensions. For further information, see the [definition of modifier extensions](http://hl7.org/fhir/R4/extensibility.html#modifierExtension)."/>
       <alias value="extensions"/>
       <alias value="user content"/>
       <alias value="modifiers"/>
@@ -1504,7 +1554,7 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-DomainResource"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource"/>
       </type>
       <condition value="con-2"/>
       <isModifier value="false"/>
@@ -1531,7 +1581,6 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       </base>
       <type>
         <code value="Annotation"/>
-        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Annotation"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="false"/>
@@ -1554,6 +1603,7 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       <path value="Condition"/>
       <short value="obf-Condition"/>
       <definition value="A condition that is or may be present in a subject. &#39;Condition&#39; is interpreted broadly and could be a disorder, abnormality, problem, injury, complaint, functionality, illness, disease, ailment, sickness, affliction, upset, difficulty, disorder, symptom, worry, or trouble.&#xA;The Observation-based class, ConditionAbsent, should be used to describe conditions that are not present or negative findings.&#xA;SHR Condition uses the SHR BodyLocation structure that includes not only a code, but optional laterality, direction, clock direction, and distance. If included, the distance is measured from the location specified by the code, laterality, and direction."/>
+      <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -1603,15 +1653,6 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       <binding>
         <strength value="extensible"/>
         <valueSet value="http://hl7.org/fhir/us/odh/ValueSet/obf-ConditionCategoryVS"/>
-      </binding>
-    </element>
-    <element id="Condition:obf-Condition.code">
-      <path value="Condition.code"/>
-      <min value="1"/>
-      <max value="1"/>
-      <binding>
-        <strength value="extensible"/>
-        <valueSet value="http://hl7.org/fhir/us/core/ValueSet/us-core-problem"/>
       </binding>
     </element>
     <element id="Condition:obf-Condition.bodySite">
@@ -1675,13 +1716,6 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Condition:obf-Condition.subject">
-      <path value="Condition.subject"/>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Patient"/>
-      </type>
-    </element>
     <element id="Condition:obf-Condition.encounter">
       <path value="Condition.encounter"/>
       <type>
@@ -1693,18 +1727,19 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
       <path value="Condition.recorder"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Patient"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Practitioner"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-RelatedPerson"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson"/>
       </type>
     </element>
     <element id="Condition:obf-Condition.asserter">
       <path value="Condition.asserter"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Patient"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Practitioner"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-RelatedPerson"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"/>
+        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson"/>
       </type>
     </element>
     <element id="Condition:obf-Condition.stage">
@@ -1731,20 +1766,6 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
         <strength value="example"/>
         <valueSet value="http://hl7.org/fhir/ValueSet/clinical-findings"/>
       </binding>
-    </element>
-    <element id="Condition:obf-Condition.evidence.detail">
-      <path value="Condition.evidence.detail"/>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-DomainResource"/>
-      </type>
-    </element>
-    <element id="Condition:obf-Condition.note">
-      <path value="Condition.note"/>
-      <type>
-        <code value="Annotation"/>
-        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Annotation"/>
-      </type>
     </element>
   </differential>
 </StructureDefinition>

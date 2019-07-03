@@ -3,7 +3,7 @@
   <sch:ns prefix="f" uri="http://hl7.org/fhir"/>
   <sch:ns prefix="h" uri="http://www.w3.org/1999/xhtml"/>
   <!-- 
-    This file contains just the constraints for the profile Condition
+    This file contains just the constraints for the profile USCoreCondition
     It includes the base constraints for the resource as well.
     Because of the way that schematrons and containment work, 
     you may need to use this schematron fragment to build a, 
@@ -15,9 +15,7 @@
       <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/odh/StructureDefinition/obf-DateOfDiagnosis-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/odh/StructureDefinition/obf-DateOfDiagnosis-extension': maximum cardinality of 'extension' is 1</sch:assert>
       <sch:assert test="count(f:clinicalStatus) &gt;= 1">clinicalStatus: minimum cardinality of 'clinicalStatus' is 1</sch:assert>
       <sch:assert test="count(f:verificationStatus) &gt;= 1">verificationStatus: minimum cardinality of 'verificationStatus' is 1</sch:assert>
-      <sch:assert test="count(f:category) &gt;= 1">category: minimum cardinality of 'category' is 1</sch:assert>
       <sch:assert test="count(f:category) &lt;= 1">category: maximum cardinality of 'category' is 1</sch:assert>
-      <sch:assert test="count(f:code) &gt;= 1">code: minimum cardinality of 'code' is 1</sch:assert>
       <sch:assert test="count(f:stage) &lt;= 1">stage: maximum cardinality of 'stage' is 1</sch:assert>
     </sch:rule>
   </sch:pattern>
@@ -32,6 +30,7 @@
       <sch:assert test="not(exists(f:verificationStatus/f:coding[f:system/@value='http://terminology.hl7.org/CodeSystem/condition-ver-status' and f:code/@value='entered-in-error'])) or not(exists(f:clinicalStatus))">Condition.clinicalStatus SHALL NOT be present if verification Status is entered-in-error</sch:assert>
       <sch:assert test="not(exists(*[starts-with(local-name(.), 'abatement')])) or exists(f:clinicalStatus/f:coding[f:system/@value='http://terminology.hl7.org/CodeSystem/condition-clinical' and f:code/@value=('resolved', 'remission', 'inactive')])">If condition is abated, then clinicalStatus must be either inactive, resolved, or remission</sch:assert>
       <sch:assert test="exists(f:clinicalStatus) or f:verificationStatus/@value='entered-in-error' or not(exists(category[@value='problem-list-item']))">Condition.clinicalStatus SHALL be present if verificationStatus is not entered-in-error and category is problem-list-item</sch:assert>
+      <sch:assert test="(no xpath equivalent)">A code in Condition.category SHOULD be from US Core Condition Category Codes value set.</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>

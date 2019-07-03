@@ -10,7 +10,7 @@
   fhir:Resource.id [ fhir:value "obf-Medication"];
   fhir:DomainResource.text [
      fhir:Narrative.status [ fhir:value "generated" ];
-     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Medication Profile</b></p>\n  <p>A type of prescription drug or over-the-counter drug that is used to prevent, treat, or relieve symptoms of a disease or abnormal condition, but excluding vaccines.\nIn FHIR DSTU2 and STU3, Medication lacks the identifier attribute, which is included in SHR as an extension.\nDSTU2 lacks the status attribute, which is required by US-Core.\nBatch is 0..1 in FHIR R4, and accordingly is restricted here.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>obf.Medication maps to Medication:\n  Language maps to language\n  Narrative maps to text\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.source\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Identifier maps to identifier  // added identifier\n  Code maps to code\n  Status maps to status\n  DoseForm maps to form\n  PackageAmount maps to amount\n  Ingredient.SubstanceOrCode maps to ingredient.item[x]\n  Ingredient.IngredientStrength maps to ingredient.strength\n  Ingredient.IsActiveIngredient maps to ingredient.isActive\n  Manufacturer maps to manufacturer\n  LotNumber maps to batch.lotNumber // deleted package, added lotNumber\n  ExpirationDate maps to batch.expirationDate // deleted package, added expirationDate\n</pre></p>\n</div>"
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>Medication Profile</b></p>\n  <p>A type of prescription drug or over-the-counter drug that is used to prevent, treat, or relieve symptoms of a disease or abnormal condition, but excluding vaccines.\nIn FHIR DSTU2 and STU3, Medication lacks the identifier attribute, which is included in SHR as an extension.\nDSTU2 lacks the status attribute, which is required by US-Core.\nBatch is 0..1 in FHIR R4, and accordingly is restricted here.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>obf.Medication maps to http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication:\n  Language maps to language\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.source\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Narrative maps to text\n  Identifier maps to identifier  // added identifier\n  Code maps to code\n  Status maps to status\n  DoseForm maps to form\n  PackageAmount maps to amount\n  Ingredient.SubstanceOrCode maps to ingredient.item[x]\n  Ingredient.IngredientStrength maps to ingredient.strength\n  Ingredient.IsActiveIngredient maps to ingredient.isActive\n  Manufacturer maps to manufacturer\n  LotNumber maps to batch.lotNumber // deleted package, added lotNumber\n  ExpirationDate maps to batch.expirationDate // deleted package, added expirationDate\n</pre></p>\n</div>"
   ];
   fhir:StructureDefinition.url [ fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Medication"];
   fhir:StructureDefinition.identifier [
@@ -21,8 +21,9 @@
   fhir:StructureDefinition.version [ fhir:value "1.1.0"];
   fhir:StructureDefinition.name [ fhir:value "Medication"];
   fhir:StructureDefinition.title [ fhir:value "obf-Medication"];
-  fhir:StructureDefinition.status [ fhir:value "draft"];
-  fhir:StructureDefinition.date [ fhir:value "2019-06-21T00:00:00-04:00"^^xsd:dateTime];
+  fhir:StructureDefinition.status [ fhir:value "active"];
+  fhir:StructureDefinition.experimental [ fhir:value "false"^^xsd:boolean];
+  fhir:StructureDefinition.date [ fhir:value "2019-07-03T00:00:00-04:00"^^xsd:dateTime];
   fhir:StructureDefinition.publisher [ fhir:value "HL7"];
   fhir:StructureDefinition.contact [
      fhir:index 0;
@@ -33,6 +34,15 @@
      ]
   ];
   fhir:StructureDefinition.description [ fhir:value "A type of prescription drug or over-the-counter drug that is used to prevent, treat, or relieve symptoms of a disease or abnormal condition, but excluding vaccines.\nIn FHIR DSTU2 and STU3, Medication lacks the identifier attribute, which is included in SHR as an extension.\nDSTU2 lacks the status attribute, which is required by US-Core.\nBatch is 0..1 in FHIR R4, and accordingly is restricted here."];
+  fhir:StructureDefinition.jurisdiction [
+     fhir:index 0;
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value "urn:iso:std:iso:3166" ];
+       fhir:Coding.code [ fhir:value "US" ];
+       fhir:Coding.display [ fhir:value "United States of America" ]
+     ]
+  ];
   fhir:StructureDefinition.keyword [
      fhir:index 0;
      fhir:Coding.system [ fhir:value "http://ncimeta.nci.nih.gov" ];
@@ -41,21 +51,26 @@
   fhir:StructureDefinition.fhirVersion [ fhir:value "4.0.0"];
   fhir:StructureDefinition.mapping [
      fhir:index 0;
+     fhir:StructureDefinition.mapping.identity [ fhir:value "argonaut-dq-dstu2" ];
+     fhir:StructureDefinition.mapping.uri [ fhir:value "http://unknown.org/Argonaut-DQ-DSTU2" ];
+     fhir:StructureDefinition.mapping.name [ fhir:value "Argonaut-DQ-DSTU2" ]
+  ], [
+     fhir:index 1;
      fhir:StructureDefinition.mapping.identity [ fhir:value "script10.6" ];
      fhir:StructureDefinition.mapping.uri [ fhir:value "http://ncpdp.org/SCRIPT10_6" ];
      fhir:StructureDefinition.mapping.name [ fhir:value "Mapping to NCPDP SCRIPT 10.6" ]
   ], [
-     fhir:index 1;
+     fhir:index 2;
      fhir:StructureDefinition.mapping.identity [ fhir:value "rim" ];
      fhir:StructureDefinition.mapping.uri [ fhir:value "http://hl7.org/v3" ];
      fhir:StructureDefinition.mapping.name [ fhir:value "RIM Mapping" ]
   ], [
-     fhir:index 2;
+     fhir:index 3;
      fhir:StructureDefinition.mapping.identity [ fhir:value "w5" ];
      fhir:StructureDefinition.mapping.uri [ fhir:value "http://hl7.org/fhir/fivews" ];
      fhir:StructureDefinition.mapping.name [ fhir:value "FiveWs Pattern Mapping" ]
   ], [
-     fhir:index 3;
+     fhir:index 4;
      fhir:StructureDefinition.mapping.identity [ fhir:value "v2" ];
      fhir:StructureDefinition.mapping.uri [ fhir:value "http://hl7.org/v2" ];
      fhir:StructureDefinition.mapping.name [ fhir:value "HL7 v2 Mapping" ]
@@ -64,8 +79,8 @@
   fhir:StructureDefinition.abstract [ fhir:value "false"^^xsd:boolean];
   fhir:StructureDefinition.type [ fhir:value "Medication"];
   fhir:StructureDefinition.baseDefinition [
-     fhir:value "http://hl7.org/fhir/StructureDefinition/Medication";
-     fhir:link <http://hl7.org/fhir/StructureDefinition/Medication>
+     fhir:value "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication";
+     fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication>
   ];
   fhir:StructureDefinition.derivation [ fhir:value "constraint"];
   fhir:StructureDefinition.snapshot [
@@ -132,6 +147,7 @@
          fhir:ElementDefinition.constraint.xpath [ fhir:value "not(exists(f:contained/*/f:meta/f:security))" ];
          fhir:ElementDefinition.constraint.source [ fhir:value "DomainResource" ]
        ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.mapping [
@@ -146,6 +162,10 @@
          fhir:index 2;
          fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
          fhir:ElementDefinition.mapping.map [ fhir:value "ManufacturedProduct[classCode=ADMM]" ]
+       ], [
+         fhir:index 3;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "argonaut-dq-dstu2" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "Medication" ]
        ]
      ], [
        fhir:index 1;
@@ -397,7 +417,7 @@
        fhir:ElementDefinition.short [ fhir:value "Extensions that cannot be ignored" ];
        fhir:ElementDefinition.definition [ fhir:value "May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)." ];
        fhir:ElementDefinition.comment [ fhir:value "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." ];
-       fhir:ElementDefinition.requirements [ fhir:value "Modifier extensions allow for extensions that *cannot* be safely ignored to be clearly distinguished from the vast majority of extensions which can be safely ignored.  This promotes interoperability by eliminating the need for implementers to prohibit the presence of extensions. For further information, see the [definition of modifier extensions](extensibility.html#modifierExtension)." ];
+       fhir:ElementDefinition.requirements [ fhir:value "Modifier extensions allow for extensions that *cannot* be safely ignored to be clearly distinguished from the vast majority of extensions which can be safely ignored.  This promotes interoperability by eliminating the need for implementers to prohibit the presence of extensions. For further information, see the [definition of modifier extensions](http://hl7.org/fhir/R4/extensibility.html#modifierExtension)." ];
        fhir:ElementDefinition.alias [
          fhir:value "extensions";
          fhir:index 0
@@ -471,10 +491,12 @@
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "CodeableConcept" ]
        ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "true"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "true"^^xsd:boolean ];
        fhir:ElementDefinition.binding [
          fhir:ElementDefinition.binding.strength [ fhir:value "extensible" ];
+         fhir:ElementDefinition.binding.description [ fhir:value "Prescribable medications" ];
          fhir:ElementDefinition.binding.valueSet [
            fhir:value "http://hl7.org/fhir/us/core/ValueSet/us-core-medication-codes";
            fhir:link <http://hl7.org/fhir/us/core/ValueSet/us-core-medication-codes>
@@ -496,6 +518,10 @@
          fhir:index 3;
          fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
          fhir:ElementDefinition.mapping.map [ fhir:value ".code" ]
+       ], [
+         fhir:index 4;
+         fhir:ElementDefinition.mapping.identity [ fhir:value "argonaut-dq-dstu2" ];
+         fhir:ElementDefinition.mapping.map [ fhir:value "Medication.code" ]
        ]
      ], [
        fhir:index 12;
@@ -553,9 +579,9 @@
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
          fhir:ElementDefinition.type.targetProfile [
-           fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Organization";
+           fhir:value "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization";
            fhir:index 0;
-           fhir:link <http://hl7.org/fhir/us/odh/StructureDefinition/obf-Organization>
+           fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization>
          ]
        ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
@@ -748,7 +774,7 @@
        fhir:ElementDefinition.short [ fhir:value "Extensions that cannot be ignored even if unrecognized" ];
        fhir:ElementDefinition.definition [ fhir:value "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)." ];
        fhir:ElementDefinition.comment [ fhir:value "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." ];
-       fhir:ElementDefinition.requirements [ fhir:value "Modifier extensions allow for extensions that *cannot* be safely ignored to be clearly distinguished from the vast majority of extensions which can be safely ignored.  This promotes interoperability by eliminating the need for implementers to prohibit the presence of extensions. For further information, see the [definition of modifier extensions](extensibility.html#modifierExtension)." ];
+       fhir:ElementDefinition.requirements [ fhir:value "Modifier extensions allow for extensions that *cannot* be safely ignored to be clearly distinguished from the vast majority of extensions which can be safely ignored.  This promotes interoperability by eliminating the need for implementers to prohibit the presence of extensions. For further information, see the [definition of modifier extensions](http://hl7.org/fhir/R4/extensibility.html#modifierExtension)." ];
        fhir:ElementDefinition.alias [
          fhir:value "extensions";
          fhir:index 0
@@ -984,7 +1010,7 @@
        fhir:ElementDefinition.short [ fhir:value "Extensions that cannot be ignored even if unrecognized" ];
        fhir:ElementDefinition.definition [ fhir:value "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)." ];
        fhir:ElementDefinition.comment [ fhir:value "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." ];
-       fhir:ElementDefinition.requirements [ fhir:value "Modifier extensions allow for extensions that *cannot* be safely ignored to be clearly distinguished from the vast majority of extensions which can be safely ignored.  This promotes interoperability by eliminating the need for implementers to prohibit the presence of extensions. For further information, see the [definition of modifier extensions](extensibility.html#modifierExtension)." ];
+       fhir:ElementDefinition.requirements [ fhir:value "Modifier extensions allow for extensions that *cannot* be safely ignored to be clearly distinguished from the vast majority of extensions which can be safely ignored.  This promotes interoperability by eliminating the need for implementers to prohibit the presence of extensions. For further information, see the [definition of modifier extensions](http://hl7.org/fhir/R4/extensibility.html#modifierExtension)." ];
        fhir:ElementDefinition.alias [
          fhir:value "extensions";
          fhir:index 0
@@ -1087,6 +1113,7 @@
        fhir:ElementDefinition.path [ fhir:value "Medication" ];
        fhir:ElementDefinition.short [ fhir:value "obf-Medication" ];
        fhir:ElementDefinition.definition [ fhir:value "A type of prescription drug or over-the-counter drug that is used to prevent, treat, or relieve symptoms of a disease or abnormal condition, but excluding vaccines.\nIn FHIR DSTU2 and STU3, Medication lacks the identifier attribute, which is included in SHR as an extension.\nDSTU2 lacks the status attribute, which is required by US-Core.\nBatch is 0..1 in FHIR R4, and accordingly is restricted here." ];
+       fhir:ElementDefinition.mustSupport [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
@@ -1129,32 +1156,19 @@
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ]
      ], [
        fhir:index 3;
-       fhir:Element.id [ fhir:value "Medication:obf-Medication.code" ];
-       fhir:ElementDefinition.path [ fhir:value "Medication.code" ];
-       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.binding [
-         fhir:ElementDefinition.binding.strength [ fhir:value "extensible" ];
-         fhir:ElementDefinition.binding.valueSet [
-           fhir:value "http://hl7.org/fhir/us/core/ValueSet/us-core-medication-codes";
-           fhir:link <http://hl7.org/fhir/us/core/ValueSet/us-core-medication-codes>
-         ]
-       ]
-     ], [
-       fhir:index 4;
        fhir:Element.id [ fhir:value "Medication:obf-Medication.manufacturer" ];
        fhir:ElementDefinition.path [ fhir:value "Medication.manufacturer" ];
        fhir:ElementDefinition.type [
          fhir:index 0;
          fhir:ElementDefinition.type.code [ fhir:value "Reference" ];
          fhir:ElementDefinition.type.targetProfile [
-           fhir:value "http://hl7.org/fhir/us/odh/StructureDefinition/obf-Organization";
+           fhir:value "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization";
            fhir:index 0;
-           fhir:link <http://hl7.org/fhir/us/odh/StructureDefinition/obf-Organization>
+           fhir:link <http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization>
          ]
        ]
      ], [
-       fhir:index 5;
+       fhir:index 4;
        fhir:Element.id [ fhir:value "Medication:obf-Medication.form" ];
        fhir:ElementDefinition.path [ fhir:value "Medication.form" ];
        fhir:ElementDefinition.binding [
@@ -1171,11 +1185,11 @@
          ]
        ]
      ], [
-       fhir:index 6;
+       fhir:index 5;
        fhir:Element.id [ fhir:value "Medication:obf-Medication.ingredient" ];
        fhir:ElementDefinition.path [ fhir:value "Medication.ingredient" ]
      ], [
-       fhir:index 7;
+       fhir:index 6;
        fhir:Element.id [ fhir:value "Medication:obf-Medication.ingredient.item[x]" ];
        fhir:ElementDefinition.path [ fhir:value "Medication.ingredient.item[x]" ];
        fhir:ElementDefinition.type [
