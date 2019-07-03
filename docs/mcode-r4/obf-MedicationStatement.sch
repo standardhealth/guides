@@ -3,7 +3,7 @@
   <sch:ns prefix="f" uri="http://hl7.org/fhir"/>
   <sch:ns prefix="h" uri="http://www.w3.org/1999/xhtml"/>
   <!-- 
-    This file contains just the constraints for the profile MedicationStatement
+    This file contains just the constraints for the profile USCoreMedicationStatementProfile
     It includes the base constraints for the resource as well.
     Because of the way that schematrons and containment work, 
     you may need to use this schematron fragment to build a, 
@@ -12,9 +12,8 @@
   <sch:pattern>
     <sch:title>f:MedicationStatement</sch:title>
     <sch:rule context="f:MedicationStatement">
-      <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/odh/StructureDefinition/obf-TreatmentIntent-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/odh/StructureDefinition/obf-TreatmentIntent-extension': maximum cardinality of 'extension' is 1</sch:assert>
+      <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/mcode/StructureDefinition/obf-TreatmentIntent-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/mcode/StructureDefinition/obf-TreatmentIntent-extension': maximum cardinality of 'extension' is 1</sch:assert>
       <sch:assert test="count(f:effective[x]) &gt;= 1">effective[x]: minimum cardinality of 'effective[x]' is 1</sch:assert>
-      <sch:assert test="count(f:dateAsserted) &gt;= 1">dateAsserted: minimum cardinality of 'dateAsserted' is 1</sch:assert>
       <sch:assert test="count(f:reasonCode) &lt;= 1">reasonCode: maximum cardinality of 'reasonCode' is 1</sch:assert>
       <sch:assert test="count(f:reasonReference) &lt;= 1">reasonReference: maximum cardinality of 'reasonReference' is 1</sch:assert>
       <sch:assert test="count(f:dosage) &lt;= 1">dosage: maximum cardinality of 'dosage' is 1</sch:assert>
