@@ -18,8 +18,8 @@
   Metadata.Tag maps to meta.tag
   Narrative maps to text
   Identifier maps to identifier
-  ObservationBasedOn maps to basedOn
-  ObservationPartOf maps to partOf
+  ProceduralObservationBasedOn maps to basedOn
+  ProceduralObservationPartOf maps to partOf
   Status maps to status
   Category maps to category
   Code maps to code
@@ -73,7 +73,7 @@
   <name value="TNMClinicalPrimaryTumorCategory"/>
   <title value="onco-core-TNMClinicalPrimaryTumorCategory"/>
   <status value="active"/>
-  <date value="2019-07-03T00:00:00-04:00"/>
+  <date value="2019-07-13T00:00:00-04:00"/>
   <publisher value="The MITRE Corporation"/>
   <contact>
     <telecom>
@@ -391,7 +391,7 @@
     <element id="Observation:onco-core-TNMClinicalPrimaryTumorCategory.extension:primarycancercondition">
       <path value="Observation.extension"/>
       <sliceName value="primarycancercondition"/>
-      <definition value="Records the history of the primary cancer condition, the original or first tumor in the body,&#xA0;abnormal cells that divide without control and can invade nearby tissues."/>
+      <definition value="Records the history of the primary cancer condition, the original or first tumor in the body (ref https://www.cancer.gov/publications/dictionaries/cancer-terms/def/primary-tumor)."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -468,8 +468,8 @@
     </element>
     <element id="Observation:onco-core-TNMClinicalPrimaryTumorCategory.basedOn">
       <path value="Observation.basedOn"/>
-      <short value="Fulfills plan, proposal or order"/>
-      <definition value="A plan, proposal or order that is fulfilled in whole or in part by this event.  For example, a MedicationRequest may require a patient to have laboratory test performed before  it is dispensed."/>
+      <short value="The plan, proposal or order that is fulfilled in whole or in part by this event"/>
+      <definition value="The plan, proposal or order that is fulfilled in whole or in part by this event. For example, a MedicationRequest may require a patient to have laboratory test performed before it is dispensed."/>
       <requirements value="Allows tracing of authorization for the event and tracking whether proposals/recommendations were acted upon."/>
       <alias value="Fulfills"/>
       <min value="0"/>
@@ -481,7 +481,6 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/ServiceRequest"/>
       </type>
       <isModifier value="false"/>
@@ -501,8 +500,8 @@
     </element>
     <element id="Observation:onco-core-TNMClinicalPrimaryTumorCategory.partOf">
       <path value="Observation.partOf"/>
-      <short value="A larger event of which this particular Observation is a component or step. For example, an observation as part of a procedure."/>
-      <definition value="A larger event of which this particular Observation is a component or step. For example, an observation as part of a procedure."/>
+      <short value="The larger procedure that this particular observation is a component or step"/>
+      <definition value="The larger procedure that this particular observation is a component or step."/>
       <comment value="To link an Observation to an Encounter use `encounter`.  See the  [Notes](observation.html#obsgrouping) below for guidance on referencing another Observation."/>
       <alias value="Container"/>
       <min value="0"/>
@@ -514,8 +513,6 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationAdministration"/>
-        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-MedicationStatement"/>
         <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Procedure"/>
       </type>
       <isModifier value="false"/>
@@ -1512,7 +1509,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-device"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="false"/>
@@ -1868,7 +1865,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"/>
         <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Observation"/>
@@ -2477,7 +2474,7 @@
     <element id="Observation:onco-core-TNMClinicalPrimaryTumorCategory.extension:primarycancercondition">
       <path value="Observation.extension"/>
       <sliceName value="primarycancercondition"/>
-      <definition value="Records the history of the primary cancer condition, the original or first tumor in the body,&#xA0;abnormal cells that divide without control and can invade nearby tissues."/>
+      <definition value="Records the history of the primary cancer condition, the original or first tumor in the body (ref https://www.cancer.gov/publications/dictionaries/cancer-terms/def/primary-tumor)."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -2494,20 +2491,19 @@
     </element>
     <element id="Observation:onco-core-TNMClinicalPrimaryTumorCategory.basedOn">
       <path value="Observation.basedOn"/>
+      <short value="The plan, proposal or order that is fulfilled in whole or in part by this event"/>
+      <definition value="The plan, proposal or order that is fulfilled in whole or in part by this event. For example, a MedicationRequest may require a patient to have laboratory test performed before it is dispensed."/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/ServiceRequest"/>
       </type>
     </element>
     <element id="Observation:onco-core-TNMClinicalPrimaryTumorCategory.partOf">
       <path value="Observation.partOf"/>
-      <short value="A larger event of which this particular Observation is a component or step. For example, an observation as part of a procedure."/>
-      <definition value="A larger event of which this particular Observation is a component or step. For example, an observation as part of a procedure."/>
+      <short value="The larger procedure that this particular observation is a component or step"/>
+      <definition value="The larger procedure that this particular observation is a component or step."/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationAdministration"/>
-        <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-MedicationStatement"/>
         <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Procedure"/>
       </type>
     </element>
@@ -2652,7 +2648,7 @@
       <max value="0"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-device"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device"/>
       </type>
     </element>
     <element id="Observation:onco-core-TNMClinicalPrimaryTumorCategory.referenceRange">
@@ -2695,7 +2691,7 @@
       <path value="Observation.derivedFrom"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"/>
         <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Observation"/>

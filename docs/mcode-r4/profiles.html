@@ -81,7 +81,7 @@
             <!-- no operation definitions -->
             <!-- no conformance / capability statements -->
             <li><a href="downloads.html">Downloads</a></li>
-            <li><a href="modeldoc.html">Reference Model</a></li>
+            <!-- no reference model -->
             <li><a href="http://hl7.org/fhir/us/mcode/history.html">History</a></li>
           </ul>
 
@@ -143,11 +143,29 @@
   </thead>
   <tbody>
     <tr>
+      <td><a href="StructureDefinition-vital-BloodPressure.html">BloodPressure</a></td>
+      <td><a href="http://hl7.org/fhir/R4/observation.html">Observation</a></td>
+      <td><p>The force of circulating blood on the walls of the arteries.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-vital-BodyHeight.html">BodyHeight</a></td>
+      <td><a href="http://hl7.org/fhir/R4/observation.html">Observation</a></td>
+      <td><p>Data structure for recording the body height, defined as the distance from the sole to the crown of the head.</p>
+</td>
+    </tr>
+    <tr>
+      <td><a href="StructureDefinition-vital-BodyWeight.html">BodyWeight</a></td>
+      <td><a href="http://hl7.org/fhir/R4/observation.html">Observation</a></td>
+      <td><p>Data structure for recording the body weight, defined as the mass or quantity of heaviness of the individual.</p>
+</td>
+    </tr>
+    <tr>
       <td><a href="StructureDefinition-obf-lab-CBCWAutoDifferentialPanel.html">CBCWAutoDifferentialPanel</a></td>
       <td><a href="http://hl7.org/fhir/R4/observation.html">Observation</a></td>
       <td><p>Complete blood count (CBC) with auto differential panel. Includes various measures of red blood cells, platelets, and various types of white blood cells and other related measures, such as hemoglobin. The components of this panel are not entirely standardized, so the definition of the CBC includes tests that are optional, or performed by certain laboratories but not others. Instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.</p>
 
-<p>Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (related groups of observations) should be represented by the DiagnosticReport resource. This specification deviates from this approach by using Observation for panels. This is because panels can contain other panels, but a DiagnosticReport cannot contain other DiagnosticReports. Nested panels are, in fact, quite common in LOINC (see 39135-9 Wound assessment panel for an example of a deeply nested panel). To represent nested panels, the each sub-panel <em>must be</em> an Observation. Of course, any sub-panel can also be a stand-alone panel, as well. Following the Argonaut/US Core recommended approach of using DiagnosticReport would imply that many or perhaps all panels would have to be represented twice: once as an Observation to permit the panel to be used as a sub-panel, and once as a DiagnosticReport to permit it to be used as a top-level panel. The specification authors believe there is little added value in representing panels as DiagnosticReports when Observation provides additional opportunity for nesting, and equivalent expressive power.</p>
+<p>Note to FHIR implementers: US-Core v3 states that ‘Laboratory results are grouped and summarized using the DiagnosticReport resource which typically reference Observation resource(s). Each Observation resource represents an individual laboratory test or a “nested” panel which references other observations.’ Consistent with this guidance, the current profile can be one of the nested Observations within a DiagnosticReport. Alternatively, each sub-Observation in this profile can be added individually to a DiagnosticReport. Both methods are consistent with guidance in US Core v3.</p>
 </td>
     </tr>
     <tr>
@@ -179,7 +197,7 @@
       <td><a href="http://hl7.org/fhir/R4/observation.html">Observation</a></td>
       <td><p>Represents a comprehensive metabolic 2000 panel (CMP) from serum or plasma, which measures various components such as glucose, electrolytes, kidney function, and liver function. The components of this panel are not entirely standardized, so the definition of the CMP includes tests that are optional, or performed by certain laboratories but not others. Therefore, instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.</p>
 
-<p>Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (related groups of observations) should be represented by the DiagnosticReport resource. This specification deviates from this approach by using Observation for panels. This is because panels can contain other panels, but a DiagnosticReport cannot contain other DiagnosticReports. Nested panels are, in fact, quite common in LOINC (see 39135-9 Wound assessment panel for an example of a deeply nested panel). To represent nested panels, each sub-panel <em>must</em> be an Observation. Of course, any sub-panel can also be a stand-alone panel, as well. Following the Argonaut/US Core recommended approach of using DiagnosticReport would imply that many or perhaps all panels would have to be represented twice: once as an Observation to permit the panel to be used as a sub-panel, and once as a DiagnosticReport to permit it to be used as a top-level panel. The authors of this specification believe there is little added value in representing panels as DiagnosticReports when Observation provides additional opportunity for nesting, and equivalent expressive power.</p>
+<p>Note to FHIR implementers: US-Core v3 states that ‘Laboratory results are grouped and summarized using the DiagnosticReport resource which typically reference Observation resource(s). Each Observation resource represents an individual laboratory test or a “nested” panel which references other observations.’ Consistent with this guidance, the current profile can be one of the nested Observations within a DiagnosticReport. Alternatively, each sub-Observation in this profile can be added individually to a DiagnosticReport. Both methods are consistent with guidance in US Core v3.</p>
 </td>
     </tr>
     <tr>
@@ -244,13 +262,13 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
     <tr>
       <td><a href="StructureDefinition-onco-core-PrimaryCancerCondition.html">PrimaryCancerCondition</a></td>
       <td><a href="http://hl7.org/fhir/R4/condition.html">Condition</a></td>
-      <td><p>Records the history of the primary cancer condition, the original or first tumor in the body, abnormal cells that divide without control and can invade nearby tissues.</p>
+      <td><p>Records the history of the primary cancer condition, the original or first tumor in the body (ref https://www.cancer.gov/publications/dictionaries/cancer-terms/def/primary-tumor).</p>
 </td>
     </tr>
     <tr>
       <td><a href="StructureDefinition-onco-core-SecondaryCancerCondition.html">SecondaryCancerCondition</a></td>
       <td><a href="http://hl7.org/fhir/R4/condition.html">Condition</a></td>
-      <td><p>Records the history of secondary neoplasms, including location(s) and the date of onset of metastases. A secondary cancer results from the spread (metastasization) of cancer from its original site.</p>
+      <td><p>Records the history of secondary neoplasms, including location(s) and the date of onset of metastases. A secondary cancer results from the spread (metastasization) of cancer from its original site (reference: https://www.cancer.gov/publications/dictionaries/cancer-terms/def/secondary-tumor).</p>
 </td>
     </tr>
     <tr>
@@ -304,9 +322,9 @@ ReasonCode is a choice of CodeableConcept or ref(Condition) in DSTU2, and limite
     <tr>
       <td><a href="StructureDefinition-onco-core-TumorMarkerTest.html">TumorMarkerTest</a></td>
       <td><a href="http://hl7.org/fhir/R4/observation.html">Observation</a></td>
-      <td><p>The result of a tumor marker test. Tumor marker tests are generally used to guide cancer treatment decisions and monitor treatment, as well as to predict the chance of recovery and cancer recurrence. A tumor marker is a substance found in tissue or blood or other body fluids that may be a sign of cancer or certain benign (noncancer) conditions. Most tumor markers are made by both normal cells and cancer cells, but they are made in larger amounts by cancer cells. A tumor marker may help to diagnose cancer, plan treatment, or find out how well treatment is working or if cancer has come back. Examples of tumor markers include CA-125 (in ovarian cancer), CA 15-3 (in breast cancer), CEA (in colon cancer), and PSA (in prostate cancer). Tumor markers differ from genetic markers in that they are measured at the levels of the protein and substance post-RNA protein synthesis. (Source: Adapted from NCI Dictionary of Cancer Terms and Cancer.net)</p>
+      <td><p>The result of a tumor marker test. Tumor marker tests are generally used to guide cancer treatment decisions and monitor treatment, as well as to predict the chance of recovery and cancer recurrence. A tumor marker is a substance found in tissue or blood or other body fluids that may be a sign of cancer or certain benign (noncancer) conditions. Most tumor markers are made by both normal cells and cancer cells, but they are made in larger amounts by cancer cells. A tumor marker may help to diagnose cancer, plan treatment, or find out how well treatment is working or if cancer has come back. Examples of tumor markers include CA-125 (in ovarian cancer), CA 15-3 (in breast cancer), CEA (in colon cancer), and PSA (in prostate cancer). Tumor markers differ from genetic markers in that they are measured at the levels of the protein and substance post-RNA protein synthesis. (Source: Adapted from <a href="https://www.cancer.gov/publications/dictionaries/cancer-terms">NCI Dictionary of Cancer Terms</a> and <a href="https://www.cancer.net/">Cancer.net</a>)</p>
 
-<p>Implementation note: The data value element is ‘required if known’ (0..1) because, for quantitative tests that are indeterminate, no data value will be reported, and the reason for the null value should be reported in the DataAbsentReason field.</p>
+<p>Implementation note: The data value for TumorMarkerTest has cardinality is 0..1 (required if known) because when the test result is indeterminate, no quantitative data value will be reported. Instead, the reason for the null value will be reported in the DataAbsentReason field.</p>
 </td>
     </tr>
     
@@ -938,6 +956,12 @@ For an Observation, the Code describes the aspect or property of the subject bei
 </td>
     </tr>
     <tr>
+      <td><a href="StructureDefinition-obf-QuantitativeNonLaboratoryObservation.html">QuantitativeNonLaboratoryObservation</a></td>
+      <td><a href="http://hl7.org/fhir/R4/observation.html">Observation</a></td>
+      <td><p>The result of evaluations (measurements, tests, or questions) whose answer is expressed as a code.</p>
+</td>
+    </tr>
+    <tr>
       <td><a href="StructureDefinition-obf-lab-QuantityWithRequiredUnits.html">QuantityWithRequiredUnits</a></td>
       <td><a href="http://hl7.org/fhir/R4/datatypes.html#quantity">Quantity</a></td>
       <td><p>A quantity with that requires a coded unit of measure.</p>
@@ -1033,6 +1057,12 @@ Timing offers a choice of multiple OccurrenceTime (used is used to specify speci
       <td><p>Urea nitrogen [Mass/​volume] in Serum or Plasma</p>
 </td>
     </tr>
+    <tr>
+      <td><a href="StructureDefinition-vital-VitalSign.html">VitalSign</a></td>
+      <td><a href="http://hl7.org/fhir/R4/observation.html">Observation</a></td>
+      <td><p>Abstract class parent for all vital sign profiles.</p>
+</td>
+    </tr>
     
   </tbody>
 </table>
@@ -1058,7 +1088,7 @@ Timing offers a choice of multiple OccurrenceTime (used is used to specify speci
       &copy;2019+
       <a style="color: #81BEF7" href="http://standardhealthrecord.org">The MITRE Corporation</a>.
       Package hl7.fhir.us.mcode#0.9.1 based on <a style="color: #81BEF7" href="http://hl7.org/fhir/R4/">FHIR 4.0.0</a>.
-      Generated <span title="Wed, Jul 3, 2019 11:44-0400">2019-07-03</span>.
+      Generated <span title="Sat, Jul 13, 2019 07:57-0400">2019-07-13</span>.
       <br/>
       <span style="color: #FFFF77">
         Links:
