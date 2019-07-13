@@ -81,7 +81,7 @@
             <!-- no operation definitions -->
             <!-- no conformance / capability statements -->
             <li><a href="downloads.html">Downloads</a></li>
-            <li><a href="modeldoc.html">Reference Model</a></li>
+            <!-- no reference model -->
             <li><a href="http://hl7.org/fhir/us/mcode/history.html">History</a></li>
           </ul>
 
@@ -154,7 +154,7 @@
   &lt;p&gt;&lt;b&gt;CBCWAutoDifferentialPanel Profile&lt;/b&gt;&lt;/p&gt;
   &lt;p&gt;Complete blood count (CBC) with auto differential panel. Includes various measures of red blood cells, platelets, and various types of white blood cells and other related measures, such as hemoglobin. The components of this panel are not entirely standardized, so the definition of the CBC includes tests that are optional, or performed by certain laboratories but not others. Instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.
 
-Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (related groups of observations) should be represented by the DiagnosticReport resource. This specification deviates from this approach by using Observation for panels. This is because panels can contain other panels, but a DiagnosticReport cannot contain other DiagnosticReports. Nested panels are, in fact, quite common in LOINC (see 39135-9 Wound assessment panel for an example of a deeply nested panel). To represent nested panels, the each sub-panel _must be_ an Observation. Of course, any sub-panel can also be a stand-alone panel, as well. Following the Argonaut/US Core recommended approach of using DiagnosticReport would imply that many or perhaps all panels would have to be represented twice: once as an Observation to permit the panel to be used as a sub-panel, and once as a DiagnosticReport to permit it to be used as a top-level panel. The specification authors believe there is little added value in representing panels as DiagnosticReports when Observation provides additional opportunity for nesting, and equivalent expressive power.&lt;/p&gt;
+Note to FHIR implementers: US-Core v3 states that 'Laboratory results are grouped and summarized using the DiagnosticReport resource which typically reference Observation resource(s). Each Observation resource represents an individual laboratory test or a “nested” panel which references other observations.' Consistent with this guidance, the current profile can be one of the nested Observations within a DiagnosticReport. Alternatively, each sub-Observation in this profile can be added individually to a DiagnosticReport. Both methods are consistent with guidance in US Core v3.&lt;/p&gt;
   &lt;p&gt;&lt;b&gt;Mapping Summary&lt;/b&gt;&lt;/p&gt;
   &lt;p&gt;&lt;pre&gt;obf.lab.CBCWAutoDifferentialPanel maps to http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab:
   Language maps to language
@@ -224,7 +224,7 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
   &lt;<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.title">title</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;obf-lab-CBCWAutoDifferentialPanel&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.status">status</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;active&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.experimental">experimental</a> <a href="http://hl7.org/fhir/R4/datatypes.html#boolean">value</a>=&quot;false&quot;/&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.date">date</a> <a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">value</a>=&quot;2019-07-03T00:00:00-04:00&quot;/&gt;
+  &lt;<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.date">date</a> <a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">value</a>=&quot;2019-07-13T00:00:00-04:00&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.publisher">publisher</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;The MITRE Corporation&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.contact">contact</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ContactDetail#ContactDetail.telecom">telecom</a>&gt;
@@ -235,7 +235,7 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
   &lt;<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.description">description</a>
                <a href="http://hl7.org/fhir/R4/datatypes.html#markdown">value</a>=&quot;Complete blood count (CBC) with auto differential panel. Includes various measures of red blood cells, platelets, and various types of white blood cells and other related measures, such as hemoglobin. The components of this panel are not entirely standardized, so the definition of the CBC includes tests that are optional, or performed by certain laboratories but not others. Instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.
 
-Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (related groups of observations) should be represented by the DiagnosticReport resource. This specification deviates from this approach by using Observation for panels. This is because panels can contain other panels, but a DiagnosticReport cannot contain other DiagnosticReports. Nested panels are, in fact, quite common in LOINC (see 39135-9 Wound assessment panel for an example of a deeply nested panel). To represent nested panels, the each sub-panel _must be_ an Observation. Of course, any sub-panel can also be a stand-alone panel, as well. Following the Argonaut/US Core recommended approach of using DiagnosticReport would imply that many or perhaps all panels would have to be represented twice: once as an Observation to permit the panel to be used as a sub-panel, and once as a DiagnosticReport to permit it to be used as a top-level panel. The specification authors believe there is little added value in representing panels as DiagnosticReports when Observation provides additional opportunity for nesting, and equivalent expressive power.&quot;/&gt;
+Note to FHIR implementers: US-Core v3 states that &amp;#39;Laboratory results are grouped and summarized using the DiagnosticReport resource which typically reference Observation resource(s). Each Observation resource represents an individual laboratory test or a “nested” panel which references other observations.&amp;#39; Consistent with this guidance, the current profile can be one of the nested Observations within a DiagnosticReport. Alternatively, each sub-Observation in this profile can be added individually to a DiagnosticReport. Both methods are consistent with guidance in US Core v3.&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.jurisdiction">jurisdiction</a>&gt;
     &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept#CodeableConcept.coding">coding</a>&gt;
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a> <a href="http://hl7.org/fhir/R4/datatypes.html#uri">value</a>=&quot;urn:iso:std:iso:3166&quot;/&gt;
@@ -292,7 +292,7 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.definition">definition</a>
                   <a href="http://hl7.org/fhir/R4/datatypes.html#markdown">value</a>=&quot;Complete blood count (CBC) with auto differential panel. Includes various measures of red blood cells, platelets, and various types of white blood cells and other related measures, such as hemoglobin. The components of this panel are not entirely standardized, so the definition of the CBC includes tests that are optional, or performed by certain laboratories but not others. Instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.
 
-Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (related groups of observations) should be represented by the DiagnosticReport resource. This specification deviates from this approach by using Observation for panels. This is because panels can contain other panels, but a DiagnosticReport cannot contain other DiagnosticReports. Nested panels are, in fact, quite common in LOINC (see 39135-9 Wound assessment panel for an example of a deeply nested panel). To represent nested panels, the each sub-panel _must be_ an Observation. Of course, any sub-panel can also be a stand-alone panel, as well. Following the Argonaut/US Core recommended approach of using DiagnosticReport would imply that many or perhaps all panels would have to be represented twice: once as an Observation to permit the panel to be used as a sub-panel, and once as a DiagnosticReport to permit it to be used as a top-level panel. The specification authors believe there is little added value in representing panels as DiagnosticReports when Observation provides additional opportunity for nesting, and equivalent expressive power.&quot;/&gt;
+Note to FHIR implementers: US-Core v3 states that &amp;#39;Laboratory results are grouped and summarized using the DiagnosticReport resource which typically reference Observation resource(s). Each Observation resource represents an individual laboratory test or a “nested” panel which references other observations.&amp;#39; Consistent with this guidance, the current profile can be one of the nested Observations within a DiagnosticReport. Alternatively, each sub-Observation in this profile can be added individually to a DiagnosticReport. Both methods are consistent with guidance in US Core v3.&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.comment">comment</a>
                <a href="http://hl7.org/fhir/R4/datatypes.html#markdown">value</a>=&quot;Used for simple observations such as device measurements, laboratory atomic results, vital signs, height, weight, smoking status, comments, etc.  Other resources are used to provide context for observations such as laboratory reports, etc.&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.alias">alias</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Vital Signs&quot;/&gt;
@@ -810,7 +810,7 @@ Modifier extensions SHALL NOT change the meaning of any elements on Resource or 
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/R4/datatypes.html#uri">value</a>=&quot;Reference&quot;/&gt;
         &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.targetProfile">targetProfile</a>
-                       <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest&quot;/&gt;
+                       <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/MedicationRequest&quot;/&gt;
         &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.targetProfile">targetProfile</a>
                        <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/ServiceRequest&quot;/&gt;
       &lt;/type&gt;
@@ -1151,7 +1151,8 @@ Modifier extensions SHALL NOT change the meaning of any elements on Resource or 
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/R4/datatypes.html#uri">value</a>=&quot;uri&quot;/&gt;
       &lt;/type&gt;
-      &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.fixed[x]">fixedUri</a> <a href="http://hl7.org/fhir/R4/datatypes.html#uri">value</a>=&quot;http://hl7.org/fhir/observation-category&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.fixed[x]">fixedUri</a>
+                <a href="http://hl7.org/fhir/R4/datatypes.html#uri">value</a>=&quot;http://terminology.hl7.org/CodeSystem/observation-category&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/R4/datatypes.html#boolean">value</a>=&quot;false&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/R4/datatypes.html#boolean">value</a>=&quot;true&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.mapping">mapping</a>&gt;
@@ -2463,8 +2464,7 @@ If the use case requires BodySite to be handled as a separate resource (e.g. to 
       &lt;/base&gt;
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/R4/datatypes.html#uri">value</a>=&quot;Reference&quot;/&gt;
-        &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.targetProfile">targetProfile</a>
-                       <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/us/core/StructureDefinition/us-core-device&quot;/&gt;
+        &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.targetProfile">targetProfile</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/Device&quot;/&gt;
       &lt;/type&gt;
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/R4/datatypes.html#boolean">value</a>=&quot;false&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/R4/datatypes.html#boolean">value</a>=&quot;false&quot;/&gt;
@@ -4403,7 +4403,7 @@ OR
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/R4/datatypes.html#uri">value</a>=&quot;Reference&quot;/&gt;
         &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.targetProfile">targetProfile</a>
-                       <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference&quot;/&gt;
+                       <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/DocumentReference&quot;/&gt;
         &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.targetProfile">targetProfile</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/Media&quot;/&gt;
         &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.targetProfile">targetProfile</a>
                        <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse&quot;/&gt;
@@ -5089,7 +5089,7 @@ OR
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.definition">definition</a>
                   <a href="http://hl7.org/fhir/R4/datatypes.html#markdown">value</a>=&quot;Complete blood count (CBC) with auto differential panel. Includes various measures of red blood cells, platelets, and various types of white blood cells and other related measures, such as hemoglobin. The components of this panel are not entirely standardized, so the definition of the CBC includes tests that are optional, or performed by certain laboratories but not others. Instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.
 
-Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (related groups of observations) should be represented by the DiagnosticReport resource. This specification deviates from this approach by using Observation for panels. This is because panels can contain other panels, but a DiagnosticReport cannot contain other DiagnosticReports. Nested panels are, in fact, quite common in LOINC (see 39135-9 Wound assessment panel for an example of a deeply nested panel). To represent nested panels, the each sub-panel _must be_ an Observation. Of course, any sub-panel can also be a stand-alone panel, as well. Following the Argonaut/US Core recommended approach of using DiagnosticReport would imply that many or perhaps all panels would have to be represented twice: once as an Observation to permit the panel to be used as a sub-panel, and once as a DiagnosticReport to permit it to be used as a top-level panel. The specification authors believe there is little added value in representing panels as DiagnosticReports when Observation provides additional opportunity for nesting, and equivalent expressive power.&quot;/&gt;
+Note to FHIR implementers: US-Core v3 states that &amp;#39;Laboratory results are grouped and summarized using the DiagnosticReport resource which typically reference Observation resource(s). Each Observation resource represents an individual laboratory test or a “nested” panel which references other observations.&amp;#39; Consistent with this guidance, the current profile can be one of the nested Observations within a DiagnosticReport. Alternatively, each sub-Observation in this profile can be added individually to a DiagnosticReport. Both methods are consistent with guidance in US Core v3.&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.mustSupport">mustSupport</a> <a href="http://hl7.org/fhir/R4/datatypes.html#boolean">value</a>=&quot;false&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.isModifier">isModifier</a> <a href="http://hl7.org/fhir/R4/datatypes.html#boolean">value</a>=&quot;false&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.isSummary">isSummary</a> <a href="http://hl7.org/fhir/R4/datatypes.html#boolean">value</a>=&quot;false&quot;/&gt;
@@ -5154,7 +5154,7 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/R4/datatypes.html#uri">value</a>=&quot;Reference&quot;/&gt;
         &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.targetProfile">targetProfile</a>
-                       <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest&quot;/&gt;
+                       <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/MedicationRequest&quot;/&gt;
         &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.targetProfile">targetProfile</a>
                        <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/ServiceRequest&quot;/&gt;
       &lt;/type&gt;
@@ -5214,7 +5214,8 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
     &lt;<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.differential.element">element</a>
              <a href="http://hl7.org/fhir/R4/datatypes.html#string">id</a>=&quot;Observation:obf-lab-CBCWAutoDifferentialPanel.category.coding:Fixed_laboratory.system&quot;&gt;
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.path">path</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;Observation.category.coding.system&quot;/&gt;
-      &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.fixed[x]">fixedUri</a> <a href="http://hl7.org/fhir/R4/datatypes.html#uri">value</a>=&quot;http://hl7.org/fhir/observation-category&quot;/&gt;
+      &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.fixed[x]">fixedUri</a>
+                <a href="http://hl7.org/fhir/R4/datatypes.html#uri">value</a>=&quot;http://terminology.hl7.org/CodeSystem/observation-category&quot;/&gt;
     &lt;/element&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.differential.element">element</a>
              <a href="http://hl7.org/fhir/R4/datatypes.html#string">id</a>=&quot;Observation:obf-lab-CBCWAutoDifferentialPanel.category.coding:Fixed_laboratory.code&quot;&gt;
@@ -5356,8 +5357,7 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.max">max</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;0&quot;/&gt;
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/R4/datatypes.html#uri">value</a>=&quot;Reference&quot;/&gt;
-        &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.targetProfile">targetProfile</a>
-                       <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/us/core/StructureDefinition/us-core-device&quot;/&gt;
+        &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.targetProfile">targetProfile</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/Device&quot;/&gt;
       &lt;/type&gt;
     &lt;/element&gt;
     &lt;<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.differential.element">element</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">id</a>=&quot;Observation:obf-lab-CBCWAutoDifferentialPanel.referenceRange&quot;&gt;
@@ -6212,7 +6212,7 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
       &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type">type</a>&gt;
         &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.code">code</a> <a href="http://hl7.org/fhir/R4/datatypes.html#uri">value</a>=&quot;Reference&quot;/&gt;
         &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.targetProfile">targetProfile</a>
-                       <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference&quot;/&gt;
+                       <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/DocumentReference&quot;/&gt;
         &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.targetProfile">targetProfile</a> <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/Media&quot;/&gt;
         &lt;<a href="http://hl7.org/fhir/R4/datatypes.html#ElementDefinition#ElementDefinition.type.targetProfile">targetProfile</a>
                        <a href="http://hl7.org/fhir/R4/datatypes.html#canonical">value</a>=&quot;http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse&quot;/&gt;
@@ -6314,7 +6314,7 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
       &copy;2019+
       <a style="color: #81BEF7" href="http://standardhealthrecord.org">The MITRE Corporation</a>.
       Package hl7.fhir.us.mcode#0.9.1 based on <a style="color: #81BEF7" href="http://hl7.org/fhir/R4/">FHIR 4.0.0</a>.
-      Generated <span title="Wed, Jul 3, 2019 11:44-0400">2019-07-03</span>.
+      Generated <span title="Sat, Jul 13, 2019 07:57-0400">2019-07-13</span>.
       <br/>
       <span style="color: #FFFF77">
         Links:

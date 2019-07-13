@@ -56,7 +56,7 @@ Preference is given to using the National Library of Medicine (NLM) RxNorm termi
   <title value="obf-MedicationStatement"/>
   <status value="active"/>
   <experimental value="false"/>
-  <date value="2019-07-03T00:00:00-04:00"/>
+  <date value="2019-07-13T00:00:00-04:00"/>
   <publisher value="The MITRE Corporation"/>
   <contact>
     <telecom>
@@ -72,11 +72,6 @@ Preference is given to using the National Library of Medicine (NLM) RxNorm termi
       <display value="United States of America"/>
     </coding>
   </jurisdiction>
-  <keyword>
-    <system value="http://snomed.info/sct"/>
-    <code value="416608005"/>
-    <display value="Drug therapy (procedure)"/>
-  </keyword>
   <fhirVersion value="4.0.0"/>
   <mapping>
     <identity value="argonaut-dq-dstu2"/>
@@ -568,7 +563,7 @@ Preference is given to using the National Library of Medicine (NLM) RxNorm termi
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-ServiceRequest"/>
-        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationRequest"/>
         <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-ReferralRequest"/>
         <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-ProcedureRequest"/>
       </type>
@@ -721,8 +716,8 @@ Preference is given to using the National Library of Medicine (NLM) RxNorm termi
         <map value=".inboundRelationship[typeCode=COMP].source[classCode=OBS, moodCode=EVN, code=&quot;type of medication usage&quot;].value"/>
       </mapping>
     </element>
-    <element id="MedicationStatement:obf-MedicationStatement.medication[x]">
-      <path value="MedicationStatement.medication[x]"/>
+    <element id="MedicationStatement:obf-MedicationStatement.medicationCodeableConcept">
+      <path value="MedicationStatement.medicationCodeableConcept"/>
       <short value="What medication was taken"/>
       <definition value="Identifies the medication being administered. This is either a link to a resource representing the details of the medication or a simple attribute carrying a code that identifies the medication from a known list of medications."/>
       <comment value="If only a code is specified, then it needs to be a code for a specific product. If more information is required, then the use of the medication resource is recommended.  For example, if you require form or lot number, then you must reference the Medication resource."/>
@@ -736,16 +731,13 @@ Preference is given to using the National Library of Medicine (NLM) RxNorm termi
       <type>
         <code value="CodeableConcept"/>
       </type>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication"/>
-      </type>
       <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <binding>
         <strength value="extensible"/>
-        <valueSet value="http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes"/>
+        <description value="Prescribable medications"/>
+        <valueSet value="http://hl7.org/fhir/us/core/ValueSet/us-core-medication-codes"/>
       </binding>
       <mapping>
         <identity value="workflow"/>
@@ -1148,7 +1140,7 @@ Preference is given to using the National Library of Medicine (NLM) RxNorm termi
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-ServiceRequest"/>
-        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationRequest"/>
         <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-ReferralRequest"/>
         <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-ProcedureRequest"/>
       </type>
@@ -1163,12 +1155,11 @@ Preference is given to using the National Library of Medicine (NLM) RxNorm termi
         <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Observation"/>
       </type>
     </element>
-    <element id="MedicationStatement:obf-MedicationStatement.medication[x]">
-      <path value="MedicationStatement.medication[x]"/>
-      <binding>
-        <strength value="extensible"/>
-        <valueSet value="http://h7.org/fhir/us/core/ValueSet/us-core-medication-codes"/>
-      </binding>
+    <element id="MedicationStatement:obf-MedicationStatement.medicationCodeableConcept">
+      <path value="MedicationStatement.medicationCodeableConcept"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
     </element>
     <element id="MedicationStatement:obf-MedicationStatement.subject">
       <path value="MedicationStatement.subject"/>

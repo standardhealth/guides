@@ -7,7 +7,7 @@
   <p><b>CBCWAutoDifferentialPanel Profile</b></p>
   <p>Complete blood count (CBC) with auto differential panel. Includes various measures of red blood cells, platelets, and various types of white blood cells and other related measures, such as hemoglobin. The components of this panel are not entirely standardized, so the definition of the CBC includes tests that are optional, or performed by certain laboratories but not others. Instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.
 
-Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (related groups of observations) should be represented by the DiagnosticReport resource. This specification deviates from this approach by using Observation for panels. This is because panels can contain other panels, but a DiagnosticReport cannot contain other DiagnosticReports. Nested panels are, in fact, quite common in LOINC (see 39135-9 Wound assessment panel for an example of a deeply nested panel). To represent nested panels, the each sub-panel _must be_ an Observation. Of course, any sub-panel can also be a stand-alone panel, as well. Following the Argonaut/US Core recommended approach of using DiagnosticReport would imply that many or perhaps all panels would have to be represented twice: once as an Observation to permit the panel to be used as a sub-panel, and once as a DiagnosticReport to permit it to be used as a top-level panel. The specification authors believe there is little added value in representing panels as DiagnosticReports when Observation provides additional opportunity for nesting, and equivalent expressive power.</p>
+Note to FHIR implementers: US-Core v3 states that 'Laboratory results are grouped and summarized using the DiagnosticReport resource which typically reference Observation resource(s). Each Observation resource represents an individual laboratory test or a “nested” panel which references other observations.' Consistent with this guidance, the current profile can be one of the nested Observations within a DiagnosticReport. Alternatively, each sub-Observation in this profile can be added individually to a DiagnosticReport. Both methods are consistent with guidance in US Core v3.</p>
   <p><b>Mapping Summary</b></p>
   <p><pre>obf.lab.CBCWAutoDifferentialPanel maps to http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab:
   Language maps to language
@@ -76,7 +76,7 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
   <title value="obf-lab-CBCWAutoDifferentialPanel"/>
   <status value="active"/>
   <experimental value="false"/>
-  <date value="2019-07-03T00:00:00-04:00"/>
+  <date value="2019-07-13T00:00:00-04:00"/>
   <publisher value="The MITRE Corporation"/>
   <contact>
     <telecom>
@@ -84,7 +84,7 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
       <value value="http://standardhealthrecord.org"/>
     </telecom>
   </contact>
-  <description value="Complete blood count (CBC) with auto differential panel. Includes various measures of red blood cells, platelets, and various types of white blood cells and other related measures, such as hemoglobin. The components of this panel are not entirely standardized, so the definition of the CBC includes tests that are optional, or performed by certain laboratories but not others. Instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.&#xA;&#xA;Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (related groups of observations) should be represented by the DiagnosticReport resource. This specification deviates from this approach by using Observation for panels. This is because panels can contain other panels, but a DiagnosticReport cannot contain other DiagnosticReports. Nested panels are, in fact, quite common in LOINC (see 39135-9 Wound assessment panel for an example of a deeply nested panel). To represent nested panels, the each sub-panel _must be_ an Observation. Of course, any sub-panel can also be a stand-alone panel, as well. Following the Argonaut/US Core recommended approach of using DiagnosticReport would imply that many or perhaps all panels would have to be represented twice: once as an Observation to permit the panel to be used as a sub-panel, and once as a DiagnosticReport to permit it to be used as a top-level panel. The specification authors believe there is little added value in representing panels as DiagnosticReports when Observation provides additional opportunity for nesting, and equivalent expressive power."/>
+  <description value="Complete blood count (CBC) with auto differential panel. Includes various measures of red blood cells, platelets, and various types of white blood cells and other related measures, such as hemoglobin. The components of this panel are not entirely standardized, so the definition of the CBC includes tests that are optional, or performed by certain laboratories but not others. Instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.&#xA;&#xA;Note to FHIR implementers: US-Core v3 states that &#39;Laboratory results are grouped and summarized using the DiagnosticReport resource which typically reference Observation resource(s). Each Observation resource represents an individual laboratory test or a &#x201C;nested&#x201D; panel which references other observations.&#39; Consistent with this guidance, the current profile can be one of the nested Observations within a DiagnosticReport. Alternatively, each sub-Observation in this profile can be added individually to a DiagnosticReport. Both methods are consistent with guidance in US Core v3."/>
   <jurisdiction>
     <coding>
       <system value="urn:iso:std:iso:3166"/>
@@ -137,7 +137,7 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
     <element id="Observation:obf-lab-CBCWAutoDifferentialPanel">
       <path value="Observation"/>
       <short value="obf-lab-CBCWAutoDifferentialPanel"/>
-      <definition value="Complete blood count (CBC) with auto differential panel. Includes various measures of red blood cells, platelets, and various types of white blood cells and other related measures, such as hemoglobin. The components of this panel are not entirely standardized, so the definition of the CBC includes tests that are optional, or performed by certain laboratories but not others. Instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.&#xA;&#xA;Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (related groups of observations) should be represented by the DiagnosticReport resource. This specification deviates from this approach by using Observation for panels. This is because panels can contain other panels, but a DiagnosticReport cannot contain other DiagnosticReports. Nested panels are, in fact, quite common in LOINC (see 39135-9 Wound assessment panel for an example of a deeply nested panel). To represent nested panels, the each sub-panel _must be_ an Observation. Of course, any sub-panel can also be a stand-alone panel, as well. Following the Argonaut/US Core recommended approach of using DiagnosticReport would imply that many or perhaps all panels would have to be represented twice: once as an Observation to permit the panel to be used as a sub-panel, and once as a DiagnosticReport to permit it to be used as a top-level panel. The specification authors believe there is little added value in representing panels as DiagnosticReports when Observation provides additional opportunity for nesting, and equivalent expressive power."/>
+      <definition value="Complete blood count (CBC) with auto differential panel. Includes various measures of red blood cells, platelets, and various types of white blood cells and other related measures, such as hemoglobin. The components of this panel are not entirely standardized, so the definition of the CBC includes tests that are optional, or performed by certain laboratories but not others. Instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.&#xA;&#xA;Note to FHIR implementers: US-Core v3 states that &#39;Laboratory results are grouped and summarized using the DiagnosticReport resource which typically reference Observation resource(s). Each Observation resource represents an individual laboratory test or a &#x201C;nested&#x201D; panel which references other observations.&#39; Consistent with this guidance, the current profile can be one of the nested Observations within a DiagnosticReport. Alternatively, each sub-Observation in this profile can be added individually to a DiagnosticReport. Both methods are consistent with guidance in US Core v3."/>
       <comment value="Used for simple observations such as device measurements, laboratory atomic results, vital signs, height, weight, smoking status, comments, etc.  Other resources are used to provide context for observations such as laboratory reports, etc."/>
       <alias value="Vital Signs"/>
       <alias value="Measurement"/>
@@ -596,7 +596,7 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationRequest"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/ServiceRequest"/>
       </type>
       <isModifier value="false"/>
@@ -905,7 +905,7 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
       <type>
         <code value="uri"/>
       </type>
-      <fixedUri value="http://hl7.org/fhir/observation-category"/>
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/observation-category"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -2088,7 +2088,7 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-device"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="false"/>
@@ -3797,7 +3797,7 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
       </base>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"/>
         <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Observation"/>
@@ -4388,7 +4388,7 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
     <element id="Observation:obf-lab-CBCWAutoDifferentialPanel">
       <path value="Observation"/>
       <short value="obf-lab-CBCWAutoDifferentialPanel"/>
-      <definition value="Complete blood count (CBC) with auto differential panel. Includes various measures of red blood cells, platelets, and various types of white blood cells and other related measures, such as hemoglobin. The components of this panel are not entirely standardized, so the definition of the CBC includes tests that are optional, or performed by certain laboratories but not others. Instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.&#xA;&#xA;Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (related groups of observations) should be represented by the DiagnosticReport resource. This specification deviates from this approach by using Observation for panels. This is because panels can contain other panels, but a DiagnosticReport cannot contain other DiagnosticReports. Nested panels are, in fact, quite common in LOINC (see 39135-9 Wound assessment panel for an example of a deeply nested panel). To represent nested panels, the each sub-panel _must be_ an Observation. Of course, any sub-panel can also be a stand-alone panel, as well. Following the Argonaut/US Core recommended approach of using DiagnosticReport would imply that many or perhaps all panels would have to be represented twice: once as an Observation to permit the panel to be used as a sub-panel, and once as a DiagnosticReport to permit it to be used as a top-level panel. The specification authors believe there is little added value in representing panels as DiagnosticReports when Observation provides additional opportunity for nesting, and equivalent expressive power."/>
+      <definition value="Complete blood count (CBC) with auto differential panel. Includes various measures of red blood cells, platelets, and various types of white blood cells and other related measures, such as hemoglobin. The components of this panel are not entirely standardized, so the definition of the CBC includes tests that are optional, or performed by certain laboratories but not others. Instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.&#xA;&#xA;Note to FHIR implementers: US-Core v3 states that &#39;Laboratory results are grouped and summarized using the DiagnosticReport resource which typically reference Observation resource(s). Each Observation resource represents an individual laboratory test or a &#x201C;nested&#x201D; panel which references other observations.&#39; Consistent with this guidance, the current profile can be one of the nested Observations within a DiagnosticReport. Alternatively, each sub-Observation in this profile can be added individually to a DiagnosticReport. Both methods are consistent with guidance in US Core v3."/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
@@ -4444,7 +4444,7 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
       <path value="Observation.basedOn"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationRequest"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/ServiceRequest"/>
       </type>
     </element>
@@ -4496,7 +4496,7 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
     </element>
     <element id="Observation:obf-lab-CBCWAutoDifferentialPanel.category.coding:Fixed_laboratory.system">
       <path value="Observation.category.coding.system"/>
-      <fixedUri value="http://hl7.org/fhir/observation-category"/>
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/observation-category"/>
     </element>
     <element id="Observation:obf-lab-CBCWAutoDifferentialPanel.category.coding:Fixed_laboratory.code">
       <path value="Observation.category.coding.code"/>
@@ -4627,7 +4627,7 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
       <max value="0"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-device"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device"/>
       </type>
     </element>
     <element id="Observation:obf-lab-CBCWAutoDifferentialPanel.referenceRange">
@@ -5301,7 +5301,7 @@ Note to FHIR implementers: The Argonaut and US Core IGs both state that panels (
       <path value="Observation.derivedFrom"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"/>
         <targetProfile value="http://hl7.org/fhir/us/mcode/StructureDefinition/obf-Observation"/>
