@@ -35,7 +35,7 @@
     <sch:rule context="f:Observation/f:bodySite">
       <sch:assert test="count(f:id) &lt;= 1">id: maximum cardinality of 'id' is 1</sch:assert>
       <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-Laterality-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-Laterality-extension': maximum cardinality of 'extension' is 1</sch:assert>
-      <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-Orientation-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-Orientation-extension': maximum cardinality of 'extension' is 1</sch:assert>
+      <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-AnatomicalOrientation-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-AnatomicalOrientation-extension': maximum cardinality of 'extension' is 1</sch:assert>
       <sch:assert test="count(f:text) &lt;= 1">text: maximum cardinality of 'text' is 1</sch:assert>
     </sch:rule>
   </sch:pattern>

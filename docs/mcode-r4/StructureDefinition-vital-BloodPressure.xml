@@ -5,7 +5,9 @@
   <text>
     <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">
   <p><b>BloodPressure Profile</b></p>
-  <p>The force of circulating blood on the walls of the arteries.</p>
+  <p>The force of circulating blood on the walls of the arteries.
+
+Note to FHIR implementers: The blood pressure profile in mCODE is based on the FHIR profile for blood pressure and adds a set of optional elements that can help clinicians interpret the result. Because these elements are optional, any BP that conforms to the current profile also will conform to the FHIR profile, and vice versa.</p>
   <p><b>Mapping Summary</b></p>
   <p><pre>vital.BloodPressure maps to http://hl7.org/fhir/StructureDefinition/bp:
   Language maps to language
@@ -35,7 +37,7 @@
   Annotation maps to note
   BodyLocation.Code maps to bodySite
   BodyLocation.Laterality maps to bodySite.extension
-  BodyLocation.Orientation maps to bodySite.extension
+  BodyLocation.AnatomicalOrientation maps to bodySite.extension
   BodyLocation.RelationToLandmark maps to bodySite.extension
   Method maps to method
   Specimen maps to specimen
@@ -65,16 +67,12 @@
 </div>
   </text>
   <url value="http://hl7.org/fhir/us/mcode/StructureDefinition/vital-BloodPressure"/>
-  <identifier>
-    <system value="http://hl7.org/fhir/us/mcode"/>
-    <value value="vital.BloodPressure"/>
-  </identifier>
   <version value="0.9.1"/>
   <name value="BloodPressure"/>
   <title value="vital-BloodPressure"/>
   <status value="draft"/>
   <experimental value="false"/>
-  <date value="2019-07-13T00:00:00-04:00"/>
+  <date value="2019-07-18T00:00:00-04:00"/>
   <publisher value="The MITRE Corporation"/>
   <contact>
     <telecom>
@@ -82,7 +80,7 @@
       <value value="http://standardhealthrecord.org"/>
     </telecom>
   </contact>
-  <description value="The force of circulating blood on the walls of the arteries."/>
+  <description value="The force of circulating blood on the walls of the arteries.&#xA;&#xA;Note to FHIR implementers: The blood pressure profile in mCODE is based on the FHIR profile for blood pressure and adds a set of optional elements that can help clinicians interpret the result. Because these elements are optional, any BP that conforms to the current profile also will conform to the FHIR profile, and vice versa."/>
   <fhirVersion value="4.0.0"/>
   <mapping>
     <identity value="workflow"/>
@@ -123,7 +121,7 @@
     <element id="Observation:vital-BloodPressure">
       <path value="Observation"/>
       <short value="vital-BloodPressure"/>
-      <definition value="The force of circulating blood on the walls of the arteries."/>
+      <definition value="The force of circulating blood on the walls of the arteries.&#xA;&#xA;Note to FHIR implementers: The blood pressure profile in mCODE is based on the FHIR profile for blood pressure and adds a set of optional elements that can help clinicians interpret the result. Because these elements are optional, any BP that conforms to the current profile also will conform to the FHIR profile, and vice versa."/>
       <comment value="Used for simple observations such as device measurements, laboratory atomic results, vital signs, height, weight, smoking status, comments, etc.  Other resources are used to provide context for observations such as laboratory reports, etc."/>
       <alias value="Vital Signs"/>
       <alias value="Measurement"/>
@@ -398,10 +396,10 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation:vital-BloodPressure.extension:precondition">
+    <element id="Observation:vital-BloodPressure.extension:preconditioncode">
       <path value="Observation.extension"/>
-      <sliceName value="precondition"/>
-      <definition value="A description of the conditions or context of an observation, for example, under sedation, fasting or post-exercise. A qualifier cannot modify the measurement type; for example, a fasting blood sugar is still a blood sugar."/>
+      <sliceName value="preconditioncode"/>
+      <definition value="A coded description of the conditions or context of an observation, for example, under sedation, fasting or post-exercise. A qualifier cannot modify the measurement type; for example, a fasting blood sugar is still a blood sugar."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -411,12 +409,12 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/mcode/StructureDefinition/vital-Precondition-extension"/>
+        <profile value="http://hl7.org/fhir/us/mcode/StructureDefinition/vital-PreconditionCode-extension"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation:vital-BloodPressure.extension:precondition.id">
+    <element id="Observation:vital-BloodPressure.extension:preconditioncode.id">
       <path value="Observation.extension.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -438,7 +436,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:vital-BloodPressure.extension:precondition.extension">
+    <element id="Observation:vital-BloodPressure.extension:preconditioncode.extension">
       <path value="Observation.extension.extension"/>
       <slicing>
         <discriminator>
@@ -470,7 +468,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:vital-BloodPressure.extension:precondition.url">
+    <element id="Observation:vital-BloodPressure.extension:preconditioncode.url">
       <path value="Observation.extension.url"/>
       <representation value="xmlAttr"/>
       <short value="identifies the meaning of the extension"/>
@@ -486,7 +484,7 @@
       <type>
         <code value="uri"/>
       </type>
-      <fixedUri value="http://hl7.org/fhir/us/mcode/StructureDefinition/vital-Precondition-extension"/>
+      <fixedUri value="http://hl7.org/fhir/us/mcode/StructureDefinition/vital-PreconditionCode-extension"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
       <mapping>
@@ -494,7 +492,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation:vital-BloodPressure.extension:precondition.valueCodeableConcept">
+    <element id="Observation:vital-BloodPressure.extension:preconditioncode.valueCodeableConcept">
       <path value="Observation.extension.valueCodeableConcept"/>
       <short value="Value of extension"/>
       <definition value="Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list)."/>
@@ -5679,7 +5677,7 @@
     <element id="Observation:vital-BloodPressure">
       <path value="Observation"/>
       <short value="vital-BloodPressure"/>
-      <definition value="The force of circulating blood on the walls of the arteries."/>
+      <definition value="The force of circulating blood on the walls of the arteries.&#xA;&#xA;Note to FHIR implementers: The blood pressure profile in mCODE is based on the FHIR profile for blood pressure and adds a set of optional elements that can help clinicians interpret the result. Because these elements are optional, any BP that conforms to the current profile also will conform to the FHIR profile, and vice versa."/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
@@ -5694,10 +5692,10 @@
         <rules value="open"/>
       </slicing>
     </element>
-    <element id="Observation:vital-BloodPressure.extension:precondition">
+    <element id="Observation:vital-BloodPressure.extension:preconditioncode">
       <path value="Observation.extension"/>
-      <sliceName value="precondition"/>
-      <definition value="A description of the conditions or context of an observation, for example, under sedation, fasting or post-exercise. A qualifier cannot modify the measurement type; for example, a fasting blood sugar is still a blood sugar."/>
+      <sliceName value="preconditioncode"/>
+      <definition value="A coded description of the conditions or context of an observation, for example, under sedation, fasting or post-exercise. A qualifier cannot modify the measurement type; for example, a fasting blood sugar is still a blood sugar."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -5707,12 +5705,12 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/mcode/StructureDefinition/vital-Precondition-extension"/>
+        <profile value="http://hl7.org/fhir/us/mcode/StructureDefinition/vital-PreconditionCode-extension"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation:vital-BloodPressure.extension:precondition.valueCodeableConcept">
+    <element id="Observation:vital-BloodPressure.extension:preconditioncode.valueCodeableConcept">
       <path value="Observation.extension.valueCodeableConcept"/>
       <binding>
         <strength value="extensible"/>

@@ -12,7 +12,7 @@
   <sch:pattern>
     <sch:title>f:Observation</sch:title>
     <sch:rule context="f:Observation">
-      <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/mcode/StructureDefinition/onco-core-GeneStudied-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/mcode/StructureDefinition/onco-core-GeneStudied-extension': maximum cardinality of 'extension' is 1</sch:assert>
+      <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/observation-geneticsGene']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/StructureDefinition/observation-geneticsGene': maximum cardinality of 'extension' is 1</sch:assert>
       <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/mcode/StructureDefinition/onco-core-VariantTested-extension']) &gt;= 1">extension with URL = 'http://hl7.org/fhir/us/mcode/StructureDefinition/onco-core-VariantTested-extension': minimum cardinality of 'extension' is 1</sch:assert>
       <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/mcode/StructureDefinition/onco-core-VariantTested-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/mcode/StructureDefinition/onco-core-VariantTested-extension': maximum cardinality of 'extension' is 1</sch:assert>
       <sch:assert test="count(f:value[x]) &gt;= 1">value[x]: minimum cardinality of 'value[x]' is 1</sch:assert>

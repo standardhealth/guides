@@ -146,6 +146,8 @@
       <td><a href="StructureDefinition-vital-BloodPressure.html">BloodPressure</a></td>
       <td><a href="http://hl7.org/fhir/R4/observation.html">Observation</a></td>
       <td><p>The force of circulating blood on the walls of the arteries.</p>
+
+<p>Note to FHIR implementers: The blood pressure profile in mCODE is based on the FHIR profile for blood pressure and adds a set of optional elements that can help clinicians interpret the result. Because these elements are optional, any BP that conforms to the current profile also will conform to the FHIR profile, and vice versa.</p>
 </td>
     </tr>
     <tr>
@@ -162,10 +164,8 @@
     </tr>
     <tr>
       <td><a href="StructureDefinition-obf-lab-CBCWAutoDifferentialPanel.html">CBCWAutoDifferentialPanel</a></td>
-      <td><a href="http://hl7.org/fhir/R4/observation.html">Observation</a></td>
+      <td><a href="http://hl7.org/fhir/R4/diagnosticreport.html">DiagnosticReport</a></td>
       <td><p>Complete blood count (CBC) with auto differential panel. Includes various measures of red blood cells, platelets, and various types of white blood cells and other related measures, such as hemoglobin. The components of this panel are not entirely standardized, so the definition of the CBC includes tests that are optional, or performed by certain laboratories but not others. Instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.</p>
-
-<p>Note to FHIR implementers: US-Core v3 states that ‘Laboratory results are grouped and summarized using the DiagnosticReport resource which typically reference Observation resource(s). Each Observation resource represents an individual laboratory test or a “nested” panel which references other observations.’ Consistent with this guidance, the current profile can be one of the nested Observations within a DiagnosticReport. Alternatively, each sub-Observation in this profile can be added individually to a DiagnosticReport. Both methods are consistent with guidance in US Core v3.</p>
 </td>
     </tr>
     <tr>
@@ -194,10 +194,8 @@
     </tr>
     <tr>
       <td><a href="StructureDefinition-obf-lab-ComprehensiveMetabolic2000SerumOrPlasmaPanel.html">ComprehensiveMetabolic2000SerumOrPlasmaPanel</a></td>
-      <td><a href="http://hl7.org/fhir/R4/observation.html">Observation</a></td>
+      <td><a href="http://hl7.org/fhir/R4/diagnosticreport.html">DiagnosticReport</a></td>
       <td><p>Represents a comprehensive metabolic 2000 panel (CMP) from serum or plasma, which measures various components such as glucose, electrolytes, kidney function, and liver function. The components of this panel are not entirely standardized, so the definition of the CMP includes tests that are optional, or performed by certain laboratories but not others. Therefore, instances typically will include a subset of the listed panel members. While recognizing scalability limitations, in this case, panel member is described by its own FHIR profile.</p>
-
-<p>Note to FHIR implementers: US-Core v3 states that ‘Laboratory results are grouped and summarized using the DiagnosticReport resource which typically reference Observation resource(s). Each Observation resource represents an individual laboratory test or a “nested” panel which references other observations.’ Consistent with this guidance, the current profile can be one of the nested Observations within a DiagnosticReport. Alternatively, each sub-Observation in this profile can be added individually to a DiagnosticReport. Both methods are consistent with guidance in US Core v3.</p>
 </td>
     </tr>
     <tr>
@@ -215,7 +213,7 @@
     <tr>
       <td><a href="StructureDefinition-onco-core-GeneticVariantTested.html">GeneticVariantTested</a></td>
       <td><a href="http://hl7.org/fhir/R4/observation.html">Observation</a></td>
-      <td><p>A test for a specific mutation on a particular gene.</p>
+      <td><p>A test for a specific mutation on a particular gene. This profile is used to record whether a single discrete variant tested is present or absent (which mCODE denotes as positive or negative respectively).</p>
 </td>
     </tr>
     <tr>
@@ -233,7 +231,7 @@
     <tr>
       <td><a href="StructureDefinition-obf-KarnofskyPerformanceStatus.html">KarnofskyPerformanceStatus</a></td>
       <td><a href="http://hl7.org/fhir/R4/observation.html">Observation</a></td>
-      <td><p>The Karnofsky Performance Status (KPS) is a tool used to measure a patient’s functional status. It can be used to compare the effectiveness of different therapies and to help assess the prognosis of certain patients, such as those with certain cancers. The KPS score ranges from 0 to 100 in intervals of 10. Higher scores are associated with better functional status, with 100 representing no symptoms or evidence of disease, and 0 representing death [PMID: 23870327].</p>
+      <td><p>The Karnofsky Performance Status (KPS) is a tool used to measure a patient’s functional status. It can be used to compare the effectiveness of different therapies and to help assess the prognosis of certain patients, such as those with certain cancers. The KPS score ranges from 0 to 100 in intervals of 10. Higher scores are associated with better functional status, with 100 representing no symptoms or evidence of disease, and 0 representing death.</p>
 </td>
     </tr>
     <tr>
@@ -678,12 +676,6 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
 </td>
     </tr>
     <tr>
-      <td><a href="StructureDefinition-obf-HeadlessLaboratoryPanel.html">HeadlessLaboratoryPanel</a></td>
-      <td><a href="http://hl7.org/fhir/R4/observation.html">Observation</a></td>
-      <td><p>A panel that does not have an overall value that summarizes the entire panel.</p>
-</td>
-    </tr>
-    <tr>
       <td><a href="StructureDefinition-obf-lab-HematocritVFrPtBldQnAutoCntLabObs.html">HematocritVFrPtBldQnAutoCntLabObs</a></td>
       <td><a href="http://hl7.org/fhir/R4/observation.html">Observation</a></td>
       <td><p>Hematocrit [Volume Fraction] of Blood by Automated count</p>
@@ -708,9 +700,9 @@ SHR Condition uses the SHR BodyLocation structure that includes not only a code,
 </td>
     </tr>
     <tr>
-      <td><a href="StructureDefinition-obf-LaboratoryPanel.html">LaboratoryPanel</a></td>
-      <td><a href="http://hl7.org/fhir/R4/observation.html">Observation</a></td>
-      <td><p>A set of independent but related observations that are often presented together to facilitate interpretation, such as a lipid panel.</p>
+      <td><a href="StructureDefinition-obf-LaboratoryReport.html">LaboratoryReport</a></td>
+      <td><a href="http://hl7.org/fhir/R4/diagnosticreport.html">DiagnosticReport</a></td>
+      <td><p>A grouping or summarization of laboratory results, where individual results are typically Observations or nested Observations (panels). This class aligns with US Core DiagnosticReport Profile for Laboratory Results Reporting.</p>
 </td>
     </tr>
     <tr>
@@ -964,13 +956,13 @@ For an Observation, the Code describes the aspect or property of the subject bei
     <tr>
       <td><a href="StructureDefinition-obf-lab-QuantityWithRequiredUnits.html">QuantityWithRequiredUnits</a></td>
       <td><a href="http://hl7.org/fhir/R4/datatypes.html#quantity">Quantity</a></td>
-      <td><p>A quantity with that requires a coded unit of measure.</p>
+      <td><p>A quantity that requires a coded unit of measure.</p>
 </td>
     </tr>
     <tr>
       <td><a href="StructureDefinition-obf-RadiationProcedure.html">RadiationProcedure</a></td>
       <td><a href="http://hl7.org/fhir/R4/procedure.html">Procedure</a></td>
-      <td><p>A radiation oncology procedure. If the treatment is part of a larger course of treatment, the PartOf attribute should indicate that.</p>
+      <td><p>A radiation oncology procedure. The procedure might represent a complete course of treatment, or a single session that is part of a series of treatments. If the treatment is part of a larger course of treatment, the PartOf attribute should indicate that. If the procedure represents the entire course of therapy, the RadiationFractionsDelivered should indicate the number of sessions. If the procedure represents one session, then the RadiationFractionsDelivered would be 1, and the TotalRadiationDoseDelivered will be the same as the RadiationDosePerFraction.</p>
 </td>
     </tr>
     <tr>
@@ -1088,7 +1080,7 @@ Timing offers a choice of multiple OccurrenceTime (used is used to specify speci
       &copy;2019+
       <a style="color: #81BEF7" href="http://standardhealthrecord.org">The MITRE Corporation</a>.
       Package hl7.fhir.us.mcode#0.9.1 based on <a style="color: #81BEF7" href="http://hl7.org/fhir/R4/">FHIR 4.0.0</a>.
-      Generated <span title="Sat, Jul 13, 2019 07:57-0400">2019-07-13</span>.
+      Generated <span title="Thu, Jul 18, 2019 11:34-0400">2019-07-18</span>.
       <br/>
       <span style="color: #FFFF77">
         Links:

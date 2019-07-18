@@ -12,7 +12,7 @@
   <sch:pattern>
     <sch:title>f:Condition</sch:title>
     <sch:rule context="f:Condition">
-      <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/mcode/StructureDefinition/obf-DateOfDiagnosis-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/mcode/StructureDefinition/obf-DateOfDiagnosis-extension': maximum cardinality of 'extension' is 1</sch:assert>
+      <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/condition-assertedDate']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/StructureDefinition/condition-assertedDate': maximum cardinality of 'extension' is 1</sch:assert>
       <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/mcode/StructureDefinition/onco-core-HistologyMorphologyBehavior-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/mcode/StructureDefinition/onco-core-HistologyMorphologyBehavior-extension': maximum cardinality of 'extension' is 1</sch:assert>
       <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/mcode/StructureDefinition/onco-core-PrimaryCancerCondition-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/mcode/StructureDefinition/onco-core-PrimaryCancerCondition-extension': maximum cardinality of 'extension' is 1</sch:assert>
       <sch:assert test="count(f:clinicalStatus) &gt;= 1">clinicalStatus: minimum cardinality of 'clinicalStatus' is 1</sch:assert>
