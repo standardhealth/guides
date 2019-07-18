@@ -14,7 +14,7 @@
     <sch:rule context="f:Extension">
       <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-Code-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-Code-extension': maximum cardinality of 'extension' is 1</sch:assert>
       <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-Laterality-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-Laterality-extension': maximum cardinality of 'extension' is 1</sch:assert>
-      <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-Orientation-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-Orientation-extension': maximum cardinality of 'extension' is 1</sch:assert>
+      <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-AnatomicalOrientation-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-AnatomicalOrientation-extension': maximum cardinality of 'extension' is 1</sch:assert>
       <sch:assert test="count(f:value[x]) &lt;= 0">value[x]: maximum cardinality of 'value[x]' is 0</sch:assert>
     </sch:rule>
   </sch:pattern>

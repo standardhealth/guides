@@ -19,7 +19,7 @@ anonymous resourcescontained resources","",0,*,"","","","Resource {[]} {[]}
 user content","",0,*,"","","","Extension {[]} {[]}
 ","Additional content defined by implementations","May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.","There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.","","","","","","","","",,,,,"","value:url}
 ","",,"open","DomainResource.extension",0,*,"","","N/A"
-"Condition.extension","dateofdiagnosis","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/mcode/StructureDefinition/obf-DateOfDiagnosis-extension]]} {[]}
+"Condition.extension","dateofdiagnosis","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/StructureDefinition/condition-assertedDate]]} {[]}
 ","","The date the disease was first clinically recognized with sufficient certainty, regardless of whether it was fully characterized at that time.","","","","","","","","","",,,,,"",,,,"DomainResource.extension",0,*,"",""
 "Condition.extension","primarycancercondition","","",0,1,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/mcode/StructureDefinition/onco-core-PrimaryCancerCondition-extension]]} {[]}
 ","","Records the history of the primary cancer condition, the original or first tumor in the body (ref https://www.cancer.gov/publications/dictionaries/cancer-terms/def/primary-tumor).","","","","","","","","","",,,,,"",,,,"DomainResource.extension",0,*,"",""
@@ -70,22 +70,22 @@ user content","",0,*,"","","","Extension {[]} {[]}
 
 The laterality element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
 
-+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
-+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
-+ Relation to landmark: The location relative to a landmark is specified by:
-- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and
-- Specifying the direction and distance from the landmark to the body location.
+* Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
+* Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
+* Relation to landmark: The location relative to a landmark is specified by:
+1. Establishing the location and type of landmark using a body site code and optional laterality/orientation, and
+2. Specifying the direction and distance from the landmark to the body location.
 
 Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).","","","","","","","","","",,,,,"",,,,"Element.extension",0,*,"",""
-"Condition.bodySite.extension","orientation","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-Orientation-extension]]} {[]}
-","","Orientation of the body location, if needed to distinguish from a similar location in another orientation.
+"Condition.bodySite.extension","anatomicalorientation","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-AnatomicalOrientation-extension]]} {[]}
+","","AnatomicalOrientation of the body location, if needed to distinguish from a similar location in another orientation.
 The orientation element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
 
-+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
-+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
-+ Relation to landmark: The location relative to a landmark is specified by:
-- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and
-- Specifying the direction and distance from the landmark to the body location.
+* Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
+* Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
+* Relation to landmark: The location relative to a landmark is specified by:
+1. Establishing the location and type of landmark using a body site code and optional laterality/orientation, and
+2. Specifying the direction and distance from the landmark to the body location.
 
 Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).","","","","","","","","","",,,,,"",,,,"Element.extension",0,*,"",""
 "Condition.bodySite.extension","relationtolandmark","","",0,*,"","","","Extension {[CanonicalType[http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-RelationToLandmark-extension]]} {[]}
@@ -96,11 +96,11 @@ Note that BodyLocation is a data type (a reusable structure), not a stand-alone 
 
 The RelationToLandmark element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.
 
-+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
-+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
-+ Relation to landmark: The location relative to a landmark is specified by:
-- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and
-- Specifying the direction and distance from the landmark to the body location.
+* Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.
+* Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.
+* Relation to landmark: The location relative to a landmark is specified by:
+1. Establishing the location and type of landmark using a body site code and optional laterality/orientation, and
+2. Specifying the direction and distance from the landmark to the body location.
 
 Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR's stand-alone BodySite (aka BodyStructure in r4) which 'is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient' (FHIR 3.5).","","","","","","","","","",,,,,"",,,,"Element.extension",0,*,"",""
 "Condition.bodySite.coding","","","",0,*,"","","Y","Coding {[]} {[]}

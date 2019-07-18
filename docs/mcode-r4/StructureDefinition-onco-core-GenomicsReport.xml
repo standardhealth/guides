@@ -35,7 +35,7 @@ FHIR implementation note: The category for this profile is set to GE (Genetics),
   DiagnosticReportPerformer maps to performer
   ResultsInterpreter maps to resultsInterpreter
   Specimen maps to specimen
-  Observation maps to result (slice on = target.reference.resolve(); slice on type = profile; slice strategy = includes)
+  Observation maps to result (slice on = reference.resolve(); slice on type = profile; slice strategy = includes)
   MediaIncluded.CommentOrDescription maps to media.comment
   MediaIncluded.Media maps to media.link
   ConclusionText maps to conclusion
@@ -45,15 +45,11 @@ FHIR implementation note: The category for this profile is set to GE (Genetics),
 </div>
   </text>
   <url value="http://hl7.org/fhir/us/mcode/StructureDefinition/onco-core-GenomicsReport"/>
-  <identifier>
-    <system value="http://hl7.org/fhir/us/mcode"/>
-    <value value="onco.core.GenomicsReport"/>
-  </identifier>
   <version value="0.9.1"/>
   <name value="GenomicsReport"/>
   <title value="onco-core-GenomicsReport"/>
   <status value="active"/>
-  <date value="2019-07-13T00:00:00-04:00"/>
+  <date value="2019-07-18T00:00:00-04:00"/>
   <publisher value="The MITRE Corporation"/>
   <contact>
     <telecom>
@@ -1338,7 +1334,7 @@ FHIR implementation note: The category for this profile is set to GE (Genetics),
       <slicing id="2">
         <discriminator>
           <type value="profile"/>
-          <path value="target.reference.resolve()"/>
+          <path value="reference.resolve()"/>
         </discriminator>
         <ordered value="false"/>
         <rules value="open"/>
@@ -1420,7 +1416,7 @@ FHIR implementation note: The category for this profile is set to GE (Genetics),
       <path value="DiagnosticReport.result"/>
       <sliceName value="onco-core-GeneticVariantTested"/>
       <short value="GeneticVariantTested: A test for a specific mutation on a particular gene"/>
-      <definition value="A test for a specific mutation on a particular gene."/>
+      <definition value="A test for a specific mutation on a particular gene. This profile is used to record whether a single discrete variant tested is present or absent (which mCODE denotes as positive or negative respectively)."/>
       <alias value="Data"/>
       <alias value="Atomic Value"/>
       <alias value="Result"/>
@@ -1882,7 +1878,7 @@ FHIR implementation note: The category for this profile is set to GE (Genetics),
       <slicing id="2">
         <discriminator>
           <type value="profile"/>
-          <path value="target.reference.resolve()"/>
+          <path value="reference.resolve()"/>
         </discriminator>
         <ordered value="false"/>
         <rules value="open"/>
@@ -1910,7 +1906,7 @@ FHIR implementation note: The category for this profile is set to GE (Genetics),
       <path value="DiagnosticReport.result"/>
       <sliceName value="onco-core-GeneticVariantTested"/>
       <short value="GeneticVariantTested: A test for a specific mutation on a particular gene"/>
-      <definition value="A test for a specific mutation on a particular gene."/>
+      <definition value="A test for a specific mutation on a particular gene. This profile is used to record whether a single discrete variant tested is present or absent (which mCODE denotes as positive or negative respectively)."/>
       <min value="0"/>
       <max value="*"/>
       <type>

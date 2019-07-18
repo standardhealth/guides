@@ -12,8 +12,7 @@
   <sch:pattern>
     <sch:title>f:Extension</sch:title>
     <sch:rule context="f:Extension">
-      <sch:assert test="count(f:valueRatio) &gt;= 1">valueRatio: minimum cardinality of 'valueRatio' is 1</sch:assert>
-      <sch:assert test="count(f:valueRatio) &lt;= 1">valueRatio: maximum cardinality of 'valueRatio' is 1</sch:assert>
+      <sch:assert test="count(f:valueQuantity) &gt;= 1">valueQuantity: minimum cardinality of 'valueQuantity' is 1</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
