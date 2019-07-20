@@ -13,7 +13,7 @@
   <name value="LandmarkToBodyLocationDirection"/>
   <title value="shr-core-LandmarkToBodyLocationDirection"/>
   <status value="draft"/>
-  <date value="2019-07-18T00:00:00-04:00"/>
+  <date value="2019-07-19T00:00:00-04:00"/>
   <publisher value="The MITRE Corporation"/>
   <contact>
     <telecom>
@@ -59,12 +59,6 @@
         <human value="Must have either extensions or value[x], not both"/>
         <expression value="extension.exists() != value.exists()"/>
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), &#39;value&#39;)])"/>
-      </constraint>
-      <constraint>
-        <key value="choice-1"/>
-        <severity value="error"/>
-        <human value="shr-core-LandmarkToBodyLocationDirection-extension SHALL have either extension(&#39;clockfacedirection&#39;) or extension(&#39;anatomicaldirection&#39;)"/>
-        <expression value="( extension(&#39;clockfacedirection&#39;).url | extension(&#39;anatomicaldirection&#39;).url ).distinct().count() == 1"/>
       </constraint>
       <isModifier value="false"/>
       <mapping>
@@ -114,7 +108,7 @@
       <alias value="extensions"/>
       <alias value="user content"/>
       <min value="0"/>
-      <max value="*"/>
+      <max value="0"/>
       <base>
         <path value="Element.extension"/>
         <min value="0"/>
@@ -122,50 +116,6 @@
       </base>
       <type>
         <code value="Extension"/>
-      </type>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Extension:landmarktobodylocationdirection.extension:clockfacedirection">
-      <path value="Extension.extension"/>
-      <sliceName value="clockfacedirection"/>
-      <definition value="A direction indicated by an angle relative to 12 o&#39;clock."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Element.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-ClockFaceDirection-extension"/>
-      </type>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Extension:landmarktobodylocationdirection.extension:anatomicaldirection">
-      <path value="Extension.extension"/>
-      <sliceName value="anatomicaldirection"/>
-      <definition value="A direction based on planes, surfaces, and orientations of the body."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Element.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-AnatomicalDirection-extension"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="false"/>
@@ -198,166 +148,26 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Extension:landmarktobodylocationdirection.value[x]">
-      <path value="Extension.value[x]"/>
+    <element id="Extension:landmarktobodylocationdirection.valueCodeableConcept">
+      <path value="Extension.valueCodeableConcept"/>
       <short value="Value of extension"/>
       <definition value="Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list)."/>
-      <min value="0"/>
-      <max value="0"/>
+      <min value="1"/>
+      <max value="1"/>
       <base>
         <path value="Extension.value[x]"/>
         <min value="0"/>
         <max value="1"/>
       </base>
       <type>
-        <code value="base64Binary"/>
-      </type>
-      <type>
-        <code value="boolean"/>
-      </type>
-      <type>
-        <code value="canonical"/>
-      </type>
-      <type>
-        <code value="code"/>
-      </type>
-      <type>
-        <code value="date"/>
-      </type>
-      <type>
-        <code value="dateTime"/>
-      </type>
-      <type>
-        <code value="decimal"/>
-      </type>
-      <type>
-        <code value="id"/>
-      </type>
-      <type>
-        <code value="instant"/>
-      </type>
-      <type>
-        <code value="integer"/>
-      </type>
-      <type>
-        <code value="markdown"/>
-      </type>
-      <type>
-        <code value="oid"/>
-      </type>
-      <type>
-        <code value="positiveInt"/>
-      </type>
-      <type>
-        <code value="string"/>
-      </type>
-      <type>
-        <code value="time"/>
-      </type>
-      <type>
-        <code value="unsignedInt"/>
-      </type>
-      <type>
-        <code value="uri"/>
-      </type>
-      <type>
-        <code value="url"/>
-      </type>
-      <type>
-        <code value="uuid"/>
-      </type>
-      <type>
-        <code value="Address"/>
-      </type>
-      <type>
-        <code value="Age"/>
-      </type>
-      <type>
-        <code value="Annotation"/>
-      </type>
-      <type>
-        <code value="Attachment"/>
-      </type>
-      <type>
         <code value="CodeableConcept"/>
-      </type>
-      <type>
-        <code value="Coding"/>
-      </type>
-      <type>
-        <code value="ContactPoint"/>
-      </type>
-      <type>
-        <code value="Count"/>
-      </type>
-      <type>
-        <code value="Distance"/>
-      </type>
-      <type>
-        <code value="Duration"/>
-      </type>
-      <type>
-        <code value="HumanName"/>
-      </type>
-      <type>
-        <code value="Identifier"/>
-      </type>
-      <type>
-        <code value="Money"/>
-      </type>
-      <type>
-        <code value="Period"/>
-      </type>
-      <type>
-        <code value="Quantity"/>
-      </type>
-      <type>
-        <code value="Range"/>
-      </type>
-      <type>
-        <code value="Ratio"/>
-      </type>
-      <type>
-        <code value="Reference"/>
-      </type>
-      <type>
-        <code value="SampledData"/>
-      </type>
-      <type>
-        <code value="Signature"/>
-      </type>
-      <type>
-        <code value="Timing"/>
-      </type>
-      <type>
-        <code value="ContactDetail"/>
-      </type>
-      <type>
-        <code value="Contributor"/>
-      </type>
-      <type>
-        <code value="DataRequirement"/>
-      </type>
-      <type>
-        <code value="Expression"/>
-      </type>
-      <type>
-        <code value="ParameterDefinition"/>
-      </type>
-      <type>
-        <code value="RelatedArtifact"/>
-      </type>
-      <type>
-        <code value="TriggerDefinition"/>
-      </type>
-      <type>
-        <code value="UsageContext"/>
-      </type>
-      <type>
-        <code value="Dosage"/>
       </type>
       <isModifier value="false"/>
       <isSummary value="false"/>
+      <binding>
+        <strength value="preferred"/>
+        <valueSet value="http://hl7.org/fhir/us/mcode/ValueSet/shr-core-AnatomicalDirectionVS"/>
+      </binding>
       <mapping>
         <identity value="rim"/>
         <map value="N/A"/>
@@ -371,56 +181,11 @@
       <definition value="The direction from the landmark to the body location of interest, given as a clockface direction or anatomical direction."/>
       <min value="0"/>
       <max value="*"/>
-      <constraint>
-        <key value="choice-1"/>
-        <severity value="error"/>
-        <human value="shr-core-LandmarkToBodyLocationDirection-extension SHALL have either extension(&#39;clockfacedirection&#39;) or extension(&#39;anatomicaldirection&#39;)"/>
-        <expression value="( extension(&#39;clockfacedirection&#39;).url | extension(&#39;anatomicaldirection&#39;).url ).distinct().count() == 1"/>
-      </constraint>
     </element>
-    <element id="Extension:landmarktobodylocationdirection.extension:clockfacedirection">
+    <element id="Extension:landmarktobodylocationdirection.extension">
       <path value="Extension.extension"/>
-      <sliceName value="clockfacedirection"/>
-      <definition value="A direction indicated by an angle relative to 12 o&#39;clock."/>
       <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Element.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-ClockFaceDirection-extension"/>
-      </type>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
-    </element>
-    <element id="Extension:landmarktobodylocationdirection.extension:anatomicaldirection">
-      <path value="Extension.extension"/>
-      <sliceName value="anatomicaldirection"/>
-      <definition value="A direction based on planes, surfaces, and orientations of the body."/>
-      <min value="0"/>
-      <max value="1"/>
-      <base>
-        <path value="Element.extension"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-AnatomicalDirection-extension"/>
-      </type>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="n/a"/>
-      </mapping>
+      <max value="0"/>
     </element>
     <element id="Extension:landmarktobodylocationdirection.url">
       <path value="Extension.url"/>
@@ -429,10 +194,16 @@
       </type>
       <fixedUri value="http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-LandmarkToBodyLocationDirection-extension"/>
     </element>
-    <element id="Extension:landmarktobodylocationdirection.value[x]">
-      <path value="Extension.value[x]"/>
-      <min value="0"/>
-      <max value="0"/>
+    <element id="Extension:landmarktobodylocationdirection.valueCodeableConcept">
+      <path value="Extension.valueCodeableConcept"/>
+      <min value="1"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <binding>
+        <strength value="preferred"/>
+        <valueSet value="http://hl7.org/fhir/us/mcode/ValueSet/shr-core-AnatomicalDirectionVS"/>
+      </binding>
     </element>
   </differential>
 </StructureDefinition>
