@@ -13,7 +13,6 @@
     <sch:title>f:Condition</sch:title>
     <sch:rule context="f:Condition">
       <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/condition-assertedDate']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/StructureDefinition/condition-assertedDate': maximum cardinality of 'extension' is 1</sch:assert>
-      <sch:assert test="count(f:clinicalStatus) &gt;= 1">clinicalStatus: minimum cardinality of 'clinicalStatus' is 1</sch:assert>
       <sch:assert test="count(f:verificationStatus) &gt;= 1">verificationStatus: minimum cardinality of 'verificationStatus' is 1</sch:assert>
       <sch:assert test="count(f:category) &lt;= 1">category: maximum cardinality of 'category' is 1</sch:assert>
       <sch:assert test="count(f:stage) &lt;= 1">stage: maximum cardinality of 'stage' is 1</sch:assert>

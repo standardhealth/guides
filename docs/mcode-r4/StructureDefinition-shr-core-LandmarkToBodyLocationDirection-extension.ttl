@@ -17,7 +17,7 @@
   fhir:StructureDefinition.name [ fhir:value "LandmarkToBodyLocationDirection"];
   fhir:StructureDefinition.title [ fhir:value "shr-core-LandmarkToBodyLocationDirection"];
   fhir:StructureDefinition.status [ fhir:value "draft"];
-  fhir:StructureDefinition.date [ fhir:value "2019-07-18T00:00:00-04:00"^^xsd:dateTime];
+  fhir:StructureDefinition.date [ fhir:value "2019-07-19T00:00:00-04:00"^^xsd:dateTime];
   fhir:StructureDefinition.publisher [ fhir:value "The MITRE Corporation"];
   fhir:StructureDefinition.contact [
      fhir:index 0;
@@ -75,12 +75,6 @@
          fhir:ElementDefinition.constraint.human [ fhir:value "Must have either extensions or value[x], not both" ];
          fhir:ElementDefinition.constraint.expression [ fhir:value "extension.exists() != value.exists()" ];
          fhir:ElementDefinition.constraint.xpath [ fhir:value "exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" ]
-       ], [
-         fhir:index 2;
-         fhir:ElementDefinition.constraint.key [ fhir:value "choice-1" ];
-         fhir:ElementDefinition.constraint.severity [ fhir:value "error" ];
-         fhir:ElementDefinition.constraint.human [ fhir:value "shr-core-LandmarkToBodyLocationDirection-extension SHALL have either extension('clockfacedirection') or extension('anatomicaldirection')" ];
-         fhir:ElementDefinition.constraint.expression [ fhir:value "( extension('clockfacedirection').url | extension('anatomicaldirection').url ).distinct().count() == 1" ]
        ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.mapping [
@@ -144,7 +138,7 @@
          fhir:index 1
        ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "*" ];
+       fhir:ElementDefinition.max [ fhir:value "0" ];
        fhir:ElementDefinition.base [
          fhir:ElementDefinition.base.path [ fhir:value "Element.extension" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
@@ -163,64 +157,6 @@
        ]
      ], [
        fhir:index 3;
-       fhir:Element.id [ fhir:value "Extension:landmarktobodylocationdirection.extension:clockfacedirection" ];
-       fhir:ElementDefinition.path [ fhir:value "Extension.extension" ];
-       fhir:ElementDefinition.sliceName [ fhir:value "clockfacedirection" ];
-       fhir:ElementDefinition.definition [ fhir:value "A direction indicated by an angle relative to 12 o'clock." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "Element.extension" ];
-         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-         fhir:ElementDefinition.base.max [ fhir:value "*" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
-         fhir:ElementDefinition.type.profile [
-           fhir:value "http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-ClockFaceDirection-extension";
-           fhir:index 0;
-           fhir:link <http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-ClockFaceDirection-extension>
-         ]
-       ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.mapping [
-         fhir:index 0;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
-       ]
-     ], [
-       fhir:index 4;
-       fhir:Element.id [ fhir:value "Extension:landmarktobodylocationdirection.extension:anatomicaldirection" ];
-       fhir:ElementDefinition.path [ fhir:value "Extension.extension" ];
-       fhir:ElementDefinition.sliceName [ fhir:value "anatomicaldirection" ];
-       fhir:ElementDefinition.definition [ fhir:value "A direction based on planes, surfaces, and orientations of the body." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "Element.extension" ];
-         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-         fhir:ElementDefinition.base.max [ fhir:value "*" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
-         fhir:ElementDefinition.type.profile [
-           fhir:value "http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-AnatomicalDirection-extension";
-           fhir:index 0;
-           fhir:link <http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-AnatomicalDirection-extension>
-         ]
-       ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.mapping [
-         fhir:index 0;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
-       ]
-     ], [
-       fhir:index 5;
        fhir:Element.id [ fhir:value "Extension:landmarktobodylocationdirection.url" ];
        fhir:ElementDefinition.path [ fhir:value "Extension.url" ];
        fhir:ElementDefinition.representation [
@@ -250,13 +186,13 @@
          fhir:ElementDefinition.mapping.map [ fhir:value "N/A" ]
        ]
      ], [
-       fhir:index 6;
-       fhir:Element.id [ fhir:value "Extension:landmarktobodylocationdirection.value[x]" ];
-       fhir:ElementDefinition.path [ fhir:value "Extension.value[x]" ];
+       fhir:index 4;
+       fhir:Element.id [ fhir:value "Extension:landmarktobodylocationdirection.valueCodeableConcept" ];
+       fhir:ElementDefinition.path [ fhir:value "Extension.valueCodeableConcept" ];
        fhir:ElementDefinition.short [ fhir:value "Value of extension" ];
        fhir:ElementDefinition.definition [ fhir:value "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list)." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "0" ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.max [ fhir:value "1" ];
        fhir:ElementDefinition.base [
          fhir:ElementDefinition.base.path [ fhir:value "Extension.value[x]" ];
          fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
@@ -264,154 +200,17 @@
        ];
        fhir:ElementDefinition.type [
          fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "base64Binary" ]
-       ], [
-         fhir:index 1;
-         fhir:ElementDefinition.type.code [ fhir:value "boolean" ]
-       ], [
-         fhir:index 2;
-         fhir:ElementDefinition.type.code [ fhir:value "canonical" ]
-       ], [
-         fhir:index 3;
-         fhir:ElementDefinition.type.code [ fhir:value "code" ]
-       ], [
-         fhir:index 4;
-         fhir:ElementDefinition.type.code [ fhir:value "date" ]
-       ], [
-         fhir:index 5;
-         fhir:ElementDefinition.type.code [ fhir:value "dateTime" ]
-       ], [
-         fhir:index 6;
-         fhir:ElementDefinition.type.code [ fhir:value "decimal" ]
-       ], [
-         fhir:index 7;
-         fhir:ElementDefinition.type.code [ fhir:value "id" ]
-       ], [
-         fhir:index 8;
-         fhir:ElementDefinition.type.code [ fhir:value "instant" ]
-       ], [
-         fhir:index 9;
-         fhir:ElementDefinition.type.code [ fhir:value "integer" ]
-       ], [
-         fhir:index 10;
-         fhir:ElementDefinition.type.code [ fhir:value "markdown" ]
-       ], [
-         fhir:index 11;
-         fhir:ElementDefinition.type.code [ fhir:value "oid" ]
-       ], [
-         fhir:index 12;
-         fhir:ElementDefinition.type.code [ fhir:value "positiveInt" ]
-       ], [
-         fhir:index 13;
-         fhir:ElementDefinition.type.code [ fhir:value "string" ]
-       ], [
-         fhir:index 14;
-         fhir:ElementDefinition.type.code [ fhir:value "time" ]
-       ], [
-         fhir:index 15;
-         fhir:ElementDefinition.type.code [ fhir:value "unsignedInt" ]
-       ], [
-         fhir:index 16;
-         fhir:ElementDefinition.type.code [ fhir:value "uri" ]
-       ], [
-         fhir:index 17;
-         fhir:ElementDefinition.type.code [ fhir:value "url" ]
-       ], [
-         fhir:index 18;
-         fhir:ElementDefinition.type.code [ fhir:value "uuid" ]
-       ], [
-         fhir:index 19;
-         fhir:ElementDefinition.type.code [ fhir:value "Address" ]
-       ], [
-         fhir:index 20;
-         fhir:ElementDefinition.type.code [ fhir:value "Age" ]
-       ], [
-         fhir:index 21;
-         fhir:ElementDefinition.type.code [ fhir:value "Annotation" ]
-       ], [
-         fhir:index 22;
-         fhir:ElementDefinition.type.code [ fhir:value "Attachment" ]
-       ], [
-         fhir:index 23;
          fhir:ElementDefinition.type.code [ fhir:value "CodeableConcept" ]
-       ], [
-         fhir:index 24;
-         fhir:ElementDefinition.type.code [ fhir:value "Coding" ]
-       ], [
-         fhir:index 25;
-         fhir:ElementDefinition.type.code [ fhir:value "ContactPoint" ]
-       ], [
-         fhir:index 26;
-         fhir:ElementDefinition.type.code [ fhir:value "Count" ]
-       ], [
-         fhir:index 27;
-         fhir:ElementDefinition.type.code [ fhir:value "Distance" ]
-       ], [
-         fhir:index 28;
-         fhir:ElementDefinition.type.code [ fhir:value "Duration" ]
-       ], [
-         fhir:index 29;
-         fhir:ElementDefinition.type.code [ fhir:value "HumanName" ]
-       ], [
-         fhir:index 30;
-         fhir:ElementDefinition.type.code [ fhir:value "Identifier" ]
-       ], [
-         fhir:index 31;
-         fhir:ElementDefinition.type.code [ fhir:value "Money" ]
-       ], [
-         fhir:index 32;
-         fhir:ElementDefinition.type.code [ fhir:value "Period" ]
-       ], [
-         fhir:index 33;
-         fhir:ElementDefinition.type.code [ fhir:value "Quantity" ]
-       ], [
-         fhir:index 34;
-         fhir:ElementDefinition.type.code [ fhir:value "Range" ]
-       ], [
-         fhir:index 35;
-         fhir:ElementDefinition.type.code [ fhir:value "Ratio" ]
-       ], [
-         fhir:index 36;
-         fhir:ElementDefinition.type.code [ fhir:value "Reference" ]
-       ], [
-         fhir:index 37;
-         fhir:ElementDefinition.type.code [ fhir:value "SampledData" ]
-       ], [
-         fhir:index 38;
-         fhir:ElementDefinition.type.code [ fhir:value "Signature" ]
-       ], [
-         fhir:index 39;
-         fhir:ElementDefinition.type.code [ fhir:value "Timing" ]
-       ], [
-         fhir:index 40;
-         fhir:ElementDefinition.type.code [ fhir:value "ContactDetail" ]
-       ], [
-         fhir:index 41;
-         fhir:ElementDefinition.type.code [ fhir:value "Contributor" ]
-       ], [
-         fhir:index 42;
-         fhir:ElementDefinition.type.code [ fhir:value "DataRequirement" ]
-       ], [
-         fhir:index 43;
-         fhir:ElementDefinition.type.code [ fhir:value "Expression" ]
-       ], [
-         fhir:index 44;
-         fhir:ElementDefinition.type.code [ fhir:value "ParameterDefinition" ]
-       ], [
-         fhir:index 45;
-         fhir:ElementDefinition.type.code [ fhir:value "RelatedArtifact" ]
-       ], [
-         fhir:index 46;
-         fhir:ElementDefinition.type.code [ fhir:value "TriggerDefinition" ]
-       ], [
-         fhir:index 47;
-         fhir:ElementDefinition.type.code [ fhir:value "UsageContext" ]
-       ], [
-         fhir:index 48;
-         fhir:ElementDefinition.type.code [ fhir:value "Dosage" ]
        ];
        fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
        fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
+       fhir:ElementDefinition.binding [
+         fhir:ElementDefinition.binding.strength [ fhir:value "preferred" ];
+         fhir:ElementDefinition.binding.valueSet [
+           fhir:value "http://hl7.org/fhir/us/mcode/ValueSet/shr-core-AnatomicalDirectionVS";
+           fhir:link <http://hl7.org/fhir/us/mcode/ValueSet/shr-core-AnatomicalDirectionVS>
+         ]
+       ];
        fhir:ElementDefinition.mapping [
          fhir:index 0;
          fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
@@ -427,74 +226,15 @@
        fhir:ElementDefinition.short [ fhir:value "LandmarkToBodyLocationDirection" ];
        fhir:ElementDefinition.definition [ fhir:value "The direction from the landmark to the body location of interest, given as a clockface direction or anatomical direction." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "*" ];
-       fhir:ElementDefinition.constraint [
-         fhir:index 0;
-         fhir:ElementDefinition.constraint.key [ fhir:value "choice-1" ];
-         fhir:ElementDefinition.constraint.severity [ fhir:value "error" ];
-         fhir:ElementDefinition.constraint.human [ fhir:value "shr-core-LandmarkToBodyLocationDirection-extension SHALL have either extension('clockfacedirection') or extension('anatomicaldirection')" ];
-         fhir:ElementDefinition.constraint.expression [ fhir:value "( extension('clockfacedirection').url | extension('anatomicaldirection').url ).distinct().count() == 1" ]
-       ]
+       fhir:ElementDefinition.max [ fhir:value "*" ]
      ], [
        fhir:index 1;
-       fhir:Element.id [ fhir:value "Extension:landmarktobodylocationdirection.extension:clockfacedirection" ];
+       fhir:Element.id [ fhir:value "Extension:landmarktobodylocationdirection.extension" ];
        fhir:ElementDefinition.path [ fhir:value "Extension.extension" ];
-       fhir:ElementDefinition.sliceName [ fhir:value "clockfacedirection" ];
-       fhir:ElementDefinition.definition [ fhir:value "A direction indicated by an angle relative to 12 o'clock." ];
        fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "Element.extension" ];
-         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-         fhir:ElementDefinition.base.max [ fhir:value "*" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
-         fhir:ElementDefinition.type.profile [
-           fhir:value "http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-ClockFaceDirection-extension";
-           fhir:index 0;
-           fhir:link <http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-ClockFaceDirection-extension>
-         ]
-       ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.mapping [
-         fhir:index 0;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
-       ]
+       fhir:ElementDefinition.max [ fhir:value "0" ]
      ], [
        fhir:index 2;
-       fhir:Element.id [ fhir:value "Extension:landmarktobodylocationdirection.extension:anatomicaldirection" ];
-       fhir:ElementDefinition.path [ fhir:value "Extension.extension" ];
-       fhir:ElementDefinition.sliceName [ fhir:value "anatomicaldirection" ];
-       fhir:ElementDefinition.definition [ fhir:value "A direction based on planes, surfaces, and orientations of the body." ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "1" ];
-       fhir:ElementDefinition.base [
-         fhir:ElementDefinition.base.path [ fhir:value "Element.extension" ];
-         fhir:ElementDefinition.base.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-         fhir:ElementDefinition.base.max [ fhir:value "*" ]
-       ];
-       fhir:ElementDefinition.type [
-         fhir:index 0;
-         fhir:ElementDefinition.type.code [ fhir:value "Extension" ];
-         fhir:ElementDefinition.type.profile [
-           fhir:value "http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-AnatomicalDirection-extension";
-           fhir:index 0;
-           fhir:link <http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-AnatomicalDirection-extension>
-         ]
-       ];
-       fhir:ElementDefinition.isModifier [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.isSummary [ fhir:value "false"^^xsd:boolean ];
-       fhir:ElementDefinition.mapping [
-         fhir:index 0;
-         fhir:ElementDefinition.mapping.identity [ fhir:value "rim" ];
-         fhir:ElementDefinition.mapping.map [ fhir:value "n/a" ]
-       ]
-     ], [
-       fhir:index 3;
        fhir:Element.id [ fhir:value "Extension:landmarktobodylocationdirection.url" ];
        fhir:ElementDefinition.path [ fhir:value "Extension.url" ];
        fhir:ElementDefinition.type [
@@ -503,11 +243,21 @@
        ];
        fhir:ElementDefinition.fixedUri [ fhir:value "http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-LandmarkToBodyLocationDirection-extension" ]
      ], [
-       fhir:index 4;
-       fhir:Element.id [ fhir:value "Extension:landmarktobodylocationdirection.value[x]" ];
-       fhir:ElementDefinition.path [ fhir:value "Extension.value[x]" ];
-       fhir:ElementDefinition.min [ fhir:value "0"^^xsd:nonNegativeInteger ];
-       fhir:ElementDefinition.max [ fhir:value "0" ]
+       fhir:index 3;
+       fhir:Element.id [ fhir:value "Extension:landmarktobodylocationdirection.valueCodeableConcept" ];
+       fhir:ElementDefinition.path [ fhir:value "Extension.valueCodeableConcept" ];
+       fhir:ElementDefinition.min [ fhir:value "1"^^xsd:nonNegativeInteger ];
+       fhir:ElementDefinition.type [
+         fhir:index 0;
+         fhir:ElementDefinition.type.code [ fhir:value "CodeableConcept" ]
+       ];
+       fhir:ElementDefinition.binding [
+         fhir:ElementDefinition.binding.strength [ fhir:value "preferred" ];
+         fhir:ElementDefinition.binding.valueSet [
+           fhir:value "http://hl7.org/fhir/us/mcode/ValueSet/shr-core-AnatomicalDirectionVS";
+           fhir:link <http://hl7.org/fhir/us/mcode/ValueSet/shr-core-AnatomicalDirectionVS>
+         ]
+       ]
      ]
   ] .
 

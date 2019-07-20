@@ -12,9 +12,7 @@
   <sch:pattern>
     <sch:title>f:Extension</sch:title>
     <sch:rule context="f:Extension">
-      <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-ClockFaceDirection-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-ClockFaceDirection-extension': maximum cardinality of 'extension' is 1</sch:assert>
-      <sch:assert test="count(f:extension[@url = 'http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-AnatomicalDirection-extension']) &lt;= 1">extension with URL = 'http://hl7.org/fhir/us/mcode/StructureDefinition/shr-core-AnatomicalDirection-extension': maximum cardinality of 'extension' is 1</sch:assert>
-      <sch:assert test="count(f:value[x]) &lt;= 0">value[x]: maximum cardinality of 'value[x]' is 0</sch:assert>
+      <sch:assert test="count(f:valueCodeableConcept) &gt;= 1">valueCodeableConcept: minimum cardinality of 'valueCodeableConcept' is 1</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>

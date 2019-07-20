@@ -19,7 +19,7 @@
       <sch:assert test="count(f:dataAbsentReason) &lt;= 0">dataAbsentReason: maximum cardinality of 'dataAbsentReason' is 0</sch:assert>
       <sch:assert test="count(f:interpretation) &lt;= 1">interpretation: maximum cardinality of 'interpretation' is 1</sch:assert>
       <sch:assert test="count(f:bodySite) &lt;= 0">bodySite: maximum cardinality of 'bodySite' is 0</sch:assert>
-      <sch:assert test="count(f:referenceRange) &lt;= 1">referenceRange: maximum cardinality of 'referenceRange' is 1</sch:assert>
+      <sch:assert test="count(f:referenceRange) &lt;= 0">referenceRange: maximum cardinality of 'referenceRange' is 0</sch:assert>
       <sch:assert test="count(f:hasMember) &lt;= 0">hasMember: maximum cardinality of 'hasMember' is 0</sch:assert>
       <sch:assert test="count(f:component) &lt;= 0">component: maximum cardinality of 'component' is 0</sch:assert>
     </sch:rule>
@@ -83,12 +83,6 @@
     <sch:rule context="f:Observation/f:value[x]">
       <sch:assert test="not(exists(f:valueCodeableConcept/f:coding/f:system) ) or  f:valueCodeableConcept/f:coding/f:system[@value='http://snomed.info/sct']">SHOULD use Snomed CT for coded Results</sch:assert>
       <sch:assert test="not(exists(f:valueQuantity/f:system) ) or  f:valueQuantity/f:system[@value='http://unitsofmeasure.org']">SHALL use UCUM for coded quantity units.</sch:assert>
-    </sch:rule>
-  </sch:pattern>
-  <sch:pattern>
-    <sch:title>f:Observation/f:referenceRange</sch:title>
-    <sch:rule context="f:Observation/f:referenceRange">
-      <sch:assert test="count(f:appliesTo) &lt;= 1">appliesTo: maximum cardinality of 'appliesTo' is 1</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
