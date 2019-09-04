@@ -44,7 +44,7 @@
 
     <div id="hl7-nav">
       <a id="hl7-logo" no-external="true" href="http://www.hl7.org">
-        <img height="50" alt="visit the hl7 website" width="42" src="assets/images/hl7-logo.png" />
+        <img height="50" alt="visit the hl7 website" width="91" src="assets/images/hl7-logo.png" />
       </a>
     </div>
   </div>
@@ -82,7 +82,7 @@
             <!-- no conformance / capability statements -->
             <li><a href="downloads.html">Downloads</a></li>
             <!-- no reference model -->
-            <li><a href="http://hl7.org/fhir/us/odh/history.html">History</a></li>
+            <li><a href="http://www.hl7.org/fhir/us/odh/history.cfml">History</a></li>
           </ul>
 
         </div>
@@ -120,11 +120,11 @@
    <div class="row">
      <div class="inner-wrapper">
        <div class="col-12">
-       <!--ReleaseHeader--><p id="publish-box">HL7 FHIR Profile: Occupational Data for Health (ODH), Release 1.1 (Standard for Trial Use) - Local Development build (v1.1.0). See the <a href="http://hl7.org/fhir/us/odh/history.html">Directory of published versions</a></p></p><!--EndReleaseHeader-->
+       <!--ReleaseHeader--><p id="publish-box">HL7 FHIR Profile: Occupational Data for Health (ODH), Release 1.1 (Standard for Trial Use) - Local Development build (v1.1.0). See the <a href="http://hl7.org/fhir/us/odh/history.html">Directory of published versions</a></p><!--EndReleaseHeader-->
 
 <!-- ============CONTENT CONTENT=============== -->
 
-<h2>Primary local value sets used in this Implementation Guide</h2>
+<h2>Local value sets used in this Implementation Guide</h2>
 
 <table class="codes local">
   <thead>
@@ -139,24 +139,89 @@
   </thead>
   <tbody>
     <tr>
-          <td><a href="ValueSet-shr-core-BodyLocationVS.html">BodyLocationVS</a></td>
-          <td><p>Codes that describe normal and pathologic anatomic systems, regions, cavities, and spaces. The code set includes codes from the SNOMED CT hierarchy descending from 123037004 ‘Body Structure’.</p>
-
-<p>Body location is a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.</p>
+          <td><a href="ValueSet-obf-datatype-AnatomicalDirectionVS.html">AnatomicalDirectionVS</a></td>
+          <td><p>Terms that specify anatomical direction.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="ValueSet-obf-datatype-AnatomicalOrientationVS.html">AnatomicalOrientationVS</a></td>
+          <td><p>Terms that specify anatomical orientation. The orientation value set is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.</p>
 
 <ul>
   <li>Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.</li>
   <li>Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.</li>
-  <li>Relation to landmark: The location relative to a landmark is specified by:</li>
-  <li>Establishing the location and type of landmark using a body site code and optional laterality/orientation, and</li>
-  <li>Specifying the direction and distance from the landmark to the body location.</li>
+  <li>Relation to landmark: The location relative to a landmark is specified by:
+    <ol>
+      <li>Establishing the location and type of landmark using a body site code and optional laterality/orientation, and</li>
+      <li>Specifying the direction and distance from the landmark to the body location.</li>
+    </ol>
+  </li>
 </ul>
 
 <p>Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR’s stand-alone BodySite (aka BodyStructure in r4) which ‘is not … intended for describing the type of anatomical location but rather a specific body site on a specific patient’ (FHIR 3.5).</p>
 </td>
         </tr>
         <tr>
-          <td><a href="ValueSet-shr-core-YesNoVS.html">YesNoVS</a></td>
+          <td><a href="ValueSet-obf-CarePlanChangeReasonVS.html">CarePlanChangeReasonVS</a></td>
+          <td><p>Reasons that a care plan was changed. Similar to TreatmentTerminationReasonVS</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="ValueSet-obf-datatype-LandmarkTypeVS.html">LandmarkTypeVS</a></td>
+          <td><p>The type of feature that constitutes the landmark, for example, particularly if the landmark is an acquired body structure or physical object. The landmark type value set is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.</p>
+
+<ul>
+  <li>Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.</li>
+  <li>Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.</li>
+  <li>Relation to landmark: The location relative to a landmark is specified by:
+    <ol>
+      <li>Establishing the location and type of landmark using a body site code and optional laterality/orientation, and</li>
+      <li>Specifying the direction and distance from the landmark to the body location.</li>
+    </ol>
+  </li>
+</ul>
+
+<p>Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR’s stand-alone BodySite (aka BodyStructure in r4) which ‘is not … intended for describing the type of anatomical location but rather a specific body site on a specific patient’ (FHIR 3.5).</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="ValueSet-obf-ResearchSubjectTerminationReasonVS.html">ResearchSubjectTerminationReasonVS</a></td>
+          <td><p>The reason for a research subject leaving a research study.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="ValueSet-obf-datatype-SettingVS.html">SettingVS</a></td>
+          <td><p>What type of place is found at a given location. More than one descriptor may be applicable.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="ValueSet-obf-StudyArmTypeVS.html">StudyArmTypeVS</a></td>
+          <td><p>The role of each arm in the clinical trial.</p>
+
+<p>FHIR is currently unable to handle values from NCI Thesaurus, so no values are listed in the Expansion, below. The values ARE in the downloads. For convenience, here is a listing of values in this value set:
+NCIT#C94487     ‘Intervention Group’
+NCIT#C68609     ‘Active Comparator’
+NCIT#C49648     ‘Placebo Control’
+NCIT#C116527    ‘Sham Intervention’</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="ValueSet-obf-TreatmentIntentVS.html">TreatmentIntentVS</a></td>
+          <td><p>The purpose of a treatment. The value set includes ‘curative’ and ‘palliative’. Curative is defined as any treatment meant to reduce or control a disease process, even if a ‘cure’ is not anticipated. Palliative includes treatments meant to reduce symptoms and side effects, such as antiemetics.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="ValueSet-obf-TreatmentTerminationReasonVS.html">TreatmentTerminationReasonVS</a></td>
+          <td><p>Values used to describe the reasons for stopping a treatment. Includes code for ‘treatment completed’ as well as codes for unplanned (early) stoppage. Applies to medications and other treatments that take place over a period of time, such as radiation treatments.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="ValueSet-obf-datatype-UnitsOfLengthVS.html">UnitsOfLengthVS</a></td>
+          <td><p>Units of measure related to length or distance.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="ValueSet-obf-datatype-YesNoVS.html">YesNoVS</a></td>
           <td><p>Value set indicating yes or no (values drawn from Snomed CT), equivalent to LL361-7.</p>
 </td>
         </tr>
@@ -164,7 +229,7 @@
   </tbody>
 </table>
 
-<h2>Primary external value sets used in this Implementation Guide</h2>
+<h2>External value sets used in this Implementation Guide</h2>
 
 <table class="codes external">
   <thead>
@@ -184,6 +249,11 @@
 </td>
       </tr>
       <tr>
+        <td><a href="http://hl7.org/fhir/ValueSet/duration-units">CommonUCUMCodesForDuration</a></td>
+        <td><p>Unified Code for Units of Measure (UCUM). This value set includes all UCUM codes</p>
+</td>
+      </tr>
+      <tr>
         <td><a href="http://hl7.org/fhir/ValueSet/composition-attestation-mode">CompositionAttestationMode</a></td>
         <td><p>The way in which a person authenticated a composition.</p>
 </td>
@@ -194,8 +264,23 @@
 </td>
       </tr>
       <tr>
+        <td><a href="http://hl7.org/fhir/ValueSet/currencies">Currencies</a></td>
+        <td><p>Currency codes from ISO 4217 (see https://www.iso.org/iso-4217-currency-codes.html)</p>
+</td>
+      </tr>
+      <tr>
         <td><a href="http://hl7.org/fhir/ValueSet/data-absent-reason">DataAbsentReason</a></td>
         <td><p>Used to specify why the normally expected content of the data element is missing.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a href="http://hl7.org/fhir/ValueSet/days-of-week">DaysOfWeek</a></td>
+        <td><p>The days of the week.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a href="http://hl7.org/fhir/ValueSet/diagnosis-role">DiagnosisRole</a></td>
+        <td><p>This value set defines a set of codes that can be used to express the role of a diagnosis on the Encounter or EpisodeOfCare record.</p>
 </td>
       </tr>
       <tr>
@@ -214,13 +299,33 @@
 </td>
       </tr>
       <tr>
+        <td><a href="http://hl7.org/fhir/ValueSet/event-timing">EventTiming</a></td>
+        <td><p>Real world event relating to the schedule.</p>
+</td>
+      </tr>
+      <tr>
         <td><a href="http://hl7.org/fhir/ValueSet/doc-typecodes">FHIRDocumentTypeCodes</a></td>
         <td><p>FHIR Document Codes - all LOINC codes where scale type = ‘DOC’.</p>
 </td>
       </tr>
       <tr>
+        <td><a href="http://hl7.org/fhir/ValueSet/identifier-type">Identifier Type Codes</a></td>
+        <td><p>A coded type for an identifier that can be used to determine which identifier to use for a specific purpose.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a href="http://hl7.org/fhir/ValueSet/identifier-use">IdentifierUse</a></td>
+        <td><p>Identifies the purpose for this identifier, if known .</p>
+</td>
+      </tr>
+      <tr>
         <td><a href="http://hl7.org/fhir/ValueSet/observation-codes">LOINCCodes</a></td>
         <td><p>This value set includes all LOINC codes</p>
+</td>
+      </tr>
+      <tr>
+        <td><a href="http://hl7.org/fhir/ValueSet/bodysite-laterality">Laterality</a></td>
+        <td><p>Laterality: SNOMED-CT concepts for ‘left’, ‘right’, and ‘bilateral’</p>
 </td>
       </tr>
       <tr>
@@ -273,8 +378,33 @@
 </td>
       </tr>
       <tr>
+        <td><a href="http://hl7.org/fhir/ValueSet/performer-role">ProcedurePerformerRoleCodes</a></td>
+        <td><p>This example value set defines the set of codes that can be used to indicate a role of a procedure performer.</p>
+</td>
+      </tr>
+      <tr>
         <td><a href="http://hl7.org/fhir/ValueSet/quantity-comparator">QuantityComparator</a></td>
         <td><p>How the Quantity should be understood and represented.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a href="http://hl7.org/fhir/ValueSet/quantity-comparator">QuantityComparator</a></td>
+        <td><p>How the Quantity should be understood and represented.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a href="http://hl7.org/fhir/ValueSet/body-site">SNOMEDCTBodyStructures</a></td>
+        <td><p>This value set includes all codes from <a href="http://snomed.info/sct">SNOMED CT</a> where concept is-a 442083009 (Anatomical or acquired body site (body structure)).</p>
+</td>
+      </tr>
+      <tr>
+        <td><a href="http://hl7.org/fhir/ValueSet/timing-abbreviation">TimingAbbreviation</a></td>
+        <td><p>Code for a known / defined timing pattern.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a href="http://hl7.org/fhir/ValueSet/units-of-time">UnitsOfTime</a></td>
+        <td><p>A unit of time (units from UCUM).</p>
 </td>
       </tr>
       <tr>
@@ -332,15 +462,15 @@
    <div class="inner-wrapper">
     <p>
       &copy;2019+
-      <a style="color: #81BEF7" href="http://standardhealthrecord.org">HL7</a>.
+      <a style="color: #81BEF7" href="http://www.hl7.org/Special/committees/pher/index.cfm">HL7 International Public Health Work Group</a>.
       Package hl7.fhir.us.odh#1.1.0 based on <a style="color: #81BEF7" href="http://hl7.org/fhir/R4/">FHIR 4.0.0</a>.
-      Generated <span title="Wed, Jul 3, 2019 08:49-0400">2019-07-03</span>.
+      Generated <span title="Wed, Sep 4, 2019 11:05-0400">2019-09-04</span>.
       <br/>
       <span style="color: #FFFF77">
         Links:
         <a style="color: #81BEF7" href="index.html">Home</a>
         | <a style="color: #81BEF7" href="qa.html">QA Report</a>
-        | <a style="color: #81BEF7" target="_blank" href="http://hl7.org/fhir/us/odh/history.html">
+        | <a style="color: #81BEF7" target="_blank" href="http://www.hl7.org/fhir/us/odh/history.cfml">
           Version History
           <img alt="external" style="text-align: baseline" src="external.png">
         </a>

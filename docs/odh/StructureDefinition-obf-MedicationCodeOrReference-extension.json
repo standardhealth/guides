@@ -6,24 +6,18 @@
     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>MedicationCodeOrReference Extension</b></p>\n  <p>A choice of a medication code or reference.</p>\n</div>"
   },
   "url": "http://hl7.org/fhir/us/odh/StructureDefinition/obf-MedicationCodeOrReference-extension",
-  "identifier": [
-    {
-      "system": "http://hl7.org/fhir/us/odh",
-      "value": "obf.MedicationCodeOrReference"
-    }
-  ],
   "version": "1.1.0",
   "name": "MedicationCodeOrReference",
   "title": "obf-MedicationCodeOrReference",
   "status": "draft",
-  "date": "2019-07-03T00:00:00-04:00",
-  "publisher": "HL7",
+  "date": "2019-09-04T00:00:00-04:00",
+  "publisher": "HL7 International Public Health Work Group",
   "contact": [
     {
       "telecom": [
         {
           "system": "url",
-          "value": "http://standardhealthrecord.org"
+          "value": "http://www.hl7.org/Special/committees/pher/index.cfm"
         }
       ]
     }
@@ -44,7 +38,7 @@
   "snapshot": {
     "element": [
       {
-        "id": "Extension:medicationcodeorreference",
+        "id": "Extension",
         "path": "Extension",
         "short": "MedicationCodeOrReference",
         "definition": "A choice of a medication code or reference.",
@@ -88,7 +82,7 @@
         ]
       },
       {
-        "id": "Extension:medicationcodeorreference.id",
+        "id": "Extension.id",
         "path": "Extension.id",
         "representation": [
           "xmlAttr"
@@ -117,7 +111,7 @@
         ]
       },
       {
-        "id": "Extension:medicationcodeorreference.extension",
+        "id": "Extension.extension",
         "path": "Extension.extension",
         "slicing": {
           "discriminator": [
@@ -158,7 +152,7 @@
         ]
       },
       {
-        "id": "Extension:medicationcodeorreference.url",
+        "id": "Extension.url",
         "path": "Extension.url",
         "representation": [
           "xmlAttr"
@@ -189,30 +183,43 @@
         ]
       },
       {
-        "id": "Extension:medicationcodeorreference.valueCodeableConcept",
-        "path": "Extension.valueCodeableConcept",
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
         "short": "Value of extension",
         "definition": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
         "min": 1,
         "max": "1",
         "base": {
           "path": "Extension.value[x]",
-          "min": 1,
+          "min": 0,
           "max": "1"
         },
         "type": [
           {
             "code": "CodeableConcept"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication"
+            ]
           }
         ],
-        "isSummary": false
+        "isModifier": false,
+        "isSummary": false,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
       }
     ]
   },
   "differential": {
     "element": [
       {
-        "id": "Extension:medicationcodeorreference",
+        "id": "Extension",
         "path": "Extension",
         "short": "MedicationCodeOrReference",
         "definition": "A choice of a medication code or reference.",
@@ -220,13 +227,13 @@
         "max": "*"
       },
       {
-        "id": "Extension:medicationcodeorreference.extension",
+        "id": "Extension.extension",
         "path": "Extension.extension",
         "min": 0,
         "max": "0"
       },
       {
-        "id": "Extension:medicationcodeorreference.url",
+        "id": "Extension.url",
         "path": "Extension.url",
         "type": [
           {
@@ -236,16 +243,18 @@
         "fixedUri": "http://hl7.org/fhir/us/odh/StructureDefinition/obf-MedicationCodeOrReference-extension"
       },
       {
-        "id": "Extension:medicationcodeorreference.valueCodeableConcept",
-        "path": "Extension.valueCodeableConcept",
-        "base": {
-          "path": "Extension.value[x]",
-          "min": 1,
-          "max": "1"
-        },
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "min": 1,
         "type": [
           {
             "code": "CodeableConcept"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication"
+            ]
           }
         ]
       }

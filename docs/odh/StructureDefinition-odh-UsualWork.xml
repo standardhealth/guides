@@ -19,7 +19,7 @@
   Narrative maps to text
   Identifier maps to identifier
   SocialHistoryObservationBasedOn maps to basedOn
-  SocialHistoryObservationPartOf maps to partOf
+  ProceduralObservationPartOf maps to partOf
   Status maps to status
   Category maps to category
   Code maps to code
@@ -35,7 +35,7 @@
   Annotation maps to note
   BodyLocation.Code maps to bodySite
   BodyLocation.Laterality maps to bodySite.extension
-  BodyLocation.Orientation maps to bodySite.extension
+  BodyLocation.AnatomicalOrientation maps to bodySite.extension
   BodyLocation.RelationToLandmark maps to bodySite.extension
   Method maps to method
   Specimen maps to specimen
@@ -47,7 +47,7 @@
   ReferenceRange.ApplicableSubpopulation maps to referenceRange.appliesTo
   ReferenceRange.ApplicableAgeRange maps to referenceRange.age
   ReferenceRange.Text maps to referenceRange.text
-  PanelMembers.Observation maps to hasMember (slice on = reference.resolve(); slice on type = profile; slice strategy = includes)
+  PanelMembers.Observation maps to hasMember (slice on = $this.resolve().code.coding.code; slice strategy = includes)
   ObservationDerivedFrom maps to derivedFrom
   Components.ObservationComponent maps to component (slice on = code.coding.code; slice strategy = includes)
   Components.ObservationComponent.Code maps to component.code
@@ -65,20 +65,16 @@
 </div>
   </text>
   <url value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-UsualWork"/>
-  <identifier>
-    <system value="http://hl7.org/fhir/us/odh"/>
-    <value value="odh.UsualWork"/>
-  </identifier>
   <version value="1.1.0"/>
   <name value="UsualWork"/>
   <title value="odh-UsualWork"/>
   <status value="active"/>
-  <date value="2019-07-03T00:00:00-04:00"/>
-  <publisher value="HL7"/>
+  <date value="2019-09-04T00:00:00-04:00"/>
+  <publisher value="HL7 International Public Health Work Group"/>
   <contact>
     <telecom>
       <system value="url"/>
-      <value value="http://standardhealthrecord.org"/>
+      <value value="http://www.hl7.org/Special/committees/pher/index.cfm"/>
     </telecom>
   </contact>
   <description value="Related data elements about the work a person reports having performed for the longest amount of time during his or her life, regardless of the person&#x2019;s current job and regardless of whether or not the person performed this work for a continuous time. Knowledge of person&#x2019;s Usual Work can potentially assist in diagnosis, treatment and/or prevention of chronic condition(s) or conditions with a long latency. The potential for exposure to Occupational Hazard(s) related to an Occupation and/or an Industry can change over time, and a person could have been in and out of their Usual Work over time, so additional data are helpful to fully evaluate the possible impact of the person&#x2019;s Usual Work on their health and guide appropriate use of screening tests to detect early disease. Example: a person has worked for a total of 30 years as a building carpenter (Occupation), but in various industries, mostly hotel construction. Her Usual Occupation is &#x2018;building carpenter&#x2019; and her Usual Industry is &#x2018;hotel construction.&#x2019; Usual Work does not include work that was unpaid or voluntary."/>
@@ -120,7 +116,7 @@
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation"/>
   <derivation value="constraint"/>
   <snapshot>
-    <element id="Observation:odh-UsualWork">
+    <element id="Observation">
       <path value="Observation"/>
       <short value="odh-UsualWork"/>
       <definition value="Related data elements about the work a person reports having performed for the longest amount of time during his or her life, regardless of the person&#x2019;s current job and regardless of whether or not the person performed this work for a continuous time. Knowledge of person&#x2019;s Usual Work can potentially assist in diagnosis, treatment and/or prevention of chronic condition(s) or conditions with a long latency. The potential for exposure to Occupational Hazard(s) related to an Occupation and/or an Industry can change over time, and a person could have been in and out of their Usual Work over time, so additional data are helpful to fully evaluate the possible impact of the person&#x2019;s Usual Work on their health and guide appropriate use of screening tests to detect early disease. Example: a person has worked for a total of 30 years as a building carpenter (Occupation), but in various industries, mostly hotel construction. Her Usual Occupation is &#x2018;building carpenter&#x2019; and her Usual Industry is &#x2018;hotel construction.&#x2019; Usual Work does not include work that was unpaid or voluntary."/>
@@ -219,7 +215,7 @@
         <map value="Observation[classCode=OBS, moodCode=EVN]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.id">
+    <element id="Observation.id">
       <path value="Observation.id"/>
       <short value="Logical id of this artifact"/>
       <definition value="The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes."/>
@@ -237,7 +233,7 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation:odh-UsualWork.meta">
+    <element id="Observation.meta">
       <path value="Observation.meta"/>
       <short value="Metadata about the resource"/>
       <definition value="The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource."/>
@@ -254,7 +250,7 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation:odh-UsualWork.implicitRules">
+    <element id="Observation.implicitRules">
       <path value="Observation.implicitRules"/>
       <short value="A set of rules under which this content was created"/>
       <definition value="A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc."/>
@@ -273,7 +269,7 @@
       <isModifierReason value="This element is labeled as a modifier because the implicit rules may provide additional knowledge about the resource that modifies it&#39;s meaning or interpretation"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation:odh-UsualWork.language">
+    <element id="Observation.language">
       <path value="Observation.language"/>
       <short value="Language of the resource content"/>
       <definition value="The base language in which the resource is written."/>
@@ -305,7 +301,7 @@
         <valueSet value="http://hl7.org/fhir/ValueSet/languages"/>
       </binding>
     </element>
-    <element id="Observation:odh-UsualWork.text">
+    <element id="Observation.text">
       <path value="Observation.text"/>
       <short value="Text summary of the resource, for human interpretation"/>
       <definition value="A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it &quot;clinically safe&quot; for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety."/>
@@ -331,7 +327,7 @@
         <map value="Act.text?"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.contained">
+    <element id="Observation.contained">
       <path value="Observation.contained"/>
       <short value="Contained, inline Resources"/>
       <definition value="These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."/>
@@ -356,7 +352,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.extension">
+    <element id="Observation.extension">
       <path value="Observation.extension"/>
       <short value="Additional content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
@@ -380,7 +376,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.modifierExtension">
+    <element id="Observation.modifierExtension">
       <path value="Observation.modifierExtension"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
@@ -406,7 +402,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.identifier">
+    <element id="Observation.identifier">
       <path value="Observation.identifier"/>
       <short value="Business Identifier for observation"/>
       <definition value="A unique identifier assigned to this observation."/>
@@ -440,7 +436,7 @@
         <map value="id"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.basedOn">
+    <element id="Observation.basedOn">
       <path value="Observation.basedOn"/>
       <short value="The plan, proposal or order that is fulfilled in whole or in part by this observation"/>
       <definition value="The plan, proposal or order that is fulfilled in whole or in part by this observation."/>
@@ -472,7 +468,7 @@
         <map value=".inboundRelationship[typeCode=COMP].source[moodCode=EVN]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.partOf">
+    <element id="Observation.partOf">
       <path value="Observation.partOf"/>
       <short value="The larger procedure that this particular observation is a component or step"/>
       <definition value="The larger procedure that this particular observation is a component or step."/>
@@ -504,7 +500,7 @@
         <map value=".outboundRelationship[typeCode=FLFS].target"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.status">
+    <element id="Observation.status">
       <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-display-hint">
         <valueString value="default: final"/>
       </extension>
@@ -555,7 +551,7 @@
         <map value="status  Amended &amp; Final are differentiated by whether it is the subject of a ControlAct event with a type of &quot;revise&quot;"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.category">
+    <element id="Observation.category">
       <path value="Observation.category"/>
       <short value="Classification of  type of observation"/>
       <definition value="A code that classifies the general type of observation being made."/>
@@ -590,7 +586,7 @@
         <map value=".outboundRelationship[typeCode=&quot;COMP].target[classCode=&quot;LIST&quot;, moodCode=&quot;EVN&quot;].code"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.category.id">
+    <element id="Observation.category.id">
       <path value="Observation.category.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -612,7 +608,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.category.extension">
+    <element id="Observation.category.extension">
       <path value="Observation.category.extension"/>
       <slicing>
         <discriminator>
@@ -644,7 +640,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.category.coding">
+    <element id="Observation.category.coding">
       <path value="Observation.category.coding"/>
       <slicing id="1">
         <discriminator>
@@ -683,7 +679,7 @@
         <map value="fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.category.coding:Fixed_social-history">
+    <element id="Observation.category.coding:Fixed_social-history">
       <path value="Observation.category.coding"/>
       <sliceName value="Fixed_social-history"/>
       <short value="Social History"/>
@@ -700,7 +696,7 @@
       </type>
       <isSummary value="true"/>
     </element>
-    <element id="Observation:odh-UsualWork.category.coding:Fixed_social-history.id">
+    <element id="Observation.category.coding:Fixed_social-history.id">
       <path value="Observation.category.coding.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -722,7 +718,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.category.coding:Fixed_social-history.extension">
+    <element id="Observation.category.coding:Fixed_social-history.extension">
       <path value="Observation.category.coding.extension"/>
       <slicing>
         <discriminator>
@@ -754,7 +750,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.category.coding:Fixed_social-history.system">
+    <element id="Observation.category.coding:Fixed_social-history.system">
       <path value="Observation.category.coding.system"/>
       <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
@@ -770,7 +766,7 @@
       <type>
         <code value="uri"/>
       </type>
-      <fixedUri value="http://hl7.org/fhir/observation-category"/>
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/observation-category"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -786,7 +782,7 @@
         <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.category.coding:Fixed_social-history.version">
+    <element id="Observation.category.coding:Fixed_social-history.version">
       <path value="Observation.category.coding.version"/>
       <short value="Version of the system - if relevant"/>
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured, and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged."/>
@@ -816,7 +812,7 @@
         <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.category.coding:Fixed_social-history.code">
+    <element id="Observation.category.coding:Fixed_social-history.code">
       <path value="Observation.category.coding.code"/>
       <short value="Symbol in syntax defined by the system"/>
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)."/>
@@ -847,7 +843,7 @@
         <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.category.coding:Fixed_social-history.display">
+    <element id="Observation.category.coding:Fixed_social-history.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true"/>
       </extension>
@@ -880,7 +876,7 @@
         <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.category.coding:Fixed_social-history.userSelected">
+    <element id="Observation.category.coding:Fixed_social-history.userSelected">
       <path value="Observation.category.coding.userSelected"/>
       <short value="If this coding was chosen directly by the user"/>
       <definition value="Indicates that this coding was chosen by a user directly - e.g. off a pick list of available items (codes or displays)."/>
@@ -911,7 +907,7 @@
         <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.category.text">
+    <element id="Observation.category.text">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true"/>
       </extension>
@@ -945,7 +941,7 @@
         <map value="fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.code">
+    <element id="Observation.code">
       <path value="Observation.code"/>
       <short value="Type of observation (code / type)"/>
       <definition value="Describes what was observed. Sometimes this is called the observation &quot;name&quot;."/>
@@ -997,7 +993,7 @@
         <map value="116680003 |Is a|"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.code.id">
+    <element id="Observation.code.id">
       <path value="Observation.code.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -1019,7 +1015,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.code.extension">
+    <element id="Observation.code.extension">
       <path value="Observation.code.extension"/>
       <slicing>
         <discriminator>
@@ -1051,7 +1047,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.code.coding">
+    <element id="Observation.code.coding">
       <path value="Observation.code.coding"/>
       <slicing id="2">
         <discriminator>
@@ -1090,7 +1086,7 @@
         <map value="fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.code.coding:Fixed_21843-8">
+    <element id="Observation.code.coding:Fixed_21843-8">
       <path value="Observation.code.coding"/>
       <sliceName value="Fixed_21843-8"/>
       <short value="History of Usual Occupation"/>
@@ -1107,7 +1103,7 @@
       </type>
       <isSummary value="true"/>
     </element>
-    <element id="Observation:odh-UsualWork.code.coding:Fixed_21843-8.id">
+    <element id="Observation.code.coding:Fixed_21843-8.id">
       <path value="Observation.code.coding.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -1129,7 +1125,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.code.coding:Fixed_21843-8.extension">
+    <element id="Observation.code.coding:Fixed_21843-8.extension">
       <path value="Observation.code.coding.extension"/>
       <slicing>
         <discriminator>
@@ -1161,7 +1157,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.code.coding:Fixed_21843-8.system">
+    <element id="Observation.code.coding:Fixed_21843-8.system">
       <path value="Observation.code.coding.system"/>
       <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
@@ -1193,7 +1189,7 @@
         <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.code.coding:Fixed_21843-8.version">
+    <element id="Observation.code.coding:Fixed_21843-8.version">
       <path value="Observation.code.coding.version"/>
       <short value="Version of the system - if relevant"/>
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured, and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged."/>
@@ -1223,7 +1219,7 @@
         <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.code.coding:Fixed_21843-8.code">
+    <element id="Observation.code.coding:Fixed_21843-8.code">
       <path value="Observation.code.coding.code"/>
       <short value="Symbol in syntax defined by the system"/>
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)."/>
@@ -1254,7 +1250,7 @@
         <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.code.coding:Fixed_21843-8.display">
+    <element id="Observation.code.coding:Fixed_21843-8.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true"/>
       </extension>
@@ -1287,7 +1283,7 @@
         <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.code.coding:Fixed_21843-8.userSelected">
+    <element id="Observation.code.coding:Fixed_21843-8.userSelected">
       <path value="Observation.code.coding.userSelected"/>
       <short value="If this coding was chosen directly by the user"/>
       <definition value="Indicates that this coding was chosen by a user directly - e.g. off a pick list of available items (codes or displays)."/>
@@ -1318,7 +1314,7 @@
         <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.code.text">
+    <element id="Observation.code.text">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true"/>
       </extension>
@@ -1352,7 +1348,7 @@
         <map value="fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.subject">
+    <element id="Observation.subject">
       <path value="Observation.subject"/>
       <short value="The subject of an observation"/>
       <definition value="The subject of an observation."/>
@@ -1392,7 +1388,7 @@
         <map value="FiveWs.subject"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.focus">
+    <element id="Observation.focus">
       <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
         <valueCode value="trial-use"/>
       </extension>
@@ -1430,7 +1426,7 @@
         <map value="FiveWs.subject"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.encounter">
+    <element id="Observation.encounter">
       <path value="Observation.encounter"/>
       <short value="Healthcare event during which this observation is made"/>
       <definition value="The healthcare event  (e.g. a patient and healthcare provider interaction) during which this observation is made."/>
@@ -1467,7 +1463,7 @@
         <map value="inboundRelationship[typeCode=COMP].source[classCode=ENC, moodCode=EVN]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.effectivePeriod">
+    <element id="Observation.effectivePeriod">
       <path value="Observation.effectivePeriod"/>
       <short value="Clinically relevant time/time-period for observation"/>
       <definition value="The time or time-period the observed value is asserted as being true. For biological subjects - e.g. human patients - this is usually called the &quot;physiologically relevant time&quot;. This is usually either the time of the procedure or of specimen collection, but very often the source of the date/time is not known, only the date/time itself."/>
@@ -1503,7 +1499,7 @@
         <map value="effectiveTime"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.issued">
+    <element id="Observation.issued">
       <path value="Observation.issued"/>
       <short value="Date/Time this version was made available"/>
       <definition value="The date and time this version of the observation was made available to providers, typically after the results have been reviewed and verified."/>
@@ -1533,7 +1529,7 @@
         <map value="participation[typeCode=AUT].time"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.performer">
+    <element id="Observation.performer">
       <path value="Observation.performer"/>
       <short value="Who is responsible for the observation"/>
       <definition value="Who was responsible for asserting the observed value as &quot;true&quot;."/>
@@ -1571,7 +1567,7 @@
         <map value="participation[typeCode=PRF]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.valueCodeableConcept">
+    <element id="Observation.valueCodeableConcept">
       <path value="Observation.valueCodeableConcept"/>
       <short value="Actual result"/>
       <definition value="The information determined as a result of making the observation, if the information has a simple value."/>
@@ -1611,7 +1607,7 @@
         <map value="363714003 |Interprets|"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.dataAbsentReason">
+    <element id="Observation.dataAbsentReason">
       <path value="Observation.dataAbsentReason"/>
       <short value="Why the result is missing"/>
       <definition value="Provides a reason why the expected value in the element Observation.value[x] is missing."/>
@@ -1647,7 +1643,7 @@
         <map value="value.nullFlavor"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.interpretation">
+    <element id="Observation.interpretation">
       <path value="Observation.interpretation"/>
       <short value="High, low, normal, etc."/>
       <definition value="A categorical assessment of an observation value.  For example, high, low, normal."/>
@@ -1691,7 +1687,7 @@
         <map value="363713009 |Has interpretation|"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.note">
+    <element id="Observation.note">
       <path value="Observation.note"/>
       <short value="Comments about the observation"/>
       <definition value="Comments about the observation or the results."/>
@@ -1718,7 +1714,7 @@
         <map value="subjectOf.observationEvent[code=&quot;annotation&quot;].value"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.bodySite">
+    <element id="Observation.bodySite">
       <path value="Observation.bodySite"/>
       <short value="Observed body part"/>
       <definition value="Indicates the site on the subject&#39;s body where the observation was made (i.e. the target site)."/>
@@ -1736,8 +1732,12 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="BodySite"/>
+        </extension>
         <strength value="preferred"/>
-        <valueSet value="http://hl7.org/fhir/us/odh/ValueSet/shr-core-BodyLocationVS"/>
+        <description value="Codes describing anatomical locations. May include laterality."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/body-site"/>
       </binding>
       <mapping>
         <identity value="sct-concept"/>
@@ -1756,7 +1756,7 @@
         <map value="718497002 |Inherent location|"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.method">
+    <element id="Observation.method">
       <path value="Observation.method"/>
       <short value="How it was done"/>
       <definition value="Indicates the mechanism used to perform the observation."/>
@@ -1791,7 +1791,7 @@
         <map value="methodCode"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.specimen">
+    <element id="Observation.specimen">
       <path value="Observation.specimen"/>
       <short value="Specimen used for this observation"/>
       <definition value="The specimen that was used when this observation was made."/>
@@ -1826,7 +1826,7 @@
         <map value="704319004 |Inherent in|"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.device">
+    <element id="Observation.device">
       <path value="Observation.device"/>
       <short value="(Measurement) Device"/>
       <definition value="The device used to generate the observation data."/>
@@ -1861,7 +1861,7 @@
         <map value="424226004 |Using device|"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.referenceRange">
+    <element id="Observation.referenceRange">
       <path value="Observation.referenceRange"/>
       <short value="Provides guide for interpretation"/>
       <definition value="Guidance on how to interpret the value by comparison to a normal or recommended range.  Multiple reference ranges are interpreted as an &quot;OR&quot;.   In other words, to represent two distinct target populations, two `referenceRange` elements would be used."/>
@@ -1903,7 +1903,7 @@
         <map value="outboundRelationship[typeCode=REFV]/target[classCode=OBS, moodCode=EVN]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.referenceRange.id">
+    <element id="Observation.referenceRange.id">
       <path value="Observation.referenceRange.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -1925,7 +1925,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.referenceRange.extension">
+    <element id="Observation.referenceRange.extension">
       <path value="Observation.referenceRange.extension"/>
       <short value="Additional content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
@@ -1949,7 +1949,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.referenceRange.modifierExtension">
+    <element id="Observation.referenceRange.modifierExtension">
       <path value="Observation.referenceRange.modifierExtension"/>
       <short value="Extensions that cannot be ignored even if unrecognized"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
@@ -1976,7 +1976,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.referenceRange.low">
+    <element id="Observation.referenceRange.low">
       <path value="Observation.referenceRange.low"/>
       <short value="Low Range, if relevant"/>
       <definition value="The value of the low bound of the reference range.  The low bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9). If the low bound is omitted,  it is assumed to be meaningless (e.g. reference range is &lt;=2.3)."/>
@@ -2003,7 +2003,7 @@
         <map value="value:IVL_PQ.low"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.referenceRange.high">
+    <element id="Observation.referenceRange.high">
       <path value="Observation.referenceRange.high"/>
       <short value="High Range, if relevant"/>
       <definition value="The value of the high bound of the reference range.  The high bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9). If the high bound is omitted,  it is assumed to be meaningless (e.g. reference range is &gt;= 2.3)."/>
@@ -2030,7 +2030,7 @@
         <map value="value:IVL_PQ.high"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.referenceRange.type">
+    <element id="Observation.referenceRange.type">
       <path value="Observation.referenceRange.type"/>
       <short value="Reference range qualifier"/>
       <definition value="Codes to indicate the what part of the targeted reference population it applies to. For example, the normal or therapeutic range."/>
@@ -2069,7 +2069,7 @@
         <map value="interpretationCode"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.referenceRange.appliesTo">
+    <element id="Observation.referenceRange.appliesTo">
       <path value="Observation.referenceRange.appliesTo"/>
       <short value="Reference range population"/>
       <definition value="Codes to indicate the target population this reference range applies to.  For example, a reference range may be based on the normal population or a particular sex or race.  Multiple `appliesTo`  are interpreted as an &quot;AND&quot; of the target populations.  For example, to represent a target population of African American females, both a code of female and a code for African American would be used."/>
@@ -2108,7 +2108,7 @@
         <map value="interpretationCode"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.referenceRange.age">
+    <element id="Observation.referenceRange.age">
       <path value="Observation.referenceRange.age"/>
       <short value="Applicable age range, if relevant"/>
       <definition value="The age at which this reference range is applicable. This is a neonatal age (e.g. number of weeks at term) if the meaning says so."/>
@@ -2130,7 +2130,7 @@
         <map value="outboundRelationship[typeCode=PRCN].targetObservationCriterion[code=&quot;age&quot;].value"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.referenceRange.text">
+    <element id="Observation.referenceRange.text">
       <path value="Observation.referenceRange.text"/>
       <short value="Text based reference range in an observation"/>
       <definition value="Text based reference range in an observation which may be used when a quantitative range is not appropriate for an observation.  An example would be a reference value of &quot;Negative&quot; or a list or table of &quot;normals&quot;."/>
@@ -2155,7 +2155,7 @@
         <map value="value:ST"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.hasMember">
+    <element id="Observation.hasMember">
       <path value="Observation.hasMember"/>
       <short value="Related resource that belongs to the Observation group"/>
       <definition value="This observation is a group observation (e.g. a battery, a panel of tests, a set of vital sign measurements) that includes the target as a member of the group."/>
@@ -2182,7 +2182,7 @@
         <map value="outBoundRelationship"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.derivedFrom">
+    <element id="Observation.derivedFrom">
       <path value="Observation.derivedFrom"/>
       <short value="Related measurements the observation is made from"/>
       <definition value="The target resource that represents a measurement from which this observation value is derived. For example, a calculated anion gap or a fetal measurement based on an ultrasound image."/>
@@ -2212,7 +2212,7 @@
         <map value=".targetObservation"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component">
+    <element id="Observation.component">
       <path value="Observation.component"/>
       <slicing id="3">
         <discriminator>
@@ -2255,41 +2255,7 @@
         <map value="outBoundRelationship[typeCode=COMP]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry">
-      <path value="Observation.component"/>
-      <sliceName value="odh-UsualIndustry"/>
-      <short value="UsualIndustry: The industry (type of business) in which the subject has worked for the longest duration while in the usual occupation"/>
-      <definition value="The industry (type of business) in which the subject has worked for the longest duration while in the usual occupation. For example, a person who has spent 30 years as a building carpenter in various industries, but mostly in construction, would record a usual occupation of building carpenter and a usual industry of construction."/>
-      <min value="1"/>
-      <max value="1"/>
-      <base>
-        <path value="Observation.component"/>
-        <min value="0"/>
-        <max value="*"/>
-      </base>
-      <type>
-        <code value="BackboneElement"/>
-      </type>
-      <constraint>
-        <key value="ele-1"/>
-        <severity value="error"/>
-        <human value="All FHIR elements must have a @value or children"/>
-        <expression value="hasValue() or (children().count() &gt; id.count())"/>
-        <xpath value="@value|f:*|h:div"/>
-        <source value="Element"/>
-      </constraint>
-      <isModifier value="false"/>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="v2"/>
-        <map value="containment by OBX-4?"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="outBoundRelationship[typeCode=COMP]"/>
-      </mapping>
-    </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.id">
+    <element id="Observation.component.id">
       <path value="Observation.component.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -2311,7 +2277,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.extension">
+    <element id="Observation.component.extension">
       <path value="Observation.component.extension"/>
       <short value="Additional content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
@@ -2335,7 +2301,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.modifierExtension">
+    <element id="Observation.component.modifierExtension">
       <path value="Observation.component.modifierExtension"/>
       <short value="Extensions that cannot be ignored even if unrecognized"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
@@ -2362,7 +2328,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.code">
+    <element id="Observation.component.code">
       <path value="Observation.component.code"/>
       <short value="Type of component observation (code / type)"/>
       <definition value="Describes what was observed. Sometimes this is called the observation &quot;code&quot;."/>
@@ -2405,7 +2371,576 @@
         <map value="code"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.code.id">
+    <element id="Observation.component.value[x]">
+      <path value="Observation.component.value[x]"/>
+      <short value="Actual component result"/>
+      <definition value="The information determined as a result of making the observation, if the information has a simple value."/>
+      <comment value="Used when observation has a set of component observations. An observation may have both a value (e.g. an  Apgar score)  and component observations (the observations from which the Apgar score was derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.  For additional guidance, see the [Notes section](observation.html#notes) below."/>
+      <requirements value="An observation exists to have a value, though it might not if it is in error, or if it represents a group of observations."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.component.value[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Quantity"/>
+      </type>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <type>
+        <code value="string"/>
+      </type>
+      <type>
+        <code value="Range"/>
+      </type>
+      <type>
+        <code value="Ratio"/>
+      </type>
+      <type>
+        <code value="SampledData"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-datatype-SampledData"/>
+      </type>
+      <type>
+        <code value="time"/>
+      </type>
+      <type>
+        <code value="dateTime"/>
+      </type>
+      <type>
+        <code value="Period"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="sct-concept"/>
+        <map value="363714003 |Interprets| &lt; 441742003 |Evaluation finding|"/>
+      </mapping>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX.2, OBX.5, OBX.6"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="value"/>
+      </mapping>
+      <mapping>
+        <identity value="sct-attr"/>
+        <map value="363714003 |Interprets|"/>
+      </mapping>
+    </element>
+    <element id="Observation.component.dataAbsentReason">
+      <path value="Observation.component.dataAbsentReason"/>
+      <short value="Why the component result is missing"/>
+      <definition value="Provides a reason why the expected value in the element Observation.component.value[x] is missing."/>
+      <comment value="&quot;Null&quot; or exceptional values can be represented two ways in FHIR Observations.  One way is to simply include them in the value set and represent the exceptions in the value.  For example, measurement values for a serology test could be  &quot;detected&quot;, &quot;not detected&quot;, &quot;inconclusive&quot;, or  &quot;test not done&quot;. &#xA;&#xA;The alternate way is to use the value element for actual observations and use the explicit dataAbsentReason element to record exceptional values.  For example, the dataAbsentReason code &quot;error&quot; could be used when the measurement was not completed.  Because of these options, use-case agreements are required to interpret general observations for exceptional values."/>
+      <requirements value="For many results it is necessary to handle exceptional values in measurements."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.component.dataAbsentReason"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <condition value="obs-6"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ObservationValueAbsentReason"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Codes specifying why the result (`Observation.value[x]`) is missing."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/data-absent-reason"/>
+      </binding>
+      <mapping>
+        <identity value="v2"/>
+        <map value="N/A"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="value.nullFlavor"/>
+      </mapping>
+    </element>
+    <element id="Observation.component.interpretation">
+      <path value="Observation.component.interpretation"/>
+      <short value="High, low, normal, etc."/>
+      <definition value="A categorical assessment of an observation value.  For example, high, low, normal."/>
+      <comment value="Historically used for laboratory results (known as &#39;abnormal flag&#39; ),  its use extends to other use cases where coded interpretations  are relevant.  Often reported as one or more simple compact codes this element is often placed adjacent to the result value in reports and flow sheets to signal the meaning/normalcy status of the result."/>
+      <requirements value="For some results, particularly numeric results, an interpretation is necessary to fully understand the significance of a result."/>
+      <alias value="Abnormal Flag"/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Observation.component.interpretation"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ObservationInterpretation"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Codes identifying interpretations of observations."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/observation-interpretation"/>
+      </binding>
+      <mapping>
+        <identity value="sct-concept"/>
+        <map value="&lt; 260245000 |Findings values|"/>
+      </mapping>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX-8"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="interpretationCode"/>
+      </mapping>
+      <mapping>
+        <identity value="sct-attr"/>
+        <map value="363713009 |Has interpretation|"/>
+      </mapping>
+    </element>
+    <element id="Observation.component.referenceRange">
+      <path value="Observation.component.referenceRange"/>
+      <short value="Provides guide for interpretation of component result"/>
+      <definition value="Guidance on how to interpret the value by comparison to a normal or recommended range."/>
+      <comment value="Most observations only have one generic reference range. Systems MAY choose to restrict to only supplying the relevant reference range based on knowledge about the patient (e.g., specific to the patient&#39;s age, gender, weight and other factors), but this might not be possible or appropriate. Whenever more than one reference range is supplied, the differences between them SHOULD be provided in the reference range and/or age properties."/>
+      <requirements value="Knowing what values are considered &quot;normal&quot; can help evaluate the significance of a particular result. Need to be able to provide multiple reference ranges for different contexts."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Observation.component.referenceRange"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="BackboneElement"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX.7"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="outboundRelationship[typeCode=REFV]/target[classCode=OBS, moodCode=EVN]"/>
+      </mapping>
+    </element>
+    <element id="Observation.component.referenceRange.id">
+      <path value="Observation.component.referenceRange.id"/>
+      <representation value="xmlAttr"/>
+      <short value="Unique id for inter-element referencing"/>
+      <definition value="Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.id"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="string"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Observation.component.referenceRange.extension">
+      <path value="Observation.component.referenceRange.extension"/>
+      <short value="Additional content defined by implementations"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Observation.component.referenceRange.modifierExtension">
+      <path value="Observation.component.referenceRange.modifierExtension"/>
+      <short value="Extensions that cannot be ignored even if unrecognized"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <requirements value="Modifier extensions allow for extensions that *cannot* be safely ignored to be clearly distinguished from the vast majority of extensions which can be safely ignored.  This promotes interoperability by eliminating the need for implementers to prohibit the presence of extensions. For further information, see the [definition of modifier extensions](extensibility.html#modifierExtension)."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <alias value="modifiers"/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="BackboneElement.modifierExtension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <isModifier value="true"/>
+      <isModifierReason value="Modifier extensions are expected to modify the meaning or interpretation of the element that contains them"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="Observation.component.referenceRange.low">
+      <path value="Observation.component.referenceRange.low"/>
+      <short value="Low Range, if relevant"/>
+      <definition value="The value of the low bound of the reference range.  The low bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9). If the low bound is omitted,  it is assumed to be meaningless (e.g. reference range is &lt;=2.3)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.referenceRange.low"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Quantity"/>
+        <profile value="http://hl7.org/fhir/StructureDefinition/SimpleQuantity"/>
+      </type>
+      <condition value="obs-3"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX-7"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="value:IVL_PQ.low"/>
+      </mapping>
+    </element>
+    <element id="Observation.component.referenceRange.high">
+      <path value="Observation.component.referenceRange.high"/>
+      <short value="High Range, if relevant"/>
+      <definition value="The value of the high bound of the reference range.  The high bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9). If the high bound is omitted,  it is assumed to be meaningless (e.g. reference range is &gt;= 2.3)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.referenceRange.high"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Quantity"/>
+        <profile value="http://hl7.org/fhir/StructureDefinition/SimpleQuantity"/>
+      </type>
+      <condition value="obs-3"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX-7"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="value:IVL_PQ.high"/>
+      </mapping>
+    </element>
+    <element id="Observation.component.referenceRange.type">
+      <path value="Observation.component.referenceRange.type"/>
+      <short value="Reference range qualifier"/>
+      <definition value="Codes to indicate the what part of the targeted reference population it applies to. For example, the normal or therapeutic range."/>
+      <comment value="This SHOULD be populated if there is more than one range.  If this element is not present then the normal range is assumed."/>
+      <requirements value="Need to be able to say what kind of reference range this is - normal, recommended, therapeutic, etc.,  - for proper interpretation."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.referenceRange.type"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ObservationRangeMeaning"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Code for the meaning of a reference range."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/referencerange-meaning"/>
+      </binding>
+      <mapping>
+        <identity value="sct-concept"/>
+        <map value="&lt; 260245000 |Findings values| OR  &#xD;&lt; 365860008 |General clinical state finding| &#xD;OR &#xD;&lt; 250171008 |Clinical history or observation findings| OR  &#xD;&lt; 415229000 |Racial group| OR &#xD;&lt; 365400002 |Finding of puberty stage| OR&#xD;&lt; 443938003 |Procedure carried out on subject|"/>
+      </mapping>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX-10"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="interpretationCode"/>
+      </mapping>
+    </element>
+    <element id="Observation.component.referenceRange.appliesTo">
+      <path value="Observation.component.referenceRange.appliesTo"/>
+      <short value="Reference range population"/>
+      <definition value="Codes to indicate the target population this reference range applies to.  For example, a reference range may be based on the normal population or a particular sex or race.  Multiple `appliesTo`  are interpreted as an &quot;AND&quot; of the target populations.  For example, to represent a target population of African American females, both a code of female and a code for African American would be used."/>
+      <comment value="This SHOULD be populated if there is more than one range.  If this element is not present then the normal population is assumed."/>
+      <requirements value="Need to be able to identify the target population for proper interpretation."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Observation.referenceRange.appliesTo"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ObservationRangeType"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Codes identifying the population the reference range applies to."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
+      </binding>
+      <mapping>
+        <identity value="sct-concept"/>
+        <map value="&lt; 260245000 |Findings values| OR  &#xD;&lt; 365860008 |General clinical state finding| &#xD;OR &#xD;&lt; 250171008 |Clinical history or observation findings| OR  &#xD;&lt; 415229000 |Racial group| OR &#xD;&lt; 365400002 |Finding of puberty stage| OR&#xD;&lt; 443938003 |Procedure carried out on subject|"/>
+      </mapping>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX-10"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="interpretationCode"/>
+      </mapping>
+    </element>
+    <element id="Observation.component.referenceRange.age">
+      <path value="Observation.component.referenceRange.age"/>
+      <short value="Applicable age range, if relevant"/>
+      <definition value="The age at which this reference range is applicable. This is a neonatal age (e.g. number of weeks at term) if the meaning says so."/>
+      <requirements value="Some analytes vary greatly over age."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.referenceRange.age"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Range"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="outboundRelationship[typeCode=PRCN].targetObservationCriterion[code=&quot;age&quot;].value"/>
+      </mapping>
+    </element>
+    <element id="Observation.component.referenceRange.text">
+      <path value="Observation.component.referenceRange.text"/>
+      <short value="Text based reference range in an observation"/>
+      <definition value="Text based reference range in an observation which may be used when a quantitative range is not appropriate for an observation.  An example would be a reference value of &quot;Negative&quot; or a list or table of &quot;normals&quot;."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.referenceRange.text"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="string"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX-7"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="value:ST"/>
+      </mapping>
+    </element>
+    <element id="Observation.component:odh-UsualIndustry">
+      <path value="Observation.component"/>
+      <sliceName value="odh-UsualIndustry"/>
+      <short value="UsualIndustry: The industry (type of business) in which the subject has worked for the longest duration while in the usual occupation"/>
+      <definition value="The industry (type of business) in which the subject has worked for the longest duration while in the usual occupation. For example, a person who has spent 30 years as a building carpenter in various industries, but mostly in construction, would record a usual occupation of building carpenter and a usual industry of construction."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.component"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="BackboneElement"/>
+      </type>
+      <constraint>
+        <key value="ele-1"/>
+        <severity value="error"/>
+        <human value="All FHIR elements must have a @value or children"/>
+        <expression value="hasValue() or (children().count() &gt; id.count())"/>
+        <xpath value="@value|f:*|h:div"/>
+        <source value="Element"/>
+      </constraint>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="containment by OBX-4?"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="outBoundRelationship[typeCode=COMP]"/>
+      </mapping>
+    </element>
+    <element id="Observation.component:odh-UsualIndustry.id">
+      <path value="Observation.component.id"/>
+      <representation value="xmlAttr"/>
+      <short value="Unique id for inter-element referencing"/>
+      <definition value="Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.id"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="string"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Observation.component:odh-UsualIndustry.extension">
+      <path value="Observation.component.extension"/>
+      <short value="Additional content defined by implementations"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Observation.component:odh-UsualIndustry.modifierExtension">
+      <path value="Observation.component.modifierExtension"/>
+      <short value="Extensions that cannot be ignored even if unrecognized"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <requirements value="Modifier extensions allow for extensions that *cannot* be safely ignored to be clearly distinguished from the vast majority of extensions which can be safely ignored.  This promotes interoperability by eliminating the need for implementers to prohibit the presence of extensions. For further information, see the [definition of modifier extensions](extensibility.html#modifierExtension)."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <alias value="modifiers"/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="BackboneElement.modifierExtension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <isModifier value="true"/>
+      <isModifierReason value="Modifier extensions are expected to modify the meaning or interpretation of the element that contains them"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="Observation.component:odh-UsualIndustry.code">
+      <path value="Observation.component.code"/>
+      <short value="Type of component observation (code / type)"/>
+      <definition value="Describes what was observed. Sometimes this is called the observation &quot;code&quot;."/>
+      <comment value="*All* code-value and  component.code-component.value pairs need to be taken into account to correctly understand the meaning of the observation."/>
+      <requirements value="Knowing what kind of observation is being made is essential to understanding the observation."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Observation.component.code"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ObservationCode"/>
+        </extension>
+        <strength value="example"/>
+        <description value="Codes identifying names of simple observations."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/observation-codes"/>
+      </binding>
+      <mapping>
+        <identity value="w5"/>
+        <map value="FiveWs.what[x]"/>
+      </mapping>
+      <mapping>
+        <identity value="sct-concept"/>
+        <map value="&lt; 363787002 |Observable entity| OR &#xD;&lt; 386053000 |Evaluation procedure|"/>
+      </mapping>
+      <mapping>
+        <identity value="v2"/>
+        <map value="OBX-3"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="code"/>
+      </mapping>
+    </element>
+    <element id="Observation.component:odh-UsualIndustry.code.id">
       <path value="Observation.component.code.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -2427,7 +2962,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.code.extension">
+    <element id="Observation.component:odh-UsualIndustry.code.extension">
       <path value="Observation.component.code.extension"/>
       <slicing>
         <discriminator>
@@ -2459,7 +2994,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.code.coding">
+    <element id="Observation.component:odh-UsualIndustry.code.coding">
       <path value="Observation.component.code.coding"/>
       <slicing id="4">
         <discriminator>
@@ -2498,7 +3033,7 @@
         <map value="fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.code.coding:Fixed_21844-6">
+    <element id="Observation.component:odh-UsualIndustry.code.coding:Fixed_21844-6">
       <path value="Observation.component.code.coding"/>
       <sliceName value="Fixed_21844-6"/>
       <short value="History of Usual industry"/>
@@ -2515,7 +3050,7 @@
       </type>
       <isSummary value="true"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.code.coding:Fixed_21844-6.id">
+    <element id="Observation.component:odh-UsualIndustry.code.coding:Fixed_21844-6.id">
       <path value="Observation.component.code.coding.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -2537,7 +3072,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.code.coding:Fixed_21844-6.extension">
+    <element id="Observation.component:odh-UsualIndustry.code.coding:Fixed_21844-6.extension">
       <path value="Observation.component.code.coding.extension"/>
       <slicing>
         <discriminator>
@@ -2569,7 +3104,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.code.coding:Fixed_21844-6.system">
+    <element id="Observation.component:odh-UsualIndustry.code.coding:Fixed_21844-6.system">
       <path value="Observation.component.code.coding.system"/>
       <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
@@ -2601,7 +3136,7 @@
         <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.code.coding:Fixed_21844-6.version">
+    <element id="Observation.component:odh-UsualIndustry.code.coding:Fixed_21844-6.version">
       <path value="Observation.component.code.coding.version"/>
       <short value="Version of the system - if relevant"/>
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured, and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged."/>
@@ -2631,7 +3166,7 @@
         <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.code.coding:Fixed_21844-6.code">
+    <element id="Observation.component:odh-UsualIndustry.code.coding:Fixed_21844-6.code">
       <path value="Observation.component.code.coding.code"/>
       <short value="Symbol in syntax defined by the system"/>
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)."/>
@@ -2662,7 +3197,7 @@
         <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.code.coding:Fixed_21844-6.display">
+    <element id="Observation.component:odh-UsualIndustry.code.coding:Fixed_21844-6.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true"/>
       </extension>
@@ -2695,7 +3230,7 @@
         <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.code.coding:Fixed_21844-6.userSelected">
+    <element id="Observation.component:odh-UsualIndustry.code.coding:Fixed_21844-6.userSelected">
       <path value="Observation.component.code.coding.userSelected"/>
       <short value="If this coding was chosen directly by the user"/>
       <definition value="Indicates that this coding was chosen by a user directly - e.g. off a pick list of available items (codes or displays)."/>
@@ -2726,7 +3261,7 @@
         <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.code.text">
+    <element id="Observation.component:odh-UsualIndustry.code.text">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true"/>
       </extension>
@@ -2760,7 +3295,7 @@
         <map value="fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.valueCodeableConcept">
+    <element id="Observation.component:odh-UsualIndustry.valueCodeableConcept">
       <path value="Observation.component.valueCodeableConcept"/>
       <short value="Actual component result"/>
       <definition value="The information determined as a result of making the observation, if the information has a simple value."/>
@@ -2799,7 +3334,7 @@
         <map value="363714003 |Interprets|"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.dataAbsentReason">
+    <element id="Observation.component:odh-UsualIndustry.dataAbsentReason">
       <path value="Observation.component.dataAbsentReason"/>
       <short value="Why the component result is missing"/>
       <definition value="Provides a reason why the expected value in the element Observation.component.value[x] is missing."/>
@@ -2835,7 +3370,7 @@
         <map value="value.nullFlavor"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.interpretation">
+    <element id="Observation.component:odh-UsualIndustry.interpretation">
       <path value="Observation.component.interpretation"/>
       <short value="High, low, normal, etc."/>
       <definition value="A categorical assessment of an observation value.  For example, high, low, normal."/>
@@ -2879,7 +3414,7 @@
         <map value="363713009 |Has interpretation|"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.referenceRange">
+    <element id="Observation.component:odh-UsualIndustry.referenceRange">
       <path value="Observation.component.referenceRange"/>
       <short value="Provides guide for interpretation of component result"/>
       <definition value="Guidance on how to interpret the value by comparison to a normal or recommended range."/>
@@ -2906,7 +3441,7 @@
         <map value="outboundRelationship[typeCode=REFV]/target[classCode=OBS, moodCode=EVN]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.referenceRange.id">
+    <element id="Observation.component:odh-UsualIndustry.referenceRange.id">
       <path value="Observation.component.referenceRange.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -2928,7 +3463,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.referenceRange.extension">
+    <element id="Observation.component:odh-UsualIndustry.referenceRange.extension">
       <path value="Observation.component.referenceRange.extension"/>
       <short value="Additional content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
@@ -2952,7 +3487,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.referenceRange.modifierExtension">
+    <element id="Observation.component:odh-UsualIndustry.referenceRange.modifierExtension">
       <path value="Observation.component.referenceRange.modifierExtension"/>
       <short value="Extensions that cannot be ignored even if unrecognized"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
@@ -2979,7 +3514,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.referenceRange.low">
+    <element id="Observation.component:odh-UsualIndustry.referenceRange.low">
       <path value="Observation.component.referenceRange.low"/>
       <short value="Low Range, if relevant"/>
       <definition value="The value of the low bound of the reference range.  The low bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9). If the low bound is omitted,  it is assumed to be meaningless (e.g. reference range is &lt;=2.3)."/>
@@ -3006,7 +3541,7 @@
         <map value="value:IVL_PQ.low"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.referenceRange.high">
+    <element id="Observation.component:odh-UsualIndustry.referenceRange.high">
       <path value="Observation.component.referenceRange.high"/>
       <short value="High Range, if relevant"/>
       <definition value="The value of the high bound of the reference range.  The high bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9). If the high bound is omitted,  it is assumed to be meaningless (e.g. reference range is &gt;= 2.3)."/>
@@ -3033,7 +3568,7 @@
         <map value="value:IVL_PQ.high"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.referenceRange.type">
+    <element id="Observation.component:odh-UsualIndustry.referenceRange.type">
       <path value="Observation.component.referenceRange.type"/>
       <short value="Reference range qualifier"/>
       <definition value="Codes to indicate the what part of the targeted reference population it applies to. For example, the normal or therapeutic range."/>
@@ -3072,7 +3607,7 @@
         <map value="interpretationCode"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.referenceRange.appliesTo">
+    <element id="Observation.component:odh-UsualIndustry.referenceRange.appliesTo">
       <path value="Observation.component.referenceRange.appliesTo"/>
       <short value="Reference range population"/>
       <definition value="Codes to indicate the target population this reference range applies to.  For example, a reference range may be based on the normal population or a particular sex or race.  Multiple `appliesTo`  are interpreted as an &quot;AND&quot; of the target populations.  For example, to represent a target population of African American females, both a code of female and a code for African American would be used."/>
@@ -3111,7 +3646,7 @@
         <map value="interpretationCode"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.referenceRange.age">
+    <element id="Observation.component:odh-UsualIndustry.referenceRange.age">
       <path value="Observation.component.referenceRange.age"/>
       <short value="Applicable age range, if relevant"/>
       <definition value="The age at which this reference range is applicable. This is a neonatal age (e.g. number of weeks at term) if the meaning says so."/>
@@ -3133,7 +3668,7 @@
         <map value="outboundRelationship[typeCode=PRCN].targetObservationCriterion[code=&quot;age&quot;].value"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.referenceRange.text">
+    <element id="Observation.component:odh-UsualIndustry.referenceRange.text">
       <path value="Observation.component.referenceRange.text"/>
       <short value="Text based reference range in an observation"/>
       <definition value="Text based reference range in an observation which may be used when a quantitative range is not appropriate for an observation.  An example would be a reference value of &quot;Negative&quot; or a list or table of &quot;normals&quot;."/>
@@ -3158,7 +3693,7 @@
         <map value="value:ST"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration">
+    <element id="Observation.component:odh-UsualOccupationDuration">
       <path value="Observation.component"/>
       <sliceName value="odh-UsualOccupationDuration"/>
       <short value="UsualOccupationDuration: The total time spent on an activity, inclusive of all time intervals, whether continuous or interrupted"/>
@@ -3192,7 +3727,7 @@
         <map value="outBoundRelationship[typeCode=COMP]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.id">
+    <element id="Observation.component:odh-UsualOccupationDuration.id">
       <path value="Observation.component.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -3214,7 +3749,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.extension">
+    <element id="Observation.component:odh-UsualOccupationDuration.extension">
       <path value="Observation.component.extension"/>
       <short value="Additional content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
@@ -3238,7 +3773,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.modifierExtension">
+    <element id="Observation.component:odh-UsualOccupationDuration.modifierExtension">
       <path value="Observation.component.modifierExtension"/>
       <short value="Extensions that cannot be ignored even if unrecognized"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
@@ -3265,7 +3800,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.code">
+    <element id="Observation.component:odh-UsualOccupationDuration.code">
       <path value="Observation.component.code"/>
       <short value="Type of component observation (code / type)"/>
       <definition value="Describes what was observed. Sometimes this is called the observation &quot;code&quot;."/>
@@ -3308,7 +3843,7 @@
         <map value="code"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.code.id">
+    <element id="Observation.component:odh-UsualOccupationDuration.code.id">
       <path value="Observation.component.code.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -3330,7 +3865,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.code.extension">
+    <element id="Observation.component:odh-UsualOccupationDuration.code.extension">
       <path value="Observation.component.code.extension"/>
       <slicing>
         <discriminator>
@@ -3362,7 +3897,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.code.coding">
+    <element id="Observation.component:odh-UsualOccupationDuration.code.coding">
       <path value="Observation.component.code.coding"/>
       <slicing id="5">
         <discriminator>
@@ -3401,7 +3936,7 @@
         <map value="fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7">
+    <element id="Observation.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7">
       <path value="Observation.component.code.coding"/>
       <sliceName value="Fixed_74163-7"/>
       <short value="Usual occupation duration"/>
@@ -3418,7 +3953,7 @@
       </type>
       <isSummary value="true"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7.id">
+    <element id="Observation.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7.id">
       <path value="Observation.component.code.coding.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -3440,7 +3975,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7.extension">
+    <element id="Observation.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7.extension">
       <path value="Observation.component.code.coding.extension"/>
       <slicing>
         <discriminator>
@@ -3472,7 +4007,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7.system">
+    <element id="Observation.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7.system">
       <path value="Observation.component.code.coding.system"/>
       <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
@@ -3504,7 +4039,7 @@
         <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7.version">
+    <element id="Observation.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7.version">
       <path value="Observation.component.code.coding.version"/>
       <short value="Version of the system - if relevant"/>
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured, and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged."/>
@@ -3534,7 +4069,7 @@
         <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7.code">
+    <element id="Observation.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7.code">
       <path value="Observation.component.code.coding.code"/>
       <short value="Symbol in syntax defined by the system"/>
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)."/>
@@ -3565,7 +4100,7 @@
         <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7.display">
+    <element id="Observation.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true"/>
       </extension>
@@ -3598,7 +4133,7 @@
         <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7.userSelected">
+    <element id="Observation.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7.userSelected">
       <path value="Observation.component.code.coding.userSelected"/>
       <short value="If this coding was chosen directly by the user"/>
       <definition value="Indicates that this coding was chosen by a user directly - e.g. off a pick list of available items (codes or displays)."/>
@@ -3629,7 +4164,7 @@
         <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.code.text">
+    <element id="Observation.component:odh-UsualOccupationDuration.code.text">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true"/>
       </extension>
@@ -3663,7 +4198,7 @@
         <map value="fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.valueQuantity">
+    <element id="Observation.component:odh-UsualOccupationDuration.valueQuantity">
       <path value="Observation.component.valueQuantity"/>
       <short value="Actual component result"/>
       <definition value="The information determined as a result of making the observation, if the information has a simple value."/>
@@ -3679,7 +4214,7 @@
       </type>
       <isSummary value="true"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.valueQuantity.id">
+    <element id="Observation.component:odh-UsualOccupationDuration.valueQuantity.id">
       <path value="Observation.component.valueQuantity.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -3701,7 +4236,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.valueQuantity.extension">
+    <element id="Observation.component:odh-UsualOccupationDuration.valueQuantity.extension">
       <path value="Observation.component.valueQuantity.extension"/>
       <slicing>
         <discriminator>
@@ -3733,7 +4268,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.valueQuantity.value">
+    <element id="Observation.component:odh-UsualOccupationDuration.valueQuantity.value">
       <path value="Observation.component.valueQuantity.value"/>
       <short value="Numerical value (with implicit precision)"/>
       <definition value="The value of the measured amount. The value includes an implicit precision in the presentation of the value."/>
@@ -3760,7 +4295,7 @@
         <map value="PQ.value, CO.value, MO.value, IVL.high or IVL.low depending on the value"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.valueQuantity.comparator">
+    <element id="Observation.component:odh-UsualOccupationDuration.valueQuantity.comparator">
       <path value="Observation.component.valueQuantity.comparator"/>
       <short value="&lt; | &lt;= | &gt;= | &gt; - how to understand the value"/>
       <definition value="How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is &quot;&lt;&quot; , then the real value is &lt; stated value."/>
@@ -3796,7 +4331,7 @@
         <map value="IVL properties"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.valueQuantity.unit">
+    <element id="Observation.component:odh-UsualOccupationDuration.valueQuantity.unit">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true"/>
       </extension>
@@ -3825,7 +4360,7 @@
         <map value="PQ.unit"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.valueQuantity.system">
+    <element id="Observation.component:odh-UsualOccupationDuration.valueQuantity.system">
       <path value="Observation.component.valueQuantity.system"/>
       <short value="System that defines coded unit form"/>
       <definition value="The identification of the system that provides the coded form of the unit."/>
@@ -3853,7 +4388,7 @@
         <map value="CO.codeSystem, PQ.translation.codeSystem"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.valueQuantity.code">
+    <element id="Observation.component:odh-UsualOccupationDuration.valueQuantity.code">
       <path value="Observation.component.valueQuantity.code"/>
       <short value="Coded form of the unit"/>
       <definition value="A computer processable form of the unit in some unit representation system."/>
@@ -3881,7 +4416,7 @@
         <map value="PQ.code, MO.currency, PQ.translation.code"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.dataAbsentReason">
+    <element id="Observation.component:odh-UsualOccupationDuration.dataAbsentReason">
       <path value="Observation.component.dataAbsentReason"/>
       <short value="Why the component result is missing"/>
       <definition value="Provides a reason why the expected value in the element Observation.component.value[x] is missing."/>
@@ -3917,7 +4452,7 @@
         <map value="value.nullFlavor"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.interpretation">
+    <element id="Observation.component:odh-UsualOccupationDuration.interpretation">
       <path value="Observation.component.interpretation"/>
       <short value="High, low, normal, etc."/>
       <definition value="A categorical assessment of an observation value.  For example, high, low, normal."/>
@@ -3961,7 +4496,7 @@
         <map value="363713009 |Has interpretation|"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.referenceRange">
+    <element id="Observation.component:odh-UsualOccupationDuration.referenceRange">
       <path value="Observation.component.referenceRange"/>
       <short value="Provides guide for interpretation of component result"/>
       <definition value="Guidance on how to interpret the value by comparison to a normal or recommended range."/>
@@ -3988,7 +4523,7 @@
         <map value="outboundRelationship[typeCode=REFV]/target[classCode=OBS, moodCode=EVN]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.referenceRange.id">
+    <element id="Observation.component:odh-UsualOccupationDuration.referenceRange.id">
       <path value="Observation.component.referenceRange.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -4010,7 +4545,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.referenceRange.extension">
+    <element id="Observation.component:odh-UsualOccupationDuration.referenceRange.extension">
       <path value="Observation.component.referenceRange.extension"/>
       <short value="Additional content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
@@ -4034,7 +4569,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.referenceRange.modifierExtension">
+    <element id="Observation.component:odh-UsualOccupationDuration.referenceRange.modifierExtension">
       <path value="Observation.component.referenceRange.modifierExtension"/>
       <short value="Extensions that cannot be ignored even if unrecognized"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
@@ -4061,7 +4596,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.referenceRange.low">
+    <element id="Observation.component:odh-UsualOccupationDuration.referenceRange.low">
       <path value="Observation.component.referenceRange.low"/>
       <short value="Low Range, if relevant"/>
       <definition value="The value of the low bound of the reference range.  The low bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9). If the low bound is omitted,  it is assumed to be meaningless (e.g. reference range is &lt;=2.3)."/>
@@ -4088,7 +4623,7 @@
         <map value="value:IVL_PQ.low"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.referenceRange.high">
+    <element id="Observation.component:odh-UsualOccupationDuration.referenceRange.high">
       <path value="Observation.component.referenceRange.high"/>
       <short value="High Range, if relevant"/>
       <definition value="The value of the high bound of the reference range.  The high bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9). If the high bound is omitted,  it is assumed to be meaningless (e.g. reference range is &gt;= 2.3)."/>
@@ -4115,7 +4650,7 @@
         <map value="value:IVL_PQ.high"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.referenceRange.type">
+    <element id="Observation.component:odh-UsualOccupationDuration.referenceRange.type">
       <path value="Observation.component.referenceRange.type"/>
       <short value="Reference range qualifier"/>
       <definition value="Codes to indicate the what part of the targeted reference population it applies to. For example, the normal or therapeutic range."/>
@@ -4154,7 +4689,7 @@
         <map value="interpretationCode"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.referenceRange.appliesTo">
+    <element id="Observation.component:odh-UsualOccupationDuration.referenceRange.appliesTo">
       <path value="Observation.component.referenceRange.appliesTo"/>
       <short value="Reference range population"/>
       <definition value="Codes to indicate the target population this reference range applies to.  For example, a reference range may be based on the normal population or a particular sex or race.  Multiple `appliesTo`  are interpreted as an &quot;AND&quot; of the target populations.  For example, to represent a target population of African American females, both a code of female and a code for African American would be used."/>
@@ -4193,7 +4728,7 @@
         <map value="interpretationCode"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.referenceRange.age">
+    <element id="Observation.component:odh-UsualOccupationDuration.referenceRange.age">
       <path value="Observation.component.referenceRange.age"/>
       <short value="Applicable age range, if relevant"/>
       <definition value="The age at which this reference range is applicable. This is a neonatal age (e.g. number of weeks at term) if the meaning says so."/>
@@ -4215,7 +4750,7 @@
         <map value="outboundRelationship[typeCode=PRCN].targetObservationCriterion[code=&quot;age&quot;].value"/>
       </mapping>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.referenceRange.text">
+    <element id="Observation.component:odh-UsualOccupationDuration.referenceRange.text">
       <path value="Observation.component.referenceRange.text"/>
       <short value="Text based reference range in an observation"/>
       <definition value="Text based reference range in an observation which may be used when a quantitative range is not appropriate for an observation.  An example would be a reference value of &quot;Negative&quot; or a list or table of &quot;normals&quot;."/>
@@ -4242,14 +4777,14 @@
     </element>
   </snapshot>
   <differential>
-    <element id="Observation:odh-UsualWork">
+    <element id="Observation">
       <path value="Observation"/>
       <short value="odh-UsualWork"/>
       <definition value="Related data elements about the work a person reports having performed for the longest amount of time during his or her life, regardless of the person&#x2019;s current job and regardless of whether or not the person performed this work for a continuous time. Knowledge of person&#x2019;s Usual Work can potentially assist in diagnosis, treatment and/or prevention of chronic condition(s) or conditions with a long latency. The potential for exposure to Occupational Hazard(s) related to an Occupation and/or an Industry can change over time, and a person could have been in and out of their Usual Work over time, so additional data are helpful to fully evaluate the possible impact of the person&#x2019;s Usual Work on their health and guide appropriate use of screening tests to detect early disease. Example: a person has worked for a total of 30 years as a building carpenter (Occupation), but in various industries, mostly hotel construction. Her Usual Occupation is &#x2018;building carpenter&#x2019; and her Usual Industry is &#x2018;hotel construction.&#x2019; Usual Work does not include work that was unpaid or voluntary."/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation:odh-UsualWork.basedOn">
+    <element id="Observation.basedOn">
       <path value="Observation.basedOn"/>
       <short value="The plan, proposal or order that is fulfilled in whole or in part by this observation"/>
       <definition value="The plan, proposal or order that is fulfilled in whole or in part by this observation."/>
@@ -4258,7 +4793,7 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/ServiceRequest"/>
       </type>
     </element>
-    <element id="Observation:odh-UsualWork.partOf">
+    <element id="Observation.partOf">
       <path value="Observation.partOf"/>
       <short value="The larger procedure that this particular observation is a component or step"/>
       <definition value="The larger procedure that this particular observation is a component or step."/>
@@ -4267,12 +4802,12 @@
         <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure"/>
       </type>
     </element>
-    <element id="Observation:odh-UsualWork.category">
+    <element id="Observation.category">
       <path value="Observation.category"/>
       <min value="0"/>
       <max value="1"/>
     </element>
-    <element id="Observation:odh-UsualWork.category.coding">
+    <element id="Observation.category.coding">
       <path value="Observation.category.coding"/>
       <slicing id="1">
         <discriminator>
@@ -4285,7 +4820,7 @@
       <min value="1"/>
       <max value="*"/>
     </element>
-    <element id="Observation:odh-UsualWork.category.coding:Fixed_social-history">
+    <element id="Observation.category.coding:Fixed_social-history">
       <path value="Observation.category.coding"/>
       <sliceName value="Fixed_social-history"/>
       <short value="Social History"/>
@@ -4302,18 +4837,18 @@
       </type>
       <isSummary value="true"/>
     </element>
-    <element id="Observation:odh-UsualWork.category.coding:Fixed_social-history.system">
+    <element id="Observation.category.coding:Fixed_social-history.system">
       <path value="Observation.category.coding.system"/>
-      <fixedUri value="http://hl7.org/fhir/observation-category"/>
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/observation-category"/>
     </element>
-    <element id="Observation:odh-UsualWork.category.coding:Fixed_social-history.code">
+    <element id="Observation.category.coding:Fixed_social-history.code">
       <path value="Observation.category.coding.code"/>
       <fixedCode value="social-history"/>
     </element>
-    <element id="Observation:odh-UsualWork.code">
+    <element id="Observation.code">
       <path value="Observation.code"/>
     </element>
-    <element id="Observation:odh-UsualWork.code.coding">
+    <element id="Observation.code.coding">
       <path value="Observation.code.coding"/>
       <slicing id="2">
         <discriminator>
@@ -4326,7 +4861,7 @@
       <min value="1"/>
       <max value="*"/>
     </element>
-    <element id="Observation:odh-UsualWork.code.coding:Fixed_21843-8">
+    <element id="Observation.code.coding:Fixed_21843-8">
       <path value="Observation.code.coding"/>
       <sliceName value="Fixed_21843-8"/>
       <short value="History of Usual Occupation"/>
@@ -4343,15 +4878,15 @@
       </type>
       <isSummary value="true"/>
     </element>
-    <element id="Observation:odh-UsualWork.code.coding:Fixed_21843-8.system">
+    <element id="Observation.code.coding:Fixed_21843-8.system">
       <path value="Observation.code.coding.system"/>
       <fixedUri value="http://loinc.org"/>
     </element>
-    <element id="Observation:odh-UsualWork.code.coding:Fixed_21843-8.code">
+    <element id="Observation.code.coding:Fixed_21843-8.code">
       <path value="Observation.code.coding.code"/>
       <fixedCode value="21843-8"/>
     </element>
-    <element id="Observation:odh-UsualWork.subject">
+    <element id="Observation.subject">
       <path value="Observation.subject"/>
       <short value="The subject of an observation"/>
       <definition value="The subject of an observation."/>
@@ -4362,21 +4897,21 @@
         <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"/>
       </type>
     </element>
-    <element id="Observation:odh-UsualWork.focus">
+    <element id="Observation.focus">
       <path value="Observation.focus"/>
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson"/>
       </type>
     </element>
-    <element id="Observation:odh-UsualWork.encounter">
+    <element id="Observation.encounter">
       <path value="Observation.encounter"/>
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter"/>
       </type>
     </element>
-    <element id="Observation:odh-UsualWork.effectivePeriod">
+    <element id="Observation.effectivePeriod">
       <path value="Observation.effectivePeriod"/>
       <min value="1"/>
       <max value="1"/>
@@ -4384,7 +4919,7 @@
         <code value="Period"/>
       </type>
     </element>
-    <element id="Observation:odh-UsualWork.performer">
+    <element id="Observation.performer">
       <path value="Observation.performer"/>
       <type>
         <code value="Reference"/>
@@ -4394,7 +4929,7 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson"/>
       </type>
     </element>
-    <element id="Observation:odh-UsualWork.valueCodeableConcept">
+    <element id="Observation.valueCodeableConcept">
       <path value="Observation.valueCodeableConcept"/>
       <type>
         <code value="CodeableConcept"/>
@@ -4404,36 +4939,40 @@
         <valueSet value="https://phinvads.cdc.gov/vads/ViewValueSet.action?oid=2.16.840.1.114222.4.11.7186"/>
       </binding>
     </element>
-    <element id="Observation:odh-UsualWork.dataAbsentReason">
+    <element id="Observation.dataAbsentReason">
       <path value="Observation.dataAbsentReason"/>
       <min value="0"/>
       <max value="0"/>
     </element>
-    <element id="Observation:odh-UsualWork.interpretation">
+    <element id="Observation.interpretation">
       <path value="Observation.interpretation"/>
       <min value="0"/>
       <max value="1"/>
     </element>
-    <element id="Observation:odh-UsualWork.bodySite">
+    <element id="Observation.bodySite">
       <path value="Observation.bodySite"/>
       <min value="0"/>
       <max value="0"/>
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="BodySite"/>
+        </extension>
         <strength value="preferred"/>
-        <valueSet value="http://hl7.org/fhir/us/odh/ValueSet/shr-core-BodyLocationVS"/>
+        <description value="Codes describing anatomical locations. May include laterality."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/body-site"/>
       </binding>
     </element>
-    <element id="Observation:odh-UsualWork.method">
+    <element id="Observation.method">
       <path value="Observation.method"/>
       <min value="0"/>
       <max value="0"/>
     </element>
-    <element id="Observation:odh-UsualWork.specimen">
+    <element id="Observation.specimen">
       <path value="Observation.specimen"/>
       <min value="0"/>
       <max value="0"/>
     </element>
-    <element id="Observation:odh-UsualWork.device">
+    <element id="Observation.device">
       <path value="Observation.device"/>
       <min value="0"/>
       <max value="0"/>
@@ -4442,12 +4981,12 @@
         <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-device"/>
       </type>
     </element>
-    <element id="Observation:odh-UsualWork.referenceRange">
+    <element id="Observation.referenceRange">
       <path value="Observation.referenceRange"/>
       <min value="0"/>
       <max value="0"/>
     </element>
-    <element id="Observation:odh-UsualWork.referenceRange.type">
+    <element id="Observation.referenceRange.type">
       <path value="Observation.referenceRange.type"/>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
@@ -4458,7 +4997,7 @@
         <valueSet value="http://hl7.org/fhir/ValueSet/referencerange-meaning"/>
       </binding>
     </element>
-    <element id="Observation:odh-UsualWork.referenceRange.appliesTo">
+    <element id="Observation.referenceRange.appliesTo">
       <path value="Observation.referenceRange.appliesTo"/>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
@@ -4469,7 +5008,7 @@
         <valueSet value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
       </binding>
     </element>
-    <element id="Observation:odh-UsualWork.hasMember">
+    <element id="Observation.hasMember">
       <path value="Observation.hasMember"/>
       <min value="0"/>
       <max value="0"/>
@@ -4478,7 +5017,7 @@
         <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Observation"/>
       </type>
     </element>
-    <element id="Observation:odh-UsualWork.derivedFrom">
+    <element id="Observation.derivedFrom">
       <path value="Observation.derivedFrom"/>
       <type>
         <code value="Reference"/>
@@ -4488,7 +5027,7 @@
         <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Observation"/>
       </type>
     </element>
-    <element id="Observation:odh-UsualWork.component">
+    <element id="Observation.component">
       <path value="Observation.component"/>
       <slicing id="3">
         <discriminator>
@@ -4501,7 +5040,63 @@
       <min value="1"/>
       <max value="*"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry">
+    <element id="Observation.component.value[x]">
+      <path value="Observation.component.value[x]"/>
+      <type>
+        <code value="Quantity"/>
+      </type>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <type>
+        <code value="string"/>
+      </type>
+      <type>
+        <code value="Range"/>
+      </type>
+      <type>
+        <code value="Ratio"/>
+      </type>
+      <type>
+        <code value="SampledData"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-datatype-SampledData"/>
+      </type>
+      <type>
+        <code value="time"/>
+      </type>
+      <type>
+        <code value="dateTime"/>
+      </type>
+      <type>
+        <code value="Period"/>
+      </type>
+    </element>
+    <element id="Observation.component.referenceRange">
+      <path value="Observation.component.referenceRange"/>
+    </element>
+    <element id="Observation.component.referenceRange.type">
+      <path value="Observation.component.referenceRange.type"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ObservationRangeMeaning"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Code for the meaning of a reference range."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/referencerange-meaning"/>
+      </binding>
+    </element>
+    <element id="Observation.component.referenceRange.appliesTo">
+      <path value="Observation.component.referenceRange.appliesTo"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ObservationRangeType"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Codes identifying the population the reference range applies to."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
+      </binding>
+    </element>
+    <element id="Observation.component:odh-UsualIndustry">
       <path value="Observation.component"/>
       <sliceName value="odh-UsualIndustry"/>
       <short value="UsualIndustry: The industry (type of business) in which the subject has worked for the longest duration while in the usual occupation"/>
@@ -4509,10 +5104,10 @@
       <min value="1"/>
       <max value="1"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.code">
+    <element id="Observation.component:odh-UsualIndustry.code">
       <path value="Observation.component.code"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.code.coding">
+    <element id="Observation.component:odh-UsualIndustry.code.coding">
       <path value="Observation.component.code.coding"/>
       <slicing id="4">
         <discriminator>
@@ -4525,7 +5120,7 @@
       <min value="1"/>
       <max value="*"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.code.coding:Fixed_21844-6">
+    <element id="Observation.component:odh-UsualIndustry.code.coding:Fixed_21844-6">
       <path value="Observation.component.code.coding"/>
       <sliceName value="Fixed_21844-6"/>
       <short value="History of Usual industry"/>
@@ -4542,15 +5137,15 @@
       </type>
       <isSummary value="true"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.code.coding:Fixed_21844-6.system">
+    <element id="Observation.component:odh-UsualIndustry.code.coding:Fixed_21844-6.system">
       <path value="Observation.component.code.coding.system"/>
       <fixedUri value="http://loinc.org"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.code.coding:Fixed_21844-6.code">
+    <element id="Observation.component:odh-UsualIndustry.code.coding:Fixed_21844-6.code">
       <path value="Observation.component.code.coding.code"/>
       <fixedCode value="21844-6"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.valueCodeableConcept">
+    <element id="Observation.component:odh-UsualIndustry.valueCodeableConcept">
       <path value="Observation.component.valueCodeableConcept"/>
       <type>
         <code value="CodeableConcept"/>
@@ -4560,17 +5155,17 @@
         <valueSet value="https://phinvads.cdc.gov/vads/ViewValueSet.action?oid=2.16.840.1.114222.4.11.7187"/>
       </binding>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.interpretation">
+    <element id="Observation.component:odh-UsualIndustry.interpretation">
       <path value="Observation.component.interpretation"/>
       <min value="0"/>
       <max value="1"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.referenceRange">
+    <element id="Observation.component:odh-UsualIndustry.referenceRange">
       <path value="Observation.component.referenceRange"/>
       <min value="0"/>
       <max value="0"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.referenceRange.type">
+    <element id="Observation.component:odh-UsualIndustry.referenceRange.type">
       <path value="Observation.component.referenceRange.type"/>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
@@ -4581,7 +5176,7 @@
         <valueSet value="http://hl7.org/fhir/ValueSet/referencerange-meaning"/>
       </binding>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualIndustry.referenceRange.appliesTo">
+    <element id="Observation.component:odh-UsualIndustry.referenceRange.appliesTo">
       <path value="Observation.component.referenceRange.appliesTo"/>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
@@ -4592,7 +5187,7 @@
         <valueSet value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
       </binding>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration">
+    <element id="Observation.component:odh-UsualOccupationDuration">
       <path value="Observation.component"/>
       <sliceName value="odh-UsualOccupationDuration"/>
       <short value="UsualOccupationDuration: The total time spent on an activity, inclusive of all time intervals, whether continuous or interrupted"/>
@@ -4600,10 +5195,10 @@
       <min value="0"/>
       <max value="1"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.code">
+    <element id="Observation.component:odh-UsualOccupationDuration.code">
       <path value="Observation.component.code"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.code.coding">
+    <element id="Observation.component:odh-UsualOccupationDuration.code.coding">
       <path value="Observation.component.code.coding"/>
       <slicing id="5">
         <discriminator>
@@ -4616,7 +5211,7 @@
       <min value="1"/>
       <max value="*"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7">
+    <element id="Observation.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7">
       <path value="Observation.component.code.coding"/>
       <sliceName value="Fixed_74163-7"/>
       <short value="Usual occupation duration"/>
@@ -4633,15 +5228,15 @@
       </type>
       <isSummary value="true"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7.system">
+    <element id="Observation.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7.system">
       <path value="Observation.component.code.coding.system"/>
       <fixedUri value="http://loinc.org"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7.code">
+    <element id="Observation.component:odh-UsualOccupationDuration.code.coding:Fixed_74163-7.code">
       <path value="Observation.component.code.coding.code"/>
       <fixedCode value="74163-7"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.valueQuantity">
+    <element id="Observation.component:odh-UsualOccupationDuration.valueQuantity">
       <path value="Observation.component.valueQuantity"/>
       <base>
         <path value="Observation.component.value[x]"/>
@@ -4652,25 +5247,25 @@
         <code value="Quantity"/>
       </type>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.valueQuantity.system">
+    <element id="Observation.component:odh-UsualOccupationDuration.valueQuantity.system">
       <path value="Observation.component.valueQuantity.system"/>
       <fixedUri value="http://unitsofmeasure.org"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.valueQuantity.code">
+    <element id="Observation.component:odh-UsualOccupationDuration.valueQuantity.code">
       <path value="Observation.component.valueQuantity.code"/>
       <fixedCode value="a"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.interpretation">
+    <element id="Observation.component:odh-UsualOccupationDuration.interpretation">
       <path value="Observation.component.interpretation"/>
       <min value="0"/>
       <max value="1"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.referenceRange">
+    <element id="Observation.component:odh-UsualOccupationDuration.referenceRange">
       <path value="Observation.component.referenceRange"/>
       <min value="0"/>
       <max value="1"/>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.referenceRange.type">
+    <element id="Observation.component:odh-UsualOccupationDuration.referenceRange.type">
       <path value="Observation.component.referenceRange.type"/>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
@@ -4681,7 +5276,7 @@
         <valueSet value="http://hl7.org/fhir/ValueSet/referencerange-meaning"/>
       </binding>
     </element>
-    <element id="Observation:odh-UsualWork.component:odh-UsualOccupationDuration.referenceRange.appliesTo">
+    <element id="Observation.component:odh-UsualOccupationDuration.referenceRange.appliesTo">
       <path value="Observation.component.referenceRange.appliesTo"/>
       <min value="0"/>
       <max value="1"/>

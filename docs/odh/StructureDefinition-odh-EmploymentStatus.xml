@@ -19,7 +19,7 @@
   Narrative maps to text
   Identifier maps to identifier
   SocialHistoryObservationBasedOn maps to basedOn
-  SocialHistoryObservationPartOf maps to partOf
+  ProceduralObservationPartOf maps to partOf
   Status maps to status
   Category maps to category
   Code maps to code
@@ -35,7 +35,7 @@
   Annotation maps to note
   BodyLocation.Code maps to bodySite
   BodyLocation.Laterality maps to bodySite.extension
-  BodyLocation.Orientation maps to bodySite.extension
+  BodyLocation.AnatomicalOrientation maps to bodySite.extension
   BodyLocation.RelationToLandmark maps to bodySite.extension
   Method maps to method
   Specimen maps to specimen
@@ -47,7 +47,7 @@
   ReferenceRange.ApplicableSubpopulation maps to referenceRange.appliesTo
   ReferenceRange.ApplicableAgeRange maps to referenceRange.age
   ReferenceRange.Text maps to referenceRange.text
-  PanelMembers.Observation maps to hasMember (slice on = reference.resolve(); slice on type = profile; slice strategy = includes)
+  PanelMembers.Observation maps to hasMember (slice on = $this.resolve().code.coding.code; slice strategy = includes)
   ObservationDerivedFrom maps to derivedFrom
   Components.ObservationComponent maps to component (slice on = code.coding.code; slice strategy = includes)
   Components.ObservationComponent.Code maps to component.code
@@ -65,20 +65,16 @@
 </div>
   </text>
   <url value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-EmploymentStatus"/>
-  <identifier>
-    <system value="http://hl7.org/fhir/us/odh"/>
-    <value value="odh.EmploymentStatus"/>
-  </identifier>
   <version value="1.1.0"/>
   <name value="EmploymentStatus"/>
   <title value="odh-EmploymentStatus"/>
   <status value="active"/>
-  <date value="2019-07-03T00:00:00-04:00"/>
-  <publisher value="HL7"/>
+  <date value="2019-09-04T00:00:00-04:00"/>
+  <publisher value="HL7 International Public Health Work Group"/>
   <contact>
     <telecom>
       <system value="url"/>
-      <value value="http://standardhealthrecord.org"/>
+      <value value="http://www.hl7.org/Special/committees/pher/index.cfm"/>
     </telecom>
   </contact>
   <description value="The self-reported current and/or historical status about a person&#x2019;s economic relationship to work (e.g. having one or more jobs), including start and end dates. A person&#x2019;s Employment Status could change over time, for example, a person could be employed following a period of choosing to not be in the labor force. Outside of ODH, the employment arrangement between an employer and a person (one job) has sometimes been referred to as a person&#x2019;s &#x2018;employment status.&#x2019; However, in ODH, Employment Status is used to characterize a person, Work Classification is used to characterize a job, and Retirement Date is used to characterize a person as retired."/>
@@ -120,7 +116,7 @@
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation"/>
   <derivation value="constraint"/>
   <snapshot>
-    <element id="Observation:odh-EmploymentStatus">
+    <element id="Observation">
       <path value="Observation"/>
       <short value="odh-EmploymentStatus"/>
       <definition value="The self-reported current and/or historical status about a person&#x2019;s economic relationship to work (e.g. having one or more jobs), including start and end dates. A person&#x2019;s Employment Status could change over time, for example, a person could be employed following a period of choosing to not be in the labor force. Outside of ODH, the employment arrangement between an employer and a person (one job) has sometimes been referred to as a person&#x2019;s &#x2018;employment status.&#x2019; However, in ODH, Employment Status is used to characterize a person, Work Classification is used to characterize a job, and Retirement Date is used to characterize a person as retired."/>
@@ -219,7 +215,7 @@
         <map value="Observation[classCode=OBS, moodCode=EVN]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.id">
+    <element id="Observation.id">
       <path value="Observation.id"/>
       <short value="Logical id of this artifact"/>
       <definition value="The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes."/>
@@ -237,7 +233,7 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.meta">
+    <element id="Observation.meta">
       <path value="Observation.meta"/>
       <short value="Metadata about the resource"/>
       <definition value="The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource."/>
@@ -254,7 +250,7 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.implicitRules">
+    <element id="Observation.implicitRules">
       <path value="Observation.implicitRules"/>
       <short value="A set of rules under which this content was created"/>
       <definition value="A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc."/>
@@ -273,7 +269,7 @@
       <isModifierReason value="This element is labeled as a modifier because the implicit rules may provide additional knowledge about the resource that modifies it&#39;s meaning or interpretation"/>
       <isSummary value="true"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.language">
+    <element id="Observation.language">
       <path value="Observation.language"/>
       <short value="Language of the resource content"/>
       <definition value="The base language in which the resource is written."/>
@@ -305,7 +301,7 @@
         <valueSet value="http://hl7.org/fhir/ValueSet/languages"/>
       </binding>
     </element>
-    <element id="Observation:odh-EmploymentStatus.text">
+    <element id="Observation.text">
       <path value="Observation.text"/>
       <short value="Text summary of the resource, for human interpretation"/>
       <definition value="A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it &quot;clinically safe&quot; for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety."/>
@@ -331,7 +327,7 @@
         <map value="Act.text?"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.contained">
+    <element id="Observation.contained">
       <path value="Observation.contained"/>
       <short value="Contained, inline Resources"/>
       <definition value="These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."/>
@@ -356,7 +352,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.extension">
+    <element id="Observation.extension">
       <path value="Observation.extension"/>
       <short value="Additional content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
@@ -380,7 +376,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.modifierExtension">
+    <element id="Observation.modifierExtension">
       <path value="Observation.modifierExtension"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
@@ -406,7 +402,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.identifier">
+    <element id="Observation.identifier">
       <path value="Observation.identifier"/>
       <short value="Business Identifier for observation"/>
       <definition value="A unique identifier assigned to this observation."/>
@@ -440,7 +436,7 @@
         <map value="id"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.basedOn">
+    <element id="Observation.basedOn">
       <path value="Observation.basedOn"/>
       <short value="The plan, proposal or order that is fulfilled in whole or in part by this observation"/>
       <definition value="The plan, proposal or order that is fulfilled in whole or in part by this observation."/>
@@ -472,7 +468,7 @@
         <map value=".inboundRelationship[typeCode=COMP].source[moodCode=EVN]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.partOf">
+    <element id="Observation.partOf">
       <path value="Observation.partOf"/>
       <short value="The larger procedure that this particular observation is a component or step"/>
       <definition value="The larger procedure that this particular observation is a component or step."/>
@@ -504,7 +500,7 @@
         <map value=".outboundRelationship[typeCode=FLFS].target"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.status">
+    <element id="Observation.status">
       <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-display-hint">
         <valueString value="default: final"/>
       </extension>
@@ -555,7 +551,7 @@
         <map value="status  Amended &amp; Final are differentiated by whether it is the subject of a ControlAct event with a type of &quot;revise&quot;"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.category">
+    <element id="Observation.category">
       <path value="Observation.category"/>
       <short value="Classification of  type of observation"/>
       <definition value="A code that classifies the general type of observation being made."/>
@@ -590,7 +586,7 @@
         <map value=".outboundRelationship[typeCode=&quot;COMP].target[classCode=&quot;LIST&quot;, moodCode=&quot;EVN&quot;].code"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.category.id">
+    <element id="Observation.category.id">
       <path value="Observation.category.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -612,7 +608,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.category.extension">
+    <element id="Observation.category.extension">
       <path value="Observation.category.extension"/>
       <slicing>
         <discriminator>
@@ -644,7 +640,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.category.coding">
+    <element id="Observation.category.coding">
       <path value="Observation.category.coding"/>
       <slicing id="1">
         <discriminator>
@@ -683,7 +679,7 @@
         <map value="fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.category.coding:Fixed_social-history">
+    <element id="Observation.category.coding:Fixed_social-history">
       <path value="Observation.category.coding"/>
       <sliceName value="Fixed_social-history"/>
       <short value="Social History"/>
@@ -700,7 +696,7 @@
       </type>
       <isSummary value="true"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.category.coding:Fixed_social-history.id">
+    <element id="Observation.category.coding:Fixed_social-history.id">
       <path value="Observation.category.coding.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -722,7 +718,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.category.coding:Fixed_social-history.extension">
+    <element id="Observation.category.coding:Fixed_social-history.extension">
       <path value="Observation.category.coding.extension"/>
       <slicing>
         <discriminator>
@@ -754,7 +750,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.category.coding:Fixed_social-history.system">
+    <element id="Observation.category.coding:Fixed_social-history.system">
       <path value="Observation.category.coding.system"/>
       <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
@@ -770,7 +766,7 @@
       <type>
         <code value="uri"/>
       </type>
-      <fixedUri value="http://hl7.org/fhir/observation-category"/>
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/observation-category"/>
       <isModifier value="false"/>
       <isSummary value="true"/>
       <mapping>
@@ -786,7 +782,7 @@
         <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.category.coding:Fixed_social-history.version">
+    <element id="Observation.category.coding:Fixed_social-history.version">
       <path value="Observation.category.coding.version"/>
       <short value="Version of the system - if relevant"/>
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured, and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged."/>
@@ -816,7 +812,7 @@
         <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.category.coding:Fixed_social-history.code">
+    <element id="Observation.category.coding:Fixed_social-history.code">
       <path value="Observation.category.coding.code"/>
       <short value="Symbol in syntax defined by the system"/>
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)."/>
@@ -847,7 +843,7 @@
         <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.category.coding:Fixed_social-history.display">
+    <element id="Observation.category.coding:Fixed_social-history.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true"/>
       </extension>
@@ -880,7 +876,7 @@
         <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.category.coding:Fixed_social-history.userSelected">
+    <element id="Observation.category.coding:Fixed_social-history.userSelected">
       <path value="Observation.category.coding.userSelected"/>
       <short value="If this coding was chosen directly by the user"/>
       <definition value="Indicates that this coding was chosen by a user directly - e.g. off a pick list of available items (codes or displays)."/>
@@ -911,7 +907,7 @@
         <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.category.text">
+    <element id="Observation.category.text">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true"/>
       </extension>
@@ -945,7 +941,7 @@
         <map value="fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.code">
+    <element id="Observation.code">
       <path value="Observation.code"/>
       <short value="Type of observation (code / type)"/>
       <definition value="Describes what was observed. Sometimes this is called the observation &quot;name&quot;."/>
@@ -997,7 +993,7 @@
         <map value="116680003 |Is a|"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.code.id">
+    <element id="Observation.code.id">
       <path value="Observation.code.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -1019,7 +1015,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.code.extension">
+    <element id="Observation.code.extension">
       <path value="Observation.code.extension"/>
       <slicing>
         <discriminator>
@@ -1051,7 +1047,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.code.coding">
+    <element id="Observation.code.coding">
       <path value="Observation.code.coding"/>
       <slicing id="2">
         <discriminator>
@@ -1090,7 +1086,7 @@
         <map value="fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.code.coding:Fixed_74165-2">
+    <element id="Observation.code.coding:Fixed_74165-2">
       <path value="Observation.code.coding"/>
       <sliceName value="Fixed_74165-2"/>
       <short value="History of employment status NIOSH"/>
@@ -1107,7 +1103,7 @@
       </type>
       <isSummary value="true"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.code.coding:Fixed_74165-2.id">
+    <element id="Observation.code.coding:Fixed_74165-2.id">
       <path value="Observation.code.coding.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -1129,7 +1125,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.code.coding:Fixed_74165-2.extension">
+    <element id="Observation.code.coding:Fixed_74165-2.extension">
       <path value="Observation.code.coding.extension"/>
       <slicing>
         <discriminator>
@@ -1161,7 +1157,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.code.coding:Fixed_74165-2.system">
+    <element id="Observation.code.coding:Fixed_74165-2.system">
       <path value="Observation.code.coding.system"/>
       <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
@@ -1193,7 +1189,7 @@
         <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.code.coding:Fixed_74165-2.version">
+    <element id="Observation.code.coding:Fixed_74165-2.version">
       <path value="Observation.code.coding.version"/>
       <short value="Version of the system - if relevant"/>
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured, and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged."/>
@@ -1223,7 +1219,7 @@
         <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.code.coding:Fixed_74165-2.code">
+    <element id="Observation.code.coding:Fixed_74165-2.code">
       <path value="Observation.code.coding.code"/>
       <short value="Symbol in syntax defined by the system"/>
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)."/>
@@ -1254,7 +1250,7 @@
         <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.code.coding:Fixed_74165-2.display">
+    <element id="Observation.code.coding:Fixed_74165-2.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true"/>
       </extension>
@@ -1287,7 +1283,7 @@
         <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.code.coding:Fixed_74165-2.userSelected">
+    <element id="Observation.code.coding:Fixed_74165-2.userSelected">
       <path value="Observation.code.coding.userSelected"/>
       <short value="If this coding was chosen directly by the user"/>
       <definition value="Indicates that this coding was chosen by a user directly - e.g. off a pick list of available items (codes or displays)."/>
@@ -1318,7 +1314,7 @@
         <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.code.text">
+    <element id="Observation.code.text">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true"/>
       </extension>
@@ -1352,7 +1348,7 @@
         <map value="fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.subject">
+    <element id="Observation.subject">
       <path value="Observation.subject"/>
       <short value="The subject of an observation"/>
       <definition value="The subject of an observation."/>
@@ -1392,7 +1388,7 @@
         <map value="FiveWs.subject"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.focus">
+    <element id="Observation.focus">
       <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
         <valueCode value="trial-use"/>
       </extension>
@@ -1430,7 +1426,7 @@
         <map value="FiveWs.subject"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.encounter">
+    <element id="Observation.encounter">
       <path value="Observation.encounter"/>
       <short value="Healthcare event during which this observation is made"/>
       <definition value="The healthcare event  (e.g. a patient and healthcare provider interaction) during which this observation is made."/>
@@ -1467,7 +1463,7 @@
         <map value="inboundRelationship[typeCode=COMP].source[classCode=ENC, moodCode=EVN]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.effectivePeriod">
+    <element id="Observation.effectivePeriod">
       <path value="Observation.effectivePeriod"/>
       <short value="The time period the employment status addresses. If the employment is current, the ending time of the time period should be omitted."/>
       <definition value="The time period the employment status addresses. If the employment is current, the ending time of the time period should be omitted."/>
@@ -1503,7 +1499,7 @@
         <map value="effectiveTime"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.issued">
+    <element id="Observation.issued">
       <path value="Observation.issued"/>
       <short value="Date/Time this version was made available"/>
       <definition value="The date and time this version of the observation was made available to providers, typically after the results have been reviewed and verified."/>
@@ -1533,7 +1529,7 @@
         <map value="participation[typeCode=AUT].time"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.performer">
+    <element id="Observation.performer">
       <path value="Observation.performer"/>
       <short value="Who is responsible for the observation"/>
       <definition value="Who was responsible for asserting the observed value as &quot;true&quot;."/>
@@ -1571,7 +1567,7 @@
         <map value="participation[typeCode=PRF]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.valueCodeableConcept">
+    <element id="Observation.valueCodeableConcept">
       <path value="Observation.valueCodeableConcept"/>
       <short value="A person&#x2019;s employment status as defined by compensation and sector (e.g. paid vs. unpaid, self-employed vs. not self-employed, government vs. private, etc.)"/>
       <definition value="A person&#x2019;s employment status as defined by compensation and sector (e.g. paid vs. unpaid, self-employed vs. not self-employed, government vs. private, etc.)."/>
@@ -1611,7 +1607,7 @@
         <map value="363714003 |Interprets|"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.dataAbsentReason">
+    <element id="Observation.dataAbsentReason">
       <path value="Observation.dataAbsentReason"/>
       <short value="Why the result is missing"/>
       <definition value="Provides a reason why the expected value in the element Observation.value[x] is missing."/>
@@ -1647,7 +1643,7 @@
         <map value="value.nullFlavor"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.interpretation">
+    <element id="Observation.interpretation">
       <path value="Observation.interpretation"/>
       <short value="High, low, normal, etc."/>
       <definition value="A categorical assessment of an observation value.  For example, high, low, normal."/>
@@ -1691,7 +1687,7 @@
         <map value="363713009 |Has interpretation|"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.note">
+    <element id="Observation.note">
       <path value="Observation.note"/>
       <short value="Comments about the observation"/>
       <definition value="Comments about the observation or the results."/>
@@ -1718,7 +1714,7 @@
         <map value="subjectOf.observationEvent[code=&quot;annotation&quot;].value"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.bodySite">
+    <element id="Observation.bodySite">
       <path value="Observation.bodySite"/>
       <short value="Observed body part"/>
       <definition value="Indicates the site on the subject&#39;s body where the observation was made (i.e. the target site)."/>
@@ -1736,8 +1732,12 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="BodySite"/>
+        </extension>
         <strength value="preferred"/>
-        <valueSet value="http://hl7.org/fhir/us/odh/ValueSet/shr-core-BodyLocationVS"/>
+        <description value="Codes describing anatomical locations. May include laterality."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/body-site"/>
       </binding>
       <mapping>
         <identity value="sct-concept"/>
@@ -1756,7 +1756,7 @@
         <map value="718497002 |Inherent location|"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.method">
+    <element id="Observation.method">
       <path value="Observation.method"/>
       <short value="How it was done"/>
       <definition value="Indicates the mechanism used to perform the observation."/>
@@ -1791,7 +1791,7 @@
         <map value="methodCode"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.specimen">
+    <element id="Observation.specimen">
       <path value="Observation.specimen"/>
       <short value="Specimen used for this observation"/>
       <definition value="The specimen that was used when this observation was made."/>
@@ -1826,7 +1826,7 @@
         <map value="704319004 |Inherent in|"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.device">
+    <element id="Observation.device">
       <path value="Observation.device"/>
       <short value="(Measurement) Device"/>
       <definition value="The device used to generate the observation data."/>
@@ -1861,7 +1861,7 @@
         <map value="424226004 |Using device|"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.referenceRange">
+    <element id="Observation.referenceRange">
       <path value="Observation.referenceRange"/>
       <short value="Provides guide for interpretation"/>
       <definition value="Guidance on how to interpret the value by comparison to a normal or recommended range.  Multiple reference ranges are interpreted as an &quot;OR&quot;.   In other words, to represent two distinct target populations, two `referenceRange` elements would be used."/>
@@ -1903,7 +1903,7 @@
         <map value="outboundRelationship[typeCode=REFV]/target[classCode=OBS, moodCode=EVN]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.referenceRange.id">
+    <element id="Observation.referenceRange.id">
       <path value="Observation.referenceRange.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -1925,7 +1925,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.referenceRange.extension">
+    <element id="Observation.referenceRange.extension">
       <path value="Observation.referenceRange.extension"/>
       <short value="Additional content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
@@ -1949,7 +1949,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.referenceRange.modifierExtension">
+    <element id="Observation.referenceRange.modifierExtension">
       <path value="Observation.referenceRange.modifierExtension"/>
       <short value="Extensions that cannot be ignored even if unrecognized"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
@@ -1976,7 +1976,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.referenceRange.low">
+    <element id="Observation.referenceRange.low">
       <path value="Observation.referenceRange.low"/>
       <short value="Low Range, if relevant"/>
       <definition value="The value of the low bound of the reference range.  The low bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9). If the low bound is omitted,  it is assumed to be meaningless (e.g. reference range is &lt;=2.3)."/>
@@ -2003,7 +2003,7 @@
         <map value="value:IVL_PQ.low"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.referenceRange.high">
+    <element id="Observation.referenceRange.high">
       <path value="Observation.referenceRange.high"/>
       <short value="High Range, if relevant"/>
       <definition value="The value of the high bound of the reference range.  The high bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9). If the high bound is omitted,  it is assumed to be meaningless (e.g. reference range is &gt;= 2.3)."/>
@@ -2030,7 +2030,7 @@
         <map value="value:IVL_PQ.high"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.referenceRange.type">
+    <element id="Observation.referenceRange.type">
       <path value="Observation.referenceRange.type"/>
       <short value="Reference range qualifier"/>
       <definition value="Codes to indicate the what part of the targeted reference population it applies to. For example, the normal or therapeutic range."/>
@@ -2069,7 +2069,7 @@
         <map value="interpretationCode"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.referenceRange.appliesTo">
+    <element id="Observation.referenceRange.appliesTo">
       <path value="Observation.referenceRange.appliesTo"/>
       <short value="Reference range population"/>
       <definition value="Codes to indicate the target population this reference range applies to.  For example, a reference range may be based on the normal population or a particular sex or race.  Multiple `appliesTo`  are interpreted as an &quot;AND&quot; of the target populations.  For example, to represent a target population of African American females, both a code of female and a code for African American would be used."/>
@@ -2108,7 +2108,7 @@
         <map value="interpretationCode"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.referenceRange.age">
+    <element id="Observation.referenceRange.age">
       <path value="Observation.referenceRange.age"/>
       <short value="Applicable age range, if relevant"/>
       <definition value="The age at which this reference range is applicable. This is a neonatal age (e.g. number of weeks at term) if the meaning says so."/>
@@ -2130,7 +2130,7 @@
         <map value="outboundRelationship[typeCode=PRCN].targetObservationCriterion[code=&quot;age&quot;].value"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.referenceRange.text">
+    <element id="Observation.referenceRange.text">
       <path value="Observation.referenceRange.text"/>
       <short value="Text based reference range in an observation"/>
       <definition value="Text based reference range in an observation which may be used when a quantitative range is not appropriate for an observation.  An example would be a reference value of &quot;Negative&quot; or a list or table of &quot;normals&quot;."/>
@@ -2155,7 +2155,7 @@
         <map value="value:ST"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.hasMember">
+    <element id="Observation.hasMember">
       <path value="Observation.hasMember"/>
       <short value="Related resource that belongs to the Observation group"/>
       <definition value="This observation is a group observation (e.g. a battery, a panel of tests, a set of vital sign measurements) that includes the target as a member of the group."/>
@@ -2182,7 +2182,7 @@
         <map value="outBoundRelationship"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.derivedFrom">
+    <element id="Observation.derivedFrom">
       <path value="Observation.derivedFrom"/>
       <short value="Related measurements the observation is made from"/>
       <definition value="The target resource that represents a measurement from which this observation value is derived. For example, a calculated anion gap or a fetal measurement based on an ultrasound image."/>
@@ -2212,7 +2212,7 @@
         <map value=".targetObservation"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component">
+    <element id="Observation.component">
       <path value="Observation.component"/>
       <short value="Component results"/>
       <definition value="Some observations have multiple component observations.  These component observations are expressed as separate code value pairs that share the same attributes.  Examples include systolic and diastolic component observations for blood pressure measurement and multiple component observations for genetics observations."/>
@@ -2247,7 +2247,7 @@
         <map value="outBoundRelationship[typeCode=COMP]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.id">
+    <element id="Observation.component.id">
       <path value="Observation.component.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -2269,7 +2269,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.extension">
+    <element id="Observation.component.extension">
       <path value="Observation.component.extension"/>
       <short value="Additional content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
@@ -2293,7 +2293,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.modifierExtension">
+    <element id="Observation.component.modifierExtension">
       <path value="Observation.component.modifierExtension"/>
       <short value="Extensions that cannot be ignored even if unrecognized"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
@@ -2320,7 +2320,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.code">
+    <element id="Observation.component.code">
       <path value="Observation.component.code"/>
       <short value="Type of component observation (code / type)"/>
       <definition value="Describes what was observed. Sometimes this is called the observation &quot;code&quot;."/>
@@ -2363,7 +2363,7 @@
         <map value="code"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.value[x]">
+    <element id="Observation.component.value[x]">
       <path value="Observation.component.value[x]"/>
       <short value="Actual component result"/>
       <definition value="The information determined as a result of making the observation, if the information has a simple value."/>
@@ -2393,6 +2393,7 @@
       </type>
       <type>
         <code value="SampledData"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-datatype-SampledData"/>
       </type>
       <type>
         <code value="time"/>
@@ -2422,7 +2423,7 @@
         <map value="363714003 |Interprets|"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.dataAbsentReason">
+    <element id="Observation.component.dataAbsentReason">
       <path value="Observation.component.dataAbsentReason"/>
       <short value="Why the component result is missing"/>
       <definition value="Provides a reason why the expected value in the element Observation.component.value[x] is missing."/>
@@ -2458,7 +2459,7 @@
         <map value="value.nullFlavor"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.interpretation">
+    <element id="Observation.component.interpretation">
       <path value="Observation.component.interpretation"/>
       <short value="High, low, normal, etc."/>
       <definition value="A categorical assessment of an observation value.  For example, high, low, normal."/>
@@ -2502,7 +2503,7 @@
         <map value="363713009 |Has interpretation|"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.referenceRange">
+    <element id="Observation.component.referenceRange">
       <path value="Observation.component.referenceRange"/>
       <short value="Provides guide for interpretation of component result"/>
       <definition value="Guidance on how to interpret the value by comparison to a normal or recommended range."/>
@@ -2529,7 +2530,7 @@
         <map value="outboundRelationship[typeCode=REFV]/target[classCode=OBS, moodCode=EVN]"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.referenceRange.id">
+    <element id="Observation.component.referenceRange.id">
       <path value="Observation.component.referenceRange.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -2551,7 +2552,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.referenceRange.extension">
+    <element id="Observation.component.referenceRange.extension">
       <path value="Observation.component.referenceRange.extension"/>
       <short value="Additional content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
@@ -2575,7 +2576,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.referenceRange.modifierExtension">
+    <element id="Observation.component.referenceRange.modifierExtension">
       <path value="Observation.component.referenceRange.modifierExtension"/>
       <short value="Extensions that cannot be ignored even if unrecognized"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
@@ -2602,7 +2603,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.referenceRange.low">
+    <element id="Observation.component.referenceRange.low">
       <path value="Observation.component.referenceRange.low"/>
       <short value="Low Range, if relevant"/>
       <definition value="The value of the low bound of the reference range.  The low bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9). If the low bound is omitted,  it is assumed to be meaningless (e.g. reference range is &lt;=2.3)."/>
@@ -2629,7 +2630,7 @@
         <map value="value:IVL_PQ.low"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.referenceRange.high">
+    <element id="Observation.component.referenceRange.high">
       <path value="Observation.component.referenceRange.high"/>
       <short value="High Range, if relevant"/>
       <definition value="The value of the high bound of the reference range.  The high bound of the reference range endpoint is inclusive of the value (e.g.  reference range is &gt;=5 - &lt;=9). If the high bound is omitted,  it is assumed to be meaningless (e.g. reference range is &gt;= 2.3)."/>
@@ -2656,7 +2657,7 @@
         <map value="value:IVL_PQ.high"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.referenceRange.type">
+    <element id="Observation.component.referenceRange.type">
       <path value="Observation.component.referenceRange.type"/>
       <short value="Reference range qualifier"/>
       <definition value="Codes to indicate the what part of the targeted reference population it applies to. For example, the normal or therapeutic range."/>
@@ -2695,7 +2696,7 @@
         <map value="interpretationCode"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.referenceRange.appliesTo">
+    <element id="Observation.component.referenceRange.appliesTo">
       <path value="Observation.component.referenceRange.appliesTo"/>
       <short value="Reference range population"/>
       <definition value="Codes to indicate the target population this reference range applies to.  For example, a reference range may be based on the normal population or a particular sex or race.  Multiple `appliesTo`  are interpreted as an &quot;AND&quot; of the target populations.  For example, to represent a target population of African American females, both a code of female and a code for African American would be used."/>
@@ -2734,7 +2735,7 @@
         <map value="interpretationCode"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.referenceRange.age">
+    <element id="Observation.component.referenceRange.age">
       <path value="Observation.component.referenceRange.age"/>
       <short value="Applicable age range, if relevant"/>
       <definition value="The age at which this reference range is applicable. This is a neonatal age (e.g. number of weeks at term) if the meaning says so."/>
@@ -2756,7 +2757,7 @@
         <map value="outboundRelationship[typeCode=PRCN].targetObservationCriterion[code=&quot;age&quot;].value"/>
       </mapping>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.referenceRange.text">
+    <element id="Observation.component.referenceRange.text">
       <path value="Observation.component.referenceRange.text"/>
       <short value="Text based reference range in an observation"/>
       <definition value="Text based reference range in an observation which may be used when a quantitative range is not appropriate for an observation.  An example would be a reference value of &quot;Negative&quot; or a list or table of &quot;normals&quot;."/>
@@ -2783,14 +2784,14 @@
     </element>
   </snapshot>
   <differential>
-    <element id="Observation:odh-EmploymentStatus">
+    <element id="Observation">
       <path value="Observation"/>
       <short value="odh-EmploymentStatus"/>
       <definition value="The self-reported current and/or historical status about a person&#x2019;s economic relationship to work (e.g. having one or more jobs), including start and end dates. A person&#x2019;s Employment Status could change over time, for example, a person could be employed following a period of choosing to not be in the labor force. Outside of ODH, the employment arrangement between an employer and a person (one job) has sometimes been referred to as a person&#x2019;s &#x2018;employment status.&#x2019; However, in ODH, Employment Status is used to characterize a person, Work Classification is used to characterize a job, and Retirement Date is used to characterize a person as retired."/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.basedOn">
+    <element id="Observation.basedOn">
       <path value="Observation.basedOn"/>
       <short value="The plan, proposal or order that is fulfilled in whole or in part by this observation"/>
       <definition value="The plan, proposal or order that is fulfilled in whole or in part by this observation."/>
@@ -2799,7 +2800,7 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/ServiceRequest"/>
       </type>
     </element>
-    <element id="Observation:odh-EmploymentStatus.partOf">
+    <element id="Observation.partOf">
       <path value="Observation.partOf"/>
       <short value="The larger procedure that this particular observation is a component or step"/>
       <definition value="The larger procedure that this particular observation is a component or step."/>
@@ -2808,12 +2809,12 @@
         <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure"/>
       </type>
     </element>
-    <element id="Observation:odh-EmploymentStatus.category">
+    <element id="Observation.category">
       <path value="Observation.category"/>
       <min value="0"/>
       <max value="1"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.category.coding">
+    <element id="Observation.category.coding">
       <path value="Observation.category.coding"/>
       <slicing id="1">
         <discriminator>
@@ -2826,7 +2827,7 @@
       <min value="1"/>
       <max value="*"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.category.coding:Fixed_social-history">
+    <element id="Observation.category.coding:Fixed_social-history">
       <path value="Observation.category.coding"/>
       <sliceName value="Fixed_social-history"/>
       <short value="Social History"/>
@@ -2843,18 +2844,18 @@
       </type>
       <isSummary value="true"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.category.coding:Fixed_social-history.system">
+    <element id="Observation.category.coding:Fixed_social-history.system">
       <path value="Observation.category.coding.system"/>
-      <fixedUri value="http://hl7.org/fhir/observation-category"/>
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/observation-category"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.category.coding:Fixed_social-history.code">
+    <element id="Observation.category.coding:Fixed_social-history.code">
       <path value="Observation.category.coding.code"/>
       <fixedCode value="social-history"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.code">
+    <element id="Observation.code">
       <path value="Observation.code"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.code.coding">
+    <element id="Observation.code.coding">
       <path value="Observation.code.coding"/>
       <slicing id="2">
         <discriminator>
@@ -2867,7 +2868,7 @@
       <min value="1"/>
       <max value="*"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.code.coding:Fixed_74165-2">
+    <element id="Observation.code.coding:Fixed_74165-2">
       <path value="Observation.code.coding"/>
       <sliceName value="Fixed_74165-2"/>
       <short value="History of employment status NIOSH"/>
@@ -2884,15 +2885,15 @@
       </type>
       <isSummary value="true"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.code.coding:Fixed_74165-2.system">
+    <element id="Observation.code.coding:Fixed_74165-2.system">
       <path value="Observation.code.coding.system"/>
       <fixedUri value="http://loinc.org"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.code.coding:Fixed_74165-2.code">
+    <element id="Observation.code.coding:Fixed_74165-2.code">
       <path value="Observation.code.coding.code"/>
       <fixedCode value="74165-2"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.subject">
+    <element id="Observation.subject">
       <path value="Observation.subject"/>
       <short value="The subject of an observation"/>
       <definition value="The subject of an observation."/>
@@ -2903,19 +2904,19 @@
         <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"/>
       </type>
     </element>
-    <element id="Observation:odh-EmploymentStatus.focus">
+    <element id="Observation.focus">
       <path value="Observation.focus"/>
       <min value="0"/>
       <max value="0"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.encounter">
+    <element id="Observation.encounter">
       <path value="Observation.encounter"/>
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter"/>
       </type>
     </element>
-    <element id="Observation:odh-EmploymentStatus.effectivePeriod">
+    <element id="Observation.effectivePeriod">
       <path value="Observation.effectivePeriod"/>
       <short value="The time period the employment status addresses. If the employment is current, the ending time of the time period should be omitted."/>
       <definition value="The time period the employment status addresses. If the employment is current, the ending time of the time period should be omitted."/>
@@ -2923,7 +2924,7 @@
         <code value="Period"/>
       </type>
     </element>
-    <element id="Observation:odh-EmploymentStatus.performer">
+    <element id="Observation.performer">
       <path value="Observation.performer"/>
       <type>
         <code value="Reference"/>
@@ -2933,7 +2934,7 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson"/>
       </type>
     </element>
-    <element id="Observation:odh-EmploymentStatus.valueCodeableConcept">
+    <element id="Observation.valueCodeableConcept">
       <path value="Observation.valueCodeableConcept"/>
       <short value="A person&#x2019;s employment status as defined by compensation and sector (e.g. paid vs. unpaid, self-employed vs. not self-employed, government vs. private, etc.)"/>
       <definition value="A person&#x2019;s employment status as defined by compensation and sector (e.g. paid vs. unpaid, self-employed vs. not self-employed, government vs. private, etc.)."/>
@@ -2945,36 +2946,40 @@
         <valueSet value="http://terminology.hl7.org/ValueSet/v3-employmentStatusODH"/>
       </binding>
     </element>
-    <element id="Observation:odh-EmploymentStatus.dataAbsentReason">
+    <element id="Observation.dataAbsentReason">
       <path value="Observation.dataAbsentReason"/>
       <min value="0"/>
       <max value="0"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.interpretation">
+    <element id="Observation.interpretation">
       <path value="Observation.interpretation"/>
       <min value="0"/>
       <max value="1"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.bodySite">
+    <element id="Observation.bodySite">
       <path value="Observation.bodySite"/>
       <min value="0"/>
       <max value="0"/>
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="BodySite"/>
+        </extension>
         <strength value="preferred"/>
-        <valueSet value="http://hl7.org/fhir/us/odh/ValueSet/shr-core-BodyLocationVS"/>
+        <description value="Codes describing anatomical locations. May include laterality."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/body-site"/>
       </binding>
     </element>
-    <element id="Observation:odh-EmploymentStatus.method">
+    <element id="Observation.method">
       <path value="Observation.method"/>
       <min value="0"/>
       <max value="0"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.specimen">
+    <element id="Observation.specimen">
       <path value="Observation.specimen"/>
       <min value="0"/>
       <max value="0"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.device">
+    <element id="Observation.device">
       <path value="Observation.device"/>
       <min value="0"/>
       <max value="0"/>
@@ -2983,12 +2988,12 @@
         <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-device"/>
       </type>
     </element>
-    <element id="Observation:odh-EmploymentStatus.referenceRange">
+    <element id="Observation.referenceRange">
       <path value="Observation.referenceRange"/>
       <min value="0"/>
       <max value="0"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.referenceRange.type">
+    <element id="Observation.referenceRange.type">
       <path value="Observation.referenceRange.type"/>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
@@ -2999,7 +3004,7 @@
         <valueSet value="http://hl7.org/fhir/ValueSet/referencerange-meaning"/>
       </binding>
     </element>
-    <element id="Observation:odh-EmploymentStatus.referenceRange.appliesTo">
+    <element id="Observation.referenceRange.appliesTo">
       <path value="Observation.referenceRange.appliesTo"/>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
@@ -3010,7 +3015,7 @@
         <valueSet value="http://hl7.org/fhir/ValueSet/referencerange-appliesto"/>
       </binding>
     </element>
-    <element id="Observation:odh-EmploymentStatus.hasMember">
+    <element id="Observation.hasMember">
       <path value="Observation.hasMember"/>
       <min value="0"/>
       <max value="0"/>
@@ -3019,7 +3024,7 @@
         <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Observation"/>
       </type>
     </element>
-    <element id="Observation:odh-EmploymentStatus.derivedFrom">
+    <element id="Observation.derivedFrom">
       <path value="Observation.derivedFrom"/>
       <type>
         <code value="Reference"/>
@@ -3029,12 +3034,12 @@
         <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Observation"/>
       </type>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component">
+    <element id="Observation.component">
       <path value="Observation.component"/>
       <min value="0"/>
       <max value="0"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.value[x]">
+    <element id="Observation.component.value[x]">
       <path value="Observation.component.value[x]"/>
       <type>
         <code value="Quantity"/>
@@ -3053,6 +3058,7 @@
       </type>
       <type>
         <code value="SampledData"/>
+        <profile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-datatype-SampledData"/>
       </type>
       <type>
         <code value="time"/>
@@ -3064,10 +3070,10 @@
         <code value="Period"/>
       </type>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.referenceRange">
+    <element id="Observation.component.referenceRange">
       <path value="Observation.component.referenceRange"/>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.referenceRange.type">
+    <element id="Observation.component.referenceRange.type">
       <path value="Observation.component.referenceRange.type"/>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
@@ -3078,7 +3084,7 @@
         <valueSet value="http://hl7.org/fhir/ValueSet/referencerange-meaning"/>
       </binding>
     </element>
-    <element id="Observation:odh-EmploymentStatus.component.referenceRange.appliesTo">
+    <element id="Observation.component.referenceRange.appliesTo">
       <path value="Observation.component.referenceRange.appliesTo"/>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">

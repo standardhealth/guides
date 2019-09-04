@@ -36,7 +36,7 @@
   EventContext.Code maps to event.code
   EventContext.TimePeriod maps to event.period
   EventContext.SupportingInformation maps to event.detail
-  OccupationalDataSection maps to section (slice on = code; slice strategy = includes)
+  OccupationalDataSection maps to section (slice on = code.coding.code; slice strategy = includes)
   OccupationalDataSection.Title maps to section.title
   OccupationalDataSection.Code maps to section.code
   OccupationalDataSection.Author maps to section.author
@@ -51,20 +51,16 @@
 </div>
   </text>
   <url value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-OccupationalDataForHealth"/>
-  <identifier>
-    <system value="http://hl7.org/fhir/us/odh"/>
-    <value value="odh.OccupationalDataForHealth"/>
-  </identifier>
   <version value="1.1.0"/>
   <name value="OccupationalDataForHealth"/>
   <title value="odh-OccupationalDataForHealth"/>
   <status value="draft"/>
-  <date value="2019-07-03T00:00:00-04:00"/>
-  <publisher value="HL7"/>
+  <date value="2019-09-04T00:00:00-04:00"/>
+  <publisher value="HL7 International Public Health Work Group"/>
   <contact>
     <telecom>
       <system value="url"/>
-      <value value="http://standardhealthrecord.org"/>
+      <value value="http://www.hl7.org/Special/committees/pher/index.cfm"/>
     </telecom>
   </contact>
   <description value="Information about a person&#39;s work and volunteer positions to support patient care, population health and public health activities.. The profile is based on FHIR Composition that contains a single section, OccupationalDataSection."/>
@@ -101,7 +97,7 @@
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Composition"/>
   <derivation value="constraint"/>
   <snapshot>
-    <element id="Composition:odh-OccupationalDataForHealth">
+    <element id="Composition">
       <path value="Composition"/>
       <short value="odh-OccupationalDataForHealth"/>
       <definition value="Information about a person&#39;s work and volunteer positions to support patient care, population health and public health activities.. The profile is based on FHIR Composition that contains a single section, OccupationalDataSection."/>
@@ -182,7 +178,7 @@
         <map value="when described by DocumentReference"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.id">
+    <element id="Composition.id">
       <path value="Composition.id"/>
       <short value="Logical id of this artifact"/>
       <definition value="The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes."/>
@@ -200,7 +196,7 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.meta">
+    <element id="Composition.meta">
       <path value="Composition.meta"/>
       <short value="Metadata about the resource"/>
       <definition value="The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource."/>
@@ -217,7 +213,7 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.implicitRules">
+    <element id="Composition.implicitRules">
       <path value="Composition.implicitRules"/>
       <short value="A set of rules under which this content was created"/>
       <definition value="A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc."/>
@@ -236,7 +232,7 @@
       <isModifierReason value="This element is labeled as a modifier because the implicit rules may provide additional knowledge about the resource that modifies it&#39;s meaning or interpretation"/>
       <isSummary value="true"/>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.language">
+    <element id="Composition.language">
       <path value="Composition.language"/>
       <short value="Language of the resource content"/>
       <definition value="The base language in which the resource is written."/>
@@ -268,7 +264,7 @@
         <valueSet value="http://hl7.org/fhir/ValueSet/languages"/>
       </binding>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.text">
+    <element id="Composition.text">
       <path value="Composition.text"/>
       <short value="Text summary of the resource, for human interpretation"/>
       <definition value="A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it &quot;clinically safe&quot; for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety."/>
@@ -294,7 +290,7 @@
         <map value="Act.text?"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.contained">
+    <element id="Composition.contained">
       <path value="Composition.contained"/>
       <short value="Contained, inline Resources"/>
       <definition value="These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."/>
@@ -319,7 +315,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.extension">
+    <element id="Composition.extension">
       <path value="Composition.extension"/>
       <short value="Additional content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
@@ -343,7 +339,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.modifierExtension">
+    <element id="Composition.modifierExtension">
       <path value="Composition.modifierExtension"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
@@ -369,7 +365,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.identifier">
+    <element id="Composition.identifier">
       <path value="Composition.identifier"/>
       <short value="Version-independent identifier for the Composition"/>
       <definition value="A version-independent identifier for the Composition. This identifier stays constant as the composition is changed over time."/>
@@ -407,7 +403,7 @@
         <map value="DocumentReference.masterIdentifier"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.status">
+    <element id="Composition.status">
       <path value="Composition.status"/>
       <short value="preliminary | final | amended | entered-in-error"/>
       <definition value="The workflow/clinical status of this composition. The status is a marker for the clinical standing of the document."/>
@@ -455,7 +451,7 @@
         <map value="DocumentReference.status"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.type">
+    <element id="Composition.type">
       <path value="Composition.type"/>
       <short value="Kind of composition (LOINC if possible)"/>
       <definition value="Specifies the particular kind of composition (e.g. History and Physical, Discharge Summary, Progress Note). This usually equates to the purpose of making the composition."/>
@@ -502,7 +498,7 @@
         <map value="DocumentReference.type"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.type.id">
+    <element id="Composition.type.id">
       <path value="Composition.type.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -524,7 +520,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.type.extension">
+    <element id="Composition.type.extension">
       <path value="Composition.type.extension"/>
       <slicing>
         <discriminator>
@@ -556,7 +552,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.type.coding">
+    <element id="Composition.type.coding">
       <path value="Composition.type.coding"/>
       <slicing id="2">
         <discriminator>
@@ -595,7 +591,7 @@
         <map value="fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.type.coding:Fixed_74166-0">
+    <element id="Composition.type.coding:Fixed_74166-0">
       <path value="Composition.type.coding"/>
       <sliceName value="Fixed_74166-0"/>
       <short value="Occupational summary note"/>
@@ -612,7 +608,7 @@
       </type>
       <isSummary value="true"/>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.type.coding:Fixed_74166-0.id">
+    <element id="Composition.type.coding:Fixed_74166-0.id">
       <path value="Composition.type.coding.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -634,7 +630,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.type.coding:Fixed_74166-0.extension">
+    <element id="Composition.type.coding:Fixed_74166-0.extension">
       <path value="Composition.type.coding.extension"/>
       <slicing>
         <discriminator>
@@ -666,7 +662,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.type.coding:Fixed_74166-0.system">
+    <element id="Composition.type.coding:Fixed_74166-0.system">
       <path value="Composition.type.coding.system"/>
       <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
@@ -698,7 +694,7 @@
         <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.type.coding:Fixed_74166-0.version">
+    <element id="Composition.type.coding:Fixed_74166-0.version">
       <path value="Composition.type.coding.version"/>
       <short value="Version of the system - if relevant"/>
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured, and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged."/>
@@ -728,7 +724,7 @@
         <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.type.coding:Fixed_74166-0.code">
+    <element id="Composition.type.coding:Fixed_74166-0.code">
       <path value="Composition.type.coding.code"/>
       <short value="Symbol in syntax defined by the system"/>
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)."/>
@@ -759,7 +755,7 @@
         <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.type.coding:Fixed_74166-0.display">
+    <element id="Composition.type.coding:Fixed_74166-0.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true"/>
       </extension>
@@ -792,7 +788,7 @@
         <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.type.coding:Fixed_74166-0.userSelected">
+    <element id="Composition.type.coding:Fixed_74166-0.userSelected">
       <path value="Composition.type.coding.userSelected"/>
       <short value="If this coding was chosen directly by the user"/>
       <definition value="Indicates that this coding was chosen by a user directly - e.g. off a pick list of available items (codes or displays)."/>
@@ -823,7 +819,7 @@
         <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.type.text">
+    <element id="Composition.type.text">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true"/>
       </extension>
@@ -857,7 +853,7 @@
         <map value="fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.category">
+    <element id="Composition.category">
       <path value="Composition.category"/>
       <short value="Categorization of Composition"/>
       <definition value="A categorization for the type of the composition - helps for indexing and searching. This may be implied by or derived from the code specified in the Composition Type."/>
@@ -904,7 +900,7 @@
         <map value="DocumenttReference.category"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.subject">
+    <element id="Composition.subject">
       <path value="Composition.subject"/>
       <short value="Who and/or what the composition is about"/>
       <definition value="Who or what the composition is about. The composition can be about a person, (patient or healthcare practitioner), a device (e.g. a machine) or even a group of subjects (such as a document about a herd of livestock, or a set of patients that share a common exposure)."/>
@@ -944,7 +940,7 @@
         <map value="FiveWs.subject"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.encounter">
+    <element id="Composition.encounter">
       <path value="Composition.encounter"/>
       <short value="Context of the Composition"/>
       <definition value="Describes the clinical encounter or type of care this documentation is associated with."/>
@@ -983,7 +979,7 @@
         <map value="DocumentReference.context.encounter"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.date">
+    <element id="Composition.date">
       <path value="Composition.date"/>
       <short value="Composition editing time"/>
       <definition value="The composition editing time, when the composition was last logically changed by the author."/>
@@ -1022,7 +1018,7 @@
         <map value="DocumentReference.content.attachment.date, DocumentReference.created"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.author">
+    <element id="Composition.author">
       <path value="Composition.author"/>
       <short value="Who and/or what authored the composition"/>
       <definition value="Identifies who is responsible for the information in the composition, not necessarily who typed it in."/>
@@ -1066,7 +1062,7 @@
         <map value="DocumentReference.agent"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.title">
+    <element id="Composition.title">
       <path value="Composition.title"/>
       <short value="Human Readable name/title"/>
       <definition value="Official human-readable label for the composition."/>
@@ -1096,7 +1092,7 @@
         <map value="DocumentReference.description, DocumentReference.content.attachment.title"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.confidentiality">
+    <element id="Composition.confidentiality">
       <path value="Composition.confidentiality"/>
       <short value="As defined by affinity domain"/>
       <definition value="The code specifying the level of confidentiality of the Composition."/>
@@ -1134,7 +1130,7 @@
         <map value="DocumentReference.securityLabel"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.attester">
+    <element id="Composition.attester">
       <path value="Composition.attester"/>
       <short value="Attests to accuracy of composition"/>
       <definition value="A participant who has attested to the accuracy of the composition/document."/>
@@ -1173,7 +1169,7 @@
         <map value="DocumentReference.authenticator"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.attester.id">
+    <element id="Composition.attester.id">
       <path value="Composition.attester.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -1195,7 +1191,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.attester.extension">
+    <element id="Composition.attester.extension">
       <path value="Composition.attester.extension"/>
       <short value="Additional content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
@@ -1219,7 +1215,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.attester.modifierExtension">
+    <element id="Composition.attester.modifierExtension">
       <path value="Composition.attester.modifierExtension"/>
       <short value="Extensions that cannot be ignored even if unrecognized"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
@@ -1246,7 +1242,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.attester.mode">
+    <element id="Composition.attester.mode">
       <path value="Composition.attester.mode"/>
       <short value="personal | professional | legal | official"/>
       <definition value="The type of attestation the authenticator offers."/>
@@ -1280,7 +1276,7 @@
         <map value="implied by .authenticator/.legalAuthenticator"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.attester.time">
+    <element id="Composition.attester.time">
       <path value="Composition.attester.time"/>
       <short value="When the composition was attested"/>
       <definition value="When the composition was attested by the party."/>
@@ -1306,7 +1302,7 @@
         <map value=".authenticator.time"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.attester.party">
+    <element id="Composition.attester.party">
       <path value="Composition.attester.party"/>
       <short value="Who attested the composition"/>
       <definition value="Who attested the composition in the specified way."/>
@@ -1341,7 +1337,7 @@
         <map value=".authenticator.assignedEnttty"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.custodian">
+    <element id="Composition.custodian">
       <path value="Composition.custodian"/>
       <short value="Organization which maintains the composition"/>
       <definition value="Identifies the organization or group who is responsible for ongoing maintenance of and access to the composition/document information."/>
@@ -1373,7 +1369,7 @@
         <map value="DocumentReference.custodian"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.relatesTo">
+    <element id="Composition.relatesTo">
       <path value="Composition.relatesTo"/>
       <short value="Relationships to other compositions/documents"/>
       <definition value="Relationships that this composition has with other compositions or documents that already exist."/>
@@ -1411,7 +1407,7 @@
         <map value="DocumentReference.relatesTo"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.relatesTo.id">
+    <element id="Composition.relatesTo.id">
       <path value="Composition.relatesTo.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -1433,7 +1429,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.relatesTo.extension">
+    <element id="Composition.relatesTo.extension">
       <path value="Composition.relatesTo.extension"/>
       <short value="Additional content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
@@ -1457,7 +1453,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.relatesTo.modifierExtension">
+    <element id="Composition.relatesTo.modifierExtension">
       <path value="Composition.relatesTo.modifierExtension"/>
       <short value="Extensions that cannot be ignored even if unrecognized"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
@@ -1484,7 +1480,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.relatesTo.code">
+    <element id="Composition.relatesTo.code">
       <path value="Composition.relatesTo.code"/>
       <short value="replaces | transforms | signs | appends"/>
       <definition value="The type of relationship that this composition has with anther composition or document."/>
@@ -1522,7 +1518,7 @@
         <map value="DocumentReference.relatesTo.code"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.relatesTo.target[x]">
+    <element id="Composition.relatesTo.target[x]">
       <path value="Composition.relatesTo.target[x]"/>
       <short value="Target of the relationship"/>
       <definition value="The target composition/document of this relationship."/>
@@ -1555,7 +1551,7 @@
         <map value="DocumentReference.relatesTo.target"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.event">
+    <element id="Composition.event">
       <path value="Composition.event"/>
       <short value="The clinical service(s) being documented"/>
       <definition value="The clinical service, such as a colonoscopy or an appendectomy, being documented."/>
@@ -1594,7 +1590,7 @@
         <map value="DocumentReference.event"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.event.id">
+    <element id="Composition.event.id">
       <path value="Composition.event.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -1616,7 +1612,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.event.extension">
+    <element id="Composition.event.extension">
       <path value="Composition.event.extension"/>
       <short value="Additional content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
@@ -1640,7 +1636,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.event.modifierExtension">
+    <element id="Composition.event.modifierExtension">
       <path value="Composition.event.modifierExtension"/>
       <short value="Extensions that cannot be ignored even if unrecognized"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
@@ -1667,7 +1663,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.event.code">
+    <element id="Composition.event.code">
       <path value="Composition.event.code"/>
       <short value="Code(s) that apply to the event being documented"/>
       <definition value="This list of codes represents the main clinical acts, such as a colonoscopy or an appendectomy, being documented. In some cases, the event is inherent in the typeCode, such as a &quot;History and Physical Report&quot; in which the procedure being documented is necessarily a &quot;History and Physical&quot; act."/>
@@ -1705,7 +1701,7 @@
         <map value="DocumentReference.event.code"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.event.period">
+    <element id="Composition.event.period">
       <path value="Composition.event.period"/>
       <short value="The period covered by the documentation"/>
       <definition value="The period of time covered by the documentation. There is no assertion that the documentation is a complete representation for this period, only that it documents events during this time."/>
@@ -1734,7 +1730,7 @@
         <map value="DocumentReference.event.period"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.event.detail">
+    <element id="Composition.event.detail">
       <path value="Composition.event.detail"/>
       <short value="The event(s) being documented"/>
       <definition value="The description and/or reference of the event(s) being documented. For example, this could be used to document such a colonoscopy or an appendectomy."/>
@@ -1760,7 +1756,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section">
+    <element id="Composition.section">
       <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
         <valueString value="Section"/>
       </extension>
@@ -1810,7 +1806,7 @@
         <map value=".component.structuredBody.component.section"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.id">
+    <element id="Composition.section.id">
       <path value="Composition.section.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -1832,7 +1828,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.extension">
+    <element id="Composition.section.extension">
       <path value="Composition.section.extension"/>
       <short value="Additional content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
@@ -1856,7 +1852,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.modifierExtension">
+    <element id="Composition.section.modifierExtension">
       <path value="Composition.section.modifierExtension"/>
       <short value="Extensions that cannot be ignored even if unrecognized"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
@@ -1883,7 +1879,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.title">
+    <element id="Composition.section.title">
       <path value="Composition.section.title"/>
       <short value="Label for section (e.g. for ToC)"/>
       <definition value="The label for this particular section.  This will be part of the rendered content for the document, and is often used to build a table of contents."/>
@@ -1913,7 +1909,7 @@
         <map value=".title"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.code">
+    <element id="Composition.section.code">
       <path value="Composition.section.code"/>
       <short value="Classification of section (recommended)"/>
       <definition value="A code identifying the kind of content contained within the section. This must be consistent with the section title."/>
@@ -1948,7 +1944,7 @@
         <map value=".code"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.author">
+    <element id="Composition.section.author">
       <path value="Composition.section.author"/>
       <short value="Who and/or what authored the section"/>
       <definition value="Identifies who is responsible for the information in this section, not necessarily who typed it in."/>
@@ -1984,7 +1980,7 @@
         <map value=".author.assignedAuthor"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.focus">
+    <element id="Composition.section.focus">
       <path value="Composition.section.focus"/>
       <short value="Who/what the section is about, when it is not about the subject of composition"/>
       <definition value="The actual focus of the section when it is not the subject of the composition, but instead represents something or someone associated with the subject such as (for a patient subject) a spouse, parent, fetus, or donor. If not focus is specified, the focus is assumed to be focus of the parent section, or, for a section in the Composition itself, the subject of the composition. Sections with a focus SHALL only include resources where the logical subject (patient, subject, focus, etc.) matches the section focus, or the resources have no logical subject (few resources)."/>
@@ -2007,7 +2003,7 @@
         <map value=".subject? (CDA did not differentiate between subject and focus)"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.text">
+    <element id="Composition.section.text">
       <path value="Composition.section.text"/>
       <short value="Text summary of the section, for human interpretation"/>
       <definition value="A human-readable narrative that contains the attested content of the section, used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it &quot;clinically safe&quot; for a human to just read the narrative."/>
@@ -2034,7 +2030,7 @@
         <map value=".text"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.mode">
+    <element id="Composition.section.mode">
       <path value="Composition.section.mode"/>
       <short value="working | snapshot | changes"/>
       <definition value="How the entry list was prepared - whether it is a working list that is suitable for being maintained on an ongoing basis, or if it represents a snapshot of a list of items from another source, or whether it is a prepared list where items may be marked as added, modified or deleted."/>
@@ -2073,7 +2069,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.orderedBy">
+    <element id="Composition.section.orderedBy">
       <path value="Composition.section.orderedBy"/>
       <short value="Order of section entries"/>
       <definition value="Specifies the order applied to the items in the section entries."/>
@@ -2108,7 +2104,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.entry">
+    <element id="Composition.section.entry">
       <path value="Composition.section.entry"/>
       <slicing id="1">
         <discriminator>
@@ -2144,7 +2140,7 @@
         <map value=".entry"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.entry:odh-EmploymentStatus">
+    <element id="Composition.section.entry:odh-EmploymentStatus">
       <path value="Composition.section.entry"/>
       <sliceName value="odh-EmploymentStatus"/>
       <short value="EmploymentStatus: The self-reported current and/or historical status about a person&#x2019;s economic relationship to work (e.g. having one or more jobs), including start and end dates"/>
@@ -2172,7 +2168,7 @@
         <map value=".entry"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.entry:odh-RetirementDate">
+    <element id="Composition.section.entry:odh-RetirementDate">
       <path value="Composition.section.entry"/>
       <sliceName value="odh-RetirementDate"/>
       <short value="RetirementDate: A self-reported date that a person considers themselves to have &#x2018;retired&#x2019;"/>
@@ -2200,7 +2196,7 @@
         <map value=".entry"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.entry:odh-CombatZonePeriod">
+    <element id="Composition.section.entry:odh-CombatZonePeriod">
       <path value="Composition.section.entry"/>
       <sliceName value="odh-CombatZonePeriod"/>
       <short value="CombatZonePeriod: Self-reported date range(s) when a person worked in what is considered a combat zone; sometimes called a hazardous duty work"/>
@@ -2228,7 +2224,7 @@
         <map value=".entry"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.entry:odh-UsualWork">
+    <element id="Composition.section.entry:odh-UsualWork">
       <path value="Composition.section.entry"/>
       <sliceName value="odh-UsualWork"/>
       <short value="UsualWork: Related data elements about the work a person reports having performed for the longest amount of time during his or her life, regardless of the person&#x2019;s current job and regardless of whether or not the person performed this work for a continuous time"/>
@@ -2256,7 +2252,7 @@
         <map value=".entry"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.entry:odh-PastOrPresentJob">
+    <element id="Composition.section.entry:odh-PastOrPresentJob">
       <path value="Composition.section.entry"/>
       <sliceName value="odh-PastOrPresentJob"/>
       <short value="PastOrPresentJob: Related data elements for a current or previous job, as reported by the person, i.e., a work situation or position held for a specified time period"/>
@@ -2284,7 +2280,7 @@
         <map value=".entry"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.emptyReason">
+    <element id="Composition.section.emptyReason">
       <path value="Composition.section.emptyReason"/>
       <short value="Why the section is empty"/>
       <definition value="If the section is empty, why the list is empty. An empty section typically has some text explaining the empty reason."/>
@@ -2320,7 +2316,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.section">
+    <element id="Composition.section.section">
       <path value="Composition.section.section"/>
       <short value="Nested Section"/>
       <definition value="A nested sub-section within this section."/>
@@ -2347,7 +2343,7 @@
         <map value=".component.section"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.section.id">
+    <element id="Composition.section.section.id">
       <path value="Composition.section.section.id"/>
       <representation value="xmlAttr"/>
       <short value="Unique id for inter-element referencing"/>
@@ -2369,7 +2365,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.section.extension">
+    <element id="Composition.section.section.extension">
       <path value="Composition.section.section.extension"/>
       <short value="Additional content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
@@ -2393,7 +2389,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.section.modifierExtension">
+    <element id="Composition.section.section.modifierExtension">
       <path value="Composition.section.section.modifierExtension"/>
       <short value="Extensions that cannot be ignored even if unrecognized"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element&#39;s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&#xA;&#xA;Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."/>
@@ -2420,7 +2416,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.section.title">
+    <element id="Composition.section.section.title">
       <path value="Composition.section.section.title"/>
       <short value="Label for section (e.g. for ToC)"/>
       <definition value="The label for this particular section.  This will be part of the rendered content for the document, and is often used to build a table of contents."/>
@@ -2450,7 +2446,7 @@
         <map value=".title"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.section.code">
+    <element id="Composition.section.section.code">
       <path value="Composition.section.section.code"/>
       <short value="Classification of section (recommended)"/>
       <definition value="A code identifying the kind of content contained within the section. This must be consistent with the section title."/>
@@ -2485,7 +2481,7 @@
         <map value=".code"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.section.author">
+    <element id="Composition.section.section.author">
       <path value="Composition.section.section.author"/>
       <short value="Who and/or what authored the section"/>
       <definition value="Identifies who is responsible for the information in this section, not necessarily who typed it in."/>
@@ -2521,7 +2517,7 @@
         <map value=".author.assignedAuthor"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.section.focus">
+    <element id="Composition.section.section.focus">
       <path value="Composition.section.section.focus"/>
       <short value="Who/what the section is about, when it is not about the subject of composition"/>
       <definition value="The actual focus of the section when it is not the subject of the composition, but instead represents something or someone associated with the subject such as (for a patient subject) a spouse, parent, fetus, or donor. If not focus is specified, the focus is assumed to be focus of the parent section, or, for a section in the Composition itself, the subject of the composition. Sections with a focus SHALL only include resources where the logical subject (patient, subject, focus, etc.) matches the section focus, or the resources have no logical subject (few resources)."/>
@@ -2544,7 +2540,7 @@
         <map value=".subject? (CDA did not differentiate between subject and focus)"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.section.text">
+    <element id="Composition.section.section.text">
       <path value="Composition.section.section.text"/>
       <short value="Text summary of the section, for human interpretation"/>
       <definition value="A human-readable narrative that contains the attested content of the section, used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it &quot;clinically safe&quot; for a human to just read the narrative."/>
@@ -2571,7 +2567,7 @@
         <map value=".text"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.section.mode">
+    <element id="Composition.section.section.mode">
       <path value="Composition.section.section.mode"/>
       <short value="working | snapshot | changes"/>
       <definition value="How the entry list was prepared - whether it is a working list that is suitable for being maintained on an ongoing basis, or if it represents a snapshot of a list of items from another source, or whether it is a prepared list where items may be marked as added, modified or deleted."/>
@@ -2610,7 +2606,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.section.orderedBy">
+    <element id="Composition.section.section.orderedBy">
       <path value="Composition.section.section.orderedBy"/>
       <short value="Order of section entries"/>
       <definition value="Specifies the order applied to the items in the section entries."/>
@@ -2645,7 +2641,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.section.entry">
+    <element id="Composition.section.section.entry">
       <path value="Composition.section.section.entry"/>
       <short value="A reference to data that supports this section"/>
       <definition value="A reference to the actual resource from which the narrative in the section is derived."/>
@@ -2673,7 +2669,7 @@
         <map value=".entry"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.section.emptyReason">
+    <element id="Composition.section.section.emptyReason">
       <path value="Composition.section.section.emptyReason"/>
       <short value="Why the section is empty"/>
       <definition value="If the section is empty, why the list is empty. An empty section typically has some text explaining the empty reason."/>
@@ -2709,7 +2705,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.section.section">
+    <element id="Composition.section.section.section">
       <path value="Composition.section.section.section"/>
       <short value="Nested Section"/>
       <definition value="A nested sub-section within this section."/>
@@ -2736,17 +2732,17 @@
     </element>
   </snapshot>
   <differential>
-    <element id="Composition:odh-OccupationalDataForHealth">
+    <element id="Composition">
       <path value="Composition"/>
       <short value="odh-OccupationalDataForHealth"/>
       <definition value="Information about a person&#39;s work and volunteer positions to support patient care, population health and public health activities.. The profile is based on FHIR Composition that contains a single section, OccupationalDataSection."/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.type">
+    <element id="Composition.type">
       <path value="Composition.type"/>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.type.coding">
+    <element id="Composition.type.coding">
       <path value="Composition.type.coding"/>
       <slicing id="2">
         <discriminator>
@@ -2759,7 +2755,7 @@
       <min value="1"/>
       <max value="*"/>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.type.coding:Fixed_74166-0">
+    <element id="Composition.type.coding:Fixed_74166-0">
       <path value="Composition.type.coding"/>
       <sliceName value="Fixed_74166-0"/>
       <short value="Occupational summary note"/>
@@ -2776,32 +2772,32 @@
       </type>
       <isSummary value="true"/>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.type.coding:Fixed_74166-0.system">
+    <element id="Composition.type.coding:Fixed_74166-0.system">
       <path value="Composition.type.coding.system"/>
       <fixedUri value="http://loinc.org"/>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.type.coding:Fixed_74166-0.code">
+    <element id="Composition.type.coding:Fixed_74166-0.code">
       <path value="Composition.type.coding.code"/>
       <fixedCode value="74166-0"/>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.category">
+    <element id="Composition.category">
       <path value="Composition.category"/>
       <min value="0"/>
       <max value="1"/>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.subject">
+    <element id="Composition.subject">
       <path value="Composition.subject"/>
       <min value="1"/>
       <max value="1"/>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.encounter">
+    <element id="Composition.encounter">
       <path value="Composition.encounter"/>
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter"/>
       </type>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.author">
+    <element id="Composition.author">
       <path value="Composition.author"/>
       <type>
         <code value="Reference"/>
@@ -2813,10 +2809,10 @@
         <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"/>
       </type>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.attester">
+    <element id="Composition.attester">
       <path value="Composition.attester"/>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.attester.party">
+    <element id="Composition.attester.party">
       <path value="Composition.attester.party"/>
       <type>
         <code value="Reference"/>
@@ -2827,17 +2823,17 @@
         <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole"/>
       </type>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.custodian">
+    <element id="Composition.custodian">
       <path value="Composition.custodian"/>
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"/>
       </type>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.relatesTo">
+    <element id="Composition.relatesTo">
       <path value="Composition.relatesTo"/>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.relatesTo.target[x]">
+    <element id="Composition.relatesTo.target[x]">
       <path value="Composition.relatesTo.target[x]"/>
       <type>
         <code value="Identifier"/>
@@ -2847,14 +2843,14 @@
         <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/obf-Composition"/>
       </type>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section">
+    <element id="Composition.section">
       <path value="Composition.section"/>
       <short value="Section in the OccupationalDataForHealth composition, containing the person&#39;s occupational data, past and present"/>
       <definition value="Section in the OccupationalDataForHealth composition, containing the person&#39;s occupational data, past and present."/>
       <min value="1"/>
       <max value="1"/>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.author">
+    <element id="Composition.section.author">
       <path value="Composition.section.author"/>
       <type>
         <code value="Reference"/>
@@ -2866,7 +2862,7 @@
         <targetProfile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"/>
       </type>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.entry">
+    <element id="Composition.section.entry">
       <path value="Composition.section.entry"/>
       <slicing id="1">
         <discriminator>
@@ -2877,7 +2873,7 @@
         <rules value="open"/>
       </slicing>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.entry:odh-EmploymentStatus">
+    <element id="Composition.section.entry:odh-EmploymentStatus">
       <path value="Composition.section.entry"/>
       <sliceName value="odh-EmploymentStatus"/>
       <short value="EmploymentStatus: The self-reported current and/or historical status about a person&#x2019;s economic relationship to work (e.g. having one or more jobs), including start and end dates"/>
@@ -2889,7 +2885,7 @@
         <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-EmploymentStatus"/>
       </type>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.entry:odh-RetirementDate">
+    <element id="Composition.section.entry:odh-RetirementDate">
       <path value="Composition.section.entry"/>
       <sliceName value="odh-RetirementDate"/>
       <short value="RetirementDate: A self-reported date that a person considers themselves to have &#x2018;retired&#x2019;"/>
@@ -2901,7 +2897,7 @@
         <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-RetirementDate"/>
       </type>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.entry:odh-CombatZonePeriod">
+    <element id="Composition.section.entry:odh-CombatZonePeriod">
       <path value="Composition.section.entry"/>
       <sliceName value="odh-CombatZonePeriod"/>
       <short value="CombatZonePeriod: Self-reported date range(s) when a person worked in what is considered a combat zone; sometimes called a hazardous duty work"/>
@@ -2913,7 +2909,7 @@
         <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-CombatZonePeriod"/>
       </type>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.entry:odh-UsualWork">
+    <element id="Composition.section.entry:odh-UsualWork">
       <path value="Composition.section.entry"/>
       <sliceName value="odh-UsualWork"/>
       <short value="UsualWork: Related data elements about the work a person reports having performed for the longest amount of time during his or her life, regardless of the person&#x2019;s current job and regardless of whether or not the person performed this work for a continuous time"/>
@@ -2925,7 +2921,7 @@
         <targetProfile value="http://hl7.org/fhir/us/odh/StructureDefinition/odh-UsualWork"/>
       </type>
     </element>
-    <element id="Composition:odh-OccupationalDataForHealth.section.entry:odh-PastOrPresentJob">
+    <element id="Composition.section.entry:odh-PastOrPresentJob">
       <path value="Composition.section.entry"/>
       <sliceName value="odh-PastOrPresentJob"/>
       <short value="PastOrPresentJob: Related data elements for a current or previous job, as reported by the person, i.e., a work situation or position held for a specified time period"/>
