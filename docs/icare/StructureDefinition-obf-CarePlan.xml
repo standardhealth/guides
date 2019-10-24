@@ -17,7 +17,7 @@
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
   Narrative maps to text
-  CarePlanBasedOn maps to extension
+  BasedOn maps to extension
   SubjectOfRecord maps to subject
   CareContext maps to context
   StatementDateTime maps to extension
@@ -37,8 +37,8 @@
 </pre></p>
 </div>
   </text>
-  <url value="http://mcodeinitiative.org/us/icare/StructureDefinition/obf-CarePlan"/>
-  <version value="0.1.0"/>
+  <url value="http://icaredata.org/icare/StructureDefinition/obf-CarePlan"/>
+  <version value="0.1.1"/>
   <name value="CarePlan"/>
   <display value="obf-CarePlan"/>
   <status value="draft"/>
@@ -46,11 +46,11 @@
   <contact>
     <telecom>
       <system value="other"/>
-      <value value="http://standardhealthrecord.org"/>
+      <value value="http://icaredata.org"/>
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-09-05T00:00:00-04:00"/>
+  <date value="2019-10-23T00:00:00-04:00"/>
   <description value="Describes how one or more practitioners intend to deliver care for a particular patient, group or community for a period of time, possibly limited to care for a specific condition or set of conditions. The Care Plan tracks the progress of activities associated with the plan."/>
   <fhirVersion value="1.0.2"/>
   <mapping>
@@ -212,7 +212,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://mcodeinitiative.org/us/icare/StructureDefinition/obf-SourceSystem-extension"/>
+        <profile value="http://icaredata.org/icare/StructureDefinition/obf-SourceSystem-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -453,10 +453,10 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="careplanbasedon">
+    <element id="basedon">
       <path value="CarePlan.extension"/>
-      <name value="careplanbasedon"/>
-      <definition value="The Care Plan that this Care Plan is based on, if any."/>
+      <name value="basedon"/>
+      <definition value="The proposal, order, or plan that is partly or wholly fulfilled by this item."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -466,12 +466,116 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://mcodeinitiative.org/us/icare/StructureDefinition/obf-CarePlanBasedOn-extension"/>
+        <profile value="http://icaredata.org/icare/StructureDefinition/obf-BasedOn-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
+    </element>
+    <element id="CarePlan-argoprofile.extension-basedon.id">
+      <path value="CarePlan.extension.id"/>
+      <representation value="xmlAttr"/>
+      <name value="CarePlan-argoprofile.extension-basedon.id"/>
+      <short value="xml:id (or equivalent in JSON)"/>
+      <definition value="unique id for the element within a resource (for internal references)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.id"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="id"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="CarePlan-argoprofile.extension-basedon.extension">
+      <path value="CarePlan.extension.extension"/>
+      <name value="CarePlan-argoprofile.extension-basedon.extension"/>
+      <short value="Additional Content defined by implementations"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
+      <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <min value="0"/>
+      <max value="0"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="CarePlan-argoprofile.extension-basedon.url">
+      <path value="CarePlan.extension.url"/>
+      <representation value="xmlAttr"/>
+      <name value="CarePlan-argoprofile.extension-basedon.url"/>
+      <short value="identifies the meaning of the extension"/>
+      <definition value="Source of the definition for the extension code - a logical name or a URL."/>
+      <comments value="The definition may point directly to a computable or human-readable definition of the extensibility codes, or it may be a logical URI as declared in some other specification. The definition should be version specific.  This will ideally be the URI for the Resource Profile defining the extension, with the code for the extension after a #."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Extension.url"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="uri"/>
+      </type>
+      <fixedUri value="http://icaredata.org/icare/StructureDefinition/obf-BasedOn-extension"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="CarePlan-argoprofile.extension-basedon.valueReference">
+      <path value="CarePlan.extension.valueReference"/>
+      <name value="CarePlan-argoprofile.extension-basedon.valueReference"/>
+      <short value="CarePlan: Describes how one or more practitioners intend to deliver care for a particular patient, group or community for a period of time, possibly limited to care for a specific condition or set of conditions"/>
+      <definition value="Describes how one or more practitioners intend to deliver care for a particular patient, group or community for a period of time, possibly limited to care for a specific condition or set of conditions. The Care Plan tracks the progress of activities associated with the plan."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Extension.value[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <profile value="http://icaredata.org/icare/StructureDefinition/obf-CarePlan"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
     </element>
     <element id="statementdatetime">
       <path value="CarePlan.extension"/>
@@ -486,7 +590,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://mcodeinitiative.org/us/icare/StructureDefinition/obf-StatementDateTime-extension"/>
+        <profile value="http://icaredata.org/icare/StructureDefinition/obf-StatementDateTime-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -506,7 +610,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://mcodeinitiative.org/us/icare/StructureDefinition/obf-ReasonCode-extension"/>
+        <profile value="http://icaredata.org/icare/StructureDefinition/obf-ReasonCode-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -526,7 +630,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://mcodeinitiative.org/us/icare/StructureDefinition/obf-CarePlanReplaces-extension"/>
+        <profile value="http://icaredata.org/icare/StructureDefinition/obf-CarePlanReplaces-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -546,7 +650,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://mcodeinitiative.org/us/icare/StructureDefinition/obf-CarePlanPartOf-extension"/>
+        <profile value="http://icaredata.org/icare/StructureDefinition/obf-CarePlanPartOf-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -566,7 +670,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://mcodeinitiative.org/us/icare/StructureDefinition/obf-RequestIntent-extension"/>
+        <profile value="http://icaredata.org/icare/StructureDefinition/obf-RequestIntent-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -586,7 +690,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://mcodeinitiative.org/us/icare/StructureDefinition/obf-datatype-Title-extension"/>
+        <profile value="http://icaredata.org/icare/StructureDefinition/obf-datatype-Title-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -2176,7 +2280,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://mcodeinitiative.org/us/icare/StructureDefinition/obf-SourceSystem-extension"/>
+        <profile value="http://icaredata.org/icare/StructureDefinition/obf-SourceSystem-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -2198,10 +2302,10 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="careplanbasedon">
+    <element id="basedon">
       <path value="CarePlan.extension"/>
-      <name value="careplanbasedon"/>
-      <definition value="The Care Plan that this Care Plan is based on, if any."/>
+      <name value="basedon"/>
+      <definition value="The proposal, order, or plan that is partly or wholly fulfilled by this item."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -2211,7 +2315,22 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://mcodeinitiative.org/us/icare/StructureDefinition/obf-CarePlanBasedOn-extension"/>
+        <profile value="http://icaredata.org/icare/StructureDefinition/obf-BasedOn-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="CarePlan-argoprofile.extension-basedon.valueReference">
+      <path value="CarePlan.extension.valueReference"/>
+      <name value="CarePlan-argoprofile.extension-basedon.valueReference"/>
+      <short value="CarePlan: Describes how one or more practitioners intend to deliver care for a particular patient, group or community for a period of time, possibly limited to care for a specific condition or set of conditions"/>
+      <definition value="Describes how one or more practitioners intend to deliver care for a particular patient, group or community for a period of time, possibly limited to care for a specific condition or set of conditions. The Care Plan tracks the progress of activities associated with the plan."/>
+      <min value="0"/>
+      <type>
+        <code value="Reference"/>
+        <profile value="http://icaredata.org/icare/StructureDefinition/obf-CarePlan"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -2231,7 +2350,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://mcodeinitiative.org/us/icare/StructureDefinition/obf-StatementDateTime-extension"/>
+        <profile value="http://icaredata.org/icare/StructureDefinition/obf-StatementDateTime-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -2251,7 +2370,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://mcodeinitiative.org/us/icare/StructureDefinition/obf-ReasonCode-extension"/>
+        <profile value="http://icaredata.org/icare/StructureDefinition/obf-ReasonCode-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -2271,7 +2390,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://mcodeinitiative.org/us/icare/StructureDefinition/obf-CarePlanReplaces-extension"/>
+        <profile value="http://icaredata.org/icare/StructureDefinition/obf-CarePlanReplaces-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -2291,7 +2410,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://mcodeinitiative.org/us/icare/StructureDefinition/obf-CarePlanPartOf-extension"/>
+        <profile value="http://icaredata.org/icare/StructureDefinition/obf-CarePlanPartOf-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -2311,7 +2430,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://mcodeinitiative.org/us/icare/StructureDefinition/obf-RequestIntent-extension"/>
+        <profile value="http://icaredata.org/icare/StructureDefinition/obf-RequestIntent-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -2331,7 +2450,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://mcodeinitiative.org/us/icare/StructureDefinition/obf-datatype-Title-extension"/>
+        <profile value="http://icaredata.org/icare/StructureDefinition/obf-datatype-Title-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>

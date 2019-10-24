@@ -3,10 +3,10 @@
   "id": "obf-CarePlan",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>CarePlan Profile</b></p>\n  <p>Describes how one or more practitioners intend to deliver care for a particular patient, group or community for a period of time, possibly limited to care for a specific condition or set of conditions. The Care Plan tracks the progress of activities associated with the plan.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>obf.CarePlan maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-careplan:\n  Language maps to language\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.extension\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Narrative maps to text\n  CarePlanBasedOn maps to extension\n  SubjectOfRecord maps to subject\n  CareContext maps to context\n  StatementDateTime maps to extension\n  ReasonReference maps to addresses\n  ReasonCode maps to extension\n  Identifier maps to identifier\n  CarePlanReplaces maps to extension\n  CarePlanPartOf maps to extension\n  Status maps to status\n  RequestIntent maps to extension\n  Category maps to category\n  Title maps to extension\n  CommentOrDescription maps to description\n  ExpectedPerformanceTime maps to period\n  Author maps to author\n  Annotation maps to note\n</pre></p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>CarePlan Profile</b></p>\n  <p>Describes how one or more practitioners intend to deliver care for a particular patient, group or community for a period of time, possibly limited to care for a specific condition or set of conditions. The Care Plan tracks the progress of activities associated with the plan.</p>\n  <p><b>Mapping Summary</b></p>\n  <p><pre>obf.CarePlan maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-careplan:\n  Language maps to language\n  ImplicitRules maps to implicitRules\n  Metadata.VersionId maps to meta.versionId\n  Metadata.SourceSystem maps to meta.extension\n  Metadata.Profile maps to meta.profile\n  Metadata.LastUpdated maps to meta.lastUpdated\n  Metadata.SecurityLabel maps to meta.security\n  Metadata.Tag maps to meta.tag\n  Narrative maps to text\n  BasedOn maps to extension\n  SubjectOfRecord maps to subject\n  CareContext maps to context\n  StatementDateTime maps to extension\n  ReasonReference maps to addresses\n  ReasonCode maps to extension\n  Identifier maps to identifier\n  CarePlanReplaces maps to extension\n  CarePlanPartOf maps to extension\n  Status maps to status\n  RequestIntent maps to extension\n  Category maps to category\n  Title maps to extension\n  CommentOrDescription maps to description\n  ExpectedPerformanceTime maps to period\n  Author maps to author\n  Annotation maps to note\n</pre></p>\n</div>"
   },
-  "url": "http://mcodeinitiative.org/us/icare/StructureDefinition/obf-CarePlan",
-  "version": "0.1.0",
+  "url": "http://icaredata.org/icare/StructureDefinition/obf-CarePlan",
+  "version": "0.1.1",
   "name": "CarePlan",
   "display": "obf-CarePlan",
   "status": "draft",
@@ -16,13 +16,13 @@
       "telecom": [
         {
           "system": "other",
-          "value": "http://standardhealthrecord.org",
+          "value": "http://icaredata.org",
           "rank": 0
         }
       ]
     }
   ],
-  "date": "2019-09-05T00:00:00-04:00",
+  "date": "2019-10-23T00:00:00-04:00",
   "description": "Describes how one or more practitioners intend to deliver care for a particular patient, group or community for a period of time, possibly limited to care for a specific condition or set of conditions. The Care Plan tracks the progress of activities associated with the plan.",
   "fhirVersion": "1.0.2",
   "mapping": [
@@ -220,7 +220,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://mcodeinitiative.org/us/icare/StructureDefinition/obf-SourceSystem-extension"
+              "http://icaredata.org/icare/StructureDefinition/obf-SourceSystem-extension"
             ]
           }
         ],
@@ -511,10 +511,10 @@
         ]
       },
       {
-        "id": "careplanbasedon",
+        "id": "basedon",
         "path": "CarePlan.extension",
-        "name": "careplanbasedon",
-        "definition": "The Care Plan that this Care Plan is based on, if any.",
+        "name": "basedon",
+        "definition": "The proposal, order, or plan that is partly or wholly fulfilled by this item.",
         "min": 0,
         "max": "*",
         "base": {
@@ -526,7 +526,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://mcodeinitiative.org/us/icare/StructureDefinition/obf-CarePlanBasedOn-extension"
+              "http://icaredata.org/icare/StructureDefinition/obf-BasedOn-extension"
             ]
           }
         ],
@@ -534,6 +534,138 @@
         "mustSupport": false,
         "isModifier": false,
         "isSummary": false
+      },
+      {
+        "id": "CarePlan-argoprofile.extension-basedon.id",
+        "path": "CarePlan.extension.id",
+        "representation": [
+          "xmlAttr"
+        ],
+        "name": "CarePlan-argoprofile.extension-basedon.id",
+        "short": "xml:id (or equivalent in JSON)",
+        "definition": "unique id for the element within a resource (for internal references).",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Element.id",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "id"
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "n/a"
+          }
+        ]
+      },
+      {
+        "id": "CarePlan-argoprofile.extension-basedon.extension",
+        "path": "CarePlan.extension.extension",
+        "name": "CarePlan-argoprofile.extension-basedon.extension",
+        "short": "Additional Content defined by implementations",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content"
+        ],
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "Element.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "n/a"
+          }
+        ]
+      },
+      {
+        "id": "CarePlan-argoprofile.extension-basedon.url",
+        "path": "CarePlan.extension.url",
+        "representation": [
+          "xmlAttr"
+        ],
+        "name": "CarePlan-argoprofile.extension-basedon.url",
+        "short": "identifies the meaning of the extension",
+        "definition": "Source of the definition for the extension code - a logical name or a URL.",
+        "comments": "The definition may point directly to a computable or human-readable definition of the extensibility codes, or it may be a logical URI as declared in some other specification. The definition should be version specific.  This will ideally be the URI for the Resource Profile defining the extension, with the code for the extension after a #.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Extension.url",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "fixedUri": "http://icaredata.org/icare/StructureDefinition/obf-BasedOn-extension",
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "id": "CarePlan-argoprofile.extension-basedon.valueReference",
+        "path": "CarePlan.extension.valueReference",
+        "name": "CarePlan-argoprofile.extension-basedon.valueReference",
+        "short": "CarePlan: Describes how one or more practitioners intend to deliver care for a particular patient, group or community for a period of time, possibly limited to care for a specific condition or set of conditions",
+        "definition": "Describes how one or more practitioners intend to deliver care for a particular patient, group or community for a period of time, possibly limited to care for a specific condition or set of conditions. The Care Plan tracks the progress of activities associated with the plan.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Extension.value[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "profile": [
+              "http://icaredata.org/icare/StructureDefinition/obf-CarePlan"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
       },
       {
         "id": "statementdatetime",
@@ -551,7 +683,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://mcodeinitiative.org/us/icare/StructureDefinition/obf-StatementDateTime-extension"
+              "http://icaredata.org/icare/StructureDefinition/obf-StatementDateTime-extension"
             ]
           }
         ],
@@ -576,7 +708,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://mcodeinitiative.org/us/icare/StructureDefinition/obf-ReasonCode-extension"
+              "http://icaredata.org/icare/StructureDefinition/obf-ReasonCode-extension"
             ]
           }
         ],
@@ -601,7 +733,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://mcodeinitiative.org/us/icare/StructureDefinition/obf-CarePlanReplaces-extension"
+              "http://icaredata.org/icare/StructureDefinition/obf-CarePlanReplaces-extension"
             ]
           }
         ],
@@ -626,7 +758,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://mcodeinitiative.org/us/icare/StructureDefinition/obf-CarePlanPartOf-extension"
+              "http://icaredata.org/icare/StructureDefinition/obf-CarePlanPartOf-extension"
             ]
           }
         ],
@@ -651,7 +783,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://mcodeinitiative.org/us/icare/StructureDefinition/obf-RequestIntent-extension"
+              "http://icaredata.org/icare/StructureDefinition/obf-RequestIntent-extension"
             ]
           }
         ],
@@ -676,7 +808,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://mcodeinitiative.org/us/icare/StructureDefinition/obf-datatype-Title-extension"
+              "http://icaredata.org/icare/StructureDefinition/obf-datatype-Title-extension"
             ]
           }
         ],
@@ -2598,7 +2730,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://mcodeinitiative.org/us/icare/StructureDefinition/obf-SourceSystem-extension"
+              "http://icaredata.org/icare/StructureDefinition/obf-SourceSystem-extension"
             ]
           }
         ],
@@ -2627,10 +2759,10 @@
         "isSummary": false
       },
       {
-        "id": "careplanbasedon",
+        "id": "basedon",
         "path": "CarePlan.extension",
-        "name": "careplanbasedon",
-        "definition": "The Care Plan that this Care Plan is based on, if any.",
+        "name": "basedon",
+        "definition": "The proposal, order, or plan that is partly or wholly fulfilled by this item.",
         "min": 0,
         "max": "*",
         "base": {
@@ -2642,7 +2774,27 @@
           {
             "code": "Extension",
             "profile": [
-              "http://mcodeinitiative.org/us/icare/StructureDefinition/obf-CarePlanBasedOn-extension"
+              "http://icaredata.org/icare/StructureDefinition/obf-BasedOn-extension"
+            ]
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "CarePlan-argoprofile.extension-basedon.valueReference",
+        "path": "CarePlan.extension.valueReference",
+        "name": "CarePlan-argoprofile.extension-basedon.valueReference",
+        "short": "CarePlan: Describes how one or more practitioners intend to deliver care for a particular patient, group or community for a period of time, possibly limited to care for a specific condition or set of conditions",
+        "definition": "Describes how one or more practitioners intend to deliver care for a particular patient, group or community for a period of time, possibly limited to care for a specific condition or set of conditions. The Care Plan tracks the progress of activities associated with the plan.",
+        "min": 0,
+        "type": [
+          {
+            "code": "Reference",
+            "profile": [
+              "http://icaredata.org/icare/StructureDefinition/obf-CarePlan"
             ]
           }
         ],
@@ -2667,7 +2819,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://mcodeinitiative.org/us/icare/StructureDefinition/obf-StatementDateTime-extension"
+              "http://icaredata.org/icare/StructureDefinition/obf-StatementDateTime-extension"
             ]
           }
         ],
@@ -2692,7 +2844,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://mcodeinitiative.org/us/icare/StructureDefinition/obf-ReasonCode-extension"
+              "http://icaredata.org/icare/StructureDefinition/obf-ReasonCode-extension"
             ]
           }
         ],
@@ -2717,7 +2869,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://mcodeinitiative.org/us/icare/StructureDefinition/obf-CarePlanReplaces-extension"
+              "http://icaredata.org/icare/StructureDefinition/obf-CarePlanReplaces-extension"
             ]
           }
         ],
@@ -2742,7 +2894,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://mcodeinitiative.org/us/icare/StructureDefinition/obf-CarePlanPartOf-extension"
+              "http://icaredata.org/icare/StructureDefinition/obf-CarePlanPartOf-extension"
             ]
           }
         ],
@@ -2767,7 +2919,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://mcodeinitiative.org/us/icare/StructureDefinition/obf-RequestIntent-extension"
+              "http://icaredata.org/icare/StructureDefinition/obf-RequestIntent-extension"
             ]
           }
         ],
@@ -2792,7 +2944,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://mcodeinitiative.org/us/icare/StructureDefinition/obf-datatype-Title-extension"
+              "http://icaredata.org/icare/StructureDefinition/obf-datatype-Title-extension"
             ]
           }
         ],

@@ -20,7 +20,7 @@
     <sch:title>f:Specimen/f:meta</sch:title>
     <sch:rule context="f:Specimen/f:meta">
       <sch:assert test="count(f:id) &lt;= 1">id: maximum cardinality of 'id' is 1</sch:assert>
-      <sch:assert test="count(f:extension[@url = 'http://mcodeinitiative.org/us/icare/StructureDefinition/obf-SourceSystem-extension']) &lt;= 1">extension with URL = 'http://mcodeinitiative.org/us/icare/StructureDefinition/obf-SourceSystem-extension': maximum cardinality of 'extension' is 1</sch:assert>
+      <sch:assert test="count(f:extension[@url = 'http://icaredata.org/icare/StructureDefinition/obf-SourceSystem-extension']) &lt;= 1">extension with URL = 'http://icaredata.org/icare/StructureDefinition/obf-SourceSystem-extension': maximum cardinality of 'extension' is 1</sch:assert>
       <sch:assert test="count(f:versionId) &lt;= 1">versionId: maximum cardinality of 'versionId' is 1</sch:assert>
       <sch:assert test="count(f:lastUpdated) &lt;= 1">lastUpdated: maximum cardinality of 'lastUpdated' is 1</sch:assert>
     </sch:rule>
@@ -29,8 +29,8 @@
     <sch:title>f:Specimen/f:collection/f:bodySite</sch:title>
     <sch:rule context="f:Specimen/f:collection/f:bodySite">
       <sch:assert test="count(f:id) &lt;= 1">id: maximum cardinality of 'id' is 1</sch:assert>
-      <sch:assert test="count(f:extension[@url = 'http://mcodeinitiative.org/us/icare/StructureDefinition/obf-datatype-Laterality-extension']) &lt;= 1">extension with URL = 'http://mcodeinitiative.org/us/icare/StructureDefinition/obf-datatype-Laterality-extension': maximum cardinality of 'extension' is 1</sch:assert>
-      <sch:assert test="count(f:extension[@url = 'http://mcodeinitiative.org/us/icare/StructureDefinition/obf-datatype-AnatomicalOrientation-extension']) &lt;= 1">extension with URL = 'http://mcodeinitiative.org/us/icare/StructureDefinition/obf-datatype-AnatomicalOrientation-extension': maximum cardinality of 'extension' is 1</sch:assert>
+      <sch:assert test="count(f:extension[@url = 'http://icaredata.org/icare/StructureDefinition/obf-datatype-Laterality-extension']) &lt;= 1">extension with URL = 'http://icaredata.org/icare/StructureDefinition/obf-datatype-Laterality-extension': maximum cardinality of 'extension' is 1</sch:assert>
+      <sch:assert test="count(f:extension[@url = 'http://icaredata.org/icare/StructureDefinition/obf-datatype-AnatomicalOrientation-extension']) &lt;= 1">extension with URL = 'http://icaredata.org/icare/StructureDefinition/obf-datatype-AnatomicalOrientation-extension': maximum cardinality of 'extension' is 1</sch:assert>
       <sch:assert test="count(f:text) &lt;= 1">text: maximum cardinality of 'text' is 1</sch:assert>
     </sch:rule>
   </sch:pattern>
