@@ -4,11 +4,10 @@
 
 <head>
   <meta charset="UTF-8" />
-  
-  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0</title>
+  <title>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.1</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0 FHIR Profiles" />
+  <meta name="description" content="HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.1" />
 
   <link href="fhir.css" rel="stylesheet" />
 
@@ -40,13 +39,12 @@
       <img alt="HL7 FHIR Homepage" class="img-responsive logo" src="assets/images/fhir-logo-www.png" />
     </a>
     <div id="hl7-status" class="hl7-status">
-      
-      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0</b>
+      <b>HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.1</b>
     </div>
 
     <div id="hl7-nav">
       <a id="hl7-logo" no-external="true" href="http://www.hl7.org">
-        <img height="50" alt="visit the hl7 website" width="42" src="assets/images/hl7-logo.png" />
+        <img height="50" alt="visit the hl7 website" width="91" src="assets/images/hl7-logo.png" />
       </a>
     </div>
   </div>
@@ -79,8 +77,12 @@
             <li><a href="extensions.html">Extensions</a></li>
             <li><a href="valuesets.html">Value Sets</a></li>
             <!-- no code systems (DSTU2) -->
+            <!-- no search parameters -->
+            <!-- no operation definitions -->
+            <!-- no conformance / capability statements -->
             <li><a href="downloads.html">Downloads</a></li>
-            <li><a href="modeldoc.html">Reference Model</a></li>
+            <!-- no reference model -->
+            <li><a href="examples.html">Examples</a></li>
             
           </ul>
 
@@ -119,7 +121,7 @@
    <div class="row">
      <div class="inner-wrapper">
        <div class="col-12">
-       <!--ReleaseHeader--><p id="publish-box"> - Local Development build (v0.9.0). See the <a href="http://hl7.org/fhir/us/shr/history.html">Directory of published versions</a></p></p><!--EndReleaseHeader-->
+       <!--ReleaseHeader--><p id="publish-box">HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.1 FHIR Profiles - Local Development build (v0.9.1). See the <a href="http://mcodeinitiative.org/us/mcode/history.html">Directory of published versions</a></p><!--EndReleaseHeader-->
 
 <!-- ============CONTENT CONTENT=============== -->
 
@@ -138,38 +140,87 @@
   </thead>
   <tbody>
     <tr>
-          <td><a href="StructureDefinition-shr-core-BloodPressureCuffSize-extension.html">BloodPressureCuffSize</a></td>
+          <td><a href="StructureDefinition-obf-datatype-AnatomicalOrientation-extension.html">AnatomicalOrientation</a></td>
+          <td><p>AnatomicalOrientation of the body location, if needed to distinguish from a similar location in another orientation.
+The orientation element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.</p>
+
+<ul>
+  <li>Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.</li>
+  <li>Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.</li>
+  <li>Relation to landmark: The location relative to a landmark is specified by:
+    <ol>
+      <li>Establishing the location and type of landmark using a body site code and optional laterality/orientation, and</li>
+      <li>Specifying the direction and distance from the landmark to the body location.</li>
+    </ol>
+  </li>
+</ul>
+
+<p>Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR’s stand-alone BodySite (aka BodyStructure in r4) which ‘is not … intended for describing the type of anatomical location but rather a specific body site on a specific patient’ (FHIR 3.5).</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-Annotation-extension.html">Annotation</a></td>
+          <td><p>An added or follow-up note, often after the fact, that contains metadata about who made the statement and when.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-ApplicableSubpopulation-extension.html">ApplicableSubpopulation</a></td>
+          <td><p>Codes to indicate the target population this reference range applies to. For example, a reference range may be based on the normal population or a particular sex or race.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-Author-extension.html">Author</a></td>
+          <td><p>The actor who created the item and it responsible for the content (regardless of the information source or who recorded it). If only the author is given, it is assumed the author is the information source and the recorder.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-BasedOn-extension.html">BasedOn</a></td>
+          <td><p>The proposal, order, or plan that is partly or wholly fulfilled by this item.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-vital-BloodPressureCuffSize-extension.html">BloodPressureCuffSize</a></td>
           <td><p>The size of cuff used, if applicable.</p>
 </td>
         </tr>
         <tr>
-          <td><a href="StructureDefinition-shr-core-BodyPosition-extension.html">BodyPosition</a></td>
+          <td><a href="StructureDefinition-vital-BodyPosition-extension.html">BodyPosition</a></td>
           <td><p>The position or physical attitude of the body.</p>
 </td>
         </tr>
         <tr>
-          <td><a href="StructureDefinition-onco-core-CancerReasonReference-extension.html">CancerReasonReference</a></td>
-          <td><p>Reference to a primary or secondary cancer condition.</p>
-</td>
-        </tr>
-        <tr>
-          <td><a href="StructureDefinition-shr-core-CareContext-extension.html">CareContext</a></td>
+          <td><a href="StructureDefinition-obf-CareContext-extension.html">CareContext</a></td>
           <td><p>The encounter or episode of care</p>
 </td>
         </tr>
         <tr>
-          <td><a href="StructureDefinition-shr-core-Category-extension.html">Category</a></td>
-          <td><p>The type, kind, or class of this item.</p>
+          <td><a href="StructureDefinition-obf-datatype-Category-extension.html">Category</a></td>
+          <td><p>The general type or class of this item.</p>
 </td>
         </tr>
         <tr>
-          <td><a href="StructureDefinition-shr-core-DateOfDiagnosis-extension.html">DateOfDiagnosis</a></td>
+          <td><a href="StructureDefinition-obf-ComplicationReference-extension.html">ComplicationReference</a></td>
+          <td><p>Complication following the procedure, as a reference to a Condition.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-DateOfDiagnosis-extension.html">DateOfDiagnosis</a></td>
           <td><p>The date the disease was first clinically recognized with sufficient certainty, regardless of whether it was fully characterized at that time.</p>
 </td>
         </tr>
         <tr>
+          <td><a href="StructureDefinition-obf-DoseSequenceNumber-extension.html">DoseSequenceNumber</a></td>
+          <td><p>Dose number within series.</p>
+</td>
+        </tr>
+        <tr>
           <td><a href="StructureDefinition-onco-core-EvidenceType-extension.html">EvidenceType</a></td>
-          <td><p>The type of evidence considered in making the determination.</p>
+          <td><p>Categorization of the kind of evidence used as input to the clinical judgment. This corresponds to both the S and O in SOAP.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-FocalSubject-extension.html">FocalSubject</a></td>
+          <td><p>The person or entity that the information in this resource relates to, if different than the person of record. The subject of information can be a reference or a code, the latter when the subject is described generically, for example, in terms of a relationship to the subject of record (e.g., wife).</p>
 </td>
         </tr>
         <tr>
@@ -183,43 +234,133 @@
 </td>
         </tr>
         <tr>
-          <td><a href="StructureDefinition-shr-core-MedicationStatementRelatedRequest-extension.html">MedicationStatementRelatedRequest</a></td>
+          <td><a href="StructureDefinition-obf-InstructionCode-extension.html">InstructionCode</a></td>
+          <td><p>Coded instructions, e.g., ‘with meals’.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-datatype-Laterality-extension.html">Laterality</a></td>
+          <td><p>Body side of the body location, if needed to distinguish from a similar location on the other side of the body.</p>
+
+<p>The laterality element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.</p>
+
+<ul>
+  <li>Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.</li>
+  <li>Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.</li>
+  <li>Relation to landmark: The location relative to a landmark is specified by:
+    <ol>
+      <li>Establishing the location and type of landmark using a body site code and optional laterality/orientation, and</li>
+      <li>Specifying the direction and distance from the landmark to the body location.</li>
+    </ol>
+  </li>
+</ul>
+
+<p>Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR’s stand-alone BodySite (aka BodyStructure in r4) which ‘is not … intended for describing the type of anatomical location but rather a specific body site on a specific patient’ (FHIR 3.5).</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-MaxDosePerAdministration-extension.html">MaxDosePerAdministration</a></td>
+          <td><p>Upper limit on medication per administration.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-MaxDosePerLifetime-extension.html">MaxDosePerLifetime</a></td>
+          <td><p>Upper limit on medication per lifetime of the patient.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-MedicationBasedOn-extension.html">MedicationBasedOn</a></td>
           <td></td>
         </tr>
         <tr>
-          <td><a href="StructureDefinition-onco-core-MutationTested-extension.html">MutationTested</a></td>
-          <td><p>The specific genetic variant that is targeted by this test.</p>
+          <td><a href="StructureDefinition-obf-MedicationStatementPartOf-extension.html">MedicationStatementPartOf</a></td>
+          <td><p>A larger event of which this particular event is a component or step.</p>
 </td>
         </tr>
         <tr>
-          <td><a href="StructureDefinition-shr-core-PartOf-extension.html">PartOf</a></td>
-          <td><p>The larger entity that the asserted item is a portion of. For example, an organization part of a larger organization, or an encounter with a hospitalist might be part of a larger hospitalization encounter.</p>
+          <td><a href="StructureDefinition-obf-ObservationBasedOn-extension.html">ObservationBasedOn</a></td>
+          <td><p>The plan, proposal or order that is fulfilled in whole or in part by this event. For example, a MedicationRequest may require a patient to have laboratory test performed before it is dispensed.</p>
 </td>
         </tr>
         <tr>
-          <td><a href="StructureDefinition-shr-core-Precondition-extension.html">Precondition</a></td>
-          <td><p>A description of the conditions or context of an observation, for example, under sedation, fasting or post-exercise. A qualifier cannot modify the measurement type; for example, a fasting blood sugar is still a blood sugar.</p>
+          <td><a href="StructureDefinition-obf-ObservationDerivedFrom-extension.html">ObservationDerivedFrom</a></td>
+          <td><p>The target resource that represents a measurement from which this observation value is derived. For example, a calculated anion gap or a fetal measurement based on an ultrasound image.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-ObservationPartOf-extension.html">ObservationPartOf</a></td>
+          <td><p>A larger event of which this particular Observation is a component or step. For example, an observation as part of a procedure.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-datatype-OccurrenceTimeOrPeriod-extension.html">OccurrenceTimeOrPeriod</a></td>
+          <td><p>The point or period of time when the event takes place. Times can be precise (dateTime) or approximate (date). If a time period is used, and the start date or dateTime is missing, the start of the period is not known. If the end date or dateTime is missing, it means that the period is ongoing.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-OnBehalfOf-extension.html">OnBehalfOf</a></td>
+          <td><p>The party represented by the actual participant.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-Patient-extension.html">Patient</a></td>
+          <td><p>A person in the role of a patient. Sometimes, the patient is not the subject of information in a clinical statement where the Patient is the SubjectOfRecord.</p>
+
+<p>Compatibility: Lies at the intersection of Argonaut and US Core Patient. MaritalStatus has a required binding in Argonaut, but an extensible binding in US-Core. To be feasible under both DSTU2 Argonaut and STU3 US-Core, the required binding strength is adopted.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-PatientInstruction-extension.html">PatientInstruction</a></td>
+          <td><p>Patient or consumer-oriented instructions.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-PersonAuthor-extension.html">PersonAuthor</a></td>
+          <td><p>A human author, patient, practitioner, or related person, as opposed to an organization or device.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-PersonInformationSource-extension.html">PersonInformationSource</a></td>
+          <td><p>The person who provided the information, not necessarily the patient.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-vital-PreconditionCode-extension.html">PreconditionCode</a></td>
+          <td><p>A coded description of the conditions or context of an observation, for example, under sedation, fasting or post-exercise. A qualifier cannot modify the measurement type; for example, a fasting blood sugar is still a blood sugar.</p>
 </td>
         </tr>
         <tr>
           <td><a href="StructureDefinition-onco-core-PrimaryCancerCondition-extension.html">PrimaryCancerCondition</a></td>
-          <td><p>Records the history of the primary cancer condition, the original or first tumor in the body, abnormal cells that divide without control and can invade nearby tissues.</p>
+          <td><p>Records the history of the primary cancer condition, the original or first tumor in the body (reference https://www.cancer.gov/publications/dictionaries/cancer-terms/def/primary-tumor). Cancers that are not clearly secondary (i.e., of uncertain origin or behavior) should be documented as primary.</p>
+
+<p>Cancer staging information summarized in this profile should reflect the most recent staging assessment on the patient, and should be updated if and when there is a new staging assessment. Past staging assessments will be preserved in instances of the TNMClinicalStageGroup and/or TNMPathologicalStageGroup, which refer back to PrimaryCancerCondition.</p>
+
+<p>Conformance note: For the code attribute, to be compliant with <a href="http://hl7.org/fhir/us/core/STU3/index.html">US Core Profiles</a>, SNOMED CT must be used unless there is no suitable code, in which case ICD-10-CM can be used.</p>
 </td>
         </tr>
         <tr>
-          <td><a href="StructureDefinition-shr-core-RadiationDosePerFraction-extension.html">RadiationDosePerFraction</a></td>
-          <td><p>The total number of treatment sessions (fractions) administered during a course of radiation therapy therapy. A fraction is a portion of the total radiation dose, delivered as a series of treatments that make up the full course of radiotherapy. (source: LOINC)</p>
+          <td><a href="StructureDefinition-obf-ProceduralObservationBasedOn-extension.html">ProceduralObservationBasedOn</a></td>
+          <td><p>The plan, proposal or order that is fulfilled in whole or in part by this event. For example, a MedicationRequest may require a patient to have laboratory test performed before it is dispensed.</p>
 </td>
         </tr>
         <tr>
-          <td><a href="StructureDefinition-shr-core-RadiationFractionsDelivered-extension.html">RadiationFractionsDelivered</a></td>
-          <td><p>The total number of treatment sessions (fractions) administered during a course of radiation therapy therapy. A fraction is a portion of the total radiation dose, delivered as a series of treatments that make up the full course of radiotherapy. (source: LOINC)</p>
+          <td><a href="StructureDefinition-obf-ProceduralObservationPartOf-extension.html">ProceduralObservationPartOf</a></td>
+          <td><p>The larger procedure that this particular observation is a component or step.</p>
 </td>
         </tr>
         <tr>
-          <td><a href="StructureDefinition-shr-core-ReasonCode-extension.html">ReasonCode</a></td>
-          <td><p>The justification, as a code.
-Reason is a string or CodeableConcept in DSTU2 but in later versions only a CodeableConcept, so we are not going to support a string.</p>
+          <td><a href="StructureDefinition-obf-ProcedurePartOf-extension.html">ProcedurePartOf</a></td>
+          <td><p>A larger event of which this particular procedure is a component or step.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-RadiationDosePerFraction-extension.html">RadiationDosePerFraction</a></td>
+          <td><p>The amount of radiation administered during a single session (fraction) of radiation therapy therapy.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-RadiationFractionsDelivered-extension.html">RadiationFractionsDelivered</a></td>
+          <td><p>Records the total number of treatment sessions (fractions) administered during the first course of therapy. Corresponds to LOINC 21950-2 ‘Number of radiation treatment’ [sic].</p>
 </td>
         </tr>
         <tr>
@@ -233,33 +374,89 @@ Reason is a string or CodeableConcept in DSTU2 but in later versions only a Code
 </td>
         </tr>
         <tr>
-          <td><a href="StructureDefinition-shr-core-SpecimenType-extension.html">SpecimenType</a></td>
+          <td><a href="StructureDefinition-obf-datatype-RelationToLandmark-extension.html">RelationToLandmark</a></td>
+          <td><p>The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:</p>
+<ul>
+  <li>Specifying the location and type of landmark using a body site code and optional laterality/orientation,</li>
+  <li>Specifying the direction from the landmark to the body location, and</li>
+  <li>Specifying the distance from the landmark to the body location.</li>
+</ul>
+
+<p>The RelationToLandmark element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.</p>
+
+<ul>
+  <li>Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.</li>
+  <li>Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.</li>
+  <li>Relation to landmark: The location relative to a landmark is specified by:
+    <ol>
+      <li>Establishing the location and type of landmark using a body site code and optional laterality/orientation, and</li>
+      <li>Specifying the direction and distance from the landmark to the body location.</li>
+    </ol>
+  </li>
+</ul>
+
+<p>Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR’s stand-alone BodySite (aka BodyStructure in r4) which ‘is not … intended for describing the type of anatomical location but rather a specific body site on a specific patient’ (FHIR 3.5).</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-ResultsInterpreter-extension.html">ResultsInterpreter</a></td>
+          <td><p>The practitioner or organization that is responsible for the report’s conclusions and interpretations.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-SourceSystem-extension.html">SourceSystem</a></td>
+          <td><p>FHIR: This provides a minimal amount of Provenance information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.
+FHIM: Identifies the computer system that created the medical record. This optional field may also be used to indicate that the medical record was originally created by a different organization from the one that is currently storing or utilizing the record in that the assigning authority of the Id could be set to that originating organization. This property is optional, as some systems will assume that all records that it contains originated in that system, however it is anticipated that it will become increasingly commonplace for records from multiple systems and organizations will be comingled in order to provide a complete picture of the patient’s health record.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-SpecimenType-extension.html">SpecimenType</a></td>
           <td><p>The type of material the specimen contains or consists of.</p>
 </td>
         </tr>
         <tr>
-          <td><a href="StructureDefinition-shr-core-StatementDateTime-extension.html">StatementDateTime</a></td>
+          <td><a href="StructureDefinition-obf-StatementDateTime-extension.html">StatementDateTime</a></td>
           <td><p>The point in time when the statement was created.</p>
 </td>
         </tr>
         <tr>
-          <td><a href="StructureDefinition-shr-core-Status-extension.html">Status</a></td>
-          <td><p>A state that relates to the workflow or interpretation of this resource. Certain status values can modify the meaning of the resource, for example, entered-in-error. When a boolean value is used, Status of true indicates the record is active, false means inactive.</p>
+          <td><a href="StructureDefinition-obf-StatusReason-extension.html">StatusReason</a></td>
+          <td><p>Captures the reason for the current state of the procedure.</p>
 </td>
         </tr>
         <tr>
-          <td><a href="StructureDefinition-shr-core-TerminationReason-extension.html">TerminationReason</a></td>
+          <td><a href="StructureDefinition-obf-SurgicalBodyLocationRole-extension.html">SurgicalBodyLocationRole</a></td>
+          <td><p>Describes the role played by the body site in the surgery.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-TerminationReason-extension.html">TerminationReason</a></td>
           <td><p>A code explaining unplanned or premature termination of a plan of treatment, course of medication, or research study.</p>
 </td>
         </tr>
         <tr>
-          <td><a href="StructureDefinition-shr-core-TotalRadiationDoseDelivered-extension.html">TotalRadiationDoseDelivered</a></td>
+          <td><a href="StructureDefinition-obf-TotalRadiationDoseDelivered-extension.html">TotalRadiationDoseDelivered</a></td>
           <td><p>The total amount of radiation dose delivered for the course of therapy. (source: SNOMED, ASTRO)</p>
 </td>
         </tr>
         <tr>
-          <td><a href="StructureDefinition-shr-core-TreatmentIntent-extension.html">TreatmentIntent</a></td>
+          <td><a href="StructureDefinition-obf-TreatmentIntent-extension.html">TreatmentIntent</a></td>
           <td><p>The purpose of a treatment.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-datatype-Type-extension.html">Type</a></td>
+          <td><p>A code describing the item at a greater level of detail.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-obf-UsedCode-extension.html">UsedCode</a></td>
+          <td><p>Item used during an activity, represented as a code.</p>
+</td>
+        </tr>
+        <tr>
+          <td><a href="StructureDefinition-onco-core-VariantTested-extension.html">VariantTested</a></td>
+          <td><p>The specific genetic variant that is targeted by this test.</p>
 </td>
         </tr>
         
@@ -284,10 +481,20 @@ Reason is a string or CodeableConcept in DSTU2 but in later versions only a Code
   <div class="container">  <!-- container -->
    <div class="inner-wrapper">
     <p>
-      
-      HL7 FHIR Implementation Guide: minimal Common Oncology Data Elements (mCODE), v0.9.0, Version: 0.9.0
-      ; <a style="color: #81BEF7" href="http://hl7.org/fhir/DSTU2/">FHIR &copy; Version: 1.0.2</a>
-      ; Generated on Wed, Apr 17, 2019 12:01-0400.
+      &copy;2019+
+      <a style="color: #81BEF7" href="http://standardhealthrecord.org">The MITRE Corporation</a>.
+      Package hl7.fhir.us.mcode#0.9.1 based on <a style="color: #81BEF7" href="http://hl7.org/fhir/DSTU2/">FHIR 1.0.2</a>.
+      Generated <span title="Wed, Oct 23, 2019 20:44-0400">2019-10-23</span>.
+      <br/>
+      <span style="color: #FFFF77">
+        Links:
+        <a style="color: #81BEF7" href="index.html">Home</a>
+        | <a style="color: #81BEF7" href="qa.html">QA Report</a>
+        | <a style="color: #81BEF7" target="_blank" rel="license" href="http://hl7.org/fhir/DSTU2/license.html">
+          <img style="border-style: none;" alt="CC0" src="cc0.png">
+          <img alt="external" style="text-align: baseline" src="external.png">
+        </a>
+      </span>
     </p>
    </div>  <!-- /inner-wrapper -->
   </div>  <!-- /container -->

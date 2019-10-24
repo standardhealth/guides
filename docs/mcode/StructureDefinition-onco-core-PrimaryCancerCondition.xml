@@ -5,48 +5,52 @@
   <text>
     <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">
   <p><b>PrimaryCancerCondition Profile</b></p>
-  <p>Records the history of the primary cancer condition, the original or first tumor in the body, abnormal cells that divide without control and can invade nearby tissues.</p>
+  <p>Records the history of the primary cancer condition, the original or first tumor in the body (reference https://www.cancer.gov/publications/dictionaries/cancer-terms/def/primary-tumor). Cancers that are not clearly secondary (i.e., of uncertain origin or behavior) should be documented as primary.
+
+Cancer staging information summarized in this profile should reflect the most recent staging assessment on the patient, and should be updated if and when there is a new staging assessment. Past staging assessments will be preserved in instances of the TNMClinicalStageGroup and/or TNMPathologicalStageGroup, which refer back to PrimaryCancerCondition.
+
+Conformance note: For the code attribute, to be compliant with [US Core Profiles](http://hl7.org/fhir/us/core/STU3/index.html), SNOMED CT must be used unless there is no suitable code, in which case ICD-10-CM can be used.</p>
   <p><b>Mapping Summary</b></p>
   <p><pre>onco.core.PrimaryCancerCondition maps to http://fhir.org/guides/argonaut/StructureDefinition/argo-condition:
-  _Entry.EntryId maps to id
   Language maps to language
-  Narrative maps to text
   ImplicitRules maps to implicitRules
   Metadata.VersionId maps to meta.versionId
+  Metadata.SourceSystem maps to meta.extension
   Metadata.Profile maps to meta.profile
   Metadata.LastUpdated maps to meta.lastUpdated
   Metadata.SecurityLabel maps to meta.security
   Metadata.Tag maps to meta.tag
+  Narrative maps to text
   Identifier maps to identifier
-  StatementDateTime maps to dateRecorded
-  PractitionerInformationSource maps to asserter
-  PatientSubjectOfRecord maps to patient
-  Category maps to category
-  Code maps to code
-  BodyLocation.LocationCode maps to bodySite
-  BodyLocation.Laterality maps to bodySite.extension
-  BodyLocation.Orientation maps to bodySite.extension
-  BodyLocation.RelationToLandmark maps to bodySite.extension
+  SubjectOfRecord maps to patient
   CareContext maps to encounter
+  PractitionerInformationSource maps to asserter
+  Author maps to extension
+  StatementDateTime maps to dateRecorded
+  Code maps to code
+  Category maps to category
   ClinicalStatus maps to clinicalStatus
   Status maps to verificationStatus
+  Severity maps to severity
   Onset maps to onset[x]
   Abatement maps to abatement[x]
-  Severity maps to severity
   StageInformation maps to stage
   StageInformation.StageSummary maps to stage.summary
   StageInformation.StageDetail maps to stage.assessment
+  StageInformation.Type maps to stage.extension
   Evidence.Manifestation maps to evidence.code
-  Evidence.DomainResource maps to evidence.detail
+  Evidence.Resource maps to evidence.detail
+  BodyLocation.Code maps to bodySite
+  BodyLocation.Laterality maps to bodySite.extension
+  BodyLocation.AnatomicalOrientation maps to bodySite.extension
+  BodyLocation.RelationToLandmark maps to bodySite.extension
+  Annotation maps to extension
+  DateOfDiagnosis maps to extension
 </pre></p>
 </div>
   </text>
-  <url value="http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-PrimaryCancerCondition"/>
-  <identifier>
-    <system value="http://hl7.org/fhir/us/mcode"/>
-    <value value="onco.core.PrimaryCancerCondition"/>
-  </identifier>
-  <version value="0.9.0"/>
+  <url value="http://mcodeinitiative.org/us/mcode/StructureDefinition/onco-core-PrimaryCancerCondition"/>
+  <version value="0.9.1"/>
   <name value="PrimaryCancerCondition"/>
   <display value="onco-core-PrimaryCancerCondition"/>
   <status value="draft"/>
@@ -58,8 +62,8 @@
       <rank value="0"/>
     </telecom>
   </contact>
-  <date value="2019-04-17T00:00:00-04:00"/>
-  <description value="Records the history of the primary cancer condition, the original or first tumor in the body,&#xA0;abnormal cells that divide without control and can invade nearby tissues."/>
+  <date value="2019-10-23T00:00:00-04:00"/>
+  <description value="Records the history of the primary cancer condition, the original or first tumor in the body (reference https://www.cancer.gov/publications/dictionaries/cancer-terms/def/primary-tumor). Cancers that are not clearly secondary (i.e., of uncertain origin or behavior) should be documented as primary.&#xA;&#xA;Cancer staging information summarized in this profile should reflect the most recent staging assessment on the patient, and should be updated if and when there is a new staging assessment. Past staging assessments will be preserved in instances of the TNMClinicalStageGroup and/or TNMPathologicalStageGroup, which refer back to PrimaryCancerCondition.&#xA;&#xA;Conformance note: For the code attribute, to be compliant with [US Core Profiles](http://hl7.org/fhir/us/core/STU3/index.html), SNOMED CT must be used unless there is no suitable code, in which case ICD-10-CM can be used."/>
   <fhirVersion value="1.0.2"/>
   <mapping>
     <identity value="us-core-stu3"/>
@@ -86,11 +90,11 @@
   <abstract value="false"/>
   <base value="http://fhir.org/guides/argonaut/StructureDefinition/argo-condition"/>
   <snapshot>
-    <element id="Condition">
+    <element id="Condition-argoprofile">
       <path value="Condition"/>
-      <name value="Condition"/>
+      <name value="Condition-argoprofile"/>
       <short value="onco-core-PrimaryCancerCondition"/>
-      <definition value="Records the history of the primary cancer condition, the original or first tumor in the body,&#xA0;abnormal cells that divide without control and can invade nearby tissues."/>
+      <definition value="Records the history of the primary cancer condition, the original or first tumor in the body (reference https://www.cancer.gov/publications/dictionaries/cancer-terms/def/primary-tumor). Cancers that are not clearly secondary (i.e., of uncertain origin or behavior) should be documented as primary.&#xA;&#xA;Cancer staging information summarized in this profile should reflect the most recent staging assessment on the patient, and should be updated if and when there is a new staging assessment. Past staging assessments will be preserved in instances of the TNMClinicalStageGroup and/or TNMPathologicalStageGroup, which refer back to PrimaryCancerCondition.&#xA;&#xA;Conformance note: For the code attribute, to be compliant with [US Core Profiles](http://hl7.org/fhir/us/core/STU3/index.html), SNOMED CT must be used unless there is no suitable code, in which case ICD-10-CM can be used."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -131,9 +135,9 @@
         <map value="Condition"/>
       </mapping>
     </element>
-    <element id="Condition.id">
+    <element id="Condition-argoprofile.id">
       <path value="Condition.id"/>
-      <name value="Condition.id"/>
+      <name value="Condition-argoprofile.id"/>
       <short value="Logical id of this artifact"/>
       <definition value="The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes."/>
       <comments value="The only time that a resource does not have an id is when it is being submitted to the server using a create operation. Bundles always have an id, though it is usually a generated UUID."/>
@@ -152,9 +156,9 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Condition.meta">
+    <element id="Condition-argoprofile.meta">
       <path value="Condition.meta"/>
-      <name value="Condition.meta"/>
+      <name value="Condition-argoprofile.meta"/>
       <short value="Metadata about the resource"/>
       <definition value="The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content may not always be associated with version changes to the resource."/>
       <min value="0"/>
@@ -172,9 +176,167 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Condition.implicitRules">
+    <element id="Condition-argoprofile.meta.id">
+      <path value="Condition.meta.id"/>
+      <representation value="xmlAttr"/>
+      <name value="Condition-argoprofile.meta.id"/>
+      <short value="xml:id (or equivalent in JSON)"/>
+      <definition value="unique id for the element within a resource (for internal references)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="id"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Condition-argoprofile.meta.extension">
+      <path value="Condition.meta.extension"/>
+      <name value="Condition-argoprofile.meta.extension"/>
+      <slicing id="4">
+        <discriminator value="url"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <short value="Additional Content defined by implementations"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
+      <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="sourcesystem">
+      <path value="Condition.meta.extension"/>
+      <name value="sourcesystem"/>
+      <definition value="FHIR: This provides a minimal amount of Provenance information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.&#xA;FHIM: Identifies the computer system that created the medical record. This optional field may also be used to indicate that the medical record was originally created by a different organization from the one that is currently storing or utilizing the record in that the assigning authority of the Id could be set to that originating organization. This property is optional, as some systems will assume that all records that it contains originated in that system, however it is anticipated that it will become increasingly commonplace for records from multiple systems and organizations will be comingled in order to provide a complete picture of the patient&#39;s health record."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Condition.meta.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-SourceSystem-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Condition-argoprofile.meta.versionId">
+      <path value="Condition.meta.versionId"/>
+      <name value="Condition-argoprofile.meta.versionId"/>
+      <short value="Version specific identifier"/>
+      <definition value="The version specific identifier, as it appears in the version portion of the URL. This values changes when the resource is created, updated, or deleted."/>
+      <comments value="The server assigns this value, and ignores what the client specifies, except in the case that the server is imposing version integrity on updates/deletes."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="id"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+    </element>
+    <element id="Condition-argoprofile.meta.lastUpdated">
+      <path value="Condition.meta.lastUpdated"/>
+      <name value="Condition-argoprofile.meta.lastUpdated"/>
+      <short value="When the resource version last changed"/>
+      <definition value="When the resource last changed - e.g. when the version changed."/>
+      <comments value="This value is always populated except when the resource is first being created. The server / resource manager sets this value; what a client provides is irrelevant."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="instant"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+    </element>
+    <element id="Condition-argoprofile.meta.profile">
+      <path value="Condition.meta.profile"/>
+      <name value="Condition-argoprofile.meta.profile"/>
+      <short value="Profiles this resource claims to conform to"/>
+      <definition value="A list of profiles [[[StructureDefinition]]]s that this resource claims to conform to. The URL is a reference to [[[StructureDefinition.url]]]."/>
+      <comments value="It is up to the server and/or other infrastructure of policy to determine whether/how these claims are verified and/or updated over time.  The list of profile URLs is a set."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="uri"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+    </element>
+    <element id="Condition-argoprofile.meta.security">
+      <path value="Condition.meta.security"/>
+      <name value="Condition-argoprofile.meta.security"/>
+      <short value="Security Labels applied to this resource"/>
+      <definition value="Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure."/>
+      <comments value="The security labels can be updated without changing the stated version of the resource  The list of security labels is a set. Uniqueness is based the system/code, and version and display are ignored."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <binding>
+        <strength value="extensible"/>
+        <description value="Security Labels from the Healthcare Privacy and Security Classification System."/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/security-labels"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="Condition-argoprofile.meta.tag">
+      <path value="Condition.meta.tag"/>
+      <name value="Condition-argoprofile.meta.tag"/>
+      <short value="Tags applied to this resource"/>
+      <definition value="Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource."/>
+      <comments value="The tags can be updated without changing the stated version of the resource.  The list of tags is a set. Uniqueness is based the system/code, and version and display are ignored."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Coding"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="true"/>
+      <binding>
+        <strength value="example"/>
+        <description value="Codes that represent various types of tags, commonly workflow-related; e.g. &quot;Needs review by Dr. Jones&quot;"/>
+      </binding>
+    </element>
+    <element id="Condition-argoprofile.implicitRules">
       <path value="Condition.implicitRules"/>
-      <name value="Condition.implicitRules"/>
+      <name value="Condition-argoprofile.implicitRules"/>
       <short value="A set of rules under which this content was created"/>
       <definition value="A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content."/>
       <comments value="Asserting this rule set restricts the content to be only understood by a limited set of trading partners. This inherently limits the usefulness of the data in the long term. However, the existing health eco-system is highly fractured, and not yet ready to define, collect, and exchange data in a generally computable sense. Wherever possible, implementers and/or specification writers should avoid using this element as much as possible."/>
@@ -193,9 +355,9 @@
       <isModifier value="true"/>
       <isSummary value="true"/>
     </element>
-    <element id="Condition.language">
+    <element id="Condition-argoprofile.language">
       <path value="Condition.language"/>
-      <name value="Condition.language"/>
+      <name value="Condition-argoprofile.language"/>
       <short value="Language of the resource content"/>
       <definition value="The base language in which the resource is written."/>
       <comments value="Language is provided to support indexing and accessibility (typically, services such as text to speech use the language tag). The html language tag in the narrative applies  to the narrative. The language tag on the resource may be used to specify the language of other presentations generated from the data in the resource  Not all the content has to be in the base language. The Resource.language should not be assumed to apply to the narrative automatically. If a language is specified, it should it also be specified on the div element in the html (see rules in HTML5 for information about the relationship between xml:lang and the html lang attribute)."/>
@@ -221,9 +383,9 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="Condition.text">
+    <element id="Condition-argoprofile.text">
       <path value="Condition.text"/>
-      <name value="Condition.text"/>
+      <name value="Condition-argoprofile.text"/>
       <short value="Text summary of the resource, for human interpretation"/>
       <definition value="A human-readable narrative that contains a summary of the resource, and may be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it &quot;clinically safe&quot; for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety."/>
       <comments value="Contained resources do not have narrative. Resources that are not contained SHOULD have a narrative."/>
@@ -251,9 +413,9 @@
         <map value="Act.text?"/>
       </mapping>
     </element>
-    <element id="Condition.contained">
+    <element id="Condition-argoprofile.contained">
       <path value="Condition.contained"/>
-      <name value="Condition.contained"/>
+      <name value="Condition-argoprofile.contained"/>
       <short value="Contained, inline Resources"/>
       <definition value="These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."/>
       <comments value="This should never be done when the content can be identified properly, as once identification is lost, it is extremely difficult (and context dependent) to restore it again."/>
@@ -279,9 +441,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Condition.extension">
+    <element id="Condition-argoprofile.extension">
       <path value="Condition.extension"/>
-      <name value="Condition.extension"/>
+      <name value="Condition-argoprofile.extension"/>
       <slicing id="3">
         <discriminator value="url"/>
         <ordered value="false"/>
@@ -311,6 +473,46 @@
         <map value="N/A"/>
       </mapping>
     </element>
+    <element id="author">
+      <path value="Condition.extension"/>
+      <name value="author"/>
+      <definition value="The actor who created the item and it responsible for the content (regardless of the information source or who recorded it). If only the author is given, it is assumed the author is the information source and the recorder."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Condition.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-Author-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="annotation">
+      <path value="Condition.extension"/>
+      <name value="annotation"/>
+      <definition value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Condition.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-Annotation-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
     <element id="dateofdiagnosis">
       <path value="Condition.extension"/>
       <name value="dateofdiagnosis"/>
@@ -324,7 +526,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DateOfDiagnosis-extension"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-DateOfDiagnosis-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="true"/>
@@ -344,16 +546,16 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-HistologyMorphologyBehavior-extension"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/onco-core-HistologyMorphologyBehavior-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Condition.modifierExtension">
+    <element id="Condition-argoprofile.modifierExtension">
       <path value="Condition.modifierExtension"/>
-      <name value="Condition.modifierExtension"/>
+      <name value="Condition-argoprofile.modifierExtension"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the resource, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -378,9 +580,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Condition.identifier">
+    <element id="Condition-argoprofile.identifier">
       <path value="Condition.identifier"/>
-      <name value="Condition.identifier"/>
+      <name value="Condition-argoprofile.identifier"/>
       <short value="External Ids for this condition"/>
       <definition value="This records identifiers associated with this condition that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation)."/>
       <requirements value="Need to allow connection to a wider workflow."/>
@@ -407,9 +609,9 @@
         <map value="id"/>
       </mapping>
     </element>
-    <element id="Condition.patient">
+    <element id="Condition-argoprofile.patient">
       <path value="Condition.patient"/>
-      <name value="Condition.patient"/>
+      <name value="Condition-argoprofile.patient"/>
       <short value="Who has the condition?"/>
       <definition value="Indicates the patient who the condition record is associated with."/>
       <min value="1"/>
@@ -421,7 +623,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-Patient"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="true"/>
@@ -444,9 +646,9 @@
         <map value="Condition.patient"/>
       </mapping>
     </element>
-    <element id="Condition.encounter">
+    <element id="Condition-argoprofile.encounter">
       <path value="Condition.encounter"/>
-      <name value="Condition.encounter"/>
+      <name value="Condition-argoprofile.encounter"/>
       <short value="Encounter when condition first asserted"/>
       <definition value="Encounter during which the condition was first asserted."/>
       <comments value="This record indicates the encounter this particular record is associated with.  In the case of a &quot;new&quot; diagnosis reflecting ongoing/revised information about the condition, this might be distinct from the first encounter in which the underlying condition was first &quot;known&quot;."/>
@@ -459,7 +661,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"/>
+        <profile value="http://hl7.org/fhir/StructureDefinition/Encounter"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -478,11 +680,11 @@
         <map value="context"/>
       </mapping>
     </element>
-    <element id="Condition.asserter">
+    <element id="Condition-argoprofile.asserter">
       <path value="Condition.asserter"/>
-      <name value="Condition.asserter"/>
-      <short value="Person who asserts this condition"/>
-      <definition value="Individual who is making the condition statement."/>
+      <name value="Condition-argoprofile.asserter"/>
+      <short value="The information comes from a practitioner who asserts the condition"/>
+      <definition value="The information comes from a practitioner who asserts the condition."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -492,7 +694,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
+        <profile value="http://hl7.org/fhir/StructureDefinition/Practitioner"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -511,9 +713,9 @@
         <map value="who.author"/>
       </mapping>
     </element>
-    <element id="Condition.dateRecorded">
+    <element id="Condition-argoprofile.dateRecorded">
       <path value="Condition.dateRecorded"/>
-      <name value="Condition.dateRecorded"/>
+      <name value="Condition-argoprofile.dateRecorded"/>
       <short value="When first entered"/>
       <definition value="A date, when  the Condition statement was documented."/>
       <comments value="The Date Recorded represents the date when this particular Condition record was created in the EHR, not the date of the most recent update in terms of when severity, abatement, etc. were specified. &#xA0;The date of the last record modification can be retrieved from the resource metadata."/>
@@ -544,9 +746,9 @@
         <map value="when.recorded"/>
       </mapping>
     </element>
-    <element id="Condition.code">
+    <element id="Condition-argoprofile.code">
       <path value="Condition.code"/>
-      <name value="Condition.code"/>
+      <name value="Condition-argoprofile.code"/>
       <short value="Identification of the condition, problem or diagnosis"/>
       <definition value="Identification of the condition, problem or diagnosis."/>
       <min value="1"/>
@@ -566,7 +768,7 @@
       <binding>
         <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/mcode/onco/core/vs/PrimaryCancerDisorderVS"/>
+          <reference value="http://mcodeinitiative.org/us/mcode/ValueSet/onco-core-PrimaryOrUncertainBehaviorCancerDisorderVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -586,9 +788,9 @@
         <map value="Condition.code"/>
       </mapping>
     </element>
-    <element id="Condition.category">
+    <element id="Condition-argoprofile.category">
       <path value="Condition.category"/>
-      <name value="Condition.category"/>
+      <name value="Condition-argoprofile.category"/>
       <short value="complaint | symptom | finding | diagnosis"/>
       <definition value="A category assigned to the condition."/>
       <comments value="The categorization is often highly contextual and may appear poorly differentiated or not very useful in other contexts."/>
@@ -630,10 +832,10 @@
         <map value="Condition.category"/>
       </mapping>
     </element>
-    <element id="Condition.category.id">
+    <element id="Condition-argoprofile.category.id">
       <path value="Condition.category.id"/>
       <representation value="xmlAttr"/>
-      <name value="Condition.category.id"/>
+      <name value="Condition-argoprofile.category.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -650,9 +852,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Condition.category.extension">
+    <element id="Condition-argoprofile.category.extension">
       <path value="Condition.category.extension"/>
-      <name value="Condition.category.extension"/>
+      <name value="Condition-argoprofile.category.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -672,9 +874,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Condition.category.coding">
+    <element id="Condition-argoprofile.category.coding">
       <path value="Condition.category.coding"/>
-      <name value="Condition.category.coding"/>
+      <name value="Condition-argoprofile.category.coding"/>
       <slicing id="2">
         <discriminator value="code"/>
         <ordered value="false"/>
@@ -721,10 +923,10 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Condition.category.coding-Fixed-64572001.id">
+    <element id="Condition-argoprofile.category.coding-Fixed-64572001.id">
       <path value="Condition.category.coding.id"/>
       <representation value="xmlAttr"/>
-      <name value="Condition.category.coding-Fixed-64572001.id"/>
+      <name value="Condition-argoprofile.category.coding-Fixed-64572001.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -741,9 +943,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Condition.category.coding-Fixed-64572001.extension">
+    <element id="Condition-argoprofile.category.coding-Fixed-64572001.extension">
       <path value="Condition.category.coding.extension"/>
-      <name value="Condition.category.coding-Fixed-64572001.extension"/>
+      <name value="Condition-argoprofile.category.coding-Fixed-64572001.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -763,9 +965,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Condition.category.coding-Fixed-64572001.system">
+    <element id="Condition-argoprofile.category.coding-Fixed-64572001.system">
       <path value="Condition.category.coding.system"/>
-      <name value="Condition.category.coding-Fixed-64572001.system"/>
+      <name value="Condition-argoprofile.category.coding-Fixed-64572001.system"/>
       <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
       <comments value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7&#39;s list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously."/>
@@ -793,9 +995,9 @@
         <map value="./codeSystem"/>
       </mapping>
     </element>
-    <element id="Condition.category.coding-Fixed-64572001.version">
+    <element id="Condition-argoprofile.category.coding-Fixed-64572001.version">
       <path value="Condition.category.coding.version"/>
-      <name value="Condition.category.coding-Fixed-64572001.version"/>
+      <name value="Condition-argoprofile.category.coding-Fixed-64572001.version"/>
       <short value="Version of the system - if relevant"/>
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged."/>
       <comments value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date."/>
@@ -821,9 +1023,9 @@
         <map value="./codeSystemVersion"/>
       </mapping>
     </element>
-    <element id="Condition.category.coding-Fixed-64572001.code">
+    <element id="Condition-argoprofile.category.coding-Fixed-64572001.code">
       <path value="Condition.category.coding.code"/>
-      <name value="Condition.category.coding-Fixed-64572001.code"/>
+      <name value="Condition-argoprofile.category.coding-Fixed-64572001.code"/>
       <short value="Symbol in syntax defined by the system"/>
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)."/>
       <requirements value="Need to refer to a particular code in the system."/>
@@ -850,9 +1052,9 @@
         <map value="./code"/>
       </mapping>
     </element>
-    <element id="Condition.category.coding-Fixed-64572001.display">
+    <element id="Condition-argoprofile.category.coding-Fixed-64572001.display">
       <path value="Condition.category.coding.display"/>
-      <name value="Condition.category.coding-Fixed-64572001.display"/>
+      <name value="Condition-argoprofile.category.coding-Fixed-64572001.display"/>
       <short value="Representation defined by the system"/>
       <definition value="A representation of the meaning of the code in the system, following the rules of the system."/>
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system."/>
@@ -878,9 +1080,9 @@
         <map value="CV.displayName"/>
       </mapping>
     </element>
-    <element id="Condition.category.coding-Fixed-64572001.userSelected">
+    <element id="Condition-argoprofile.category.coding-Fixed-64572001.use">
       <path value="Condition.category.coding.userSelected"/>
-      <name value="Condition.category.coding-Fixed-64572001.userSelected"/>
+      <name value="Condition-argoprofile.category.coding-Fixed-64572001.use"/>
       <short value="If this coding was chosen directly by the user"/>
       <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)."/>
       <comments value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly &#39;directly chosen&#39; implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely."/>
@@ -907,9 +1109,9 @@
         <map value="CD.codingRationale"/>
       </mapping>
     </element>
-    <element id="Condition.category.text">
+    <element id="Condition-argoprofile.category.text">
       <path value="Condition.category.text"/>
-      <name value="Condition.category.text"/>
+      <name value="Condition-argoprofile.category.text"/>
       <short value="Plain text representation of the concept"/>
       <definition value="A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user."/>
       <comments value="Very often the text is the same as a displayName of one of the codings."/>
@@ -936,12 +1138,12 @@
         <map value="./originalText[mediaType/code=&quot;text/plain&quot;]/data"/>
       </mapping>
     </element>
-    <element id="Condition.clinicalStatus">
+    <element id="Condition-argoprofile.clinicalStatus">
       <path value="Condition.clinicalStatus"/>
-      <name value="Condition.clinicalStatus"/>
+      <name value="Condition-argoprofile.clinicalStatus"/>
       <short value="active | relapse | remission | resolved"/>
       <definition value="The clinical status of the condition."/>
-      <min value="1"/>
+      <min value="0"/>
       <max value="1"/>
       <base>
         <path value="Condition.clinicalStatus"/>
@@ -974,9 +1176,9 @@
         <map value="Condition.clinicalStatus"/>
       </mapping>
     </element>
-    <element id="Condition.verificationStatus">
+    <element id="Condition-argoprofile.verificationStatus">
       <path value="Condition.verificationStatus"/>
-      <name value="Condition.verificationStatus"/>
+      <name value="Condition-argoprofile.verificationStatus"/>
       <short value="provisional | differential | confirmed | refuted | entered-in-error | unknown"/>
       <definition value="The verification status to support the clinical status of the condition."/>
       <min value="1"/>
@@ -1016,9 +1218,9 @@
         <map value="Condition.verificationStatus"/>
       </mapping>
     </element>
-    <element id="Condition.severity">
+    <element id="Condition-argoprofile.severity">
       <path value="Condition.severity"/>
-      <name value="Condition.severity"/>
+      <name value="Condition-argoprofile.severity"/>
       <short value="Subjective severity of condition"/>
       <definition value="A subjective assessment of the severity of the condition as evaluated by the clinician."/>
       <comments value="Coding of the severity with a terminology is preferred, where possible."/>
@@ -1037,7 +1239,7 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
       <binding>
-        <strength value="required"/>
+        <strength value="preferred"/>
         <description value="A subjective assessment of the severity of the condition as evaluated by the clinician."/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/condition-severity"/>
@@ -1056,9 +1258,9 @@
         <map value="grade"/>
       </mapping>
     </element>
-    <element id="Condition.onsetx">
+    <element id="Condition-argoprofile.onsetx">
       <path value="Condition.onset[x]"/>
-      <name value="Condition.onsetx"/>
+      <name value="Condition-argoprofile.onsetx"/>
       <short value="Estimated or actual date,  date-time, or age"/>
       <definition value="Estimated or actual date or date-time  the condition began, in the opinion of the clinician."/>
       <comments value="Age is generally used when the patient reports an age at which the Condition began to occur."/>
@@ -1074,7 +1276,7 @@
       </type>
       <type>
         <code value="Quantity"/>
-        <profile value="http://hl7.org/fhir/StructureDefinition/Age"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-datatype-Age"/>
       </type>
       <type>
         <code value="Period"/>
@@ -1102,9 +1304,9 @@
         <map value="when.init"/>
       </mapping>
     </element>
-    <element id="Condition.abatementx">
+    <element id="Condition-argoprofile.abatementx">
       <path value="Condition.abatement[x]"/>
-      <name value="Condition.abatementx"/>
+      <name value="Condition-argoprofile.abatementx"/>
       <short value="If/when in resolution/remission"/>
       <definition value="The date or estimated date that the condition resolved or went into remission. This is called &quot;abatement&quot; because of the many overloaded connotations associated with &quot;remission&quot; or &quot;resolution&quot; - Conditions are never really resolved, but they can abate."/>
       <comments value="There is no explicit distinction between resolution and remission because in many cases the distinction is not clear. Age is generally used when the patient reports an age at which the Condition abated.  If there is no abatement element, it is unknown whether the condition has resolved or entered remission; applications and users should generally assume that the condition is still valid."/>
@@ -1120,7 +1322,7 @@
       </type>
       <type>
         <code value="Quantity"/>
-        <profile value="http://hl7.org/fhir/StructureDefinition/Age"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-datatype-Age"/>
       </type>
       <type>
         <code value="boolean"/>
@@ -1147,9 +1349,9 @@
         <map value="when.done"/>
       </mapping>
     </element>
-    <element id="Condition.stage">
+    <element id="Condition-argoprofile.stage">
       <path value="Condition.stage"/>
-      <name value="Condition.stage"/>
+      <name value="Condition-argoprofile.stage"/>
       <short value="Stage/grade, usually assessed formally"/>
       <definition value="Clinical stage or grade of a condition. May include formal severity assessments."/>
       <min value="0"/>
@@ -1177,10 +1379,10 @@
         <map value="./inboundRelationship[typeCode=SUBJ].source[classCode=OBS, moodCode=EVN, code=&quot;stage/grade&quot;]"/>
       </mapping>
     </element>
-    <element id="Condition.stage.id">
+    <element id="Condition-argoprofile.stage.id">
       <path value="Condition.stage.id"/>
       <representation value="xmlAttr"/>
-      <name value="Condition.stage.id"/>
+      <name value="Condition-argoprofile.stage.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -1202,9 +1404,14 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Condition.stage.extension">
+    <element id="Condition-argoprofile.stage.extension">
       <path value="Condition.stage.extension"/>
-      <name value="Condition.stage.extension"/>
+      <name value="Condition-argoprofile.stage.extension"/>
+      <slicing id="5">
+        <discriminator value="url"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1229,9 +1436,138 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Condition.stage.modifierExtension">
+    <element id="type">
+      <path value="Condition.stage.extension"/>
+      <name value="type"/>
+      <definition value="A code describing the item at a greater level of detail."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Condition.stage.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-datatype-Type-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Condition-argoprofile.stage.extension-type.id">
+      <path value="Condition.stage.extension.id"/>
+      <representation value="xmlAttr"/>
+      <name value="Condition-argoprofile.stage.extension-type.id"/>
+      <short value="xml:id (or equivalent in JSON)"/>
+      <definition value="unique id for the element within a resource (for internal references)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Element.id"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="id"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Condition-argoprofile.stage.extension-type.extension">
+      <path value="Condition.stage.extension.extension"/>
+      <name value="Condition-argoprofile.stage.extension-type.extension"/>
+      <short value="Additional Content defined by implementations"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
+      <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <min value="0"/>
+      <max value="0"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="Condition-argoprofile.stage.extension-type.url">
+      <path value="Condition.stage.extension.url"/>
+      <representation value="xmlAttr"/>
+      <name value="Condition-argoprofile.stage.extension-type.url"/>
+      <short value="identifies the meaning of the extension"/>
+      <definition value="Source of the definition for the extension code - a logical name or a URL."/>
+      <comments value="The definition may point directly to a computable or human-readable definition of the extensibility codes, or it may be a logical URI as declared in some other specification. The definition should be version specific.  This will ideally be the URI for the Resource Profile defining the extension, with the code for the extension after a #."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Extension.url"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="uri"/>
+      </type>
+      <fixedUri value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-datatype-Type-extension"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="Condition-argoprofile.stage.extension-type.valueCodeableConcept">
+      <path value="Condition.stage.extension.valueCodeableConcept"/>
+      <name value="Condition-argoprofile.stage.extension-type.valueCodeableConcept"/>
+      <short value="Value of extension"/>
+      <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="Extension.value[x]"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="example"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/condition-stage-type"/>
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="Condition-argoprofile.stage.modifierExtension">
       <path value="Condition.stage.modifierExtension"/>
-      <name value="Condition.stage.modifierExtension"/>
+      <name value="Condition-argoprofile.stage.modifierExtension"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1257,9 +1593,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Condition.stage.summary">
+    <element id="Condition-argoprofile.stage.summary">
       <path value="Condition.stage.summary"/>
-      <name value="Condition.stage.summary"/>
+      <name value="Condition-argoprofile.stage.summary"/>
       <short value="Simple summary (disease specific)"/>
       <definition value="A simple summary of the stage such as &quot;Stage 3&quot;. The determination of the stage is disease-specific."/>
       <min value="0"/>
@@ -1293,9 +1629,9 @@
         <map value=".value"/>
       </mapping>
     </element>
-    <element id="Condition.stage.assessment">
+    <element id="Condition-argoprofile.stage.assessment">
       <path value="Condition.stage.assessment"/>
-      <name value="Condition.stage.assessment"/>
+      <name value="Condition-argoprofile.stage.assessment"/>
       <short value="Formal record of assessment"/>
       <definition value="Reference to a formal record of the evidence on which the staging assessment is based."/>
       <min value="0"/>
@@ -1307,7 +1643,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-CancerStageGroup"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/onco-core-CancerStageGroup"/>
       </type>
       <maxLength value="0"/>
       <condition value="con-1"/>
@@ -1319,9 +1655,9 @@
         <map value=".self"/>
       </mapping>
     </element>
-    <element id="Condition.evidence">
+    <element id="Condition-argoprofile.evidence">
       <path value="Condition.evidence"/>
-      <name value="Condition.evidence"/>
+      <name value="Condition-argoprofile.evidence"/>
       <short value="Supporting evidence"/>
       <definition value="Supporting Evidence / manifestations that are the basis on which this condition is suspected or confirmed."/>
       <comments value="The evidence may be a simple list of coded symptoms/manifestations, or references to observations or formal assessments, or both."/>
@@ -1350,10 +1686,10 @@
         <map value=".outboundRelationship[typeCode=SPRT].target[classCode=OBS, moodCode=EVN]"/>
       </mapping>
     </element>
-    <element id="Condition.evidence.id">
+    <element id="Condition-argoprofile.evidence.id">
       <path value="Condition.evidence.id"/>
       <representation value="xmlAttr"/>
-      <name value="Condition.evidence.id"/>
+      <name value="Condition-argoprofile.evidence.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -1375,9 +1711,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Condition.evidence.extension">
+    <element id="Condition-argoprofile.evidence.extension">
       <path value="Condition.evidence.extension"/>
-      <name value="Condition.evidence.extension"/>
+      <name value="Condition-argoprofile.evidence.extension"/>
       <short value="Additional Content defined by implementations"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1402,9 +1738,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Condition.evidence.modifierExtension">
+    <element id="Condition-argoprofile.evidence.modifierExtension">
       <path value="Condition.evidence.modifierExtension"/>
-      <name value="Condition.evidence.modifierExtension"/>
+      <name value="Condition-argoprofile.evidence.modifierExtension"/>
       <short value="Extensions that cannot be ignored"/>
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions."/>
       <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
@@ -1430,9 +1766,9 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Condition.evidence.code">
+    <element id="Condition-argoprofile.evidence.code">
       <path value="Condition.evidence.code"/>
-      <name value="Condition.evidence.code"/>
+      <name value="Condition-argoprofile.evidence.code"/>
       <short value="Manifestation/symptom"/>
       <definition value="A manifestation or symptom that led to the recording of this condition."/>
       <min value="0"/>
@@ -1461,9 +1797,9 @@
         <map value="[code=&quot;diagnosis&quot;].value"/>
       </mapping>
     </element>
-    <element id="Condition.evidence.detail">
+    <element id="Condition-argoprofile.evidence.detail">
       <path value="Condition.evidence.detail"/>
-      <name value="Condition.evidence.detail"/>
+      <name value="Condition-argoprofile.evidence.detail"/>
       <short value="Supporting information found elsewhere"/>
       <definition value="Links to other relevant information, including pathology reports."/>
       <min value="0"/>
@@ -1475,7 +1811,7 @@
       </base>
       <type>
         <code value="Reference"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-Resource"/>
       </type>
       <maxLength value="0"/>
       <condition value="con-2"/>
@@ -1487,9 +1823,9 @@
         <map value=".self"/>
       </mapping>
     </element>
-    <element id="Condition.bodySite">
+    <element id="Condition-argoprofile.bodySite">
       <path value="Condition.bodySite"/>
-      <name value="Condition.bodySite"/>
+      <name value="Condition-argoprofile.bodySite"/>
       <short value="Anatomical location, if relevant"/>
       <definition value="The anatomical location where this condition manifests itself."/>
       <comments value="May be a summary code, or a reference to a very precise definition of the location, or both."/>
@@ -1510,7 +1846,7 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/mcode/onco/core/vs/CancerBodyLocationVS"/>
+          <reference value="http://mcodeinitiative.org/us/mcode/ValueSet/onco-core-CancerBodyLocationVS"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -1518,10 +1854,10 @@
         <map value=".targetBodySiteCode"/>
       </mapping>
     </element>
-    <element id="Condition.bodySite.id">
+    <element id="Condition-argoprofile.bodySite.id">
       <path value="Condition.bodySite.id"/>
       <representation value="xmlAttr"/>
-      <name value="Condition.bodySite.id"/>
+      <name value="Condition-argoprofile.bodySite.id"/>
       <short value="xml:id (or equivalent in JSON)"/>
       <definition value="unique id for the element within a resource (for internal references)."/>
       <min value="0"/>
@@ -1538,9 +1874,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Condition.bodySite.extension">
+    <element id="Condition-argoprofile.bodySite.extension">
       <path value="Condition.bodySite.extension"/>
-      <name value="Condition.bodySite.extension"/>
+      <name value="Condition-argoprofile.bodySite.extension"/>
       <slicing id="1">
         <discriminator value="url"/>
         <ordered value="false"/>
@@ -1568,7 +1904,7 @@
     <element id="laterality">
       <path value="Condition.bodySite.extension"/>
       <name value="laterality"/>
-      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body.&#xA;&#xA;The laterality element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
+      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body.&#xA;&#xA;The laterality element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;* Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;* Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;* Relation to landmark: The location relative to a landmark is specified by:&#xA;1. Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;2. Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1578,17 +1914,17 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-datatype-Laterality-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="orientation">
+    <element id="anatomicalorientation">
       <path value="Condition.bodySite.extension"/>
-      <name value="orientation"/>
-      <definition value="Orientation of the body location, if needed to distinguish from a similar location in another orientation.&#xA;The orientation element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
+      <name value="anatomicalorientation"/>
+      <definition value="AnatomicalOrientation of the body location, if needed to distinguish from a similar location in another orientation.&#xA;The orientation element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;* Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;* Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;* Relation to landmark: The location relative to a landmark is specified by:&#xA;1. Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;2. Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1598,7 +1934,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Orientation-extension"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-datatype-AnatomicalOrientation-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1608,7 +1944,7 @@
     <element id="relationtolandmark">
       <path value="Condition.bodySite.extension"/>
       <name value="relationtolandmark"/>
-      <definition value="The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:&#xA;* Specifying the location and type of landmark using a body site code and optional laterality/orientation,&#xA;* Specifying the direction from the landmark to the body location, and&#xA;* Specifying the distance from the landmark to the body location.&#xA;&#xA;The RelationToLandmark element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
+      <definition value="The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:&#xA;* Specifying the location and type of landmark using a body site code and optional laterality/orientation,&#xA;* Specifying the direction from the landmark to the body location, and&#xA;* Specifying the distance from the landmark to the body location.&#xA;&#xA;The RelationToLandmark element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;* Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;* Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;* Relation to landmark: The location relative to a landmark is specified by:&#xA;1. Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;2. Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -1618,16 +1954,16 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelationToLandmark-extension"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-datatype-RelationToLandmark-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Condition.bodySite.coding">
+    <element id="Condition-argoprofile.bodySite.coding">
       <path value="Condition.bodySite.coding"/>
-      <name value="Condition.bodySite.coding"/>
+      <name value="Condition-argoprofile.bodySite.coding"/>
       <short value="Code defined by a terminology system"/>
       <definition value="A reference to a code defined by a terminology system."/>
       <comments value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labelled as UserSelected = true."/>
@@ -1654,9 +1990,9 @@
         <map value="union(., ./translation)"/>
       </mapping>
     </element>
-    <element id="Condition.bodySite.text">
+    <element id="Condition-argoprofile.bodySite.text">
       <path value="Condition.bodySite.text"/>
-      <name value="Condition.bodySite.text"/>
+      <name value="Condition-argoprofile.bodySite.text"/>
       <short value="Plain text representation of the concept"/>
       <definition value="A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user."/>
       <comments value="Very often the text is the same as a displayName of one of the codings."/>
@@ -1683,9 +2019,9 @@
         <map value="./originalText[mediaType/code=&quot;text/plain&quot;]/data"/>
       </mapping>
     </element>
-    <element id="Condition.notes">
+    <element id="Condition-argoprofile.notes">
       <path value="Condition.notes"/>
-      <name value="Condition.notes"/>
+      <name value="Condition-argoprofile.notes"/>
       <short value="Additional information about the Condition"/>
       <definition value="Additional information about the Condition. This is a general notes/comments entry  for description of the Condition, its diagnosis and prognosis."/>
       <min value="0"/>
@@ -1713,11 +2049,11 @@
     </element>
   </snapshot>
   <differential>
-    <element id="Condition">
+    <element id="Condition-argoprofile">
       <path value="Condition"/>
-      <name value="Condition"/>
+      <name value="Condition-argoprofile"/>
       <short value="onco-core-PrimaryCancerCondition"/>
-      <definition value="Records the history of the primary cancer condition, the original or first tumor in the body,&#xA0;abnormal cells that divide without control and can invade nearby tissues."/>
+      <definition value="Records the history of the primary cancer condition, the original or first tumor in the body (reference https://www.cancer.gov/publications/dictionaries/cancer-terms/def/primary-tumor). Cancers that are not clearly secondary (i.e., of uncertain origin or behavior) should be documented as primary.&#xA;&#xA;Cancer staging information summarized in this profile should reflect the most recent staging assessment on the patient, and should be updated if and when there is a new staging assessment. Past staging assessments will be preserved in instances of the TNMClinicalStageGroup and/or TNMPathologicalStageGroup, which refer back to PrimaryCancerCondition.&#xA;&#xA;Conformance note: For the code attribute, to be compliant with [US Core Profiles](http://hl7.org/fhir/us/core/STU3/index.html), SNOMED CT must be used unless there is no suitable code, in which case ICD-10-CM can be used."/>
       <min value="0"/>
       <type>
         <code value="argo-condition"/>
@@ -1727,15 +2063,98 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Condition.extension">
+    <element id="Condition-argoprofile.meta">
+      <path value="Condition.meta"/>
+      <name value="Condition-argoprofile.meta"/>
+      <min value="0"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Condition-argoprofile.meta.extension">
+      <path value="Condition.meta.extension"/>
+      <name value="Condition-argoprofile.meta.extension"/>
+      <slicing id="4">
+        <discriminator value="url"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <min value="0"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="sourcesystem">
+      <path value="Condition.meta.extension"/>
+      <name value="sourcesystem"/>
+      <definition value="FHIR: This provides a minimal amount of Provenance information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.&#xA;FHIM: Identifies the computer system that created the medical record. This optional field may also be used to indicate that the medical record was originally created by a different organization from the one that is currently storing or utilizing the record in that the assigning authority of the Id could be set to that originating organization. This property is optional, as some systems will assume that all records that it contains originated in that system, however it is anticipated that it will become increasingly commonplace for records from multiple systems and organizations will be comingled in order to provide a complete picture of the patient&#39;s health record."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Condition.meta.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-SourceSystem-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Condition-argoprofile.extension">
       <path value="Condition.extension"/>
-      <name value="Condition.extension"/>
+      <name value="Condition-argoprofile.extension"/>
       <slicing id="3">
         <discriminator value="url"/>
         <ordered value="false"/>
         <rules value="open"/>
       </slicing>
       <min value="0"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="author">
+      <path value="Condition.extension"/>
+      <name value="author"/>
+      <definition value="The actor who created the item and it responsible for the content (regardless of the information source or who recorded it). If only the author is given, it is assumed the author is the information source and the recorder."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Condition.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-Author-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="annotation">
+      <path value="Condition.extension"/>
+      <name value="annotation"/>
+      <definition value="An added or follow-up note, often after the fact, that contains metadata about who made the statement and when."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Condition.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-Annotation-extension"/>
+      </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
@@ -1754,7 +2173,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DateOfDiagnosis-extension"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-DateOfDiagnosis-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="true"/>
@@ -1774,55 +2193,44 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-HistologyMorphologyBehavior-extension"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/onco-core-HistologyMorphologyBehavior-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="true"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Condition.patient">
+    <element id="Condition-argoprofile.patient">
       <path value="Condition.patient"/>
-      <name value="Condition.patient"/>
+      <name value="Condition-argoprofile.patient"/>
       <min value="0"/>
       <type>
         <code value="Reference"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Patient"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-Patient"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Condition.encounter">
-      <path value="Condition.encounter"/>
-      <name value="Condition.encounter"/>
-      <min value="0"/>
-      <type>
-        <code value="Reference"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Encounter"/>
-      </type>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="Condition.asserter">
+    <element id="Condition-argoprofile.asserter">
       <path value="Condition.asserter"/>
-      <name value="Condition.asserter"/>
+      <name value="Condition-argoprofile.asserter"/>
+      <short value="The information comes from a practitioner who asserts the condition"/>
+      <definition value="The information comes from a practitioner who asserts the condition."/>
       <min value="0"/>
       <type>
         <code value="Reference"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Practitioner"/>
+        <profile value="http://hl7.org/fhir/StructureDefinition/Practitioner"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Condition.code">
+    <element id="Condition-argoprofile.code">
       <path value="Condition.code"/>
-      <name value="Condition.code"/>
+      <name value="Condition-argoprofile.code"/>
       <min value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1831,22 +2239,22 @@
       <binding>
         <strength value="extensible"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/mcode/onco/core/vs/PrimaryCancerDisorderVS"/>
+          <reference value="http://mcodeinitiative.org/us/mcode/ValueSet/onco-core-PrimaryOrUncertainBehaviorCancerDisorderVS"/>
         </valueSetReference>
       </binding>
     </element>
-    <element id="Condition.category">
+    <element id="Condition-argoprofile.category">
       <path value="Condition.category"/>
-      <name value="Condition.category"/>
+      <name value="Condition-argoprofile.category"/>
       <min value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Condition.category.coding">
+    <element id="Condition-argoprofile.category.coding">
       <path value="Condition.category.coding"/>
-      <name value="Condition.category.coding"/>
+      <name value="Condition-argoprofile.category.coding"/>
       <slicing id="2">
         <discriminator value="code"/>
         <ordered value="false"/>
@@ -1874,9 +2282,9 @@
       <isModifier value="false"/>
       <isSummary value="true"/>
     </element>
-    <element id="Condition.category.coding-Fixed-64572001.system">
+    <element id="Condition-argoprofile.category.coding-Fixed-64572001.system">
       <path value="Condition.category.coding.system"/>
-      <name value="Condition.category.coding-Fixed-64572001.system"/>
+      <name value="Condition-argoprofile.category.coding-Fixed-64572001.system"/>
       <min value="0"/>
       <fixedUri value="http://snomed.info/sct"/>
       <maxLength value="0"/>
@@ -1884,9 +2292,9 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Condition.category.coding-Fixed-64572001.code">
+    <element id="Condition-argoprofile.category.coding-Fixed-64572001.code">
       <path value="Condition.category.coding.code"/>
-      <name value="Condition.category.coding-Fixed-64572001.code"/>
+      <name value="Condition-argoprofile.category.coding-Fixed-64572001.code"/>
       <min value="0"/>
       <fixedCode value="64572001"/>
       <maxLength value="0"/>
@@ -1894,68 +2302,153 @@
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Condition.clinicalStatus">
-      <path value="Condition.clinicalStatus"/>
-      <name value="Condition.clinicalStatus"/>
-      <min value="1"/>
-      <max value="1"/>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="Condition.severity">
+    <element id="Condition-argoprofile.severity">
       <path value="Condition.severity"/>
-      <name value="Condition.severity"/>
+      <name value="Condition-argoprofile.severity"/>
       <min value="0"/>
       <max value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
-      <binding>
-        <strength value="required"/>
-        <description value="A subjective assessment of the severity of the condition as evaluated by the clinician."/>
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/condition-severity"/>
-        </valueSetReference>
-      </binding>
     </element>
-    <element id="Condition.stage">
-      <path value="Condition.stage"/>
-      <name value="Condition.stage"/>
+    <element id="Condition-argoprofile.onsetx">
+      <path value="Condition.onset[x]"/>
+      <name value="Condition-argoprofile.onsetx"/>
       <min value="0"/>
-      <maxLength value="0"/>
-      <mustSupport value="false"/>
-      <isModifier value="false"/>
-      <isSummary value="false"/>
-    </element>
-    <element id="Condition.stage.assessment">
-      <path value="Condition.stage.assessment"/>
-      <name value="Condition.stage.assessment"/>
-      <min value="0"/>
-      <max value="1"/>
       <type>
-        <code value="Reference"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-CancerStageGroup"/>
+        <code value="dateTime"/>
+      </type>
+      <type>
+        <code value="Quantity"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-datatype-Age"/>
+      </type>
+      <type>
+        <code value="Period"/>
+      </type>
+      <type>
+        <code value="Range"/>
+      </type>
+      <type>
+        <code value="string"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Condition.evidence">
-      <path value="Condition.evidence"/>
-      <name value="Condition.evidence"/>
+    <element id="Condition-argoprofile.abatementx">
+      <path value="Condition.abatement[x]"/>
+      <name value="Condition-argoprofile.abatementx"/>
+      <min value="0"/>
+      <type>
+        <code value="dateTime"/>
+      </type>
+      <type>
+        <code value="Quantity"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-datatype-Age"/>
+      </type>
+      <type>
+        <code value="boolean"/>
+      </type>
+      <type>
+        <code value="Period"/>
+      </type>
+      <type>
+        <code value="Range"/>
+      </type>
+      <type>
+        <code value="string"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Condition-argoprofile.stage">
+      <path value="Condition.stage"/>
+      <name value="Condition-argoprofile.stage"/>
       <min value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Condition.evidence.code">
+    <element id="Condition-argoprofile.stage.extension">
+      <path value="Condition.stage.extension"/>
+      <name value="Condition-argoprofile.stage.extension"/>
+      <slicing id="5">
+        <discriminator value="url"/>
+        <ordered value="false"/>
+        <rules value="open"/>
+      </slicing>
+      <min value="0"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="type">
+      <path value="Condition.stage.extension"/>
+      <name value="type"/>
+      <definition value="A code describing the item at a greater level of detail."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Condition.stage.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-datatype-Type-extension"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Condition-argoprofile.stage.extension-type.valueCodeableConcept">
+      <path value="Condition.stage.extension.valueCodeableConcept"/>
+      <name value="Condition-argoprofile.stage.extension-type.valueCodeableConcept"/>
+      <min value="0"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+      <binding>
+        <strength value="example"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/condition-stage-type"/>
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="Condition-argoprofile.stage.assessment">
+      <path value="Condition.stage.assessment"/>
+      <name value="Condition-argoprofile.stage.assessment"/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="Reference"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/onco-core-CancerStageGroup"/>
+      </type>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Condition-argoprofile.evidence">
+      <path value="Condition.evidence"/>
+      <name value="Condition-argoprofile.evidence"/>
+      <min value="0"/>
+      <maxLength value="0"/>
+      <mustSupport value="false"/>
+      <isModifier value="false"/>
+      <isSummary value="false"/>
+    </element>
+    <element id="Condition-argoprofile.evidence.code">
       <path value="Condition.evidence.code"/>
-      <name value="Condition.evidence.code"/>
+      <name value="Condition-argoprofile.evidence.code"/>
       <min value="0"/>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -1968,22 +2461,22 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="Condition.evidence.detail">
+    <element id="Condition-argoprofile.evidence.detail">
       <path value="Condition.evidence.detail"/>
-      <name value="Condition.evidence.detail"/>
+      <name value="Condition-argoprofile.evidence.detail"/>
       <min value="0"/>
       <type>
         <code value="Reference"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-DomainResource"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-Resource"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="Condition.bodySite">
+    <element id="Condition-argoprofile.bodySite">
       <path value="Condition.bodySite"/>
-      <name value="Condition.bodySite"/>
+      <name value="Condition-argoprofile.bodySite"/>
       <min value="0"/>
       <maxLength value="0"/>
       <mustSupport value="true"/>
@@ -1992,13 +2485,13 @@
       <binding>
         <strength value="preferred"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/us/mcode/onco/core/vs/CancerBodyLocationVS"/>
+          <reference value="http://mcodeinitiative.org/us/mcode/ValueSet/onco-core-CancerBodyLocationVS"/>
         </valueSetReference>
       </binding>
     </element>
-    <element id="Condition.bodySite.extension">
+    <element id="Condition-argoprofile.bodySite.extension">
       <path value="Condition.bodySite.extension"/>
-      <name value="Condition.bodySite.extension"/>
+      <name value="Condition-argoprofile.bodySite.extension"/>
       <slicing id="1">
         <discriminator value="url"/>
         <ordered value="false"/>
@@ -2013,7 +2506,7 @@
     <element id="laterality">
       <path value="Condition.bodySite.extension"/>
       <name value="laterality"/>
-      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body.&#xA;&#xA;The laterality element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
+      <definition value="Body side of the body location, if needed to distinguish from a similar location on the other side of the body.&#xA;&#xA;The laterality element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;* Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;* Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;* Relation to landmark: The location relative to a landmark is specified by:&#xA;1. Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;2. Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -2023,17 +2516,17 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Laterality-extension"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-datatype-Laterality-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
       <isModifier value="false"/>
       <isSummary value="false"/>
     </element>
-    <element id="orientation">
+    <element id="anatomicalorientation">
       <path value="Condition.bodySite.extension"/>
-      <name value="orientation"/>
-      <definition value="Orientation of the body location, if needed to distinguish from a similar location in another orientation.&#xA;The orientation element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
+      <name value="anatomicalorientation"/>
+      <definition value="AnatomicalOrientation of the body location, if needed to distinguish from a similar location in another orientation.&#xA;The orientation element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;* Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;* Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;* Relation to landmark: The location relative to a landmark is specified by:&#xA;1. Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;2. Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -2043,7 +2536,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-Orientation-extension"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-datatype-AnatomicalOrientation-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>
@@ -2053,7 +2546,7 @@
     <element id="relationtolandmark">
       <path value="Condition.bodySite.extension"/>
       <name value="relationtolandmark"/>
-      <definition value="The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:&#xA;* Specifying the location and type of landmark using a body site code and optional laterality/orientation,&#xA;* Specifying the direction from the landmark to the body location, and&#xA;* Specifying the distance from the landmark to the body location.&#xA;&#xA;The RelationToLandmark element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;+ Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;+ Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;+ Relation to landmark: The location relative to a landmark is specified by:&#xA;- Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;- Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
+      <definition value="The relationship between a landmark that helps determine a body location and the body location itself. The location relative to a landmark is specified by:&#xA;* Specifying the location and type of landmark using a body site code and optional laterality/orientation,&#xA;* Specifying the direction from the landmark to the body location, and&#xA;* Specifying the distance from the landmark to the body location.&#xA;&#xA;The RelationToLandmark element is part of BodyLocation, a flexible structure that allows the location to be determined by a single code, or a code plus laterality and/or orientation. The body location can also be specified in relation to one or more body landmarks. SNOMED CT is used in all cases.&#xA;&#xA;* Code only: The code should include (precoordinate) laterality and/orientation to the degree necessary to completely specify the body location.&#xA;* Code plus laterality and/or orientation: The basic code augmented by codes specifying the body side and/or anatomical orientation.&#xA;* Relation to landmark: The location relative to a landmark is specified by:&#xA;1. Establishing the location and type of landmark using a body site code and optional laterality/orientation, and&#xA;2. Specifying the direction and distance from the landmark to the body location.&#xA;&#xA;Note that BodyLocation is a data type (a reusable structure), not a stand-alone entity. The concept is similar to how a postal address can apply to a person, location, or organization. This contrasts with FHIR&#39;s stand-alone BodySite (aka BodyStructure in r4) which &#39;is not ... intended for describing the type of anatomical location but rather a specific body site on a specific patient&#39; (FHIR 3.5)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -2063,7 +2556,7 @@
       </base>
       <type>
         <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/us/shr/StructureDefinition/shr-core-RelationToLandmark-extension"/>
+        <profile value="http://mcodeinitiative.org/us/mcode/StructureDefinition/obf-datatype-RelationToLandmark-extension"/>
       </type>
       <maxLength value="0"/>
       <mustSupport value="false"/>

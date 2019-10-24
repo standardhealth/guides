@@ -6,12 +6,12 @@
 
 # - resource -------------------------------------------------------------------
 
-<http://hl7.org/fhir/us/shr/Observation/mCODEGeneticVariantFoundExample01> a fhir:Observation;
+<http://mcodeinitiative.org/us/mcode/Observation/mCODEGeneticVariantFoundExample01> a fhir:Observation;
   fhir:nodeRole fhir:treeRoot;
   fhir:Observation.id [ fhir:value "mCODEGeneticVariantFoundExample01"];
   fhir:Observation.meta [
      fhir:Meta.profile [
-       fhir:value "http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-GeneticVariantFound";
+       fhir:value "http://hl7.org/fhir/us/mcode/StructureDefinition/onco-core-GeneticVariantFound";
        fhir:index 0
      ]
   ];
@@ -23,9 +23,11 @@
   fhir:Observation.category [
      fhir:CodeableConcept.coding [
        fhir:index 0;
-       fhir:Coding.system [ fhir:value "http://terminology.hl7.org/CodeSystem/observation-category" ];
-       fhir:Coding.code [ fhir:value "laboratory" ]
-     ]
+       fhir:Coding.system [ fhir:value "http://hl7.org/fhir/observation-category" ];
+       fhir:Coding.code [ fhir:value "laboratory" ];
+       fhir:Coding.userSelected [ fhir:value "false"^^xsd:boolean ]
+     ];
+     fhir:CodeableConcept.text [ fhir:value "Laboratory" ]
   ];
   fhir:Observation.code [
      fhir:CodeableConcept.coding [
@@ -37,7 +39,7 @@
      ]
   ];
   fhir:Observation.subject [
-     fhir:link <http://hl7.org/fhir/us/shr/Patient/mCODEPatientExample01>;
+     fhir:link <http://mcodeinitiative.org/us/mcode/Patient/mCODEPatientExample01>;
      fhir:Reference.reference [ fhir:value "Patient/mCODEPatientExample01" ];
      fhir:Reference.display [ fhir:value "John B. Anyperson" ]
   ];
@@ -45,7 +47,7 @@
   fhir:Observation.method [
      fhir:CodeableConcept.coding [
        fhir:index 0;
-       fhir:Coding.system [ fhir:value "https://ncit.nci.nih.gov" ];
+       fhir:Coding.system [ fhir:value "http://ncit.nci.nih.gov" ];
        fhir:Coding.code [ fhir:value "C101293" ];
        fhir:Coding.display [ fhir:value "Next Generation Sequencing" ]
      ]
@@ -64,7 +66,8 @@
      fhir:Observation.component.valueCodeableConcept [
        fhir:CodeableConcept.coding [
          fhir:index 0;
-         fhir:Coding.system [ fhir:value "http://hl7.org/fhir/us/mcode/onco-core/vs/GenomicSourceClassVS" ];
+         a loinc:LA6684-0;
+         fhir:Coding.system [ fhir:value "http://loinc.org" ];
          fhir:Coding.code [ fhir:value "LA6684-0" ];
          fhir:Coding.display [ fhir:value "Somatic" ]
        ];
@@ -78,13 +81,13 @@
          a loinc:48003-8;
          fhir:Coding.system [ fhir:value "http://loinc.org" ];
          fhir:Coding.code [ fhir:value "48003-8" ];
-         fhir:Coding.display [ fhir:value "DNA sequence variation identifier" ]
+         fhir:Coding.display [ fhir:value "DNA sequence variation identifier [Identifier]" ]
        ]
      ];
      fhir:Observation.component.valueCodeableConcept [
        fhir:CodeableConcept.coding [
          fhir:index 0;
-         fhir:Coding.system [ fhir:value "https://www.ncbi.nlm.nih.gov/clinvar" ];
+         fhir:Coding.system [ fhir:value "http://www.ncbi.nlm.nih.gov/clinvar/" ];
          fhir:Coding.code [ fhir:value "619728" ];
          fhir:Coding.display [ fhir:value "NM_000455.4(STK11):c.725G>A (p.Gly242Glu)" ]
        ];
@@ -118,19 +121,16 @@
          a loinc:47998-0;
          fhir:Coding.system [ fhir:value "http://loinc.org" ];
          fhir:Coding.code [ fhir:value "47998-0" ];
-         fhir:Coding.display [ fhir:value "DNA sequence variation display name" ]
+         fhir:Coding.display [ fhir:value "DNA sequence variation display name [Text] Narrative" ]
        ]
      ];
      fhir:Observation.component.valueString [ fhir:value "G242E" ]
   ] .
 
-<http://hl7.org/fhir/us/shr/Patient/mCODEPatientExample01> a fhir:us .
-
 # - ontology header ------------------------------------------------------------
 
-<http://hl7.org/fhir/us/shr/Observation/mCODEGeneticVariantFoundExample01.ttl> a owl:Ontology;
-  owl:imports fhir:fhir.ttl;
-  owl:versionIRI <http://build.fhir.org/us/shr/Observation/mCODEGeneticVariantFoundExample01.ttl> .
+<http://mcodeinitiative.org/us/mcode/Observation/mCODEGeneticVariantFoundExample01.ttl> a owl:Ontology;
+  owl:imports fhir:fhir.ttl .
 
 # -------------------------------------------------------------------------------------
 

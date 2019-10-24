@@ -3,16 +3,10 @@
   "id": "onco-core-VariantIdentifier-extension",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>VariantIdentifier Extension</b></p>\n  <p>The variation ID assigned by HGVS, for example, 360448 is the identifier for NM_005228.4(EGFR):c.-237A&gt;G (single nucleotide variant in EGFR).</p>\n</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p><b>VariantIdentifier Extension</b></p>\n  <p>The variation ID assigned by ClinVar, for example, 360448 is the identifier for NM_005228.4(EGFR):c.-237A&gt;G (single nucleotide variant in EGFR).</p>\n</div>"
   },
-  "url": "http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-VariantIdentifier-extension",
-  "identifier": [
-    {
-      "system": "http://hl7.org/fhir/us/mcode",
-      "value": "onco.core.VariantIdentifier"
-    }
-  ],
-  "version": "0.9.0",
+  "url": "http://mcodeinitiative.org/us/mcode/StructureDefinition/onco-core-VariantIdentifier-extension",
+  "version": "0.9.1",
   "name": "VariantIdentifier",
   "display": "onco-core-VariantIdentifier",
   "status": "draft",
@@ -28,8 +22,8 @@
       ]
     }
   ],
-  "date": "2019-04-17T00:00:00-04:00",
-  "description": "The variation ID assigned by HGVS, for example, 360448 is the identifier for NM_005228.4(EGFR):c.-237A>G (single nucleotide variant in EGFR).",
+  "date": "2019-10-23T00:00:00-04:00",
+  "description": "The variation ID assigned by ClinVar, for example, 360448 is the identifier for NM_005228.4(EGFR):c.-237A>G (single nucleotide variant in EGFR).",
   "fhirVersion": "1.0.2",
   "kind": "datatype",
   "constrainedType": "Extension",
@@ -46,43 +40,17 @@
         "path": "Extension",
         "name": "Extension",
         "short": "VariantIdentifier",
-        "definition": "The variation ID assigned by HGVS, for example, 360448 is the identifier for NM_005228.4(EGFR):c.-237A>G (single nucleotide variant in EGFR).",
+        "definition": "The variation ID assigned by ClinVar, for example, 360448 is the identifier for NM_005228.4(EGFR):c.-237A>G (single nucleotide variant in EGFR).",
         "min": 0,
         "max": "*",
         "base": {
           "path": "Extension",
           "min": 0,
-          "max": "1"
+          "max": "*"
         },
         "type": [
           {
             "code": "Extension"
-          }
-        ],
-        "maxLength": 0,
-        "mustSupport": false,
-        "isModifier": false,
-        "isSummary": false
-      },
-      {
-        "id": "Extension.id",
-        "path": "Extension.id",
-        "representation": [
-          "xmlAttr"
-        ],
-        "name": "Extension.id",
-        "short": "xml:id (or equivalent in JSON)",
-        "definition": "unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
-        "min": 0,
-        "max": "1",
-        "base": {
-          "path": "Element.id",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "string"
           }
         ],
         "maxLength": 0,
@@ -97,11 +65,48 @@
         ]
       },
       {
-        "id": "Extension.extension-extension",
+        "id": "Extension.id",
+        "path": "Extension.id",
+        "representation": [
+          "xmlAttr"
+        ],
+        "name": "Extension.id",
+        "short": "xml:id (or equivalent in JSON)",
+        "definition": "unique id for the element within a resource (for internal references).",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Element.id",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "id"
+          }
+        ],
+        "maxLength": 0,
+        "mustSupport": false,
+        "isModifier": false,
+        "isSummary": false,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "n/a"
+          }
+        ]
+      },
+      {
+        "id": "Extension.extension",
         "path": "Extension.extension",
-        "name": "Extension.extension-extension",
-        "short": "Extension",
-        "definition": "An Extension",
+        "name": "Extension.extension",
+        "short": "Additional Content defined by implementations",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content"
+        ],
         "min": 0,
         "max": "0",
         "base": {
@@ -117,7 +122,13 @@
         "maxLength": 0,
         "mustSupport": false,
         "isModifier": false,
-        "isSummary": false
+        "isSummary": false,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "n/a"
+          }
+        ]
       },
       {
         "id": "Extension.url",
@@ -128,6 +139,7 @@
         "name": "Extension.url",
         "short": "identifies the meaning of the extension",
         "definition": "Source of the definition for the extension code - a logical name or a URL.",
+        "comments": "The definition may point directly to a computable or human-readable definition of the extensibility codes, or it may be a logical URI as declared in some other specification. The definition should be version specific.  This will ideally be the URI for the Resource Profile defining the extension, with the code for the extension after a #.",
         "min": 1,
         "max": "1",
         "base": {
@@ -140,7 +152,7 @@
             "code": "uri"
           }
         ],
-        "fixedUri": "http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-VariantIdentifier-extension",
+        "fixedUri": "http://mcodeinitiative.org/us/mcode/StructureDefinition/onco-core-VariantIdentifier-extension",
         "maxLength": 0,
         "mustSupport": false,
         "isModifier": false,
@@ -177,7 +189,7 @@
         "binding": {
           "strength": "extensible",
           "valueSetReference": {
-            "reference": "https://www.ncbi.nlm.nih.gov/clinvar"
+            "reference": "http://mcodeinitiative.org/us/mcode/ValueSet/onco-core-ClinVarVS"
           }
         },
         "mapping": [
@@ -196,7 +208,7 @@
         "path": "Extension",
         "name": "Extension",
         "short": "VariantIdentifier",
-        "definition": "The variation ID assigned by HGVS, for example, 360448 is the identifier for NM_005228.4(EGFR):c.-237A>G (single nucleotide variant in EGFR).",
+        "definition": "The variation ID assigned by ClinVar, for example, 360448 is the identifier for NM_005228.4(EGFR):c.-237A>G (single nucleotide variant in EGFR).",
         "min": 0,
         "max": "*",
         "type": [
@@ -210,9 +222,9 @@
         "isSummary": false
       },
       {
-        "id": "Extension.extension-extension",
+        "id": "Extension.extension",
         "path": "Extension.extension",
-        "name": "Extension.extension-extension",
+        "name": "Extension.extension",
         "min": 0,
         "max": "0",
         "maxLength": 0,
@@ -225,12 +237,7 @@
         "path": "Extension.url",
         "name": "Extension.url",
         "min": 0,
-        "type": [
-          {
-            "code": "uri"
-          }
-        ],
-        "fixedUri": "http://hl7.org/fhir/us/shr/StructureDefinition/onco-core-VariantIdentifier-extension",
+        "fixedUri": "http://mcodeinitiative.org/us/mcode/StructureDefinition/onco-core-VariantIdentifier-extension",
         "maxLength": 0,
         "mustSupport": false,
         "isModifier": false,
@@ -253,7 +260,7 @@
         "binding": {
           "strength": "extensible",
           "valueSetReference": {
-            "reference": "https://www.ncbi.nlm.nih.gov/clinvar"
+            "reference": "http://mcodeinitiative.org/us/mcode/ValueSet/onco-core-ClinVarVS"
           }
         }
       }
